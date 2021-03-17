@@ -3,10 +3,20 @@ import "./App.css";
 import React from "react";
 import { useScrollPercentage, ScrollPercentage } from "react-scroll-percentage";
 
+const Loupe = () => {
+  return <div style={{ height: 900 }}>Loupe Content</div>;
+};
+const Norse = () => {
+  return <div style={{ height: 3402 }}>Norse Content</div>;
+};
+const Canon = () => {
+  return <div style={{ height: 7000 }}>Canon Content</div>;
+};
+
 let data = new Map([
-  ["loupe", { name: "Loupe", slug: "loupe" }],
-  ["norse", { name: "Norse", slug: "norse" }],
-  ["canon", { name: "Canon", slug: "canon" }],
+  ["loupe", { name: "Loupe", slug: "loupe", component: Loupe }],
+  ["norse", { name: "Norse", slug: "norse", component: Norse }],
+  ["canon", { name: "Canon", slug: "canon", component: Canon }],
 ]);
 
 const caseStyle = {
@@ -15,7 +25,7 @@ const caseStyle = {
 };
 
 const Case = ({ data }) => {
-  console.log();
+  const Render = data.val.component;
   return (
     <ScrollPercentage>
       {({ percentage, ref, entry }) => {
@@ -48,6 +58,7 @@ const Case = ({ data }) => {
                 }, 80%, 40%), #f00)`,
               }}
             >
+              {/* <Render></Render> */}
               <p
                 style={{ position: "sticky", top: 20, left: "45%", height: 30 }}
               >

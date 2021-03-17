@@ -24,7 +24,6 @@ let data = new Map([
 ]);
 
 const caseStyle = {
-  height: 3000,
   display: "flex",
 };
 
@@ -47,7 +46,7 @@ const Case = ({ data }) => {
             style={{
               ...caseStyle,
               width: "100%",
-              height: `${data.index * 400 + 2000}px`,
+              height: `${data.index * 400 + 3000}px`,
             }}
           >
             <div
@@ -56,20 +55,41 @@ const Case = ({ data }) => {
                 position: distanceBeyondBottom > 0 ? "fixed" : "relative",
                 zIndex: data.index,
                 width: `calc(100% - ${data.index * 80}px)`,
-                height: `${data.index * 400 + 2000}px`,
+                height: `inherit`,
                 background: `linear-gradient(hsl(${
                   data.index * 50 + 200
                 }, 80%, 40%), #f00)`,
               }}
             >
-              <Render></Render>
               <div
-                style={{ position: "sticky", top: 20, left: "45%", height: 30 }}
+                sx={{
+                  bg: "#0009",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: "pill",
+                  height: 3000,
+                  color: "#fff",
+                }}
+              >
+                Content
+              </div>
+              <div
+                sx={{
+                  position: "sticky",
+                  top: 0,
+                  ml: 40,
+                  display: "flex",
+                  flexDirection: "column",
+                }}
               >
                 <h1
-                  style={{ fontSize: 90 }}
+                  sx={{ fontSize: 90, m: 0 }}
                 >{`Scrolled: ${percentage.toPrecision(2)}`}</h1>
-                <h3>{distanceBeyondBottom > 0 ? "fixed" : "relative"}</h3>
+                <h3>
+                  {distanceBeyondBottom > 0 ? "Fixed" : "Relative"}
+                  {" · " + distanceBeyondBottom}
+                </h3>
               </div>
             </div>
           </div>

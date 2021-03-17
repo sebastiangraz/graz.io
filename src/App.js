@@ -1,16 +1,20 @@
-import logo from "./logo.svg";
+/** @jsxRuntime classic */
+/** @jsx jsx */
+
 import "./App.css";
 import React from "react";
-import { useScrollPercentage, ScrollPercentage } from "react-scroll-percentage";
+import { ScrollPercentage } from "react-scroll-percentage";
+import { jsx, ThemeProvider } from "theme-ui";
+import theme from "./theme";
 
 const Loupe = () => {
-  return <div style={{ height: 900 }}>Loupe Content</div>;
+  return <div sx={{ height: 900, bg: "#0005" }}>Loupe Content</div>;
 };
 const Norse = () => {
-  return <div style={{ height: 3402 }}>Norse Content</div>;
+  return <div style={{ height: 3402, bg: "#0005" }}>Norse Content</div>;
 };
 const Canon = () => {
-  return <div style={{ height: 7000 }}>Canon Content</div>;
+  return <div style={{ height: 7000, bg: "#0005" }}>Canon Content</div>;
 };
 
 let data = new Map([
@@ -58,15 +62,15 @@ const Case = ({ data }) => {
                 }, 80%, 40%), #f00)`,
               }}
             >
-              {/* <Render></Render> */}
-              <p
+              <Render></Render>
+              <div
                 style={{ position: "sticky", top: 20, left: "45%", height: 30 }}
               >
                 <h1
                   style={{ fontSize: 90 }}
                 >{`Scrolled: ${percentage.toPrecision(2)}`}</h1>
                 <h3>{distanceBeyondBottom > 0 ? "fixed" : "relative"}</h3>
-              </p>
+              </div>
             </div>
           </div>
         );
@@ -99,17 +103,19 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <span style={{ position: "fixed", left: 10, top: 10 }}>
-        scroll: {scrollPosition} | height: {docHeight}
-      </span>
-      <div style={{ display: "grid", justifyItems: "flex-end" }}>
-        {[...data.entries()].map(([k, v], index) => {
-          let data = { key: k, val: v, index: index };
-          return <Case data={data} key={k} />;
-        })}
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <span style={{ position: "fixed", left: 10, top: 10 }}>
+          scroll: {scrollPosition} | height: {docHeight}
+        </span>
+        <div style={{ display: "grid", justifyItems: "flex-end" }}>
+          {[...data.entries()].map(([k, v], index) => {
+            let data = { key: k, val: v, index: index };
+            return <Case data={data} key={k} />;
+          })}
+        </div>
       </div>
-    </div>
+    </ThemeProvider>
   );
 }
 

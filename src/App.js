@@ -46,16 +46,26 @@ let data = new Map([
 const Case = ({ data }) => {
   const Render = data.val.component;
   return (
-    <>
+    <div
+      sx={{
+        p: 3,
+        background: `linear-gradient(hsl(${
+          data.index * 50 + 200
+        }, 80%, 40%), #f00)`,
+      }}
+    >
       <h1>{data.val.name}</h1>
       <Render />
-    </>
+    </div>
   );
 };
 
 function App() {
   const [scrollPosition, setScrollPosition] = React.useState(0);
   const [docHeight, setDocHeight] = React.useState(0);
+  const [contentHeight, setContentHeight] = React.useState(0);
+
+  const contentRef = React.useRef();
 
   const handleScroll = () => {
     const position = window.pageYOffset;
@@ -63,9 +73,19 @@ function App() {
   };
 
   const handleResize = () => {
-    const size = window.innerHeight;
-    setDocHeight(size);
+    const docHeight = window.innerHeight;
+    const contentHeight = contentRef.current.scrollHeight;
+    setDocHeight(docHeight);
+    setContentHeight(contentHeight);
   };
+
+  React.useEffect(() => {
+    let doc = document.body;
+    doc.style.height = `${contentHeight}px`;
+    return () => {
+      doc.style.removeProperty("height");
+    };
+  });
 
   React.useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -76,18 +96,17 @@ function App() {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("load", handleResize);
     };
-  }, []);
+  });
 
   const springConfig = {
-    damping: 20,
-    stiffness: 200,
-    mass: 0.4,
+    stiffness: 320,
+    damping: 30,
   };
 
   const { scrollYProgress } = useViewportScroll();
 
   const scroll = useSpring(
-    useTransform(scrollYProgress, [0, 1], [300, 0]),
+    useTransform(scrollYProgress, [0, 1], [0, -contentHeight + docHeight]),
     springConfig
   );
 
@@ -99,32 +118,30 @@ function App() {
           {scrollYProgress.get()}
         </span>
 
-        <div
+        <motion.div
+          style={{ y: scroll }}
           sx={{
-            left: 0,
             top: 0,
-            width: "100vw",
-            height: "100vh",
+            height: "100%",
+            width: "100%",
             position: "fixed",
           }}
         >
-          <motion.div
-            style={{ y: scroll }}
-            sx={{
-              position: "absolute",
-
-              bg: "primary",
+          <div
+            ref={contentRef}
+            style={{
+              right: 0,
+              position: "fixed",
+              display: "grid",
+              justifyItems: "flex-end",
             }}
           >
-            Lerp me
-          </motion.div>
-        </div>
-        <div style={{ display: "grid", justifyItems: "flex-end" }}>
-          {[...data.entries()].map(([k, v], index) => {
-            let data = { key: k, val: v, index: index };
-            return <Case data={data} key={k} />;
-          })}
-        </div>
+            {[...data.entries()].map(([k, v], index) => {
+              let data = { key: k, val: v, index: index };
+              return <Case data={data} key={k} />;
+            })}
+          </div>
+        </motion.div>
       </div>
     </ThemeProvider>
   );

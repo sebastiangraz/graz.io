@@ -3,7 +3,14 @@
 
 import "./App.css";
 import React from "react";
-import { transform } from "framer-motion";
+import {
+  useMotionValue,
+  motion,
+  transform,
+  useSpring,
+  useTransform,
+  useViewportScroll,
+} from "framer-motion";
 import { ScrollPercentage } from "react-scroll-percentage";
 import { jsx, ThemeProvider } from "theme-ui";
 import theme from "./theme";
@@ -12,7 +19,7 @@ const Loupe = () => {
   return <div sx={{ height: 200, bg: "#0005" }}>Loupe Content</div>;
 };
 const Norse = () => {
-  return <div sx={{ height: 800, bg: "#0005" }}>Norse Content</div>;
+  return <div sx={{ height: 4000, bg: "#0005" }}>Norse Content</div>;
 };
 const Canon = () => {
   return <div sx={{ height: 650, bg: "#0005" }}>Canon Content</div>;
@@ -32,14 +39,6 @@ const Case = ({ data }) => {
 function App() {
   const [scrollPosition, setScrollPosition] = React.useState(0);
   const [docHeight, setDocHeight] = React.useState(0);
-  const percentage = getVerticalScrollPercentage(document.body);
-
-  function getVerticalScrollPercentage(elm) {
-    var p = elm.parentNode;
-    return (
-      ((elm.scrollTop || p.scrollTop) / (p.scrollHeight - p.clientHeight)) * 100
-    );
-  }
 
   const handleScroll = () => {
     const position = window.pageYOffset;
@@ -62,31 +61,41 @@ function App() {
     };
   }, []);
 
+  const springConfig = {
+    damping: 20,
+    stiffness: 200,
+    mass: 0.4,
+  };
+
+  const { scrollYProgress } = useViewportScroll();
+
+  const x = useSpring(
+    useTransform(scrollYProgress, [0, 1], [0, 300]),
+    springConfig
+  );
+
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
         <span style={{ position: "fixed", left: 10, top: 10 }}>
           scroll: {scrollPosition} | height: {docHeight} | percentage:{" "}
-          {percentage}
+          {scrollYProgress.get()}
         </span>
 
-        <div class="scroll-indicator">
-          <div class="bar"></div>
-          <span
+        <div className="scroll-indicator">
+          <div className="bar"></div>
+          <motion.span
             id="indicator"
+            style={{ x }}
             sx={{
               position: "absolute",
               width: 3,
               bg: "primary",
               height: 1,
-              transform: `translateX(${transform(
-                percentage,
-                [0, 100],
-                [0, 300]
-              )}px)`,
+              // transform: `translateX(${percentage}px)`,
             }}
-            class="indicator"
-          ></span>
+            className="indicator"
+          ></motion.span>
         </div>
         <div style={{ display: "grid", justifyItems: "flex-end" }}>
           {[...data.entries()].map(([k, v], index) => {

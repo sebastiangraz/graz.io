@@ -1,28 +1,40 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 
-import "./App.css";
 import React from "react";
 import {
-  useMotionValue,
   motion,
-  transform,
   useSpring,
   useTransform,
   useViewportScroll,
 } from "framer-motion";
-import { ScrollPercentage } from "react-scroll-percentage";
 import { jsx, ThemeProvider } from "theme-ui";
 import theme from "./theme";
 
+const Wrapper = ({ children }) => {
+  return <div sx={{ width: 320 }}>{children}</div>;
+};
+
 const Loupe = () => {
-  return <div sx={{ height: 200, bg: "#0005" }}>Loupe Content</div>;
+  return (
+    <Wrapper>
+      <div sx={{ height: 200, bg: "#0005" }}>Loupe Content</div>
+    </Wrapper>
+  );
 };
 const Norse = () => {
-  return <div sx={{ height: 4000, bg: "#0005" }}>Norse Content</div>;
+  return (
+    <Wrapper>
+      <div sx={{ height: 4000, bg: "#0005" }}>Norse Content</div>
+    </Wrapper>
+  );
 };
 const Canon = () => {
-  return <div sx={{ height: 650, bg: "#0005" }}>Canon Content</div>;
+  return (
+    <Wrapper>
+      <div sx={{ height: 650, bg: "#0005" }}>Canon Content</div>
+    </Wrapper>
+  );
 };
 
 let data = new Map([
@@ -33,7 +45,12 @@ let data = new Map([
 
 const Case = ({ data }) => {
   const Render = data.val.component;
-  return <Render sx={{ width: "100%" }} />;
+  return (
+    <>
+      <h1>{data.val.name}</h1>
+      <Render />
+    </>
+  );
 };
 
 function App() {
@@ -69,8 +86,8 @@ function App() {
 
   const { scrollYProgress } = useViewportScroll();
 
-  const x = useSpring(
-    useTransform(scrollYProgress, [0, 1], [0, 300]),
+  const scroll = useSpring(
+    useTransform(scrollYProgress, [0, 1], [300, 0]),
     springConfig
   );
 
@@ -82,20 +99,25 @@ function App() {
           {scrollYProgress.get()}
         </span>
 
-        <div className="scroll-indicator">
-          <div className="bar"></div>
-          <motion.span
-            id="indicator"
-            style={{ x }}
+        <div
+          sx={{
+            left: 0,
+            top: 0,
+            width: "100vw",
+            height: "100vh",
+            position: "fixed",
+          }}
+        >
+          <motion.div
+            style={{ y: scroll }}
             sx={{
               position: "absolute",
-              width: 3,
+
               bg: "primary",
-              height: 1,
-              // transform: `translateX(${percentage}px)`,
             }}
-            className="indicator"
-          ></motion.span>
+          >
+            Lerp me
+          </motion.div>
         </div>
         <div style={{ display: "grid", justifyItems: "flex-end" }}>
           {[...data.entries()].map(([k, v], index) => {

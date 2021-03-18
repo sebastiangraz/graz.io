@@ -12,27 +12,27 @@ import { jsx, ThemeProvider } from "theme-ui";
 import theme from "./theme";
 
 const Wrapper = ({ children }) => {
-  return <div sx={{ width: 320 }}>{children}</div>;
+  return <div sx={{ width: "100%" }}>{children}</div>;
 };
 
 const Loupe = () => {
   return (
     <Wrapper>
-      <div sx={{ height: 200, bg: "#0005" }}>Loupe Content</div>
+      <div sx={{ height: 1500 }}>Loupe Content</div>
     </Wrapper>
   );
 };
 const Norse = () => {
   return (
     <Wrapper>
-      <div sx={{ height: 4000, bg: "#0005" }}>Norse Content</div>
+      <div sx={{ height: 2000 }}>Norse Content</div>
     </Wrapper>
   );
 };
 const Canon = () => {
   return (
     <Wrapper>
-      <div sx={{ height: 650, bg: "#0005" }}>Canon Content</div>
+      <div sx={{ height: 1200 }}>Canon Content</div>
     </Wrapper>
   );
 };
@@ -49,9 +49,8 @@ const Case = ({ data }) => {
     <div
       sx={{
         p: 3,
-        background: `linear-gradient(hsl(${
-          data.index * 50 + 200
-        }, 80%, 40%), #f00)`,
+        width: "100%",
+        background: `hsl(${data.index * 50 + 200}, 80%, 75%)`,
       }}
     >
       <h1>{data.val.name}</h1>
@@ -100,7 +99,7 @@ function App() {
 
   const springConfig = {
     stiffness: 320,
-    damping: 30,
+    damping: 50,
   };
 
   const { scrollYProgress } = useViewportScroll();
@@ -113,7 +112,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        <span style={{ position: "fixed", left: 10, top: 10 }}>
+        <span style={{ position: "fixed", left: 10, top: 10, zIndex: 10 }}>
           scroll: {scrollPosition} | height: {docHeight} | percentage:{" "}
           {scrollYProgress.get()}
         </span>
@@ -134,6 +133,7 @@ function App() {
               position: "fixed",
               display: "grid",
               justifyItems: "flex-end",
+              width: "100%",
             }}
           >
             {[...data.entries()].map(([k, v], index) => {

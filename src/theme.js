@@ -40,6 +40,7 @@ export default {
   shadows: { ...shadow },
   styles: {
     root: {
+      bg: "bg",
       fontSize: 3,
       fontFamily: "body",
       lineHeight: "body",

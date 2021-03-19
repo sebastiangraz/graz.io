@@ -12,7 +12,26 @@ import { jsx, ThemeProvider } from "theme-ui";
 import theme from "./theme";
 
 const Wrapper = ({ children }) => {
-  return <div sx={{ width: "100%" }}>{children}</div>;
+  return (
+    <div
+      sx={{
+        width: "100%",
+        position: "relative",
+        "&:after": {
+          content: `""`,
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          bg: "#000",
+          height: "2px",
+          width: "100%",
+          zIndex: 4,
+        },
+      }}
+    >
+      {children}
+    </div>
+  );
 };
 
 const Loupe = () => {
@@ -48,8 +67,8 @@ const Case = ({ data }) => {
   return (
     <div
       sx={{
-        p: 3,
         width: "100%",
+        p: 4,
         background: `hsl(${data.index * 50 + 200}, 80%, 75%)`,
       }}
     >
@@ -112,7 +131,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        <span style={{ position: "fixed", left: 10, top: 10, zIndex: 10 }}>
+        <span style={{ position: "fixed", right: 10, top: 10, zIndex: 10 }}>
           scroll: {scrollPosition} | height: {docHeight} | percentage:{" "}
           {scrollYProgress.get()}
         </span>
@@ -129,7 +148,6 @@ function App() {
           <div
             ref={contentRef}
             style={{
-              right: 0,
               position: "fixed",
               display: "grid",
               justifyItems: "flex-end",

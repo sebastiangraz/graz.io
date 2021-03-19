@@ -11,47 +11,37 @@ import {
 import { jsx, ThemeProvider } from "theme-ui";
 import theme from "./theme";
 
+function useDimensions() {
+  const ref = React.useRef();
+  const [dim, setDim] = React.useState({});
+  React.useLayoutEffect(() => {
+    setDim(ref.current.getBoundingClientRect().toJSON());
+  }, [setDim]);
+  return [ref, dim];
+}
+
 const Wrapper = ({ children }) => {
-  return (
-    <div
-      sx={{
-        width: "100%",
-        position: "relative",
-        "&:after": {
-          content: `""`,
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          bg: "#000",
-          height: "2px",
-          width: "100%",
-          zIndex: 4,
-        },
-      }}
-    >
-      {children}
-    </div>
-  );
+  return <div>{children}</div>;
 };
 
 const Loupe = () => {
   return (
     <Wrapper>
-      <div sx={{ height: 1500 }}>Loupe Content</div>
+      <div sx={{ height: "200vh" }}>Loupe Content</div>
     </Wrapper>
   );
 };
 const Norse = () => {
   return (
     <Wrapper>
-      <div sx={{ height: 2000 }}>Norse Content</div>
+      <div sx={{ height: "150vh" }}>Norse Content</div>
     </Wrapper>
   );
 };
 const Canon = () => {
   return (
     <Wrapper>
-      <div sx={{ height: 1200 }}>Canon Content</div>
+      <div sx={{ height: "100vh" }}>Canon Content</div>
     </Wrapper>
   );
 };
@@ -62,19 +52,25 @@ let data = new Map([
   ["canon", { name: "Canon", slug: "canon", component: Canon }],
 ]);
 
-const Case = ({ data }) => {
+const Case = ({ data, scroll }) => {
   const Render = data.val.component;
+  const y = { y: scroll };
+  const [ref, { height }] = useDimensions();
+
   return (
-    <div
+    <motion.div
+      ref={ref}
+      style={y}
       sx={{
         width: "100%",
         p: 4,
         background: `hsl(${data.index * 50 + 200}, 80%, 75%)`,
       }}
     >
-      <h1>{data.val.name}</h1>
+      {height}
+      <h1 sx={{ fontSize: 80, lineHeight: 1.1 }}>{data.val.name}</h1>
       <Render />
-    </div>
+    </motion.div>
   );
 };
 
@@ -82,7 +78,6 @@ function App() {
   const [scrollPosition, setScrollPosition] = React.useState(0);
   const [docHeight, setDocHeight] = React.useState(0);
   const [contentHeight, setContentHeight] = React.useState(0);
-
   const contentRef = React.useRef();
 
   const handleScroll = () => {
@@ -128,6 +123,16 @@ function App() {
     springConfig
   );
 
+  const map1 = new Map();
+
+  [...data.entries()].map(([k, v], index) => {
+    let i = index * 500;
+    return map1.set(k, scroll.get() + i);
+  });
+
+  const [height, setHeight] = React.useState(null);
+  const value = [height, setHeight];
+
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
@@ -137,7 +142,6 @@ function App() {
         </span>
 
         <motion.div
-          style={{ y: scroll }}
           sx={{
             top: 0,
             height: "100%",
@@ -155,8 +159,8 @@ function App() {
             }}
           >
             {[...data.entries()].map(([k, v], index) => {
-              let data = { key: k, val: v, index: index };
-              return <Case data={data} key={k} />;
+              let data = { key: k, val: v, index: index, height: value };
+              return <Case data={data} scroll={scroll} key={k} />;
             })}
           </div>
         </motion.div>

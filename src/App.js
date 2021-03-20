@@ -10,6 +10,9 @@ import {
 } from "framer-motion";
 import { jsx, ThemeProvider } from "theme-ui";
 import theme from "./theme";
+import { Case } from "./Case";
+import { useEffect } from "react";
+const MyContext = React.createContext();
 
 function useDimensions() {
   const ref = React.useRef();
@@ -46,33 +49,11 @@ const Canon = () => {
   );
 };
 
-let data = new Map([
+let cases = new Map([
   ["loupe", { name: "Loupe", slug: "loupe", component: Loupe }],
   ["norse", { name: "Norse", slug: "norse", component: Norse }],
   ["canon", { name: "Canon", slug: "canon", component: Canon }],
 ]);
-
-const Case = ({ data, scroll }) => {
-  const Render = data.val.component;
-  const y = { y: scroll };
-  const [ref, { height }] = useDimensions();
-
-  return (
-    <motion.div
-      ref={ref}
-      style={y}
-      sx={{
-        width: "100%",
-        p: 4,
-        background: `hsl(${data.index * 50 + 200}, 80%, 75%)`,
-      }}
-    >
-      {height}
-      <h1 sx={{ fontSize: 80, lineHeight: 1.1 }}>{data.val.name}</h1>
-      <Render />
-    </motion.div>
-  );
-};
 
 function App() {
   const [scrollPosition, setScrollPosition] = React.useState(0);
@@ -123,50 +104,64 @@ function App() {
     springConfig
   );
 
-  const map1 = new Map();
+  const revealRefs = React.useRef([]);
+  revealRefs.current = [];
 
-  [...data.entries()].map(([k, v], index) => {
-    let i = index * 500;
-    return map1.set(k, scroll.get() + i);
-  });
+  const addToRefs = (el) => {
+    if (el && !revealRefs.current.includes(el)) {
+      revealRefs.current.push(el);
+    }
+  };
 
-  const [height, setHeight] = React.useState(null);
-  const value = [height, setHeight];
+  React.useEffect(() => {
+    revealRefs.current.forEach((el, index) => {
+      console.log(el.scrollHeight);
+    });
+  }, []);
 
   return (
-    <ThemeProvider theme={theme}>
-      <div className="App">
-        <span style={{ position: "fixed", right: 10, top: 10, zIndex: 10 }}>
-          scroll: {scrollPosition} | height: {docHeight} | percentage:{" "}
-          {scrollYProgress.get()}
-        </span>
+    <MyContext.Provider value={[]}>
+      <ThemeProvider theme={theme}>
+        <div className="App">
+          <span style={{ position: "fixed", right: 10, top: 10, zIndex: 10 }}>
+            scroll: {scrollPosition} | height: {docHeight} | percentage:{" "}
+            {scrollYProgress.get()}
+          </span>
 
-        <motion.div
-          sx={{
-            top: 0,
-            height: "100%",
-            width: "100%",
-            position: "fixed",
-          }}
-        >
-          <div
-            ref={contentRef}
-            style={{
-              position: "fixed",
-              display: "grid",
-              justifyItems: "flex-end",
+          <motion.div
+            sx={{
+              top: 0,
+              height: "100%",
               width: "100%",
+              position: "fixed",
             }}
           >
-            {[...data.entries()].map(([k, v], index) => {
-              let data = { key: k, val: v, index: index, height: value };
-              return <Case data={data} scroll={scroll} key={k} />;
-            })}
-          </div>
-        </motion.div>
-      </div>
-    </ThemeProvider>
+            <div
+              ref={contentRef}
+              style={{
+                position: "fixed",
+                display: "grid",
+                justifyItems: "flex-end",
+                width: "100%",
+              }}
+            >
+              {[...cases.entries()].map(([k, v], index) => {
+                let data = {
+                  key: k,
+                  val: v,
+                  index: index,
+                };
+                return (
+                  <div sx={{ width: "100%" }} ref={addToRefs} key={k}>
+                    <Case casedata={data} scroll={scroll} />
+                  </div>
+                );
+              })}
+            </div>
+          </motion.div>
+        </div>
+      </ThemeProvider>
+    </MyContext.Provider>
   );
 }
-
 export default App;

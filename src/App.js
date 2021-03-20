@@ -114,10 +114,18 @@ function App() {
   };
 
   React.useEffect(() => {
-    revealRefs.current.forEach((el, index) => {
-      console.log(el.scrollHeight);
-    });
+    const map = new Map(Object.entries(revealRefs.current));
+    const obj = Object.fromEntries(map);
+
+    console.log(map);
   }, []);
+  // React.useEffect(() => {
+  //   const childMap = new Map();
+  //   revealRefs.current.forEach((el, index) => {
+  //     childMap.set("test", el.scrollHeight);
+  //     console.log(childMap);
+  //   });
+  // }, []);
 
   return (
     <MyContext.Provider value={[]}>

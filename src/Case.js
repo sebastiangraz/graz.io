@@ -5,13 +5,10 @@ import { motion } from "framer-motion";
 import React from "react";
 import { jsx } from "theme-ui";
 
-export const Case = ({ casedata, scroll }) => {
+export const Case = ({ casedata }) => {
   const Render = casedata.val.component;
-  const y = { y: scroll };
-
   return (
     <motion.div
-      style={y}
       sx={{
         width: "100%",
         p: 4,

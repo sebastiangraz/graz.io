@@ -7,23 +7,11 @@ import {
   useSpring,
   useTransform,
   useViewportScroll,
-  useElementScroll,
-  transform,
 } from "framer-motion";
 import { jsx, ThemeProvider } from "theme-ui";
 import theme from "./theme";
 import { Case } from "./Case";
-import { useScrollPercentage } from "react-scroll-percentage";
 const MyContext = React.createContext();
-
-function useDimensions() {
-  const ref = React.useRef();
-  const [dim, setDim] = React.useState({});
-  React.useLayoutEffect(() => {
-    setDim(ref.current.getBoundingClientRect().toJSON());
-  }, [setDim]);
-  return [ref, dim];
-}
 
 const Wrapper = ({ children }) => {
   return <div>{children}</div>;
@@ -95,7 +83,7 @@ function App() {
   });
 
   const springConfig = {
-    stiffness: 320,
+    stiffness: 800,
     damping: 50,
   };
 
@@ -115,40 +103,17 @@ function App() {
     }
   };
 
-  const map1 = new Map();
-
-  [...cases.entries()].map(([k, v], index) => {
-    let i = index * 500;
-    return map1.set(k, scroll.get() + i);
-  });
-
-  const [ref, percentage] = useScrollPercentage({
-    /* Optional options */
-    threshold: 0,
-  });
-
   React.useEffect(() => {
     let scrollarr = Math.floor(scroll.get());
     const map = new Map(Object.entries(revealRefs.current));
     const remap = new Map(
       Array.from(map, ([k, v]) => [
         k,
-        (v = scrollarr + v.getBoundingClientRect().y - docHeight),
+        (v = Math.floor(v.getBoundingClientRect().y - docHeight)),
       ])
     );
-
     console.log(remap);
   });
-
-  // console.log(map1);
-
-  // React.useEffect(() => {
-  //   const childMap = new Map();
-  //   revealRefs.current.forEach((el, index) => {
-  //     childMap.set("test", el.scrollHeight);
-  //     console.log(childMap);
-  //   });
-  // }, []);
 
   return (
     <MyContext.Provider value={[]}>
@@ -160,35 +125,29 @@ function App() {
           </span>
 
           <motion.div
-            sx={{
+            ref={contentRef}
+            style={{
+              y: scroll,
               top: 0,
-              height: "100%",
-              width: "100%",
               position: "fixed",
+              display: "grid",
+              justifyItems: "flex-end",
+              width: "100%",
+              height: "100%",
             }}
           >
-            <div
-              ref={contentRef}
-              style={{
-                position: "fixed",
-                display: "grid",
-                justifyItems: "flex-end",
-                width: "100%",
-              }}
-            >
-              {[...cases.entries()].map(([k, v], index) => {
-                let data = {
-                  key: k,
-                  val: v,
-                  index: index,
-                };
-                return (
-                  <div sx={{ width: "100%" }} ref={addToRefs} key={k}>
-                    <Case casedata={data} scroll={scroll} />
-                  </div>
-                );
-              })}
-            </div>
+            {[...cases.entries()].map(([k, v], index) => {
+              let data = {
+                key: k,
+                val: v,
+                index: index,
+              };
+              return (
+                <div sx={{ width: "100%" }} ref={addToRefs} key={k}>
+                  <Case casedata={data} />
+                </div>
+              );
+            })}
           </motion.div>
         </div>
       </ThemeProvider>

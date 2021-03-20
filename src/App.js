@@ -7,11 +7,13 @@ import {
   useSpring,
   useTransform,
   useViewportScroll,
+  useElementScroll,
+  transform,
 } from "framer-motion";
 import { jsx, ThemeProvider } from "theme-ui";
 import theme from "./theme";
 import { Case } from "./Case";
-import { useEffect } from "react";
+import { useScrollPercentage } from "react-scroll-percentage";
 const MyContext = React.createContext();
 
 function useDimensions() {
@@ -30,21 +32,21 @@ const Wrapper = ({ children }) => {
 const Loupe = () => {
   return (
     <Wrapper>
-      <div sx={{ height: "200vh" }}>Loupe Content</div>
+      <div sx={{ height: "1323px" }}>Loupe Content</div>
     </Wrapper>
   );
 };
 const Norse = () => {
   return (
     <Wrapper>
-      <div sx={{ height: "150vh" }}>Norse Content</div>
+      <div sx={{ height: "1357px" }}>Norse Content</div>
     </Wrapper>
   );
 };
 const Canon = () => {
   return (
     <Wrapper>
-      <div sx={{ height: "100vh" }}>Canon Content</div>
+      <div sx={{ height: "1983px" }}>Canon Content</div>
     </Wrapper>
   );
 };
@@ -113,12 +115,33 @@ function App() {
     }
   };
 
-  React.useEffect(() => {
-    const map = new Map(Object.entries(revealRefs.current));
-    const obj = Object.fromEntries(map);
+  const map1 = new Map();
 
-    console.log(map);
-  }, []);
+  [...cases.entries()].map(([k, v], index) => {
+    let i = index * 500;
+    return map1.set(k, scroll.get() + i);
+  });
+
+  const [ref, percentage] = useScrollPercentage({
+    /* Optional options */
+    threshold: 0,
+  });
+
+  React.useEffect(() => {
+    let scrollarr = Math.floor(scroll.get());
+    const map = new Map(Object.entries(revealRefs.current));
+    const remap = new Map(
+      Array.from(map, ([k, v]) => [
+        k,
+        (v = scrollarr + v.getBoundingClientRect().y - docHeight),
+      ])
+    );
+
+    console.log(remap);
+  });
+
+  // console.log(map1);
+
   // React.useEffect(() => {
   //   const childMap = new Map();
   //   revealRefs.current.forEach((el, index) => {

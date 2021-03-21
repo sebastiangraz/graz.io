@@ -7,9 +7,17 @@ import { jsx } from "theme-ui";
 
 const Case = (props, ref) => {
   const Render = props.casedata.val.component;
-  // console.log(caseScroll);
+
   return (
-    <motion.div ref={ref} sx={{ width: "100%" }}>
+    <motion.div
+      ref={ref}
+      style={{
+        width: "100%",
+        background: `hsl(${props.index * 30}, 50, 50)`,
+        position: "absolute",
+        x: transform(props.caseScroll, [0, 1], ["-100%", "0%"]),
+      }}
+    >
       <h1 sx={{ fontSize: 80, lineHeight: 1.1 }}>
         {props.casedata.val.name}{" "}
         {props.caseScroll && props.caseScroll.toFixed(2)}

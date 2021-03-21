@@ -2,11 +2,11 @@
 /** @jsx jsx */
 
 import { motion } from "framer-motion";
-import React from "react";
 import { jsx } from "theme-ui";
 
-export const Case = ({ casedata }) => {
+export const Case = ({ casedata, caseScroll }) => {
   const Render = casedata.val.component;
+
   return (
     <motion.div
       sx={{
@@ -15,7 +15,9 @@ export const Case = ({ casedata }) => {
         background: `hsl(${casedata.index * 50 + 200}, 80%, 75%)`,
       }}
     >
-      <h1 sx={{ fontSize: 80, lineHeight: 1.1 }}>{casedata.val.name}</h1>
+      <h1 sx={{ fontSize: 80, lineHeight: 1.1 }}>
+        {caseScroll && caseScroll.toFixed(2)} {casedata.val.name}
+      </h1>
       <Render />
     </motion.div>
   );

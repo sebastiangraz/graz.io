@@ -5,8 +5,10 @@ import React from "react";
 import {
   motion,
   useSpring,
+  transform,
   useTransform,
   useViewportScroll,
+  useMotionValue,
 } from "framer-motion";
 import { jsx, ThemeProvider } from "theme-ui";
 import theme from "./theme";
@@ -103,17 +105,24 @@ function App() {
     }
   };
 
+  const [scrollArray, setScrollArray] = React.useState();
+
   React.useEffect(() => {
-    let scrollarr = Math.floor(scroll.get());
     const map = new Map(Object.entries(revealRefs.current));
     const remap = new Map(
       Array.from(map, ([k, v]) => [
         k,
-        (v = Math.floor(v.getBoundingClientRect().y - docHeight)),
+        (v = transform(
+          -Math.floor(v.getBoundingClientRect().y - docHeight),
+          [0, v.getBoundingClientRect().height],
+          [0, 1]
+        )),
       ])
     );
-    console.log(remap);
-  });
+    setScrollArray(remap);
+  }, [scrollPosition, docHeight]);
+  // console.log(scrollArray);
+  // const motion = useMotionValue(scrollArray);
 
   return (
     <MyContext.Provider value={[]}>
@@ -144,7 +153,10 @@ function App() {
               };
               return (
                 <div sx={{ width: "100%" }} ref={addToRefs} key={k}>
-                  <Case casedata={data} />
+                  <Case
+                    casedata={data}
+                    caseScroll={scrollArray && scrollArray.get(`${index}`)}
+                  />
                 </div>
               );
             })}

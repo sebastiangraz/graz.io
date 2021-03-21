@@ -22,21 +22,21 @@ const Wrapper = ({ children }) => {
 const Loupe = () => {
   return (
     <Wrapper>
-      <div sx={{ height: "1323px" }}>Loupe Content</div>
+      <div sx={{ height: "1200px" }}>Loupe Content</div>
     </Wrapper>
   );
 };
 const Norse = () => {
   return (
     <Wrapper>
-      <div sx={{ height: "1357px" }}>Norse Content</div>
+      <div sx={{ height: "2000px" }}>Norse Content</div>
     </Wrapper>
   );
 };
 const Canon = () => {
   return (
     <Wrapper>
-      <div sx={{ height: "1983px" }}>Canon Content</div>
+      <div sx={{ height: "1000px" }}>Canon Content</div>
     </Wrapper>
   );
 };
@@ -108,21 +108,20 @@ function App() {
   const [scrollArray, setScrollArray] = React.useState();
 
   React.useEffect(() => {
-    const map = new Map(Object.entries(revealRefs.current));
-    const remap = new Map(
-      Array.from(map, ([k, v]) => [
+    const map = new Map(
+      Array.from(Object.entries(revealRefs.current), ([k, v]) => [
         k,
-        (v = transform(
-          -Math.floor(v.getBoundingClientRect().y - docHeight),
+        transform(
+          scrollPosition + docHeight - v.getBoundingClientRect().top,
           [0, v.getBoundingClientRect().height],
           [0, 1]
-        )),
+        ),
       ])
     );
-    setScrollArray(remap);
-  }, [scrollPosition, docHeight]);
-  // console.log(scrollArray);
-  // const motion = useMotionValue(scrollArray);
+    setScrollArray(map);
+  }, [docHeight, scrollPosition]);
+
+  console.log(scrollArray);
 
   return (
     <MyContext.Provider value={[]}>
@@ -130,13 +129,14 @@ function App() {
         <div className="App">
           <span style={{ position: "fixed", right: 10, top: 10, zIndex: 10 }}>
             scroll: {scrollPosition} | height: {docHeight} | percentage:{" "}
-            {scrollYProgress.get()}
+            {scrollYProgress.get().toFixed(2)} | contentHeight : {contentHeight}{" "}
+            | section : {scrollArray}
           </span>
 
           <motion.div
             ref={contentRef}
             style={{
-              y: scroll,
+              // y: scroll,
               top: 0,
               position: "fixed",
               display: "grid",

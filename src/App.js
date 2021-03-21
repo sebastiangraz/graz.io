@@ -12,7 +12,7 @@ import {
 } from "framer-motion";
 import { jsx, ThemeProvider } from "theme-ui";
 import theme from "./theme";
-import { Case } from "./Case";
+import Case from "./Case";
 const MyContext = React.createContext();
 
 const Wrapper = ({ children }) => {
@@ -97,15 +97,13 @@ function App() {
   );
 
   const revealRefs = React.useRef([]);
-  revealRefs.current = [];
+  const [scrollArray, setScrollArray] = React.useState();
 
   const addToRefs = (el) => {
     if (el && !revealRefs.current.includes(el)) {
       revealRefs.current.push(el);
     }
   };
-
-  const [scrollArray, setScrollArray] = React.useState();
 
   React.useEffect(() => {
     const map = new Map(
@@ -121,8 +119,6 @@ function App() {
     setScrollArray(map);
   }, [docHeight, scrollPosition]);
 
-  console.log(scrollArray);
-
   return (
     <MyContext.Provider value={[]}>
       <ThemeProvider theme={theme}>
@@ -130,7 +126,6 @@ function App() {
           <span style={{ position: "fixed", right: 10, top: 10, zIndex: 10 }}>
             scroll: {scrollPosition} | height: {docHeight} | percentage:{" "}
             {scrollYProgress.get().toFixed(2)} | contentHeight : {contentHeight}{" "}
-            | section : {scrollArray}
           </span>
 
           <motion.div
@@ -152,12 +147,12 @@ function App() {
                 index: index,
               };
               return (
-                <div sx={{ width: "100%" }} ref={addToRefs} key={k}>
-                  <Case
-                    casedata={data}
-                    caseScroll={scrollArray && scrollArray.get(`${index}`)}
-                  />
-                </div>
+                <Case
+                  key={k}
+                  ref={addToRefs}
+                  casedata={data}
+                  caseScroll={scrollArray && scrollArray.get(`${index}`)}
+                />
               );
             })}
           </motion.div>

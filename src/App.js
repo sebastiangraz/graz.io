@@ -15,30 +15,19 @@ import theme from "./theme";
 import Case from "./Case";
 const MyContext = React.createContext();
 
-const Wrapper = ({ children }) => {
-  return <div>{children}</div>;
+const WrapperStyle = {
+  width: "100%",
+  bg: "#000a",
 };
 
 const Loupe = () => {
-  return (
-    <Wrapper>
-      <div sx={{ height: "1200px" }}>Loupe Content</div>
-    </Wrapper>
-  );
+  return <div style={{ height: "2500px", ...WrapperStyle }}>Loupe Content</div>;
 };
 const Norse = () => {
-  return (
-    <Wrapper>
-      <div sx={{ height: "2000px" }}>Norse Content</div>
-    </Wrapper>
-  );
+  return <div style={{ height: "2000px", ...WrapperStyle }}>Norse Content</div>;
 };
 const Canon = () => {
-  return (
-    <Wrapper>
-      <div sx={{ height: "1000px" }}>Canon Content</div>
-    </Wrapper>
-  );
+  return <div style={{ height: "3500px", ...WrapperStyle }}>Canon Content</div>;
 };
 
 let cases = new Map([
@@ -51,7 +40,6 @@ function App() {
   const [scrollPosition, setScrollPosition] = React.useState(0);
   const [docHeight, setDocHeight] = React.useState(0);
   const [contentHeight, setContentHeight] = React.useState(0);
-  const contentRef = React.useRef();
 
   const handleScroll = () => {
     const position = window.pageYOffset;
@@ -60,9 +48,7 @@ function App() {
 
   const handleResize = () => {
     const docHeight = window.innerHeight;
-    const contentHeight = contentRef.current.scrollHeight;
     setDocHeight(docHeight);
-    setContentHeight(contentHeight);
   };
 
   React.useEffect(() => {
@@ -105,17 +91,39 @@ function App() {
     }
   };
 
+  function clamp(number, min, max) {
+    return Math.max(min, Math.min(number, max));
+  }
+
   React.useEffect(() => {
-    const map = new Map(
-      Array.from(Object.entries(revealRefs.current), ([k, v]) => [
-        k,
-        transform(
-          scrollPosition + docHeight - v.getBoundingClientRect().top,
-          [0, v.getBoundingClientRect().height],
-          [0, 1]
-        ),
+    const heightArr = [];
+
+    const heightmap = new Map(
+      Array.from(Object.entries(revealRefs.current), ([k, v], i) => [
+        i,
+        v.getBoundingClientRect().height,
       ])
     );
+
+    const totalHeight = [...heightmap.values()].reduce((acc, val) => {
+      heightArr.push(acc + val);
+      return acc + val;
+    }, 0);
+
+    heightArr.unshift(0);
+    const map = new Map(
+      Array.from(Object.entries(revealRefs.current), ([k, v], i) => [
+        v.innerText.split(" ")[0],
+        scrollPosition - heightArr[i] >= 0 &&
+        scrollPosition - heightArr[i] >= v.getBoundingClientRect().height
+          ? v.getBoundingClientRect().height
+          : scrollPosition - heightArr[i] >= 0
+          ? scrollPosition - heightArr[i]
+          : 0,
+      ])
+    );
+    console.log(map);
+    setContentHeight(totalHeight);
     setScrollArray(map);
   }, [docHeight, scrollPosition]);
 
@@ -128,34 +136,21 @@ function App() {
             {scrollYProgress.get().toFixed(2)} | contentHeight : {contentHeight}{" "}
           </span>
 
-          <motion.div
-            ref={contentRef}
-            style={{
-              // y: scroll,
-              top: 0,
-              position: "fixed",
-              display: "grid",
-              justifyItems: "flex-end",
-              width: "100%",
-              height: "100%",
-            }}
-          >
-            {[...cases.entries()].map(([k, v], index) => {
-              let data = {
-                key: k,
-                val: v,
-                index: index,
-              };
-              return (
-                <Case
-                  key={k}
-                  ref={addToRefs}
-                  casedata={data}
-                  caseScroll={scrollArray && scrollArray.get(`${index}`)}
-                />
-              );
-            })}
-          </motion.div>
+          {[...cases.entries()].map(([k, v], index) => {
+            let data = {
+              key: k,
+              val: v,
+              index: index,
+            };
+            return (
+              <Case
+                key={k}
+                ref={addToRefs}
+                casedata={data}
+                caseScroll={scrollArray && scrollArray.get(`${index}`)}
+              />
+            );
+          })}
         </div>
       </ThemeProvider>
     </MyContext.Provider>

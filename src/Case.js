@@ -7,22 +7,25 @@ import { jsx } from "theme-ui";
 
 const Case = (props, ref) => {
   const Render = props.casedata.val.component;
+  const caseRef = React.useRef(null);
+  React.useImperativeHandle(ref, () => caseRef.current);
+  const [caseHeight, setCaseHeight] = React.useState(0);
+
+  React.useEffect(() => {
+    setCaseHeight(caseRef.current.scrollHeight);
+  }, []);
 
   return (
-    <motion.div
-      ref={ref}
-      style={{
-        width: "100%",
-        background: `hsl(${props.index * 30}, 50, 50)`,
-        position: "absolute",
-        x: transform(props.caseScroll, [0, 1], ["-100%", "0%"]),
-      }}
-    >
-      <h1 sx={{ fontSize: 80, lineHeight: 1.1 }}>
-        {props.casedata.val.name}{" "}
-        {props.caseScroll && props.caseScroll.toFixed(2)}
-      </h1>
-      <Render />
+    <motion.div ref={caseRef} sx={{ position: "fixed" }}>
+      <motion.div
+        style={{
+          color: "#fff",
+          width: "100vw",
+          background: `#${props.casedata.index}${props.casedata.index}${props.casedata.index}`,
+        }}
+      >
+        <Render />
+      </motion.div>
     </motion.div>
   );
 };

@@ -110,22 +110,25 @@ function App() {
       return acc + val;
     }, 0);
 
+    function clampedValues(v, i, heightArr) {
+      return transform(
+        scrollPosition - heightArr[i] + docHeight >= 0 &&
+          scrollPosition - heightArr[i] + docHeight >=
+            v.getBoundingClientRect().height
+          ? v.getBoundingClientRect().height
+          : scrollPosition - heightArr[i] + docHeight >= 0
+          ? scrollPosition - heightArr[i] + docHeight
+          : 0,
+        [0, v.getBoundingClientRect().height],
+        [0, 100]
+      );
+    }
+
     heightArr.unshift(0);
     const map = new Map(
       Array.from(Object.entries(revealRefs.current), ([k, v], i) => [
         [...cases.values()][i].slug,
-
-        transform(
-          scrollPosition - heightArr[i] + docHeight >= 0 &&
-            scrollPosition - heightArr[i] + docHeight >=
-              v.getBoundingClientRect().height
-            ? v.getBoundingClientRect().height
-            : scrollPosition - heightArr[i] + docHeight >= 0
-            ? scrollPosition - heightArr[i] + docHeight
-            : 0,
-          [0, v.getBoundingClientRect().height],
-          [0, 100]
-        ),
+        clampedValues(v, i, heightArr),
       ])
     );
 

@@ -2,12 +2,22 @@
 /** @jsx jsx */
 
 import React from "react";
-import { motion, transform } from "framer-motion";
+import {
+  motion,
+  transform,
+  useSpring,
+  useTransform,
+  onChange,
+  animate,
+  useViewportScroll,
+  useMotionValue,
+} from "framer-motion";
 import { jsx } from "theme-ui";
 
 const Case = (props, ref) => {
   const Render = props.casedata.val.component;
   const caseRef = React.useRef(null);
+
   React.useImperativeHandle(ref, () => caseRef.current);
   const [caseHeight, setCaseHeight] = React.useState(0);
 
@@ -16,12 +26,17 @@ const Case = (props, ref) => {
   }, []);
 
   return (
-    <motion.div ref={caseRef} sx={{ position: "fixed" }}>
+    <motion.div
+      ref={caseRef}
+      style={{
+        position: "fixed",
+      }}
+    >
       <motion.div
         style={{
           color: "#fff",
           width: "100vw",
-          background: `#${props.casedata.index}${props.casedata.index}${props.casedata.index}`,
+          background: `#${props.casedata.index}${props.casedata.index}${props.casedata.index}5`,
         }}
       >
         <Render />

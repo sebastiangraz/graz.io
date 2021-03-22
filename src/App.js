@@ -83,7 +83,7 @@ function App() {
   );
 
   const revealRefs = React.useRef([]);
-  const [scrollArray, setScrollArray] = React.useState();
+  const [scrollArray, setScrollArray] = React.useState(new Map([]));
 
   const addToRefs = (el) => {
     if (el && !revealRefs.current.includes(el)) {
@@ -113,20 +113,27 @@ function App() {
     heightArr.unshift(0);
     const map = new Map(
       Array.from(Object.entries(revealRefs.current), ([k, v], i) => [
-        v.innerText.split(" ")[0],
-        scrollPosition - heightArr[i] >= 0 &&
-        scrollPosition - heightArr[i] >= v.getBoundingClientRect().height
-          ? v.getBoundingClientRect().height
-          : scrollPosition - heightArr[i] >= 0
-          ? scrollPosition - heightArr[i]
-          : 0,
+        [...cases.values()][i].slug,
+
+        transform(
+          scrollPosition - heightArr[i] + docHeight >= 0 &&
+            scrollPosition - heightArr[i] + docHeight >=
+              v.getBoundingClientRect().height
+            ? v.getBoundingClientRect().height
+            : scrollPosition - heightArr[i] + docHeight >= 0
+            ? scrollPosition - heightArr[i] + docHeight
+            : 0,
+          [0, v.getBoundingClientRect().height],
+          [0, 100]
+        ),
       ])
     );
-    console.log(map);
+
     setContentHeight(totalHeight);
     setScrollArray(map);
   }, [docHeight, scrollPosition]);
 
+  console.log(scrollArray);
   return (
     <MyContext.Provider value={[]}>
       <ThemeProvider theme={theme}>
@@ -142,12 +149,16 @@ function App() {
               val: v,
               index: index,
             };
+
             return (
               <Case
                 key={k}
                 ref={addToRefs}
                 casedata={data}
-                caseScroll={scrollArray && scrollArray.get(`${index}`)}
+                caseScroll={
+                  scrollArray &&
+                  scrollArray.get(Array.from(scrollArray.keys())[index])
+                }
               />
             );
           })}

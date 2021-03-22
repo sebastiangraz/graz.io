@@ -21,13 +21,13 @@ const WrapperStyle = {
 };
 
 const Loupe = () => {
-  return <div style={{ height: "2500px", ...WrapperStyle }}>Loupe Content</div>;
+  return <div style={{ height: "200vh", ...WrapperStyle }}>Loupe Content</div>;
 };
 const Norse = () => {
-  return <div style={{ height: "2000px", ...WrapperStyle }}>Norse Content</div>;
+  return <div style={{ height: "100vh", ...WrapperStyle }}>Norse Content</div>;
 };
 const Canon = () => {
-  return <div style={{ height: "3500px", ...WrapperStyle }}>Canon Content</div>;
+  return <div style={{ height: "300vh", ...WrapperStyle }}>Canon Content</div>;
 };
 
 let cases = new Map([
@@ -70,17 +70,7 @@ function App() {
     };
   });
 
-  const springConfig = {
-    stiffness: 800,
-    damping: 50,
-  };
-
   const { scrollYProgress } = useViewportScroll();
-
-  const scroll = useSpring(
-    useTransform(scrollYProgress, [0, 1], [0, -contentHeight + docHeight]),
-    springConfig
-  );
 
   const revealRefs = React.useRef([]);
   const [scrollArray, setScrollArray] = React.useState(new Map([]));
@@ -90,10 +80,6 @@ function App() {
       revealRefs.current.push(el);
     }
   };
-
-  function clamp(number, min, max) {
-    return Math.max(min, Math.min(number, max));
-  }
 
   React.useEffect(() => {
     const heightArr = [];
@@ -111,7 +97,7 @@ function App() {
     }, 0);
 
     function clampedValues(v, i, heightArr) {
-      return transform(
+      let val = transform(
         scrollPosition - heightArr[i] + docHeight >= 0 &&
           scrollPosition - heightArr[i] + docHeight >=
             v.getBoundingClientRect().height
@@ -122,21 +108,30 @@ function App() {
         [0, v.getBoundingClientRect().height],
         [0, 100]
       );
+
+      let pixels = -(scrollPosition - heightArr[i] >= 0 &&
+      scrollPosition - heightArr[i] >= v.getBoundingClientRect().height
+        ? v.getBoundingClientRect().height
+        : scrollPosition - heightArr[i] >= 0
+        ? scrollPosition - heightArr[i]
+        : 0);
+      return { ratio: val, pixels: pixels };
     }
 
     heightArr.unshift(0);
     const map = new Map(
       Array.from(Object.entries(revealRefs.current), ([k, v], i) => [
         [...cases.values()][i].slug,
-        clampedValues(v, i, heightArr),
+        {
+          pixels: clampedValues(v, i, heightArr).pixels,
+          ratio: clampedValues(v, i, heightArr).ratio,
+        },
       ])
     );
-
     setContentHeight(totalHeight);
     setScrollArray(map);
   }, [docHeight, scrollPosition]);
 
-  console.log(scrollArray);
   return (
     <MyContext.Provider value={[]}>
       <ThemeProvider theme={theme}>
@@ -158,10 +153,7 @@ function App() {
                 key={k}
                 ref={addToRefs}
                 casedata={data}
-                caseScroll={
-                  scrollArray &&
-                  scrollArray.get(Array.from(scrollArray.keys())[index])
-                }
+                caseScroll={[...scrollArray.values()][index]}
               />
             );
           })}

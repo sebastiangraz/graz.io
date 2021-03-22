@@ -2,16 +2,7 @@
 /** @jsx jsx */
 
 import React from "react";
-import {
-  motion,
-  transform,
-  useSpring,
-  useTransform,
-  onChange,
-  animate,
-  useViewportScroll,
-  useMotionValue,
-} from "framer-motion";
+import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
 import { jsx } from "theme-ui";
 
 const Case = (props, ref) => {
@@ -25,22 +16,30 @@ const Case = (props, ref) => {
     setCaseHeight(caseRef.current.scrollHeight);
   }, []);
 
+  const animationValue = useMotionValue(0);
+  animationValue.set(props.caseScroll?.pixels);
+  React.useEffect(
+    () =>
+      animationValue.onChange((latest) => {
+        return latest;
+      }),
+    [animationValue]
+  );
+
+  const y = useSpring(animationValue, { damping: 20 });
+
   return (
     <motion.div
       ref={caseRef}
       style={{
+        zIndex: -props.casedata.index,
+        y: y,
         position: "fixed",
+        width: `calc(100% - ${props.casedata.index * 40}px)`,
+        background: `hsl(${props.casedata.index * 60}, 50%, 50%`,
       }}
     >
-      <motion.div
-        style={{
-          color: "#fff",
-          width: "100vw",
-          background: `#${props.casedata.index}${props.casedata.index}${props.casedata.index}5`,
-        }}
-      >
-        <Render />
-      </motion.div>
+      <Render />
     </motion.div>
   );
 };

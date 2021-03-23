@@ -1,3 +1,6 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
+
 import React from "react";
 import {
   motion,
@@ -6,6 +9,7 @@ import {
   useTransform,
   transform,
 } from "framer-motion";
+import { jsx } from "theme-ui";
 
 const Case = (props, ref) => {
   const Render = props.casedata.val.component;
@@ -20,7 +24,7 @@ const Case = (props, ref) => {
 
   const pixelDistance = useMotionValue(0);
   const ratioDistance = useMotionValue(0);
-  pixelDistance.set(props.caseScroll?.newPixels);
+  pixelDistance.set(props.caseScroll?.customCase);
   ratioDistance.set(props.caseScroll?.ratio);
   React.useEffect(() => {
     pixelDistance.onChange((latest) => {
@@ -47,13 +51,12 @@ const Case = (props, ref) => {
   return (
     <motion.div
       ref={caseRef}
-      style={{
+      style={{ y: pixels }}
+      sx={{
         zIndex: props.casedata.index,
-        y: pixels,
         padding: 90,
         display: "block",
         willChange: "transform",
-        overflow: "hidden",
         position: "fixed",
         paddingBottom: "50vh",
         paddingTop: "50vh",
@@ -61,11 +64,21 @@ const Case = (props, ref) => {
         width: `calc(100% - ${props.casedata.index * 10}vh)`,
         background: props.casedata?.val?.bg,
         color: props.casedata?.val?.color,
+        "&::before": {
+          content: `""`,
+          position: "absolute",
+          left: 0,
+          top: "100%",
+          width: "100%",
+          height: -(-props.casedata.size * 90 + props.casedata.index * 90),
+          background: props.casedata?.val?.bg,
+        },
       }}
     >
       <motion.h1
         style={{
           fontSize: 180,
+          fontWeight: 800,
           letterSpacing: -9,
           textTransform: "uppercase",
           position: "absolute",

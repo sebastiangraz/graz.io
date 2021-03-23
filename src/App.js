@@ -1,15 +1,6 @@
 import React from "react";
-import {
-  motion,
-  useSpring,
-  transform,
-  useTransform,
-  useViewportScroll,
-  useMotionValue,
-} from "framer-motion";
-import theme from "./theme";
+import { transform } from "framer-motion";
 import Case from "./Case";
-const MyContext = React.createContext();
 
 const WrapperStyle = {
   width: "100%",
@@ -53,7 +44,7 @@ const Norse = () => {
 };
 const Canon = () => {
   return (
-    <div style={{ ...WrapperStyle, paddingBottom: "100vh" }}>
+    <div style={{ ...WrapperStyle }}>
       {Array.from(Array(3).keys()).map(() => {
         return (
           <p style={{ fontSize: 80, marginBottom: 90 }}>
@@ -126,8 +117,6 @@ function App() {
     };
   });
 
-  const { scrollYProgress } = useViewportScroll();
-
   const revealRefs = React.useRef([]);
   const [scrollArray, setScrollArray] = React.useState(new Map([]));
 
@@ -153,37 +142,32 @@ function App() {
     }, 0);
 
     function clampedValues(v, i, heightArr) {
-      let ratio = transform(
-        scrollPosition - heightArr[i] + docHeight >= 0 &&
-          scrollPosition - heightArr[i] + docHeight >=
-            v.getBoundingClientRect().height
+      let pixels =
+        scrollPosition - heightArr[i] >= 0 &&
+        scrollPosition - heightArr[i] >= v.getBoundingClientRect().height
           ? v.getBoundingClientRect().height
-          : scrollPosition - heightArr[i] + docHeight >= 0
-          ? scrollPosition - heightArr[i] + docHeight
-          : 0,
-        [0, v.getBoundingClientRect().height],
-        [0, 1]
-      );
+          : scrollPosition - heightArr[i] >= 0
+          ? scrollPosition - heightArr[i]
+          : 0;
 
-      let pixels = -(scrollPosition - heightArr[i] >= 0 &&
-      scrollPosition - heightArr[i] >= v.getBoundingClientRect().height
-        ? v.getBoundingClientRect().height
-        : scrollPosition - heightArr[i] >= 0
-        ? scrollPosition - heightArr[i]
-        : 0);
-
-      let newPixels =
+      let customCase =
         -(scrollPosition - heightArr[i] >= 0 &&
-        scrollPosition - heightArr[i] >= v.getBoundingClientRect().height - 270
-          ? v.getBoundingClientRect().height - 270
+        scrollPosition - heightArr[i] >= v.getBoundingClientRect().height
+          ? v.getBoundingClientRect().height
           : scrollPosition - heightArr[i] >= 0
           ? scrollPosition - heightArr[i]
           : 0) + docHeight;
 
+      let ratio = transform(
+        pixels,
+        [0, v.getBoundingClientRect().height],
+        [0, 1]
+      );
+
       return {
         ratio: ratio,
         pixels: pixels,
-        newPixels: newPixels,
+        customCase: customCase,
       };
     }
 
@@ -192,9 +176,9 @@ function App() {
       Array.from(Object.entries(revealRefs.current), ([k, v], i) => [
         [...cases.values()][i].slug,
         {
-          newPixels: clampedValues(v, i, heightArr).newPixels,
-          pixels: clampedValues(v, i, heightArr).pixels,
           ratio: clampedValues(v, i, heightArr).ratio,
+          pixels: clampedValues(v, i, heightArr).pixels,
+          customCase: clampedValues(v, i, heightArr).customCase,
         },
       ])
     );
@@ -228,7 +212,6 @@ function App() {
 
         return (
           <Case
-            key={k}
             ref={addToRefs}
             casedata={data}
             caseScroll={[...scrollArray.values()][index]}

@@ -18,16 +18,20 @@ const MyContext = React.createContext();
 const WrapperStyle = {
   width: "100%",
   bg: "#000a",
+  fontSize: 80,
+  padding: 80,
+  lineHeight: 1.1,
+  fontWeight: 600,
 };
 
 const Loupe = () => {
-  return <div style={{ height: "200vh", ...WrapperStyle }}>Loupe Content</div>;
+  return <div style={{ height: "3000px", ...WrapperStyle }}>Loupe Content</div>;
 };
 const Norse = () => {
-  return <div style={{ height: "100vh", ...WrapperStyle }}>Norse Content</div>;
+  return <div style={{ height: "7500px", ...WrapperStyle }}>Norse Content</div>;
 };
 const Canon = () => {
-  return <div style={{ height: "300vh", ...WrapperStyle }}>Canon Content</div>;
+  return <div style={{ height: "2000px", ...WrapperStyle }}>Canon Content</div>;
 };
 
 let cases = new Map([
@@ -106,7 +110,7 @@ function App() {
           ? scrollPosition - heightArr[i] + docHeight
           : 0,
         [0, v.getBoundingClientRect().height],
-        [0, 100]
+        [0, 1]
       );
 
       let pixels = -(scrollPosition - heightArr[i] >= 0 &&

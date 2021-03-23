@@ -14,11 +14,11 @@ import { round } from "../assets";
 
 const CaseSvg = ({ textPath, ...rest }) => {
   return (
-    <svg {...rest} height="200" preserveAspectRatio="xMinYMin meet">
+    <svg {...rest} height="300" preserveAspectRatio="xMinYMin meet">
       <defs>
         <mask id="sample" maskUnits="userSpaceOnUse">
           <rect width="100%" height="100%" fill="white"></rect>
-          <text y="170" transform="translate(20, -20)">
+          <text y={`${140}`} transform="translate(96, 96)">
             Loupe
           </text>
         </mask>
@@ -82,6 +82,7 @@ const Case = (props, ref) => {
         zIndex: props.casedata.index,
         padding: OFFSET,
         display: "block",
+        borderRadius: 0,
         willChange: "transform",
         position: "fixed",
         left: 0,
@@ -91,8 +92,16 @@ const Case = (props, ref) => {
         marginTop:
           -props.casedata.size * OFFSET + props.casedata.index * OFFSET,
         width: `calc(100% - ${props.casedata.index * OFFSET}px)`,
-        background: props.casedata?.val?.bg,
-
+        "&::after": {
+          content: `""`,
+          position: "absolute",
+          left: 0,
+          bottom: 0,
+          width: "100%",
+          height: "calc(100% - 300px)",
+          background: props.casedata?.val?.bg,
+          zIndex: -1,
+        },
         "&::before": {
           content: `""`,
           position: "absolute",
@@ -118,8 +127,9 @@ const Case = (props, ref) => {
           fontSize: 180,
           left: 0,
           color: props.casedata?.val?.bg,
-          bottom: "100%",
+          top: "300px",
           position: "absolute",
+          transform: "translateY(-300px)",
         }}
       />
       {/* <motion.h1

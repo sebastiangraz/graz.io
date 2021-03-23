@@ -63,24 +63,27 @@ let cases = new Map([
   [
     "loupe",
     {
-      name: "/Loupe",
+      name: "Loupe",
       slug: "loupe",
       component: Loupe,
-      bg: "#184629",
+      bg: "green" /*#184629*/,
       color: "#fff",
     },
   ],
   [
     "norse",
     {
-      name: "/Norse",
+      name: "Norse",
       slug: "norse",
       component: Norse,
       bg: "black",
       color: "#fff",
     },
   ],
-  ["canon", { name: "/Canon", slug: "canon", component: Canon, bg: "#DE0000" }],
+  [
+    "canon",
+    { name: "Canon", slug: "canon", component: Canon, bg: "red" /*#DE0000*/ },
+  ],
 ]);
 
 function App() {
@@ -160,7 +163,7 @@ function App() {
 
       let ratio = transform(
         pixels,
-        [0, v.getBoundingClientRect().height],
+        [0, v.getBoundingClientRect().height - docHeight],
         [0, 1]
       );
 

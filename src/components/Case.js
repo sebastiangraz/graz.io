@@ -10,6 +10,7 @@ import {
   transform,
 } from "framer-motion";
 import { jsx } from "theme-ui";
+import { round } from "../assets";
 
 const Case = (props, ref) => {
   const Render = props.casedata.val.component;
@@ -48,29 +49,37 @@ const Case = (props, ref) => {
     [0, -caseHeight + (1 + props.casedata.index) * 20]
   );
 
+  const OFFSET = 96;
+
   return (
     <motion.div
       ref={caseRef}
       style={{ y: pixels }}
       sx={{
         zIndex: props.casedata.index,
-        padding: 90,
+        padding: OFFSET,
         display: "block",
         willChange: "transform",
         position: "fixed",
+        left: 0,
         paddingBottom: "50vh",
         paddingTop: "50vh",
-        marginTop: -props.casedata.size * 90 + props.casedata.index * 90,
-        width: `calc(100% - ${props.casedata.index * 10}vh)`,
-        background: props.casedata?.val?.bg,
         color: props.casedata?.val?.color,
+        marginTop:
+          -props.casedata.size * OFFSET + props.casedata.index * OFFSET,
+        width: `calc(100% - ${props.casedata.index * OFFSET}px)`,
+        background: props.casedata?.val?.bg,
+
         "&::before": {
           content: `""`,
           position: "absolute",
           left: 0,
           top: "100%",
           width: "100%",
-          height: -(-props.casedata.size * 90 + props.casedata.index * 90),
+          height: -(
+            -props.casedata.size * OFFSET +
+            props.casedata.index * OFFSET
+          ),
           background: props.casedata?.val?.bg,
         },
         "&:last-child": {
@@ -85,7 +94,7 @@ const Case = (props, ref) => {
           letterSpacing: -9,
           textTransform: "uppercase",
           position: "absolute",
-          top: 20,
+          top: 0,
         }}
       >
         {props.casedata?.val?.name}

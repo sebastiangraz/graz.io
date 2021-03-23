@@ -19,25 +19,38 @@ const WrapperStyle = {
   width: "100%",
   bg: "#000a",
   fontSize: 80,
-  padding: 80,
   lineHeight: 1.1,
   fontWeight: 600,
 };
 
 const Loupe = () => {
-  return <div style={{ height: "3000px", ...WrapperStyle }}>Loupe Content</div>;
+  return <div style={{ height: "3000px", ...WrapperStyle }}></div>;
 };
 const Norse = () => {
-  return <div style={{ height: "7500px", ...WrapperStyle }}>Norse Content</div>;
+  return <div style={{ height: "7500px", ...WrapperStyle }}></div>;
 };
 const Canon = () => {
-  return <div style={{ height: "2000px", ...WrapperStyle }}>Canon Content</div>;
+  return <div style={{ height: "6500px", ...WrapperStyle }}></div>;
 };
 
 let cases = new Map([
-  ["loupe", { name: "Loupe", slug: "loupe", component: Loupe }],
-  ["norse", { name: "Norse", slug: "norse", component: Norse }],
-  ["canon", { name: "Canon", slug: "canon", component: Canon }],
+  ["home", { name: "/", slug: "/", component: Loupe, bg: "beige" }],
+  ["loupe", { name: "/Loupe", slug: "loupe", component: Loupe, bg: "green" }],
+  [
+    "norse",
+    {
+      name: "/Norse",
+      slug: "norse",
+      component: Norse,
+      bg: "black",
+      color: "#fff",
+    },
+  ],
+  ["canon", { name: "/Canon", slug: "canon", component: Canon, bg: "red" }],
+  [
+    "policy",
+    { name: "/Policy", slug: "policy", component: Canon, bg: "#e6dcd2" },
+  ],
 ]);
 
 function App() {
@@ -101,7 +114,7 @@ function App() {
     }, 0);
 
     function clampedValues(v, i, heightArr) {
-      let val = transform(
+      let ratio = transform(
         scrollPosition - heightArr[i] + docHeight >= 0 &&
           scrollPosition - heightArr[i] + docHeight >=
             v.getBoundingClientRect().height
@@ -119,7 +132,11 @@ function App() {
         : scrollPosition - heightArr[i] >= 0
         ? scrollPosition - heightArr[i]
         : 0);
-      return { ratio: val, pixels: pixels };
+
+      return {
+        ratio: ratio,
+        pixels: pixels,
+      };
     }
 
     heightArr.unshift(0);
@@ -140,7 +157,15 @@ function App() {
     <MyContext.Provider value={[]}>
       <ThemeProvider theme={theme}>
         <div className="App">
-          <span style={{ position: "fixed", right: 10, top: 10, zIndex: 10 }}>
+          <span
+            style={{
+              fontSize: 10,
+              position: "fixed",
+              right: 10,
+              top: 3,
+              zIndex: 10,
+            }}
+          >
             scroll: {scrollPosition} | height: {docHeight} | percentage:{" "}
             {scrollYProgress.get().toFixed(2)} | contentHeight : {contentHeight}{" "}
           </span>

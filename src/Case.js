@@ -35,25 +35,40 @@ const Case = (props, ref) => {
     });
   }, [pixelDistance, ratioDistance]);
 
-  const pixels = useSpring(pixelDistance, { stiffness: 700, damping: 70 });
-  const ratio = useSpring(ratioDistance, { stiffness: 700, damping: 70 });
+  const pixels = useSpring(pixelDistance, { stiffness: 600, damping: 70 });
+  const ratio = useSpring(ratioDistance, { stiffness: 600, damping: 70 });
 
-  console.log(caseHeight);
-
-  const trans = useTransform(ratio, [0, 1], [caseHeight, 0]);
+  const trans = useTransform(
+    pixels,
+    [0, -caseHeight],
+    [0, -caseHeight + (1 + props.casedata.index) * 20]
+  );
 
   return (
     <motion.div
       ref={caseRef}
       style={{
         zIndex: -props.casedata.index,
-        y: pixels,
-        // opacity: ratio,
+        y: trans,
+        padding: 90,
+        overflow: "hidden",
         position: "fixed",
-        width: `calc(100% - ${props.casedata.index * 100}px)`,
-        background: `hsl(${props.casedata.index * 60}, 50%, 50%`,
+        width: `calc(100% - ${props.casedata.index * 60}px)`,
+        background: props.casedata?.val?.bg,
+        color: props.casedata?.val?.color,
       }}
     >
+      <motion.h1
+        style={{
+          opacity: ratio * 1.3,
+          fontSize: 360,
+          letterSpacing: -15,
+          textTransform: "uppercase",
+          position: "absolute",
+        }}
+      >
+        {props.casedata?.val?.name}
+      </motion.h1>
       <Render />
     </motion.div>
   );

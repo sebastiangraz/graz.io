@@ -1,6 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-
 import React from "react";
 import {
   motion,
@@ -9,7 +6,6 @@ import {
   useTransform,
   transform,
 } from "framer-motion";
-import { jsx } from "theme-ui";
 
 const Case = (props, ref) => {
   const Render = props.casedata.val.component;
@@ -36,10 +32,10 @@ const Case = (props, ref) => {
   }, [pixelDistance, ratioDistance]);
 
   const springOption = {
-    damping: 20,
+    damping: 70,
   };
-  const pixels = useSpring(pixelDistance, { springOption });
-  const ratio = useSpring(ratioDistance, { springOption });
+  const pixels = useSpring(pixelDistance);
+  const ratio = useSpring(ratioDistance);
 
   const trans = useTransform(
     pixels,
@@ -54,8 +50,11 @@ const Case = (props, ref) => {
         zIndex: -props.casedata.index,
         y: trans,
         padding: 90,
+        display: "block",
+        willChange: "transform",
         overflow: "hidden",
         position: "fixed",
+        paddingTop: "100vh",
         width: `calc(100% - ${props.casedata.index * 30}px)`,
         background: props.casedata?.val?.bg,
         color: props.casedata?.val?.color,
@@ -67,11 +66,12 @@ const Case = (props, ref) => {
           letterSpacing: -9,
           textTransform: "uppercase",
           position: "absolute",
+          top: "calc(50vh - 140px)",
         }}
       >
         {props.casedata?.val?.name}
         <sup
-          sx={{
+          style={{
             fontSize: 30,
             letterSpacing: 0,
             top: -80,

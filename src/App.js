@@ -1,6 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-
 import React from "react";
 import {
   motion,
@@ -10,7 +7,6 @@ import {
   useViewportScroll,
   useMotionValue,
 } from "framer-motion";
-import { jsx, ThemeProvider } from "theme-ui";
 import theme from "./theme";
 import Case from "./Case";
 const MyContext = React.createContext();
@@ -24,13 +20,82 @@ const WrapperStyle = {
 };
 
 const Loupe = () => {
-  return <div style={{ height: "3000px", ...WrapperStyle }}></div>;
+  return (
+    <div style={{ ...WrapperStyle }}>
+      {Array.from(Array(5).keys()).map(() => {
+        return (
+          <p style={{ fontSize: 80 }}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+            semper risus tortor, et volutpat nibh maximus nec. Donec faucibus
+            gravida pellentesque. Duis eros ante, pharetra non aliquam et,
+            scelerisque quis tellus. Maecenas massa est, varius vitae sem vitae,
+            gravida bibendum metus. Nunc sodales nisi sed sem ultricies
+            condimentum. Morbi mollis magna sed magna consequat posuere.
+            Praesent in bibendum lectus. Integer lobortis eros sapien, ac
+            dapibus nisl faucibus vel. Nullam pulvinar scelerisque velit. Proin
+            sollicitudin mauris justo, eu commodo mi vehicula quis. Sed ut
+            tortor id libero accumsan faucibus a sed lacus. Aliquam metus magna,
+            iaculis sagittis commodo vel, condimentum at enim. Nullam at varius
+            dui. Cras sapien elit, dapibus eget magna quis, lacinia laoreet
+            dolor. Pellentesque habitant morbi tristique senectus et netus et
+            malesuada fames ac turpis egestas. mi.
+          </p>
+        );
+      })}
+    </div>
+  );
 };
 const Norse = () => {
-  return <div style={{ height: "7500px", ...WrapperStyle }}></div>;
+  return (
+    <div style={{ ...WrapperStyle }}>
+      {Array.from(Array(3).keys()).map(() => {
+        return (
+          <p style={{ fontSize: 80 }}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+            semper risus tortor, et volutpat nibh maximus nec. Donec faucibus
+            gravida pellentesque. Duis eros ante, pharetra non aliquam et,
+            scelerisque quis tellus. Maecenas massa est, varius vitae sem vitae,
+            gravida bibendum metus. Nunc sodales nisi sed sem ultricies
+            condimentum. Morbi mollis magna sed magna consequat posuere.
+            Praesent in bibendum lectus. Integer lobortis eros sapien, ac
+            dapibus nisl faucibus vel. Nullam pulvinar scelerisque velit. Proin
+            sollicitudin mauris justo, eu commodo mi vehicula quis. Sed ut
+            tortor id libero accumsan faucibus a sed lacus. Aliquam metus magna,
+            iaculis sagittis commodo vel, condimentum at enim. Nullam at varius
+            dui. Cras sapien elit, dapibus eget magna quis, lacinia laoreet
+            dolor. Pellentesque habitant morbi tristique senectus et netus et
+            malesuada fames ac turpis egestas. mi.
+          </p>
+        );
+      })}
+    </div>
+  );
 };
 const Canon = () => {
-  return <div style={{ height: "6500px", ...WrapperStyle }}></div>;
+  return (
+    <div style={{ ...WrapperStyle }}>
+      {Array.from(Array(6).keys()).map(() => {
+        return (
+          <p style={{ fontSize: 80 }}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+            semper risus tortor, et volutpat nibh maximus nec. Donec faucibus
+            gravida pellentesque. Duis eros ante, pharetra non aliquam et,
+            scelerisque quis tellus. Maecenas massa est, varius vitae sem vitae,
+            gravida bibendum metus. Nunc sodales nisi sed sem ultricies
+            condimentum. Morbi mollis magna sed magna consequat posuere.
+            Praesent in bibendum lectus. Integer lobortis eros sapien, ac
+            dapibus nisl faucibus vel. Nullam pulvinar scelerisque velit. Proin
+            sollicitudin mauris justo, eu commodo mi vehicula quis. Sed ut
+            tortor id libero accumsan faucibus a sed lacus. Aliquam metus magna,
+            iaculis sagittis commodo vel, condimentum at enim. Nullam at varius
+            dui. Cras sapien elit, dapibus eget magna quis, lacinia laoreet
+            dolor. Pellentesque habitant morbi tristique senectus et netus et
+            malesuada fames ac turpis egestas. mi.
+          </p>
+        );
+      })}
+    </div>
+  );
 };
 
 let cases = new Map([
@@ -46,10 +111,6 @@ let cases = new Map([
     },
   ],
   ["canon", { name: "/Canon", slug: "canon", component: Canon, bg: "red" }],
-  [
-    "policy",
-    { name: "/Policy", slug: "policy", component: Canon, bg: "#e6dcd2" },
-  ],
 ]);
 
 function App() {
@@ -153,10 +214,8 @@ function App() {
   }, [docHeight, scrollPosition]);
 
   return (
-    <MyContext.Provider value={[]}>
-      <ThemeProvider theme={theme}>
-        <div className="App">
-          <span
+    <div className="App">
+      {/* <span
             style={{
               fontSize: 10,
               position: "fixed",
@@ -167,27 +226,25 @@ function App() {
           >
             scroll: {scrollPosition} | height: {docHeight} | percentage:{" "}
             {scrollYProgress.get().toFixed(2)} | contentHeight : {contentHeight}{" "}
-          </span>
+          </span> */}
 
-          {[...cases.entries()].map(([k, v], index) => {
-            let data = {
-              key: k,
-              val: v,
-              index: index,
-            };
+      {[...cases.entries()].map(([k, v], index) => {
+        let data = {
+          key: k,
+          val: v,
+          index: index,
+        };
 
-            return (
-              <Case
-                key={k}
-                ref={addToRefs}
-                casedata={data}
-                caseScroll={[...scrollArray.values()][index]}
-              />
-            );
-          })}
-        </div>
-      </ThemeProvider>
-    </MyContext.Provider>
+        return (
+          <Case
+            key={k}
+            ref={addToRefs}
+            casedata={data}
+            caseScroll={[...scrollArray.values()][index]}
+          />
+        );
+      })}
+    </div>
   );
 }
 export default App;

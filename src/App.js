@@ -188,18 +188,19 @@ function App() {
 
   return (
     <div className="App">
-      {/* <span
-            style={{
-              fontSize: 10,
-              position: "fixed",
-              right: 10,
-              top: 3,
-              zIndex: 10,
-            }}
-          >
-            scroll: {scrollPosition} | height: {docHeight} | percentage:{" "}
-            {scrollYProgress.get().toFixed(2)} | contentHeight : {contentHeight}{" "}
-          </span> */}
+      <span
+        style={{
+          color: "pink",
+          fontSize: 10,
+          position: "fixed",
+          right: 10,
+          top: 3,
+          zIndex: 10,
+        }}
+      >
+        scroll: {scrollPosition} | height: {docHeight} | contentHeight :{" "}
+        {contentHeight}{" "}
+      </span>
 
       {[...cases.entries()].map(([k, v], index) => {
         let data = {

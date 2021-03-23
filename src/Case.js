@@ -73,6 +73,9 @@ const Case = (props, ref) => {
           height: -(-props.casedata.size * 90 + props.casedata.index * 90),
           background: props.casedata?.val?.bg,
         },
+        "&:last-child": {
+          paddingBottom: props.casedata?.docHeight,
+        },
       }}
     >
       <motion.h1

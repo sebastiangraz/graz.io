@@ -20,7 +20,7 @@ const Case = (props, ref) => {
 
   const pixelDistance = useMotionValue(0);
   const ratioDistance = useMotionValue(0);
-  pixelDistance.set(props.caseScroll?.pixels);
+  pixelDistance.set(props.caseScroll?.newPixels);
   ratioDistance.set(props.caseScroll?.ratio);
   React.useEffect(() => {
     pixelDistance.onChange((latest) => {
@@ -29,7 +29,7 @@ const Case = (props, ref) => {
     ratioDistance.onChange((latest) => {
       return latest;
     });
-  }, [pixelDistance, ratioDistance]);
+  }, [pixelDistance, ratioDistance, caseHeight]);
 
   const springOption = {
     damping: 10,
@@ -48,15 +48,17 @@ const Case = (props, ref) => {
     <motion.div
       ref={caseRef}
       style={{
-        zIndex: -props.casedata.index,
+        zIndex: props.casedata.index,
         y: pixels,
         padding: 90,
         display: "block",
         willChange: "transform",
         overflow: "hidden",
         position: "fixed",
-        paddingTop: "100vh",
-        width: `calc(100% - ${props.casedata.index * 30}px)`,
+        paddingBottom: "50vh",
+        paddingTop: "50vh",
+        marginTop: -props.casedata.size * 90 + props.casedata.index * 90,
+        width: `calc(100% - ${props.casedata.index * 10}vh)`,
         background: props.casedata?.val?.bg,
         color: props.casedata?.val?.color,
       }}
@@ -67,7 +69,7 @@ const Case = (props, ref) => {
           letterSpacing: -9,
           textTransform: "uppercase",
           position: "absolute",
-          top: "calc(50vh - 140px)",
+          top: 20,
         }}
       >
         {props.casedata?.val?.name}

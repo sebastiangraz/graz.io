@@ -22,7 +22,7 @@ const WrapperStyle = {
 const Loupe = () => {
   return (
     <div style={{ ...WrapperStyle }}>
-      {Array.from(Array(12).keys()).map(() => {
+      {Array.from(Array(6).keys()).map(() => {
         return (
           <p style={{ fontSize: 80, marginBottom: 90 }}>
             Loupe is a conference held by Framer each year. The 3rd edition of
@@ -38,7 +38,7 @@ const Loupe = () => {
 const Norse = () => {
   return (
     <div style={{ ...WrapperStyle }}>
-      {Array.from(Array(3).keys()).map(() => {
+      {Array.from(Array(2).keys()).map(() => {
         return (
           <p style={{ fontSize: 80, marginBottom: 90 }}>
             Inspired by a station sign in Norsesund, Sweden. I attempted to
@@ -53,8 +53,8 @@ const Norse = () => {
 };
 const Canon = () => {
   return (
-    <div style={{ ...WrapperStyle }}>
-      {Array.from(Array(6).keys()).map(() => {
+    <div style={{ ...WrapperStyle, paddingBottom: "100vh" }}>
+      {Array.from(Array(3).keys()).map(() => {
         return (
           <p style={{ fontSize: 80, marginBottom: 90 }}>
             Canon wanted us to help them improve the UI & UX of their Canon
@@ -172,9 +172,18 @@ function App() {
         ? scrollPosition - heightArr[i]
         : 0);
 
+      let newPixels =
+        -(scrollPosition - heightArr[i] >= 0 &&
+        scrollPosition - heightArr[i] >= v.getBoundingClientRect().height - 270
+          ? v.getBoundingClientRect().height - 270
+          : scrollPosition - heightArr[i] >= 0
+          ? scrollPosition - heightArr[i]
+          : 0) + docHeight;
+
       return {
         ratio: ratio,
         pixels: pixels,
+        newPixels: newPixels,
       };
     }
 
@@ -183,6 +192,7 @@ function App() {
       Array.from(Object.entries(revealRefs.current), ([k, v], i) => [
         [...cases.values()][i].slug,
         {
+          newPixels: clampedValues(v, i, heightArr).newPixels,
           pixels: clampedValues(v, i, heightArr).pixels,
           ratio: clampedValues(v, i, heightArr).ratio,
         },
@@ -212,6 +222,8 @@ function App() {
           key: k,
           val: v,
           index: index,
+          docHeight: docHeight,
+          size: cases.size,
         };
 
         return (

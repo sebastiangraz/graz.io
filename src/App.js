@@ -22,23 +22,13 @@ const WrapperStyle = {
 const Loupe = () => {
   return (
     <div style={{ ...WrapperStyle }}>
-      {Array.from(Array(5).keys()).map(() => {
+      {Array.from(Array(12).keys()).map(() => {
         return (
-          <p style={{ fontSize: 80 }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-            semper risus tortor, et volutpat nibh maximus nec. Donec faucibus
-            gravida pellentesque. Duis eros ante, pharetra non aliquam et,
-            scelerisque quis tellus. Maecenas massa est, varius vitae sem vitae,
-            gravida bibendum metus. Nunc sodales nisi sed sem ultricies
-            condimentum. Morbi mollis magna sed magna consequat posuere.
-            Praesent in bibendum lectus. Integer lobortis eros sapien, ac
-            dapibus nisl faucibus vel. Nullam pulvinar scelerisque velit. Proin
-            sollicitudin mauris justo, eu commodo mi vehicula quis. Sed ut
-            tortor id libero accumsan faucibus a sed lacus. Aliquam metus magna,
-            iaculis sagittis commodo vel, condimentum at enim. Nullam at varius
-            dui. Cras sapien elit, dapibus eget magna quis, lacinia laoreet
-            dolor. Pellentesque habitant morbi tristique senectus et netus et
-            malesuada fames ac turpis egestas. mi.
+          <p style={{ fontSize: 80, marginBottom: 90 }}>
+            Loupe is a conference held by Framer each year. The 3rd edition of
+            the conference was planned to be held in Amsterdam 2020, but was
+            cancelled due to COVID-19. Below you'll find the progress of that
+            work.
           </p>
         );
       })}
@@ -50,21 +40,11 @@ const Norse = () => {
     <div style={{ ...WrapperStyle }}>
       {Array.from(Array(3).keys()).map(() => {
         return (
-          <p style={{ fontSize: 80 }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-            semper risus tortor, et volutpat nibh maximus nec. Donec faucibus
-            gravida pellentesque. Duis eros ante, pharetra non aliquam et,
-            scelerisque quis tellus. Maecenas massa est, varius vitae sem vitae,
-            gravida bibendum metus. Nunc sodales nisi sed sem ultricies
-            condimentum. Morbi mollis magna sed magna consequat posuere.
-            Praesent in bibendum lectus. Integer lobortis eros sapien, ac
-            dapibus nisl faucibus vel. Nullam pulvinar scelerisque velit. Proin
-            sollicitudin mauris justo, eu commodo mi vehicula quis. Sed ut
-            tortor id libero accumsan faucibus a sed lacus. Aliquam metus magna,
-            iaculis sagittis commodo vel, condimentum at enim. Nullam at varius
-            dui. Cras sapien elit, dapibus eget magna quis, lacinia laoreet
-            dolor. Pellentesque habitant morbi tristique senectus et netus et
-            malesuada fames ac turpis egestas. mi.
+          <p style={{ fontSize: 80, marginBottom: 90 }}>
+            Inspired by a station sign in Norsesund, Sweden. I attempted to
+            recreate the letters by tracing them from a photograph, since then
+            the typeface evolved into something different. But at least that
+            explains the name a bit.
           </p>
         );
       })}
@@ -76,21 +56,11 @@ const Canon = () => {
     <div style={{ ...WrapperStyle }}>
       {Array.from(Array(6).keys()).map(() => {
         return (
-          <p style={{ fontSize: 80 }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-            semper risus tortor, et volutpat nibh maximus nec. Donec faucibus
-            gravida pellentesque. Duis eros ante, pharetra non aliquam et,
-            scelerisque quis tellus. Maecenas massa est, varius vitae sem vitae,
-            gravida bibendum metus. Nunc sodales nisi sed sem ultricies
-            condimentum. Morbi mollis magna sed magna consequat posuere.
-            Praesent in bibendum lectus. Integer lobortis eros sapien, ac
-            dapibus nisl faucibus vel. Nullam pulvinar scelerisque velit. Proin
-            sollicitudin mauris justo, eu commodo mi vehicula quis. Sed ut
-            tortor id libero accumsan faucibus a sed lacus. Aliquam metus magna,
-            iaculis sagittis commodo vel, condimentum at enim. Nullam at varius
-            dui. Cras sapien elit, dapibus eget magna quis, lacinia laoreet
-            dolor. Pellentesque habitant morbi tristique senectus et netus et
-            malesuada fames ac turpis egestas. mi.
+          <p style={{ fontSize: 80, marginBottom: 90 }}>
+            Canon wanted us to help them improve the UI & UX of their Canon
+            Store Website. We identified low-level improvements related to how
+            agencies & Canon worked together. As a result; we presented Canon
+            with a proof-of-concept design system.
           </p>
         );
       })}
@@ -99,7 +69,16 @@ const Canon = () => {
 };
 
 let cases = new Map([
-  ["loupe", { name: "/Loupe", slug: "loupe", component: Loupe, bg: "green" }],
+  [
+    "loupe",
+    {
+      name: "/Loupe",
+      slug: "loupe",
+      component: Loupe,
+      bg: "#184629",
+      color: "#fff",
+    },
+  ],
   [
     "norse",
     {
@@ -110,7 +89,7 @@ let cases = new Map([
       color: "#fff",
     },
   ],
-  ["canon", { name: "/Canon", slug: "canon", component: Canon, bg: "red" }],
+  ["canon", { name: "/Canon", slug: "canon", component: Canon, bg: "#DE0000" }],
 ]);
 
 function App() {

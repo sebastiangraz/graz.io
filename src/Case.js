@@ -15,7 +15,7 @@ const Case = (props, ref) => {
   const [caseHeight, setCaseHeight] = React.useState(0);
 
   React.useEffect(() => {
-    setCaseHeight(caseRef.current.scrollHeight);
+    setCaseHeight(caseRef.current.getBoundingClientRect().height);
   }, []);
 
   const pixelDistance = useMotionValue(0);
@@ -32,10 +32,11 @@ const Case = (props, ref) => {
   }, [pixelDistance, ratioDistance]);
 
   const springOption = {
-    damping: 70,
+    damping: 10,
+    mass: 0.1,
   };
-  const pixels = useSpring(pixelDistance);
-  const ratio = useSpring(ratioDistance);
+  const pixels = useSpring(pixelDistance, springOption);
+  const ratio = useSpring(ratioDistance, springOption);
 
   const trans = useTransform(
     pixels,
@@ -48,7 +49,7 @@ const Case = (props, ref) => {
       ref={caseRef}
       style={{
         zIndex: -props.casedata.index,
-        y: trans,
+        y: pixels,
         padding: 90,
         display: "block",
         willChange: "transform",

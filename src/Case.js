@@ -36,8 +36,7 @@ const Case = (props, ref) => {
   }, [pixelDistance, ratioDistance]);
 
   const springOption = {
-    type: "spring",
-    bounce: 0.25,
+    damping: 20,
   };
   const pixels = useSpring(pixelDistance, { springOption });
   const ratio = useSpring(ratioDistance, { springOption });
@@ -57,14 +56,13 @@ const Case = (props, ref) => {
         padding: 90,
         overflow: "hidden",
         position: "fixed",
-        width: `calc(100% - ${props.casedata.index * 60}px)`,
+        width: `calc(100% - ${props.casedata.index * 30}px)`,
         background: props.casedata?.val?.bg,
         color: props.casedata?.val?.color,
       }}
     >
       <motion.h1
         style={{
-          opacity: ratio * 1.3,
           fontSize: 180,
           letterSpacing: -9,
           textTransform: "uppercase",
@@ -72,6 +70,16 @@ const Case = (props, ref) => {
         }}
       >
         {props.casedata?.val?.name}
+        <sup
+          sx={{
+            fontSize: 30,
+            letterSpacing: 0,
+            top: -80,
+            position: "relative",
+          }}
+        >
+          {props.caseScroll?.ratio.toFixed(2)}
+        </sup>
       </motion.h1>
       <Render />
     </motion.div>

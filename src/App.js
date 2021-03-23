@@ -34,7 +34,6 @@ const Canon = () => {
 };
 
 let cases = new Map([
-  ["home", { name: "/", slug: "/", component: Loupe, bg: "beige" }],
   ["loupe", { name: "/Loupe", slug: "loupe", component: Loupe, bg: "green" }],
   [
     "norse",

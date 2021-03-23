@@ -35,8 +35,12 @@ const Case = (props, ref) => {
     });
   }, [pixelDistance, ratioDistance]);
 
-  const pixels = useSpring(pixelDistance, { stiffness: 600, damping: 70 });
-  const ratio = useSpring(ratioDistance, { stiffness: 600, damping: 70 });
+  const springOption = {
+    type: "spring",
+    bounce: 0.25,
+  };
+  const pixels = useSpring(pixelDistance, { springOption });
+  const ratio = useSpring(ratioDistance, { springOption });
 
   const trans = useTransform(
     pixels,
@@ -61,8 +65,8 @@ const Case = (props, ref) => {
       <motion.h1
         style={{
           opacity: ratio * 1.3,
-          fontSize: 360,
-          letterSpacing: -15,
+          fontSize: 180,
+          letterSpacing: -9,
           textTransform: "uppercase",
           position: "absolute",
         }}

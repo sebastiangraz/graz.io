@@ -106,7 +106,7 @@ const Case = (props, ref) => {
           fontSize: 180,
           left: 0,
           color: props.casedata?.val?.bg,
-          top: "300px",
+          top: "301px",
           position: "absolute",
           transform: "translateY(-300px)",
         }}

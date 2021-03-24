@@ -3,15 +3,18 @@
 
 import React from "react";
 import { transform } from "framer-motion";
-import Case from "./Case";
-import { jsx } from "theme-ui";
+
+import { Case, Logo } from "../components";
+import { jsx, Text, Grid } from "theme-ui";
 import "../base.css";
 
 let settings = { debug: true };
 
 const WrapperStyle = {
   width: "100%",
+  fontFeatureSettings: `"liga", "case"`,
   fontSize: "4vw",
+  letterSpacing: "-0.05em",
   lineHeight: "calc(1.3rem + 3.6vw)",
 };
 
@@ -225,25 +228,53 @@ function App() {
           {contentHeight}
         </span>
       )}
-
-      {[...cases.entries()].map(([k, v], index) => {
-        let data = {
-          key: k,
-          val: v,
-          index: index,
-          docHeight: docHeight,
-          size: cases.size,
-        };
-
-        return (
-          <Case
-            key={k}
-            ref={addToRefs}
-            casedata={data}
-            caseScroll={[...scrollArray.values()][index]}
+      <div sx={{ position: "fixed", top: 0, width: "100%", height: "100%" }}>
+        <Grid variant="hero">
+          <Logo
+            sx={{
+              lineHeight: 0.8,
+              fontSize: 80,
+              transition: `.5s cubic-bezier(1,0,0,1) opacity, 1s cubic-bezier(1,0,0,1) transform`,
+              transform: false
+                ? ["scale(1)", "scale(1)", "scale(0.8)"]
+                : "scale(1)",
+            }}
+            weight={40}
           />
-        );
-      })}
+          <Text
+            variant="heading"
+            sx={{
+              marginBottom: [4, 0],
+              width: ["min(100%, 360px)", 460, 690, 820],
+            }}
+          >
+            I’m Sebastian—as a digital designer I care about our dear users,
+            rapid prototyping, design systems & brand
+            <span sx={{ display: ["inline", "none"] }}>ing.</span>{" "}
+            <span sx={{ display: ["none", "inline"] }}>identities.</span>
+          </Text>
+        </Grid>
+      </div>
+      <div sx={{ position: "fixed", top: 0 }}>
+        {[...cases.entries()].map(([k, v], index) => {
+          let data = {
+            key: k,
+            val: v,
+            index: index,
+            docHeight: docHeight,
+            size: cases.size,
+          };
+
+          return (
+            <Case
+              key={k}
+              ref={addToRefs}
+              casedata={data}
+              caseScroll={[...scrollArray.values()][index]}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }

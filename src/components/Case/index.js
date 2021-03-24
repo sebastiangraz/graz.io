@@ -10,7 +10,7 @@ import {
   transform,
 } from "framer-motion";
 import { jsx } from "theme-ui";
-import { CaseHero } from "./CaseHero";
+import { CaseHero } from "../CaseHero";
 
 const Case = (props, ref) => {
   const Render = props.casedata.val.component;
@@ -112,7 +112,7 @@ const Case = (props, ref) => {
           fontWeight: 600,
           width: "100%",
           letterSpacing: "-0.075em",
-          fontSize: "8.5vw",
+          fontSize: "4.5vw",
           left: 0,
           color: props.casedata?.val?.bg,
           top: "301px",

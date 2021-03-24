@@ -26,13 +26,31 @@ export default {
     heading: "inherit",
     monospace: "Menlo, monospace",
   },
-  fontSizes: [8, 10, 12, 13, 16, 20],
+
   lineHeights: {
-    body: 1.5,
-    heading: 1.125,
+    body: 1.8,
+    heading: 1.32,
   },
+  fontSizes: [10, 12, 14, 16, 21, 27, 41, 46],
   colors: { ...colors },
   shadows: { ...shadow },
+  grids: {
+    hero: {
+      width: "100%",
+      px: [3, 5, 7],
+      py: [4, 6, 10],
+      gridTemplateColumns: "1fr 1.2fr",
+    },
+  },
+  text: {
+    heading: {
+      fontSize: [3, 5, 5, 6],
+      fontWeight: 400,
+      letterSpacing: "-0.066em",
+      fontFamily: "body",
+      lineHeight: "heading",
+    },
+  },
   styles: {
     root: {
       fontWeight: 400,

@@ -31,6 +31,14 @@ const Loupe = () => {
     </div>
   );
 };
+const Intersection = () => {
+  return (
+    <div sx={{ ...WrapperStyle, height: "100vh" }}>
+      You should totally check out this really pink unrelated lil thing that is
+      right here.
+    </div>
+  );
+};
 const Norse = () => {
   return (
     <div style={{ ...WrapperStyle }}>
@@ -83,6 +91,16 @@ let cases = new Map([
       component: Norse,
       bg: "black",
       color: "#fff",
+    },
+  ],
+  [
+    "whoa",
+    {
+      name: "*",
+      slug: "whoa",
+      component: Intersection,
+      bg: "#FFD6BF",
+      color: "#000",
     },
   ],
   ["canon", { name: "Canon", slug: "canon", component: Canon, bg: "#DE0000" }],
@@ -193,7 +211,6 @@ function App() {
 
   return (
     <div className="App">
-      {console.log(settings.debug)}
       {settings.debug && (
         <span
           style={{

@@ -49,10 +49,11 @@ const Case = (props, ref) => {
     [0, -caseHeight + (1 + props.casedata.index) * 20]
   );
 
-  const OFFSET = 96;
+  let OFFSET = 120;
 
   return (
     <motion.div
+      initial={{ y: 3000 }}
       ref={caseRef}
       style={{ y: pixels }}
       sx={{
@@ -68,7 +69,15 @@ const Case = (props, ref) => {
         color: props.casedata?.val?.color,
         marginTop:
           -props.casedata.size * OFFSET + props.casedata.index * OFFSET,
-        width: `calc(100% - ${props.casedata.index * OFFSET}px)`,
+        width: `calc(100% - ${OFFSET * 2}px)`,
+        "&:nth-of-type(odd)": {
+          right: 0,
+          left: "unset",
+        },
+        "&:first-of-type": {
+          right: OFFSET,
+          left: "unset",
+        },
         "&:after": {
           content: `""`,
           position: "absolute",
@@ -97,13 +106,13 @@ const Case = (props, ref) => {
       }}
     >
       <CaseHero
-        offset={OFFSET}
         text={props.casedata?.val?.name}
         sx={{
           textTransform: "uppercase",
-          fontWeight: 800,
+          fontWeight: 600,
           width: "100%",
-          fontSize: 180,
+          letterSpacing: "-0.075em",
+          fontSize: "8.5vw",
           left: 0,
           color: props.casedata?.val?.bg,
           top: "301px",

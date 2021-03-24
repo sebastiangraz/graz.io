@@ -53,6 +53,7 @@ export default {
   },
   styles: {
     root: {
+      fontFeatureSettings: `"liga", "case"`,
       fontWeight: 400,
       bg: "bg",
       fontSize: 3,

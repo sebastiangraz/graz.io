@@ -2,7 +2,12 @@
 /** @jsx jsx */
 
 import React from "react";
-import { transform } from "framer-motion";
+import {
+  transform,
+  useMotionValue,
+  useViewportScroll,
+  useSpring,
+} from "framer-motion";
 
 import { Case, Logo } from "../components";
 import { jsx, Text, Grid } from "theme-ui";
@@ -96,16 +101,7 @@ let cases = new Map([
       color: "#fff",
     },
   ],
-  [
-    "whoa",
-    {
-      name: "*",
-      slug: "whoa",
-      component: Intersection,
-      bg: "#FFD6BF",
-      color: "#000",
-    },
-  ],
+
   ["canon", { name: "Canon", slug: "canon", component: Canon, bg: "#DE0000" }],
 ]);
 
@@ -212,11 +208,31 @@ function App() {
     setScrollArray(map);
   }, [docHeight, scrollPosition]);
 
+  const { scrollY } = useViewportScroll();
+  // console.log(scrollY.current);
+  let OFFSET = 120;
+  let motionValueOFFSET = useMotionValue(120);
+  // React.useEffect(() => {
+  //   return scrollY > 100
+  //     ? motionValueOFFSET.set(20)
+  //     : motionValueOFFSET.set(120);
+  // }, [motionValueOFFSET, scrollY]);
+
+  const x = useSpring(-225, { damping: 10 });
+
+  React.useEffect(() => {
+    if (true) {
+      x.set(-585);
+    } else {
+    }
+  }, [x]);
+
   return (
     <div className="App">
       {settings.debug && (
         <span
           style={{
+            y: x,
             fontSize: 10,
             position: "fixed",
             right: 10,
@@ -263,6 +279,7 @@ function App() {
             index: index,
             docHeight: docHeight,
             size: cases.size,
+            OFFSET: OFFSET,
           };
 
           return (

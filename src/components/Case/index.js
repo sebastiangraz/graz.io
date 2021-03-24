@@ -49,8 +49,6 @@ const Case = (props, ref) => {
     [0, -caseHeight + (1 + props.casedata.index) * 20]
   );
 
-  let OFFSET = 120;
-
   return (
     <motion.div
       initial={{ y: 3000 }}
@@ -58,7 +56,7 @@ const Case = (props, ref) => {
       style={{ y: pixels }}
       sx={{
         zIndex: props.casedata.index,
-        padding: OFFSET,
+        padding: props.casedata.OFFSET,
         display: "block",
         borderRadius: 0,
         willChange: "transform",
@@ -68,14 +66,19 @@ const Case = (props, ref) => {
         paddingTop: "50vh",
         color: props.casedata?.val?.color,
         marginTop:
-          -props.casedata.size * OFFSET + props.casedata.index * OFFSET,
-        width: `calc(100% - ${OFFSET * 2}px)`,
+          -props.casedata.size * props.casedata.OFFSET +
+          props.casedata.index * props.casedata.OFFSET,
+        width: `calc(100% - ${props.casedata.OFFSET * 2}px)`,
         "&:nth-of-type(odd)": {
           right: 0,
           left: "unset",
         },
         "&:first-of-type": {
-          right: OFFSET,
+          right: props.casedata.OFFSET,
+          left: "unset",
+        },
+        "&:last-of-type": {
+          right: props.casedata.OFFSET,
           left: "unset",
         },
         "&:after": {
@@ -95,8 +98,8 @@ const Case = (props, ref) => {
           top: "100%",
           width: "100%",
           height: -(
-            -props.casedata.size * OFFSET +
-            props.casedata.index * OFFSET
+            -props.casedata.size * props.casedata.OFFSET +
+            props.casedata.index * props.casedata.OFFSET
           ),
           background: props.casedata?.val?.bg,
         },
@@ -106,13 +109,15 @@ const Case = (props, ref) => {
       }}
     >
       <CaseHero
+        offset={props.casedata.OFFSET}
+        ratio={props.caseScroll?.ratio}
         text={props.casedata?.val?.name}
         sx={{
           textTransform: "uppercase",
           fontWeight: 600,
           width: "100%",
           letterSpacing: "-0.075em",
-          fontSize: "4.5vw",
+          fontSize: "8.5vw",
           left: 0,
           color: props.casedata?.val?.bg,
           top: "301px",

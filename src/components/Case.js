@@ -10,30 +10,7 @@ import {
   transform,
 } from "framer-motion";
 import { jsx } from "theme-ui";
-import { round } from "../assets";
-
-const CaseSvg = ({ textPath, ...rest }) => {
-  return (
-    <svg {...rest} height="300" preserveAspectRatio="xMinYMin meet">
-      <defs>
-        <mask id="sample" maskUnits="userSpaceOnUse">
-          <rect width="100%" height="100%" fill="white"></rect>
-          <text y={`${140}`} transform="translate(96, 96)">
-            Loupe
-          </text>
-        </mask>
-      </defs>
-      <rect
-        fill-rule="evenodd"
-        mask="url(#sample)"
-        width="100%"
-        height="100%"
-        fill="currentColor"
-      ></rect>
-      <script type="text/javascript"></script>
-    </svg>
-  );
-};
+import { CaseHero } from "./CaseHero";
 
 const Case = (props, ref) => {
   const Render = props.casedata.val.component;
@@ -92,7 +69,7 @@ const Case = (props, ref) => {
         marginTop:
           -props.casedata.size * OFFSET + props.casedata.index * OFFSET,
         width: `calc(100% - ${props.casedata.index * OFFSET}px)`,
-        "&::after": {
+        "&:after": {
           content: `""`,
           position: "absolute",
           left: 0,
@@ -102,7 +79,7 @@ const Case = (props, ref) => {
           background: props.casedata?.val?.bg,
           zIndex: -1,
         },
-        "&::before": {
+        "&:before": {
           content: `""`,
           position: "absolute",
           left: 0,
@@ -119,7 +96,9 @@ const Case = (props, ref) => {
         },
       }}
     >
-      <CaseSvg
+      <CaseHero
+        offset={OFFSET}
+        text={props.casedata?.val?.name}
         sx={{
           textTransform: "uppercase",
           fontWeight: 800,

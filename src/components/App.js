@@ -1,13 +1,13 @@
 import React from "react";
 import { transform } from "framer-motion";
 import Case from "./Case";
+import "../base.css";
 
 const WrapperStyle = {
   width: "100%",
   bg: "#000a",
   fontSize: 80,
   lineHeight: 1.1,
-  fontWeight: 600,
 };
 
 const Loupe = () => {
@@ -66,7 +66,7 @@ let cases = new Map([
       name: "Loupe",
       slug: "loupe",
       component: Loupe,
-      bg: "green" /*#184629*/,
+      bg: "#184629",
       color: "#fff",
     },
   ],
@@ -80,10 +80,7 @@ let cases = new Map([
       color: "#fff",
     },
   ],
-  [
-    "canon",
-    { name: "Canon", slug: "canon", component: Canon, bg: "red" /*#DE0000*/ },
-  ],
+  ["canon", { name: "Canon", slug: "canon", component: Canon, bg: "#DE0000" }],
 ]);
 
 function App() {
@@ -216,6 +213,7 @@ function App() {
 
         return (
           <Case
+            key={k}
             ref={addToRefs}
             casedata={data}
             caseScroll={[...scrollArray.values()][index]}

@@ -111,28 +111,7 @@ const Case = (props, ref) => {
           transform: "translateY(-300px)",
         }}
       />
-      {/* <motion.h1
-        style={{
-          fontSize: 180,
-          fontWeight: 800,
-          letterSpacing: -9,
-          textTransform: "uppercase",
-          position: "absolute",
-          top: 0,
-        }}
-      >
-        {props.casedata?.val?.name}
-        <sup
-          style={{
-            fontSize: 30,
-            letterSpacing: 0,
-            top: -80,
-            position: "relative",
-          }}
-        >
-          {props.caseScroll?.ratio.toFixed(2)}
-        </sup>
-      </motion.h1> */}
+
       <Render />
     </motion.div>
   );

@@ -1,21 +1,26 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
+
 import React from "react";
 import { transform } from "framer-motion";
 import Case from "./Case";
+import { jsx } from "theme-ui";
 import "../base.css";
+
+let settings = { debug: true };
 
 const WrapperStyle = {
   width: "100%",
-  bg: "#000a",
-  fontSize: 80,
-  lineHeight: 1.1,
+  fontSize: "4vw",
+  lineHeight: "calc(1.3rem + 3.6vw)",
 };
 
 const Loupe = () => {
   return (
-    <div style={{ ...WrapperStyle }}>
+    <div sx={{ ...WrapperStyle }}>
       {Array.from(Array(6).keys()).map(() => {
         return (
-          <p style={{ fontSize: 80, marginBottom: 90 }}>
+          <p style={{ marginBottom: 90 }}>
             Loupe is a conference held by Framer each year. The 3rd edition of
             the conference was planned to be held in Amsterdam 2020, but was
             cancelled due to COVID-19. Below you'll find the progress of that
@@ -31,7 +36,7 @@ const Norse = () => {
     <div style={{ ...WrapperStyle }}>
       {Array.from(Array(2).keys()).map(() => {
         return (
-          <p style={{ fontSize: 80, marginBottom: 90 }}>
+          <p style={{ marginBottom: 90 }}>
             Inspired by a station sign in Norsesund, Sweden. I attempted to
             recreate the letters by tracing them from a photograph, since then
             the typeface evolved into something different. But at least that
@@ -47,7 +52,7 @@ const Canon = () => {
     <div style={{ ...WrapperStyle }}>
       {Array.from(Array(3).keys()).map(() => {
         return (
-          <p style={{ fontSize: 80, marginBottom: 90 }}>
+          <p style={{ marginBottom: 90 }}>
             Canon wanted us to help them improve the UI & UX of their Canon
             Store Website. We identified low-level improvements related to how
             agencies & Canon worked together. As a result; we presented Canon
@@ -188,19 +193,21 @@ function App() {
 
   return (
     <div className="App">
-      <span
-        style={{
-          color: "pink",
-          fontSize: 10,
-          position: "fixed",
-          right: 10,
-          top: 3,
-          zIndex: 10,
-        }}
-      >
-        scroll: {scrollPosition} | height: {docHeight} | contentHeight :{" "}
-        {contentHeight}{" "}
-      </span>
+      {console.log(settings.debug)}
+      {settings.debug && (
+        <span
+          style={{
+            fontSize: 10,
+            position: "fixed",
+            right: 10,
+            top: 3,
+            zIndex: 10,
+          }}
+        >
+          scroll: {scrollPosition} | height: {docHeight} | contentHeight :{" "}
+          {contentHeight}
+        </span>
+      )}
 
       {[...cases.entries()].map(([k, v], index) => {
         let data = {

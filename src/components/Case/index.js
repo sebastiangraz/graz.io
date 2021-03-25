@@ -26,11 +26,6 @@ const Case = (props, ref) => {
   const pixelDistance = useMotionValue(0);
 
   pixelDistance.set(props.caseScroll?.customCase);
-  React.useEffect(() => {
-    pixelDistance.onChange((latest) => {
-      return latest;
-    });
-  }, [pixelDistance]);
 
   const springOption = {
     damping: 10,
@@ -42,16 +37,37 @@ const Case = (props, ref) => {
   const ratioDistance = useMotionValue(0);
   ratioDistance.set(props.caseScroll?.ratio);
 
-  React.useEffect(() => {
-    ratioDistance.onChange((latest) => {
-      transform(latest, [0, 1], [0, 33]);
-    });
-  }, [ratioDistance]);
+  const ratio = useTransform(
+    useSpring(ratioDistance, { damping: 90 }),
+    [0, 1],
+    [0, 100]
+  );
+
+  const isClickAble =
+    props.caseScroll?.ratio >= 1 || props.caseScroll?.ratio <= 0;
+
+  const staggeredOffset =
+    -props.casedata.size * props.casedata.OFFSET +
+    props.casedata.index * props.casedata.OFFSET;
+
+  console.log(
+    props.casedata.key,
+    staggeredOffset +
+      props.casedata.docHeight +
+      props.caseScroll?.heightArr[props.casedata.index]
+  );
 
   return (
     <motion.div
       ref={caseRef}
       style={{ y: pixels }}
+      onClick={() => {
+        const scrollTo =
+          staggeredOffset +
+          props.casedata.docHeight +
+          props.caseScroll?.heightArr[props.casedata.index];
+        isClickAble && window.scrollTo(0, scrollTo + 1);
+      }}
       sx={{
         zIndex: props.casedata.index,
         padding: props.casedata.OFFSET,
@@ -60,19 +76,14 @@ const Case = (props, ref) => {
         willChange: "transform",
         position: "fixed",
         left: 0,
+        transition: "opacity ease 1s",
         paddingBottom: "50vh",
         paddingTop: "50vh",
         color: props.casedata?.val?.color,
-        marginTop:
-          -props.casedata.size * props.casedata.OFFSET +
-          props.casedata.index * props.casedata.OFFSET,
+        marginTop: staggeredOffset,
         width: `calc(100% - ${props.casedata.OFFSET * 2}px)`,
         "&:nth-of-type(odd)": {
           right: 0,
-          left: "unset",
-        },
-        "&:first-of-type": {
-          right: props.casedata.OFFSET,
           left: "unset",
         },
         "&:last-of-type": {

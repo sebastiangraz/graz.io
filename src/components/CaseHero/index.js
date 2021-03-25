@@ -15,7 +15,7 @@ export const CaseHero = React.memo(
             <rect width="100%" height="100%" fill="white"></rect>
             <text
               dominantBaseline="hanging"
-              transform={`translate(${offset - 4} ${offset - 7})`}
+              transform={`translate(${offset / 2 - 4} ${offset / 2 - 7})`}
             >
               {text}
             </text>

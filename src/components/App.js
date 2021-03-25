@@ -13,6 +13,8 @@ import {
 
 import { Case, Logo } from "../components";
 import { jsx, Text, Grid } from "theme-ui";
+import { useInView } from "react-intersection-observer";
+
 import "../base.css";
 
 let settings = { debug: true };
@@ -50,6 +52,10 @@ const Intersection = () => {
   );
 };
 const Norse = () => {
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+  });
   return (
     <div style={{ ...WrapperStyle }}>
       {Array.from(Array(2).keys()).map(() => {
@@ -62,6 +68,9 @@ const Norse = () => {
           </p>
         );
       })}
+      <div ref={ref}>
+        <h2>{`Header inside viewport ${inView}.`}</h2>
+      </div>
     </div>
   );
 };
@@ -184,7 +193,7 @@ function App() {
 
       let ratio = transform(
         pixels,
-        [0, v.getBoundingClientRect().height - docHeight],
+        [0, v.getBoundingClientRect().height],
         [0, 1]
       );
 
@@ -192,6 +201,7 @@ function App() {
         ratio: ratio,
         pixels: pixels,
         customCase: customCase,
+        heightArr: heightArr,
       };
     }
 
@@ -203,6 +213,7 @@ function App() {
           ratio: clampedValues(v, i, heightArr).ratio,
           pixels: clampedValues(v, i, heightArr).pixels,
           customCase: clampedValues(v, i, heightArr).customCase,
+          heightArr: clampedValues(v, i, heightArr).heightArr,
         },
       ])
     );
@@ -211,20 +222,6 @@ function App() {
   }, [docHeight, scrollPosition]);
 
   let OFFSET = 120;
-  // const { scrollY } = useViewportScroll();
-
-  // let OFFSET = 120;
-  // let x = useSpring(0, { damping: 20 });
-  // let offsetAnimation = useSpring(OFFSET, { damping: 20 });
-
-  // React.useEffect(() => {
-  //   scrollY.onChange((latest) => {
-  //     return [
-  //       latest <= 0 ? x.set(0) : x.set(-20),
-  //       latest <= 100 ? offsetAnimation.set(120) : offsetAnimation.set(160),
-  //     ];
-  //   });
-  // }, [offsetAnimation, scrollY, x]);
 
   const { scrollY } = useViewportScroll();
 

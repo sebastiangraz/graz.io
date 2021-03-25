@@ -24,34 +24,32 @@ const Case = (props, ref) => {
   }, []);
 
   const pixelDistance = useMotionValue(0);
-  const ratioDistance = useMotionValue(0);
+
   pixelDistance.set(props.caseScroll?.customCase);
-  ratioDistance.set(props.caseScroll?.ratio);
   React.useEffect(() => {
     pixelDistance.onChange((latest) => {
       return latest;
     });
-    ratioDistance.onChange((latest) => {
-      return latest;
-    });
-  }, [pixelDistance, ratioDistance, caseHeight]);
+  }, [pixelDistance]);
 
   const springOption = {
     damping: 10,
     mass: 0.1,
   };
-  const pixels = useSpring(pixelDistance, springOption);
-  const ratio = useSpring(ratioDistance, springOption);
 
-  const trans = useTransform(
-    pixels,
-    [0, -caseHeight],
-    [0, -caseHeight + (1 + props.casedata.index) * 20]
-  );
+  const pixels = useSpring(pixelDistance, springOption);
+
+  const ratioDistance = useMotionValue(0);
+  ratioDistance.set(props.caseScroll?.ratio);
+
+  React.useEffect(() => {
+    ratioDistance.onChange((latest) => {
+      transform(latest, [0, 1], [0, 33]);
+    });
+  }, [ratioDistance]);
 
   return (
     <motion.div
-      initial={{ y: 3000 }}
       ref={caseRef}
       style={{ y: pixels }}
       sx={{

@@ -5,6 +5,8 @@ import React from "react";
 import {
   transform,
   useMotionValue,
+  useTransform,
+  motion,
   useViewportScroll,
   useSpring,
 } from "framer-motion";
@@ -208,31 +210,33 @@ function App() {
     setScrollArray(map);
   }, [docHeight, scrollPosition]);
 
-  const { scrollY } = useViewportScroll();
-  // console.log(scrollY.current);
   let OFFSET = 120;
-  let motionValueOFFSET = useMotionValue(120);
+  // const { scrollY } = useViewportScroll();
+
+  // let OFFSET = 120;
+  // let x = useSpring(0, { damping: 20 });
+  // let offsetAnimation = useSpring(OFFSET, { damping: 20 });
+
   // React.useEffect(() => {
-  //   return scrollY > 100
-  //     ? motionValueOFFSET.set(20)
-  //     : motionValueOFFSET.set(120);
-  // }, [motionValueOFFSET, scrollY]);
+  //   scrollY.onChange((latest) => {
+  //     return [
+  //       latest <= 0 ? x.set(0) : x.set(-20),
+  //       latest <= 100 ? offsetAnimation.set(120) : offsetAnimation.set(160),
+  //     ];
+  //   });
+  // }, [offsetAnimation, scrollY, x]);
 
-  const x = useSpring(-225, { damping: 10 });
+  const { scrollY } = useViewportScroll();
 
-  React.useEffect(() => {
-    if (true) {
-      x.set(-585);
-    } else {
-    }
-  }, [x]);
+  const y = useSpring(useTransform(scrollY, [0, 400], [0, -40]), {
+    damping: 20,
+  });
 
   return (
     <div className="App">
       {settings.debug && (
         <span
           style={{
-            y: x,
             fontSize: 10,
             position: "fixed",
             right: 10,
@@ -244,7 +248,10 @@ function App() {
           {contentHeight}
         </span>
       )}
-      <div sx={{ position: "fixed", top: 0, width: "100%", height: "100%" }}>
+      <motion.div
+        style={{ y: y }}
+        sx={{ position: "fixed", top: 0, width: "100%", height: "100%" }}
+      >
         <Grid variant="hero">
           <Logo
             sx={{
@@ -265,12 +272,10 @@ function App() {
             }}
           >
             I’m Sebastian—as a digital designer I care about our dear users,
-            rapid prototyping, design systems & brand
-            <span sx={{ display: ["inline", "none"] }}>ing.</span>{" "}
-            <span sx={{ display: ["none", "inline"] }}>identities.</span>
+            rapid prototyping, design systems & branding
           </Text>
         </Grid>
-      </div>
+      </motion.div>
       <div sx={{ position: "fixed", top: 0 }}>
         {[...cases.entries()].map(([k, v], index) => {
           let data = {

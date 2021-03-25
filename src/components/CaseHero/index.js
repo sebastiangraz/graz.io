@@ -8,6 +8,7 @@ const ignoreUpdatedProps = () => true;
 
 export const CaseHero = React.memo(
   ({ text, offset, id = Date.now(), ...rest }) => {
+    console.log("Render CaseHero");
     return (
       <svg {...rest} height="300" preserveAspectRatio="xMinYMin meet">
         <defs>

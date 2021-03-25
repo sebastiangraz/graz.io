@@ -4,7 +4,6 @@
 import React from "react";
 import {
   transform,
-  useMotionValue,
   useTransform,
   motion,
   useViewportScroll,
@@ -52,8 +51,7 @@ const Intersection = () => {
   );
 };
 const Norse = () => {
-  const { ref, inView, entry } = useInView({
-    /* Optional options */
+  const { ref, inView } = useInView({
     threshold: 0,
   });
   return (
@@ -221,13 +219,17 @@ function App() {
     setScrollArray(map);
   }, [docHeight, scrollPosition]);
 
-  let OFFSET = 120;
-
   const { scrollY } = useViewportScroll();
 
   const y = useSpring(useTransform(scrollY, [0, 400], [0, -40]), {
     damping: 20,
   });
+
+  // React.useEffect(() => {
+  //   console.log(revealRefs);
+  // }, []);
+
+  let OFFSET = 144;
 
   return (
     <div className="App">
@@ -253,13 +255,13 @@ function App() {
           <Logo
             sx={{
               lineHeight: 0.8,
-              fontSize: 80,
+              fontSize: 40,
               transition: `.5s cubic-bezier(1,0,0,1) opacity, 1s cubic-bezier(1,0,0,1) transform`,
               transform: false
                 ? ["scale(1)", "scale(1)", "scale(0.8)"]
                 : "scale(1)",
             }}
-            weight={40}
+            weight={30}
           />
           <Text
             variant="heading"
@@ -273,6 +275,7 @@ function App() {
           </Text>
         </Grid>
       </motion.div>
+      {console.log("Render App")}
       <div sx={{ position: "fixed", top: 0 }}>
         {[...cases.entries()].map(([k, v], index) => {
           let data = {
@@ -282,6 +285,7 @@ function App() {
             docHeight: docHeight,
             size: cases.size,
             OFFSET: OFFSET,
+            totalScroll: scrollPosition,
           };
 
           return (

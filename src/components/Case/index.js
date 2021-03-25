@@ -2,41 +2,20 @@
 /** @jsx jsx */
 
 import React from "react";
-import {
-  motion,
-  useSpring,
-  useMotionValue,
-  useTransform,
-  transform,
-} from "framer-motion";
+import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
 import { jsx } from "theme-ui";
 import { CaseHero } from "../CaseHero";
 
 const Case = (props, ref) => {
   const Render = props.casedata.val.component;
-  const caseRef = React.useRef(null);
-
-  React.useImperativeHandle(ref, () => caseRef.current);
-  const [caseHeight, setCaseHeight] = React.useState(0);
-
-  React.useEffect(() => {
-    setCaseHeight(caseRef.current.getBoundingClientRect().height);
-  }, []);
 
   const pixelDistance = useMotionValue(0);
+  const ratioDistance = useMotionValue(0);
 
   pixelDistance.set(props.caseScroll?.customCase);
-
-  const springOption = {
-    damping: 10,
-    mass: 0.1,
-  };
-
-  const pixels = useSpring(pixelDistance, springOption);
-
-  const ratioDistance = useMotionValue(0);
   ratioDistance.set(props.caseScroll?.ratio);
 
+  const pixels = useSpring(pixelDistance, { damping: 10, mass: 0.1 });
   const ratio = useTransform(
     useSpring(ratioDistance, { damping: 90 }),
     [0, 1],
@@ -50,16 +29,20 @@ const Case = (props, ref) => {
     -props.casedata.size * props.casedata.OFFSET +
     props.casedata.index * props.casedata.OFFSET;
 
-  console.log(
-    props.casedata.key,
-    staggeredOffset +
-      props.casedata.docHeight +
-      props.caseScroll?.heightArr[props.casedata.index]
-  );
+  // React.useEffect(() => {
+  //   return (
+  //     props.casedata.key,
+  //     staggeredOffset +
+  //       props.casedata.docHeight +
+  //       props.caseScroll?.heightArr[props.casedata.index] <
+  //       props.casedata?.totalScroll &&
+  //       window.history.pushState(null, null, `${props.casedata?.val?.slug}`)
+  //   );
+  // }, [props.casedata?.totalScroll]);
 
   return (
     <motion.div
-      ref={caseRef}
+      ref={ref}
       style={{ y: pixels }}
       onClick={() => {
         const scrollTo =
@@ -76,12 +59,18 @@ const Case = (props, ref) => {
         willChange: "transform",
         position: "fixed",
         left: 0,
-        transition: "opacity ease 1s",
         paddingBottom: "50vh",
         paddingTop: "50vh",
         color: props.casedata?.val?.color,
         marginTop: staggeredOffset,
+
+        svg: {
+          transition: "color ease 0.5s",
+        },
         width: `calc(100% - ${props.casedata.OFFSET * 2}px)`,
+        ...(isClickAble && {
+          cursor: "pointer",
+        }),
         "&:nth-of-type(odd)": {
           right: 0,
           left: "unset",
@@ -117,6 +106,7 @@ const Case = (props, ref) => {
         },
       }}
     >
+      {console.log("Render Case")}
       <CaseHero
         offset={props.casedata.OFFSET}
         ratio={props.caseScroll?.ratio}

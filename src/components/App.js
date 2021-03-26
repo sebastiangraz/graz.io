@@ -59,15 +59,9 @@ function App() {
 
   React.useEffect(() => {
     const handleScroll = () => {
-      setScrollPosition((currentScrolling) => {
-        if (!currentScrolling) return true;
-        return false;
-      });
+      const position = window.pageYOffset;
+      setScrollPosition(position);
     };
-    // const handleScroll = () => {
-    //   const position = window.pageYOffset;
-    //   setScrollPosition(position);
-    // };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);

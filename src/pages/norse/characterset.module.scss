@@ -1,0 +1,64 @@
+.slider {
+	-webkit-appearance: none;
+	background: transparent;
+	color: currentColor; //safari hack to keep it black;
+	&::-webkit-slider-runnable-track {
+		height: 24px;
+		border: none;
+		border-radius: 999px;
+		background: transparent;
+		box-shadow: 0 0 0 1px currentColor inset;
+	}
+
+	&::-webkit-slider-thumb {
+		cursor: pointer;
+		-webkit-appearance: none;
+		border: none;
+		height: 24px;
+		width: 24px;
+		border-radius: 999px;
+		background: transparent;
+		box-shadow: 0 0 0 1px currentColor inset;
+	}
+
+	&:hover::-webkit-slider-thumb {
+		background: currentColor;
+	}
+
+	&:focus {
+		outline: none;
+	}
+
+	//Mozilla
+	&::-moz-range-track {
+		height: 24px;
+		border: none;
+		border-radius: 999px;
+		background: transparent;
+		box-shadow: 0 0 0 1px currentColor inset;
+	}
+
+	&::-moz-range-thumb {
+		cursor: pointer;
+		-webkit-appearance: none;
+		border: none;
+		height: 24px;
+		width: 24px;
+		border-radius: 999px;
+		background: transparent;
+		box-shadow: 0 0 0 1px currentColor inset;
+	}
+
+	/*hide the outline behind the border*/
+	&::-moz-focus-outer {
+		border: none;
+	}
+
+	&:hover::-moz-range-thumb {
+		background: rgba(0, 0, 0, 1);
+	}
+
+	&:focus::-moz-range-track {
+		background: transparent;
+	}
+}

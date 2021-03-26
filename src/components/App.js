@@ -1,7 +1,8 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 
-import React from "react";
+import React, { Fragment, unstable_Profiler as Profiler } from "react";
+
 import {
   transform,
   useTransform,
@@ -12,82 +13,11 @@ import {
 
 import { Case, Logo } from "../components";
 import { jsx, Text, Grid } from "theme-ui";
-import { useInView } from "react-intersection-observer";
+import { Loupe, Norse, Canon } from "../pages";
 
 import "../base.css";
 
 let settings = { debug: true };
-
-const WrapperStyle = {
-  width: "100%",
-  fontFeatureSettings: `"liga", "case"`,
-  fontSize: "4vw",
-  letterSpacing: "-0.05em",
-  lineHeight: "calc(1.3rem + 3.6vw)",
-};
-
-const Loupe = () => {
-  return (
-    <div sx={{ ...WrapperStyle }}>
-      {Array.from(Array(6).keys()).map(() => {
-        return (
-          <p style={{ marginBottom: 90 }}>
-            Loupe is a conference held by Framer each year. The 3rd edition of
-            the conference was planned to be held in Amsterdam 2020, but was
-            cancelled due to COVID-19. Below you'll find the progress of that
-            work.
-          </p>
-        );
-      })}
-    </div>
-  );
-};
-const Intersection = () => {
-  return (
-    <div sx={{ ...WrapperStyle, height: "100vh" }}>
-      You should totally check out this really pink unrelated lil thing that is
-      right here.
-    </div>
-  );
-};
-const Norse = () => {
-  const { ref, inView } = useInView({
-    threshold: 0,
-  });
-  return (
-    <div style={{ ...WrapperStyle }}>
-      {Array.from(Array(2).keys()).map(() => {
-        return (
-          <p style={{ marginBottom: 90 }}>
-            Inspired by a station sign in Norsesund, Sweden. I attempted to
-            recreate the letters by tracing them from a photograph, since then
-            the typeface evolved into something different. But at least that
-            explains the name a bit.
-          </p>
-        );
-      })}
-      <div ref={ref}>
-        <h2>{`Header inside viewport ${inView}.`}</h2>
-      </div>
-    </div>
-  );
-};
-const Canon = () => {
-  return (
-    <div style={{ ...WrapperStyle }}>
-      {Array.from(Array(3).keys()).map(() => {
-        return (
-          <p style={{ marginBottom: 90 }}>
-            Canon wanted us to help them improve the UI & UX of their Canon
-            Store Website. We identified low-level improvements related to how
-            agencies & Canon worked together. As a result; we presented Canon
-            with a proof-of-concept design system.
-          </p>
-        );
-      })}
-    </div>
-  );
-};
 
 let cases = new Map([
   [

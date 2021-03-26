@@ -6,12 +6,12 @@ const colors = {
   primary: "#09f",
 };
 
-const shadow = [
-  `1px 2px 4px 0 ${transparentize(
-    colors.text,
-    0.96
-  )()} inset, 0px 1px 1px 0 ${transparentize(colors.text, 0.98)()} inset`,
-];
+// const shadow = [
+//   `1px 2px 4px 0 ${transparentize(
+//     colors.text,
+//     0.96
+//   )()} inset, 0px 1px 1px 0 ${transparentize(colors.text, 0.98)()} inset`,
+// ];
 
 const space = [0, 4, 8, 16, 24, 32, 40, 48, 56, 72, 152];
 
@@ -33,7 +33,7 @@ export default {
   },
   fontSizes: [10, 12, 14, 16, 21, 27, 41, 46],
   colors: { ...colors },
-  shadows: { ...shadow },
+  // shadows: { ...shadow },
   grids: {
     hero: {
       width: "100%",

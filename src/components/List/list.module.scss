@@ -1,0 +1,53 @@
+ul.listBullets {
+  padding: 0;
+}
+
+ul.listBullets li {
+  list-style: none;
+  margin-top: 8px;
+  position: relative;
+  &:before {
+    position: absolute;
+  }
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+ul.NumberedListBullets {
+  counter-reset: item;
+  li {
+    list-style: none;
+    counter-increment: item;
+    margin-top: 12px;
+    &:before {
+      position: absolute;
+      margin-top: -1px;
+      font-feature-settings: "tnum";
+      width: 16px;
+      height: 16px;
+      font-weight: 500;
+      font-size: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: 0px;
+      border-radius: 99em;
+      padding: 0;
+      content: counters(item, ".") " ";
+    }
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+ul.listSansBullets li {
+  list-style: none;
+  margin-top: 8px;
+  position: relative;
+  &:first-child {
+    margin-top: 0;
+  }
+}

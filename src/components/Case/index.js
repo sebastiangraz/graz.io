@@ -53,7 +53,7 @@ const Case = (props, ref) => {
       }}
       sx={{
         zIndex: props.casedata.index,
-        padding: props.casedata.OFFSET,
+        padding: 40,
         display: "block",
         borderRadius: 0,
         willChange: "transform",

@@ -29,28 +29,20 @@ const Case = (props, ref) => {
     -props.casedata.size * props.casedata.OFFSET +
     props.casedata.index * props.casedata.OFFSET;
 
-  // React.useEffect(() => {
-  //   return (
-  //     props.casedata.key,
-  //     staggeredOffset +
-  //       props.casedata.docHeight +
-  //       props.caseScroll?.heightArr[props.casedata.index] <
-  //       props.casedata?.totalScroll &&
-  //       window.history.pushState(null, null, `${props.casedata?.val?.slug}`)
-  //   );
-  // }, [props.casedata?.totalScroll]);
+  const scrollTo =
+    staggeredOffset +
+    props.casedata.docHeight +
+    props.caseScroll?.heightArr[props.casedata.index];
+
+  const handleClick = () => {
+    return isClickAble && window.scrollTo(0, scrollTo + 1);
+  };
 
   return (
     <motion.div
       ref={ref}
       style={{ y: pixels }}
-      onClick={() => {
-        const scrollTo =
-          staggeredOffset +
-          props.casedata.docHeight +
-          props.caseScroll?.heightArr[props.casedata.index];
-        isClickAble && window.scrollTo(0, scrollTo + 1);
-      }}
+      onClick={handleClick}
       sx={{
         zIndex: props.casedata.index,
         padding: 40,

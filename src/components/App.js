@@ -49,34 +49,43 @@ function App() {
   const [docHeight, setDocHeight] = React.useState(0);
   const [contentHeight, setContentHeight] = React.useState(0);
 
-  const handleScroll = () => {
-    const position = window.pageYOffset;
-    setScrollPosition(position);
-  };
-
-  const handleResize = () => {
-    const docHeight = window.innerHeight;
-    setDocHeight(docHeight);
-  };
-
   React.useEffect(() => {
     let doc = document.body;
     doc.style.height = `${contentHeight}px`;
     return () => {
       doc.style.removeProperty("height");
     };
-  });
+  }, [contentHeight]);
 
   React.useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition((currentScrolling) => {
+        if (!currentScrolling) return true;
+        return false;
+      });
+    };
+    // const handleScroll = () => {
+    //   const position = window.pageYOffset;
+    //   setScrollPosition(position);
+    // };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      const docHeight = window.innerHeight;
+      setDocHeight(docHeight);
+    };
+
     window.addEventListener("resize", handleResize, { passive: true });
     window.addEventListener("load", handleResize, { passive: true });
     return () => {
-      window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("load", handleResize);
     };
-  });
+  }, []);
 
   const revealRefs = React.useRef([]);
   const [scrollArray, setScrollArray] = React.useState(new Map([]));
@@ -205,7 +214,6 @@ function App() {
           </Text>
         </Grid>
       </motion.div>
-      {console.log("Render App")}
       <div sx={{ position: "fixed", top: 0 }}>
         {[...cases.entries()].map(([k, v], index) => {
           let data = {

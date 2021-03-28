@@ -6,14 +6,7 @@ const colors = {
   primary: "#09f",
 };
 
-// const shadow = [
-//   `1px 2px 4px 0 ${transparentize(
-//     colors.text,
-//     0.96
-//   )()} inset, 0px 1px 1px 0 ${transparentize(colors.text, 0.98)()} inset`,
-// ];
-
-const space = [0, 4, 8, 16, 24, 32, 40, 48, 56, 72, 152];
+const space = [0, 2, 4, 8, 16, 32, 64, 128, 256, 512];
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
@@ -26,14 +19,13 @@ export default {
     heading: "inherit",
     monospace: "Menlo, monospace",
   },
-
+  breakpoints: ["40em", "64em", "98em", "120em"],
   lineHeights: {
     body: 1.8,
     heading: 1.32,
   },
   fontSizes: [10, 12, 14, 16, 21, 27, 41, 46],
   colors: { ...colors },
-  // shadows: { ...shadow },
   grids: {
     hero: {
       width: "100%",
@@ -43,8 +35,13 @@ export default {
     },
   },
   text: {
+    default: {
+      fontWeight: 400,
+      fontSize: [4],
+      letterSpacing: "-0.02em",
+    },
     heading: {
-      fontSize: [3, 5, 5, 6],
+      fontSize: [5, 6, 6, 7],
       fontWeight: 400,
       letterSpacing: "-0.066em",
       fontFamily: "body",

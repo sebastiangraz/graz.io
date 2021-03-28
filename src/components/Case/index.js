@@ -26,8 +26,8 @@ const Case = (props, ref) => {
     props.caseScroll?.ratio >= 1 || props.caseScroll?.ratio <= 0;
 
   const staggeredOffset =
-    -props.casedata.size * props.casedata.OFFSET +
-    props.casedata.index * props.casedata.OFFSET;
+    -props.casedata.size * props.casedata.offset +
+    props.casedata.index * props.casedata.offset;
 
   const scrollTo =
     staggeredOffset +
@@ -45,7 +45,7 @@ const Case = (props, ref) => {
       onClick={handleClick}
       sx={{
         zIndex: props.casedata.index,
-        padding: 40,
+        padding: props.casedata.offset / 2,
         display: "block",
         borderRadius: 0,
         willChange: "transform",
@@ -54,12 +54,11 @@ const Case = (props, ref) => {
         paddingBottom: "50vh",
         paddingTop: "50vh",
         color: props.casedata?.val?.color,
-        marginTop: staggeredOffset,
-
+        top: `${staggeredOffset}px`,
         svg: {
           transition: "color ease 0.5s",
         },
-        width: `calc(100% - ${props.casedata.OFFSET * 2}px)`,
+        width: `calc(100% - ${props.casedata.offset * 2}px)`,
         ...(isClickAble && {
           cursor: "pointer",
         }),
@@ -68,7 +67,7 @@ const Case = (props, ref) => {
           left: "unset",
         },
         "&:last-of-type": {
-          right: props.casedata.OFFSET,
+          right: props.casedata.offset,
           left: "unset",
         },
         "&:after": {
@@ -88,8 +87,8 @@ const Case = (props, ref) => {
           top: "100%",
           width: "100%",
           height: -(
-            -props.casedata.size * props.casedata.OFFSET +
-            props.casedata.index * props.casedata.OFFSET
+            -props.casedata.size * props.casedata.offset +
+            props.casedata.index * props.casedata.offset
           ),
           background: props.casedata?.val?.bg,
         },
@@ -100,7 +99,7 @@ const Case = (props, ref) => {
     >
       {console.log("Render Case")}
       <CaseHero
-        offset={props.casedata.OFFSET}
+        offset={props.casedata.offset}
         ratio={props.caseScroll?.ratio}
         text={props.casedata?.val?.name}
         sx={{
@@ -116,10 +115,9 @@ const Case = (props, ref) => {
           transform: "translateY(-300px)",
         }}
       />
-
       <Render />
     </motion.div>
   );
 };
 
-export default React.forwardRef(Case);
+export default React.memo(React.forwardRef(Case));

@@ -96,7 +96,7 @@ export const Video = ({ videoData, ...rest }) => {
           width: "100%",
           objectFit: videoData.fit ? videoData.fit : "contain",
         }}
-        src={videoData.url}
+        src={videoData.url.default}
         ref={setRefs}
         loop
         onLoadedData={() => setLoaded(true)}

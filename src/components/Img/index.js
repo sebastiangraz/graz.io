@@ -3,9 +3,8 @@
 import { jsx } from "theme-ui";
 import React from "react";
 
-export const Img = ({ imageData, plate, ...rest }) => {
+export const Img = ({ imageData, cover, plate, ...rest }) => {
   const [loaded, setLoaded] = React.useState(false);
-
   return (
     <div
       {...rest}
@@ -24,7 +23,7 @@ export const Img = ({ imageData, plate, ...rest }) => {
             onLoad={() => setLoaded(true)}
             width={imageData && imageData.width}
             height={imageData && imageData.height}
-            srcSet={imageData && imageData.webP}
+            srcSet={imageData && imageData.webP.default}
             type="image/webp"
             alt={imageData.alt ? imageData.alt : "alt"}
           />
@@ -39,12 +38,12 @@ export const Img = ({ imageData, plate, ...rest }) => {
             left: 0,
             height: "100%",
             width: "100%",
-            objectFit: "contain",
+            objectFit: cover ? "cover" : "contain",
           }}
           width={imageData && imageData.width}
           height={imageData && imageData.height}
           alt={imageData && imageData.alt ? imageData.alt : "alt"}
-          src={imageData && imageData.url}
+          src={imageData && imageData.url.default}
         />
       </picture>
     </div>

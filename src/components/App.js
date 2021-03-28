@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 
-import React, { Fragment, unstable_Profiler as Profiler } from "react";
+import React from "react";
 
 import {
   transform,
@@ -17,7 +17,7 @@ import { Loupe, Norse, Canon } from "../pages";
 
 import "../base.css";
 
-let settings = { debug: true };
+let settings = { debug: true, offset: 140 };
 
 let cases = new Map([
   [
@@ -26,8 +26,8 @@ let cases = new Map([
       name: "Loupe",
       slug: "loupe",
       component: Loupe,
-      bg: "#184629",
-      color: "#fff",
+      bg: "#184629", //184629
+      color: "#e8e0d6", //e8e0d6
     },
   ],
   [
@@ -162,17 +162,15 @@ function App() {
   //   console.log(revealRefs);
   // }, []);
 
-  let OFFSET = 144;
-
   return (
     <div className="App">
       {settings.debug && (
         <span
-          style={{
+          sx={{
             fontSize: 10,
             position: "fixed",
             right: 10,
-            top: 3,
+            top: 2,
             zIndex: 10,
           }}
         >
@@ -182,7 +180,7 @@ function App() {
       )}
       <motion.div
         style={{ y: y }}
-        sx={{ position: "fixed", top: 0, width: "100%", height: "100%" }}
+        sx={{ position: "fixed", top: 7, width: "100%", height: "100%" }}
       >
         <Grid variant="hero">
           <Logo
@@ -216,10 +214,9 @@ function App() {
             index: index,
             docHeight: docHeight,
             size: cases.size,
-            OFFSET: OFFSET,
+            offset: settings.offset,
             totalScroll: scrollPosition,
           };
-
           return (
             <Case
               key={k}

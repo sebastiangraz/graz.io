@@ -51,11 +51,16 @@ const Sections = {
           <Img imageData={images.monomeshMagenta}></Img>
         </div>
         <div></div>
-        <div></div>
+        <div
+          sx={{
+            gridColumn: ["span 4"],
+            gridRow: ["span 2"],
+          }}
+        ></div>
         <div
           sx={{
             gridColumn: ["3 / span 2", "span 2"],
-            gridRow: ["10 / span 2", "span 2"],
+            gridRow: ["8 / span 2", "span 2"],
           }}
         >
           <div>

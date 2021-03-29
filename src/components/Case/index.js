@@ -2,7 +2,7 @@
 /** @jsx jsx */
 
 import React from "react";
-import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
+import { motion, useSpring, useMotionValue } from "framer-motion";
 import { jsx } from "theme-ui";
 import { CaseHero } from "../CaseHero";
 
@@ -16,11 +16,11 @@ const Case = (props, ref) => {
   ratioDistance.set(props.caseScroll?.ratio);
 
   const pixels = useSpring(pixelDistance, { damping: 10, mass: 0.1 });
-  const ratio = useTransform(
-    useSpring(ratioDistance, { damping: 90 }),
-    [0, 1],
-    [0, 100]
-  );
+  // const ratio = useTransform(
+  //   useSpring(ratioDistance, { damping: 90 }),
+  //   [0, 1],
+  //   [0, 100]
+  // );
 
   const isClickAble =
     props.caseScroll?.ratio >= 1 || props.caseScroll?.ratio <= 0;

@@ -14,6 +14,7 @@ export const CaseHero = React.memo(
         <defs>
           <mask id={`${"sample-" + id}`}>
             <rect width="100%" height="100%" fill="white"></rect>
+
             <text
               dominantBaseline="hanging"
               transform={`translate(${offset - 4} ${offset - 7})`}

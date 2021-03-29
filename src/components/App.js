@@ -13,7 +13,7 @@ import {
 
 import { Case, Logo } from "../components";
 import { jsx, Text, Grid } from "theme-ui";
-import { Loupe, Norse, Canon } from "../pages";
+import { Loupe } from "../pages";
 
 import "../base.css";
 

@@ -35,19 +35,21 @@ let cases = new Map([
     {
       name: "Norse",
       slug: "norse",
-      component: Norse,
+      component: Loupe,
       bg: "black",
       color: "#fff",
     },
   ],
 
-  ["canon", { name: "Canon", slug: "canon", component: Canon, bg: "#DE0000" }],
+  ["canon", { name: "Canon", slug: "canon", component: Loupe, bg: "#DE0000" }],
 ]);
 
 function App() {
   const [scrollPosition, setScrollPosition] = React.useState(0);
   const [docHeight, setDocHeight] = React.useState(0);
   const [contentHeight, setContentHeight] = React.useState(0);
+
+  const { scrollY } = useViewportScroll();
 
   React.useEffect(() => {
     let doc = document.body;
@@ -67,19 +69,19 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  React.useEffect(() => {
-    const handleResize = () => {
-      const docHeight = window.innerHeight;
-      setDocHeight(docHeight);
-    };
+  const handleResize = React.useCallback(() => {
+    const docHeight = window.innerHeight;
+    setDocHeight(docHeight);
+  }, []);
 
+  React.useEffect(() => {
     window.addEventListener("resize", handleResize, { passive: true });
     window.addEventListener("load", handleResize, { passive: true });
     return () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("load", handleResize);
     };
-  }, []);
+  }, [handleResize]);
 
   const revealRefs = React.useRef([]);
   const [scrollArray, setScrollArray] = React.useState(new Map([]));
@@ -151,8 +153,6 @@ function App() {
     setContentHeight(totalHeight);
     setScrollArray(map);
   }, [docHeight, scrollPosition]);
-
-  const { scrollY } = useViewportScroll();
 
   const y = useSpring(useTransform(scrollY, [0, 400], [0, -40]), {
     damping: 20,

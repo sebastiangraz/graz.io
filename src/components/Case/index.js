@@ -51,7 +51,6 @@ const Case = (props, ref) => {
         willChange: "transform",
         position: "fixed",
         left: 0,
-        paddingBottom: "50vh",
         paddingTop: "50vh",
         color: props.casedata?.val?.color,
         top: `${staggeredOffset}px`,
@@ -74,23 +73,13 @@ const Case = (props, ref) => {
           content: `""`,
           position: "absolute",
           left: 0,
-          bottom: 0,
+          top: 0,
+          transformOrigin: "bottom",
+          transform: "translateY(300px)",
           width: "100%",
-          height: "calc(100% - 300px)",
+          height: `calc(100% - ${staggeredOffset}px)`,
           background: props.casedata?.val?.bg,
           zIndex: -1,
-        },
-        "&:before": {
-          content: `""`,
-          position: "absolute",
-          left: 0,
-          top: "100%",
-          width: "100%",
-          height: -(
-            -props.casedata.size * props.casedata.offset +
-            props.casedata.index * props.casedata.offset
-          ),
-          background: props.casedata?.val?.bg,
         },
         "&:last-child": {
           paddingBottom: props.casedata?.docHeight,
@@ -115,6 +104,7 @@ const Case = (props, ref) => {
           transform: "translateY(-300px)",
         }}
       />
+
       <Render />
     </motion.div>
   );

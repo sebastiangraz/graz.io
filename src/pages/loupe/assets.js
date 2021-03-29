@@ -98,15 +98,15 @@ export const images = {
     alt: "multiMesh0",
   },
   logoStrip: {
-    url: require("./assets/logoStrip.png"),
-    webP: require("./assets/logoStrip.webp"),
-    width: 204,
-    height: 1174,
+    url: require("./assets/logoStrip.svg"),
+    width: 102,
+    height: 588,
     alt: "logoStrip",
   },
   twentytwenty: {
     url: require("./assets/2020.svg"),
     width: 81,
+
     height: 23,
     alt: "twentytwenty",
   },

@@ -195,7 +195,7 @@ function App() {
             weight={30}
           />
           <Text
-            variant="heading"
+            variant="body"
             sx={{
               marginBottom: [4, 0],
               width: ["min(100%, 360px)", 460, 690, 820],

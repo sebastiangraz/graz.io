@@ -7,7 +7,13 @@ const colors = {
 };
 
 const space = [0, 2, 4, 8, 16, 32, 64, 128, 256, 512];
-
+const body = {
+  fontSize: [5, 6, 6, 7],
+  fontWeight: 400,
+  letterSpacing: "-0.066em",
+  fontFamily: "body",
+  lineHeight: "heading",
+};
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   space: space,
@@ -40,12 +46,14 @@ export default {
       fontSize: [4],
       letterSpacing: "-0.02em",
     },
+    body: {
+      ...body,
+    },
     heading: {
-      fontSize: [5, 6, 6, 7],
-      fontWeight: 400,
-      letterSpacing: "-0.066em",
-      fontFamily: "body",
-      lineHeight: "heading",
+      ...body,
+      fontSize: [6],
+      letterSpacing: "0em",
+      textTransform: "uppercase",
     },
   },
   styles: {

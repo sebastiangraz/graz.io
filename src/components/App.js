@@ -7,15 +7,19 @@ import {
   transform,
   useTransform,
   motion,
+  onChange,
+  useMotionValue,
   useViewportScroll,
   useSpring,
 } from "framer-motion";
 
+import { Debug, useScrollTrigger } from "./Debug";
 import { Case, Logo } from "../components";
 import { jsx, Text, Grid } from "theme-ui";
 import { Loupe } from "../pages";
 
 import "../base.css";
+import { useEffect } from "react/cjs/react.development";
 
 let settings = { debug: true, offset: 140 };
 
@@ -48,9 +52,24 @@ function App() {
   const [scrollPosition, setScrollPosition] = React.useState(0);
   const [docHeight, setDocHeight] = React.useState(0);
   const [contentHeight, setContentHeight] = React.useState(0);
+  const scroll = useScrollTrigger();
+
+  // scroll.onChange((e) => {
+  //   console.log(e);
+  // });
+
+  let test = useMotionValue(0);
+
+  useEffect(() => {
+    scroll.onChange((e) => {
+      console.log(e);
+      test.set(e);
+    });
+  }, [scroll, test]);
+
+  // console.log(test.current);
 
   const { scrollY } = useViewportScroll();
-
   React.useEffect(() => {
     let doc = document.body;
     doc.style.height = `${contentHeight}px`;
@@ -59,15 +78,15 @@ function App() {
     };
   }, [contentHeight]);
 
-  React.useEffect(() => {
-    const handleScroll = () => {
-      const position = window.pageYOffset;
-      setScrollPosition(position);
-    };
+  // React.useEffect(() => {
+  //   const handleScroll = () => {
+  //     const position = window.pageYOffset;
+  //     setScrollPosition(position);
+  //   };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  //   window.addEventListener("scroll", handleScroll, { passive: true });
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, []);
 
   const handleResize = React.useCallback(() => {
     const docHeight = window.innerHeight;
@@ -106,22 +125,21 @@ function App() {
       heightArr.push(acc + val);
       return acc + val;
     }, 0);
-
     function clampedValues(v, i, heightArr) {
       let pixels =
-        scrollPosition - heightArr[i] >= 0 &&
-        scrollPosition - heightArr[i] >= v.getBoundingClientRect().height
+        test.current - heightArr[i] >= 0 &&
+        test.current - heightArr[i] >= v.getBoundingClientRect().height
           ? v.getBoundingClientRect().height
-          : scrollPosition - heightArr[i] >= 0
-          ? scrollPosition - heightArr[i]
+          : test.current - heightArr[i] >= 0
+          ? test.current - heightArr[i]
           : 0;
 
       let customCase =
-        -(scrollPosition - heightArr[i] >= 0 &&
-        scrollPosition - heightArr[i] >= v.getBoundingClientRect().height
+        -(test.current - heightArr[i] >= 0 &&
+        test.current - heightArr[i] >= v.getBoundingClientRect().height
           ? v.getBoundingClientRect().height
-          : scrollPosition - heightArr[i] >= 0
-          ? scrollPosition - heightArr[i]
+          : test.current - heightArr[i] >= 0
+          ? test.current - heightArr[i]
           : 0) + docHeight;
 
       let ratio = transform(
@@ -152,7 +170,7 @@ function App() {
     );
     setContentHeight(totalHeight);
     setScrollArray(map);
-  }, [docHeight, scrollPosition]);
+  }, [docHeight, test.current]);
 
   const y = useSpring(useTransform(scrollY, [0, 400], [0, -40]), {
     damping: 20,
@@ -173,10 +191,7 @@ function App() {
             top: 2,
             zIndex: 10,
           }}
-        >
-          scroll: {scrollPosition} | height: {docHeight} | contentHeight :{" "}
-          {contentHeight}
-        </span>
+        ></span>
       )}
       <motion.div
         style={{ y: y }}
@@ -215,7 +230,7 @@ function App() {
             docHeight: docHeight,
             size: cases.size,
             offset: settings.offset,
-            totalScroll: scrollPosition,
+            totalScroll: test.current,
           };
           return (
             <Case

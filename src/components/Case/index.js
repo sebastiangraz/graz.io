@@ -110,4 +110,4 @@ const Case = (props, ref) => {
   );
 };
 
-export default React.memo(React.forwardRef(Case));
+export default React.forwardRef(Case);

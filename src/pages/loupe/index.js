@@ -1,9 +1,9 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 
-import { jsx, Heading, Flex, Text, Box, Grid } from "theme-ui";
+import { jsx, Flex, Text, Box } from "theme-ui";
 import * as React from "react";
-import { Video, Img, List, GridParent } from "../../components";
+import { Video, Img, GridParent } from "../../components";
 import { Logo } from "./Logo";
 import { videos, images } from "./assets";
 

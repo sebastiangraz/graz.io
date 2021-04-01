@@ -59,14 +59,6 @@ export const Case = React.forwardRef((props, ref) => {
     return window.scrollTo(0, childPos - childHeight + 1);
   };
 
-  const [render, setRender] = React.useState(0);
-
-  React.useEffect(() => {
-    ratio.onChange((v) => {
-      setRender(childPos);
-    });
-  });
-
   const Render = props.data.component;
   console.log("render");
   return (
@@ -75,7 +67,6 @@ export const Case = React.forwardRef((props, ref) => {
       onClick={handleClick}
       initial={props.index === 0 && { y: 0 }}
       style={{
-        opacity: render,
         y: y,
         willChange: "transform",
         color: props.data?.color,

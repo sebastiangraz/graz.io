@@ -1,5 +1,3 @@
-import { transparentize } from "@theme-ui/color";
-
 const colors = {
   text: "#000",
   bg: "#eee",

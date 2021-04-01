@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "../src/components/App";
 import "intersection-observer";
+// import { perf, wait } from "react-performance-testing";
+// import { render, fireEvent, screen } from "@testing-library/react";
 
 it("renders without crashing", () => {
   const div = document.createElement("div");

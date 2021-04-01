@@ -1,28 +1,7 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-
 import React from "react";
-
-import {
-  transform,
-  useTransform,
-  motion,
-  onChange,
-  useMotionValue,
-  useViewportScroll,
-  useSpring,
-} from "framer-motion";
-
-import { Debug, useScrollTrigger } from "./Debug";
-import { Case, Logo } from "../components";
-import { jsx, Text, Grid } from "theme-ui";
 import { Loupe } from "../pages";
-
+import { CaseWrapper, Case } from "../components";
 import "../base.css";
-import { useEffect } from "react/cjs/react.development";
-
-let settings = { debug: true, offset: 140 };
-
 let cases = new Map([
   [
     "loupe",
@@ -49,200 +28,16 @@ let cases = new Map([
 ]);
 
 function App() {
-  const [scrollPosition, setScrollPosition] = React.useState(0);
-  const [docHeight, setDocHeight] = React.useState(0);
-  const [contentHeight, setContentHeight] = React.useState(0);
-  const scroll = useScrollTrigger();
-
-  // scroll.onChange((e) => {
-  //   console.log(e);
-  // });
-
-  let test = useMotionValue(0);
-
-  useEffect(() => {
-    scroll.onChange((e) => {
-      console.log(e);
-      test.set(e);
-    });
-  }, [scroll, test]);
-
-  // console.log(test.current);
-
-  const { scrollY } = useViewportScroll();
-  React.useEffect(() => {
-    let doc = document.body;
-    doc.style.height = `${contentHeight}px`;
-    return () => {
-      doc.style.removeProperty("height");
-    };
-  }, [contentHeight]);
-
-  // React.useEffect(() => {
-  //   const handleScroll = () => {
-  //     const position = window.pageYOffset;
-  //     setScrollPosition(position);
-  //   };
-
-  //   window.addEventListener("scroll", handleScroll, { passive: true });
-  //   return () => window.removeEventListener("scroll", handleScroll);
-  // }, []);
-
-  const handleResize = React.useCallback(() => {
-    const docHeight = window.innerHeight;
-    setDocHeight(docHeight);
-  }, []);
-
-  React.useEffect(() => {
-    window.addEventListener("resize", handleResize, { passive: true });
-    window.addEventListener("load", handleResize, { passive: true });
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("load", handleResize);
-    };
-  }, [handleResize]);
-
-  const revealRefs = React.useRef([]);
-  const [scrollArray, setScrollArray] = React.useState(new Map([]));
-
-  const addToRefs = (el) => {
-    if (el && !revealRefs.current.includes(el)) {
-      revealRefs.current.push(el);
-    }
-  };
-
-  React.useEffect(() => {
-    const heightArr = [];
-
-    const heightmap = new Map(
-      Array.from(Object.entries(revealRefs.current), ([k, v], i) => [
-        i,
-        v.getBoundingClientRect().height,
-      ])
-    );
-
-    const totalHeight = [...heightmap.values()].reduce((acc, val) => {
-      heightArr.push(acc + val);
-      return acc + val;
-    }, 0);
-    function clampedValues(v, i, heightArr) {
-      let pixels =
-        test.current - heightArr[i] >= 0 &&
-        test.current - heightArr[i] >= v.getBoundingClientRect().height
-          ? v.getBoundingClientRect().height
-          : test.current - heightArr[i] >= 0
-          ? test.current - heightArr[i]
-          : 0;
-
-      let customCase =
-        -(test.current - heightArr[i] >= 0 &&
-        test.current - heightArr[i] >= v.getBoundingClientRect().height
-          ? v.getBoundingClientRect().height
-          : test.current - heightArr[i] >= 0
-          ? test.current - heightArr[i]
-          : 0) + docHeight;
-
-      let ratio = transform(
-        pixels,
-        [0, v.getBoundingClientRect().height],
-        [0, 1]
-      );
-
-      return {
-        ratio: ratio,
-        pixels: pixels,
-        customCase: customCase,
-        heightArr: heightArr,
-      };
-    }
-
-    heightArr.unshift(0);
-    const map = new Map(
-      Array.from(Object.entries(revealRefs.current), ([k, v], i) => [
-        [...cases.values()][i].slug,
-        {
-          ratio: clampedValues(v, i, heightArr).ratio,
-          pixels: clampedValues(v, i, heightArr).pixels,
-          customCase: clampedValues(v, i, heightArr).customCase,
-          heightArr: clampedValues(v, i, heightArr).heightArr,
-        },
-      ])
-    );
-    setContentHeight(totalHeight);
-    setScrollArray(map);
-  }, [docHeight, test.current]);
-
-  const y = useSpring(useTransform(scrollY, [0, 400], [0, -40]), {
-    damping: 20,
-  });
-
-  // React.useEffect(() => {
-  //   console.log(revealRefs);
-  // }, []);
+  const ref1 = React.createRef();
+  const ref2 = React.createRef();
+  const ref3 = React.createRef();
 
   return (
-    <div className="App">
-      {settings.debug && (
-        <span
-          sx={{
-            fontSize: 10,
-            position: "fixed",
-            right: 10,
-            top: 2,
-            zIndex: 10,
-          }}
-        ></span>
-      )}
-      <motion.div
-        style={{ y: y }}
-        sx={{ position: "fixed", top: 7, width: "100%", height: "100%" }}
-      >
-        <Grid variant="hero">
-          <Logo
-            sx={{
-              lineHeight: 0.8,
-              fontSize: 40,
-              transition: `.5s cubic-bezier(1,0,0,1) opacity, 1s cubic-bezier(1,0,0,1) transform`,
-              transform: false
-                ? ["scale(1)", "scale(1)", "scale(0.8)"]
-                : "scale(1)",
-            }}
-            weight={30}
-          />
-          <Text
-            variant="body"
-            sx={{
-              marginBottom: [4, 0],
-              width: ["min(100%, 360px)", 460, 690, 820],
-            }}
-          >
-            I’m Sebastian—as a digital designer I care about our dear users,
-            rapid prototyping, design systems & branding
-          </Text>
-        </Grid>
-      </motion.div>
-      <div sx={{ position: "fixed", top: 0 }}>
-        {[...cases.entries()].map(([k, v], index) => {
-          let data = {
-            key: k,
-            val: v,
-            index: index,
-            docHeight: docHeight,
-            size: cases.size,
-            offset: settings.offset,
-            totalScroll: test.current,
-          };
-          return (
-            <Case
-              key={k}
-              ref={addToRefs}
-              casedata={data}
-              caseScroll={[...scrollArray.values()][index]}
-            />
-          );
-        })}
-      </div>
-    </div>
+    <CaseWrapper>
+      <Case data={{ title: "Loupe" }} ref={ref1} index={0} />
+      <Case data={{ title: "Norse" }} ref={ref2} index={1} />
+      <Case data={{ title: "Canon" }} ref={ref3} index={2} />
+    </CaseWrapper>
   );
 }
 export default App;

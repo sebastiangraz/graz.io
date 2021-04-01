@@ -2,112 +2,74 @@
 /** @jsx jsx */
 
 import React from "react";
-import { motion, useSpring, useMotionValue } from "framer-motion";
+import {
+  motion,
+  useSpring,
+  useMotionValue,
+  useTransform,
+  transform,
+} from "framer-motion";
 import { jsx } from "theme-ui";
-import { CaseHero } from "../CaseHero";
+import { useScrollPosition } from "@n8tb1t/use-scroll-position";
+import { useCaseWrapperContext } from "../CaseWrapper";
+import { debounce, clamp } from "lodash";
 
-const Case = (props, ref) => {
-  const Render = props.casedata.val.component;
+export const Case = React.forwardRef((props, ref) => {
+  const [browserHeight, setBrowserHeight] = React.useState(window.innerHeight);
+  const [childHeight, setChildHeight] = React.useState(0);
+  const { ...childData } = useCaseWrapperContext();
+  const childPos = childData.heightArr ? childData.heightArr[props.index] : 0;
+  const ratio = useMotionValue(0);
 
-  const pixelDistance = useMotionValue(0);
-  const ratioDistance = useMotionValue(0);
+  React.useEffect(() => {
+    const handleResize = debounce(
+      () => setBrowserHeight(window.innerHeight),
+      100
+    );
+    window.addEventListener("resize", handleResize, { passive: true });
+    return () => {
+      window.removeEventListener("resize", handleResize, { passive: true });
+    };
+  });
 
-  pixelDistance.set(props.caseScroll?.customCase);
-  ratioDistance.set(props.caseScroll?.ratio);
+  React.useEffect(() => {
+    setChildHeight(ref.current.getBoundingClientRect().height);
+    console.log("Child is rendered");
+  }, [ref]);
 
-  const pixels = useSpring(pixelDistance, { damping: 10, mass: 0.1 });
-  // const ratio = useTransform(
-  //   useSpring(ratioDistance, { damping: 90 }),
-  //   [0, 1],
-  //   [0, 100]
-  // );
+  const y = useSpring(
+    useTransform(ratio, [0, 1], [browserHeight, -childHeight + browserHeight]),
+    {
+      damping: 10,
+      mass: 0.1,
+    }
+  );
 
-  const isClickAble =
-    props.caseScroll?.ratio >= 1 || props.caseScroll?.ratio <= 0;
-
-  const staggeredOffset =
-    -props.casedata.size * props.casedata.offset +
-    props.casedata.index * props.casedata.offset;
-
-  const scrollTo =
-    staggeredOffset +
-    props.casedata.docHeight +
-    props.caseScroll?.heightArr[props.casedata.index];
-
-  const handleClick = () => {
-    return isClickAble && window.scrollTo(0, scrollTo + 1);
-  };
+  useScrollPosition(({ currPos }) => {
+    ratio.set(
+      transform(
+        clamp(props.index, currPos.y - browserHeight + childPos, 0),
+        [childHeight, 0],
+        [0, 1]
+      )
+    );
+  });
 
   return (
     <motion.div
       ref={ref}
-      style={{ y: pixels }}
-      onClick={handleClick}
-      sx={{
-        zIndex: props.casedata.index,
-        padding: props.casedata.offset / 2,
-        display: "block",
-        borderRadius: 0,
-        willChange: "transform",
+      initial={props.index === 0 && { y: 0 }}
+      style={{
+        y: y,
+        background: `linear-gradient(hsl(${props.index}00, 100%, 80%), #000)`,
+        height: `${props.index + 2}00vh`,
+        zIndex: props.index,
+        width: `calc(100% - ${props.index * 20}px)`,
         position: "fixed",
-        left: 0,
-        paddingTop: "50vh",
-        color: props.casedata?.val?.color,
-        top: `${staggeredOffset}px`,
-        svg: {
-          transition: "color ease 0.5s",
-        },
-        width: `calc(100% - ${props.casedata.offset * 2}px)`,
-        ...(isClickAble && {
-          cursor: "pointer",
-        }),
-        "&:nth-of-type(odd)": {
-          right: 0,
-          left: "unset",
-        },
-        "&:last-of-type": {
-          right: props.casedata.offset,
-          left: "unset",
-        },
-        "&:after": {
-          content: `""`,
-          position: "absolute",
-          left: 0,
-          top: 0,
-          transformOrigin: "bottom",
-          transform: "translateY(300px)",
-          width: "100%",
-          height: `calc(100% - ${staggeredOffset}px)`,
-          background: props.casedata?.val?.bg,
-          zIndex: -1,
-        },
-        "&:last-child": {
-          paddingBottom: props.casedata?.docHeight,
-        },
+        top: 0,
       }}
     >
-      {console.log("Render Case")}
-      <CaseHero
-        offset={props.casedata.offset}
-        ratio={props.caseScroll?.ratio}
-        text={props.casedata?.val?.name}
-        sx={{
-          textTransform: "uppercase",
-          fontWeight: 600,
-          width: "100%",
-          letterSpacing: "-0.075em",
-          fontSize: "8.5vw",
-          left: 0,
-          color: props.casedata?.val?.bg,
-          top: "301px",
-          position: "absolute",
-          transform: "translateY(-300px)",
-        }}
-      />
-
-      <Render />
+      {props.data.title} – {ratio.current}
     </motion.div>
   );
-};
-
-export default React.forwardRef(Case);
+});

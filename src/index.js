@@ -4,15 +4,13 @@ import ReactDOM from "react-dom";
 import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
 import { ThemeProvider } from "theme-ui";
-import { Debug } from "./components/Debug";
+
 import theme from "./theme";
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <Debug>
-        <App />
-      </Debug>
+      <App />
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")

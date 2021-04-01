@@ -37,14 +37,6 @@ export const Case = React.forwardRef((props, ref) => {
     setChildHeight(ref.current.getBoundingClientRect().height);
   }, [ref]);
 
-  const y = useSpring(
-    useTransform(ratio, [0, 1], [browserHeight, -childHeight + browserHeight]),
-    {
-      damping: 10,
-      mass: 0.1,
-    }
-  );
-
   useScrollPosition(({ currPos }) => {
     ratio.set(
       transform(
@@ -54,6 +46,18 @@ export const Case = React.forwardRef((props, ref) => {
       )
     );
   });
+
+  const y = useSpring(
+    useTransform(ratio, [0, 1], [browserHeight, -childHeight + browserHeight]),
+    {
+      damping: 10,
+      mass: 0.1,
+    }
+  );
+
+  const isActive = useTransform(ratio, [0, 1], [1, 0]);
+
+  console.log(isActive.current >= 0 ? 0 : 1);
 
   const handleClick = () => {
     return window.scrollTo(0, childPos - childHeight + 1);
@@ -67,6 +71,7 @@ export const Case = React.forwardRef((props, ref) => {
       onClick={handleClick}
       initial={props.index === 0 && { y: 0 }}
       style={{
+        opacity: isActive,
         y: y,
         willChange: "transform",
         color: props.data?.color,

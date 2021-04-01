@@ -28,15 +28,23 @@ let cases = new Map([
 ]);
 
 function App() {
-  const ref1 = React.createRef();
-  const ref2 = React.createRef();
-  const ref3 = React.createRef();
+  const myRefs = React.useRef([]);
+  myRefs.current = [...cases].map(
+    (element, i) => myRefs.current[i] ?? React.createRef()
+  );
 
   return (
     <CaseWrapper>
-      <Case data={{ title: "Loupe" }} ref={ref1} index={0} />
-      <Case data={{ title: "Norse" }} ref={ref2} index={1} />
-      <Case data={{ title: "Canon" }} ref={ref3} index={2} />
+      {[...cases].map((v, i) => {
+        return (
+          <Case
+            key={v[1].slug}
+            data={v[1]}
+            ref={myRefs.current[i]}
+            index={i}
+          ></Case>
+        );
+      })}
     </CaseWrapper>
   );
 }

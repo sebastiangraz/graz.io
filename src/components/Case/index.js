@@ -54,13 +54,13 @@ export const Case = React.forwardRef((props, ref) => {
       )
     );
   });
-
   return (
     <motion.div
       ref={ref}
       initial={props.index === 0 && { y: 0 }}
       style={{
         y: y,
+        padding: 30,
         background: `linear-gradient(hsl(${props.index}00, 100%, 80%), #000)`,
         height: `${props.index + 2}00vh`,
         zIndex: props.index,
@@ -69,7 +69,7 @@ export const Case = React.forwardRef((props, ref) => {
         top: 0,
       }}
     >
-      {props.data.title} – {ratio.current}
+      {props.data?.name} – {ratio.current}
     </motion.div>
   );
 });

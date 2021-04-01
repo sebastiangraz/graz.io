@@ -20,7 +20,6 @@ const Sections = {
               maxHeight: 1000,
               gridColumn: ["span 8"],
               gridRow: ["span 1"],
-              backgroundColor: "accent",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -38,11 +37,11 @@ const Sections = {
 
     React.useEffect(() => {
       controls.start((i) => ({
-        opacity: 0.1,
+        opacity: 0,
         transition: {
-          delay: i * 0.1,
+          delay: i * 0.075,
           yoyo: Infinity,
-          duration: 2,
+          duration: 3,
           ease: "linear",
         },
       }));
@@ -59,8 +58,6 @@ const Sections = {
               marginTop: [4, 5, 6],
               gridColumn: ["span 8"],
               gridRow: ["span 1"],
-              backgroundColor: "text",
-              color: "background",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -77,8 +74,6 @@ const Sections = {
               marginTop: [4, 5, 6],
               gridColumn: ["span 8"],
               gridRow: ["span 1"],
-              backgroundColor: "text",
-              color: "background",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -86,24 +81,33 @@ const Sections = {
           >
             <div
               sx={{
-                fontSize: [2, 3, 4, 5],
+                fontSize: [2, 3, 4, 6],
                 fontFamily: "norse",
                 fontVariationSettings: `"wght" ${56}`,
                 my: ["20%"],
               }}
             >
               <div>
-                <motion.span custom={1} animate={controls}>
+                <motion.span
+                  custom={1}
+                  animate={controls}
+                  initial={{ opacity: 0.5 }}
+                >
                   Amo
                 </motion.span>
                 <span sx={{ opacity: 1 }}>rt</span>
-                <motion.span custom={2} animate={controls}>
+                <motion.span
+                  custom={2}
+                  animate={controls}
+                  initial={{ opacity: 0.5 }}
+                >
                   ize
                 </motion.span>{" "}
                 <span sx={{ fontFeatureSettings: `"dlig"` }}>-&gt;</span>{" "}
                 <motion.span
                   custom={3}
                   animate={controls}
+                  initial={{ opacity: 0.5 }}
                   sx={{ fontFeatureSettings: `"dlig"` }}
                 >
                   {" "}
@@ -112,23 +116,36 @@ const Sections = {
                 <span sx={{ opacity: 1, fontFeatureSettings: `"dlig"` }}>
                   rt
                 </span>
-                <motion.span custom={4} animate={controls}>
+                <motion.span
+                  custom={4}
+                  animate={controls}
+                  initial={{ opacity: 0.5 }}
+                >
                   ize
                 </motion.span>{" "}
               </div>
 
               <div>
-                <motion.span custom={5} animate={controls}>
+                <motion.span
+                  custom={5}
+                  animate={controls}
+                  initial={{ opacity: 0.5 }}
+                >
                   Bedwa
                 </motion.span>
                 <span sx={{ opacity: 1 }}>rf</span>
-                <motion.span custom={6} animate={controls}>
+                <motion.span
+                  custom={6}
+                  animate={controls}
+                  initial={{ opacity: 0.5 }}
+                >
                   s
                 </motion.span>{" "}
                 <span sx={{ fontFeatureSettings: `"dlig"` }}>-&gt;</span>{" "}
                 <motion.span
                   custom={7}
                   animate={controls}
+                  initial={{ opacity: 0.5 }}
                   sx={{ fontFeatureSettings: `"dlig"` }}
                 >
                   {" "}
@@ -137,23 +154,36 @@ const Sections = {
                 <span sx={{ opacity: 1, fontFeatureSettings: `"dlig"` }}>
                   rf
                 </span>
-                <motion.span custom={8} animate={controls}>
+                <motion.span
+                  custom={8}
+                  animate={controls}
+                  initial={{ opacity: 0.5 }}
+                >
                   s
                 </motion.span>{" "}
               </div>
 
               <div>
-                <motion.span custom={9} animate={controls}>
+                <motion.span
+                  custom={9}
+                  animate={controls}
+                  initial={{ opacity: 0.5 }}
+                >
                   Cray
                 </motion.span>
                 <span sx={{ opacity: 1 }}>fi</span>
-                <motion.span custom={10} animate={controls}>
+                <motion.span
+                  custom={10}
+                  animate={controls}
+                  initial={{ opacity: 0.5 }}
+                >
                   sh
                 </motion.span>{" "}
                 <span sx={{ fontFeatureSettings: `"dlig"` }}>-&gt;</span>{" "}
                 <motion.span
                   custom={11}
                   animate={controls}
+                  initial={{ opacity: 0.5 }}
                   sx={{ fontFeatureSettings: `"dlig"` }}
                 >
                   {" "}
@@ -162,7 +192,11 @@ const Sections = {
                 <span sx={{ opacity: 1, fontFeatureSettings: `"dlig"` }}>
                   fi
                 </span>
-                <motion.span custom={12} animate={controls}>
+                <motion.span
+                  custom={12}
+                  animate={controls}
+                  initial={{ opacity: 0.5 }}
+                >
                   sh
                 </motion.span>{" "}
               </div>
@@ -174,8 +208,6 @@ const Sections = {
               marginTop: [4, 5, 6],
               gridColumn: ["span 8"],
               gridRow: ["span 1"],
-              backgroundColor: "text",
-              color: "background",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -191,8 +223,6 @@ const Sections = {
               marginTop: [4, 5, 6],
               gridColumn: ["span 8"],
               gridRow: ["span 1"],
-              backgroundColor: "text",
-              color: "background",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -208,8 +238,6 @@ const Sections = {
               marginTop: [4, 5, 6],
               gridColumn: ["span 8"],
               gridRow: ["span 1"],
-              backgroundColor: "text",
-              color: "background",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -225,8 +253,6 @@ const Sections = {
               marginTop: [4, 5, 6],
               gridColumn: ["span 8"],
               gridRow: ["span 1"],
-              backgroundColor: "text",
-              color: "background",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -242,8 +268,6 @@ const Sections = {
               marginTop: [4, 5, 6],
               gridColumn: ["span 8"],
               gridRow: ["span 1"],
-              backgroundColor: "text",
-              color: "background",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -335,7 +359,16 @@ const Sections = {
 };
 
 const Norse = () => {
-  return [Sections.Define, Sections.Design, Sections.Glyphs, Sections.Outro];
+  return Object.entries(Sections).map(([k, Section]) => (
+    <Box
+      key={k}
+      sx={{
+        marginBottom: [7, 8],
+      }}
+    >
+      <Section />
+    </Box>
+  ));
 };
 
 export default Norse;

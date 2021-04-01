@@ -518,12 +518,16 @@ const Sections = {
 };
 
 const Canon = () => {
-  return [
-    Sections.Define,
-    Sections.Design,
-    Sections.System,
-    Sections.Deduction,
-  ];
+  return Object.entries(Sections).map(([k, Section]) => (
+    <Box
+      key={k}
+      sx={{
+        marginBottom: [7, 8],
+      }}
+    >
+      <Section />
+    </Box>
+  ));
 };
 
 export default Canon;

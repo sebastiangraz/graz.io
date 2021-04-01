@@ -1,5 +1,5 @@
 import React from "react";
-import { Loupe } from "../pages";
+import { Loupe, Norse, Canon } from "../pages";
 import { CaseWrapper, Case } from "../components";
 import "../base.css";
 export let cases = new Map([
@@ -9,8 +9,8 @@ export let cases = new Map([
       name: "Loupe",
       slug: "loupe",
       component: Loupe,
-      bg: "#184629", //184629
-      color: "#e8e0d6", //e8e0d6
+      bg: "#184629",
+      color: "#e8e0d6",
     },
   ],
   [
@@ -18,13 +18,13 @@ export let cases = new Map([
     {
       name: "Norse",
       slug: "norse",
-      component: Loupe,
-      bg: "black",
-      color: "#fff",
+      component: Norse,
+      bg: "#fff",
+      color: "#000",
     },
   ],
 
-  ["canon", { name: "Canon", slug: "canon", component: Loupe, bg: "#DE0000" }],
+  ["canon", { name: "Canon", slug: "canon", component: Canon, bg: "#DE0000" }],
 ]);
 
 function App() {

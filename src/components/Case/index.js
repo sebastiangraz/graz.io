@@ -18,6 +18,7 @@ import { debounce, clamp } from "lodash";
 export const Case = React.forwardRef((props, ref) => {
   const [browserHeight, setBrowserHeight] = React.useState(window.innerHeight);
   const [childHeight, setChildHeight] = React.useState(0);
+  const [active, setActive] = React.useState(0);
   const { ...childData } = useCaseWrapperContext();
   const childPos = childData.heightArr ? childData.heightArr[props.index] : 0;
   const ratio = useMotionValue(0);
@@ -55,23 +56,25 @@ export const Case = React.forwardRef((props, ref) => {
     }
   );
 
-  const isActive = useTransform(ratio, [0, 1], [1, 0]);
-
-  console.log(isActive.current >= 0 ? 0 : 1);
+  ratio.onChange((v) => {
+    setActive(v >= 1 || v <= 0);
+  });
 
   const handleClick = () => {
-    return window.scrollTo(0, childPos - childHeight + 1);
+    return active && window.scrollTo(0, childPos - childHeight + 1);
   };
 
+  const slowScroll = useSpring(useTransform(ratio, [0, 1], [0, 300]), {
+    damping: 10,
+    mass: 0.1,
+  });
   const Render = props.data.component;
-  console.log("render");
   return (
     <motion.div
       ref={ref}
       onClick={handleClick}
       initial={props.index === 0 && { y: 0 }}
       style={{
-        opacity: isActive,
         y: y,
         willChange: "transform",
         color: props.data?.color,
@@ -98,7 +101,6 @@ export const Case = React.forwardRef((props, ref) => {
         sx={{
           pt: 8,
           pb: "100vh",
-          px: 2,
           background: props.data?.bg,
           width: "100%",
         }}

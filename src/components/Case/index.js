@@ -55,10 +55,15 @@ export const Case = React.forwardRef((props, ref) => {
     );
   });
 
+  const handleClick = () => {
+    return window.scrollTo(0, childPos - childHeight + 1);
+  };
+
   const Render = props.data.component;
   return (
     <motion.div
       ref={ref}
+      onClick={handleClick}
       initial={props.index === 0 && { y: 0 }}
       style={{
         y: y,

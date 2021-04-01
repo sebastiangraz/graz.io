@@ -65,11 +65,10 @@ export const Case = React.forwardRef((props, ref) => {
         willChange: "transform",
         color: props.data?.color,
         zIndex: props.index,
-        width: `calc(100% - ${props.index * 60}px)`,
+        width: `calc(100% - ${props.index * 120}px)`,
         position: "fixed",
         display: "flex",
         flexDirection: "column",
-        top: 0,
       }}
     >
       <CaseHero
@@ -82,10 +81,9 @@ export const Case = React.forwardRef((props, ref) => {
           letterSpacing: "-0.075em",
           fontSize: "8.5vw",
           color: props.data?.bg,
-          // transform: "translateY(-300px)",
         }}
       />
-      <div sx={{ background: props.data?.bg, width: "100%" }}>
+      <div sx={{ pt: 8, p: 7, background: props.data?.bg, width: "100%" }}>
         <Render />
       </div>
     </motion.div>

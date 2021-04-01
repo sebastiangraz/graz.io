@@ -44,5 +44,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "intersection-observer": "^0.12.0",
+    "jest-performance-testing": "^1.0.0",
+    "react-performance-testing": "^1.2.3"
   }
 }

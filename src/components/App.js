@@ -2,7 +2,7 @@ import React from "react";
 import { Loupe } from "../pages";
 import { CaseWrapper, Case } from "../components";
 import "../base.css";
-let cases = new Map([
+export let cases = new Map([
   [
     "loupe",
     {

@@ -5,10 +5,8 @@ import { jsx } from "theme-ui";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
-export function Logo({ ...rest }) {
-  const [ref, entry] = useInView({
-    threshold: Array.from(Array(100).keys(), (i) => i / 100),
-  });
+export function Logo() {
+  const [ref, entry] = useInView();
   const list = {
     visible: {
       transition: {
@@ -31,7 +29,7 @@ export function Logo({ ...rest }) {
       opacity: 1,
       transition: { duration: 1.4, ease: [0.83, 0, 0.17, 1] },
     },
-    hidden: { pathLength: 0.8, opacity: 0 },
+    hidden: { pathLength: 0.75, opacity: 0 },
   };
 
   const itemSansPath = {
@@ -45,7 +43,6 @@ export function Logo({ ...rest }) {
 
   return (
     <motion.svg
-      {...rest}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       ref={ref}

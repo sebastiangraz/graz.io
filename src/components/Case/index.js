@@ -12,6 +12,7 @@ import {
 import { jsx } from "theme-ui";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import { useCaseWrapperContext } from "../CaseWrapper";
+import { CaseHero } from "../CaseHero";
 import { debounce, clamp } from "lodash";
 
 export const Case = React.forwardRef((props, ref) => {
@@ -34,7 +35,6 @@ export const Case = React.forwardRef((props, ref) => {
 
   React.useEffect(() => {
     setChildHeight(ref.current.getBoundingClientRect().height);
-    console.log("Child is rendered");
   }, [ref]);
 
   const y = useSpring(
@@ -62,17 +62,32 @@ export const Case = React.forwardRef((props, ref) => {
       initial={props.index === 0 && { y: 0 }}
       style={{
         y: y,
-        padding: 30,
+        willChange: "transform",
         color: props.data?.color,
-        background: props.data?.bg,
         zIndex: props.index,
-        width: `calc(100% - ${props.index * 20}px)`,
+        width: `calc(100% - ${props.index * 60}px)`,
         position: "fixed",
+        display: "flex",
+        flexDirection: "column",
         top: 0,
       }}
     >
-      <Render />
-      {props.data?.name} – {ratio.current}
+      <CaseHero
+        ratio={props.caseScroll?.ratio}
+        text={props.data?.name}
+        sx={{
+          textTransform: "uppercase",
+          fontWeight: 600,
+          width: "100%",
+          letterSpacing: "-0.075em",
+          fontSize: "8.5vw",
+          color: props.data?.bg,
+          // transform: "translateY(-300px)",
+        }}
+      />
+      <div sx={{ background: props.data?.bg, width: "100%" }}>
+        <Render />
+      </div>
     </motion.div>
   );
 });

@@ -40,7 +40,7 @@ const Sections = {
         opacity: 0,
         transition: {
           delay: i * 0.075,
-          yoyo: Infinity,
+          repeat: Infinity,
           duration: 3,
           ease: "linear",
         },

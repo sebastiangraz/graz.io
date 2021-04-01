@@ -1,6 +1,6 @@
 import React from "react";
 import { Loupe, Norse, Canon } from "../pages";
-import { CaseWrapper, Case } from "../components";
+import { CaseWrapper, Case, Home } from "../components";
 import "../base.css";
 export let cases = new Map([
   [
@@ -34,18 +34,21 @@ function App() {
   );
 
   return (
-    <CaseWrapper>
-      {[...cases].map((v, i) => {
-        return (
-          <Case
-            key={v[1].slug}
-            data={v[1]}
-            ref={myRefs.current[i]}
-            index={i}
-          ></Case>
-        );
-      })}
-    </CaseWrapper>
+    <>
+      <Home />
+      <CaseWrapper>
+        {[...cases].map((v, i) => {
+          return (
+            <Case
+              key={v[1].slug}
+              data={v[1]}
+              ref={myRefs.current[i]}
+              index={i}
+            ></Case>
+          );
+        })}
+      </CaseWrapper>
+    </>
   );
 }
 export default App;

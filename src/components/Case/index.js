@@ -64,10 +64,6 @@ export const Case = React.forwardRef((props, ref) => {
     return active && window.scrollTo(0, childPos - childHeight + 1);
   };
 
-  const slowScroll = useSpring(useTransform(ratio, [0, 1], [0, 300]), {
-    damping: 10,
-    mass: 0.1,
-  });
   const Render = props.data.component;
   return (
     <motion.div

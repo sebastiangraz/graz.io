@@ -54,6 +54,8 @@ export const Case = React.forwardRef((props, ref) => {
       )
     );
   });
+
+  const Render = props.data.component;
   return (
     <motion.div
       ref={ref}
@@ -61,14 +63,15 @@ export const Case = React.forwardRef((props, ref) => {
       style={{
         y: y,
         padding: 30,
-        background: `linear-gradient(hsl(${props.index}00, 100%, 80%), #000)`,
-        height: `${props.index + 2}00vh`,
+        color: props.data?.color,
+        background: props.data?.bg,
         zIndex: props.index,
         width: `calc(100% - ${props.index * 20}px)`,
         position: "fixed",
         top: 0,
       }}
     >
+      <Render />
       {props.data?.name} – {ratio.current}
     </motion.div>
   );

@@ -88,7 +88,15 @@ export const Case = React.forwardRef((props, ref) => {
           color: props.data?.bg,
         }}
       />
-      <div sx={{ pt: 8, p: 7, background: props.data?.bg, width: "100%" }}>
+      <div
+        sx={{
+          pt: 8,
+          pb: "100vh",
+          px: 2,
+          background: props.data?.bg,
+          width: "100%",
+        }}
+      >
         <Render />
       </div>
     </motion.div>

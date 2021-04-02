@@ -8,8 +8,8 @@ import {
   useViewportScroll,
 } from "framer-motion";
 import React from "react";
-import { jsx, Text } from "theme-ui";
-import { Logo, GridParent } from "../";
+import { jsx, Text, Grid } from "theme-ui";
+import { Logo } from "../";
 
 export const Home = () => {
   const { scrollY } = useViewportScroll();
@@ -33,11 +33,29 @@ export const Home = () => {
         placeItems: "center",
       }}
     >
-      <Logo sx={{ fontSize: 160, gridColumn: "span 1" }} weight={97} />
-      <Text variant="body" sx={{ gridColumn: "3 /span 7" }}>
-        I’m Sebastian—as a digital designer I care about our dear users, rapid
-        prototyping, design systems & branding.
-      </Text>
+      <Grid variant="hero">
+        <Logo
+          sx={{
+            lineHeight: 0.8,
+            fontSize: 32,
+            transition: `.5s cubic-bezier(1,0,0,1) opacity, 1s cubic-bezier(1,0,0,1) transform`,
+            transform: false
+              ? ["scale(1)", "scale(1)", "scale(0.8)"]
+              : "scale(1)",
+          }}
+          weight={60}
+        />
+        <Text
+          variant="body"
+          sx={{
+            marginBottom: [4, 0],
+            width: ["min(100%, 360px)", 460, 690, 820],
+          }}
+        >
+          I’m Sebastian—as a digital designer I care about our dear users, rapid
+          prototyping, design systems & branding
+        </Text>
+      </Grid>
     </motion.div>
   );
 };

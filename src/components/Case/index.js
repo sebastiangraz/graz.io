@@ -74,7 +74,6 @@ export const Case = React.forwardRef((props, ref) => {
         y: y,
       }}
       sx={{
-        // top: staggeredOffset,
         willChange: "transform",
         color: props.data?.color,
         zIndex: props.index,

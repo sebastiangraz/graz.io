@@ -61,7 +61,7 @@ export const Case = React.forwardRef((props, ref) => {
     ratio.set(
       transform(
         clamp(props.index, currPos.y - browserHeight + childPos, 0),
-        [childHeight, 0],
+        [childHeight - browserHeight, 0],
         [0, 1]
       )
     );
@@ -119,10 +119,6 @@ export const Case = React.forwardRef((props, ref) => {
         width: `calc(100% - ${props.index * 80}px)`,
         display: "flex",
         flexDirection: "column",
-        "&:first-child": {
-          marginTop: browserHeight,
-          paddingBottom: browserHeight,
-        },
       }}
     >
       {console.log("render")}

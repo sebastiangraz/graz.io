@@ -22,14 +22,22 @@ export const Home = () => {
     mass: 0.1,
   });
   return (
-    <motion.div style={{ y }} sx={{ position: "fixed", height: "100vh" }}>
-      <GridParent>
-        <Logo sx={{ fontSize: 160 }} />
-        <Text variant="body">
-          I’m Sebastian—as a digital designer I care about our dear users, rapid
-          prototyping, design systems & brand identities.
-        </Text>
-      </GridParent>
+    <motion.div
+      style={{ y }}
+      sx={{
+        position: "fixed",
+        height: "100vh",
+        width: "100vw",
+        display: "flex",
+        placeContent: "center",
+        placeItems: "center",
+      }}
+    >
+      <Logo sx={{ fontSize: 160, gridColumn: "span 1" }} weight={97} />
+      <Text variant="body" sx={{ gridColumn: "3 /span 7" }}>
+        I’m Sebastian—as a digital designer I care about our dear users, rapid
+        prototyping, design systems & branding.
+      </Text>
     </motion.div>
   );
 };

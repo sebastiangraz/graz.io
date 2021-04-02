@@ -10,9 +10,9 @@ import {
   transform,
 } from "framer-motion";
 import { jsx } from "theme-ui";
-import { useScrollPosition } from "@n8tb1t/use-scroll-position";
+import { useScrollPosition } from "../../hooks/useScrollPosition";
 import { useCaseWrapperContext, CaseHero } from "../";
-import { debounce, clamp } from "lodash";
+import { debounce } from "lodash";
 
 export const Case = React.forwardRef((props, ref) => {
   const [browserHeight, setBrowserHeight] = React.useState(window.innerHeight);
@@ -41,6 +41,8 @@ export const Case = React.forwardRef((props, ref) => {
     ratio.set(transform(currPos.y + childPos, [childHeight, 0], [0, 1]));
   });
 
+  const staggeredOffset = -props.size * 80 + props.index * 80;
+
   const y = useSpring(
     useTransform(ratio, [0, 1], [browserHeight, -childHeight + browserHeight]),
     {
@@ -56,11 +58,12 @@ export const Case = React.forwardRef((props, ref) => {
   const handleClick = () => {
     return (
       inactive &&
-      window.scrollTo(0, childPos - (childHeight - browserHeight) + 1)
+      window.scrollTo(
+        0,
+        staggeredOffset + childPos - (childHeight - browserHeight) + 1
+      )
     );
   };
-
-  const staggeredOffset = -props.size * 80 + props.index * 80;
 
   const Render = props.data.component;
   return (

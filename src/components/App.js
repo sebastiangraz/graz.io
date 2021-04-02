@@ -4,16 +4,6 @@ import { CaseWrapper, Case, Home } from "../components";
 import "../base.css";
 export let cases = new Map([
   [
-    "home",
-    {
-      name: "Home",
-      slug: "home",
-      component: Home,
-      bg: "#eee",
-      color: "#000",
-    },
-  ],
-  [
     "loupe",
     {
       name: "Loupe",
@@ -29,8 +19,8 @@ export let cases = new Map([
       name: "Norse",
       slug: "norse",
       component: Norse,
-      bg: "#fff",
-      color: "#000",
+      bg: "#000",
+      color: "#fff",
     },
   ],
 
@@ -40,11 +30,12 @@ export let cases = new Map([
 function App() {
   const myRefs = React.useRef([]);
   myRefs.current = [...cases].map(
-    (element, i) => myRefs.current[i] ?? React.createRef()
+    (i) => myRefs.current[i] ?? React.createRef()
   );
 
   return (
     <>
+      <Home />
       <CaseWrapper>
         {[...cases].map((v, i) => {
           return (

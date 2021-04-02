@@ -17,11 +17,12 @@ export const Home = () => {
     console.log(scrollY.current);
   }, [scrollY]);
 
-  const y = useSpring(useTransform(scrollY, [0, 400], [0, -40]), {
-    damping: 20,
+  const y = useSpring(useTransform(scrollY, [0, 400], [0, -200]), {
+    damping: 10,
+    mass: 0.1,
   });
   return (
-    <motion.div style={{ y: y }}>
+    <motion.div style={{ y }} sx={{ position: "fixed", height: "100vh" }}>
       <GridParent>
         <Logo sx={{ fontSize: 160 }} />
         <Text variant="body">

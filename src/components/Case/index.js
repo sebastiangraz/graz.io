@@ -71,6 +71,8 @@ export const Case = React.forwardRef((props, ref) => {
       initial={props.index === 0 && { y: 0 }}
       style={{
         y: y,
+      }}
+      sx={{
         willChange: "transform",
         color: props.data?.color,
         zIndex: props.index,
@@ -95,7 +97,7 @@ export const Case = React.forwardRef((props, ref) => {
       <div
         sx={{
           pt: 8,
-          pb: "100vh",
+          pb: "50vh",
           background: props.data?.bg,
           width: "100%",
         }}

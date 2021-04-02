@@ -37,11 +37,12 @@ const Sections = {
 
     React.useEffect(() => {
       controls.start((i) => ({
-        opacity: 0,
+        opacity: 0.02,
         transition: {
-          delay: i * 0.075,
+          delay: i * 0.05,
+          repeatType: "reverse",
           repeat: Infinity,
-          duration: 3,
+          duration: 2.5,
           ease: "linear",
         },
       }));

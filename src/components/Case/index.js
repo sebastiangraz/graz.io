@@ -120,8 +120,9 @@ export const Case = React.forwardRef((props, ref) => {
         display: "flex",
         flexDirection: "column",
         "&:first-child": {
+          marginTop: browserHeight,
           // top: -staggeredOffset,
-          // paddingBottom: "100vh",
+          paddingBottom: browserHeight,
         },
       }}
     >
@@ -138,7 +139,6 @@ export const Case = React.forwardRef((props, ref) => {
         }}
       >
         <CaseHero
-          ratio={props.caseScroll?.ratio}
           text={props.data?.name}
           sx={{
             display: "none",

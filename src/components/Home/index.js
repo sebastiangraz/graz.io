@@ -8,23 +8,27 @@ import {
   useViewportScroll,
 } from "framer-motion";
 import React from "react";
-import { jsx } from "theme-ui";
-import { Logo } from "../Logo";
+import { jsx, Text } from "theme-ui";
+import { Logo, GridParent } from "../";
 
 export const Home = () => {
-  const { scrollYProgress } = useViewportScroll();
+  const { scrollY } = useViewportScroll();
   React.useEffect(() => {
-    console.log(scrollYProgress.current);
-  }, [scrollYProgress]);
+    console.log(scrollY.current);
+  }, [scrollY]);
 
-  const slowScroll = useSpring(useTransform(scrollYProgress, [0, 1], [0, 50]), {
-    damping: 10,
-    mass: 0.1,
+  const y = useSpring(useTransform(scrollY, [0, 400], [0, -40]), {
+    damping: 20,
   });
-
   return (
-    <motion.div style={{ y: slowScroll }}>
-      <Logo sx={{ zIndex: 30, position: "fixed", top: 0, fontSize: 160 }} />
+    <motion.div style={{ y: y }}>
+      <GridParent>
+        <Logo sx={{ fontSize: 160 }} />
+        <Text variant="body">
+          I’m Sebastian—as a digital designer I care about our dear users, rapid
+          prototyping, design systems & brand identities.
+        </Text>
+      </GridParent>
     </motion.div>
   );
 };

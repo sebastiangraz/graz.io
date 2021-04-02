@@ -11,8 +11,7 @@ import {
 } from "framer-motion";
 import { jsx } from "theme-ui";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
-import { useCaseWrapperContext } from "../CaseWrapper";
-import { CaseHero } from "../CaseHero";
+import { useCaseWrapperContext, CaseHero } from "../";
 import { debounce, clamp } from "lodash";
 
 export const Case = React.forwardRef((props, ref) => {

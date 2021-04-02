@@ -3,7 +3,6 @@
 
 import React from "react";
 import { jsx } from "theme-ui";
-
 const ignoreUpdatedProps = () => true;
 
 export const CaseHero = React.memo(({ text, id = Date.now(), ...rest }) => {

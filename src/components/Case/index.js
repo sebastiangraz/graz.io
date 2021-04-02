@@ -121,7 +121,6 @@ export const Case = React.forwardRef((props, ref) => {
         flexDirection: "column",
         "&:first-child": {
           marginTop: browserHeight,
-          // top: -staggeredOffset,
           paddingBottom: browserHeight,
         },
       }}

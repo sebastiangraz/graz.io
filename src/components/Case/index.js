@@ -38,13 +38,7 @@ export const Case = React.forwardRef((props, ref) => {
   }, [ref]);
 
   useScrollPosition(({ currPos }) => {
-    ratio.set(
-      transform(
-        clamp(props.index, currPos.y - browserHeight + childPos, 0),
-        [childHeight, 0],
-        [0, 1]
-      )
-    );
+    ratio.set(transform(currPos.y + childPos, [childHeight, 0], [0, 1]));
   });
 
   const y = useSpring(
@@ -60,7 +54,9 @@ export const Case = React.forwardRef((props, ref) => {
   });
 
   const handleClick = () => {
-    return active && window.scrollTo(0, childPos - childHeight + 1);
+    return (
+      active && window.scrollTo(0, childPos - (childHeight - browserHeight) + 1)
+    );
   };
 
   const Render = props.data.component;

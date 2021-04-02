@@ -44,6 +44,7 @@ function App() {
               data={v[1]}
               ref={myRefs.current[i]}
               index={i}
+              size={cases.size}
             ></Case>
           );
         })}

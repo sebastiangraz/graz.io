@@ -17,7 +17,7 @@ import { debounce, clamp } from "lodash";
 export const Case = React.forwardRef((props, ref) => {
   const [browserHeight, setBrowserHeight] = React.useState(window.innerHeight);
   const [childHeight, setChildHeight] = React.useState(0);
-  const [active, setActive] = React.useState(0);
+  const [inactive, setInActive] = React.useState(0);
   const { ...childData } = useCaseWrapperContext();
   const childPos = childData.heightArr ? childData.heightArr[props.index] : 0;
   const ratio = useMotionValue(0);
@@ -50,25 +50,28 @@ export const Case = React.forwardRef((props, ref) => {
   );
 
   ratio.onChange((v) => {
-    setActive(v >= 1 || v <= 0);
+    setInActive(v <= 0 || v >= 1);
   });
 
   const handleClick = () => {
     return (
-      active && window.scrollTo(0, childPos - (childHeight - browserHeight) + 1)
+      inactive &&
+      window.scrollTo(0, childPos - (childHeight - browserHeight) + 1)
     );
   };
+
+  const staggeredOffset = -props.size * 80 + props.index * 80;
 
   const Render = props.data.component;
   return (
     <motion.div
       ref={ref}
       onClick={handleClick}
-      initial={props.index === 0 && { y: 0 }}
       style={{
         y: y,
       }}
       sx={{
+        top: staggeredOffset,
         willChange: "transform",
         color: props.data?.color,
         zIndex: props.index,

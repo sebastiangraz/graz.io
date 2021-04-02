@@ -13,7 +13,7 @@ const CaseWrapper = ({ children }) => {
   React.useEffect(() => {
     const heightArr = [];
 
-    const getEl = Object.values(children).map((e, index) => {
+    const getEl = children.map((e, index) => {
       return {
         index: index,
         height: e && e.ref.current.getBoundingClientRect().height,

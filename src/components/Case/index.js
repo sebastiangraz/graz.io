@@ -87,27 +87,40 @@ export const Case = React.forwardRef((props, ref) => {
         },
       }}
     >
-      <CaseHero
-        ratio={props.caseScroll?.ratio}
-        text={props.data?.name}
-        sx={{
-          textTransform: "uppercase",
-          fontWeight: 600,
-          width: "100%",
-          letterSpacing: "-0.075em",
-          fontSize: "8.5vw",
-          color: props.data?.bg,
-        }}
-      />
       <div
         sx={{
           pt: 8,
           pb: "50vh",
-          background: props.data?.bg,
           width: "100%",
         }}
       >
         <Render />
+        <div
+          sx={{
+            background: props.data?.bg,
+            width: "100%",
+            height: `calc(100% - ${staggeredOffset}px)`,
+            zIndex: -1,
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+          }}
+        >
+          <CaseHero
+            ratio={props.caseScroll?.ratio}
+            text={props.data?.name}
+            sx={{
+              textTransform: "uppercase",
+              fontWeight: 600,
+              width: "100%",
+              position: "absolute",
+              bottom: "100%",
+              letterSpacing: "-0.075em",
+              fontSize: "8.5vw",
+              color: props.data?.bg,
+            }}
+          />
+        </div>
       </div>
     </motion.div>
   );

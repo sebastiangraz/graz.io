@@ -26,7 +26,7 @@ export const Home = () => {
       style={{ y }}
       sx={{
         position: "fixed",
-        height: "100vh",
+        height: "50vh",
         width: "100vw",
         display: "flex",
         placeContent: "center",

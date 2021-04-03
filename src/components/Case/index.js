@@ -28,8 +28,10 @@ export const Case = React.forwardRef((props, ref) => {
       100
     );
     window.addEventListener("resize", handleResize, { passive: true });
+    window.addEventListener("load", handleResize, { passive: true });
     return () => {
       window.removeEventListener("resize", handleResize, { passive: true });
+      window.removeEventListener("load", handleResize, { passive: true });
     };
   });
 
@@ -37,37 +39,13 @@ export const Case = React.forwardRef((props, ref) => {
     setChildHeight(ref.current.getBoundingClientRect().height);
   }, [ref]);
 
-  // useScrollPosition(({ currPos }) => {
-  //   ratio.set(
-  //     transform(
-  //       clamp(props.index, currPos.y - browserHeight + childPos, 0),
-  //       [childHeight, 0],
-  //       [0, 1]
-  //     )
-  //   );
-  // });
-
-  // const staggeredOffset = -props.size * 80 + props.index * 80;
-
-  // const y = useSpring(
-  //   useTransform(ratio, [0, 1], [browserHeight, -childHeight + browserHeight]),
-  //   {
-  //     damping: 10,
-  //     mass: 0.1,
-  //   }
-  // );
+  const staggeredOffset = -props.size * 80 + props.index * 80;
 
   useScrollPosition(({ currPos }) => {
     ratio.set(
-      transform(
-        clamp(props.index, currPos.y - browserHeight + childPos, 0),
-        [childHeight - browserHeight, 0],
-        [0, 1]
-      )
+      transform(currPos.y - browserHeight + childPos, [childHeight, 0], [0, 1])
     );
   });
-
-  const staggeredOffset = -props.size * 80 + props.index * 80;
 
   const y = useSpring(
     useTransform(ratio, [0, 1], [browserHeight, -childHeight + browserHeight]),
@@ -77,30 +55,9 @@ export const Case = React.forwardRef((props, ref) => {
     }
   );
 
-  ratio.onChange((v) => {
-    console.log(v);
-    // setInActive(v >= 1 && v <= 1);
-  });
-
   const handleClick = () => {
     return window.scrollTo(0, childPos - childHeight);
   };
-
-  //   const isClickAble =
-  //   props.caseScroll?.ratio >= 1 || props.caseScroll?.ratio <= 0;
-
-  // const staggeredOffset =
-  //   -props.casedata.size * props.casedata.offset +
-  //   props.casedata.index * props.casedata.offset;
-
-  // const scrollTo =
-  //   staggeredOffset +
-  //   props.casedata.docHeight +
-  //   props.caseScroll?.heightArr[props.casedata.index];
-
-  // const handleClick = () => {
-  //   return isClickAble && window.scrollTo(0, scrollTo + 1);
-  // };
 
   const Render = props.data.component;
   return (
@@ -121,7 +78,7 @@ export const Case = React.forwardRef((props, ref) => {
         flexDirection: "column",
       }}
     >
-      {console.log("render")}
+      {console.log("render child :(")}
       <div
         sx={{
           background: props.data?.bg,

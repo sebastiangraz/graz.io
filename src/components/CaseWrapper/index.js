@@ -29,6 +29,7 @@ const CaseWrapper = ({ children }) => {
     setChildData({
       heightArr: heightArr,
     });
+    console.log(heightArr);
   }, [children]);
 
   return (

@@ -12,22 +12,21 @@ import { jsx, Text, Grid } from "theme-ui";
 import { Logo } from "../";
 
 export const Home = () => {
-  const { scrollY } = useViewportScroll();
-  React.useEffect(() => {
-    console.log(scrollY.current);
-  }, [scrollY]);
+  // const { scrollY } = useViewportScroll();
+  // React.useEffect(() => {
+  //   console.log(scrollY.current);
+  // }, [scrollY]);
 
-  const y = useSpring(useTransform(scrollY, [0, 400], [0, -200]), {
-    damping: 10,
-    mass: 0.1,
-  });
+  // const y = useSpring(useTransform(scrollY, [0, 400], [0, -200]), {
+  //   damping: 10,
+  //   mass: 0.1,
+  // });
   return (
     <motion.div
-      style={{ y }}
       sx={{
-        position: "fixed",
+        // position: "fixed",
         height: "100vh",
-        width: "100vw",
+        width: "100%",
         display: "flex",
         placeContent: "center",
         placeItems: "center",

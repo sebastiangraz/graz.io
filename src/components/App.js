@@ -4,6 +4,16 @@ import { CaseWrapper, Case, Home } from "../components";
 import "../base.css";
 export let cases = new Map([
   [
+    "home",
+    {
+      name: "home",
+      slug: "home",
+      component: Home,
+      bg: "#eee",
+      color: "#111",
+    },
+  ],
+  [
     "loupe",
     {
       name: "Loupe",
@@ -35,7 +45,6 @@ function App() {
 
   return (
     <>
-      <Home />
       <CaseWrapper>
         {[...cases].map((v, i) => {
           return (

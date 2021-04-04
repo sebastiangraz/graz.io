@@ -11,6 +11,7 @@ export let cases = new Map([
       component: Home,
       bg: "#eee",
       color: "#111",
+      hideCaseHero: true,
     },
   ],
   [

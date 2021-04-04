@@ -25,7 +25,7 @@ export const Home = () => {
     <motion.div
       sx={{
         // position: "fixed",
-        height: "100vh",
+        minHeight: "100vh",
         width: "100%",
         display: "flex",
         placeContent: "center",

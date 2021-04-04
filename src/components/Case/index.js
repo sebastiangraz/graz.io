@@ -35,8 +35,6 @@ export const Case = React.forwardRef((props, ref) => {
     setChildHeight(ref.current.getBoundingClientRect().height);
   }, [ref]);
 
-  const staggeredOffset = -props.size * 120 + props.index * 120;
-
   const pixel = useMotionValue(0);
   const ratio = useMotionValue(0);
 
@@ -69,6 +67,7 @@ export const Case = React.forwardRef((props, ref) => {
     setInview(v > 0 && v < 1 ? true : false);
   });
 
+  const staggeredOffset = -props.size * 120 + props.index * 120;
   const handleClick = () => {
     !inview &&
       window.scrollTo(
@@ -83,7 +82,7 @@ export const Case = React.forwardRef((props, ref) => {
     <motion.div
       ref={ref}
       onClick={handleClick}
-      initial={{ y: childHeight }}
+      initial={{ y: 0 }}
       style={{
         y: y,
       }}
@@ -94,7 +93,6 @@ export const Case = React.forwardRef((props, ref) => {
         color: props.data?.color,
         zIndex: props.index,
         width: props.data.hideCaseHero || false ? "100%" : "calc(100% - 120px)",
-        // width: `calc(100% - ${props.index * 120}px)`,
         "&:nth-child(even)": {
           right: 0,
         },

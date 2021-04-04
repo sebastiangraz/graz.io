@@ -10,9 +10,6 @@ export const Home = () => {
       sx={{
         minHeight: "100vh",
         width: "100%",
-        display: "flex",
-        placeContent: "center",
-        placeItems: "center",
       }}
     >
       <Grid variant="hero">

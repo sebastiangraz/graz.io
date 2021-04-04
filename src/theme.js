@@ -34,7 +34,7 @@ export default {
     hero: {
       width: "100%",
       px: [3, 5, 7],
-      py: [4, 6, 10],
+      py: [4, 6, 7],
       gridTemplateColumns: "1fr 1.2fr",
     },
   },

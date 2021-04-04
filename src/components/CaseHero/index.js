@@ -14,7 +14,7 @@ export const CaseHero = React.memo(({ text, id = Date.now(), ...rest }) => {
 
           <text
             dominantBaseline="hanging"
-            transform={`translate(${10 - 4} ${10 - 7})`}
+            transform={`translate(${120 - 4} ${120 - 7})`}
           >
             {text}
           </text>

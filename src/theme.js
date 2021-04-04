@@ -1,6 +1,6 @@
 const colors = {
   text: "#000",
-  bg: "#eee",
+  bg: "#555",
   primary: "#09f",
 };
 

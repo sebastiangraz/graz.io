@@ -1,9 +1,9 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 
+import { jsx } from "theme-ui";
 import React from "react";
 import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
-import { jsx } from "theme-ui";
 import { useScrollPosition } from "../../hooks/useScrollPosition";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { debounce } from "lodash";
@@ -75,30 +75,37 @@ export const Case = React.forwardRef((props, ref) => {
       }}
     >
       {console.log("render child :(")}
-      <CaseHero
-        text={props.data?.name}
-        sx={{
-          display: props.data.hideCaseHero || false ? "none" : "block",
-          textTransform: "uppercase",
-          fontWeight: 600,
-          width: "100%",
-          height: "max-content",
-          letterSpacing: "-0.075em",
-          fontSize: "8.5vw",
-          color: props.data?.bg,
-        }}
-      />
+
       <div
         sx={{
           backgroundColor: props.data?.bg,
           width: "100%",
-          height: `calc(100% + ${-staggeredOffset}px)`,
+          height:
+            props.data.hideCaseHero || false
+              ? "100%"
+              : `calc(100% + ${-staggeredOffset - 300}px)`,
           zIndex: -1,
           position: "absolute",
           bottom: 0,
           left: 0,
         }}
-      ></div>
+      >
+        <CaseHero
+          text={props.data?.name}
+          sx={{
+            position: "absolute",
+            top: -299,
+            display: props.data.hideCaseHero || false ? "none" : "block",
+            textTransform: "uppercase",
+            fontWeight: 600,
+            width: "100%",
+            height: "max-content",
+            letterSpacing: "-0.075em",
+            fontSize: "8.5vw",
+            color: props.data?.bg,
+          }}
+        />
+      </div>
       <Render />
     </motion.div>
   );

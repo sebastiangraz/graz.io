@@ -20,7 +20,7 @@ export const Logo = ({ weight, ...rest }) => {
           fontWeight: "normal",
           margin: 0,
           fontVariationSettings: `"wght" ${weight ? weight : 50}`,
-          transition: `font-variation-settings cubic-bezier(1,0,0,1) 1s`,
+          transition: `font-variation-settings cubic-bezier(0.5,0,0,1) 0.4s`,
           "&:hover": {
             cursor: "pointer",
             fontVariationSettings: `"wght" 80`,

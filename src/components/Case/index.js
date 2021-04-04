@@ -3,7 +3,13 @@
 
 import { jsx } from "theme-ui";
 import React from "react";
-import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
+import {
+  motion,
+  useSpring,
+  useMotionValue,
+  useTransform,
+  transform,
+} from "framer-motion";
 import { useScrollPosition } from "../../hooks/useScrollPosition";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { debounce } from "lodash";
@@ -11,7 +17,7 @@ import { debounce } from "lodash";
 export const Case = React.forwardRef((props, ref) => {
   const [browserHeight, setBrowserHeight] = React.useState(window.innerHeight);
   const [childHeight, setChildHeight] = React.useState(0);
-  // const [inactive, setInActive] = React.useState(0);
+  const [inview, setInview] = React.useState(0);
   const childData = useCaseWrapperContext();
 
   React.useLayoutEffect(() => {
@@ -38,9 +44,16 @@ export const Case = React.forwardRef((props, ref) => {
     const pixelpos = childpos.map((v) => {
       return currPos.y + v - browserHeight;
     });
-    // const ratiopos = childpos.map((v) => {
-    //   return transform(currPos.y + v - browserHeight, [childHeight, 0], [0, 1]);
-    // });
+
+    const ratiopos = childpos.map((v) => {
+      return transform(currPos.y + v - browserHeight, [childHeight, 0], [0, 1]);
+    });
+
+    const isInview = ratiopos.map((v) => {
+      return v >= 0 && v <= 0;
+    });
+
+    console.log(isInview, ratiopos);
     ratio.set(pixelpos[props.index]);
   });
 
@@ -59,7 +72,7 @@ export const Case = React.forwardRef((props, ref) => {
   const handleClick = () => {
     window.scrollTo(
       0,
-      staggeredOffset + childData?.heightArr[props.index] - childHeight
+      staggeredOffset + childData?.heightArr[props.index] - childHeight + 1
     );
   };
 

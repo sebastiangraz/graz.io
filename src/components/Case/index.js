@@ -66,7 +66,7 @@ export const Case = React.forwardRef((props, ref) => {
         // opacity: inactive ? 1 : 1,
       }}
       sx={{
-        top: props.data.hideCaseHero || false ? 0 : staggeredOffset,
+        top: 0,
         position: "fixed",
         willChange: "transform",
         color: props.data?.color,
@@ -95,7 +95,7 @@ export const Case = React.forwardRef((props, ref) => {
           height: `calc(100% + ${-staggeredOffset}px)`,
           zIndex: -1,
           position: "absolute",
-          top: 0,
+          bottom: 0,
           left: 0,
         }}
       ></div>

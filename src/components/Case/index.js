@@ -29,7 +29,7 @@ export const Case = React.forwardRef((props, ref) => {
     setChildHeight(ref.current.getBoundingClientRect().height);
   }, [ref]);
 
-  // const staggeredOffset = -props.size * 80 + props.index * 80;
+  const staggeredOffset = -props.size * 120 + props.index * 120;
 
   const ratio = useMotionValue(0);
 
@@ -66,13 +66,12 @@ export const Case = React.forwardRef((props, ref) => {
         // opacity: inactive ? 1 : 1,
       }}
       sx={{
+        top: props.data.hideCaseHero || false ? 0 : staggeredOffset,
         position: "fixed",
         willChange: "transform",
         color: props.data?.color,
         zIndex: props.index,
-        width: `calc(100% - ${props.index * 80}px)`,
-        display: "flex",
-        flexDirection: "column",
+        width: `calc(100% - ${props.index * 120}px)`,
       }}
     >
       {console.log("render child :(")}
@@ -83,6 +82,7 @@ export const Case = React.forwardRef((props, ref) => {
           textTransform: "uppercase",
           fontWeight: 600,
           width: "100%",
+          height: "max-content",
           letterSpacing: "-0.075em",
           fontSize: "8.5vw",
           color: props.data?.bg,
@@ -92,16 +92,14 @@ export const Case = React.forwardRef((props, ref) => {
         sx={{
           backgroundColor: props.data?.bg,
           width: "100%",
-          height: `calc(100% - 300px)`,
+          height: `calc(100% + ${-staggeredOffset}px)`,
           zIndex: -1,
-          position: "relative",
+          position: "absolute",
           top: 0,
           left: 0,
         }}
-      >
-        {" "}
-        <Render />
-      </div>
+      ></div>
+      <Render />
     </motion.div>
   );
 });

@@ -23,8 +23,7 @@ const Sections = {
       <div
         sx={{
           height: 4503,
-          borderTop: "1px solid",
-          background: "linear-gradient(#fff0, #000)",
+          background: "linear-gradient(#fff0, #f00)",
           width: "80%",
           margin: "0 auto",
         }}

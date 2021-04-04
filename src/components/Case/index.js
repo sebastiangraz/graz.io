@@ -56,14 +56,22 @@ export const Case = React.forwardRef((props, ref) => {
     }
   );
 
+  const handleClick = () => {
+    window.scrollTo(
+      0,
+      staggeredOffset + childData?.heightArr[props.index] - childHeight
+    );
+  };
+
   const Render = props.data.component;
 
   return (
     <motion.div
       ref={ref}
+      onClick={handleClick}
+      initial={{ y: childHeight }}
       style={{
         y: y,
-        // opacity: inactive ? 1 : 1,
       }}
       sx={{
         top: 0,

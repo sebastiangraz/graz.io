@@ -37,6 +37,7 @@ export const Case = React.forwardRef((props, ref) => {
 
   const staggeredOffset = -props.size * 120 + props.index * 120;
 
+  const pixel = useMotionValue(0);
   const ratio = useMotionValue(0);
 
   useScrollPosition(({ currPos }) => {
@@ -44,22 +45,17 @@ export const Case = React.forwardRef((props, ref) => {
     const pixelpos = childpos.map((v) => {
       return currPos.y + v - browserHeight;
     });
-
     const ratiopos = childpos.map((v) => {
       return transform(currPos.y + v - browserHeight, [childHeight, 0], [0, 1]);
     });
 
-    const isInview = ratiopos.map((v) => {
-      return v >= 0 && v <= 0;
-    });
-
-    console.log(isInview, ratiopos);
-    ratio.set(pixelpos[props.index]);
+    pixel.set(pixelpos[props.index]);
+    ratio.set(ratiopos[props.index]);
   });
 
   const y = useSpring(
     useTransform(
-      ratio,
+      pixel,
       [childHeight, 0],
       [browserHeight, -childHeight + browserHeight]
     ),
@@ -69,11 +65,16 @@ export const Case = React.forwardRef((props, ref) => {
     }
   );
 
+  ratio.onChange((v) => {
+    setInview(v > 0 && v < 1 ? true : false);
+  });
+
   const handleClick = () => {
-    window.scrollTo(
-      0,
-      staggeredOffset + childData?.heightArr[props.index] - childHeight + 1
-    );
+    !inview &&
+      window.scrollTo(
+        0,
+        staggeredOffset + childData?.heightArr[props.index] - childHeight + 1
+      );
   };
 
   const Render = props.data.component;

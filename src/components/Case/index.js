@@ -2,13 +2,7 @@
 /** @jsx jsx */
 
 import React from "react";
-import {
-  motion,
-  useSpring,
-  useMotionValue,
-  useTransform,
-  transform,
-} from "framer-motion";
+import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
 import { jsx } from "theme-ui";
 import { useScrollPosition } from "../../hooks/useScrollPosition";
 import { useCaseWrapperContext, CaseHero } from "../";
@@ -35,7 +29,7 @@ export const Case = React.forwardRef((props, ref) => {
     setChildHeight(ref.current.getBoundingClientRect().height);
   }, [ref]);
 
-  const staggeredOffset = -props.size * 80 + props.index * 80;
+  // const staggeredOffset = -props.size * 80 + props.index * 80;
 
   const ratio = useMotionValue(0);
 

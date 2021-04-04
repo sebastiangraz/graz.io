@@ -1,30 +1,13 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 
-import {
-  motion,
-  useSpring,
-  useTransform,
-  useViewportScroll,
-} from "framer-motion";
-import React from "react";
 import { jsx, Text, Grid } from "theme-ui";
 import { Logo } from "../";
 
 export const Home = () => {
-  // const { scrollY } = useViewportScroll();
-  // React.useEffect(() => {
-  //   console.log(scrollY.current);
-  // }, [scrollY]);
-
-  // const y = useSpring(useTransform(scrollY, [0, 400], [0, -200]), {
-  //   damping: 10,
-  //   mass: 0.1,
-  // });
   return (
-    <motion.div
+    <div
       sx={{
-        // position: "fixed",
         minHeight: "100vh",
         width: "100%",
         display: "flex",
@@ -36,13 +19,13 @@ export const Home = () => {
         <Logo
           sx={{
             lineHeight: 0.8,
-            fontSize: 32,
+            fontSize: 50,
             transition: `.5s cubic-bezier(1,0,0,1) opacity, 1s cubic-bezier(1,0,0,1) transform`,
             transform: false
               ? ["scale(1)", "scale(1)", "scale(0.8)"]
               : "scale(1)",
           }}
-          weight={60}
+          weight={50}
         />
         <Text
           variant="body"
@@ -55,6 +38,6 @@ export const Home = () => {
           prototyping, design systems & branding
         </Text>
       </Grid>
-    </motion.div>
+    </div>
   );
 };

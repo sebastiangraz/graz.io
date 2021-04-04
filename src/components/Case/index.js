@@ -94,6 +94,9 @@ export const Case = React.forwardRef((props, ref) => {
         color: props.data?.color,
         zIndex: props.index,
         width: `calc(100% - ${props.index * 120}px)`,
+        "&:nth-child(even)": {
+          right: 0,
+        },
       }}
     >
       {console.log("render child :(")}

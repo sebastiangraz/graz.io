@@ -93,7 +93,8 @@ export const Case = React.forwardRef((props, ref) => {
         willChange: "transform",
         color: props.data?.color,
         zIndex: props.index,
-        width: `calc(100% - ${props.index * 120}px)`,
+        width: props.data.hideCaseHero || false ? "100%" : "calc(100% - 120px)",
+        // width: `calc(100% - ${props.index * 120}px)`,
         "&:nth-child(even)": {
           right: 0,
         },
@@ -117,7 +118,7 @@ export const Case = React.forwardRef((props, ref) => {
       >
         <CaseHero
           text={props.data?.name}
-          sx={{
+          style={{
             position: "absolute",
             top: -299,
             display: props.data.hideCaseHero || false ? "none" : "block",

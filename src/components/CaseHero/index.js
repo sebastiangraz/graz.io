@@ -3,9 +3,11 @@
 
 import React from "react";
 import { jsx } from "theme-ui";
+import uuid from "react-uuid";
+
 const ignoreUpdatedProps = () => true;
 
-export const CaseHero = React.memo(({ text, id = Date.now(), ...rest }) => {
+export const CaseHero = React.memo(({ text, id = uuid(), ...rest }) => {
   return (
     <svg {...rest} height="300" preserveAspectRatio="xMinYMin meet">
       <defs>

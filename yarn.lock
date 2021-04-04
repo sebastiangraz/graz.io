@@ -11584,6 +11584,11 @@ react-scroll-percentage@^4.2.0:
     "@babel/runtime" "^7.7.2"
     react-intersection-observer "^8.25.1"
 
+react-uuid@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-uuid/-/react-uuid-1.0.2.tgz#c77cea91cf38eafb1aaa7910f92621b2ed91b969"
+  integrity sha512-5e0GM16uuQj9MdRJlZ0GdLC8LKMwpU9PIqYmF27s3fIV2z+rLyASTaiW4aKzSY4DyGanz+ImzsECkftwGWfAwA==
+
 react@^17.0.1:
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.1.tgz#6e0600416bd57574e3f86d92edba3d9008726127"

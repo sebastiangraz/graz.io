@@ -10,6 +10,7 @@ const useCaseWrapperContext = () => React.useContext(CaseWrapperContext);
 const CaseWrapper = ({ children }) => {
   const [childData, setChildData] = React.useState({});
   const [totalHeight, setTotalHeight] = React.useState(0);
+
   React.useEffect(() => {
     const heightArr = [];
 
@@ -23,13 +24,12 @@ const CaseWrapper = ({ children }) => {
     const totalHeight = getEl.reduce((acc, v) => {
       heightArr.push(acc + v.height);
       return acc + v.height;
-    }, 0); // totalheight
+    }, 0);
 
     setTotalHeight(totalHeight);
     setChildData({
       heightArr: heightArr,
     });
-    console.log(heightArr);
   }, [children]);
 
   return (

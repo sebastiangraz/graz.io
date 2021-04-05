@@ -12,24 +12,11 @@ import {
 } from "framer-motion";
 import { useScrollPosition } from "../../hooks/useScrollPosition";
 import { useCaseWrapperContext, CaseHero } from "../";
-import { debounce } from "lodash";
 
 export const Case = React.forwardRef((props, ref) => {
-  const [browserHeight, setBrowserHeight] = React.useState(window.innerHeight);
   const [childHeight, setChildHeight] = React.useState(0);
   const [inview, setInview] = React.useState(0);
-  const childData = useCaseWrapperContext();
-
-  React.useLayoutEffect(() => {
-    const handleResize = debounce(
-      () => setBrowserHeight(window.innerHeight),
-      100
-    );
-    window.addEventListener("resize", handleResize, { passive: true });
-    return () => {
-      window.removeEventListener("resize", handleResize, { passive: true });
-    };
-  });
+  const { childData, browserHeight } = useCaseWrapperContext();
 
   React.useLayoutEffect(() => {
     setChildHeight(ref.current.getBoundingClientRect().height);

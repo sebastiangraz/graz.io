@@ -3,13 +3,26 @@
 
 import React from "react";
 import { jsx } from "theme-ui";
+import { debounce } from "lodash";
 
 const CaseWrapperContext = React.createContext(null);
 const useCaseWrapperContext = () => React.useContext(CaseWrapperContext);
 
 const CaseWrapper = ({ children }) => {
+  const [browserHeight, setBrowserHeight] = React.useState(window.innerHeight);
   const [childData, setChildData] = React.useState({});
   const [totalHeight, setTotalHeight] = React.useState(0);
+
+  React.useLayoutEffect(() => {
+    const handleResize = debounce(
+      () => setBrowserHeight(window.innerHeight),
+      100
+    );
+    window.addEventListener("resize", handleResize, { passive: true });
+    return () => {
+      window.removeEventListener("resize", handleResize, { passive: true });
+    };
+  });
 
   React.useEffect(() => {
     const heightArr = [];
@@ -34,7 +47,9 @@ const CaseWrapper = ({ children }) => {
 
   return (
     <div style={{ height: totalHeight }}>
-      <CaseWrapperContext.Provider value={childData}>
+      <CaseWrapperContext.Provider
+        value={{ childData: childData, browserHeight: browserHeight }}
+      >
         {children}
       </CaseWrapperContext.Provider>
     </div>

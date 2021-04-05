@@ -54,11 +54,16 @@ const CaseWrapper = ({ children }) => {
 
   return React.useMemo(
     () => (
-      <motion.div style={{ height: totalHeight, opacity: threshold ? 1 : 0.8 }}>
+      <motion.div
+        style={{
+          height: totalHeight,
+        }}
+      >
         <CaseWrapperContext.Provider
           value={{
             childData: childData,
             browserHeight: browserHeight,
+            threshold: threshold,
           }}
         >
           {children}

@@ -16,7 +16,7 @@ import { useCaseWrapperContext, CaseHero } from "../";
 export const Case = React.forwardRef((props, ref) => {
   const [childHeight, setChildHeight] = React.useState(0);
   const [inview, setInview] = React.useState(0);
-  const { childData, browserHeight } = useCaseWrapperContext();
+  const { childData, browserHeight, threshold } = useCaseWrapperContext();
 
   React.useLayoutEffect(() => {
     setChildHeight(ref.current.getBoundingClientRect().height);
@@ -70,6 +70,8 @@ export const Case = React.forwardRef((props, ref) => {
       onClick={handleClick}
       initial={{ y: 0 }}
       style={{
+        transition: "top .2s ease",
+        top: threshold && (inview ? 0 : -staggeredOffset / 2),
         y: y,
       }}
       sx={{
@@ -86,7 +88,7 @@ export const Case = React.forwardRef((props, ref) => {
     >
       {console.log("render child :(")}
 
-      <div
+      <motion.div
         sx={{
           backgroundColor: props.data?.bg,
           width: "100%",
@@ -115,7 +117,7 @@ export const Case = React.forwardRef((props, ref) => {
             color: props.data?.bg,
           }}
         />
-      </div>
+      </motion.div>
       <Render />
     </motion.div>
   );

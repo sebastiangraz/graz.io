@@ -33,7 +33,6 @@ export const Case = React.forwardRef((props, ref) => {
     const ratiopos = childpos.map((v) => {
       return transform(currPos.y + v - browserHeight, [childHeight, 0], [0, 1]);
     });
-
     pixel.set(pixelpos[props.index]);
     ratio.set(ratiopos[props.index]);
   });

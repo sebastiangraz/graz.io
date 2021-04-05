@@ -93,7 +93,7 @@ export const Case = React.forwardRef((props, ref) => {
         color: props.data?.color,
         zIndex: props.index,
         width: props.data.hideCaseHero || false ? "100%" : "calc(100% - 120px)",
-        "&:nth-child(even)": {
+        "&:nth-of-type(even)": {
           right: 0,
         },
       }}

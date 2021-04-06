@@ -7,7 +7,7 @@ import uuid from "react-uuid";
 
 const ignoreUpdatedProps = () => true;
 
-export const CaseHero = React.memo(({ text, id = uuid(), ...rest }) => {
+export const CaseHero = React.memo(({ offset, text, id = uuid(), ...rest }) => {
   return (
     <svg {...rest} height="300" preserveAspectRatio="xMinYMin meet">
       <defs>
@@ -16,7 +16,7 @@ export const CaseHero = React.memo(({ text, id = uuid(), ...rest }) => {
 
           <text
             dominantBaseline="hanging"
-            transform={`translate(${50 - 4} ${50 - 7})`}
+            transform={`translate(${offset * 2 - 4} ${offset * 2 - 7})`}
           >
             {text}
           </text>

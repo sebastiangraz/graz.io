@@ -54,7 +54,7 @@ export const Case = React.forwardRef((props, ref) => {
   ratio.onChange((v) => {
     setInview(v > 0 && v < 1 ? true : false);
   });
-  const offset = useResponsiveValue([32, 40, 60, 96]);
+  const offset = useResponsiveValue([32, 60, 80, 120]);
 
   const staggeredOffset = -props.size * offset + props.index * offset;
   const handleClick = () => {
@@ -82,6 +82,10 @@ export const Case = React.forwardRef((props, ref) => {
         color: props.data?.color,
         zIndex: props.index,
         right: 0,
+        maxWidth:
+          props.data.hideCaseHero || false
+            ? "100%"
+            : `calc(1400px - ${-props.index * 10}%)`,
         width:
           props.data.hideCaseHero || false
             ? "100%"
@@ -97,14 +101,17 @@ export const Case = React.forwardRef((props, ref) => {
           transition: "height .3s cubic-bezier(0,.2,0,.96)",
           height:
             props.data.hideCaseHero || false
-              ? "100%"
-              : `calc(100% + ${
-                  (threshold
-                    ? props.index === 1
-                      ? -staggeredOffset * 2
-                      : -staggeredOffset
-                    : -staggeredOffset * 2) - 300
-                }px)`,
+              ? `100%`
+              : `calc(100% + ${-staggeredOffset - 300}px)`,
+          // props.data.hideCaseHero || false
+          //   ? "100%"
+          //   : `calc(100% + ${
+          //       (threshold
+          //         ? props.index === 1
+          //           ? -staggeredOffset * 2
+          //           : -staggeredOffset
+          //         : -staggeredOffset * 2) - 300
+          //     }px)`,
           zIndex: -1,
           position: "absolute",
           bottom: 0,
@@ -112,6 +119,7 @@ export const Case = React.forwardRef((props, ref) => {
         }}
       >
         <CaseHero
+          offset={offset}
           text={props.data?.name}
           style={{
             position: "absolute",

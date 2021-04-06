@@ -54,7 +54,7 @@ export const Case = React.forwardRef((props, ref) => {
     setInview(v > 0 && v < 1 ? true : false);
   });
 
-  const staggeredOffset = -props.size * 120 + props.index * 120;
+  const staggeredOffset = -props.size * 60 + props.index * 60;
   const handleClick = () => {
     !inview &&
       window.scrollTo(
@@ -71,13 +71,6 @@ export const Case = React.forwardRef((props, ref) => {
       onClick={handleClick}
       initial={{ y: 0 }}
       style={{
-        transition: "top .3s ease",
-        top:
-          props.data.hideCaseHero || false
-            ? 0
-            : props.index === 1 || false
-            ? 0
-            : threshold && -staggeredOffset / 2,
         y: y,
       }}
       sx={{
@@ -98,10 +91,15 @@ export const Case = React.forwardRef((props, ref) => {
         sx={{
           backgroundColor: props.data?.bg,
           width: "100%",
+          transition: "height .3s cubic-bezier(0,.2,0,.96)",
           height:
             props.data.hideCaseHero || false
               ? "100%"
-              : `calc(100% + ${-staggeredOffset - 300}px)`,
+              : props.index === 1
+              ? `calc(100% + ${60}px)`
+              : `calc(100% + ${
+                  (threshold ? -staggeredOffset : -staggeredOffset * 2) - 300
+                }px)`,
           zIndex: -1,
           position: "absolute",
           bottom: 0,

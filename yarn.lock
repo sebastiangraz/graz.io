@@ -2576,6 +2576,19 @@
     "@emotion/react" "^11.1.1"
     csstype "^3.0.5"
 
+"@theme-ui/css@^0.6.2":
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/@theme-ui/css/-/css-0.6.2.tgz#d5a165408d8fdf8e3080cae60ea10c5f140499b8"
+  integrity sha512-OBm16M+gwKBqcoFFToDUnW6d9VO6TIUtazrGiD1Y4/hh+0f+ZosHds3xqvrVpZvzMKjm5AOL0lnQZNDQXefttQ==
+  dependencies:
+    "@emotion/react" "^11.1.1"
+    csstype "^3.0.5"
+
+"@theme-ui/match-media@^0.6.2":
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/@theme-ui/match-media/-/match-media-0.6.2.tgz#851a45f7fad34fabf9a189b94338d288d28d419e"
+  integrity sha512-MsYulZrTMM/a9Q2v5oHaVBzBONx5HcOD2JGrbuImvDAInv8SF2ixRbpgREcVm09ebC32moGq9jTnMwaMgD89pg==
+
 "@theme-ui/mdx@0.3.5":
   version "0.3.5"
   resolved "https://registry.yarnpkg.com/@theme-ui/mdx/-/mdx-0.3.5.tgz#60d26102dcc8b2095269de461dcf8f51fa18cf4c"

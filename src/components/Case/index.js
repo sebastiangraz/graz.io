@@ -12,6 +12,7 @@ import {
 } from "framer-motion";
 import { useScrollPosition } from "../../hooks/useScrollPosition";
 import { useCaseWrapperContext, CaseHero } from "../";
+import { useResponsiveValue } from "@theme-ui/match-media";
 
 export const Case = React.forwardRef((props, ref) => {
   const [childHeight, setChildHeight] = React.useState(0);
@@ -53,8 +54,9 @@ export const Case = React.forwardRef((props, ref) => {
   ratio.onChange((v) => {
     setInview(v > 0 && v < 1 ? true : false);
   });
+  const offset = useResponsiveValue([32, 40, 60, 96]);
 
-  const staggeredOffset = -props.size * 60 + props.index * 60;
+  const staggeredOffset = -props.size * offset + props.index * offset;
   const handleClick = () => {
     !inview &&
       window.scrollTo(
@@ -79,10 +81,11 @@ export const Case = React.forwardRef((props, ref) => {
         willChange: "transform",
         color: props.data?.color,
         zIndex: props.index,
-        width: props.data.hideCaseHero || false ? "100%" : "calc(100% - 120px)",
-        "&:nth-of-type(even)": {
-          right: 0,
-        },
+        right: 0,
+        width:
+          props.data.hideCaseHero || false
+            ? "100%"
+            : `calc(70% - ${-props.index * 10}%)`,
       }}
     >
       {console.log("render child :(")}
@@ -95,10 +98,12 @@ export const Case = React.forwardRef((props, ref) => {
           height:
             props.data.hideCaseHero || false
               ? "100%"
-              : props.index === 1
-              ? `calc(100% + ${60}px)`
               : `calc(100% + ${
-                  (threshold ? -staggeredOffset : -staggeredOffset * 2) - 300
+                  (threshold
+                    ? props.index === 1
+                      ? -staggeredOffset * 2
+                      : -staggeredOffset
+                    : -staggeredOffset * 2) - 300
                 }px)`,
           zIndex: -1,
           position: "absolute",
@@ -117,7 +122,7 @@ export const Case = React.forwardRef((props, ref) => {
             width: "100%",
             height: "max-content",
             letterSpacing: "-0.075em",
-            fontSize: "8.5vw",
+            fontSize: "min(12vw, 140px)",
             color: props.data?.bg,
           }}
         />

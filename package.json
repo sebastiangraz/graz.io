@@ -8,6 +8,8 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "@theme-ui/color": "^0.6.0",
+    "@theme-ui/css": "^0.6.2",
+    "@theme-ui/match-media": "^0.6.2",
     "framer-motion": "^4.0.0",
     "lodash": "^4.17.21",
     "react": "^17.0.1",

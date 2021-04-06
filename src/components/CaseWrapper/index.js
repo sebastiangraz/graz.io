@@ -15,17 +15,6 @@ const CaseWrapper = ({ children }) => {
   const [totalHeight, setTotalHeight] = React.useState(0);
 
   React.useLayoutEffect(() => {
-    const handleResize = debounce(
-      () => setBrowserHeight(window.innerHeight),
-      100
-    );
-    window.addEventListener("resize", handleResize, { passive: true });
-    return () => {
-      window.removeEventListener("resize", handleResize, { passive: true });
-    };
-  });
-
-  React.useEffect(() => {
     const heightArr = [];
 
     const getEl = children.map((e, index) => {
@@ -40,10 +29,20 @@ const CaseWrapper = ({ children }) => {
       return acc + v.height;
     }, 0);
 
+    const handleResize = debounce(() => {
+      setBrowserHeight(window.innerHeight);
+    }, 100);
+
     setTotalHeight(totalHeight);
+
     setChildData({
       heightArr: heightArr,
     });
+
+    window.addEventListener("resize", handleResize, { passive: true });
+    return () => {
+      window.removeEventListener("resize", handleResize, { passive: true });
+    };
   }, [children]);
 
   return React.useMemo(

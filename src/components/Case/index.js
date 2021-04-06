@@ -17,7 +17,6 @@ import { useResponsiveValue } from "@theme-ui/match-media";
 export const Case = React.forwardRef((props, ref) => {
   const [childHeight, setChildHeight] = React.useState(0);
   const [inview, setInview] = React.useState(0);
-  const [threshold, setThreshold] = React.useState(false);
   const { childData, browserHeight } = useCaseWrapperContext();
   React.useLayoutEffect(() => {
     setChildHeight(ref.current.getBoundingClientRect().height);
@@ -36,7 +35,6 @@ export const Case = React.forwardRef((props, ref) => {
     });
     pixel.set(pixelpos[props.index]);
     ratio.set(ratiopos[props.index]);
-    setThreshold(currPos.y < -10);
   });
 
   const y = useSpring(
@@ -103,15 +101,6 @@ export const Case = React.forwardRef((props, ref) => {
             props.data.hideCaseHero || false
               ? `100%`
               : `calc(100% + ${-staggeredOffset - 300}px)`,
-          // props.data.hideCaseHero || false
-          //   ? "100%"
-          //   : `calc(100% + ${
-          //       (threshold
-          //         ? props.index === 1
-          //           ? -staggeredOffset * 2
-          //           : -staggeredOffset
-          //         : -staggeredOffset * 2) - 300
-          //     }px)`,
           zIndex: -1,
           position: "absolute",
           bottom: 0,

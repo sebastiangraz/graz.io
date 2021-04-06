@@ -16,8 +16,8 @@ import { useCaseWrapperContext, CaseHero } from "../";
 export const Case = React.forwardRef((props, ref) => {
   const [childHeight, setChildHeight] = React.useState(0);
   const [inview, setInview] = React.useState(0);
-  const { childData, browserHeight, threshold } = useCaseWrapperContext();
-
+  const [threshold, setThreshold] = React.useState(false);
+  const { childData, browserHeight } = useCaseWrapperContext();
   React.useLayoutEffect(() => {
     setChildHeight(ref.current.getBoundingClientRect().height);
   }, [ref]);
@@ -35,6 +35,7 @@ export const Case = React.forwardRef((props, ref) => {
     });
     pixel.set(pixelpos[props.index]);
     ratio.set(ratiopos[props.index]);
+    setThreshold(currPos.y < -10);
   });
 
   const y = useSpring(
@@ -70,8 +71,13 @@ export const Case = React.forwardRef((props, ref) => {
       onClick={handleClick}
       initial={{ y: 0 }}
       style={{
-        transition: "top .2s ease",
-        top: threshold && (inview ? 0 : -staggeredOffset / 2),
+        transition: "top .3s ease",
+        top:
+          props.data.hideCaseHero || false
+            ? 0
+            : props.index === 1 || false
+            ? 0
+            : threshold && -staggeredOffset / 2,
         y: y,
       }}
       sx={{

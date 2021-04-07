@@ -30,20 +30,21 @@ const CaseWrapper = ({ children }) => {
     }, 0);
 
     const handleResize = debounce(() => {
+      setTotalHeight(totalHeight);
       setBrowserHeight(window.innerHeight);
     }, 100);
-
-    setTotalHeight(totalHeight);
 
     setChildData({
       heightArr: heightArr,
     });
 
     window.addEventListener("resize", handleResize, { passive: true });
+    window.addEventListener("load", handleResize, { passive: true });
     return () => {
       window.removeEventListener("resize", handleResize, { passive: true });
+      window.removeEventListener("load", handleResize, { passive: true });
     };
-  }, [children]);
+  }, [totalHeight, children]);
 
   return React.useMemo(
     () => (

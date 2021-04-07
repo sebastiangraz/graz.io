@@ -50,7 +50,8 @@ export const Case = React.forwardRef((props, ref) => {
   );
 
   ratio.onChange((v) => {
-    setInview(v > 0 && v < 1 ? true : false);
+    const sensitivity = 0.005;
+    setInview(v > 0 + sensitivity && v < 1 - sensitivity ? true : false);
   });
   const offset = useResponsiveValue([32, 60, 80, 120]);
 
@@ -71,7 +72,7 @@ export const Case = React.forwardRef((props, ref) => {
       onClick={handleClick}
       initial={{ y: 0 }}
       style={{
-        y: y,
+        y: props.data.hideCaseHero || false ? 0 : y,
       }}
       sx={{
         top: 0,

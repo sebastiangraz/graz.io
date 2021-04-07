@@ -51,8 +51,10 @@ export const Case = React.forwardRef((props, ref) => {
 
   ratio.onChange((v) => {
     const sensitivity = 0.005;
-    setInview(v > 0 + sensitivity && v < 1 - sensitivity ? true : false);
+    const isInview = v > 0 + sensitivity && v < 1 - sensitivity ? true : false;
+    setInview(isInview);
   });
+
   const offset = useResponsiveValue([32, 60, 80, 120]);
 
   const staggeredOffset = -props.size * offset + props.index * offset;

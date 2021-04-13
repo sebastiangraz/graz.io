@@ -56,7 +56,7 @@ export const Case = React.forwardRef((props, ref) => {
   });
 
   let offset = useResponsiveValue([32, 60, 80, 120]);
-  offset = (offset / props.index) * 0.7;
+  offset = (offset / props.index) * 1.5;
 
   const staggeredOffset = -props.size * offset + props.index * offset;
   const handleClick = () => {
@@ -87,7 +87,7 @@ export const Case = React.forwardRef((props, ref) => {
         width:
           props.data.hideCaseHero || false
             ? "100%"
-            : `calc(${100 - (props.size - 1) * 5}% + ${props.index * 5}%)`,
+            : `calc(${100 - (props.size - 1) * 10}% + ${props.index * 10}%)`,
       }}
     >
       {console.log("render child :(")}

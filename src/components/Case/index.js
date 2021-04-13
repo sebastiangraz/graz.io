@@ -86,8 +86,8 @@ export const Case = React.forwardRef((props, ref) => {
         right: 0,
         width:
           props.data.hideCaseHero || false
-            ? "100vw"
-            : `calc(${100 - (props.size - 1) * 5}vw + ${props.index * 5}vw)`,
+            ? "100%"
+            : `calc(${100 - (props.size - 1) * 5}% + ${props.index * 5}%)`,
       }}
     >
       {console.log("render child :(")}

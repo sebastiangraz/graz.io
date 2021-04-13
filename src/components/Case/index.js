@@ -55,7 +55,8 @@ export const Case = React.forwardRef((props, ref) => {
     setInview(isInview);
   });
 
-  const offset = useResponsiveValue([32, 60, 80, 120]);
+  let offset = useResponsiveValue([32, 60, 80, 120]);
+  offset = (offset / props.index) * 0.7;
 
   const staggeredOffset = -props.size * offset + props.index * offset;
   const handleClick = () => {

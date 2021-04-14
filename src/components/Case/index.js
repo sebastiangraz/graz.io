@@ -56,11 +56,15 @@ export const Case = React.forwardRef((props, ref) => {
     }
   );
 
-  ratio.onChange((v) => {
-    const sensitivity = 0.005;
-    const isInview = v > 0 + sensitivity && v < 1 - sensitivity ? true : false;
-    setInview(isInview);
-  });
+  React.useEffect(() => {
+    ratio.onChange((v) => {
+      console.log(v);
+      const sensitivity = 0.005;
+      const isInview =
+        v > 0 + sensitivity && v < 1 - sensitivity ? true : false;
+      setInview(isInview);
+    });
+  }, [ratio]);
 
   let offset = useResponsiveValue([32, 60, 80, 120]);
   // offset = (offset / props.index) * 1.5;

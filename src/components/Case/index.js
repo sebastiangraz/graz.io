@@ -28,7 +28,7 @@ export const Case = React.forwardRef((props, ref) => {
   useScrollPosition(({ currPos }) => {
     const childpos = childData?.heightArr || [];
     const pixelpos = childpos.map((v) => {
-      return currPos.y + v - browserHeight;
+      return transform(currPos.y + v - browserHeight, [childHeight, 0], [0, 1]);
     });
     const ratiopos = childpos.map((v) => {
       return transform(currPos.y + v - browserHeight, [childHeight, 0], [0, 1]);
@@ -37,12 +37,21 @@ export const Case = React.forwardRef((props, ref) => {
     ratio.set(ratiopos[props.index]);
   });
 
+  // scrollY.onChange((scrollYValue) => {
+  //   const good = heightArr.map((heightArrValue, index) => {
+  //     let arrayIn = [-getEl[index].height, 0];
+  //     let arrayOut = [0, 1];
+  //     return transform(
+  //       (scrollYValue - heightArrValue) * 0.75 + browserHeight,
+  //       arrayIn,
+  //       arrayOut
+  //     );
+  //   });
+  //   console.log(good);
+  // });
+
   const y = useSpring(
-    useTransform(
-      pixel,
-      [childHeight, 0],
-      [browserHeight, -childHeight + browserHeight]
-    ),
+    useTransform(pixel, [0, 1], [browserHeight, -childHeight + browserHeight]),
     {
       damping: 10,
       mass: 0.1,
@@ -56,7 +65,7 @@ export const Case = React.forwardRef((props, ref) => {
   });
 
   let offset = useResponsiveValue([32, 60, 80, 120]);
-  offset = (offset / props.index) * 1.5;
+  // offset = (offset / props.index) * 1.5;
 
   const staggeredOffset = -props.size * offset + props.index * offset;
   const handleClick = () => {

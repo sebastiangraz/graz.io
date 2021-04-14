@@ -24,15 +24,13 @@ export const Case = React.forwardRef((props, ref) => {
 
   const pixel = useMotionValue(0);
   const ratio = useMotionValue(0);
-
+  const childpos = childData?.heightArr || [];
   useScrollPosition(({ currPos }) => {
-    const childpos = childData?.heightArr || [];
     const pixelpos = childpos.map((v) => {
       return transform(currPos.y + v - browserHeight, [childHeight, 0], [0, 1]);
     });
-    const ratiopos = childpos.map((v) => {
-      return transform(currPos.y + v - browserHeight, [childHeight, 0], [0, 1]);
-    });
+
+    const ratiopos = pixelpos;
     pixel.set(pixelpos[props.index]);
     ratio.set(ratiopos[props.index]);
   });

@@ -23,16 +23,13 @@ export const Case = React.forwardRef((props, ref) => {
   }, [ref]);
 
   const pixel = useMotionValue(0);
-  const ratio = useMotionValue(0);
   const childpos = childData?.heightArr || [];
+
   useScrollPosition(({ currPos }) => {
     const pixelpos = childpos.map((v) => {
       return transform(currPos.y + v - browserHeight, [childHeight, 0], [0, 1]);
     });
-
-    const ratiopos = pixelpos;
     pixel.set(pixelpos[props.index]);
-    ratio.set(ratiopos[props.index]);
   });
 
   // scrollY.onChange((scrollYValue) => {
@@ -57,14 +54,13 @@ export const Case = React.forwardRef((props, ref) => {
   );
 
   React.useEffect(() => {
-    ratio.onChange((v) => {
-      console.log(v);
+    pixel.onChange((v) => {
       const sensitivity = 0.005;
       const isInview =
         v > 0 + sensitivity && v < 1 - sensitivity ? true : false;
       setInview(isInview);
     });
-  }, [ratio]);
+  });
 
   let offset = useResponsiveValue([32, 60, 80, 120]);
   // offset = (offset / props.index) * 1.5;

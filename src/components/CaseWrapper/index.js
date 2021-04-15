@@ -1,8 +1,4 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-
-import React from "react";
-import { jsx } from "theme-ui";
+import React, { useDebugValue } from "react";
 import { debounce } from "lodash";
 import { motion } from "framer-motion";
 
@@ -45,19 +41,19 @@ const CaseWrapper = ({ children }) => {
     };
   }, [children, totalHeight]);
 
+  const contextValues = {
+    childpos,
+    childHeight,
+    browserHeight,
+  };
+
   return (
     <motion.div
       style={{
         height: totalHeight,
       }}
     >
-      <CaseWrapperContext.Provider
-        value={{
-          childpos,
-          childHeight,
-          browserHeight,
-        }}
-      >
+      <CaseWrapperContext.Provider value={contextValues}>
         {children}
       </CaseWrapperContext.Provider>
     </motion.div>

@@ -15,37 +15,22 @@ import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
 export const Case = React.forwardRef((props, ref) => {
+  const { index, data } = props;
   const [childHeight, setChildHeight] = React.useState(0);
   const [inview, setInview] = React.useState(0);
   const { childpos, browserHeight } = useCaseWrapperContext();
+  const zeroToOne = useMotionValue(0);
 
   React.useEffect(() => {
     setChildHeight(ref.current.getBoundingClientRect().height);
   }, [ref]);
 
-  console.log(childpos);
-
-  const zeroToOne = useMotionValue(0);
-
   useScrollPosition(({ currPos }) => {
     const ratio = childpos.map((v) => {
       return transform(currPos.y + v - browserHeight, [childHeight, 0], [0, 1]);
     });
-    zeroToOne.set(ratio[props.index]);
+    zeroToOne.set(ratio[index]);
   });
-
-  // scrollY.onChange((scrollYValue) => {
-  //   const good = heightArr.map((heightArrValue, index) => {
-  //     let arrayIn = [-getEl[index].height, 0];
-  //     let arrayOut = [0, 1];
-  //     return transform(
-  //       (scrollYValue - heightArrValue) * 0.75 + browserHeight,
-  //       arrayIn,
-  //       arrayOut
-  //     );
-  //   });
-  //   console.log(good);
-  // });
 
   const y = useSpring(
     useTransform(
@@ -69,18 +54,15 @@ export const Case = React.forwardRef((props, ref) => {
   });
 
   let offset = useResponsiveValue([32, 60, 80, 120]);
-  // offset = (offset / props.index) * 0.8;
+  // offset = (offset / index) * 0.8;
 
-  const staggeredOffset = -props.size * offset + props.index * offset;
+  const staggeredOffset = -childpos.length * offset + index * offset;
   const handleClick = () => {
     !inview &&
-      window.scrollTo(
-        0,
-        staggeredOffset + childpos[props.index] - childHeight + 1
-      );
+      window.scrollTo(0, staggeredOffset + childpos[index] - childHeight + 1);
   };
 
-  const Render = props.data.component;
+  const Render = data.component;
 
   return (
     <motion.div
@@ -88,30 +70,30 @@ export const Case = React.forwardRef((props, ref) => {
       onClick={handleClick}
       initial={{ y: 0 }}
       style={{
-        y: props.data.hideCaseHero || false ? 0 : y,
+        y: data.hideCaseHero || false ? 0 : y,
       }}
       sx={{
         top: 0,
         position: "fixed",
         willChange: "transform",
-        color: props.data?.color,
-        zIndex: props.index,
+        color: data?.color,
+        zIndex: index,
         right: 0,
         width:
-          props.data.hideCaseHero || false
+          data.hideCaseHero || false
             ? "100%"
-            : `calc(${100 - (props.size - 1) * 10}% + ${props.index * 10}%)`,
+            : `calc(${100 - (childpos.length - 1) * 10}% + ${index * 10}%)`,
       }}
     >
       {console.log("render child :(")}
 
       <motion.div
         sx={{
-          backgroundColor: props.data?.bg,
+          backgroundColor: data?.bg,
           width: "100%",
           transition: "height .3s cubic-bezier(0,.2,0,.96)",
           height:
-            props.data.hideCaseHero || false
+            data.hideCaseHero || false
               ? `100%`
               : `calc(100% + ${-staggeredOffset - 300}px)`,
           zIndex: -1,
@@ -120,20 +102,23 @@ export const Case = React.forwardRef((props, ref) => {
           left: 0,
         }}
       >
+        <div sx={{ position: "absolute", top: -300, left: 0, zIndex: 10 }}>
+          {childHeight === 6869.6875 ? "wrong" : childHeight}
+        </div>
         <CaseHero
           offset={offset}
-          text={props.data?.name}
+          text={data?.name}
           style={{
             position: "absolute",
             top: -299,
-            display: props.data.hideCaseHero || false ? "none" : "block",
+            display: data.hideCaseHero || false ? "none" : "block",
             textTransform: "uppercase",
             fontWeight: 600,
             width: "100%",
             height: "max-content",
             letterSpacing: "-0.075em",
             fontSize: "min(12vw, 140px)",
-            color: props.data?.bg,
+            color: data?.bg,
           }}
         />
       </motion.div>

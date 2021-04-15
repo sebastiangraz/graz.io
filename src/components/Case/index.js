@@ -63,7 +63,7 @@ export const Case = React.forwardRef((props, ref) => {
   });
 
   let offset = useResponsiveValue([32, 60, 80, 120]);
-  // offset = (offset / props.index) * 1.5;
+  offset = (offset / props.index) * 0.8;
 
   const staggeredOffset = -props.size * offset + props.index * offset;
   const handleClick = () => {

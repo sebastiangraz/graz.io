@@ -11,11 +11,11 @@ const useCaseWrapperContext = () => React.useContext(CaseWrapperContext);
 
 const CaseWrapper = ({ children }) => {
   const [browserHeight, setBrowserHeight] = React.useState(window.innerHeight);
-  const [childData, setChildData] = React.useState({});
+  const [childpos, setChildpos] = React.useState([]);
   const [totalHeight, setTotalHeight] = React.useState(0);
 
   React.useEffect(() => {
-    const heightArr = [];
+    const childPosition = [];
 
     const getEl = children.map((e, index) => {
       return {
@@ -25,7 +25,7 @@ const CaseWrapper = ({ children }) => {
     });
 
     const totalHeight = getEl.reduce((acc, v) => {
-      heightArr.push(acc + v.height);
+      childPosition.push(acc + v.height);
       return acc + v.height;
     }, 0);
 
@@ -34,9 +34,7 @@ const CaseWrapper = ({ children }) => {
       setBrowserHeight(window.innerHeight);
     }, 100);
 
-    setChildData({
-      heightArr: heightArr,
-    });
+    setChildpos(childPosition);
 
     window.addEventListener("resize", handleResize, { passive: true });
     window.addEventListener("load", handleResize, { passive: true });
@@ -54,7 +52,7 @@ const CaseWrapper = ({ children }) => {
     >
       <CaseWrapperContext.Provider
         value={{
-          childData: childData,
+          childpos,
           browserHeight: browserHeight,
         }}
       >

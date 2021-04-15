@@ -17,20 +17,27 @@ import { useResponsiveValue } from "@theme-ui/match-media";
 export const Case = React.forwardRef((props, ref) => {
   const [childHeight, setChildHeight] = React.useState(0);
   const [inview, setInview] = React.useState(0);
-  const { childData, browserHeight } = useCaseWrapperContext();
+  const { childpos, browserHeight } = useCaseWrapperContext();
 
   React.useEffect(() => {
     setChildHeight(ref.current.getBoundingClientRect().height);
   }, [ref]);
 
+  console.log(childpos);
+
   const zeroToOne = useMotionValue(0);
-  const childpos = childData?.heightArr || [];
 
   useScrollPosition(({ currPos }) => {
-    const ratio = childpos.map((v) => {
-      return transform(currPos.y + v - browserHeight, [childHeight, 0], [0, 1]);
-    });
-    zeroToOne.set(ratio[props.index]);
+    if (childpos || []) {
+      const ratio = childpos.map((v) => {
+        return transform(
+          currPos.y + v - browserHeight,
+          [childHeight, 0],
+          [0, 1]
+        );
+      });
+      zeroToOne.set(ratio[props.index]);
+    }
   });
 
   // scrollY.onChange((scrollYValue) => {
@@ -75,7 +82,7 @@ export const Case = React.forwardRef((props, ref) => {
     !inview &&
       window.scrollTo(
         0,
-        staggeredOffset + childData?.heightArr[props.index] - childHeight + 1
+        staggeredOffset + childpos[props.index] - childHeight + 1
       );
   };
 

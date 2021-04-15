@@ -88,6 +88,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
       <motion.div
         sx={{
+          boxShadow: "0 -10px 0 0 inset #000",
           backgroundColor: data?.bg,
           width: "100%",
           transition: "height .3s cubic-bezier(0,.2,0,.96)",

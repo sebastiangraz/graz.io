@@ -42,7 +42,7 @@ const CaseWrapper = ({ children }) => {
       window.removeEventListener("resize", handleResize, { passive: true });
       window.removeEventListener("load", handleResize, { passive: true });
     };
-  }, [totalHeight, children]);
+  }, [children]);
 
   return (
     <motion.div

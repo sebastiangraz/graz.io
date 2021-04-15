@@ -17,16 +17,13 @@ const CaseWrapper = ({ children }) => {
   React.useEffect(() => {
     const childPosition = [];
 
-    const getEl = children.map((e, index) => {
-      return {
-        index: index,
-        height: e && e.ref.current.getBoundingClientRect().height,
-      };
-    });
+    const getEl = children.map(
+      (e) => e && e.ref.current.getBoundingClientRect().height
+    );
 
     const totalHeight = getEl.reduce((acc, v) => {
-      childPosition.push(acc + v.height);
-      return acc + v.height;
+      childPosition.push(acc + v);
+      return acc + v;
     }, 0);
 
     const handleResize = debounce(() => {

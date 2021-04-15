@@ -26,10 +26,10 @@ export const Case = React.forwardRef((props, ref) => {
   const childpos = childData?.heightArr || [];
 
   useScrollPosition(({ currPos }) => {
-    const pixelpos = childpos.map((v) => {
+    const ratioPos = childpos.map((v) => {
       return transform(currPos.y + v - browserHeight, [childHeight, 0], [0, 1]);
     });
-    ratio.set(pixelpos[props.index]);
+    ratio.set(ratioPos[props.index]);
   });
 
   // scrollY.onChange((scrollYValue) => {

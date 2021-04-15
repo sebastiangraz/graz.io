@@ -18,18 +18,18 @@ export const Case = React.forwardRef((props, ref) => {
   const [childHeight, setChildHeight] = React.useState(0);
   const [inview, setInview] = React.useState(0);
   const { childData, browserHeight } = useCaseWrapperContext();
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     setChildHeight(ref.current.getBoundingClientRect().height);
   }, [ref]);
 
-  const pixel = useMotionValue(0);
+  const ratio = useMotionValue(0);
   const childpos = childData?.heightArr || [];
 
   useScrollPosition(({ currPos }) => {
     const pixelpos = childpos.map((v) => {
       return transform(currPos.y + v - browserHeight, [childHeight, 0], [0, 1]);
     });
-    pixel.set(pixelpos[props.index]);
+    ratio.set(pixelpos[props.index]);
   });
 
   // scrollY.onChange((scrollYValue) => {
@@ -46,7 +46,7 @@ export const Case = React.forwardRef((props, ref) => {
   // });
 
   const y = useSpring(
-    useTransform(pixel, [0, 1], [browserHeight, -childHeight + browserHeight]),
+    useTransform(ratio, [0, 1], [browserHeight, -childHeight + browserHeight]),
     {
       damping: 10,
       mass: 0.1,
@@ -54,7 +54,7 @@ export const Case = React.forwardRef((props, ref) => {
   );
 
   React.useEffect(() => {
-    pixel.onChange((v) => {
+    ratio.onChange((v) => {
       const sensitivity = 0.005;
       const isInview =
         v > 0 + sensitivity && v < 1 - sensitivity ? true : false;

@@ -15,17 +15,13 @@ import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
 export const Case = React.forwardRef(({ index, data }, ref) => {
-  const [childHeight, setChildHeight] = React.useState(0);
   const [inview, setInview] = React.useState(0);
-  const { childpos, browserHeight } = useCaseWrapperContext();
+  let { childHeight, childpos, browserHeight } = useCaseWrapperContext();
   const zeroToOne = useMotionValue(0);
-
-  React.useEffect(() => {
-    setChildHeight(ref.current.getBoundingClientRect().height);
-  }, [ref]);
+  childHeight = childHeight[index];
 
   useScrollPosition(({ currPos }) => {
-    const ratio = childpos.map((v) => {
+    const ratio = childpos.map((v, i) => {
       return transform(currPos.y + v - browserHeight, [childHeight, 0], [0, 1]);
     });
     zeroToOne.set(ratio[index]);

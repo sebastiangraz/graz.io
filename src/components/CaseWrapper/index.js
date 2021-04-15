@@ -10,18 +10,21 @@ const CaseWrapperContext = React.createContext(null);
 const useCaseWrapperContext = () => React.useContext(CaseWrapperContext);
 
 const CaseWrapper = ({ children }) => {
-  const [browserHeight, setBrowserHeight] = React.useState(window.innerHeight);
+  const [browserHeight, setBrowserHeight] = React.useState(0);
   const [childpos, setChildpos] = React.useState([]);
+  const [childHeight, setChildHeight] = React.useState([]);
   const [totalHeight, setTotalHeight] = React.useState(0);
 
   React.useEffect(() => {
     const childPosition = [];
+    const childHeight = [];
 
     const getEl = children.map(
       (e) => e && e.ref.current.getBoundingClientRect().height
     );
 
     const totalHeight = getEl.reduce((acc, v) => {
+      childHeight.push(v);
       childPosition.push(acc + v);
       return acc + v;
     }, 0);
@@ -32,6 +35,7 @@ const CaseWrapper = ({ children }) => {
     }, 100);
 
     setChildpos(childPosition);
+    setChildHeight(childHeight);
 
     window.addEventListener("resize", handleResize, { passive: true });
     window.addEventListener("load", handleResize, { passive: true });
@@ -39,7 +43,7 @@ const CaseWrapper = ({ children }) => {
       window.removeEventListener("resize", handleResize, { passive: true });
       window.removeEventListener("load", handleResize, { passive: true });
     };
-  }, [children]);
+  }, [children, totalHeight]);
 
   return (
     <motion.div
@@ -50,7 +54,8 @@ const CaseWrapper = ({ children }) => {
       <CaseWrapperContext.Provider
         value={{
           childpos,
-          browserHeight: browserHeight,
+          childHeight,
+          browserHeight,
         }}
       >
         {children}

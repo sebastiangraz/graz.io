@@ -14,8 +14,7 @@ import { useScrollPosition } from "../../hooks/useScrollPosition";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
-export const Case = React.forwardRef((props, ref) => {
-  const { index, data } = props;
+export const Case = React.forwardRef(({ index, data }, ref) => {
   const [childHeight, setChildHeight] = React.useState(0);
   const [inview, setInview] = React.useState(0);
   const { childpos, browserHeight } = useCaseWrapperContext();

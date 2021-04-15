@@ -14,7 +14,7 @@ const CaseWrapper = ({ children }) => {
   const [childData, setChildData] = React.useState({});
   const [totalHeight, setTotalHeight] = React.useState(0);
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     const heightArr = [];
 
     const getEl = children.map((e, index) => {
@@ -46,24 +46,21 @@ const CaseWrapper = ({ children }) => {
     };
   }, [totalHeight, children]);
 
-  return React.useMemo(
-    () => (
-      <motion.div
-        style={{
-          height: totalHeight,
+  return (
+    <motion.div
+      style={{
+        height: totalHeight,
+      }}
+    >
+      <CaseWrapperContext.Provider
+        value={{
+          childData: childData,
+          browserHeight: browserHeight,
         }}
       >
-        <CaseWrapperContext.Provider
-          value={{
-            childData: childData,
-            browserHeight: browserHeight,
-          }}
-        >
-          {children}
-        </CaseWrapperContext.Provider>
-      </motion.div>
-    ),
-    [browserHeight, childData, children, totalHeight]
+        {children}
+      </CaseWrapperContext.Provider>
+    </motion.div>
   );
 };
 

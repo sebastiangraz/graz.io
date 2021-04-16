@@ -63,7 +63,13 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     <motion.div
       ref={ref}
       onClick={handleClick}
-      initial={{ y: 0 }}
+      initial={
+        data.hideCaseHero || false ? { opacity: 1, y: 0 } : { opacity: 0, y: 0 }
+      }
+      animate={{
+        opacity: 1,
+        transition: { delay: 1, duration: 1 },
+      }}
       style={{
         y: data.hideCaseHero || false ? 0 : y,
       }}

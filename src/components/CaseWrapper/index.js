@@ -12,7 +12,7 @@ const CaseWrapper = ({ children }) => {
       childpos: [],
       childHeight: [],
       totalHeight: 0,
-      browserHeight: 0,
+      browserHeight: window.innerHeight,
     }
   );
 
@@ -49,7 +49,7 @@ const CaseWrapper = ({ children }) => {
       window.removeEventListener("load", handleResize, { passive: true });
     };
   }, [children, state.browserHeight]);
-
+  console.log({ ...state });
   return (
     <motion.div
       style={{

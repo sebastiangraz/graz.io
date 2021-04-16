@@ -6,10 +6,10 @@ const CaseWrapperContext = React.createContext(null);
 const useCaseWrapperContext = () => React.useContext(CaseWrapperContext);
 
 const CaseWrapper = ({ children }) => {
-  const [browserHeight, setBrowserHeight] = React.useState(0);
-  const [childpos, setChildpos] = React.useState([]);
-  const [childHeight, setChildHeight] = React.useState([]);
-  const [totalHeight, setTotalHeight] = React.useState(0);
+  const [state, setState] = React.useReducer(
+    (state, newState) => ({ ...state, ...newState }),
+    { childpos: [], childHeight: [], totalHeight: 0, browserHeight: 0 }
+  );
 
   React.useEffect(() => {
     const childPosition = [];
@@ -19,19 +19,23 @@ const CaseWrapper = ({ children }) => {
       (e) => e && e.ref.current.getBoundingClientRect().height
     );
 
-    const totalHeight = getEl.reduce((acc, v) => {
+    const totalHeightVar = getEl.reduce((acc, v) => {
       childHeight.push(v);
       childPosition.push(acc + v);
       return acc + v;
     }, 0);
 
-    const handleResize = debounce(() => {
-      setTotalHeight(totalHeight);
-      setBrowserHeight(window.innerHeight);
-    }, 100);
+    setState({
+      childpos: childPosition,
+      childHeight: childHeight,
+      totalHeight: totalHeightVar,
+    });
 
-    setChildpos(childPosition);
-    setChildHeight(childHeight);
+    const handleResize = debounce(() => {
+      setState({
+        browserHeight: window.innerHeight,
+      });
+    }, 100);
 
     window.addEventListener("resize", handleResize, { passive: true });
     window.addEventListener("load", handleResize, { passive: true });
@@ -39,18 +43,17 @@ const CaseWrapper = ({ children }) => {
       window.removeEventListener("resize", handleResize, { passive: true });
       window.removeEventListener("load", handleResize, { passive: true });
     };
-  }, [children, totalHeight]);
+  }, [children, state.browserHeight]);
 
+  console.log(state.totalHeight);
   const contextValues = {
-    childpos,
-    childHeight,
-    browserHeight,
+    ...state,
   };
 
   return (
     <motion.div
       style={{
-        height: totalHeight,
+        height: state.totalHeight,
       }}
     >
       <CaseWrapperContext.Provider value={contextValues}>

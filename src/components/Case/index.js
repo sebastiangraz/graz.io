@@ -121,7 +121,9 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           }}
         />
       </motion.div>
-      <Render />
+      <div sx={{ mt: data.hideCaseHero || false ? 0 : staggeredOffset + 300 }}>
+        <Render />
+      </div>
     </motion.div>
   );
 });

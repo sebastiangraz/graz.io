@@ -9,10 +9,15 @@ const ignoreUpdatedProps = () => true;
 
 export const CaseHero = React.memo(({ offset, text, id = uuid(), ...rest }) => {
   return (
-    <svg {...rest} height="300" preserveAspectRatio="xMinYMin meet">
+    <svg
+      {...rest}
+      height="300"
+      width="100%"
+      preserveAspectRatio="xMinYMin meet"
+    >
       <defs>
         <mask id={`${"sample-" + id}`}>
-          <rect width="100%" height="100%" fill="white"></rect>
+          <rect width="100vw" height="100%" fill="white"></rect>
 
           <text
             dominantBaseline="hanging"

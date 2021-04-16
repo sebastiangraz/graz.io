@@ -20,8 +20,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const zeroToOne = useMotionValue(0);
   childHeight = childHeight[index];
 
-  console.log(browserHeight);
-
   useScrollPosition(({ currPos }) => {
     const ratio = childpos.map((v, i) => {
       return transform(currPos.y + v - browserHeight, [childHeight, 0], [0, 1]);

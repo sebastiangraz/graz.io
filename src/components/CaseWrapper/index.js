@@ -6,9 +6,14 @@ const CaseWrapperContext = React.createContext(null);
 const useCaseWrapperContext = () => React.useContext(CaseWrapperContext);
 
 const CaseWrapper = ({ children }) => {
-  const [state, setState] = React.useReducer(
+  const [state, setCase] = React.useReducer(
     (state, newState) => ({ ...state, ...newState }),
-    { childpos: [], childHeight: [], totalHeight: 0, browserHeight: 0 }
+    {
+      childpos: [],
+      childHeight: [],
+      totalHeight: 0,
+      browserHeight: 0,
+    }
   );
 
   React.useEffect(() => {
@@ -25,14 +30,14 @@ const CaseWrapper = ({ children }) => {
       return acc + v;
     }, 0);
 
-    setState({
+    setCase({
       childpos: childPosition,
       childHeight: childHeight,
       totalHeight: totalHeightVar,
     });
 
     const handleResize = debounce(() => {
-      setState({
+      setCase({
         browserHeight: window.innerHeight,
       });
     }, 100);

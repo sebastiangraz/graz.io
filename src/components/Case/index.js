@@ -98,9 +98,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           left: 0,
         }}
       >
-        <div sx={{ position: "absolute", top: -300, left: 0, zIndex: 10 }}>
-          {childHeight === 6869.6875 ? "wrong" : childHeight}
-        </div>
         <CaseHero
           offset={offset}
           text={data?.name}

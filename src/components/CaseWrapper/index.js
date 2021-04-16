@@ -1,6 +1,6 @@
 import React from "react";
 import { debounce } from "lodash";
-import { motion } from "framer-motion";
+import { LazyMotion, domAnimation } from "framer-motion";
 
 const CaseWrapperContext = React.createContext(null);
 const useCaseWrapperContext = () => React.useContext(CaseWrapperContext);
@@ -48,17 +48,19 @@ const CaseWrapper = ({ children }) => {
       window.removeEventListener("resize", handleResize, { passive: true });
       window.removeEventListener("load", handleResize, { passive: true });
     };
-  }, [children, state.browserHeight]);
+  }, [children]);
   return (
-    <motion.div
-      style={{
-        height: state.totalHeight,
-      }}
-    >
-      <CaseWrapperContext.Provider value={state}>
-        {children}
-      </CaseWrapperContext.Provider>
-    </motion.div>
+    <LazyMotion features={domAnimation} strict>
+      <div
+        style={{
+          height: state.totalHeight,
+        }}
+      >
+        <CaseWrapperContext.Provider value={state}>
+          {children}
+        </CaseWrapperContext.Provider>
+      </div>
+    </LazyMotion>
   );
 };
 

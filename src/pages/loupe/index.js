@@ -4,7 +4,7 @@
 import { jsx, Flex, Text, Box } from "theme-ui";
 import * as React from "react";
 import { Video, Img, GridParent } from "../../components";
-import { Logo } from "./Logo";
+// import { Logo } from "./Logo";
 import { videos, images } from "./assets";
 
 const colors = {
@@ -191,9 +191,7 @@ const Sections = {
               gridColumn: ["1 / span 8", "1 / span 3"],
             }}
           >
-            <div sx={{ height: "100%" }}>
-              <Logo></Logo>
-            </div>
+            <div sx={{ height: "100%" }}>{/* <Logo></Logo> */}</div>
           </Box>
           <Box
             sx={{

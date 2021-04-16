@@ -4,7 +4,7 @@
 import { jsx } from "theme-ui";
 import React from "react";
 import {
-  motion,
+  m,
   useSpring,
   useMotionValue,
   useTransform,
@@ -60,7 +60,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const Render = data.component;
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       onClick={handleClick}
       initial={
@@ -80,6 +80,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         color: data?.color,
         zIndex: index,
         right: 0,
+        height: childHeight,
         width:
           data.hideCaseHero || false
             ? "100%"
@@ -88,7 +89,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     >
       {console.log("render child :(")}
 
-      <motion.div
+      <div
         sx={{
           boxShadow: "0 -10px 0 0 inset #000",
           backgroundColor: data?.bg,
@@ -120,10 +121,14 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
             color: data?.bg,
           }}
         />
-      </motion.div>
-      <div sx={{ mt: data.hideCaseHero || false ? 0 : staggeredOffset + 300 }}>
+      </div>
+      <div
+        sx={{
+          mt: data.hideCaseHero || false ? 0 : staggeredOffset + 300,
+        }}
+      >
         <Render />
       </div>
-    </motion.div>
+    </m.div>
   );
 });

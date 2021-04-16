@@ -4,7 +4,7 @@ import { jsx } from "theme-ui";
 import { useRef, useEffect } from "react";
 import * as React from "react";
 import { useInView } from "react-intersection-observer";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 
 export const Video = ({ videoData, ...rest }) => {
   const shouldReduceMotion = useReducedMotion();
@@ -87,7 +87,7 @@ export const Video = ({ videoData, ...rest }) => {
           <path d="M 0 0 L 0 11 L 11 5.5 Z" fill="currentColor"></path>
         </svg>
       </div>
-      <motion.video
+      <m.video
         sx={{
           position: "absolute",
           top: 0,

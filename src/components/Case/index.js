@@ -103,12 +103,12 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           text={data?.name}
           style={{
             position: "absolute",
-            top: -299,
+            top: -300,
             display: data.hideCaseHero || false ? "none" : "block",
             textTransform: "uppercase",
             fontWeight: 600,
             width: "100%",
-            height: "max-content",
+            height: 300,
             letterSpacing: "-0.075em",
             fontSize: "min(12vw, 140px)",
             color: data?.bg,

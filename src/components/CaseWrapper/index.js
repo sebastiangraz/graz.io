@@ -45,18 +45,13 @@ const CaseWrapper = ({ children }) => {
     };
   }, [children, state.browserHeight]);
 
-  console.log(state.totalHeight);
-  const contextValues = {
-    ...state,
-  };
-
   return (
     <motion.div
       style={{
         height: state.totalHeight,
       }}
     >
-      <CaseWrapperContext.Provider value={contextValues}>
+      <CaseWrapperContext.Provider value={{ ...state }}>
         {children}
       </CaseWrapperContext.Provider>
     </motion.div>

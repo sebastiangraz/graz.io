@@ -55,7 +55,7 @@ const CaseWrapper = ({ children }) => {
         height: state.totalHeight,
       }}
     >
-      <CaseWrapperContext.Provider value={{ ...state }}>
+      <CaseWrapperContext.Provider value={state}>
         {children}
       </CaseWrapperContext.Provider>
     </motion.div>

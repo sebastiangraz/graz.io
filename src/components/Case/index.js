@@ -9,28 +9,25 @@ import {
   useMotionValue,
   useTransform,
   transform,
+  useViewportScroll,
 } from "framer-motion";
-import { useScrollPosition } from "../../hooks/useScrollPosition";
+// import { useScrollPosition } from "../../hooks/useScrollPosition";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
 export const Case = React.forwardRef(({ index, data }, ref) => {
+  const { scrollY, scrollYProgress } = useViewportScroll();
   const [inview, setInview] = React.useState(0);
   let { childHeight, childpos, browserHeight } = useCaseWrapperContext();
   const zeroToOne = useMotionValue(0);
   childHeight = childHeight[index];
 
-  useScrollPosition(({ currPos }) => {
-    const ratio = childpos.map((v, i) => {
-      return transform(currPos.y + v - browserHeight, [childHeight, 0], [0, 1]);
-    });
-    zeroToOne.set(ratio[index]);
-  });
+  const distance = useMotionValue(0);
 
   const y = useSpring(
     useTransform(
-      zeroToOne,
-      [0, 1],
+      distance,
+      [0, childHeight],
       [browserHeight, -childHeight + browserHeight]
     ),
     {
@@ -40,12 +37,18 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   );
 
   React.useEffect(() => {
-    zeroToOne.onChange((v) => {
-      const sensitivity = 0.005;
-      const isInview =
-        v > 0 + sensitivity && v < 1 - sensitivity ? true : false;
-      setInview(isInview);
+    scrollY.onChange((v) => {
+      distance.set(v + browserHeight - childpos[index] + childHeight);
     });
+  });
+
+  React.useEffect(() => {
+    // zeroToOne.onChange((v) => {
+    //   const sensitivity = 0.005;
+    //   const isInview =
+    //     v > 0 + sensitivity && v < 1 - sensitivity ? true : false;
+    //   setInview(isInview);
+    // });
   });
 
   let offset = useResponsiveValue([32, 60, 80, 120]);
@@ -91,7 +94,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
       <div
         sx={{
-          boxShadow: "0 -10px 0 0 inset #000",
+          borderBottom: "10px solid",
           backgroundColor: data?.bg,
           width: "100%",
           transition: "height .3s cubic-bezier(0,.2,0,.96)",

@@ -16,14 +16,7 @@ const CaseWrapper = ({ children }) => {
     }
   );
 
-  // const observer = new PerformanceObserver((list) => {
-  //   console.log("Long Task detected! 🚩️");
-  //   const entries = list.getEntries();
-  //   console.log(entries);
-  // });
-
   React.useEffect(() => {
-    // observer.observe({ entryTypes: ["longtask"] });
     const childPosition = [];
     const childHeight = [];
 

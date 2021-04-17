@@ -22,25 +22,21 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const zeroToOne = useMotionValue(0);
   childHeight = childHeight[index];
 
-  const distance = useMotionValue(0);
+  const distance = useMotionValue(scrollY.get());
+
+  React.useEffect(() => {
+    scrollY.onChange((v) => {
+      distance.set(v - childpos[index] + childHeight);
+    });
+  }, [distance, childHeight, childpos, index, scrollY]);
 
   const y = useSpring(
-    useTransform(
-      distance,
-      [0, childHeight],
-      [browserHeight, -childHeight + browserHeight]
-    ),
+    useTransform(distance, [0, childHeight], [0, -childHeight]),
     {
       damping: 10,
       mass: 0.1,
     }
   );
-
-  React.useEffect(() => {
-    scrollY.onChange((v) => {
-      distance.set(v + browserHeight - childpos[index] + childHeight);
-    });
-  });
 
   React.useEffect(() => {
     // zeroToOne.onChange((v) => {
@@ -67,23 +63,23 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
       ref={ref}
       onClick={handleClick}
       initial={
-        data.hideCaseHero || false ? { opacity: 1, y: 0 } : { opacity: 0, y: 0 }
+        data.hideCaseHero || false ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }
       }
-      animate={{
-        opacity: 1,
-        transition: { delay: 1, duration: 1 },
-      }}
+      // animate={{
+      //   opacity: 1,
+      //   transition: { delay: 1, duration: 1 },
+      // }}
       style={{
         y: data.hideCaseHero || false ? 0 : y,
       }}
       sx={{
-        top: 0,
+        top: data.hideCaseHero || false ? 0 : "100vh",
         position: "fixed",
         willChange: "transform",
         color: data?.color,
         zIndex: index,
         right: 0,
-        height: childHeight,
+        // height: childHeight,
         width:
           data.hideCaseHero || false
             ? "100%"

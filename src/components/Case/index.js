@@ -31,8 +31,8 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
       [browserHeight, -childHeight + browserHeight]
     ),
     {
-      damping: 10,
-      mass: 0.1,
+      damping: 7,
+      mass: 0.05,
     }
   );
 

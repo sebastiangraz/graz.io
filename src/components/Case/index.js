@@ -3,7 +3,13 @@
 
 import { jsx } from "theme-ui";
 import React from "react";
-import { m, useSpring, useMotionValue, useTransform } from "framer-motion";
+import {
+  m,
+  useSpring,
+  useMotionValue,
+  useTransform,
+  transform,
+} from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
@@ -28,18 +34,25 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     useTransform(
       scrollProgress,
       (v) =>
-        // clamp(
-        //   -(v - childpos[index] + childHeight),
-        //   -childHeight + browserHeight,
-        //   childHeight
-        // )
-        -(v - childpos[index] + childHeight)
+        clamp(
+          -(v - childpos[index] + childHeight),
+          -childHeight + browserHeight,
+          childHeight
+        ) -
+        (v - childpos[index] + childHeight)
     ),
     {
       damping: 7,
       mass: 0.07,
     }
   );
+
+  // const transformArray = transform(
+  //   -(scrollProgress.get() - childpos[index] + childHeight),
+  //   [0, -childHeight],
+  //   [0, 1]
+  // );
+  // console.log(transformArray);
 
   // React.useEffect(() => {
   //   scrollProgress.onChange((v) => {
@@ -94,7 +107,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
       <div
         sx={{
-          opacity: 0.9,
           borderBottom: "10px solid",
           backgroundColor: data?.bg,
           width: "100%",

@@ -19,12 +19,13 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   childHeight = childHeight[index];
 
   const distance = useMotionValue(0);
+  const childposition = childpos[index] || 0 ? childpos[index] : 0;
 
   const y = useSpring(
     useTransform(
-      distance,
+      scrollProgress,
       [0, childHeight],
-      [browserHeight, -childHeight + browserHeight]
+      [childposition, -childHeight + browserHeight]
     ),
     {
       damping: 7,
@@ -32,11 +33,11 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     }
   );
 
-  React.useEffect(() => {
-    scrollProgress.onChange((v) => {
-      distance.set(v + browserHeight - childpos[index] + childHeight);
-    });
-  });
+  // React.useEffect(() => {
+  //   scrollProgress.onChange((v) => {
+  //     distance.set(v + browserHeight - childpos[index] + childHeight);
+  //   });
+  // });
 
   React.useEffect(() => {
     // zeroToOne.onChange((v) => {
@@ -68,6 +69,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         transition: { delay: 1, duration: 1 },
       }}
       style={{
+        height: childHeight,
         y: isHome ? 0 : y,
       }}
       sx={{
@@ -77,7 +79,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         color: data?.color,
         zIndex: index,
         right: 0,
-        height: childHeight,
         width: isHome
           ? "100%"
           : `calc(${100 - (childpos.length - 1) * 10}% + ${index * 10}%)`,
@@ -87,6 +88,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
       <div
         sx={{
+          opacity: 0.9,
           borderBottom: "10px solid",
           backgroundColor: data?.bg,
           width: "100%",

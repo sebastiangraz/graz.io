@@ -4,17 +4,6 @@ import { CaseWrapper, Case, Home } from "../components";
 import "../base.css";
 export let cases = new Map([
   [
-    "home",
-    {
-      name: "home",
-      slug: "home",
-      component: Home,
-      bg: "#FAF7EE",
-      color: "#000",
-      hideCaseHero: true,
-    },
-  ],
-  [
     "loupe",
     {
       name: "Loupe",

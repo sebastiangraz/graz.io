@@ -66,15 +66,13 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     <m.div
       ref={ref}
       onClick={handleClick}
-      initial={
-        data.hideCaseHero || false ? { opacity: 1, y: 0 } : { opacity: 0, y: 0 }
-      }
+      initial={{ opacity: 0, y: 0 }}
       animate={{
         opacity: 1,
         transition: { delay: 1, duration: 1 },
       }}
       style={{
-        y: data.hideCaseHero || false ? 0 : y,
+        y,
       }}
       sx={{
         top: 0,
@@ -84,10 +82,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         zIndex: index,
         right: 0,
         height: childHeight,
-        width:
-          data.hideCaseHero || false
-            ? "100%"
-            : `calc(${100 - (childpos.length - 1) * 10}% + ${index * 10}%)`,
+        width: `calc(${100 - (childpos.length - 1) * 10}% + ${index * 10}%)`,
       }}
     >
       {console.log("render child :(")}
@@ -98,10 +93,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           backgroundColor: data?.bg,
           width: "100%",
           transition: "height .3s cubic-bezier(0,.2,0,.96)",
-          height:
-            data.hideCaseHero || false
-              ? `100%`
-              : `calc(100% + ${-staggeredOffset - 300}px)`,
+          height: `calc(100% + ${-staggeredOffset - 300}px)`,
           zIndex: -1,
           position: "absolute",
           bottom: 0,
@@ -114,7 +106,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           style={{
             position: "absolute",
             top: -299,
-            display: data.hideCaseHero || false ? "none" : "block",
+            display: "block",
             textTransform: "uppercase",
             fontWeight: 600,
             width: "100%",
@@ -127,7 +119,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
       </div>
       <div
         sx={{
-          mt: data.hideCaseHero || false ? 0 : staggeredOffset + 300,
+          mt: staggeredOffset + 300,
         }}
       >
         <Render />

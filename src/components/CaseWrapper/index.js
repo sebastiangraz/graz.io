@@ -1,11 +1,17 @@
 import React from "react";
 import { debounce } from "lodash";
-import { LazyMotion, domAnimation } from "framer-motion";
+import {
+  LazyMotion,
+  domAnimation,
+  useViewportScroll,
+  useMotionValue,
+} from "framer-motion";
 
 const CaseWrapperContext = React.createContext(null);
 const useCaseWrapperContext = () => React.useContext(CaseWrapperContext);
 
 const CaseWrapper = ({ children }) => {
+  const { scrollY } = useViewportScroll();
   const [state, setCase] = React.useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
@@ -13,17 +19,11 @@ const CaseWrapper = ({ children }) => {
       childHeight: [],
       totalHeight: 0,
       browserHeight: 0,
+      scrollProgress: useMotionValue(0),
     }
   );
 
-  // const observer = new PerformanceObserver((list) => {
-  //   console.log("Long Task detected! 🚩️");
-  //   const entries = list.getEntries();
-  //   console.log(entries);
-  // });
-
   React.useEffect(() => {
-    // observer.observe({ entryTypes: ["longtask"] });
     const childPosition = [];
     const childHeight = [];
 
@@ -41,6 +41,7 @@ const CaseWrapper = ({ children }) => {
       childpos: childPosition,
       childHeight: childHeight,
       totalHeight: totalHeightVar,
+      scrollProgress: scrollY,
     });
 
     const handleResize = debounce(() => {
@@ -55,7 +56,7 @@ const CaseWrapper = ({ children }) => {
       window.removeEventListener("resize", handleResize, { passive: true });
       window.removeEventListener("load", handleResize, { passive: true });
     };
-  }, [children]);
+  }, [children, scrollY]);
   return (
     <LazyMotion features={domAnimation} strict>
       <div

@@ -3,22 +3,19 @@
 
 import { jsx } from "theme-ui";
 import React from "react";
-import {
-  m,
-  useSpring,
-  useMotionValue,
-  useTransform,
-  transform,
-  useViewportScroll,
-} from "framer-motion";
+import { m, useSpring, useMotionValue, useTransform } from "framer-motion";
 // import { useScrollPosition } from "../../hooks/useScrollPosition";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
 export const Case = React.forwardRef(({ index, data }, ref) => {
-  const { scrollY, scrollYProgress } = useViewportScroll();
   const [inview, setInview] = React.useState(0);
-  let { childHeight, childpos, browserHeight } = useCaseWrapperContext();
+  let {
+    childHeight,
+    childpos,
+    browserHeight,
+    scrollProgress,
+  } = useCaseWrapperContext();
   const zeroToOne = useMotionValue(0);
   childHeight = childHeight[index];
 
@@ -31,13 +28,13 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
       [browserHeight, -childHeight + browserHeight]
     ),
     {
-      damping: 10,
-      mass: 0.1,
+      damping: 7,
+      mass: 0.07,
     }
   );
 
   React.useEffect(() => {
-    scrollY.onChange((v) => {
+    scrollProgress.onChange((v) => {
       distance.set(v + browserHeight - childpos[index] + childHeight);
     });
   });

@@ -4,7 +4,6 @@
 import { jsx } from "theme-ui";
 import React from "react";
 import { m, useSpring, useMotionValue, useTransform } from "framer-motion";
-// import { useScrollPosition } from "../../hooks/useScrollPosition";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 

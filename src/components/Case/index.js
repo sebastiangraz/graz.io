@@ -22,8 +22,19 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const distance = useMotionValue(0);
   const childposition = childpos[index] || 0 ? childpos[index] : 0;
 
+  const clamp = (num, clamp, higher) => Math.min(Math.max(num, clamp), higher);
+
   const y = useSpring(
-    useTransform(scrollProgress, (v) => -(v - childpos[index] + childHeight)),
+    useTransform(
+      scrollProgress,
+      (v) =>
+        // clamp(
+        //   -(v - childpos[index] + childHeight),
+        //   -childHeight + browserHeight,
+        //   childHeight
+        // )
+        -(v - childpos[index] + childHeight)
+    ),
     {
       damping: 7,
       mass: 0.07,

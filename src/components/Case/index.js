@@ -17,16 +17,13 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   } = useCaseWrapperContext();
   const zeroToOne = useMotionValue(0);
   childHeight = childHeight[index];
-
+  let offset = useResponsiveValue([32, 60, 80, 120]);
+  const staggeredOffset = -childpos.length * offset + index * offset;
   const distance = useMotionValue(0);
   const childposition = childpos[index] || 0 ? childpos[index] : 0;
 
   const y = useSpring(
-    useTransform(
-      scrollProgress,
-      [0, childHeight],
-      [childposition, -childHeight + browserHeight]
-    ),
+    useTransform(scrollProgress, (v) => -(v - childpos[index] + childHeight)),
     {
       damping: 7,
       mass: 0.07,
@@ -48,10 +45,8 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     // });
   });
 
-  let offset = useResponsiveValue([32, 60, 80, 120]);
   // offset = (offset / index) * 0.8;
 
-  const staggeredOffset = -childpos.length * offset + index * offset;
   const handleClick = () => {
     !inview &&
       window.scrollTo(0, staggeredOffset + childpos[index] - childHeight + 1);
@@ -93,7 +88,8 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           backgroundColor: data?.bg,
           width: "100%",
           transition: "height .3s cubic-bezier(0,.2,0,.96)",
-          height: isHome ? `100%` : `calc(100% + ${-staggeredOffset - 300}px)`,
+          height: isHome ? `100%` : `calc(100% + ${-300}px)`,
+          // height: isHome ? `100%` : `calc(100% + ${-staggeredOffset - 300}px)`,
           zIndex: -1,
           position: "absolute",
           bottom: 0,
@@ -118,9 +114,11 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         />
       </div>
       <div
-        sx={{
-          mt: isHome ? 0 : staggeredOffset + 300,
-        }}
+        sx={
+          {
+            // mt: isHome ? 0 : staggeredOffset + 300,
+          }
+        }
       >
         <Render />
       </div>

@@ -31,11 +31,13 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const clamp = ({ value, min, max }) => Math.max(Math.min(value, max), min);
 
   const scroll = (v) => {
-    return clamp({
+    let pixels = clamp({
       value: -(v - childpos[index] + childHeight),
       min: -childHeight + browserHeight,
       max: browserHeight,
     });
+
+    return pixels;
   };
 
   const y = useSpring(
@@ -46,13 +48,11 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     }
   );
 
-  // scrollProgress.onChange((v) => {
-  // transform(y.get(), [browserHeight, -childHeight + browserHeight], [0, 1]);
-  // const sensitivity = 0.005;
-  // const isInview =
-  //   v > 0 + sensitivity && v < 1 - sensitivity ? true : false;
-  // setInview(isInview);
-  // });
+  zeroToOne.onChange((v) => {
+    const sensitivity = 0.005;
+    const isInview = v > 0 + sensitivity && v < 1 - sensitivity ? true : false;
+    setInview(isInview);
+  });
 
   const handleClick = () => {
     !inview &&
@@ -104,7 +104,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         <CaseHero
           offset={offset}
           text={data?.name}
-          style={{
+          sx={{
             position: "absolute",
             top: -299,
             display: isHome ? "none" : "block",

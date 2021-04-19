@@ -18,34 +18,25 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const zeroToOne = useMotionValue(0);
   childHeight = childHeight[index];
   let offset = useResponsiveValue([32, 60, 80, 120]);
-  const staggeredOffset = -childpos.length * offset + index * offset;
-  const distance = useMotionValue(0);
-  const childposition = childpos[index] || 0 ? childpos[index] : 0;
+  // offset = (offset / index) * 0.8;
 
-  const clamp = (num, clamp, higher) => Math.min(Math.max(num, clamp), higher);
+  const staggeredOffset = -childpos.length * offset + index * offset;
+
+  const clamp = ({ v, min, max }) => Math.max(Math.min(v, max), min);
 
   const y = useSpring(
-    useTransform(
-      scrollProgress,
-      (v) =>
-        // clamp(
-        //   -(v - childpos[index] + childHeight),
-        //   -childHeight + browserHeight,
-        //   childHeight
-        // )
-        -(v - childpos[index] + childHeight)
+    useTransform(scrollProgress, (v) =>
+      clamp({
+        v: -(v - childpos[index] + childHeight),
+        min: -childHeight + browserHeight,
+        max: browserHeight,
+      })
     ),
     {
       damping: 7,
       mass: 0.07,
     }
   );
-
-  // React.useEffect(() => {
-  //   scrollProgress.onChange((v) => {
-  //     distance.set(v + browserHeight - childpos[index] + childHeight);
-  //   });
-  // });
 
   React.useEffect(() => {
     // zeroToOne.onChange((v) => {
@@ -55,8 +46,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     //   setInview(isInview);
     // });
   });
-
-  // offset = (offset / index) * 0.8;
 
   const handleClick = () => {
     !inview &&
@@ -94,13 +83,11 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
       <div
         sx={{
-          opacity: 0.9,
           borderBottom: "10px solid",
           backgroundColor: data?.bg,
           width: "100%",
           transition: "height .3s cubic-bezier(0,.2,0,.96)",
-          height: isHome ? `100%` : `calc(100% + ${-300}px)`,
-          // height: isHome ? `100%` : `calc(100% + ${-staggeredOffset - 300}px)`,
+          height: isHome ? `100%` : `calc(100% + ${-staggeredOffset - 300}px)`,
           zIndex: -1,
           position: "absolute",
           bottom: 0,
@@ -125,11 +112,9 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         />
       </div>
       <div
-        sx={
-          {
-            // mt: isHome ? 0 : staggeredOffset + 300,
-          }
-        }
+        sx={{
+          mt: isHome ? 0 : staggeredOffset + 300,
+        }}
       >
         <Render />
       </div>

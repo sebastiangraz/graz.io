@@ -3,7 +3,13 @@
 
 import { jsx } from "theme-ui";
 import React from "react";
-import { m, useSpring, useMotionValue, useTransform } from "framer-motion";
+import {
+  m,
+  useSpring,
+  useMotionValue,
+  useTransform,
+  transform,
+} from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
@@ -22,30 +28,31 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
   const staggeredOffset = -childpos.length * offset + index * offset;
 
-  const clamp = ({ v, min, max }) => Math.max(Math.min(v, max), min);
+  const clamp = ({ value, min, max }) => Math.max(Math.min(value, max), min);
+
+  const scroll = (v) => {
+    return clamp({
+      value: -(v - childpos[index] + childHeight),
+      min: -childHeight + browserHeight,
+      max: browserHeight,
+    });
+  };
 
   const y = useSpring(
-    useTransform(scrollProgress, (v) =>
-      clamp({
-        v: -(v - childpos[index] + childHeight),
-        min: -childHeight + browserHeight,
-        max: browserHeight,
-      })
-    ),
+    useTransform(scrollProgress, (v) => scroll(v)),
     {
       damping: 7,
       mass: 0.07,
     }
   );
 
-  React.useEffect(() => {
-    // zeroToOne.onChange((v) => {
-    //   const sensitivity = 0.005;
-    //   const isInview =
-    //     v > 0 + sensitivity && v < 1 - sensitivity ? true : false;
-    //   setInview(isInview);
-    // });
-  });
+  // scrollProgress.onChange((v) => {
+  // transform(y.get(), [browserHeight, -childHeight + browserHeight], [0, 1]);
+  // const sensitivity = 0.005;
+  // const isInview =
+  //   v > 0 + sensitivity && v < 1 - sensitivity ? true : false;
+  // setInview(isInview);
+  // });
 
   const handleClick = () => {
     !inview &&

@@ -3,13 +3,7 @@
 
 import { jsx } from "theme-ui";
 import React from "react";
-import {
-  m,
-  useSpring,
-  useMotionValue,
-  useTransform,
-  transform,
-} from "framer-motion";
+import { m, useSpring, useMotionValue, useTransform } from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
@@ -75,7 +69,10 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         y: isHome ? 0 : y,
       }}
       sx={{
-        top: 0,
+        top: "0",
+        "&:first-child": {
+          top: "100vh",
+        },
         position: "fixed",
         willChange: "transform",
         color: data?.color,

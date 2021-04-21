@@ -25,6 +25,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const clamp = ({ value, min, max }) => Math.max(Math.min(value, max), min);
 
   const scroll = (v) => {
+    //value: how far we scrolled from 0..1 in the browser
     let pixels = clamp({
       value: -(v - childpos[index] + childHeight),
       min: -childHeight + browserHeight,
@@ -49,8 +50,13 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   });
 
   const handleClick = () => {
-    !inview &&
-      window.scrollTo(0, staggeredOffset + childpos[index] - childHeight + 1);
+    //Checks if its first item in list and apply browserHeight to comp
+    index === 0
+      ? window.scrollTo(
+          0,
+          browserHeight + staggeredOffset + childpos[index] - childHeight + 1
+        )
+      : window.scrollTo(0, staggeredOffset + childpos[index] - childHeight + 1);
   };
 
   const Render = data.component;

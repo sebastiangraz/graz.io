@@ -60,19 +60,19 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   };
 
   const Render = data.component;
-  const isHome = data.hideCaseHero || false;
+
   return (
     <m.div
       ref={ref}
       onClick={handleClick}
-      initial={isHome ? { opacity: 1, y: 0 } : { opacity: 0, y: 0 }}
+      initial={{ opacity: 0, y: 0 }}
       animate={{
         opacity: 1,
         transition: { delay: 1, duration: 1 },
       }}
       style={{
         height: childHeight,
-        y: isHome ? 0 : y,
+        y,
       }}
       sx={{
         top: "0",
@@ -84,9 +84,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         color: data?.color,
         zIndex: index,
         right: 0,
-        width: isHome
-          ? "100%"
-          : `calc(${100 - (childpos.length - 1) * 10}% + ${index * 10}%)`,
+        width: `calc(${100 - (childpos.length - 1) * 10}% + ${index * 10}%)`,
       }}
     >
       {console.log("render child :(")}
@@ -97,7 +95,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           backgroundColor: data?.bg,
           width: "100%",
           transition: "height .3s cubic-bezier(0,.2,0,.96)",
-          height: isHome ? `100%` : `calc(100% + ${-staggeredOffset - 300}px)`,
+          height: `calc(100% + ${-staggeredOffset - 300}px)`,
           zIndex: -1,
           position: "absolute",
           bottom: 0,
@@ -110,7 +108,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           sx={{
             position: "absolute",
             top: -299,
-            display: isHome ? "none" : "block",
             textTransform: "uppercase",
             fontWeight: 600,
             width: "100%",
@@ -121,11 +118,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           }}
         />
       </div>
-      <div
-        sx={{
-          mt: isHome ? 0 : staggeredOffset + 300,
-        }}
-      >
+      <div sx={{ mt: staggeredOffset + 300 }}>
         <Render />
       </div>
     </m.div>

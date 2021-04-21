@@ -3,17 +3,6 @@ import { Loupe, Norse, Canon } from "../pages";
 import { CaseWrapper, Case, Home } from "../components";
 import "../base.css";
 export let cases = new Map([
-  // [
-  //   "home",
-  //   {
-  //     name: "home",
-  //     slug: "home",
-  //     component: Home,
-  //     bg: "#FAF7Ea",
-  //     color: "#000",
-  //     hideCaseHero: true,
-  //   },
-  // ],
   [
     "loupe",
     {
@@ -46,6 +35,7 @@ function App() {
 
   return (
     <>
+      <Home />
       <CaseWrapper>
         {[...cases].map((v, i) => {
           return (

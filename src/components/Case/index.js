@@ -76,7 +76,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
       }}
       sx={{
         top: "0",
-        "&:first-child": {
+        "&:first-of-type": {
           top: "100vh",
         },
         position: "fixed",
@@ -102,21 +102,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           left: 0,
         }}
       >
-        <CaseHero
-          offset={offset}
-          text={data?.name}
-          sx={{
-            position: "absolute",
-            top: -299,
-            textTransform: "uppercase",
-            fontWeight: 600,
-            width: "100%",
-            height: 300,
-            letterSpacing: "-0.075em",
-            fontSize: "min(12vw, 140px)",
-            color: data?.bg,
-          }}
-        />
+        <CaseHero bg={data?.bg}>{data?.name}</CaseHero>
       </div>
       <div sx={{ mt: staggeredOffset + 300 }}>
         <Render />

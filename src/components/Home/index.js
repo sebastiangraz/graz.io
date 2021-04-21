@@ -8,7 +8,10 @@ export const Home = () => {
   return (
     <div
       sx={{
-        minHeight: "100vh",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        height: "100vh",
         width: "100%",
       }}
     >

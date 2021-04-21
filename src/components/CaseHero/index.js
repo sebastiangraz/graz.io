@@ -7,7 +7,7 @@ import uuid from "react-uuid";
 
 const ignoreUpdatedProps = () => true;
 
-export const CaseHero = React.memo(({ bg, text, id = uuid(), children }) => {
+export const CaseHero = React.memo(({ bg, id = uuid(), children }) => {
   return (
     <svg
       sx={{

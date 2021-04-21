@@ -7,6 +7,8 @@ import { m, useSpring, useMotionValue, useTransform } from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
+const clamp = ({ value, min, max }) => Math.max(Math.min(value, max), min);
+
 export const Case = React.forwardRef(({ index, data }, ref) => {
   const [inview, setInview] = React.useState(0);
   let {
@@ -22,10 +24,8 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
   const staggeredOffset = -childpos.length * offset + index * offset;
 
-  const clamp = ({ value, min, max }) => Math.max(Math.min(value, max), min);
-
   const scroll = (v) => {
-    //value: how far we scrolled from 0..1 in the browser
+    //clamp our corresponding scroll distances
     let pixels = clamp({
       value: -(v - childpos[index] + childHeight),
       min: -childHeight + browserHeight,
@@ -75,27 +75,27 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         y,
       }}
       sx={{
+        color: data?.color,
+        zIndex: index,
+        width: `calc(${100 - (childpos.length - 1) * 10}% + ${index * 10}%)`,
         top: "0",
+        position: "fixed",
+        willChange: "transform",
+        right: 0,
         "&:first-of-type": {
           top: "100vh",
         },
-        position: "fixed",
-        willChange: "transform",
-        color: data?.color,
-        zIndex: index,
-        right: 0,
-        width: `calc(${100 - (childpos.length - 1) * 10}% + ${index * 10}%)`,
       }}
     >
       {console.log("render child :(")}
 
       <div
         sx={{
-          borderBottom: "10px solid",
+          height: `calc(100% + ${-staggeredOffset - 300}px)`,
           backgroundColor: data?.bg,
+          borderBottom: "10px solid",
           width: "100%",
           transition: "height .3s cubic-bezier(0,.2,0,.96)",
-          height: `calc(100% + ${-staggeredOffset - 300}px)`,
           zIndex: -1,
           position: "absolute",
           bottom: 0,

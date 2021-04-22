@@ -26,13 +26,11 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
   const scroll = (v) => {
     //clamp our corresponding scroll distances
-    let pixels = clamp({
+    return clamp({
       value: -(v - childpos[index] + childHeight),
       min: -childHeight + browserHeight,
       max: browserHeight,
     });
-
-    return pixels;
   };
 
   const y = useSpring(
@@ -75,6 +73,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         y,
       }}
       sx={{
+        opacity: inview ? 0.4 : 1,
         color: data?.color,
         zIndex: index,
         width: `calc(${100 - (childpos.length - 1) * 10}% + ${index * 10}%)`,

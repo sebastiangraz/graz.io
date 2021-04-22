@@ -52,9 +52,9 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     index === 0
       ? window.scrollTo(
           0,
-          browserHeight + staggeredOffset + childpos[index] - childHeight + 1
+          browserHeight + staggeredOffset + childpos[index] - childHeight
         )
-      : window.scrollTo(0, staggeredOffset + childpos[index] - childHeight + 1);
+      : window.scrollTo(0, staggeredOffset + childpos[index] - childHeight);
   };
 
   const Render = data.component;

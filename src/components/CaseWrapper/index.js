@@ -43,9 +43,9 @@ const CaseWrapper = ({ children }) => {
       console.log("useEffect Casewrapper updatePos");
       const test = childPositions.map((childPosition, i) =>
         clamp({
-          value: -(v - childPosition + childHeight[i]),
-          min: -childHeight[i] + window.innerHeight,
-          max: window.innerHeight,
+          value: -(v - childPosition + window.innerHeight + childHeight[i]),
+          min: -childHeight[i],
+          max: 0,
         })
       );
       posValue.set(test);

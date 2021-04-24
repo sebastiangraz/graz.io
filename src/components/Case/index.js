@@ -45,13 +45,12 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     color: data?.color,
     zIndex: index,
     width: `calc(${100 - (childpos.length - 1) * 10}% + ${index * 10}%)`,
-    top: "0",
+    top: "100vh",
     position: "fixed",
     willChange: "transform",
     right: 0,
   };
   const caseBg = {
-    opacity: 0.8,
     height: `calc(100% + ${-staggeredOffset - 300}px)`,
     backgroundColor: data?.bg,
     borderBottom: "10px solid",
@@ -69,11 +68,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     <m.div
       ref={ref}
       onClick={handleClick}
-      initial={{ opacity: 0, y: 0 }}
-      animate={{
-        opacity: 1,
-        transition: { delay: 1, duration: 1 },
-      }}
       style={{
         height: childHeight,
         y: firstCase && y,

@@ -82,6 +82,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
       <div
         sx={{
+          opacity: 0.8,
           height: `calc(100% + ${-staggeredOffset - 300}px)`,
           backgroundColor: data?.bg,
           borderBottom: "10px solid",

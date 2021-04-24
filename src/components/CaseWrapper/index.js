@@ -5,6 +5,7 @@ import {
   domAnimation,
   useViewportScroll,
   useMotionValue,
+  motionValue,
 } from "framer-motion";
 
 const CaseWrapperContext = React.createContext(null);
@@ -20,11 +21,12 @@ const CaseWrapper = ({ children }) => {
       totalHeight: 0,
       browserHeight: 0,
       scrollProgress: useMotionValue(0),
+      scrollProgress2: useMotionValue(0),
     }
   );
 
   React.useEffect(() => {
-    const childPosition = [];
+    const childPositions = [];
     const childHeight = [];
 
     const getEl = children.map(
@@ -33,15 +35,27 @@ const CaseWrapper = ({ children }) => {
 
     const totalHeightVar = getEl.reduce((acc, v) => {
       childHeight.push(v);
-      childPosition.push(acc + v);
+      childPositions.push(acc + v);
       return acc + v;
     }, 0);
 
+    const posValue = motionValue([]);
+
+    const updatePos = (v) => {
+      const test = childPositions.map(
+        (childPosition, i) => v - childPosition + childHeight[i]
+      );
+      posValue.set(test);
+    };
+
+    scrollY.onChange(updatePos);
+
     setCase({
-      childpos: childPosition,
+      childpos: childPositions,
       childHeight: childHeight,
       totalHeight: totalHeightVar,
       scrollProgress: scrollY,
+      scrollProgress2: posValue,
     });
 
     const handleResize = debounce(() => {

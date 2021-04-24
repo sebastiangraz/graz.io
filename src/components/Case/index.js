@@ -7,8 +7,6 @@ import { m, useSpring, useMotionValue, useTransform } from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
-const clamp = ({ value, min, max }) => Math.max(Math.min(value, max), min);
-
 export const Case = React.forwardRef(({ index, data }, ref) => {
   // const [inview, setInview] = React.useState(0);
   let {
@@ -16,7 +14,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     childpos,
     browserHeight,
     scrollProgress,
-    scrollProgress2,
   } = useCaseWrapperContext();
   // const zeroToOne = useMotionValue(0);
   childHeight = childHeight[index];
@@ -24,35 +21,18 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   // offset = (offset / index) * 0.8;
 
   const staggeredOffset = -childpos.length * offset + index * offset;
-
-  const scroll = (v) => {
-    //clamp our corresponding scroll distances
-    return clamp({
-      value: -(v - childpos[index] + childHeight),
-      min: -childHeight + browserHeight,
-      max: browserHeight,
-    });
-  };
-
   const variable = useMotionValue(0);
 
   React.useEffect(() => {
-    scrollProgress2.onChange((v) => {
-      variable.set(-v[index]);
+    scrollProgress.onChange((v) => {
+      variable.set(v[index]);
     });
-  }, [index, scrollProgress2, variable]);
+  }, [index, scrollProgress, variable]);
 
   const y = useSpring(variable, {
     damping: 7,
     mass: 0.07,
   });
-
-  // const logMe = scrollProgress2 || [] ? scrollProgress2 : 0;
-  // const scrollPixels = useMotionValue(0);
-
-  // React.useEffect(() => {
-  //   console.log(logMe);
-  // }, [logMe]);
 
   // zeroToOne.onChange((v) => {
   //   const sensitivity = 0.005;

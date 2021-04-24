@@ -10,6 +10,7 @@ import {
 
 const CaseWrapperContext = React.createContext(null);
 const useCaseWrapperContext = () => React.useContext(CaseWrapperContext);
+const clamp = ({ value, min, max }) => Math.max(Math.min(value, max), min);
 
 const CaseWrapper = ({ children }) => {
   const { scrollY } = useViewportScroll();
@@ -21,7 +22,6 @@ const CaseWrapper = ({ children }) => {
       totalHeight: 0,
       browserHeight: 0,
       scrollProgress: useMotionValue(0),
-      scrollProgress2: useMotionValue(0),
     }
   );
 
@@ -42,8 +42,12 @@ const CaseWrapper = ({ children }) => {
     const posValue = motionValue([]);
 
     const updatePos = (v) => {
-      const test = childPositions.map(
-        (childPosition, i) => v - childPosition + childHeight[i]
+      const test = childPositions.map((childPosition, i) =>
+        clamp({
+          value: -(v - childPosition + childHeight[i]),
+          min: -childHeight[i] + window.innerHeight,
+          max: window.innerHeight,
+        })
       );
       posValue.set(test);
     };
@@ -54,8 +58,7 @@ const CaseWrapper = ({ children }) => {
       childpos: childPositions,
       childHeight: childHeight,
       totalHeight: totalHeightVar,
-      scrollProgress: scrollY,
-      scrollProgress2: posValue,
+      scrollProgress: posValue,
     });
 
     const handleResize = debounce(() => {

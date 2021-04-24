@@ -41,16 +41,35 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   // });
 
   const handleClick = () => {
-    //Checks if its first item in list and apply browserHeight to comp
-    index === 0
-      ? window.scrollTo(
-          0,
-          browserHeight + staggeredOffset + childpos[index] - childHeight
-        )
-      : window.scrollTo(0, staggeredOffset + childpos[index] - childHeight);
+    // console.log(staggeredOffset + childpos[index] - childHeight);
+    window.scrollTo(0, childpos[index] - childHeight + staggeredOffset);
   };
 
   const Render = data.component;
+
+  const caseParent = {
+    color: data?.color,
+    zIndex: index,
+    width: `calc(${100 - (childpos.length - 1) * 10}% + ${index * 10}%)`,
+    top: "0",
+    position: "fixed",
+    willChange: "transform",
+    right: 0,
+  };
+  const caseBg = {
+    opacity: 0.8,
+    height: `calc(100% + ${-staggeredOffset - 300}px)`,
+    backgroundColor: data?.bg,
+    borderBottom: "10px solid",
+    width: "100%",
+    transition: "height .3s cubic-bezier(0,.2,0,.96)",
+    zIndex: -1,
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+  };
+
+  const firstCase = index !== 0;
 
   return (
     <m.div
@@ -63,40 +82,16 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
       }}
       style={{
         height: childHeight,
-        y,
+        y: firstCase && y,
       }}
-      sx={{
-        color: data?.color,
-        zIndex: index,
-        width: `calc(${100 - (childpos.length - 1) * 10}% + ${index * 10}%)`,
-        top: "0",
-        position: "fixed",
-        willChange: "transform",
-        right: 0,
-        // "&:first-of-type": {
-        //   top: "100vh",
-        // },
-      }}
+      sx={firstCase ? caseParent : { position: "fixed" }}
     >
       {console.log("render child :(")}
 
-      <div
-        sx={{
-          opacity: 0.8,
-          height: `calc(100% + ${-staggeredOffset - 300}px)`,
-          backgroundColor: data?.bg,
-          borderBottom: "10px solid",
-          width: "100%",
-          transition: "height .3s cubic-bezier(0,.2,0,.96)",
-          zIndex: -1,
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-        }}
-      >
+      <div sx={firstCase && caseBg}>
         <CaseHero bg={data?.bg}>{data?.name}</CaseHero>
       </div>
-      <div sx={{ mt: staggeredOffset + 300 }}>
+      <div sx={{ mt: firstCase && staggeredOffset + 300 }}>
         <Render />
       </div>
     </m.div>

@@ -35,7 +35,7 @@ const CaseWrapper = ({ children }) => {
 
     const totalHeightVar = getEl.reduce((acc, v) => {
       childHeight.push(v);
-      childPositions.push(acc + v);
+      childPositions.push([acc + v]);
       return acc + v;
     }, 0);
 

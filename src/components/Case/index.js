@@ -73,9 +73,9 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         position: "fixed",
         willChange: "transform",
         right: 0,
-        "&:first-of-type": {
-          top: "100vh",
-        },
+        // "&:first-of-type": {
+        //   top: "100vh",
+        // },
       }}
     >
       {console.log("render child :(")}

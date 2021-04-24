@@ -1,5 +1,4 @@
 import React from "react";
-import { debounce } from "lodash";
 import {
   LazyMotion,
   domAnimation,
@@ -40,8 +39,8 @@ const CaseWrapper = ({ children }) => {
     }, 0);
 
     const posValue = motionValue([]);
-
     const updatePos = (v) => {
+      console.log("useEffect Casewrapper updatePos");
       const test = childPositions.map((childPosition, i) =>
         clamp({
           value: -(v - childPosition + childHeight[i]),
@@ -52,8 +51,6 @@ const CaseWrapper = ({ children }) => {
       posValue.set(test);
     };
 
-    scrollY.onChange(updatePos);
-
     setCase({
       childpos: childPositions,
       childHeight: childHeight,
@@ -61,19 +58,13 @@ const CaseWrapper = ({ children }) => {
       scrollProgress: posValue,
     });
 
-    const handleResize = debounce(() => {
-      setCase({
-        browserHeight: window.innerHeight,
-      });
-    }, 100);
+    const unsub = scrollY.onChange(updatePos);
 
-    window.addEventListener("resize", handleResize, { passive: true });
-    window.addEventListener("load", handleResize, { passive: true });
     return () => {
-      window.removeEventListener("resize", handleResize, { passive: true });
-      window.removeEventListener("load", handleResize, { passive: true });
+      unsub();
     };
   }, [children, scrollY]);
+
   return (
     <LazyMotion features={domAnimation} strict>
       <div

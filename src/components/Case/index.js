@@ -9,12 +9,7 @@ import { useResponsiveValue } from "@theme-ui/match-media";
 
 export const Case = React.forwardRef(({ index, data }, ref) => {
   // const [inview, setInview] = React.useState(0);
-  let {
-    childHeight,
-    childpos,
-    browserHeight,
-    scrollProgress,
-  } = useCaseWrapperContext();
+  let { childHeight, childpos, scrollProgress } = useCaseWrapperContext();
   // const zeroToOne = useMotionValue(0);
   childHeight = childHeight[index];
   let offset = useResponsiveValue([32, 60, 80, 120]);

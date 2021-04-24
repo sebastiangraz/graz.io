@@ -3,14 +3,28 @@
 
 import { jsx } from "theme-ui";
 import React from "react";
-import { m, useSpring, useMotionValue, useTransform } from "framer-motion";
+import { m, useSpring, useMotionValue } from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
+const caseParent = {
+  top: "100vh",
+  position: "fixed",
+  willChange: "transform",
+  right: 0,
+};
+const caseBg = {
+  borderBottom: "10px solid",
+  width: "100%",
+  transition: "height .3s cubic-bezier(0,.2,0,.96)",
+  zIndex: -1,
+  position: "absolute",
+  bottom: 0,
+  left: 0,
+};
+
 export const Case = React.forwardRef(({ index, data }, ref) => {
-  // const [inview, setInview] = React.useState(0);
   let { childHeight, childpos, scrollProgress } = useCaseWrapperContext();
-  // const zeroToOne = useMotionValue(0);
   childHeight = childHeight[index];
   let offset = useResponsiveValue([32, 60, 80, 120]);
   // offset = (offset / index) * 0.8;
@@ -20,7 +34,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
   React.useEffect(() => {
     scrollProgress.onChange((v) => {
-      variable.set(v[index]);
+      variable.set(-v[index]);
     });
   }, [index, scrollProgress, variable]);
 
@@ -40,29 +54,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   };
 
   const Render = data.component;
-
-  const caseParent = {
-    color: data?.color,
-    zIndex: index,
-    width: `calc(${100 - (childpos.length - 1) * 10}% + ${index * 10}%)`,
-    top: "100vh",
-    position: "fixed",
-    willChange: "transform",
-    right: 0,
-  };
-  const caseBg = {
-    height: `calc(100% + ${-staggeredOffset - 300}px)`,
-    backgroundColor: data?.bg,
-    borderBottom: "10px solid",
-    width: "100%",
-    transition: "height .3s cubic-bezier(0,.2,0,.96)",
-    zIndex: -1,
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-  };
-
-  const firstCase = index !== 0;
+  const firstCase = index === 0;
 
   return (
     <m.div
@@ -70,16 +62,37 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
       onClick={handleClick}
       style={{
         height: childHeight,
-        y: firstCase && y,
+        y: firstCase ? 0 : y,
       }}
-      sx={firstCase ? caseParent : { position: "fixed" }}
+      sx={
+        firstCase
+          ? { position: "fixed" }
+          : {
+              ...caseParent,
+              color: data?.color,
+              zIndex: index,
+              width: `calc(${100 - (childpos.length - 1) * 10}% + ${
+                index * 10
+              }%)`,
+            }
+      }
     >
       {console.log("render child :(")}
 
-      <div sx={firstCase && caseBg}>
+      <div
+        sx={
+          firstCase
+            ? null
+            : {
+                ...caseBg,
+                height: `calc(100% + ${-staggeredOffset - 300}px)`,
+                backgroundColor: data?.bg,
+              }
+        }
+      >
         <CaseHero bg={data?.bg}>{data?.name}</CaseHero>
       </div>
-      <div sx={{ mt: firstCase && staggeredOffset + 300 }}>
+      <div sx={{ mt: firstCase ? 0 : staggeredOffset + 300 }}>
         <Render />
       </div>
     </m.div>

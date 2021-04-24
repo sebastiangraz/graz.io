@@ -10,14 +10,14 @@ import { useResponsiveValue } from "@theme-ui/match-media";
 const clamp = ({ value, min, max }) => Math.max(Math.min(value, max), min);
 
 export const Case = React.forwardRef(({ index, data }, ref) => {
-  const [inview, setInview] = React.useState(0);
+  // const [inview, setInview] = React.useState(0);
   let {
     childHeight,
     childpos,
     browserHeight,
     scrollProgress,
   } = useCaseWrapperContext();
-  const zeroToOne = useMotionValue(0);
+  // const zeroToOne = useMotionValue(0);
   childHeight = childHeight[index];
   let offset = useResponsiveValue([32, 60, 80, 120]);
   // offset = (offset / index) * 0.8;
@@ -41,11 +41,11 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     }
   );
 
-  zeroToOne.onChange((v) => {
-    const sensitivity = 0.005;
-    const isInview = v > 0 + sensitivity && v < 1 - sensitivity ? true : false;
-    setInview(isInview);
-  });
+  // zeroToOne.onChange((v) => {
+  //   const sensitivity = 0.005;
+  //   const isInview = v > 0 + sensitivity && v < 1 - sensitivity ? true : false;
+  //   setInview(isInview);
+  // });
 
   const handleClick = () => {
     //Checks if its first item in list and apply browserHeight to comp
@@ -73,7 +73,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         y,
       }}
       sx={{
-        opacity: inview ? 0.4 : 1,
         color: data?.color,
         zIndex: index,
         width: `calc(${100 - (childpos.length - 1) * 10}% + ${index * 10}%)`,

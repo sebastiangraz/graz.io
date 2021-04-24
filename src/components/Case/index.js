@@ -41,7 +41,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   // });
 
   const handleClick = () => {
-    // console.log(staggeredOffset + childpos[index] - childHeight);
     window.scrollTo(0, childpos[index] - childHeight + staggeredOffset);
   };
 

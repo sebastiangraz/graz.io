@@ -88,7 +88,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
       {console.log("render child :(")}
 
       <m.div
-        initial={{ y: firstCase ? 0 : 60 }}
+        // initial={{ y: firstCase ? 0 : 60 }}
         style={{ y: secondary, willChange: "transform" }}
         sx={
           firstCase

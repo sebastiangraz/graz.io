@@ -46,7 +46,7 @@ const CaseWrapper = ({ children }) => {
           transform(
             v - childPosition + window.innerHeight + childHeight[i],
             [0, childHeight[i]],
-            [0, childHeight[i]]
+            [0, 1]
           )
         )
       );

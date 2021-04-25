@@ -16,7 +16,7 @@ const caseParent = {
 const caseBg = {
   borderBottom: "10px solid",
   width: "100%",
-  opacity: 0.9,
+  opacity: 0.6,
   transition: "height .3s cubic-bezier(0,.2,0,.96)",
   zIndex: -1,
   position: "absolute",
@@ -36,8 +36,8 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
   React.useEffect(() => {
     scrollProgress.onChange((v) => {
-      scroll.set(-v[index]);
-      inview.set(transform(-v[index - 1], [0, -childHeight], [60, 0]));
+      scroll.set(transform(v[index], [0, 1], [0, -childHeight]));
+      inview.set(transform(v[index - 1], [0, 1], [60, 0]));
     });
   }, [childHeight, index, inview, offset, scroll, scrollProgress]);
 
@@ -74,7 +74,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
       }}
       sx={
         firstCase
-          ? { position: "fixed" }
+          ? { position: "fixed", width: "100%" }
           : {
               ...caseParent,
               color: data?.color,
@@ -88,7 +88,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
       {console.log("render child :(")}
 
       <m.div
-        initial={{ y: 60 }}
+        initial={{ y: firstCase ? 0 : 60 }}
         style={{ y: secondary, willChange: "transform" }}
         sx={
           firstCase

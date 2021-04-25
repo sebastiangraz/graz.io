@@ -5,6 +5,7 @@ import {
   useViewportScroll,
   useMotionValue,
   motionValue,
+  transform,
 } from "framer-motion";
 
 const CaseWrapperContext = React.createContext(null);
@@ -42,11 +43,11 @@ const CaseWrapper = ({ children }) => {
     const updatePos = (v) => {
       posValue.set(
         childPositions.map((childPosition, i) =>
-          clamp({
-            value: v - childPosition + window.innerHeight + childHeight[i],
-            min: 0,
-            max: childHeight[i],
-          })
+          transform(
+            v - childPosition + window.innerHeight + childHeight[i],
+            [0, childHeight[i]],
+            [0, childHeight[i]]
+          )
         )
       );
     };

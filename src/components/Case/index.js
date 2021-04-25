@@ -59,7 +59,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   // });
 
   const handleClick = () => {
-    window.scrollTo(0, childpos[index] - childHeight + staggeredOffset);
+    window.scrollTo(0, childpos[index] - childHeight + staggeredOffset - 60);
   };
 
   return (

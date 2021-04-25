@@ -30,15 +30,15 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   // offset = (offset / index) * 0.8;
 
   const staggeredOffset = -childpos.length * offset + index * offset;
-  const variable = useMotionValue(0);
+  const scroll = useMotionValue(0);
 
   React.useEffect(() => {
     scrollProgress.onChange((v) => {
-      variable.set(-v[index]);
+      scroll.set(-v[index]);
     });
-  }, [index, scrollProgress, variable]);
+  }, [index, scrollProgress, scroll]);
 
-  const y = useSpring(variable, {
+  const y = useSpring(scroll, {
     damping: 7,
     mass: 0.07,
   });

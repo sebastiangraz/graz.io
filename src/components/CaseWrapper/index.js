@@ -39,6 +39,7 @@ const CaseWrapper = ({ children }) => {
     }, 0);
 
     const posValue = motionValue([]);
+
     const updatePos = (v) => {
       posValue.set(
         childPositions.map((childPosition, i) =>

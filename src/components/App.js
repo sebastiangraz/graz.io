@@ -38,7 +38,7 @@ export let cases = new Map([
     {
       name: "Loupe",
       slug: "loupe",
-      component: Loupe,
+      component: Norse,
       bg: "#184629",
       color: "#e8e0d6",
     },
@@ -48,7 +48,7 @@ export let cases = new Map([
     {
       name: "Norse",
       slug: "norse",
-      component: Norse,
+      component: Canon,
       bg: "#111",
       color: "#fff",
     },

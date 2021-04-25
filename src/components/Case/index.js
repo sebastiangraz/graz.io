@@ -16,6 +16,7 @@ const caseParent = {
 const caseBg = {
   borderBottom: "10px solid",
   width: "100%",
+  opacity: 0.6,
   transition: "height .3s cubic-bezier(0,.2,0,.96)",
   zIndex: -1,
   position: "absolute",
@@ -29,9 +30,12 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   let offset = useResponsiveValue([32, 60, 80, 120]);
   // offset = (offset / index) * 0.8;
 
+  const skipFirstIndex = index === 0 || index === 1;
   const staggeredOffset = -childpos.length * offset + index * offset;
+  const Render = data.component;
+  const firstCase = index === 0;
   const scroll = useMotionValue(0);
-  const inview = useMotionValue(0);
+  const inview = useMotionValue(skipFirstIndex ? 0 : 60);
 
   React.useEffect(() => {
     scrollProgress.onChange((v) => {
@@ -60,10 +64,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     window.scrollTo(0, childpos[index] - childHeight + staggeredOffset);
   };
 
-  const Render = data.component;
-  const firstCase = index === 0;
-  const skipFirstIndex = index === 0 || index === 1;
-
   return (
     <m.div
       ref={ref}
@@ -88,7 +88,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
       {console.log("render child :(")}
 
       <m.div
-        initial={{ y: skipFirstIndex ? 0 : 60 }}
         style={{ y: secondary, willChange: "transform" }}
         sx={
           firstCase

@@ -3,7 +3,7 @@
 
 import { jsx } from "theme-ui";
 import React from "react";
-import { m, useSpring, useMotionValue } from "framer-motion";
+import { m, useSpring, useMotionValue, transform } from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
@@ -19,7 +19,7 @@ const caseBg = {
   transition: "height .3s cubic-bezier(0,.2,0,.96)",
   zIndex: -1,
   position: "absolute",
-  bottom: 0,
+  // bottom: 0,
   left: 0,
 };
 
@@ -31,12 +31,14 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
   const staggeredOffset = -childpos.length * offset + index * offset;
   const scroll = useMotionValue(0);
+  const inview = useMotionValue(0);
 
   React.useEffect(() => {
     scrollProgress.onChange((v) => {
       scroll.set(-v[index]);
+      inview.set(transform(-v[index - 1], [0, -childHeight], [-100, 0]));
     });
-  }, [index, scrollProgress, scroll]);
+  }, [index, scrollProgress, scroll, inview, childHeight]);
 
   const y = useSpring(scroll, {
     damping: 7,
@@ -78,20 +80,22 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
       }
     >
       {console.log("render child :(")}
-
-      <div
+      {console.log(inview)}
+      <m.div
+        style={{ bottom: inview }}
         sx={
           firstCase
             ? null
             : {
                 ...caseBg,
+
                 height: `calc(100% + ${-staggeredOffset - 300}px)`,
                 backgroundColor: data?.bg,
               }
         }
       >
         <CaseHero bg={data?.bg}>{data?.name}</CaseHero>
-      </div>
+      </m.div>
       <div sx={{ mt: firstCase ? 0 : staggeredOffset + 300 }}>
         <Render />
       </div>

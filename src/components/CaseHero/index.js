@@ -26,6 +26,7 @@ export const CaseHero = React.memo(({ bg, id = uuid(), children }) => {
       preserveAspectRatio="xMinYMin meet"
     >
       <defs>
+        {console.log("render CaseHero :(")}
         <mask id={`${"sample-" + id}`}>
           <rect width="100vw" height="100%" fill="white"></rect>
 

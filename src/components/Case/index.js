@@ -8,7 +8,7 @@ import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
 const caseParent = {
-  top: "100vh",
+  top: `calc(100vh)`,
   position: "fixed",
   willChange: "transform",
   right: 0,
@@ -16,10 +16,11 @@ const caseParent = {
 const caseBg = {
   borderBottom: "10px solid",
   width: "100%",
+  opacity: 0.9,
   transition: "height .3s cubic-bezier(0,.2,0,.96)",
   zIndex: -1,
   position: "absolute",
-  // bottom: 0,
+  bottom: 0,
   left: 0,
 };
 
@@ -36,11 +37,16 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   React.useEffect(() => {
     scrollProgress.onChange((v) => {
       scroll.set(-v[index]);
-      inview.set(transform(-v[index - 1], [0, -childHeight], [-100, 0]));
+      inview.set(transform(-v[index - 1], [0, -childHeight], [60, 0]));
     });
-  }, [index, scrollProgress, scroll, inview, childHeight]);
+  }, [childHeight, index, inview, offset, scroll, scrollProgress]);
 
   const y = useSpring(scroll, {
+    damping: 7,
+    mass: 0.07,
+  });
+
+  const secondary = useSpring(inview, {
     damping: 7,
     mass: 0.07,
   });
@@ -80,15 +86,15 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
       }
     >
       {console.log("render child :(")}
-      {console.log(inview)}
+
       <m.div
-        style={{ bottom: inview }}
+        initial={{ y: 60 }}
+        style={{ y: secondary, willChange: "transform" }}
         sx={
           firstCase
             ? null
             : {
                 ...caseBg,
-
                 height: `calc(100% + ${-staggeredOffset - 300}px)`,
                 backgroundColor: data?.bg,
               }

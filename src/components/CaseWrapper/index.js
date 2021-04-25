@@ -7,7 +7,7 @@ import {
   motionValue,
   transform,
 } from "framer-motion";
-
+import { CaseHero } from "../";
 const CaseWrapperContext = React.createContext(null);
 const useCaseWrapperContext = () => React.useContext(CaseWrapperContext);
 

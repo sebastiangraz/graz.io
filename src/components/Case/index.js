@@ -14,7 +14,7 @@ const caseParent = {
   right: 0,
 };
 const caseBg = {
-  borderBottom: "3px solid #FAF7Ea",
+  borderBottom: "3px solid #000",
   width: "100%",
   transition: "height .3s cubic-bezier(0,.2,0,.96)",
   zIndex: -1,
@@ -31,14 +31,14 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const skipFirstIndex = index === 0 || index === 1;
   const firstCase = index === 0;
   const scroll = useMotionValue(0);
-  const inview = useMotionValue(skipFirstIndex ? -60 : 0);
+  const inview = useMotionValue(skipFirstIndex ? -100 : 0);
   const staggeredOffset = -childpos.length * offset + index * offset;
   const Render = data.component;
 
   React.useEffect(() => {
     scrollProgress.onChange((v) => {
-      scroll.set(transform(v[index], [0, 1], [0, -childHeight]));
-      inview.set(transform(v[index - 1], [0, 1], [0, -60]));
+      scroll.set(transform(v[index], [0, 1], [0, -childHeight + 100]));
+      inview.set(transform(v[index - 1], [0, 1], [0, -100]));
     });
   }, [childHeight, index, inview, offset, scroll, scrollProgress]);
 
@@ -59,7 +59,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   // });
 
   const handleClick = () => {
-    window.scrollTo(0, childpos[index] - childHeight + staggeredOffset - 60);
+    window.scrollTo(0, childpos[index] - childHeight);
   };
 
   return (

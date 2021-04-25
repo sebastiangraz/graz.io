@@ -16,7 +16,6 @@ const caseParent = {
 const caseBg = {
   borderBottom: "10px solid",
   width: "100%",
-  opacity: 0.6,
   transition: "height .3s cubic-bezier(0,.2,0,.96)",
   zIndex: -1,
   position: "absolute",
@@ -63,6 +62,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
   const Render = data.component;
   const firstCase = index === 0;
+  const skipFirstIndex = index === 0 || index === 1;
 
   return (
     <m.div
@@ -88,7 +88,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
       {console.log("render child :(")}
 
       <m.div
-        // initial={{ y: firstCase ? 0 : 60 }}
+        initial={{ y: skipFirstIndex ? 0 : 60 }}
         style={{ y: secondary, willChange: "transform" }}
         sx={
           firstCase

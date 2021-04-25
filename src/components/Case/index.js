@@ -14,7 +14,7 @@ const caseParent = {
   right: 0,
 };
 const caseBg = {
-  opacity: 0.75,
+  // opacity: 0.75,
   borderBottom: "3px solid #000",
   width: "100%",
   transition: "height .3s cubic-bezier(0,.2,0,.96)",
@@ -27,13 +27,17 @@ const caseBg = {
 export const Case = React.forwardRef(({ index, data }, ref) => {
   let { childHeight, childpos, scrollProgress } = useCaseWrapperContext();
   childHeight = childHeight[index];
-  let offset = useResponsiveValue([32, 60, 80, 160]);
-  offset = (offset / index) * 0.5;
+
+  const responsiveOffset = useResponsiveValue([32, 60, 80, 160]);
+  const offset = (responsiveOffset / index) * 0.75;
+  const staggeredOffset = -childpos.length * offset + index * offset;
+
   const skipFirstIndex = index === 0 || index === 1;
   const firstCase = index === 0;
+  console.log(staggeredOffset);
   const scroll = useMotionValue(0);
   const inview = useMotionValue(0);
-  const staggeredOffset = -childpos.length * offset + index * offset;
+
   const Render = data.component;
 
   React.useEffect(() => {

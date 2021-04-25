@@ -10,7 +10,6 @@ import {
 
 const CaseWrapperContext = React.createContext(null);
 const useCaseWrapperContext = () => React.useContext(CaseWrapperContext);
-const clamp = ({ value, min, max }) => Math.max(Math.min(value, max), min);
 
 const CaseWrapper = ({ children }) => {
   const { scrollY } = useViewportScroll();

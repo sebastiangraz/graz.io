@@ -22,6 +22,7 @@
     "scroll-data-hook": "^1.0.4",
     "theme-ui": "^0.7.0",
     "typescript": "^4.2.3",
+    "use-callback-ref": "^1.2.5",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

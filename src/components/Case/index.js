@@ -17,7 +17,6 @@ const caseBg = {
   opacity: 0.75,
   borderBottom: "3px solid #000",
   width: "100%",
-  transition: "height .3s cubic-bezier(0,.2,0,.96)",
   zIndex: -1,
   position: "absolute",
   bottom: 0,
@@ -27,34 +26,30 @@ const caseBg = {
 export const Case = React.forwardRef(({ index, data }, ref) => {
   let { childHeight, childpos, scrollProgress } = useCaseWrapperContext();
   childHeight = childHeight[index];
-
   const responsiveOffset = useResponsiveValue([32, 60, 80, 160]);
   const offset = (responsiveOffset / index) * 0.75;
   const staggeredOffset = -childpos.length * offset + index * offset;
 
   const skipFirstIndex = index === 0 || index === 1;
   const firstCase = index === 0;
-  console.log(staggeredOffset);
   const scroll = useMotionValue(0);
-  const inview = useMotionValue(0);
+  const nextScroll = useMotionValue(0);
 
   const Render = data.component;
 
   React.useEffect(() => {
     scrollProgress.onChange((v) => {
-      scroll.set(
-        transform(v[index], [0, 1], [staggeredOffset + 250, -childHeight])
-      );
-      inview.set(transform(v[index - 1], [0, 1], [50, 0]));
+      scroll.set(transform(v[index], [0, 1], [0, -childHeight]));
+      nextScroll.set(transform(v[index - 1], [0, 1], [0, 0])); //[50, 0]
     });
-  }, [childHeight, index, inview, scroll, scrollProgress, staggeredOffset]);
+  }, [childHeight, index, nextScroll, scroll, scrollProgress, staggeredOffset]);
 
   const y = useSpring(scroll, {
     damping: 7,
     mass: 0.07,
   });
 
-  const secondary = useSpring(inview, {
+  const secondary = useSpring(nextScroll, {
     damping: 7,
     mass: 0.07,
   });
@@ -104,7 +99,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
       >
         <CaseHero bg={data?.bg}>{data?.name}</CaseHero>
       </m.div>
-      <div>
+      <div sx={{ display: "block" }}>
         <Render />
       </div>
     </m.div>

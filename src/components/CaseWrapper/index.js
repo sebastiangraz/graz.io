@@ -25,17 +25,16 @@ const CaseWrapper = ({ children }) => {
 
   React.useEffect(() => {
     const childPositions = [];
-    const childHeight = [];
+    const childHeights = [];
 
-    const getEl = children.map(
-      (e) => e && e.ref.current.getBoundingClientRect().height
-    );
-
-    const totalHeightVar = getEl.reduce((acc, v) => {
-      childHeight.push(v);
-      childPositions.push([acc + v]);
-      return acc + v;
+    const childSum = children.reduce((acc, child) => {
+      child = child.ref.current.getBoundingClientRect().height;
+      childPositions.push(acc + child);
+      childHeights.push(child);
+      return acc + child;
     }, 0);
+
+    console.log(childPositions, childHeights);
 
     const posValue = motionValue([]);
 
@@ -43,8 +42,8 @@ const CaseWrapper = ({ children }) => {
       posValue.set(
         childPositions.map((childPosition, i) =>
           transform(
-            v - childPosition + window.innerHeight + childHeight[i],
-            [0, childHeight[i]],
+            v - childPosition + window.innerHeight + childHeights[i],
+            [0, childHeights[i]],
             [0, 1]
           )
         )
@@ -52,9 +51,9 @@ const CaseWrapper = ({ children }) => {
     };
 
     setCase({
-      childpos: childPositions,
-      childHeight: childHeight,
-      totalHeight: totalHeightVar,
+      childPosition: childPositions,
+      childHeight: childHeights,
+      childSum: childSum,
       scrollProgress: posValue,
     });
 
@@ -69,7 +68,7 @@ const CaseWrapper = ({ children }) => {
     <LazyMotion features={domAnimation} strict>
       <div
         style={{
-          height: state.totalHeight,
+          height: state.childSum,
         }}
       >
         <CaseWrapperContext.Provider value={state}>

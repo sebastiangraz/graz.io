@@ -24,11 +24,11 @@ const caseBg = {
 };
 
 export const Case = React.forwardRef(({ index, data }, ref) => {
-  let { childHeight, childpos, scrollProgress } = useCaseWrapperContext();
+  let { childHeight, childPosition, scrollProgress } = useCaseWrapperContext();
   childHeight = childHeight[index];
   const responsiveOffset = useResponsiveValue([32, 60, 80, 160]);
   const offset = (responsiveOffset / index) * 0.75;
-  const staggeredOffset = -childpos.length * offset + index * offset;
+  // const staggeredOffset = -childPosition.length * offset + index * offset;
 
   const skipFirstIndex = index === 0 || index === 1;
   const firstCase = index === 0;
@@ -42,7 +42,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
       scroll.set(transform(v[index], [0, 1], [0, -childHeight]));
       nextScroll.set(transform(v[index - 1], [0, 1], [0, 0])); //[50, 0]
     });
-  }, [childHeight, index, nextScroll, scroll, scrollProgress, staggeredOffset]);
+  }, [childHeight, index, nextScroll, scroll, scrollProgress]);
 
   const y = useSpring(scroll, {
     damping: 7,
@@ -61,7 +61,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   // });
 
   const handleClick = () => {
-    window.scrollTo(0, childpos[index] - childHeight);
+    window.scrollTo(0, childPosition[index] - childHeight);
   };
 
   return (

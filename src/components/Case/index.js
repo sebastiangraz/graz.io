@@ -14,7 +14,7 @@ const caseParent = {
   right: 0,
 };
 const caseBg = {
-  // opacity: 0.75,
+  opacity: 0.75,
   borderBottom: "3px solid #000",
   width: "100%",
   transition: "height .3s cubic-bezier(0,.2,0,.96)",

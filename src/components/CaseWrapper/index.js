@@ -34,8 +34,6 @@ const CaseWrapper = ({ children }) => {
       return acc + child;
     }, 0);
 
-    console.log(childPositions, childHeights);
-
     const posValue = motionValue([]);
 
     const updatePos = (v) => {

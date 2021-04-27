@@ -24,8 +24,10 @@ const CaseWrapper = ({ children }) => {
   );
 
   React.useEffect(() => {
+
     const childPositions = [];
     const childHeights = [];
+
 
     const childSum = children.reduce((acc, child) => {
       child = child.ref.current.getBoundingClientRect().height;

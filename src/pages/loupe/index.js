@@ -17,6 +17,12 @@ const colors = {
   maroon: "#560000",
 };
 
+// const Sections = {
+//   Define: () => {
+//     return <div style={{ height: "6666px" }}></div>;
+//   },
+// };
+
 const Sections = {
   Define: () => {
     return (
@@ -391,15 +397,10 @@ const Sections = {
 };
 const Loupe = () => {
   return Object.entries(Sections).map(([k, Section]) => (
-    <Box
-      key={k}
-      sx={{
-        marginBottom: [7, 8],
-      }}
-    >
+    <Box key={k}>
       <Section />
     </Box>
   ));
 };
 
-export default React.memo(Loupe);
+export default Loupe;

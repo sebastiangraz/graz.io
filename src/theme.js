@@ -1,7 +1,6 @@
 const colors = {
   text: "#000",
-  bg: "#555",
-  primary: "#09f",
+  bg: "#FAF7Ea",
 };
 
 const space = [0, 2, 4, 8, 16, 32, 64, 128, 256, 512];
@@ -105,7 +104,7 @@ export default {
       lineHeight: "body",
     },
     a: {
-      color: "primary",
+      color: "text",
     },
     pre: {
       fontFamily: "monospace",

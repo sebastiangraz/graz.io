@@ -8,7 +8,10 @@ export const Home = () => {
   return (
     <div
       sx={{
-        minHeight: "100vh",
+        // position: "fixed",
+        // top: 0,
+        // left: 0,
+        height: "100vh",
         width: "100%",
       }}
     >
@@ -28,11 +31,12 @@ export const Home = () => {
           variant="body"
           sx={{
             marginBottom: [4, 0],
-            width: ["min(100%, 360px)", 460, 690, 820],
+            width: ["min(100%, 360px)", 560, 720, 800],
           }}
         >
-          I’m Sebastian—as a digital designer I care about our dear users, rapid
-          prototyping, design systems & branding
+          I’m Sebastian—as a digital designer
+          <br sx={{ display: ["none", "none", "block"] }} /> I care about our
+          dear users, rapid prototyping, design systems & branding
         </Text>
       </Grid>
     </div>

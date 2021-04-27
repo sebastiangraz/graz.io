@@ -519,12 +519,7 @@ const Sections = {
 
 const Canon = () => {
   return Object.entries(Sections).map(([k, Section]) => (
-    <Box
-      key={k}
-      sx={{
-        marginBottom: [7, 8],
-      }}
-    >
+    <Box key={k}>
       <Section />
     </Box>
   ));

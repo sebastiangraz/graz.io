@@ -6,12 +6,31 @@ export let cases = new Map([
   [
     "home",
     {
-      name: "home",
+      name: "Home",
       slug: "home",
       component: Home,
-      bg: "#FAF7EE",
+      bg: "#eee",
+      color: "#111",
+    },
+  ],
+  [
+    "3D",
+    {
+      name: "3D",
+      slug: "3d",
+      component: Loupe,
+      bg: "#e1e30c",
       color: "#000",
-      hideCaseHero: true,
+    },
+  ],
+  [
+    "experimental",
+    {
+      name: "Experimental",
+      slug: "experimental",
+      component: Loupe,
+      bg: "#50a40e",
+      color: "#e8e0d6",
     },
   ],
   [
@@ -19,7 +38,7 @@ export let cases = new Map([
     {
       name: "Loupe",
       slug: "loupe",
-      component: Loupe,
+      component: Norse,
       bg: "#184629",
       color: "#e8e0d6",
     },
@@ -29,7 +48,7 @@ export let cases = new Map([
     {
       name: "Norse",
       slug: "norse",
-      component: Norse,
+      component: Canon,
       bg: "#111",
       color: "#fff",
     },

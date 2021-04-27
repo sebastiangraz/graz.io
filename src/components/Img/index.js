@@ -4,7 +4,6 @@ import { jsx } from "theme-ui";
 import React from "react";
 
 export const Img = ({ imageData, cover, plate, ...rest }) => {
-  const [loaded, setLoaded] = React.useState(false);
   return (
     <div
       {...rest}
@@ -16,11 +15,10 @@ export const Img = ({ imageData, cover, plate, ...rest }) => {
         backgroundColor: plate ? "accent" : "transparent",
       }}
     >
-      <picture sx={{ transition: "opacity 1s ease", opacity: loaded ? 1 : 0 }}>
+      <picture>
         {imageData && imageData.webP && (
           <source
             loading="lazy"
-            onLoad={() => setLoaded(true)}
             width={imageData && imageData.width}
             height={imageData && imageData.height}
             srcSet={imageData && imageData.webP.default}
@@ -30,7 +28,6 @@ export const Img = ({ imageData, cover, plate, ...rest }) => {
         )}
         <img
           loading="lazy"
-          onLoad={() => setLoaded(true)}
           sx={{
             display: "block",
             position: "absolute",

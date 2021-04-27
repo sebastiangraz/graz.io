@@ -3,129 +3,103 @@
 
 import { jsx } from "theme-ui";
 import React from "react";
-import {
-  m,
-  useSpring,
-  useMotionValue,
-  useTransform,
-  transform,
-  useViewportScroll,
-} from "framer-motion";
-// import { useScrollPosition } from "../../hooks/useScrollPosition";
+import { m, useSpring, useMotionValue, transform } from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
+const caseParent = {
+  top: `calc(100vh)`,
+  position: "fixed",
+  willChange: "transform",
+  right: 0,
+};
+const caseBg = {
+  opacity: 0.75,
+  borderBottom: "3px solid #000",
+  width: "100%",
+  zIndex: -1,
+  position: "absolute",
+  bottom: 0,
+  left: 0,
+};
+
 export const Case = React.forwardRef(({ index, data }, ref) => {
-  const { scrollY, scrollYProgress } = useViewportScroll();
-  const [inview, setInview] = React.useState(0);
-  let { childHeight, childpos, browserHeight } = useCaseWrapperContext();
-  const zeroToOne = useMotionValue(0);
+  let { childHeight, childPosition, scrollProgress } = useCaseWrapperContext();
   childHeight = childHeight[index];
+  const responsiveOffset = useResponsiveValue([32, 60, 80, 160]);
+  const offset = (responsiveOffset / index) * 0.75;
+  // const staggeredOffset = -childPosition.length * offset + index * offset;
 
-  const distance = useMotionValue(scrollY.get());
-
-  React.useEffect(() => {
-    scrollY.onChange((v) => {
-      distance.set(v - childpos[index] + childHeight);
-    });
-  }, [distance, childHeight, childpos, index, scrollY]);
-
-  const y = useSpring(
-    useTransform(distance, [0, childHeight], [0, -childHeight]),
-    {
-      damping: 10,
-      mass: 0.1,
-    }
-  );
-
-  React.useEffect(() => {
-    // zeroToOne.onChange((v) => {
-    //   const sensitivity = 0.005;
-    //   const isInview =
-    //     v > 0 + sensitivity && v < 1 - sensitivity ? true : false;
-    //   setInview(isInview);
-    // });
-  });
-
-  let offset = useResponsiveValue([32, 60, 80, 120]);
-  // offset = (offset / index) * 0.8;
-
-  const staggeredOffset = -childpos.length * offset + index * offset;
-  const handleClick = () => {
-    !inview &&
-      window.scrollTo(0, staggeredOffset + childpos[index] - childHeight + 1);
-  };
+  const skipFirstIndex = index === 0 || index === 1;
+  const firstCase = index === 0;
+  const scroll = useMotionValue(0);
+  const nextScroll = useMotionValue(0);
 
   const Render = data.component;
+
+  React.useEffect(() => {
+    scrollProgress.onChange((v) => {
+      scroll.set(transform(v[index], [0, 1], [0, -childHeight]));
+      nextScroll.set(transform(v[index - 1], [0, 1], [0, 0])); //[50, 0]
+    });
+  }, [childHeight, index, nextScroll, scroll, scrollProgress]);
+
+  const y = useSpring(scroll, {
+    damping: 7,
+    mass: 0.07,
+  });
+
+  const secondary = useSpring(nextScroll, {
+    damping: 7,
+    mass: 0.07,
+  });
+
+  // zeroToOne.onChange((v) => {
+  //   const sensitivity = 0.005;
+  //   const isInview = v > 0 + sensitivity && v < 1 - sensitivity ? true : false;
+  //   setInview(isInview);
+  // });
+
+  const handleClick = () => {
+    window.scrollTo(0, childPosition[index] - childHeight);
+  };
 
   return (
     <m.div
       ref={ref}
       onClick={handleClick}
-      initial={
-        data.hideCaseHero || false ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }
-      }
-      // animate={{
-      //   opacity: 1,
-      //   transition: { delay: 1, duration: 1 },
-      // }}
       style={{
-        y: data.hideCaseHero || false ? 0 : y,
+        height: childHeight,
+        y: firstCase ? 0 : y,
       }}
-      sx={{
-        top: data.hideCaseHero || false ? 0 : "100vh",
-        position: "fixed",
-        willChange: "transform",
-        color: data?.color,
-        zIndex: index,
-        right: 0,
-        // height: childHeight,
-        width:
-          data.hideCaseHero || false
-            ? "100%"
-            : `calc(${100 - (childpos.length - 1) * 10}% + ${index * 10}%)`,
-      }}
+      sx={
+        firstCase
+          ? { position: "fixed", width: "100%" }
+          : {
+              ...caseParent,
+              color: data?.color,
+              zIndex: index,
+              width: `calc(100% - ${index * 6}%)`,
+            }
+      }
     >
       {console.log("render child :(")}
 
-      <div
-        sx={{
-          borderBottom: "10px solid",
-          backgroundColor: data?.bg,
-          width: "100%",
-          transition: "height .3s cubic-bezier(0,.2,0,.96)",
-          height:
-            data.hideCaseHero || false
-              ? `100%`
-              : `calc(100% + ${-staggeredOffset - 300}px)`,
-          zIndex: -1,
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-        }}
+      <m.div
+        style={{ y: secondary, willChange: "transform" }}
+        sx={
+          firstCase
+            ? null
+            : {
+                ...caseBg,
+                height: "100%",
+                backgroundColor: data?.bg,
+              }
+        }
       >
-        <CaseHero
-          offset={offset}
-          text={data?.name}
-          style={{
-            position: "absolute",
-            top: -300,
-            display: data.hideCaseHero || false ? "none" : "block",
-            textTransform: "uppercase",
-            fontWeight: 600,
-            width: "100%",
-            height: 300,
-            letterSpacing: "-0.075em",
-            fontSize: "min(12vw, 140px)",
-            color: data?.bg,
-          }}
-        />
-      </div>
-      <div
-        sx={{
-          mt: data.hideCaseHero || false ? 0 : staggeredOffset + 300,
-        }}
-      >
+        <CaseHero bg={data?.bg}>{data?.name}</CaseHero>
+      </m.div>
+      <div sx={{ display: "block" }}>
         <Render />
       </div>
     </m.div>

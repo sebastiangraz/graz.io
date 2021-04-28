@@ -15,26 +15,32 @@ const CaseWrapper = ({ children }) => {
   const [state, setCase] = React.useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
-      childpos: [],
+      childPosition: [],
       childHeight: [],
-      totalHeight: 0,
-      browserHeight: 0,
+      childSummed: 0,
       scrollProgress: useMotionValue(0),
     }
   );
 
   React.useEffect(() => {
-
     const childPositions = [];
     const childHeights = [];
 
+    document.fonts.ready.then(() => {
+      childSum();
+    });
 
-    const childSum = children.reduce((acc, child) => {
-      child = child.ref.current.getBoundingClientRect().height;
-      childPositions.push(acc + child);
-      childHeights.push(child);
-      return acc + child;
-    }, 0);
+    function childSum() {
+      const childsum = children.reduce((acc, child) => {
+        child = child.ref.current.getBoundingClientRect().height;
+        childPositions.push(acc + child);
+        childHeights.push(child);
+        return acc + child;
+      }, 0);
+      setCase({
+        childSummed: childsum,
+      });
+    }
 
     const posValue = motionValue([]);
 
@@ -53,7 +59,6 @@ const CaseWrapper = ({ children }) => {
     setCase({
       childPosition: childPositions,
       childHeight: childHeights,
-      childSum: childSum,
       scrollProgress: posValue,
     });
 
@@ -68,7 +73,7 @@ const CaseWrapper = ({ children }) => {
     <LazyMotion features={domAnimation} strict>
       <div
         style={{
-          height: state.childSum,
+          height: state.childSummed,
         }}
       >
         <CaseWrapperContext.Provider value={state}>

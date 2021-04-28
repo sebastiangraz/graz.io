@@ -99,6 +99,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
       >
         <CaseHero bg={data?.bg}>{data?.name}</CaseHero>
       </m.div>
+
       <div sx={{ display: "block" }}>
         <Render />
       </div>

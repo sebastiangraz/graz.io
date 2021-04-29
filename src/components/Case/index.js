@@ -8,7 +8,7 @@ import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
 const caseParent = {
-  top: `calc(100vh)`,
+  top: `calc(100vh + ${250}px)`,
   position: "fixed",
   willChange: "transform",
   right: 0,
@@ -27,21 +27,23 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   childHeight = childHeight[index];
   const responsiveOffset = useResponsiveValue([32, 60, 80, 160]);
   const offset = (responsiveOffset / index) * 0.75;
-  // const staggeredOffset = -childPosition.length * offset + index * offset;
+  const staggeredOffset = -childPosition.length * offset + index * offset;
 
   const skipFirstIndex = index === 0 || index === 1;
   const firstCase = index === 0;
   const scroll = useMotionValue(0);
-  const nextScroll = useMotionValue(0);
+  const nextScroll = useMotionValue(!skipFirstIndex && 50);
 
   const Render = data.component;
 
   React.useEffect(() => {
     scrollProgress.onChange((v) => {
-      scroll.set(transform(v[index], [0, 1], [0, -childHeight]));
-      nextScroll.set(transform(v[index - 1], [0, 1], [0, 0])); //[50, 0]
+      scroll.set(
+        transform(v[index], [0, 1], [0, -childHeight - staggeredOffset - 250])
+      );
+      nextScroll.set(transform(v[index - 1], [0, 1], [50, 0])); //[50, 0]
     });
-  }, [childHeight, index, nextScroll, scroll, scrollProgress]);
+  }, [childHeight, index, nextScroll, scroll, scrollProgress, staggeredOffset]);
 
   const y = useSpring(scroll, {
     damping: 7,
@@ -74,6 +76,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         firstCase
           ? { position: "fixed", width: "100%" }
           : {
+              mt: staggeredOffset,
               ...caseParent,
               color: data?.color,
               zIndex: index,

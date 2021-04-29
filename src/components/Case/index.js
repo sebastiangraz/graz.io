@@ -31,29 +31,31 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
   const skipFirstIndex = index === 0 || index === 1;
   const firstCase = index === 0;
-  const scroll = useMotionValue(0);
+  const scroll = useMotionValue(scrollProgress);
   const nextScroll = useMotionValue(!skipFirstIndex && 50);
 
   const Render = data.component;
 
-  React.useEffect(() => {
-    scrollProgress.onChange((v) => {
-      scroll.set(
-        transform(v[index], [0, 1], [0, -childHeight - staggeredOffset - 250])
-      );
-      nextScroll.set(transform(v[index - 1], [0, 1], [50, 0])); //[50, 0]
-    });
-  }, [childHeight, index, nextScroll, scroll, scrollProgress, staggeredOffset]);
+  // console.log(scrollProgress);
 
-  const y = useSpring(scroll, {
+  // React.useEffect(() => {
+  //   scrollProgress.onChange((v) => {
+  //     scroll.set(
+  //       transform(v[index], [0, 1], [0, -childHeight - staggeredOffset - 250])
+  //     );
+  //     nextScroll.set(transform(v[index - 1], [0, 1], [50, 0])); //[50, 0]
+  //   });
+  // }, [childHeight, index, nextScroll, scroll, scrollProgress, staggeredOffset]);
+
+  const y = useSpring(scrollProgress, {
     damping: 7,
     mass: 0.07,
   });
 
-  const secondary = useSpring(nextScroll, {
-    damping: 7,
-    mass: 0.07,
-  });
+  // const secondary = useSpring(scrollProgress, {
+  //   damping: 7,
+  //   mass: 0.07,
+  // });
 
   // zeroToOne.onChange((v) => {
   //   const sensitivity = 0.005;
@@ -76,7 +78,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         firstCase
           ? { position: "fixed", width: "100%" }
           : {
-              mt: staggeredOffset,
+              // mt: staggeredOffset,
               ...caseParent,
               color: data?.color,
               zIndex: index,
@@ -87,7 +89,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
       {console.log("render child :(")}
 
       <m.div
-        style={{ y: secondary, willChange: "transform" }}
+        // style={{ y: secondary, willChange: "transform" }}
         sx={
           firstCase
             ? null

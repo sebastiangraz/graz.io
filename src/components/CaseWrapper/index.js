@@ -12,6 +12,7 @@ const useCaseWrapperContext = () => React.useContext(CaseWrapperContext);
 
 const CaseWrapper = ({ children }) => {
   const { scrollY } = useViewportScroll();
+
   const [state, setCase] = React.useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
@@ -23,43 +24,42 @@ const CaseWrapper = ({ children }) => {
   );
 
   React.useEffect(() => {
-    const childPositions = [];
-    const childHeights = [];
-
-    document.fonts.ready.then(() => {
-      childSum();
+    const ro = new ResizeObserver((entries) => {
+      const childHeightArray = entries.map((entry) => {
+        return entry.contentRect.height;
+      });
+      setCase({
+        childHeight: childHeightArray,
+      });
     });
 
-    function childSum() {
-      const childsum = children.reduce((acc, child) => {
-        child = child.ref.current.getBoundingClientRect().height;
-        childPositions.push(acc + child);
-        childHeights.push(child);
-        return acc + child;
-      }, 0);
-      setCase({
-        childSummed: childsum,
-      });
-    }
+    children.map((child) => ro.observe(child.ref.current));
+  }, [children]);
 
+  React.useEffect(() => {
+    const childHeight = state.childHeight;
+    const childPositions = [];
+    const childsum = childHeight.reduce((acc, child) => {
+      childPositions.push(acc + child);
+      return acc + child;
+    }, 0);
     const posValue = motionValue([]);
-
     const updatePos = (v) => {
       posValue.set(
-        childPositions.map((childPosition, i) =>
-          transform(
-            v - childPosition + window.innerHeight + childHeights[i],
-            [0, childHeights[i]],
+        childPositions.map((childPosition, i) => {
+          return transform(
+            v - childPosition + window.innerHeight + childHeight[i],
+            [0, childHeight[i]],
             [0, 1]
-          )
-        )
+          );
+        })
       );
     };
 
     setCase({
       childPosition: childPositions,
-      childHeight: childHeights,
       scrollProgress: posValue,
+      childSummed: childsum,
     });
 
     const unsub = scrollY.onChange(updatePos);
@@ -67,7 +67,7 @@ const CaseWrapper = ({ children }) => {
     return () => {
       unsub();
     };
-  }, [children, scrollY]);
+  }, [scrollY, state.childHeight]);
 
   return (
     <LazyMotion features={domAnimation} strict>

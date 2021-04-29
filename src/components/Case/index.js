@@ -69,7 +69,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
       ref={ref}
       onClick={handleClick}
       style={{
-        height: childHeight,
         y: firstCase ? 0 : y,
       }}
       sx={

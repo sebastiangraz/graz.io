@@ -3,7 +3,13 @@
 
 import { jsx } from "theme-ui";
 import React from "react";
-import { m, useSpring, useMotionValue, useTransform } from "framer-motion";
+import {
+  m,
+  useSpring,
+  useMotionValue,
+  useViewportScroll,
+  useTransform,
+} from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
@@ -11,12 +17,8 @@ const clamp = ({ value, min, max }) => Math.max(Math.min(value, max), min);
 
 export const Case = React.forwardRef(({ index, data }, ref) => {
   // const [inview, setInview] = React.useState(0);
-  let {
-    childHeight,
-    childpos,
-    browserHeight,
-    scrollProgress,
-  } = useCaseWrapperContext();
+  const { scrollY } = useViewportScroll();
+  let { childHeight, childpos, browserHeight } = useCaseWrapperContext();
   // const zeroToOne = useMotionValue(0);
   childHeight = childHeight[index];
   let offset = useResponsiveValue([32, 60, 80, 120]);
@@ -34,7 +36,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   };
 
   const y = useSpring(
-    useTransform(scrollProgress, (v) => scroll(v)),
+    useTransform(scrollY, (v) => scroll(v)),
     {
       damping: 7,
       mass: 0.07,

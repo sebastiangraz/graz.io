@@ -5,7 +5,7 @@ const colors = {
 
 const space = [0, 2, 4, 8, 16, 32, 64, 128, 256, 512];
 const body = {
-  fontSize: [5, 6, 6, 7],
+  fontSize: [2], //   fontSize: [5, 6, 6, 7],
   fontWeight: 400,
   letterSpacing: "-0.066em",
   fontFamily: "body",

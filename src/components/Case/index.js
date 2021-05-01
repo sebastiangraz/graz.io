@@ -6,9 +6,9 @@ import React from "react";
 import {
   m,
   useSpring,
-  useMotionValue,
   useViewportScroll,
   useTransform,
+  transform,
 } from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
@@ -25,13 +25,14 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   // offset = (offset / index) * 0.8;
 
   const staggeredOffset = -childpos.length * offset + index * offset;
-
+  const skipFirstIndex = index === 0 || index === 1;
+  const firstCase = index === 0;
   const scroll = (v) => {
     //clamp our corresponding scroll distances
     return clamp({
       value: -(v - childpos[index] + childHeight),
-      min: -childHeight + browserHeight,
-      max: browserHeight,
+      min: -childHeight - 300 - staggeredOffset,
+      max: 0,
     });
   };
 
@@ -52,11 +53,8 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const handleClick = () => {
     //Checks if its first item in list and apply browserHeight to comp
     index === 0
-      ? window.scrollTo(
-          0,
-          browserHeight + staggeredOffset + childpos[index] - childHeight
-        )
-      : window.scrollTo(0, staggeredOffset + childpos[index] - childHeight);
+      ? window.scrollTo(0, browserHeight + childpos[index] - childHeight)
+      : window.scrollTo(0, childpos[index] - childHeight);
   };
 
   const Render = data.component;
@@ -71,29 +69,31 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         transition: { delay: 1, duration: 1 },
       }}
       style={{
-        height: childHeight,
         y,
       }}
       sx={{
         color: data?.color,
         zIndex: index,
         width: `calc(${100 - (childpos.length - 1) * 10}% + ${index * 10}%)`,
-        top: "0",
+        top: `calc(100vh + ${300}px)`,
+        mt: staggeredOffset,
         position: "fixed",
         willChange: "transform",
         right: 0,
-        "&:first-of-type": {
-          top: "100vh",
-        },
+        // Breaks first item
+        // "&:first-of-type": {
+        //   top: "100vh",
+        // },
       }}
     >
       {console.log("render child :(")}
 
       <div
         sx={{
-          height: `calc(100% + ${-staggeredOffset - 300}px)`,
+          opacity: 0.4,
+          height: `calc(100%)`,
           backgroundColor: data?.bg,
-          borderBottom: "10px solid",
+          borderBottom: "10px solid #f00",
           width: "100%",
           transition: "height .3s cubic-bezier(0,.2,0,.96)",
           zIndex: -1,
@@ -104,7 +104,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
       >
         <CaseHero bg={data?.bg}>{data?.name}</CaseHero>
       </div>
-      <div sx={{ mt: staggeredOffset + 300 }}>
+      <div sx={{ display: "grid" }}>
         <Render />
       </div>
     </m.div>

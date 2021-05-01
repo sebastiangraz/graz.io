@@ -13,42 +13,40 @@ const CaseWrapper = ({ children }) => {
       childHeight: [],
       totalHeight: 0,
       browserHeight: 0,
-      scrollProgress: useMotionValue(0),
     }
   );
 
   React.useEffect(() => {
     const childPosition = [];
-    const childHeight = [];
 
-    const getEl = children.map(
-      (e) => e && e.ref.current.getBoundingClientRect().height
-    );
+    const ro = new ResizeObserver((entries) => {
+      const childHeightArray = entries.map((entry) => {
+        return entry.contentRect.height;
+      });
+      console.log(childHeightArray);
+      setCase({
+        childHeight: childHeightArray,
+      });
+    });
+
+    const getEl = children.map((e) => {
+      ro.observe(e && e.ref.current);
+      return e && e.ref.current.getBoundingClientRect().height;
+    });
 
     const totalHeightVar = getEl.reduce((acc, v) => {
-      childHeight.push(v);
       childPosition.push(acc + v);
       return acc + v;
     }, 0);
 
     setCase({
       childpos: childPosition,
-      childHeight: childHeight,
       totalHeight: totalHeightVar,
     });
 
-    const handleResize = debounce(() => {
-      setCase({
-        browserHeight: window.innerHeight,
-      });
-    }, 100);
-
-    window.addEventListener("resize", handleResize, { passive: true });
-    window.addEventListener("load", handleResize, { passive: true });
-    return () => {
-      window.removeEventListener("resize", handleResize, { passive: true });
-      window.removeEventListener("load", handleResize, { passive: true });
-    };
+    // put state.browserHeight in here to trigger rerender of
+    // this useEffect which in turn triggers recalc of all the
+    // children elements, in theory
   }, [children]);
   return (
     <LazyMotion features={domAnimation} strict>

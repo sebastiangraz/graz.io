@@ -32,6 +32,10 @@ const caseBg = {
 export const Case = React.forwardRef(({ index, data }, ref) => {
   const { scrollY } = useViewportScroll();
   let { childHeight, childPosition } = useCaseWrapperContext();
+  const height = childHeight[index] || [];
+  const position = childPosition[index] || [];
+  const homeCase = childHeight[0] || [];
+
   // childHeight = childHeight[index];
   // const responsiveOffset = useResponsiveValue([32, 60, 80, 160]);
   // const offset = (responsiveOffset / index) * 0.75;
@@ -45,21 +49,18 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const Render = data.component;
 
   const updatePos = (v) =>
-    transform(
-      v - childPosition[index] + childHeight[index] + childHeight[0],
-      [0, childHeight[index]],
-      [0, -childHeight[index]]
-    );
+    transform(v - position + height + homeCase, [0, height], [0, -height]);
 
-  const y = useTransform(
-    useSpring(scrollY, {
+  const y = useSpring(
+    useTransform(scrollY, (v) => updatePos(v)),
+    {
       damping: 7,
       mass: 0.07,
-    }),
-    (v) => updatePos(v)
+    }
   );
+
   const handleClick = () => {
-    window.scrollTo(0, childPosition[index] - childHeight[index] - 300);
+    window.scrollTo(0, position - height - 300);
   };
 
   return (

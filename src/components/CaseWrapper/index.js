@@ -27,7 +27,7 @@ const CaseWrapper = ({ children }) => {
   // );
   const [childHeight, setChildHeight] = React.useState([]);
   const [childPosition, setChildPosition] = React.useState([]);
-  //Get Children Heights//
+  const [childSum, setChildSum] = React.useState(0);
 
   React.useEffect(() => {
     const RunOnResize = debounce(() => {
@@ -35,19 +35,22 @@ const CaseWrapper = ({ children }) => {
         return child.ref.current.getBoundingClientRect().height;
       });
       setChildHeight(childpos);
-    }, 100);
+    }, 500);
     window.addEventListener("resize", RunOnResize, { passive: true });
     window.addEventListener("load", RunOnResize, { passive: true });
   }, [children]);
 
   React.useEffect(() => {
     const childPositions = [];
-    childHeight.reduce((acc, child) => {
+    const childsum = childHeight.reduce((acc, child) => {
       childPositions.push(acc + child);
       return acc + child;
     }, 0);
-    console.log(childPositions);
-  }, [childHeight]);
+    setChildSum(childsum);
+    setChildPosition(childPositions);
+  }, [childHeight, scrollY]);
+
+  console.log(childPosition, childHeight);
 
   // console.log(childHeight);
   // const childsum = childHeight.reduce((acc, child) => {
@@ -76,12 +79,6 @@ const CaseWrapper = ({ children }) => {
   //   return -value;
   // });
 
-  // React.useEffect(() => {
-  //   setCase({
-  //     scrollProgress: posValue,
-  //   });
-  // }, [posValue]);
-
   React.useEffect(() => {
     /* This useEffect handles getting the height of all children, 
     and getting the artificial top position as if they were relative elements */
@@ -109,9 +106,8 @@ const CaseWrapper = ({ children }) => {
     //   childSummed: childsum,
     // });
 
-    /* onChange is needed to update our MotionValues */
+    /* onChange is needed to update our MotionValues, maybe */
     // const unsub = scrollY.onChange(updatePos);
-
     return () => {
       // unsub();
     };

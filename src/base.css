@@ -2,6 +2,9 @@ body,
 html {
   overscroll-behavior-y: none;
 }
+body {
+  overflow-y: scroll;
+}
 * {
   margin: 0;
   box-sizing: border-box;

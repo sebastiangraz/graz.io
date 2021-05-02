@@ -15,33 +15,31 @@ const CaseWrapper = ({ children }) => {
     }
   );
   React.useEffect(() => {
-    const RunOnResize = debounce(() => {
-      const childpos = children.map((child) => {
+    const onResize = debounce(() => {
+      const childHeightVar = children.map((child) => {
         return (
           child.ref.current && child.ref.current.getBoundingClientRect().height
         );
       });
-      setCase({ childHeight: childpos });
+      const childPosition = [];
+      const childSum = childHeightVar.reduce((acc, child) => {
+        childPosition.push(acc + child);
+        return acc + child;
+      }, 0);
+      setCase({
+        childHeight: childHeightVar,
+        childPosition: childPosition,
+        childSum: childSum,
+      });
     }, 500);
-    window.addEventListener("resize", RunOnResize, { passive: true });
-    window.addEventListener("load", RunOnResize, { passive: true });
-    return () => {
-      window.removeEventListener("resize", RunOnResize, { passive: true });
-      window.removeEventListener("load", RunOnResize, { passive: true });
-    };
-  }, [children]);
 
-  React.useEffect(() => {
-    const childPosition = [];
-    const childSum = state.childHeight.reduce((acc, child) => {
-      childPosition.push(acc + child);
-      return acc + child;
-    }, 0);
-    setCase({
-      childPosition: childPosition,
-      childSum: childSum,
-    });
-  }, [state.childHeight]);
+    window.addEventListener("resize", onResize, { passive: true });
+    window.addEventListener("load", onResize, { passive: true });
+    return () => {
+      window.removeEventListener("resize", onResize, { passive: true });
+      window.removeEventListener("load", onResize, { passive: true });
+    };
+  }, [children, state.childHeight]);
 
   return (
     <LazyMotion features={domAnimation} strict>

@@ -69,6 +69,8 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           onClick={handleClick}
           ref={ref}
           sx={{
+            color: data?.color,
+            backgroundColor: data?.bg,
             height: "100vh",
             width: "100%",
             position: "fixed",

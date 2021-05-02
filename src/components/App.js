@@ -9,8 +9,8 @@ export let cases = new Map([
       name: "Home",
       slug: "home",
       component: Home,
-      bg: "#222",
-      color: "#eee",
+      bg: "#FAF7Ea",
+      color: "#000",
     },
   ],
   [

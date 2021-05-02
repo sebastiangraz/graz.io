@@ -26,24 +26,28 @@ const CaseWrapper = ({ children }) => {
   //   }
   // );
   const [childHeight, setChildHeight] = React.useState([]);
-  const [childPos, setChildPos] = React.useState([]);
+  const [childPosition, setChildPosition] = React.useState([]);
   //Get Children Heights//
 
   React.useEffect(() => {
-    const childSize = debounce(() => {
-      children.reduce((acc, child, i, arr) => {
-        const v = child.ref.current.getBoundingClientRect().height;
-
-        // setChildPos(acc + v);
-        setChildHeight(v);
+    const RunOnResize = debounce(() => {
+      const childpos = children.map((child) => {
         return child.ref.current.getBoundingClientRect().height;
-      }, 0);
+      });
+      setChildHeight(childpos);
     }, 100);
-    window.addEventListener("resize", childSize, { passive: true });
-    window.addEventListener("load", childSize, { passive: true });
+    window.addEventListener("resize", RunOnResize, { passive: true });
+    window.addEventListener("load", RunOnResize, { passive: true });
   }, [children]);
 
-  console.log(childHeight);
+  React.useEffect(() => {
+    const childPositions = [];
+    childHeight.reduce((acc, child) => {
+      childPositions.push(acc + child);
+      return acc + child;
+    }, 0);
+    console.log(childPositions);
+  }, [childHeight]);
 
   // console.log(childHeight);
   // const childsum = childHeight.reduce((acc, child) => {

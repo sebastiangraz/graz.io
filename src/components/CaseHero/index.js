@@ -8,6 +8,12 @@ import uuid from "react-uuid";
 const ignoreUpdatedProps = () => true;
 
 export const CaseHero = React.memo(({ bg, id = uuid(), children }) => {
+  const [loaded, setLoaded] = React.useState(false);
+  React.useEffect(() => {
+    document.fonts.ready.then(function () {
+      setLoaded(true);
+    });
+  }, []);
   return (
     <svg
       sx={{
@@ -34,7 +40,8 @@ export const CaseHero = React.memo(({ bg, id = uuid(), children }) => {
             dominantBaseline="hanging"
             transform={`translate(${100 - 4} ${100 - 7})`}
           >
-            {children}
+            {/* hack: using zero-width space to render the correct font */}
+            {loaded ? children : "​"}
           </text>
         </mask>
       </defs>

@@ -1,15 +1,6 @@
 import React from "react";
 import debounce from "lodash.debounce";
-import {
-  LazyMotion,
-  domAnimation,
-  useViewportScroll,
-  useMotionValue,
-  motionValue,
-  transform,
-  animate,
-  useTransform,
-} from "framer-motion";
+import { LazyMotion, domAnimation } from "framer-motion";
 
 const CaseWrapperContext = React.createContext(null);
 const useCaseWrapperContext = () => React.useContext(CaseWrapperContext);
@@ -26,7 +17,9 @@ const CaseWrapper = ({ children }) => {
   React.useEffect(() => {
     const RunOnResize = debounce(() => {
       const childpos = children.map((child) => {
-        return child.ref.current.getBoundingClientRect().height;
+        return (
+          child.ref.current && child.ref.current.getBoundingClientRect().height
+        );
       });
       setCase({ childHeight: childpos });
     }, 500);

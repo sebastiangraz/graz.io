@@ -6,15 +6,7 @@ import { Logo } from "../";
 
 export const Home = () => {
   return (
-    <div
-      sx={{
-        // position: "fixed",
-        // top: 0,
-        // left: 0,
-        height: "100vh",
-        width: "100%",
-      }}
-    >
+    <div>
       <Grid variant="hero">
         <Logo
           sx={{

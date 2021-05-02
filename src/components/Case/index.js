@@ -13,7 +13,6 @@ import {
 } from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
-const clamp = (num, clamp, higher) => Math.min(Math.max(num, clamp), higher);
 
 const caseParent = {
   top: `calc(100vh + ${0}px)`,
@@ -59,13 +58,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     }),
     (v) => updatePos(v)
   );
-
-  // zeroToOne.onChange((v) => {
-  //   const sensitivity = 0.005;
-  //   const isInview = v > 0 + sensitivity && v < 1 - sensitivity ? true : false;
-  //   setInview(isInview);
-  // });
-
   const handleClick = () => {
     window.scrollTo(0, childPosition[index] - childHeight[index] - 300);
   };

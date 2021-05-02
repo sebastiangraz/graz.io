@@ -1,4 +1,5 @@
 import React from "react";
+import debounce from "lodash.debounce";
 import {
   LazyMotion,
   domAnimation,
@@ -8,63 +9,74 @@ import {
   transform,
   useTransform,
 } from "framer-motion";
+
 const CaseWrapperContext = React.createContext(null);
 const useCaseWrapperContext = () => React.useContext(CaseWrapperContext);
 
 const CaseWrapper = ({ children }) => {
   const { scrollY } = useViewportScroll();
 
-  const [state, setCase] = React.useReducer(
-    (state, newState) => ({ ...state, ...newState }),
-    {
-      childPosition: [],
-      childHeight: [],
-      childSummed: 0,
-      scrollProgress: useMotionValue(0),
-    }
-  );
-
+  // const [state, setCase] = React.useReducer(
+  //   (state, newState) => ({ ...state, ...newState }),
+  //   {
+  //     childPosition: [],
+  //     childHeight: [],
+  //     childSummed: 0,
+  //     scrollProgress: useMotionValue(0),
+  //   }
+  // );
+  const [childHeight, setChildHeight] = React.useState([]);
+  const [childPos, setChildPos] = React.useState([]);
   //Get Children Heights//
-  React.useEffect(() => {
-    const ro = new ResizeObserver((entries) => {
-      const childHeightArray = entries.map((entry) => {
-        return entry.contentRect.height;
-      });
-      setCase({
-        childHeight: childHeightArray,
-      });
-    });
 
-    children.map((child) => ro.observe(child.ref.current));
+  React.useEffect(() => {
+    const childSize = debounce(() => {
+      children.reduce((acc, child, i, arr) => {
+        const v = child.ref.current.getBoundingClientRect().height;
+
+        // setChildPos(acc + v);
+        setChildHeight(v);
+        return child.ref.current.getBoundingClientRect().height;
+      }, 0);
+    }, 100);
+    window.addEventListener("resize", childSize, { passive: true });
+    window.addEventListener("load", childSize, { passive: true });
   }, [children]);
 
+  console.log(childHeight);
+
+  // console.log(childHeight);
+  // const childsum = childHeight.reduce((acc, child) => {
+  //   console.log(acc + child);
+
+  //   return acc + child;
+  // }, 0);
+
+  // console.log(childHeight);
+
   //Get Children Positions//
-  React.useEffect(() => {
-    const childPositions = [];
-    state.childHeight.reduce((acc, child) => {
-      childPositions.push(acc + child);
-      return acc + child;
-    }, 0);
-    setCase({
-      childPosition: childPositions,
-    });
-  }, [state.childHeight]);
+  // React.useEffect(() => {
+  //   const childPositions = [];
+  //   [].reduce((acc, child) => {
+  //     childPositions.push(acc + child);
+  //     return acc + child;
+  //   }, 0);
+  // }, []);
 
   //Send position to CHILD//
-  const posValue = useTransform(scrollY, (v) => {
-    const value = state.childPosition.forEach((element, i) => {
-      console.log(element[i]);
-      return v - element[i];
-    });
+  // const posValue = useTransform(scrollY, (v) => {
+  //   const value = state.childPosition.forEach((element, i) => {
+  //     console.log(element[i]);
+  //     return v - element[i];
+  //   });
+  //   return -value;
+  // });
 
-    return -value;
-  });
-
-  React.useEffect(() => {
-    setCase({
-      scrollProgress: posValue,
-    });
-  }, [posValue]);
+  // React.useEffect(() => {
+  //   setCase({
+  //     scrollProgress: posValue,
+  //   });
+  // }, [posValue]);
 
   React.useEffect(() => {
     /* This useEffect handles getting the height of all children, 
@@ -99,7 +111,7 @@ const CaseWrapper = ({ children }) => {
     return () => {
       // unsub();
     };
-  }, [state.childHeight]);
+  }, []);
 
   return (
     <LazyMotion features={domAnimation} strict>
@@ -109,9 +121,9 @@ const CaseWrapper = ({ children }) => {
           // height: state.childSummed,
         }}
       >
-        <CaseWrapperContext.Provider value={state}>
-          {children}
-        </CaseWrapperContext.Provider>
+        {/* <CaseWrapperContext.Provider value={state}> */}
+        {children}
+        {/* </CaseWrapperContext.Provider> */}
       </div>
     </LazyMotion>
   );

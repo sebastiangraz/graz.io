@@ -3,13 +3,21 @@
 
 import { jsx } from "theme-ui";
 import React from "react";
-import { m, useSpring, useMotionValue, transform } from "framer-motion";
+import {
+  m,
+  useSpring,
+  useMotionValue,
+  transform,
+  useTransform,
+  useViewportScroll,
+} from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
+const clamp = (num, clamp, higher) => Math.min(Math.max(num, clamp), higher);
 
 const caseParent = {
-  top: `calc(100vh + ${250}px)`,
-  position: "absolute",
+  top: `calc(100vh + ${0}px)`,
+  position: "fixed",
   willChange: "transform",
   right: 0,
 };
@@ -23,7 +31,8 @@ const caseBg = {
 };
 
 export const Case = React.forwardRef(({ index, data }, ref) => {
-  // let { childHeight, childPosition, scrollProgress } = useCaseWrapperContext();
+  const { scrollY } = useViewportScroll();
+  let { childHeight, childPosition } = useCaseWrapperContext();
   // childHeight = childHeight[index];
   // const responsiveOffset = useResponsiveValue([32, 60, 80, 160]);
   // const offset = (responsiveOffset / index) * 0.75;
@@ -36,26 +45,20 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
   const Render = data.component;
 
-  // console.log(scrollProgress);
+  const updatePos = (v) =>
+    transform(
+      v - childPosition[index] + childHeight[index] + childHeight[0],
+      [0, childHeight[index]],
+      [0, -childHeight[index]]
+    );
 
-  // React.useEffect(() => {
-  //   scrollProgress.onChange((v) => {
-  //     scroll.set(
-  //       transform(v[index], [0, 1], [0, -childHeight - staggeredOffset - 250])
-  //     );
-  //     nextScroll.set(transform(v[index - 1], [0, 1], [50, 0])); //[50, 0]
-  //   });
-  // }, [childHeight, index, nextScroll, scroll, scrollProgress, staggeredOffset]);
-
-  // const y = useSpring(scrollProgress, {
-  //   damping: 7,
-  //   mass: 0.07,
-  // });
-
-  // const secondary = useSpring(scrollProgress, {
-  //   damping: 7,
-  //   mass: 0.07,
-  // });
+  const y = useTransform(
+    useSpring(scrollY, {
+      damping: 7,
+      mass: 0.07,
+    }),
+    (v) => updatePos(v)
+  );
 
   // zeroToOne.onChange((v) => {
   //   const sensitivity = 0.005;
@@ -63,18 +66,16 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   //   setInview(isInview);
   // });
 
-  // const handleClick = () => {
-  //   window.scrollTo(0, childPosition[index] - childHeight);
-  // };
+  const handleClick = () => {
+    window.scrollTo(0, childPosition[index] - childHeight[index] - 300);
+  };
 
   return (
     <m.div
-      // onClick={handleClick}
-      style={
-        {
-          // y: false ? 0 : y,
-        }
-      }
+      onClick={handleClick}
+      style={{
+        y: y,
+      }}
       sx={
         false
           ? { position: "fixed", width: "100%" }

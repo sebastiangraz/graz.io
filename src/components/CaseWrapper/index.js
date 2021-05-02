@@ -7,6 +7,7 @@ import {
   useMotionValue,
   motionValue,
   transform,
+  animate,
   useTransform,
 } from "framer-motion";
 
@@ -14,43 +15,87 @@ const CaseWrapperContext = React.createContext(null);
 const useCaseWrapperContext = () => React.useContext(CaseWrapperContext);
 
 const CaseWrapper = ({ children }) => {
-  const { scrollY } = useViewportScroll();
+  const [state, setCase] = React.useReducer(
+    (state, newState) => ({ ...state, ...newState }),
+    {
+      childHeight: [],
+      childPosition: [],
+      childSum: 0,
+    }
+  );
 
-  // const [state, setCase] = React.useReducer(
-  //   (state, newState) => ({ ...state, ...newState }),
-  //   {
-  //     childPosition: [],
-  //     childHeight: [],
-  //     childSummed: 0,
-  //     scrollProgress: useMotionValue(0),
-  //   }
-  // );
-  const [childHeight, setChildHeight] = React.useState([]);
-  const [childPosition, setChildPosition] = React.useState([]);
-  const [childSum, setChildSum] = React.useState(0);
+  // const prog = useMotionValue([]);
+
+  // React.useEffect(() => {
+  //   const update = (v) => {
+  //     const pos = childPosition.map((childpos, i) => {
+  //       return transform(
+  //         v - childpos + childHeight[i],
+  //         [0, childHeight[i] - childHeight[0]],
+  //         [0, -childHeight[i]]
+  //       );
+  //     });
+  //     prog.set(pos);
+  //   };
+  //   return scrollY.onChange((v) => update(v));
+  // }, [childHeight, childPosition, prog, scrollY]);
 
   React.useEffect(() => {
     const RunOnResize = debounce(() => {
       const childpos = children.map((child) => {
         return child.ref.current.getBoundingClientRect().height;
       });
-      setChildHeight(childpos);
+      setCase({ childHeight: childpos });
     }, 500);
     window.addEventListener("resize", RunOnResize, { passive: true });
     window.addEventListener("load", RunOnResize, { passive: true });
+    return () => {
+      window.removeEventListener("resize", RunOnResize, { passive: true });
+      window.removeEventListener("load", RunOnResize, { passive: true });
+    };
   }, [children]);
 
   React.useEffect(() => {
-    const childPositions = [];
-    const childsum = childHeight.reduce((acc, child) => {
-      childPositions.push(acc + child);
+    const childPosition = [];
+    const childSum = state.childHeight.reduce((acc, child) => {
+      childPosition.push(acc + child);
       return acc + child;
     }, 0);
-    setChildSum(childsum);
-    setChildPosition(childPositions);
-  }, [childHeight, scrollY]);
+    setCase({
+      childPosition: childPosition,
+      childSum: childSum,
+    });
+  }, [state.childHeight]);
 
-  console.log(childPosition, childHeight);
+  // const scrollProgress = useMotionValue([]);
+
+  // React.useEffect(() => {
+  //   const pos = childPosition.map((childpos, i) => {
+  //     return transform(childpos, [0, 1000], [0, -1000]);
+  //   });
+  //   scrollProgress.set(pos);
+  // }, [childPosition, scrollProgress, scrollY]);
+
+  // console.log(scrollProgress);
+
+  // React.useEffect(() => {
+  //   const updatePos = (v) => {
+  //     const pos = childPosition.map((childpos, i) => {
+  //       return transform(v - childpos, [0, 1000], [0, -1000]);
+  //     });
+  //     console.log(pos);
+  //   };
+
+  //   scrollY.onChange(updatePos);
+  // }, [childPosition, scrollY]);
+
+  // useTransform(scrollY, (v) => {
+  //   childPosition.forEach((element, i) => {
+  //     console.log(v - element);
+  //     // return v - element[i];
+  //   });
+  //   // return value;
+  // });
 
   // console.log(childHeight);
   // const childsum = childHeight.reduce((acc, child) => {
@@ -117,13 +162,12 @@ const CaseWrapper = ({ children }) => {
     <LazyMotion features={domAnimation} strict>
       <div
         style={{
-          height: 3000,
-          // height: state.childSummed,
+          height: state.childSum,
         }}
       >
-        {/* <CaseWrapperContext.Provider value={state}> */}
-        {children}
-        {/* </CaseWrapperContext.Provider> */}
+        <CaseWrapperContext.Provider value={state}>
+          {children}
+        </CaseWrapperContext.Provider>
       </div>
     </LazyMotion>
   );

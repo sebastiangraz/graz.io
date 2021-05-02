@@ -34,7 +34,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   let { childHeight, childPosition } = useCaseWrapperContext();
   const height = childHeight[index] || [];
   const position = childPosition[index] || [];
-  const homeCase = childHeight[0] || [];
+  const homeCase = childHeight[0] || 0;
 
   // const responsiveOffset = useResponsiveValue([32, 60, 80, 160]);
   // const offset = (responsiveOffset / index) * 0.75;
@@ -46,7 +46,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   // const nextScroll = useMotionValue(!skipFirstIndex && 50);
 
   const Render = data.component;
-  console.log(homeCase);
   const updatePos = (v) =>
     transform(v - position + height + homeCase, [0, height], [0, -height]);
 
@@ -81,38 +80,36 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           <Render />
         </div>
       ) : (
-        <>
+        <m.div
+          onClick={handleClick}
+          style={{
+            y: y,
+          }}
+          sx={{
+            // mt: staggeredOffset,
+            ...caseParent,
+            color: data?.color,
+            zIndex: index,
+            width: `calc(100% - ${index * 6}%)`,
+          }}
+        >
+          {console.log("render child :(")}
+
           <m.div
-            onClick={handleClick}
-            style={{
-              y: y,
-            }}
+            // style={{ y: secondary, willChange: "transform" }}
             sx={{
-              // mt: staggeredOffset,
-              ...caseParent,
-              color: data?.color,
-              zIndex: index,
-              width: `calc(100% - ${index * 6}%)`,
+              ...caseBg,
+              height: "100%",
+              backgroundColor: data?.bg,
             }}
           >
-            {console.log("render child :(")}
-
-            <m.div
-              // style={{ y: secondary, willChange: "transform" }}
-              sx={{
-                ...caseBg,
-                height: "100%",
-                backgroundColor: data?.bg,
-              }}
-            >
-              <CaseHero bg={data?.bg}>{data?.name}</CaseHero>
-            </m.div>
-
-            <div ref={ref} sx={{ display: "block" }}>
-              <Render />
-            </div>
+            <CaseHero bg={data?.bg}>{data?.name}</CaseHero>
           </m.div>
-        </>
+
+          <div ref={ref} sx={{ display: "block" }}>
+            <Render />
+          </div>
+        </m.div>
       )}
     </>
   );

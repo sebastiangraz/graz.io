@@ -9,7 +9,7 @@ import { useResponsiveValue } from "@theme-ui/match-media";
 
 const caseParent = {
   top: `calc(100vh + ${250}px)`,
-  position: "fixed",
+  position: "absolute",
   willChange: "transform",
   right: 0,
 };
@@ -23,16 +23,16 @@ const caseBg = {
 };
 
 export const Case = React.forwardRef(({ index, data }, ref) => {
-  let { childHeight, childPosition, scrollProgress } = useCaseWrapperContext();
-  childHeight = childHeight[index];
-  const responsiveOffset = useResponsiveValue([32, 60, 80, 160]);
-  const offset = (responsiveOffset / index) * 0.75;
-  const staggeredOffset = -childPosition.length * offset + index * offset;
+  // let { childHeight, childPosition, scrollProgress } = useCaseWrapperContext();
+  // childHeight = childHeight[index];
+  // const responsiveOffset = useResponsiveValue([32, 60, 80, 160]);
+  // const offset = (responsiveOffset / index) * 0.75;
+  // const staggeredOffset = -childPosition.length * offset + index * offset;
 
-  const skipFirstIndex = index === 0 || index === 1;
-  const firstCase = index === 0;
-  const scroll = useMotionValue(scrollProgress);
-  const nextScroll = useMotionValue(!skipFirstIndex && 50);
+  // const skipFirstIndex = index === 0 || index === 1;
+  // const firstCase = index === 0;
+  // const scroll = useMotionValue(scrollProgress);
+  // const nextScroll = useMotionValue(!skipFirstIndex && 50);
 
   const Render = data.component;
 
@@ -47,10 +47,10 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   //   });
   // }, [childHeight, index, nextScroll, scroll, scrollProgress, staggeredOffset]);
 
-  const y = useSpring(scrollProgress, {
-    damping: 7,
-    mass: 0.07,
-  });
+  // const y = useSpring(scrollProgress, {
+  //   damping: 7,
+  //   mass: 0.07,
+  // });
 
   // const secondary = useSpring(scrollProgress, {
   //   damping: 7,
@@ -63,19 +63,20 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   //   setInview(isInview);
   // });
 
-  const handleClick = () => {
-    window.scrollTo(0, childPosition[index] - childHeight);
-  };
+  // const handleClick = () => {
+  //   window.scrollTo(0, childPosition[index] - childHeight);
+  // };
 
   return (
     <m.div
-      ref={ref}
-      onClick={handleClick}
-      style={{
-        y: firstCase ? 0 : y,
-      }}
+      // onClick={handleClick}
+      style={
+        {
+          // y: false ? 0 : y,
+        }
+      }
       sx={
-        firstCase
+        false
           ? { position: "fixed", width: "100%" }
           : {
               // mt: staggeredOffset,
@@ -91,7 +92,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
       <m.div
         // style={{ y: secondary, willChange: "transform" }}
         sx={
-          firstCase
+          false
             ? null
             : {
                 ...caseBg,
@@ -103,7 +104,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         <CaseHero bg={data?.bg}>{data?.name}</CaseHero>
       </m.div>
 
-      <div sx={{ display: "block" }}>
+      <div ref={ref} sx={{ display: "block" }}>
         <Render />
       </div>
     </m.div>

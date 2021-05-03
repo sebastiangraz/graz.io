@@ -36,9 +36,9 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const position = childPosition[index] || [];
   const homeCase = childHeight[0] || 0;
 
-  // const responsiveOffset = useResponsiveValue([32, 60, 80, 160]);
-  // const offset = (responsiveOffset / index) * 0.75;
-  // const staggeredOffset = -childPosition.length * offset + index * offset;
+  const responsiveOffset = useResponsiveValue([32, 60, 80, 160]);
+  const offset = (responsiveOffset / index) * 0.75;
+  const staggeredOffset = -childPosition.length * offset + index * offset;
 
   // const skipFirstIndex = index === 0 || index === 1;
   // const firstCase = index === 0;
@@ -47,7 +47,11 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
   const Render = data.component;
   const updatePos = (v) =>
-    transform(v - position + height + homeCase, [0, height], [0, -height]);
+    transform(
+      v - position + height + homeCase,
+      [0, height],
+      [staggeredOffset + 300, -height]
+    );
 
   const y = useSpring(
     useTransform(scrollY, (v) => updatePos(v)),
@@ -58,7 +62,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   );
 
   const handleClick = () => {
-    window.scrollTo(0, position - height - 300);
+    window.scrollTo(0, position + staggeredOffset - height);
   };
 
   return (

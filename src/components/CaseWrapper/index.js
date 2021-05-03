@@ -14,14 +14,16 @@ const CaseWrapper = ({ children }) => {
       childSum: 0,
     }
   );
+
   React.useEffect(() => {
     const onResize = debounce(() => {
-      console.log("onResize");
+      console.log("debounced");
       const childHeightVar = children.map((child) => {
         return (
           child.ref.current && child.ref.current.getBoundingClientRect().height
         );
       });
+
       const childPosition = [];
       const childSum = childHeightVar.reduce((acc, child) => {
         childPosition.push(acc + child);
@@ -32,14 +34,19 @@ const CaseWrapper = ({ children }) => {
         childPosition: childPosition,
         childSum: childSum,
       });
-    }, 500);
+    }, 100);
 
-    window.addEventListener("resize", onResize, { passive: true });
-    window.addEventListener("load", onResize, { passive: true });
-    return () => {
-      window.removeEventListener("resize", onResize, { passive: true });
-      window.removeEventListener("load", onResize, { passive: true });
-    };
+    if (document.readyState === "complete") {
+      // Safari needed to know if the document was ready
+      onResize();
+    } else {
+      window.addEventListener("resize", onResize, { passive: true });
+      window.addEventListener("load", onResize, { passive: true });
+      return () => {
+        window.removeEventListener("resize", onResize, { passive: true });
+        window.removeEventListener("load", onResize, { passive: true });
+      };
+    }
   }, [children]);
 
   return (

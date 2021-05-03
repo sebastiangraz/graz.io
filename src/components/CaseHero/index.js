@@ -21,7 +21,7 @@ export const CaseHero = React.memo(({ bg, id = uuid(), children }) => {
         top: -300,
         textTransform: "uppercase",
         fontWeight: 600,
-        width: "100%",
+        width: "100vw",
         height: 300,
         letterSpacing: "-0.075em",
         fontSize: "min(12vw, 140px)",
@@ -34,7 +34,7 @@ export const CaseHero = React.memo(({ bg, id = uuid(), children }) => {
       <defs>
         {console.log("render CaseHero :(")}
         <mask id={`${"sample-" + id}`}>
-          <rect width="100vw" height="100%" fill="white"></rect>
+          <rect width="100%" height="100%" fill="white"></rect>
 
           <text
             dominantBaseline="hanging"

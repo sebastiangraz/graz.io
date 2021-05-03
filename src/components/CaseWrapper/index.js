@@ -1,6 +1,6 @@
 import React from "react";
 import debounce from "lodash.debounce";
-import { LazyMotion, domAnimation } from "framer-motion";
+import { LazyMotion, domAnimation, transform } from "framer-motion";
 
 const CaseWrapperContext = React.createContext(null);
 const useCaseWrapperContext = () => React.useContext(CaseWrapperContext);
@@ -45,6 +45,7 @@ const CaseWrapper = ({ children }) => {
     <LazyMotion features={domAnimation} strict>
       <div
         style={{
+          willChange: "height",
           height: state.childSum,
         }}
       >

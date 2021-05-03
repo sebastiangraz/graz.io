@@ -16,6 +16,7 @@ const CaseWrapper = ({ children }) => {
   );
   React.useEffect(() => {
     const onResize = debounce(() => {
+      console.log("onResize");
       const childHeightVar = children.map((child) => {
         return (
           child.ref.current && child.ref.current.getBoundingClientRect().height
@@ -39,7 +40,7 @@ const CaseWrapper = ({ children }) => {
       window.removeEventListener("resize", onResize, { passive: true });
       window.removeEventListener("load", onResize, { passive: true });
     };
-  }, [children, state.childHeight]);
+  }, [children]);
 
   return (
     <LazyMotion features={domAnimation} strict>

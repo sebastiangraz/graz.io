@@ -23,6 +23,7 @@ const caseParent = {
 const caseBg = {
   borderBottom: "3px solid #000",
   width: "100%",
+  height: "100%",
   zIndex: -1,
   position: "absolute",
   bottom: 0,
@@ -36,8 +37,8 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const position = childPosition[index] || [];
   const homeCase = childHeight[0] || 0;
 
-  const responsiveOffset = useResponsiveValue([32, 60, 80, 160]);
-  const offset = (responsiveOffset / index) * 0.75;
+  const responsiveOffset = useResponsiveValue([32, 60, 80, 120]);
+  const offset = (responsiveOffset / index) * 0.4;
   const staggeredOffset = -childPosition.length * offset + index * offset;
 
   // const skipFirstIndex = index === 0 || index === 1;
@@ -50,7 +51,17 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     transform(
       v - position + height + homeCase,
       [0, height],
-      [staggeredOffset + 300, -height]
+      [staggeredOffset + 200, -height]
+    );
+
+  const nextPos = (v) =>
+    transform(
+      v -
+        (childPosition[index - 1] || 0) +
+        (childHeight[index - 1] || 0) +
+        homeCase,
+      [0, childHeight[index - 1] || 0],
+      [100, 0]
     );
 
   const y = useSpring(
@@ -61,8 +72,16 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     }
   );
 
+  const nextScroll = useSpring(
+    useTransform(scrollY, (v) => nextPos(v)),
+    {
+      damping: 7,
+      mass: 0.07,
+    }
+  );
+
   const handleClick = () => {
-    window.scrollTo(0, position + staggeredOffset - height);
+    window.scrollTo(0, position - height);
   };
 
   return (
@@ -90,7 +109,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
             y: y,
           }}
           sx={{
-            // mt: staggeredOffset,
             ...caseParent,
             color: data?.color,
             zIndex: index,
@@ -100,10 +118,9 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           {console.log("render child :(")}
 
           <m.div
-            // style={{ y: secondary, willChange: "transform" }}
+            style={{ y: nextScroll, willChange: "transform" }}
             sx={{
               ...caseBg,
-              height: "100%",
               backgroundColor: data?.bg,
             }}
           >

@@ -47,37 +47,22 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   // const nextScroll = useMotionValue(!skipFirstIndex && 50);
 
   const Render = data.component;
-  const updatePos = (v) =>
-    transform(
-      v - position() + height() + homeCase,
-      [0, height()],
-      [staggeredOffset + 200, -height()]
-    );
 
-  const nextPos = (v) =>
+  const updatePos = (v, pos) =>
     transform(
-      v -
-        (childPosition[index - 1] || 0) +
-        (childHeight[index - 1] || 0) +
-        homeCase,
-      [0, childHeight[index - 1] || 0],
-      [100, 0]
+      v - position(pos) + height(pos) + homeCase,
+      [0, height(pos)],
+      pos === 1 ? [100, 0] : [staggeredOffset + 200, -height(pos)]
     );
 
   const y = useSpring(
-    useTransform(scrollY, (v) => updatePos(v)),
-    {
-      damping: 7,
-      mass: 0.07,
-    }
+    useTransform(scrollY, (v) => updatePos(v, 0)),
+    { damping: 7, mass: 0.07 }
   );
 
-  const nextScroll = useSpring(
-    useTransform(scrollY, (v) => nextPos(v)),
-    {
-      damping: 7,
-      mass: 0.07,
-    }
+  const yNext = useSpring(
+    useTransform(scrollY, (v) => updatePos(v, 1)),
+    { damping: 7, mass: 0.07 }
   );
 
   const handleClick = () => {
@@ -118,7 +103,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           {console.log("render child :(")}
 
           <m.div
-            style={{ y: nextScroll, willChange: "transform" }}
+            style={{ y: yNext, willChange: "transform" }}
             sx={{
               ...caseBg,
               backgroundColor: data?.bg,

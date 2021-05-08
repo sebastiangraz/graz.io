@@ -57,6 +57,9 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         // CASE
         <m.div
           sx={{
+            contain: "contain",
+            contentVisibility: "auto",
+            containIntrinsicSize: `1px ${height(0)}px`,
             willChange: "transform",
             marginLeft: "auto",
             position: "sticky",

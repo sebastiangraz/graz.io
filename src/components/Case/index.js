@@ -6,7 +6,6 @@ import React from "react";
 import {
   m,
   useSpring,
-  useMotionValue,
   transform,
   useTransform,
   useViewportScroll,

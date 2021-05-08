@@ -44,7 +44,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     transform(
       v - position(pos) + height(pos) + homeCase,
       [0, height(pos)],
-      pos === 1 ? [50, 0] : [staggeredOffset + 250, -height(pos)]
+      pos === 1 ? [staggeredOffset + 300, 0] : [0, -height(pos)]
     );
 
   const y = useSpring(
@@ -58,7 +58,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   );
 
   const handleClick = () => {
-    window.scrollTo(0, position() - height());
+    window.scrollTo(0, position(0) - height(0) - 300);
   };
 
   return (

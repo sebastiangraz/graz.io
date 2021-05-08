@@ -23,8 +23,8 @@ export const CaseHero = React.memo(({ bg, id = uuid(), children }) => {
         fontWeight: 600,
         width: "100vw",
         height: 300,
-        letterSpacing: "-0.1em",
-        fontSize: "min(17vw, 230px)",
+        letterSpacing: "-0.075em",
+        fontSize: "min(12vw, 156px)",
         color: bg,
       }}
       height="300"
@@ -38,7 +38,7 @@ export const CaseHero = React.memo(({ bg, id = uuid(), children }) => {
 
           <text
             dominantBaseline="hanging"
-            transform={`translate(${80 - 4} ${80 - 7})`}
+            transform={`translate(${100 - 4} ${100 - 7})`}
           >
             {/* hack: using zero-width space to render the correct font */}
             {loaded ? children : "​"}

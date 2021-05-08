@@ -14,7 +14,7 @@ import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
 const caseParent = {
-  top: `calc(100vh + ${0}px)`,
+  top: `100vh`,
   position: "fixed",
   willChange: "transform",
   right: 0,
@@ -37,14 +37,14 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const height = (pos) => childHeight[pos ? index - pos : index] || [];
   const position = (pos) => childPosition[pos ? index - pos : index] || [];
   const homeCase = childHeight[0] || 0;
-  const offset = (responsiveOffset / index) * 0.4;
+  const offset = (responsiveOffset / index) * 1;
   const staggeredOffset = -childPosition.length * offset + index * offset;
 
   const updatePos = (v, pos) =>
     transform(
       v - position(pos) + height(pos) + homeCase,
       [0, height(pos)],
-      pos === 1 ? [100, 0] : [staggeredOffset + 200, -height(pos)]
+      pos === 1 ? [50, 0] : [staggeredOffset + 250, -height(pos)]
     );
 
   const y = useSpring(
@@ -81,6 +81,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         </div>
       ) : (
         <m.div
+          ref={ref}
           onClick={handleClick}
           style={{
             y: y,
@@ -104,7 +105,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
             <CaseHero bg={data?.bg}>{data?.name}</CaseHero>
           </m.div>
 
-          <div ref={ref} sx={{ display: "block" }}>
+          <div sx={{ my: "100vh" }}>
             <Render />
           </div>
         </m.div>

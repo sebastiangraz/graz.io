@@ -1,17 +1,26 @@
 import React from "react";
 import debounce from "lodash.debounce";
-import { LazyMotion, domAnimation, transform } from "framer-motion";
+import {
+  LazyMotion,
+  domAnimation,
+  transform,
+  useMotionValue,
+  useViewportScroll,
+} from "framer-motion";
 
 const CaseWrapperContext = React.createContext(null);
 const useCaseWrapperContext = () => React.useContext(CaseWrapperContext);
 
 const CaseWrapper = ({ children }) => {
+  const { scrollY } = useViewportScroll();
+
   const [state, setCase] = React.useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
       childHeight: [],
       childPosition: [],
       childSum: 0,
+      progress: useMotionValue(0),
     }
   );
 
@@ -33,6 +42,7 @@ const CaseWrapper = ({ children }) => {
         childHeight: childHeightVar,
         childPosition: childPosition,
         childSum: childSum,
+        progress: scrollY,
       });
     }, 100);
 
@@ -47,13 +57,12 @@ const CaseWrapper = ({ children }) => {
         window.removeEventListener("load", onResize, { passive: true });
       };
     }
-  }, [children]);
+  }, [children, scrollY]);
 
   return (
     <LazyMotion features={domAnimation} strict>
       <div
         style={{
-          willChange: "height",
           height: state.childSum,
         }}
       >

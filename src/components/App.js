@@ -14,32 +14,42 @@ export let cases = new Map([
     },
   ],
   [
-    "3D",
-    {
-      name: "3D",
-      slug: "3d",
-      component: Loupe,
-      bg: "#e1e30c",
-      color: "#000",
-    },
-  ],
-  [
-    "experimental",
-    {
-      name: "Experimental",
-      slug: "experimental",
-      component: Loupe,
-      bg: "#50a40e",
-      color: "#e8e0d6",
-    },
-  ],
-  [
     "loupe",
     {
       name: "Loupe",
       slug: "loupe",
-      component: Norse,
+      component: Canon,
       bg: "#184629",
+      color: "#e8e0d6",
+    },
+  ],
+  [
+    "loupe1",
+    {
+      name: "Loupe",
+      slug: "loupe1",
+      component: Canon,
+      bg: "#234",
+      color: "#e8e0d6",
+    },
+  ],
+  [
+    "loupe2",
+    {
+      name: "Loupe",
+      slug: "loupe2",
+      component: Canon,
+      bg: "#456",
+      color: "#e8e0d6",
+    },
+  ],
+  [
+    "loupe3",
+    {
+      name: "Loupe",
+      slug: "loupe3",
+      component: Canon,
+      bg: "#dfa",
       color: "#e8e0d6",
     },
   ],

@@ -14,52 +14,38 @@ import {
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
-const caseParent = {
-  top: `calc(100vh + ${0}px)`,
-  position: "fixed",
-  willChange: "transform",
-  right: 0,
-};
-const caseBg = {
-  borderBottom: "3px solid #000",
-  width: "100%",
-  height: "100%",
-  zIndex: -1,
-  position: "absolute",
-  bottom: 0,
-  left: 0,
-};
+const caseParent = {};
+const caseBg = {};
 
 export const Case = React.forwardRef(({ index, data }, ref) => {
-  let { childHeight, childPosition } = useCaseWrapperContext();
-  const { scrollY } = useViewportScroll();
-  const responsiveOffset = useResponsiveValue([32, 60, 80, 120]);
+  let { childHeight, childPosition, progress } = useCaseWrapperContext();
+
   const Render = data.component;
-  const height = (pos) => childHeight[pos ? index - pos : index] || [];
+
+  // const height = (pos) => childHeight[pos ? index - pos : index] || [];
   const position = (pos) => childPosition[pos ? index - pos : index] || [];
   const homeCase = childHeight[0] || 0;
+
+  const responsiveOffset = useResponsiveValue([32, 60, 80, 120]);
   const offset = (responsiveOffset / index) * 0.4;
   const staggeredOffset = -childPosition.length * offset + index * offset;
+  const [height, setHeight] = React.useState(0);
+
+  React.useEffect(() => {
+    setHeight(ref.current.getBoundingClientRect().height);
+  }, [ref]);
 
   const updatePos = (v, pos) =>
     transform(
-      v - position(pos) + height(pos) + homeCase,
-      [0, height(pos)],
-      pos === 1 ? [100, 0] : [staggeredOffset + 200, -height(pos)]
+      v - position(pos) + height + homeCase,
+      [0, height],
+      pos === 1 ? [100, 0] : [staggeredOffset, -height]
     );
 
-  const y = useSpring(
-    useTransform(scrollY, (v) => updatePos(v, 0)),
-    { damping: 5, mass: 0.03 }
-  );
-
-  const yNext = useSpring(
-    useTransform(scrollY, (v) => updatePos(v, 1)),
-    { damping: 5, mass: 0.03 }
-  );
+  const y = useTransform(progress, (v) => updatePos(v, 0));
 
   const handleClick = () => {
-    window.scrollTo(0, position() - height());
+    window.scrollTo(0, position(0) - height);
   };
 
   return (
@@ -85,24 +71,32 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           onClick={handleClick}
           style={{
             y: y,
-          }}
-          sx={{
-            ...caseParent,
+            position: "fixed",
+            willChange: "transform",
+            right: 0,
+            top: homeCase,
             color: data?.color,
             zIndex: index,
-            width: `calc(100% - ${index * 6}%)`,
+            width: 1700,
           }}
         >
           {console.log("render child :(")}
 
           <m.div
-            style={{ y: yNext, willChange: "transform" }}
-            sx={{
-              ...caseBg,
+            // style={{ y: yNext }}
+            style={{
+              borderBottom: "3px solid #000",
+              width: "100%",
+              height: "100%",
+              zIndex: -1,
+              willChange: "transform",
+              position: "absolute",
+              bottom: 0,
+              left: 0,
               backgroundColor: data?.bg,
             }}
           >
-            <CaseHero bg={data?.bg}>{data?.name}</CaseHero>
+            {/* <CaseHero bg={data?.bg}>{data?.name}</CaseHero> */}
           </m.div>
 
           <div ref={ref} sx={{ display: "block" }}>

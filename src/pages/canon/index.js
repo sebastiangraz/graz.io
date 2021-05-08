@@ -6,6 +6,12 @@ import { jsx, Box, Text, Heading } from "theme-ui";
 import { GridParent, Video, Img, List } from "../../components";
 import { icons, images, videos } from "./assets";
 
+// const Sections = {
+//   Define: () => {
+//     return <div sx={{ position: "relative", height: 8888 }}></div>;
+//   },
+// };
+
 const Sections = {
   Define: () => {
     return (

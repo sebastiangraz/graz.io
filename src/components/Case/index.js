@@ -31,22 +31,15 @@ const caseBg = {
 };
 
 export const Case = React.forwardRef(({ index, data }, ref) => {
-  const { scrollY } = useViewportScroll();
   let { childHeight, childPosition } = useCaseWrapperContext();
+  const { scrollY } = useViewportScroll();
+  const responsiveOffset = useResponsiveValue([32, 60, 80, 120]);
+  const Render = data.component;
   const height = (pos) => childHeight[pos ? index - pos : index] || [];
   const position = (pos) => childPosition[pos ? index - pos : index] || [];
   const homeCase = childHeight[0] || 0;
-
-  const responsiveOffset = useResponsiveValue([32, 60, 80, 120]);
   const offset = (responsiveOffset / index) * 0.4;
   const staggeredOffset = -childPosition.length * offset + index * offset;
-
-  // const skipFirstIndex = index === 0 || index === 1;
-  // const firstCase = index === 0;
-  // const scroll = useMotionValue(scrollProgress);
-  // const nextScroll = useMotionValue(!skipFirstIndex && 50);
-
-  const Render = data.component;
 
   const updatePos = (v, pos) =>
     transform(
@@ -57,12 +50,12 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
   const y = useSpring(
     useTransform(scrollY, (v) => updatePos(v, 0)),
-    { damping: 7, mass: 0.07 }
+    { damping: 5, mass: 0.03 }
   );
 
   const yNext = useSpring(
     useTransform(scrollY, (v) => updatePos(v, 1)),
-    { damping: 7, mass: 0.07 }
+    { damping: 5, mass: 0.03 }
   );
 
   const handleClick = () => {

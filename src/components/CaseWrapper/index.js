@@ -36,17 +36,11 @@ const CaseWrapper = ({ children }) => {
       });
     }, 100);
 
-    if (document.readyState === "complete") {
-      // Safari needed to know if the document was ready
-      onResize();
-    } else {
-      window.addEventListener("resize", onResize, { passive: true });
-      window.addEventListener("load", onResize, { passive: true });
-      return () => {
-        window.removeEventListener("resize", onResize, { passive: true });
-        window.removeEventListener("load", onResize, { passive: true });
-      };
-    }
+    onResize();
+    window.addEventListener("resize", onResize, { passive: true });
+    return () => {
+      window.removeEventListener("resize", onResize, { passive: true });
+    };
   }, [children]);
 
   return (

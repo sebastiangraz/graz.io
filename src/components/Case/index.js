@@ -14,12 +14,6 @@ import {
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
-const caseParent = {
-  top: `calc(100vh + ${0}px)`,
-  position: "fixed",
-  willChange: "transform",
-  right: 0,
-};
 const caseBg = {
   borderBottom: "3px solid #000",
   width: "100%",
@@ -41,39 +35,18 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const offset = (responsiveOffset / index) * 0.4;
   const staggeredOffset = -childPosition.length * offset + index * offset;
 
-  const updatePos = (v, pos) =>
-    transform(
-      v - position(pos) + height(pos) + homeCase,
-      [0, height(pos)],
-      pos === 1 ? [100, 0] : [staggeredOffset + 200, -height(pos)]
-    );
-
-  const y = useSpring(
-    useTransform(scrollY, (v) => updatePos(v, 0)),
-    { damping: 5, mass: 0.03 }
-  );
-
-  const yNext = useSpring(
-    useTransform(scrollY, (v) => updatePos(v, 1)),
-    { damping: 5, mass: 0.03 }
-  );
-
-  const handleClick = () => {
-    window.scrollTo(0, position() - height());
-  };
-
   return (
     <>
       {index === 0 ? (
+        // HOME
         <div
-          onClick={handleClick}
           ref={ref}
           sx={{
+            position: "sticky",
             color: data?.color,
             backgroundColor: data?.bg,
             height: "100vh",
             width: "100%",
-            position: "fixed",
             left: 0,
             top: 0,
           }}
@@ -81,13 +54,13 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           <Render />
         </div>
       ) : (
+        // CASE
         <m.div
-          onClick={handleClick}
-          style={{
-            y: y,
-          }}
           sx={{
-            ...caseParent,
+            willChange: "transform",
+            marginLeft: "auto",
+            position: "sticky",
+            top: `calc(${homeCase}px - ${height(0)}px)`,
             color: data?.color,
             zIndex: index,
             width: `calc(100% - ${index * 6}%)`,
@@ -96,13 +69,12 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           {console.log("render child :(")}
 
           <m.div
-            style={{ y: yNext, willChange: "transform" }}
             sx={{
               ...caseBg,
               backgroundColor: data?.bg,
             }}
           >
-            <CaseHero bg={data?.bg}>{data?.name}</CaseHero>
+            {/* <CaseHero bg={data?.bg}>{data?.name}</CaseHero> */}
           </m.div>
 
           <div ref={ref} sx={{ display: "block" }}>

@@ -37,8 +37,8 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const height = (pos) => childHeight[pos ? index - pos : index] || [];
   const position = (pos) => childPosition[pos ? index - pos : index] || [];
   const homeCase = childHeight[0] || 0;
-  const offset = (responsiveOffset / index) * 1;
-  const staggeredOffset = -childPosition.length * offset + index * offset;
+  // const offset = (responsiveOffset / index) * 1;
+  const staggeredOffset = -childPosition.length * 100 + index * 100;
 
   const updatePos = (v, pos) =>
     transform(

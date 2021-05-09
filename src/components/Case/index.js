@@ -33,13 +33,13 @@ const caseBg = {
 export const Case = React.forwardRef(({ index, data }, ref) => {
   let { childHeight, childPosition } = useCaseWrapperContext();
   const { scrollY } = useViewportScroll();
-  const responsiveOffset = useResponsiveValue([32, 60, 80, 120]);
+  const responsiveOffset = useResponsiveValue([50, 75, 100, 150]);
   const Render = data.component;
   const height = (pos) => childHeight[pos ? index - pos : index] || [];
   const position = (pos) => childPosition[pos ? index - pos : index] || [];
   const homeCase = childHeight[0] || 0;
-  // const offset = (responsiveOffset / index) * 1;
-  const staggeredOffset = -childPosition.length * 100 + index * 100;
+  const offset = (responsiveOffset / index) * 1;
+  const staggeredOffset = -childPosition.length * offset + index * offset;
 
   const updatePos = (v, pos) =>
     transform(

@@ -34,7 +34,17 @@ export let cases = new Map([
     },
   ],
 
-  ["canon", { name: "Canon", slug: "canon", component: Canon, bg: "#DE0000" }],
+  ["canon", { name: "Canon", slug: "canon", component: Canon, bg: "#ff3824" }],
+  [
+    "miss",
+    {
+      name: "Hit or Miss",
+      slug: "miss",
+      component: Norse,
+      bg: "#d5f5d1",
+      color: "#276",
+    },
+  ],
 ]);
 
 function App() {

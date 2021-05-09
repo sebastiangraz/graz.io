@@ -41,12 +41,14 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const offset = (responsiveOffset / index) * 1;
   const staggeredOffset = -childPosition.length * offset + index * offset;
 
-  const updatePos = (v, pos) =>
-    transform(
-      v - position(pos) + height(pos) + homeCase,
+  const updatePos = (v, pos) => {
+    const progress = v - position(pos) + height(pos) + homeCase;
+    return transform(
+      progress,
       [0, height(pos)],
       pos === 1 ? [staggeredOffset + 300, 0] : [0, -height(pos)]
     );
+  };
 
   const y = useSpring(
     useTransform(scrollY, (v) => updatePos(v, 0)),
@@ -61,16 +63,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const handleClick = () => {
     window.scrollTo(0, position(0) - height(0) - 300);
   };
-
-  // const [isComplete, setIsComplete] = React.useState(false);
-  // const yRange = useTransform(
-  //   scrollY,
-  //   [0, position(0) - height(0) - 300 - homeCase - staggeredOffset],
-  //   [0, 1]
-  // );
-  // React.useEffect(() => yRange.onChange((v) => setIsComplete(v >= 1)), [
-  //   yRange,
-  // ]);
 
   return (
     <>
@@ -97,13 +89,17 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           // animate={{ opacity: isComplete ? 1 : 0.1 }}
           transition={{ duration: 0 }}
           style={{
+            // opacity: inView,
             y: y,
           }}
           sx={{
             ...caseParent,
             color: data?.color,
             zIndex: index,
-            width: `calc(100% - ${index * 6}%)`,
+            width: `calc(min(100%, 1640px) - ${index * 6}%)`,
+            "&:nth-of-type(odd)": {
+              left: 0,
+            },
           }}
         >
           {console.log("render child :(")}

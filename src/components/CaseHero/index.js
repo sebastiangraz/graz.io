@@ -21,10 +21,10 @@ export const CaseHero = React.memo(({ bg, id = uuid(), children }) => {
         top: -300,
         textTransform: "uppercase",
         fontWeight: 600,
-        width: "100vw",
+        width: "100%",
         height: 300,
         letterSpacing: "-0.075em",
-        fontSize: "min(12vw, 156px)",
+        fontSize: "min(12vw, 140px)",
         color: bg,
       }}
       height="300"
@@ -35,7 +35,7 @@ export const CaseHero = React.memo(({ bg, id = uuid(), children }) => {
         {console.log("render CaseHero :(")}
         <mask id={`${"sample-" + id}`}>
           <rect width="100%" height="100%" fill="white"></rect>
-
+          <ellipse cx="40" cy="40" rx="10" ry="10" />
           <text
             dominantBaseline="hanging"
             transform={`translate(${100 - 4} ${100 - 7})`}

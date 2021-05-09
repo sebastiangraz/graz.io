@@ -2,13 +2,14 @@
 /** @jsx jsx */
 
 import { jsx } from "theme-ui";
-import React from "react";
+import React, { version } from "react";
 import {
   m,
   useSpring,
   transform,
   useTransform,
   useViewportScroll,
+  useMotionValue,
 } from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
@@ -61,6 +62,16 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     window.scrollTo(0, position(0) - height(0) - 300);
   };
 
+  // const [isComplete, setIsComplete] = React.useState(false);
+  // const yRange = useTransform(
+  //   scrollY,
+  //   [0, position(0) - height(0) - 300 - homeCase - staggeredOffset],
+  //   [0, 1]
+  // );
+  // React.useEffect(() => yRange.onChange((v) => setIsComplete(v >= 1)), [
+  //   yRange,
+  // ]);
+
   return (
     <>
       {index === 0 ? (
@@ -83,6 +94,8 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         <m.div
           ref={ref}
           onClick={handleClick}
+          // animate={{ opacity: isComplete ? 1 : 0.1 }}
+          transition={{ duration: 0 }}
           style={{
             y: y,
           }}

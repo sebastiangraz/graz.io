@@ -48,10 +48,11 @@ export const Home = () => {
         gridTemplateAreas: [
           `'logo''intro''meta'`,
           null,
-          `'logo meta''intro intro'`,
+          `'logo meta''.  intro'`,
         ],
-        "grid-template-rows": "auto 1fr",
-        "grid-template-columns": "auto 1fr",
+        "grid-template-rows": "auto auto",
+        "grid-template-columns": "auto auto",
+        justifyContent: "space-between",
       }}
     >
       <Logo
@@ -68,13 +69,12 @@ export const Home = () => {
       />
       <div
         sx={{
-          justifyContent: "end",
           gridArea: "meta",
           display: "grid",
-          fontSize: 3,
+          fontSize: 2,
           gridTemplateColumns: ["repeat(4, auto)"],
-          gap: ["10%"],
-          width: ["100%"],
+          gap: ["2%"],
+          width: [640],
           paddingBottom: [5, "6px"],
         }}
       >

@@ -43,44 +43,52 @@ export const Home = () => {
     <Grid
       sx={{
         p: [5, 6, 7],
-        gap: [5, 6, 7],
+        rowGap: [7, null, "20vh"],
+        columnGap: 0,
         display: "grid",
         gridTemplateAreas: [
-          `'logo''intro''meta'`,
-          null,
-          `'logo meta''.  intro'`,
+          //phone
+          `
+          'name years contact'
+          'intro intro .'
+          'meta meta .'
+          `,
+          //tablet
+          `
+          'name years contact'
+          'intro intro .'
+          'meta meta meta'
+          `,
+          //desktop
+          `
+          'name name . . . . years years  . .  contact .'
+          'intro intro intro . . . meta meta meta meta meta meta'
+          `,
         ],
-        "grid-template-rows": "auto auto",
-        "grid-template-columns": "auto auto",
-        justifyContent: "space-between",
+        "grid-template-rows": "auto",
+        "grid-template-columns": [
+          "repeat(2, 1fr)",
+          "repeat(3, 1fr)",
+          "repeat(12, 1fr)",
+        ],
       }}
     >
-      <Logo
-        sx={{
-          gridArea: "logo",
-          lineHeight: 0.8,
-          fontSize: 150,
-          transition: `.5s cubic-bezier(1,0,0,1) opacity, 1s cubic-bezier(1,0,0,1) transform`,
-          transform: false
-            ? ["scale(1)", "scale(1)", "scale(0.8)"]
-            : "scale(1)",
-        }}
-        weight={80}
-      />
+      <Text sx={{ gridArea: "name" }}>Sebastian Graz</Text>
+      <Text sx={{ gridArea: "years" }}>
+        Selected Work <br /> 2017—2020
+      </Text>
+      <Text sx={{ gridArea: "contact" }}>Contact</Text>
       <div
         sx={{
           gridArea: "meta",
           display: "grid",
-          fontSize: 2,
-          gridTemplateColumns: ["repeat(4, auto)"],
-          gap: ["2%"],
-          width: [640],
-          paddingBottom: [5, "6px"],
+          rowGap: [7, null],
+          gridTemplateColumns: ["repeat(3, 1fr)", "repeat(3, 1fr)"],
         }}
       >
         <div>
           <Text mb={4}>Associations</Text>
-          <List>
+          <List noBullets>
             <span>Husqvarna</span>
             <span>M. Saatchi</span>
             <span>Delhaize</span>
@@ -91,7 +99,7 @@ export const Home = () => {
         </div>
         <div>
           <Text mb={4}>Expertise</Text>
-          <List>
+          <List noBullets>
             <span>Empathic design</span>
             <span>Design Systems</span>
             <span>Prototyping</span>
@@ -102,54 +110,41 @@ export const Home = () => {
         </div>
         <div>
           <Text mb={4}>Recognitions</Text>
-          <List>
+          <List noBullets>
             {awards.map((char) => (
               <React.Fragment key={char.title}>
-                {char.title} {char.count}×
+                {char.title} · {char.count}×
               </React.Fragment>
             ))}
           </List>
         </div>
-        <div>
-          <Text mb={4}>Contact</Text>
-          <List>
-            <Link
-              href="mailto:graz@live.se"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Email
-            </Link>
-
-            <Link
-              href="https://twitter.com/grazsebastian"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Twitter
-            </Link>
-
-            <Link
-              href="https://dribbble.com/grazsebastian"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Dribbble
-            </Link>
-          </List>
-        </div>
       </div>
-      <Text
-        variant="body"
-        sx={{
-          gridArea: "intro",
-          marginBottom: [4, 0],
-          width: [560],
-        }}
-      >
-        I’m Sebastian—as a digital designer I care about our dear users,
-        prototyping, design systems & branding
-      </Text>
+      <div sx={{ gridArea: "intro" }}>
+        <Logo
+          sx={{
+            mt: -1,
+            mb: 4,
+            fontSize: "30px",
+            display: "flex",
+            lineHeight: 0.8,
+            transition: `.5s cubic-bezier(1,0,0,1) opacity, 1s cubic-bezier(1,0,0,1) transform`,
+            transform: false
+              ? ["scale(1)", "scale(1)", "scale(0.8)"]
+              : "scale(1)",
+          }}
+          weight={40}
+        />
+
+        <Text
+          variant="lead"
+          sx={{
+            width: [300, 420],
+          }}
+        >
+          I’m Sebastian—as a digital designer I care about our dear users, rapid
+          prototyping, design systems and brand identities.
+        </Text>
+      </div>
     </Grid>
   );
 };

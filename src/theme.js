@@ -1,15 +1,8 @@
 const colors = {
   text: "#111",
 };
+const space = [0, 4, 8, 12, 16, 20, 28, 64, 128, 256, 512];
 
-const space = [0, 2, 4, 8, 16, 32, 64, 128, 256, 512];
-const body = {
-  fontSize: [5, 6, 6, 7],
-  fontWeight: 400,
-  letterSpacing: "-0.066em",
-  fontFamily: "body",
-  lineHeight: "heading",
-};
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   space: space,
@@ -23,81 +16,49 @@ export default {
   },
   breakpoints: ["40em", "64em", "98em", "120em"],
   lineHeights: {
-    body: 1.8,
-    heading: 1.32,
+    body: 1.6,
+    lead: 1.4,
+    heading: 1.1,
   },
-  fontSizes: [10, 12, 14, 16, 21, 27, 41, 46],
-  colors: { ...colors },
+  letterSpacings: {
+    body: "-0.033em",
+    lead: "-0.05em",
+    heading: "-0.11em",
+    caps: "0.011em",
+  },
+  fontSizes: space,
+  colors: colors,
   text: {
     default: {
+      fontSize: space.slice(3, 5),
       fontWeight: 400,
-      // fontSize: [4],
-      letterSpacing: "-0.02em",
+      fontFamily: "body",
+      lineHeight: "body",
+      letterSpacing: "body",
       display: "block",
     },
-    body: {
-      ...body,
+    lead: {
+      variant: "text.default",
+      fontSize: space.slice(5, 7),
+      letterSpacing: "lead",
+      lineHeight: "lead",
     },
     heading: {
-      ...body,
-      fontSize: [6],
-      letterSpacing: "0em",
+      variant: "text.lead",
+      fontFeatureSettings: `"c2sc"`,
+
       textTransform: "uppercase",
+      letterSpacing: "caps",
     },
   },
   styles: {
     root: {
+      "-webkit-font-smoothing": "antialiased",
+      "-moz-osx-font-smoothing": "grayscale",
+      variant: "text.default",
       fontFeatureSettings: `"liga", "case"`,
-      fontWeight: 400,
-      bg: "bg",
-      fontSize: 4,
-      fontFamily: "body",
-      lineHeight: "body",
     },
-    h1: {
-      color: "text",
-      fontFamily: "heading",
-      lineHeight: "heading",
-      fontSize: 5,
-    },
-    h2: {
-      color: "text",
-      fontFamily: "heading",
-      lineHeight: "heading",
-      fontSize: 4,
-    },
-    h3: {
-      color: "text",
-      fontFamily: "heading",
-      lineHeight: "heading",
-      fontSize: 3,
-    },
-    h4: {
-      color: "text",
-      fontFamily: "heading",
-      lineHeight: "heading",
-      fontSize: 2,
-    },
-    h5: {
-      color: "text",
-      fontFamily: "heading",
-      lineHeight: "heading",
-      fontSize: 1,
-    },
-    h6: {
-      color: "text",
-      fontFamily: "heading",
-      lineHeight: "heading",
-      fontSize: 0,
-    },
-    p: {
-      color: "text",
-      fontFamily: "body",
-      lineHeight: "body",
-    },
-    a: {
-      color: "currentColor",
-    },
+    a: { color: "text", "&:hover": { textDecoration: "none" } },
     pre: {
       fontFamily: "monospace",
       overflowX: "auto",

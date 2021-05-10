@@ -1,42 +1,31 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from "theme-ui";
-import styles from "./list.module.scss";
+import { Text, jsx } from "theme-ui";
 import * as React from "react";
 
 export const List = ({ children, noBullets, numbered }) => {
   return (
-    <ul
-      className={`
-				${
-          noBullets
-            ? styles.listSansBullets
-            : numbered
-            ? styles.NumberedListBullets
-            : styles.listBullets
-        }
-				`}
-    >
+    <ul sx={{ padding: 0, listStyle: "none" }}>
       {React.Children.map(children || null, (child, i) => {
         return (
           <li
             key={i}
             sx={{
+              mb: 2,
               position: "relative",
-              paddingLeft: !noBullets && [numbered ? 4 : 3, 0],
               "&:before": {
-                color: "text",
-                content: noBullets ? "none" : '""',
-                left: [0, numbered ? "-2rem" : "-1.2rem"],
-                top: ["0.8em"],
+                content: `""`,
+                left: "-1em",
+                top: "0.8em",
+                position: "absolute",
                 borderRadius: "50%",
                 width: "3px",
                 height: "3px",
-                bg: " currentColor",
+                bg: "currentColor",
               },
             }}
           >
-            {child}
+            <Text>{child}</Text>
           </li>
         );
       })}

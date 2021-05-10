@@ -1,5 +1,5 @@
 const colors = {
-  link: "#f00",
+  text: "#111",
 };
 
 const space = [0, 2, 4, 8, 16, 32, 64, 128, 256, 512];
@@ -28,19 +28,12 @@ export default {
   },
   fontSizes: [10, 12, 14, 16, 21, 27, 41, 46],
   colors: { ...colors },
-  grids: {
-    hero: {
-      width: "100%",
-      px: [3, 5, 7],
-      py: [4, 6, 7],
-      gridTemplateColumns: "1fr 1.2fr",
-    },
-  },
   text: {
     default: {
       fontWeight: 400,
-      fontSize: [4],
+      // fontSize: [4],
       letterSpacing: "-0.02em",
+      display: "block",
     },
     body: {
       ...body,
@@ -57,7 +50,7 @@ export default {
       fontFeatureSettings: `"liga", "case"`,
       fontWeight: 400,
       bg: "bg",
-      fontSize: 3,
+      fontSize: 4,
       fontFamily: "body",
       lineHeight: "body",
     },
@@ -103,7 +96,7 @@ export default {
       lineHeight: "body",
     },
     a: {
-      color: "text",
+      color: "currentColor",
     },
     pre: {
       fontFamily: "monospace",

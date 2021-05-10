@@ -96,7 +96,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
             ...caseParent,
             color: data?.color,
             zIndex: index,
-            width: `calc(min(100%, 1495px) - ${index * 2.5}%)`,
+            width: ["100%", `calc(min(100%, 1495px) - ${index * 2.5}%)`],
             "&:nth-of-type(odd)": {
               left: 0,
             },

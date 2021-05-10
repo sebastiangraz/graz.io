@@ -2,7 +2,7 @@
 /** @jsx jsx */
 
 import { jsx } from "theme-ui";
-import React, { version } from "react";
+import React from "react";
 import {
   m,
   useSpring,
@@ -96,7 +96,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
             ...caseParent,
             color: data?.color,
             zIndex: index,
-            width: `calc(min(100%, 1640px) - ${index * 6}%)`,
+            width: `calc(min(100%, 1495px) - ${index * 2.5}%)`,
             "&:nth-of-type(odd)": {
               left: 0,
             },

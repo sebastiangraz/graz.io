@@ -15,7 +15,7 @@ export const Logo = ({ weight, ...rest }) => {
           display: "inline-block",
           fontFamily: "G",
           fontSize: "inherit",
-          lineHeight: 1,
+          lineHeight: 1.2,
           textRendering: "optimizeLegibility",
           fontWeight: "normal",
           margin: 0,

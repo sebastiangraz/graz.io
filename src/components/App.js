@@ -36,10 +36,10 @@ export let cases = new Map([
 
   ["canon", { name: "Canon", slug: "canon", component: Canon, bg: "#ff3824" }],
   [
-    "miss",
+    "random",
     {
-      name: "Hit or Miss",
-      slug: "miss",
+      name: "Random",
+      slug: "random",
       component: Norse,
       bg: "#d5f5d1",
       color: "#276",

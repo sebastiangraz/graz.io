@@ -93,9 +93,7 @@ export const Home = () => {
         weight={42}
       />
 
-      <Text sx={{ gridArea: "years", display: ["none", "block"] }}>
-        Selected Work <br /> 2017—2020
-      </Text>
+      <Text sx={{ gridArea: "years", display: ["none", "block"] }}>Résumé</Text>
       <Text sx={{ gridArea: "contact" }}>Contact</Text>
       <div
         sx={{
@@ -133,13 +131,14 @@ export const Home = () => {
           <List noBullets>
             {awards.map((char) => (
               <React.Fragment key={char.title}>
-                {char.title} · {char.count}×
+                {char.title} · <Text variant="caps">{char.count}×</Text>
               </React.Fragment>
             ))}
           </List>
         </div>
       </div>
       <div sx={{ gridArea: "intro" }}>
+        <Text variant="heading">Graz</Text>
         <Text
           variant="lead"
           sx={{

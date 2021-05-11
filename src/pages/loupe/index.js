@@ -36,7 +36,7 @@ const Sections = {
             gridRow: ["span 1", "span 1"],
           }}
         >
-          <Text variant="lead">
+          <Text>
             Loupe is a conference held by Framer each year. The 3rd edition of
             the conference was planned to be held in Amsterdam 2020, but was
             cancelled due to COVID-19. Below you'll find the progress of that
@@ -81,7 +81,7 @@ const Sections = {
       <>
         <GridParent>
           <Box sx={{ mb: 8, gridColumn: ["span 8", "span 8"] }}>
-            <Text variant="heading">Branding</Text>
+            <Text>Branding</Text>
             <Text mt={6}>
               Loupe being a fairly young event, faced the challenge of
               attracting new conference-goers as well as retaining previous

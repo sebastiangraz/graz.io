@@ -8,7 +8,6 @@ import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
 const caseParent = {
-  top: `100vh`,
   position: "fixed",
   willChange: "transform",
   right: 0,
@@ -29,19 +28,21 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
   const responsiveOffset = useResponsiveValue([50, 75, 100, 150]);
   const Render = data.component;
-  const height = (pos) => childHeight[pos ? index - pos : index] || [];
-  const position = (pos) => childPosition[pos ? index - pos : index] || [];
   const homeCase = childHeight[0] || 0;
-  const offset = (responsiveOffset / index) * 1;
+  const offset = (responsiveOffset / index) * 0.5;
   const staggeredOffset = -childPosition.length * offset + index * offset;
   const [scrollToHash, setScrollToHash] = React.useState(0);
+  const height = (pos) => childHeight[pos ? index - pos : index] || [];
+  const position = (pos) => childPosition[pos ? index - pos : index] || [];
 
+  console.log(index, data.slug);
   const updatePos = (v, pos) => {
     const progress = v - position(pos) + height(pos) + windowHeight;
     return transform(
       progress,
       [0, height(pos)],
-      pos === 1 ? [staggeredOffset + 300, 0] : [0, -height(pos)]
+      pos === 1 ? [0, -100] : [0, -height(pos) + 100]
+      // pos === 1 ? [staggeredOffset + 300, 0] : [0, -height(pos)]
     );
   };
 
@@ -90,7 +91,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
             minHeight: "100%",
             position: "fixed",
             left: 0,
-            top: `100vh`,
+            top: `calc(100vh - 100px)`,
           }}
         >
           <Render />
@@ -105,6 +106,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           }}
           sx={{
             ...caseParent,
+            top: `calc(100vh - ${300}px)`,
             color: data?.color,
             zIndex: index,
             width: ["100%", `calc(min(100%, 1495px) - ${index * 2.5}%)`],
@@ -119,6 +121,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
             style={{ y: yNext, willChange: "transform" }}
             sx={{
               ...caseBg,
+              top: staggeredOffset + 600,
               backgroundColor: data?.bg,
             }}
           >

@@ -32,7 +32,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const height = (pos) => childHeight[pos ? index - pos : index] || [];
   const position = (pos) => childPosition[pos ? index - pos : index] || [];
   const homeCase = childHeight[0] || 0;
-  const offset = (responsiveOffset / index) * 1;
+  const offset = (responsiveOffset / (index + 1)) * 1;
   const staggeredOffset = -childPosition.length * offset + index * offset;
   const [scrollToHash, setScrollToHash] = React.useState(0);
 

@@ -52,12 +52,12 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
   const y = useSpring(
     useTransform(scrollY, (v) => updatePos(v, 0)),
-    { damping: 5, mass: 0.03 }
+    { damping: 7, mass: 0.06 }
   );
 
   const yNext = useSpring(
     useTransform(scrollY, (v) => updatePos(v, 1)),
-    { damping: 5, mass: 0.03 }
+    { damping: 7, mass: 0.06 }
   );
 
   const handleClick = () => {

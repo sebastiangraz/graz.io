@@ -23,6 +23,19 @@ const caseBg = {
   left: 0,
 };
 
+function ScrollToTopOnMount(props) {
+  const { position, height, datavar } = props;
+  React.useEffect(() => {
+    document.fonts.ready.then(function () {
+      console.log(window.location.hash);
+      if (window.location.hash === `#${datavar}`) {
+        window.scrollTo(0, position - height - 300);
+      }
+    });
+  }, [datavar, height, position]);
+  return null;
+}
+
 export const Case = React.forwardRef(({ index, data }, ref) => {
   let { childHeight, childPosition, windowHeight, scrollProgress } =
     useCaseWrapperContext();
@@ -31,10 +44,8 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const Render = data.component;
   const height = (pos) => childHeight[pos ? index - pos : index] || [];
   const position = (pos) => childPosition[pos ? index - pos : index] || [];
-  const homeCase = childHeight[0] || 0;
   const offset = (responsiveOffset / (index + 1)) * 1;
   const staggeredOffset = -childPosition.length * offset + index * offset;
-  const [scrollToHash, setScrollToHash] = React.useState(0);
 
   const updatePos = (v, pos) => {
     const progress = v - position(pos) + height(pos) + windowHeight;
@@ -57,23 +68,12 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
   const handleClick = () => {
     if (index !== 0) {
-      window.location.hash = data.slug;
+      window.history.replaceState(null, null, `#${data.slug}`);
     } else {
       window.history.replaceState(null, null, " ");
     }
-
     window.scrollTo(0, position(0) - height(0) - 300);
   };
-
-  React.useEffect(() => {
-    if (window.location.hash.replace(/^#/, "") === data.slug) {
-      setScrollToHash(position(0) - height(0) - 300);
-    }
-    document.fonts.ready.then(function () {
-      window.scrollTo(0, scrollToHash);
-    });
-  }, [data.slug, height, position, scrollToHash]);
-
   return (
     <>
       {index === 0 ? (
@@ -114,7 +114,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           }}
         >
           {console.log("render child :(")}
-
           <m.div
             style={{ y: yNext, willChange: "transform" }}
             sx={{
@@ -130,6 +129,11 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           </div>
         </m.div>
       )}
+      <ScrollToTopOnMount
+        position={position(0)}
+        height={height(0)}
+        datavar={data.slug}
+      />
     </>
   );
 });

@@ -61,7 +61,7 @@ export default {
       variant: "text.default",
       fontFeatureSettings: `"liga", "case"`,
     },
-    a: { color: "text", "&:hover": { textDecoration: "none" } },
+    a: { color: "inherit", "&:hover": { textDecoration: "none" } },
     pre: {
       fontFamily: "monospace",
       overflowX: "auto",

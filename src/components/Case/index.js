@@ -29,32 +29,49 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const responsiveOffset = useResponsiveValue([50, 75, 100, 150]);
   const Render = data.component;
   const homeCase = childHeight[0] || 0;
-  const offset = (responsiveOffset / index) * 0.5;
+  const offset = (responsiveOffset / (index + 1)) * 0.5;
   const staggeredOffset = -childPosition.length * offset + index * offset;
-  const [scrollToHash, setScrollToHash] = React.useState(0);
-  const height = (pos) => childHeight[pos ? index - pos : index] || [];
-  const position = (pos) => childPosition[pos ? index - pos : index] || [];
 
-  console.log(index, data.slug);
-  const updatePos = (v, pos) => {
-    const progress = v - position(pos) + height(pos) + windowHeight;
+  const [scrollToHash, setScrollToHash] = React.useState(0);
+
+  const height = childHeight[index] || [];
+  const position = childPosition[index] || [];
+  const updatePos = (v) => {
+    const progress = v - position + height + windowHeight;
+    console.log(
+      offset,
+      data.slug,
+      // progress,
+      // "height:",
+      // height,
+      // "position:",
+      // position - height,
+      // "staggeredoffset + 300:",
+      // staggeredOffset + 300
+      transform(
+        progress,
+        [0, height],
+        [staggeredOffset + 300, -height]
+        // pos === 1 ? [0, -0] : [0, -height(pos) + 0]
+      )
+    );
     return transform(
       progress,
-      [0, height(pos)],
-      pos === 1 ? [0, -100] : [0, -height(pos) + 100]
-      // pos === 1 ? [staggeredOffset + 300, 0] : [0, -height(pos)]
+      [0, height],
+      [staggeredOffset + 300, -height]
+      // pos === 1 ? [0, -0] : [0, -height(pos) + 0]
     );
   };
 
   const y = useSpring(
-    useTransform(scrollProgress, (v) => updatePos(v, 0)),
+    useTransform(scrollProgress, (v) => updatePos(v)),
     { damping: 7, mass: 0.06 }
   );
 
-  const yNext = useSpring(
-    useTransform(scrollProgress, (v) => updatePos(v, 1)),
-    { damping: 7, mass: 0.06 }
-  );
+  // const yNext = useSpring(
+  //   useTransform(scrollProgress, (v) => updatePos(v, 1)),
+  //   { damping: 7, mass: 0.06 }
+  // );
 
   const handleClick = () => {
     if (index !== 0) {
@@ -63,21 +80,22 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
       window.history.replaceState(null, null, " ");
     }
 
-    window.scrollTo(0, position(0) - height(0) - 300);
+    window.scrollTo(0, position - height - 300);
   };
 
-  React.useEffect(() => {
-    if (window.location.hash.replace(/^#/, "") === data.slug) {
-      setScrollToHash(position(0) - height(0) - 300);
-    }
-    document.fonts.ready.then(function () {
-      window.scrollTo(0, scrollToHash);
-    });
-  }, [data.slug, height, position, scrollToHash]);
+  // React.useEffect(() => {
+  //   if (window.location.hash.replace(/^#/, "") === data.slug) {
+  //     setScrollToHash(position(0) - height(0) - 300);
+  //   }
+  //   document.fonts.ready.then(function () {
+  //     window.scrollTo(0, scrollToHash);
+  //   });
+  // }, [data.slug, height, position, scrollToHash]);
 
   return (
     <>
       {index === 0 ? (
+        //Home
         <m.div
           onClick={handleClick}
           ref={ref}
@@ -91,7 +109,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
             minHeight: "100%",
             position: "fixed",
             left: 0,
-            top: `calc(100vh - 100px)`,
+            top: `calc(100vh)`,
           }}
         >
           <Render />
@@ -106,7 +124,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           }}
           sx={{
             ...caseParent,
-            top: `calc(100vh - ${300}px)`,
+            top: `calc(100vh)`,
             color: data?.color,
             zIndex: index,
             width: ["100%", `calc(min(100%, 1495px) - ${index * 2.5}%)`],
@@ -118,17 +136,27 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           {console.log("render child :(")}
 
           <m.div
-            style={{ y: yNext, willChange: "transform" }}
+            style={{
+              // y: yNext,
+              willChange: "transform",
+            }}
             sx={{
               ...caseBg,
-              top: staggeredOffset + 600,
+              // mt: -(staggeredOffset + 600),
               backgroundColor: data?.bg,
             }}
           >
             <CaseHero bg={data?.bg}>{data?.name}</CaseHero>
           </m.div>
 
-          <div sx={{ my: "100vh" }}>
+          <div
+            className="render"
+            sx={
+              {
+                // my: "100vh"
+              }
+            }
+          >
             <Render />
           </div>
         </m.div>

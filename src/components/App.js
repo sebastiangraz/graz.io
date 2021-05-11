@@ -28,7 +28,7 @@ export let cases = new Map([
     {
       name: "Loupe",
       slug: "loupe2",
-      component: Loupe,
+      component: Home,
       bg: "#76a",
       color: "#e8e0d6",
     },

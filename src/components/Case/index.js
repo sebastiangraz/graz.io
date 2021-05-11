@@ -40,7 +40,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const homeCase = childHeight[0] || 0;
   const offset = (responsiveOffset / index) * 1;
   const staggeredOffset = -childPosition.length * offset + index * offset;
-
+  const [scrollToHash, setScrollToHash] = React.useState(0);
   const updatePos = (v, pos) => {
     const progress = v - position(pos) + height(pos) + homeCase;
     return transform(
@@ -61,15 +61,23 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   );
 
   const handleClick = () => {
-    window.location.hash = data.slug;
+    if (index !== 0) {
+      window.location.hash = data.slug;
+    } else {
+      window.history.replaceState(null, null, " ");
+    }
+
     window.scrollTo(0, position(0) - height(0) - 300);
   };
 
   React.useEffect(() => {
-    if (window.location.hash) {
-      window.scrollTo(0, position(0) - height(0) - 300);
+    if (window.location.hash.replace(/^#/, "") === data.slug) {
+      setScrollToHash(position(0) - height(0) - 300);
     }
-  }, [height, position]);
+    document.fonts.ready.then(function () {
+      window.scrollTo(0, scrollToHash);
+    });
+  }, [data.slug, height, position, scrollToHash]);
 
   return (
     <>
@@ -91,6 +99,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         </div>
       ) : (
         <m.div
+          id={`#${data.slug}`}
           ref={ref}
           onClick={handleClick}
           transition={{ duration: 0 }}

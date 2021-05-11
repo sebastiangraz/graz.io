@@ -25,6 +25,26 @@ export let cases = new Map([
     },
   ],
   [
+    "loupe1",
+    {
+      name: "Loupe1",
+      slug: "loupe1",
+      component: Loupe,
+      bg: "#184629",
+      color: "#e8e0d6",
+    },
+  ],
+  [
+    "loupe2",
+    {
+      name: "Loupe2",
+      slug: "loupe2",
+      component: Loupe,
+      bg: "#184629",
+      color: "#e8e0d6",
+    },
+  ],
+  [
     "norse",
     {
       name: "Norse",

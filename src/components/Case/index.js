@@ -21,8 +21,12 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   let { childHeight, childpos, browserHeight } = useCaseWrapperContext();
   const zeroToOne = useMotionValue(0);
   childHeight = childHeight[index];
+  let offset = useResponsiveValue([32, 60, 80, 120]);
+  offset = (offset / index) * 0.8;
 
+  const staggeredOffset = -childpos.length * offset + index * offset;
   const distance = useMotionValue(0);
+  const distanceNext = useMotionValue(0);
 
   const y = useSpring(
     useTransform(
@@ -36,11 +40,27 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     }
   );
 
+  const yNext = useSpring(distanceNext, {
+    damping: 10,
+    mass: 0.1,
+  });
+
   React.useEffect(() => {
     scrollY.onChange((v) => {
       distance.set(v + browserHeight - childpos[index] + childHeight);
     });
-  });
+    scrollY.onChange((v) => {
+      distanceNext.set(-(v - childpos[index] + childHeight) / 30);
+    });
+  }, [
+    browserHeight,
+    childHeight,
+    childpos,
+    distance,
+    distanceNext,
+    index,
+    scrollY,
+  ]);
 
   React.useEffect(() => {
     // zeroToOne.onChange((v) => {
@@ -51,10 +71,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     // });
   });
 
-  let offset = useResponsiveValue([32, 60, 80, 120]);
-  // offset = (offset / index) * 0.8;
-
-  const staggeredOffset = -childpos.length * offset + index * offset;
   const handleClick = () => {
     !inview &&
       window.scrollTo(0, staggeredOffset + childpos[index] - childHeight + 1);
@@ -74,7 +90,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         transition: { delay: 1, duration: 1 },
       }}
       style={{
-        y: data.hideCaseHero || false ? 0 : y,
+        y: y,
       }}
       sx={{
         top: 0,
@@ -92,7 +108,8 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     >
       {console.log("render child :(")}
 
-      <div
+      <m.div
+        style={{ y: yNext }}
         sx={{
           borderBottom: "10px solid",
           backgroundColor: data?.bg,
@@ -124,7 +141,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
             color: data?.bg,
           }}
         />
-      </div>
+      </m.div>
       <div
         sx={{
           mt: data.hideCaseHero || false ? 0 : staggeredOffset + 300,

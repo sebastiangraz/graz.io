@@ -29,19 +29,19 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const responsiveOffset = useResponsiveValue([50, 75, 100, 150]);
   const Render = data.component;
   const homeCase = childHeight[0] || 0;
-  const offset = (responsiveOffset / index) * 0.5;
+  const offset = (responsiveOffset / index) * 0.6;
   const staggeredOffset = -childPosition.length * offset + index * offset;
   const [scrollToHash, setScrollToHash] = React.useState(0);
   const height = (pos) => childHeight[pos ? index - pos : index] || [];
   const position = (pos) => childPosition[pos ? index - pos : index] || [];
 
-  console.log(index, data.slug);
+  console.log(staggeredOffset, data.slug);
   const updatePos = (v, pos) => {
     const progress = v - position(pos) + height(pos) + windowHeight;
     return transform(
       progress,
       [0, height(pos)],
-      pos === 1 ? [0, -100] : [0, -height(pos) + 100]
+      pos === 1 ? [0, -300 - staggeredOffset] : [0, -height(pos)]
       // pos === 1 ? [staggeredOffset + 300, 0] : [0, -height(pos)]
     );
   };
@@ -91,7 +91,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
             minHeight: "100%",
             position: "fixed",
             left: 0,
-            top: `calc(100vh - 100px)`,
+            top: `calc(100vh)`,
           }}
         >
           <Render />

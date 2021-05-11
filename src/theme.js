@@ -1,7 +1,7 @@
 const colors = {
   text: "#111",
 };
-const space = [0, 4, 8, 12, 16, 20, 28, 64, 128, 256, 512];
+const space = [0, 4, 8, 12, 16, 20, 28, 36, 48, 72, 128];
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
@@ -22,7 +22,7 @@ export default {
   },
   letterSpacings: {
     body: "-0.033em",
-    lead: "-0.05em",
+    lead: "-0.066em",
     heading: "-0.11em",
     caps: "0.011em",
   },
@@ -30,7 +30,7 @@ export default {
   colors: colors,
   text: {
     default: {
-      fontSize: space.slice(3, 5),
+      fontSize: [4, 4, 4, 5],
       fontWeight: 400,
       fontFamily: "body",
       lineHeight: "body",
@@ -46,7 +46,6 @@ export default {
     heading: {
       variant: "text.lead",
       fontFeatureSettings: `"c2sc"`,
-
       textTransform: "uppercase",
       letterSpacing: "caps",
     },

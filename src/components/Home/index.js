@@ -138,7 +138,6 @@ export const Home = () => {
         </div>
       </div>
       <div sx={{ gridArea: "intro" }}>
-        <Text variant="heading">Graz</Text>
         <Text
           variant="lead"
           sx={{

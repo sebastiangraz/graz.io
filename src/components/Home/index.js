@@ -43,25 +43,31 @@ export const Home = () => {
     <Grid
       sx={{
         p: [5, 6, 7],
-        rowGap: [7, null, "20vh"],
+        rowGap: [8, 10, "20vh"],
         columnGap: 0,
         display: "grid",
+        alignItems: ["center", "start"],
         gridTemplateAreas: [
           //phone
           `
-          'name years contact'
-          'intro intro .'
-          'meta meta .'
+          'logo contact'
+          'intro intro'
+          'meta meta'
           `,
           //tablet
           `
-          'name years contact'
+          'logo years contact'
           'intro intro .'
           'meta meta meta'
           `,
           //desktop
           `
-          'name name . . . . years years  . .  contact .'
+          'logo logo . . . years years . . .  contact .'
+          'intro intro intro intro . meta meta meta meta meta meta meta'
+          `,
+          //wide
+          `
+          'logo logo . . . . years years  . .  contact .'
           'intro intro intro . . . meta meta meta meta meta meta'
           `,
         ],
@@ -73,8 +79,21 @@ export const Home = () => {
         ],
       }}
     >
-      <Text sx={{ gridArea: "name" }}>Sebastian Graz</Text>
-      <Text sx={{ gridArea: "years" }}>
+      <Logo
+        sx={{
+          gridArea: "logo",
+          fontSize: 7,
+          display: "flex",
+          lineHeight: 0.8,
+          transition: `.5s cubic-bezier(1,0,0,1) opacity, 1s cubic-bezier(1,0,0,1) transform`,
+          transform: false
+            ? ["scale(1)", "scale(1)", "scale(0.8)"]
+            : "scale(1)",
+        }}
+        weight={42}
+      />
+
+      <Text sx={{ gridArea: "years", display: ["none", "block"] }}>
         Selected Work <br /> 2017—2020
       </Text>
       <Text sx={{ gridArea: "contact" }}>Contact</Text>
@@ -83,7 +102,8 @@ export const Home = () => {
           gridArea: "meta",
           display: "grid",
           rowGap: [7, null],
-          gridTemplateColumns: ["repeat(3, 1fr)", "repeat(3, 1fr)"],
+          gridTemplateColumns: ["repeat(2, 1fr)", "repeat(3, 1fr)"],
+          width: "100%",
         }}
       >
         <div>
@@ -120,25 +140,11 @@ export const Home = () => {
         </div>
       </div>
       <div sx={{ gridArea: "intro" }}>
-        <Logo
-          sx={{
-            mt: -1,
-            mb: 4,
-            fontSize: "30px",
-            display: "flex",
-            lineHeight: 0.8,
-            transition: `.5s cubic-bezier(1,0,0,1) opacity, 1s cubic-bezier(1,0,0,1) transform`,
-            transform: false
-              ? ["scale(1)", "scale(1)", "scale(0.8)"]
-              : "scale(1)",
-          }}
-          weight={40}
-        />
-
         <Text
           variant="lead"
           sx={{
-            width: [300, 420],
+            width: "100%",
+            maxWidth: [380, 420, 280, 430],
           }}
         >
           I’m Sebastian—as a digital designer I care about our dear users, rapid

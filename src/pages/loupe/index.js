@@ -36,7 +36,7 @@ const Sections = {
             gridRow: ["span 1", "span 1"],
           }}
         >
-          <Text variant="body">
+          <Text variant="lead">
             Loupe is a conference held by Framer each year. The 3rd edition of
             the conference was planned to be held in Amsterdam 2020, but was
             cancelled due to COVID-19. Below you'll find the progress of that
@@ -82,14 +82,14 @@ const Sections = {
         <GridParent>
           <Box sx={{ mb: 8, gridColumn: ["span 8", "span 8"] }}>
             <Text variant="heading">Branding</Text>
-            <Text variant="body" mt={6}>
+            <Text mt={6}>
               Loupe being a fairly young event, faced the challenge of
               attracting new conference-goers as well as retaining previous
               attendees. It had to feel like a new and exciting event, while
               keeping the brand trust that the conference had built up during
               the years.
             </Text>
-            <Text variant="body" mt={6}>
+            <Text mt={6}>
               Previous identities were branched of Framers own brand. But this
               year Loupe put on a new distinguished look. The identity aimed to
               be extendable and work well both as pixels and as printed media.
@@ -209,7 +209,6 @@ const Sections = {
             </div>
           </Box>
           <Text
-            variant="body"
             mt={[4, 5]}
             sx={{
               gridColumn: ["1 / span 8", "1 / span 4"],
@@ -238,7 +237,7 @@ const Sections = {
                 placeSelf: "center",
               }}
             >
-              <Text variant="body" mb={4}>
+              <Text mb={4}>
                 The unremarkable shapes made the icons feel deliberately
                 unassuming yet very legible in smaller sizes.
               </Text>

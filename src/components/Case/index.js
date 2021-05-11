@@ -3,14 +3,7 @@
 
 import { jsx } from "theme-ui";
 import React from "react";
-import {
-  m,
-  useSpring,
-  transform,
-  useTransform,
-  useViewportScroll,
-  useMotionValue,
-} from "framer-motion";
+import { m, useSpring, transform, useTransform } from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
@@ -21,7 +14,7 @@ const caseParent = {
   right: 0,
 };
 const caseBg = {
-  borderBottom: "3px solid #000",
+  borderBottom: "5px solid ",
   width: "100%",
   height: "100%",
   zIndex: -1,
@@ -31,8 +24,9 @@ const caseBg = {
 };
 
 export const Case = React.forwardRef(({ index, data }, ref) => {
-  let { childHeight, childPosition } = useCaseWrapperContext();
-  const { scrollY } = useViewportScroll();
+  let { childHeight, childPosition, windowHeight, scrollProgress } =
+    useCaseWrapperContext();
+
   const responsiveOffset = useResponsiveValue([50, 75, 100, 150]);
   const Render = data.component;
   const height = (pos) => childHeight[pos ? index - pos : index] || [];
@@ -41,8 +35,9 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const offset = (responsiveOffset / index) * 1;
   const staggeredOffset = -childPosition.length * offset + index * offset;
   const [scrollToHash, setScrollToHash] = React.useState(0);
+
   const updatePos = (v, pos) => {
-    const progress = v - position(pos) + height(pos) + homeCase;
+    const progress = v - position(pos) + height(pos) + windowHeight;
     return transform(
       progress,
       [0, height(pos)],
@@ -51,12 +46,12 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   };
 
   const y = useSpring(
-    useTransform(scrollY, (v) => updatePos(v, 0)),
+    useTransform(scrollProgress, (v) => updatePos(v, 0)),
     { damping: 7, mass: 0.06 }
   );
 
   const yNext = useSpring(
-    useTransform(scrollY, (v) => updatePos(v, 1)),
+    useTransform(scrollProgress, (v) => updatePos(v, 1)),
     { damping: 7, mass: 0.06 }
   );
 
@@ -82,27 +77,29 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   return (
     <>
       {index === 0 ? (
-        <div
+        <m.div
           onClick={handleClick}
           ref={ref}
+          style={{
+            y: y,
+          }}
           sx={{
             color: data?.color,
             backgroundColor: data?.bg,
-            height: "100vh",
             width: "100%",
+            minHeight: "100%",
             position: "fixed",
             left: 0,
-            top: 0,
+            top: `100vh`,
           }}
         >
           <Render />
-        </div>
+        </m.div>
       ) : (
         <m.div
           id={`#${data.slug}`}
           ref={ref}
           onClick={handleClick}
-          transition={{ duration: 0 }}
           style={{
             y: y,
           }}

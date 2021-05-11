@@ -42,6 +42,7 @@ export const Home = () => {
   return (
     <Grid
       sx={{
+        minHeight: "100vh",
         p: [7, 8, 9],
         rowGap: [8, 10, "20vh"],
         columnGap: 0,

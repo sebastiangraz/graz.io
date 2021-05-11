@@ -61,8 +61,15 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   );
 
   const handleClick = () => {
+    window.location.hash = data.slug;
     window.scrollTo(0, position(0) - height(0) - 300);
   };
+
+  React.useEffect(() => {
+    if (window.location.hash) {
+      window.scrollTo(0, position(0) - height(0) - 300);
+    }
+  }, [height, position]);
 
   return (
     <>
@@ -86,10 +93,8 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         <m.div
           ref={ref}
           onClick={handleClick}
-          // animate={{ opacity: isComplete ? 1 : 0.1 }}
           transition={{ duration: 0 }}
           style={{
-            // opacity: inView,
             y: y,
           }}
           sx={{

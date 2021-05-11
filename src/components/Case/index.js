@@ -34,27 +34,38 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
   const [scrollToHash, setScrollToHash] = React.useState(0);
 
-  const height = childHeight[index] || [];
-  const position = childPosition[index] || [];
-  const updatePos = (v) => {
-    const progress = v - position + height + windowHeight;
+  const height = (pos) => childHeight[pos ? index - pos : index] || [];
+  const position = (pos) => childPosition[pos ? index - pos : index] || [];
+
+  const updatePos = (v, pos) => {
+    const progress = v - position(pos) + height(pos) + windowHeight;
     return transform(
       progress,
-      [0, height],
-      [staggeredOffset + 300, -height]
-      // pos === 1 ? [0, -0] : [0, -height(pos) + 0]
+      [0, height(pos)],
+      pos === 1 ? [0, -50] : [staggeredOffset + 300, -height(pos) + 50]
+      // pos === 1 ? [staggeredOffset + 300, 0] : [0, -height(pos)]
     );
   };
 
+  // const updatePos = (v) => {
+  //   const progress = v - position + height + windowHeight;
+  //   return transform(
+  //     progress,
+  //     [0, height],
+  //     [staggeredOffset + 300, -height]
+  //     // pos === 1 ? [0, -0] : [0, -height(pos) + 0]
+  //   );
+  // };
+
   const y = useSpring(
-    useTransform(scrollProgress, (v) => updatePos(v)),
+    useTransform(scrollProgress, (v) => updatePos(v, 0)),
     { damping: 7, mass: 0.06 }
   );
 
-  // const yNext = useSpring(
-  //   useTransform(scrollProgress, (v) => updatePos(v, 1)),
-  //   { damping: 7, mass: 0.06 }
-  // );
+  const yNext = useSpring(
+    useTransform(scrollProgress, (v) => updatePos(v, 1)),
+    { damping: 7, mass: 0.06 }
+  );
 
   const handleClick = () => {
     if (index !== 0) {
@@ -63,7 +74,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
       window.history.replaceState(null, null, " ");
     }
 
-    window.scrollTo(0, position - height - 300);
+    window.scrollTo(0, position(0) - height(0) - 300);
   };
 
   // React.useEffect(() => {
@@ -92,7 +103,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
             minHeight: "100%",
             position: "fixed",
             left: 0,
-            top: `calc(100vh)`,
+            top: `calc(100vh - 50px)`,
           }}
         >
           <Render />
@@ -120,7 +131,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
           <m.div
             style={{
-              // y: yNext,
+              y: yNext,
               willChange: "transform",
             }}
             sx={{
@@ -134,11 +145,10 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
           <div
             className="render"
-            sx={
-              {
-                // my: "100vh"
-              }
-            }
+            sx={{
+              pb: 50,
+              // my: "100vh"
+            }}
           >
             <Render />
           </div>

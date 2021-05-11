@@ -28,7 +28,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
   const responsiveOffset = useResponsiveValue([50, 75, 100, 150]);
   const Render = data.component;
-  const homeCase = childHeight[0] || 0;
   const offset = (responsiveOffset / (index + 1)) * 0.5;
   const staggeredOffset = -childPosition.length * offset + index * offset;
 
@@ -42,20 +41,9 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     return transform(
       progress,
       [0, height(pos)],
-      pos === 1 ? [0, -50] : [staggeredOffset + 300, -height(pos) + 50]
-      // pos === 1 ? [staggeredOffset + 300, 0] : [0, -height(pos)]
+      pos === 1 ? [0, -66] : [staggeredOffset + 300, -height(pos) + 66]
     );
   };
-
-  // const updatePos = (v) => {
-  //   const progress = v - position + height + windowHeight;
-  //   return transform(
-  //     progress,
-  //     [0, height],
-  //     [staggeredOffset + 300, -height]
-  //     // pos === 1 ? [0, -0] : [0, -height(pos) + 0]
-  //   );
-  // };
 
   const y = useSpring(
     useTransform(scrollProgress, (v) => updatePos(v, 0)),
@@ -103,7 +91,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
             minHeight: "100%",
             position: "fixed",
             left: 0,
-            top: `calc(100vh - 50px)`,
+            top: `calc(100vh - 66px)`,
           }}
         >
           <Render />
@@ -136,7 +124,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
             }}
             sx={{
               ...caseBg,
-              // mt: -(staggeredOffset + 600),
               backgroundColor: data?.bg,
             }}
           >
@@ -146,8 +133,8 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           <div
             className="render"
             sx={{
-              pb: 50,
-              // my: "100vh"
+              pb: 66,
+              my: "100vh",
             }}
           >
             <Render />

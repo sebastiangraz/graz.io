@@ -143,8 +143,8 @@ export const Home = () => {
         <Text
           variant="lead"
           sx={{
-            width: "100%",
-            maxWidth: [380, 420, 280, 430],
+            mt: -2,
+            width: [380, 420, 340, 520],
           }}
         >
           I’m Sebastian—as a digital designer I care about our dear users, rapid

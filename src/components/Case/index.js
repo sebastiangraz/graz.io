@@ -32,7 +32,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const staggeredOffset = -childPosition.length * offset + index * offset;
 
   const [scrollToHash, setScrollToHash] = React.useState(0);
-
+  const scrollOffset = 66;
   const height = (pos) => childHeight[pos ? index - pos : index] || [];
   const position = (pos) => childPosition[pos ? index - pos : index] || [];
 
@@ -41,7 +41,9 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     return transform(
       progress,
       [0, height(pos)],
-      pos === 1 ? [0, -66] : [staggeredOffset + 300, -height(pos) + 66]
+      pos === 1
+        ? [0, -scrollOffset]
+        : [staggeredOffset + 300, -height(pos) + scrollOffset]
     );
   };
 
@@ -91,7 +93,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
             minHeight: "100%",
             position: "fixed",
             left: 0,
-            top: `calc(100vh - 66px)`,
+            top: `calc(100vh - ${scrollOffset}px)`,
           }}
         >
           <Render />
@@ -133,7 +135,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           <div
             className="render"
             sx={{
-              pb: 66,
+              pb: scrollOffset,
               my: "100vh",
             }}
           >

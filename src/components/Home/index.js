@@ -42,7 +42,7 @@ export const Home = () => {
   return (
     <Grid
       sx={{
-        p: [5, 6, 7],
+        p: [7, 8, 9],
         rowGap: [8, 10, "20vh"],
         columnGap: 0,
         display: "grid",

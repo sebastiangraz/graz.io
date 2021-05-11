@@ -38,23 +38,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const position = childPosition[index] || [];
   const updatePos = (v) => {
     const progress = v - position + height + windowHeight;
-    console.log(
-      offset,
-      data.slug,
-      // progress,
-      // "height:",
-      // height,
-      // "position:",
-      // position - height,
-      // "staggeredoffset + 300:",
-      // staggeredOffset + 300
-      transform(
-        progress,
-        [0, height],
-        [staggeredOffset + 300, -height]
-        // pos === 1 ? [0, -0] : [0, -height(pos) + 0]
-      )
-    );
     return transform(
       progress,
       [0, height],

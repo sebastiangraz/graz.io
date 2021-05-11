@@ -2,15 +2,18 @@ const colors = {
   text: "#111",
 };
 const space = [0, 4, 8, 12, 16, 20, 28, 36, 48, 72, 128];
-
+const capsStyle = {
+  textTransform: "uppercase",
+  fontFeatureSettings: `"c2sc"`,
+  letterSpacing: "caps",
+};
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   space: space,
   sizes: space,
   radii: { ...space.slice(0, 5), pill: "99em" },
   fonts: {
-    body:
-      'Styrene, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
+    body: 'Styrene, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
     heading: "inherit",
     monospace: "Menlo, monospace",
   },
@@ -37,6 +40,9 @@ export default {
       letterSpacing: "body",
       display: "block",
     },
+    caps: {
+      ...capsStyle,
+    },
     lead: {
       variant: "text.default",
       fontSize: space.slice(5, 8),
@@ -44,10 +50,8 @@ export default {
       lineHeight: "lead",
     },
     heading: {
+      ...capsStyle,
       variant: "text.lead",
-      fontFeatureSettings: `"c2sc"`,
-      textTransform: "uppercase",
-      letterSpacing: "caps",
     },
   },
   styles: {

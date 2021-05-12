@@ -24,6 +24,26 @@ export let cases = new Map([
     },
   ],
   [
+    "norse1",
+    {
+      name: "Norse",
+      slug: "norse1",
+      component: Norse,
+      bg: "#7a3",
+      color: "#fff",
+    },
+  ],
+  [
+    "norse2",
+    {
+      name: "Norse",
+      slug: "norse2",
+      component: Norse,
+      bg: "#a3c",
+      color: "#fff",
+    },
+  ],
+  [
     "norse",
     {
       name: "Norse",

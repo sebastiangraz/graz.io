@@ -43,36 +43,49 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const Render = data.component;
   const height = (pos) => childHeight[pos ? index - pos : index] || [];
   const position = (pos) => childPosition[pos ? index - pos : index] || [];
-  const offset = (responsiveOffset / (index + 1)) * 0.6;
-  const staggeredOffset = -childPosition.length * offset + index * offset;
+  const offset = (responsiveOffset / (index + 1)) * 1;
+  const staggeredOffset =
+    index !== 0 ? -childPosition.length * offset + index * offset : 0;
 
   // -----POSITION-----
-  const updatePos = (v, pos) => {
-    const progress = v - position(pos) + height(pos) + windowHeight;
+
+  const updatePos = (v) => {
+    const progress =
+      v - position(0) + height(0) + windowHeight + staggeredOffset;
     return transform(
       progress,
-      [0, height(pos)],
-      pos === 1 ? [staggeredOffset + 300, 0] : [0, -height(pos)]
+      [0, height(0) + staggeredOffset],
+      [0, -height(0) - staggeredOffset]
+    );
+  };
+
+  const updatePosNext = (v) => {
+    const progress = v - position(1) + height(0);
+    return transform(
+      progress,
+      [-windowHeight, height(0) - windowHeight],
+      [staggeredOffset, staggeredOffset - 100]
     );
   };
 
   const y = useSpring(
-    useTransform(scrollProgress, (v) => updatePos(v, 0)),
+    useTransform(scrollProgress, (v) => updatePos(v)),
     { damping: 7, mass: 0.06 }
   );
 
   const yNext = useSpring(
-    useTransform(scrollProgress, (v) => updatePos(v, 1)),
+    useTransform(scrollProgress, (v) => updatePosNext(v)),
     { damping: 7, mass: 0.06 }
   );
 
+  // -----CLICK TO SCROLLTO CASE-----
   const handleClick = () => {
     if (index !== 0) {
       window.history.replaceState(null, null, `#${data.slug}`);
     } else {
       window.history.replaceState(null, null, " ");
     }
-    window.scrollTo(0, position(0) - height(0) - 300);
+    window.scrollTo(0, position(0) - height(0) - 100);
   };
   return (
     <>
@@ -91,7 +104,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
             minHeight: "100%",
             position: "fixed",
             left: 0,
-            top: `100vh`,
+            top: `calc(100vh - ${0}px)`,
           }}
         >
           <Render />
@@ -107,6 +120,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           }}
           sx={{
             ...caseParent,
+            // opacity: 0.7,
             color: data?.color,
             zIndex: index,
             width: ["100%", `calc(min(100%, 1495px) - ${index * 2.5}%)`],

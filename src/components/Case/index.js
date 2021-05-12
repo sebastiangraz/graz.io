@@ -44,7 +44,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const Render = data.component;
   const height = (pos) => childHeight[pos ? index - pos : index] || [];
   const position = (pos) => childPosition[pos ? index - pos : index] || [];
-  const offset = (responsiveOffset / (index + 1)) * 0.1;
+  const offset = (responsiveOffset / (index + 1)) * 0.6;
   const staggeredOffset = -childPosition.length * offset + index * offset;
 
   const updatePos = (v, pos) => {
@@ -118,7 +118,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
             style={{ y: yNext, willChange: "transform" }}
             sx={{
               ...caseBg,
-              opacity: 0.5,
               backgroundColor: data?.bg,
             }}
           >

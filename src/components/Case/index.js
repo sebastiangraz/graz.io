@@ -27,7 +27,6 @@ function ScrollToTopOnMount(props) {
   const { position, height, datavar } = props;
   React.useEffect(() => {
     document.fonts.ready.then(function () {
-      console.log(window.location.hash);
       if (window.location.hash === `#${datavar}`) {
         window.scrollTo(0, position - height - 300);
       }
@@ -47,6 +46,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const offset = (responsiveOffset / (index + 1)) * 0.6;
   const staggeredOffset = -childPosition.length * offset + index * offset;
 
+  // -----POSITION-----
   const updatePos = (v, pos) => {
     const progress = v - position(pos) + height(pos) + windowHeight;
     return transform(
@@ -77,6 +77,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   return (
     <>
       {index === 0 ? (
+        // -----HOME-----
         <m.div
           onClick={handleClick}
           ref={ref}
@@ -96,6 +97,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           <Render />
         </m.div>
       ) : (
+        // -----CASES-----
         <m.div
           id={`#${data.slug}`}
           ref={ref}
@@ -115,7 +117,10 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         >
           {console.log("render child :(")}
           <m.div
-            style={{ y: yNext, willChange: "transform" }}
+            style={{
+              y: yNext,
+              willChange: "transform",
+            }}
             sx={{
               ...caseBg,
               backgroundColor: data?.bg,

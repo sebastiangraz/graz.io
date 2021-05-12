@@ -64,7 +64,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     return transform(
       progress,
       [-windowHeight, height(0) - windowHeight],
-      [staggeredOffset, staggeredOffset - 100]
+      [staggeredOffset, staggeredOffset]
     );
   };
 

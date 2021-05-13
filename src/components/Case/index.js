@@ -29,18 +29,19 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const responsiveOffset = useResponsiveValue([50, 75, 100, 150]);
   const Render = data.component;
   const homeCase = childHeight[0] || 0;
-  const offset = (responsiveOffset / index) * 0.6;
-  const staggeredOffset = -childPosition.length * offset + index * offset;
+  const offset = (responsiveOffset / (index + 1)) * 0.25;
+  const staggeredOffset =
+    index !== 0 ? -childPosition.length * offset + index * offset : 0;
   const [scrollToHash, setScrollToHash] = React.useState(0);
   const height = (pos) => childHeight[pos ? index - pos : index] || [];
   const position = (pos) => childPosition[pos ? index - pos : index] || [];
 
   console.log(staggeredOffset, data.slug);
   const updatePos = (v, pos) => {
-    const progress = v - position(pos) + height(pos) + windowHeight;
+    const progress = v - position(0) + height(0) + windowHeight;
     return transform(
       progress,
-      [0, height(pos)],
+      [0, height(0)],
       pos === 1 ? [0, -300 - staggeredOffset] : [0, -height(pos)]
       // pos === 1 ? [staggeredOffset + 300, 0] : [0, -height(pos)]
     );
@@ -106,13 +107,13 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           }}
           sx={{
             ...caseParent,
-            top: `calc(100vh - ${300}px)`,
+            top: `calc(100vh - ${0}px)`,
             color: data?.color,
             zIndex: index,
             width: ["100%", `calc(min(100%, 1495px) - ${index * 2.5}%)`],
-            "&:nth-of-type(odd)": {
-              left: 0,
-            },
+            // "&:nth-of-type(odd)": {
+            //   left: 0,
+            // },
           }}
         >
           {console.log("render child :(")}
@@ -121,7 +122,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
             style={{ y: yNext, willChange: "transform" }}
             sx={{
               ...caseBg,
-              top: staggeredOffset + 600,
+              top: staggeredOffset + 300,
               backgroundColor: data?.bg,
             }}
           >

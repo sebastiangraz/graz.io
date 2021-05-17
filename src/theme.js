@@ -1,7 +1,8 @@
 const colors = {
   text: "#111",
 };
-const space = [0, 4, 8, 12, 16, 20, 28, 36, 48, 72, 128];
+// const space = [0, 4, 8, 12, 16, 20, 28, 36, 48, 72, 128];
+const space = [0, 3, 6, 11, 13, 16, 20, 32, 40, 72, 128];
 const capsStyle = {
   textTransform: "uppercase",
   fontFeatureSettings: `"c2sc"`,
@@ -13,7 +14,7 @@ export default {
   sizes: space,
   radii: { ...space.slice(0, 5), pill: "99em" },
   fonts: {
-    body: 'Styrene, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
+    body: 'norse, Styrene, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
     heading: "inherit",
     monospace: "Menlo, monospace",
   },
@@ -24,10 +25,14 @@ export default {
     heading: 1.1,
   },
   letterSpacings: {
-    body: "-0.033em",
-    lead: "-0.066em",
+    body: "0em",
+    lead: "-0.033em",
     heading: "-0.11em",
     caps: "0.011em",
+    // body: "-0.033em",
+    // lead: "-0.066em",
+    // heading: "-0.11em",
+    // caps: "0.011em",
   },
   fontSizes: space,
   colors: colors,
@@ -59,7 +64,8 @@ export default {
       "-webkit-font-smoothing": "antialiased",
       "-moz-osx-font-smoothing": "grayscale",
       variant: "text.default",
-      fontFeatureSettings: `"liga", "case"`,
+      fontVariationSettings: `'wght' 66`,
+      fontFeatureSettings: `"liga"`,
     },
     a: { color: "inherit", "&:hover": { textDecoration: "none" } },
     pre: {

@@ -95,7 +95,7 @@ export const Home = () => {
       />
 
       <Text sx={{ gridArea: "years", display: ["none", "block"] }}>Résumé</Text>
-      <Text sx={{ gridArea: "contact" }}>Contact</Text>
+      <Text sx={{ gridArea: "contact" }}>Contjact</Text>
       <div
         sx={{
           gridArea: "meta",

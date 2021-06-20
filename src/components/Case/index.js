@@ -36,7 +36,6 @@ function ScrollToTopOnMount(props) {
 }
 
 export const Case = React.forwardRef(({ index, data }, ref) => {
-  console.log(ref);
   let { childHeight, childPosition, windowHeight, scrollProgress } =
     useCaseWrapperContext();
 
@@ -48,13 +47,15 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const staggeredOffset =
     index !== 0 ? -childPosition.length * offset + index * offset : 0;
 
+  console.log("childPosition: ", childPosition, "childHeight: ", childHeight);
   // -----POSITION-----
 
   const updatePos = (v) => {
     const progress =
-      v - position(0) + height(0) + windowHeight + staggeredOffset;
+      v - position(0) + height(0) + windowHeight;
+
     return transform(
-      progress,
+      progress - staggeredOffset,
       [-staggeredOffset, height(0)],
       [staggeredOffset, -height(0)]
     );
@@ -65,7 +66,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     return transform(
       progress,
       [-windowHeight, height(0) - windowHeight],
-      [staggeredOffset, staggeredOffset]
+      [0, 0]
     );
   };
 
@@ -86,7 +87,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     } else {
       window.history.replaceState(null, null, " ");
     }
-    window.scrollTo(0, position(0) - height(0));
+    window.scrollTo(0, position(0) - height(0) + staggeredOffset);
   };
   return (
     <>

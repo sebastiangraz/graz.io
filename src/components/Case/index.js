@@ -24,14 +24,14 @@ const caseBg = {
 };
 
 function ScrollToTopOnMount(props) {
-  const { position, height, datavar } = props;
+  const { position, height, stagger, datavar } = props;
   React.useEffect(() => {
     document.fonts.ready.then(function () {
       if (window.location.hash === `#${datavar}`) {
-        window.scrollTo(0, position - height);
+        window.scrollTo(0, position - height + stagger);
       }
     });
-  }, [datavar, height, position]);
+  }, [datavar, height, position, stagger]);
   return null;
 }
 
@@ -154,6 +154,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
       <ScrollToTopOnMount
         position={position(0)}
         height={height(0)}
+        stagger={staggeredOffset}
         datavar={data.slug}
       />
     </>

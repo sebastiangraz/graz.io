@@ -7,7 +7,7 @@ import { m, useSpring, transform, useTransform } from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
-const nextScrollDistance = 200
+const nextScrollDistance = 60
 
 const caseParent = {
   top: `100vh`,

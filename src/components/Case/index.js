@@ -65,10 +65,10 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   };
 
   const updatePosNext = (v) => {
-    const progress = v - position(1) + height(0);
+    const progress = v - position(1) + height(1);
     return transform(
       progress,
-      [-windowHeight, height(0) - windowHeight],
+      [-windowHeight, height(1) - windowHeight],
       [0, -nextScrollDistance]
     );
   };

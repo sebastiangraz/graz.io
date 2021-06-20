@@ -7,16 +7,20 @@ import { m, useSpring, transform, useTransform } from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
+const nextScrollDistance = 200
+
 const caseParent = {
   top: `100vh`,
   position: "fixed",
   willChange: "transform",
   right: 0,
 };
+
 const caseBg = {
   borderBottom: "5px solid ",
   width: "100%",
-  height: "100%",
+  //300 - 1 is to prevent subpixel distance between the hero
+  height: `calc(100% - ${(300 - 1) - nextScrollDistance}px)`,
   zIndex: -1,
   position: "absolute",
   bottom: 0,
@@ -28,7 +32,7 @@ function ScrollToTopOnMount(props) {
   React.useEffect(() => {
     document.fonts.ready.then(function () {
       if (window.location.hash === `#${datavar}`) {
-        window.scrollTo(0, position - height - 100 + stagger);
+        window.scrollTo(0, position - height - nextScrollDistance + stagger);
       }
     });
   }, [datavar, height, position, stagger]);
@@ -49,7 +53,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
   console.log("childPosition: ", childPosition, "childHeight: ", childHeight);
   // -----POSITION-----
-
   const updatePos = (v) => {
     const progress =
       v - position(0) + height(0) + windowHeight;
@@ -66,7 +69,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     return transform(
       progress,
       [-windowHeight, height(0) - windowHeight],
-      [0, -100]
+      [0, -nextScrollDistance]
     );
   };
 
@@ -87,7 +90,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     } else {
       window.history.replaceState(null, null, " ");
     }
-    window.scrollTo(0, position(0) - height(0) - 100 + staggeredOffset);
+    window.scrollTo(0, position(0) - height(0) - nextScrollDistance + staggeredOffset);
   };
   return (
     <>
@@ -132,19 +135,19 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           }}
         >
           {console.log("render child :(")}
-          <m.div
-            style={{
+          <m.div style={{
               y: yNext,
               willChange: "transform",
-            }}
+            }}>
+            <CaseHero bg={data?.bg}>{data?.name}</CaseHero>
+          </m.div>
+          <div
             sx={{
               ...caseBg,
-              borderTop: "3px solid",
               backgroundColor: data?.bg,
             }}
           >
-            <CaseHero bg={data?.bg}>{data?.name}</CaseHero>
-          </m.div>
+          </div>
 
           <div sx={{ my: "100vh" }}>
             <Render />

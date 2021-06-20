@@ -28,7 +28,7 @@ function ScrollToTopOnMount(props) {
   React.useEffect(() => {
     document.fonts.ready.then(function () {
       if (window.location.hash === `#${datavar}`) {
-        window.scrollTo(0, position - height + stagger);
+        window.scrollTo(0, position - height - 100 + stagger);
       }
     });
   }, [datavar, height, position, stagger]);
@@ -43,7 +43,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const Render = data.component;
   const height = (pos) => childHeight[pos ? index - pos : index] || [];
   const position = (pos) => childPosition[pos ? index - pos : index] || [];
-  const offset = (responsiveOffset / (index + 1)) * 0.1;
+  const offset = (responsiveOffset / (index + 1)) * 0.5;
   const staggeredOffset =
     index !== 0 ? -childPosition.length * offset + index * offset : 0;
 
@@ -66,7 +66,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     return transform(
       progress,
       [-windowHeight, height(0) - windowHeight],
-      [0, 0]
+      [0, -100]
     );
   };
 
@@ -87,7 +87,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     } else {
       window.history.replaceState(null, null, " ");
     }
-    window.scrollTo(0, position(0) - height(0) + staggeredOffset);
+    window.scrollTo(0, position(0) - height(0) - 100 + staggeredOffset);
   };
   return (
     <>

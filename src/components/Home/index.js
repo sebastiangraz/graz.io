@@ -83,9 +83,8 @@ export const Home = () => {
       <Logo
         sx={{
           gridArea: "logo",
-          fontSize: 7,
+          fontSize: 9,
           display: "flex",
-          lineHeight: 0.8,
           transition: `.5s cubic-bezier(1,0,0,1) opacity, 1s cubic-bezier(1,0,0,1) transform`,
           transform: false
             ? ["scale(1)", "scale(1)", "scale(0.8)"]
@@ -95,7 +94,7 @@ export const Home = () => {
       />
 
       <Text sx={{ gridArea: "years", display: ["none", "block"] }}>Résumé</Text>
-      <Text sx={{ gridArea: "contact" }}>Contjact</Text>
+      <Text sx={{ gridArea: "contact" }}>Contact</Text>
       <div
         sx={{
           gridArea: "meta",
@@ -144,7 +143,7 @@ export const Home = () => {
           sx={{
             mt: -2,
             maxWidth: [200, "initial", null],
-            width: ["100%", 420, 340, 520],
+            width: ["100%", 440, 360, 540],
           }}
         >
           I’m Sebastian—as a digital designer I care about our dear users, rapid

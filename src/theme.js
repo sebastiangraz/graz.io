@@ -14,7 +14,7 @@ export default {
   sizes: space,
   radii: { ...space.slice(0, 5), pill: "99em" },
   fonts: {
-    body: 'norse, Styrene, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
+    body: 'Styrene, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
     heading: "inherit",
     monospace: "Menlo, monospace",
   },

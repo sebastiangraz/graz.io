@@ -36,6 +36,7 @@ function ScrollToTopOnMount(props) {
 }
 
 export const Case = React.forwardRef(({ index, data }, ref) => {
+  console.log(ref);
   let { childHeight, childPosition, windowHeight, scrollProgress } =
     useCaseWrapperContext();
 

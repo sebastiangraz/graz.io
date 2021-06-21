@@ -19,7 +19,6 @@ export const CaseHero = React.memo(({ bg, id = uuid(), children }) => {
       sx={{
         position: "absolute",
         top: 0,
-        // top: -300,
         textTransform: "uppercase",
         fontWeight: 600,
         width: "100%",

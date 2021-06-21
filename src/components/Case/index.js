@@ -7,7 +7,7 @@ import { m, useSpring, transform, useTransform } from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
-const nextScrollDistance = 120
+const nextScrollDistance = 66
 
 const caseParent = {
   top: `100vh`,
@@ -27,14 +27,14 @@ const caseBg = {
 };
 
 function ScrollToTopOnMount(props) {
-  const { position, height, stagger, datavar } = props;
+  const { position, height, stagger, datavar, index } = props;
   React.useEffect(() => {
     document.fonts.ready.then(function () {
       if (window.location.hash === `#${datavar}`) {
-        window.scrollTo(0, position - height - nextScrollDistance + stagger);
+        window.scrollTo(0, position - height - (index !== 1 && nextScrollDistance) + stagger);
       }
     });
-  }, [datavar, height, position, stagger]);
+  }, [datavar, height, index, position, stagger]);
   return null;
 }
 
@@ -46,7 +46,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const Render = data.component;
   const height = React.useCallback((pos) => childHeight[pos ? index - pos : index] || [], [childHeight, index]);
   const position = (pos) => childPosition[pos ? index - pos : index] || [];
-  const offset = (responsiveOffset / (index + 1)) * 0.4;
+  const offset = (responsiveOffset / (index + 1)) * 1.5;
   const staggeredOffset =
     index !== 0 ? -childPosition.length * offset + index * offset : 0;
 
@@ -97,7 +97,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     } else {
       window.history.replaceState(null, null, " ");
     }
-    window.scrollTo(0, position(0) - height(0) - nextScrollDistance + staggeredOffset);
+    window.scrollTo(0, position(0) - height(0) - (index !== 1 && nextScrollDistance) + staggeredOffset);
   };
   return (
     <>
@@ -142,6 +142,10 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         >
           {console.log("render child :(")}
           <m.div style={{
+              ...(index === 1 ) && {
+                top: nextScrollDistance,
+                position:"relative"
+              },
               y: yNext,
               willChange: "transform",
             }}>
@@ -167,6 +171,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         height={height(0)}
         stagger={staggeredOffset}
         datavar={data.slug}
+        index={index}
       />
     </>
   );

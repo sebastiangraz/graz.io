@@ -7,7 +7,7 @@ import { m, useSpring, transform, useTransform } from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
-const nextScrollDistance = 60
+const nextScrollDistance = 120
 
 const caseParent = {
   top: `100vh`,
@@ -44,9 +44,9 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
   const responsiveOffset = useResponsiveValue([50, 75, 100, 150]);
   const Render = data.component;
-  const height = (pos) => childHeight[pos ? index - pos : index] || [];
+  const height = React.useCallback((pos) => childHeight[pos ? index - pos : index] || [], [childHeight, index]);
   const position = (pos) => childPosition[pos ? index - pos : index] || [];
-  const offset = (responsiveOffset / (index + 1)) * 0.5;
+  const offset = (responsiveOffset / (index + 1)) * 0.4;
   const staggeredOffset =
     index !== 0 ? -childPosition.length * offset + index * offset : 0;
 
@@ -61,18 +61,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
       [0, -height(0)]
     );
   };
-
-  // const updateActive = (v) => {
-  //   const progress =
-  //     v - position(0) + height(0) + windowHeight;
-
-  //   return transform(
-  //     progress - staggeredOffset,
-  //     [-staggeredOffset, height(0)],
-  //     [0, 1]
-  //   );
-  // };
-
 
   const updatePosNext = (v) => {
     const progress = v - position(1) + height(1);
@@ -93,13 +81,12 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     { damping: 7, mass: 0.06 }
   );
 
-  // const isActive = useTransform(scrollProgress, (v) => updateActive(v))
+  const isActive = useTransform(scrollProgress, (v) => updatePos(v))
+  const [isActiveState, setIsActiveState] = React.useState(false);
 
-  // const [isActiveState, setIsActiveState] = React.useState(false);
-
-  // React.useEffect(() => isActive.onChange(e => {
-  //   setIsActiveState(e > 0 && e < 1);
-  // }), [isActive])
+  React.useEffect(() => isActive.onChange(e => {
+    setIsActiveState(e > -height(0) && e < 0);
+  }), [isActive, height])
 
 
 
@@ -142,7 +129,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           onClick={handleClick}
           style={{
             y: y,
-            // opacity: isActiveState ? 0.4 : 1
+            opacity: isActiveState ? 0.4 : 1
           }}
           sx={{
             ...caseParent,

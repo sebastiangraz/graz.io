@@ -126,10 +126,9 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         <m.div
           id={`#${data.slug}`}
           ref={ref}
-          onClick={handleClick}
+          onClick={!isActiveState && handleClick}
           style={{
             y: y,
-            opacity: isActiveState ? 0.4 : 1
           }}
           sx={{
             ...caseParent,
@@ -158,7 +157,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           >
           </div>
 
-          <div sx={{ my: "60vh" }}>
+          <div sx={{ my: "100vh" }}>
             <Render />
           </div>
         </m.div>

@@ -19,8 +19,7 @@ const caseParent = {
 const caseBg = {
   borderBottom: "5px solid ",
   width: "100%",
-  //300 - 1 is to prevent subpixel distance between the hero
-  height: `calc(100% - ${(300 - 2) - nextScrollDistance}px)`,
+
   zIndex: -1,
   position: "absolute",
   bottom: 0,
@@ -51,18 +50,15 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const staggeredOffset =
     index !== 0 ? -childPosition.length * offset + index * offset : 0;
 
-  // console.log("childPosition: ", childPosition, "childHeight: ", childHeight);
-
-
   // -----POSITION-----
   const updatePos = (v) => {
     const progress =
       v - position(0) + height(0) + windowHeight;
 
     return transform(
-      progress - staggeredOffset,
-      [-staggeredOffset, height(0)],
-      [staggeredOffset, -height(0)]
+      progress,
+      [0, height(0)],
+      [0, -height(0)]
     );
   };
 
@@ -82,8 +78,8 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     const progress = v - position(1) + height(1);
     return transform(
       progress,
-      [-windowHeight, height(1) - windowHeight],
-      [0, -nextScrollDistance]
+      [-windowHeight , height(1) - windowHeight],
+      [staggeredOffset, staggeredOffset - nextScrollDistance]
     );
   };
 
@@ -146,12 +142,10 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           onClick={handleClick}
           style={{
             y: y,
-            opacity: 0.4
             // opacity: isActiveState ? 0.4 : 1
           }}
           sx={{
             ...caseParent,
-            // opacity: 0.7,
             color: data?.color,
             zIndex: index,
             width: ["100%", `calc(min(100%, 1495px) - ${index * 2.5}%)`],
@@ -170,12 +164,14 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           <div
             sx={{
               ...caseBg,
+                //300 - 2 is to prevent subpixel distance between the hero
+              height: `calc(100% - ${(300 - 2) - nextScrollDistance + staggeredOffset}px)`, 
               backgroundColor: data?.bg,
             }}
           >
           </div>
 
-          <div sx={{ my: "100vh" }}>
+          <div sx={{ my: "60vh" }}>
             <Render />
           </div>
         </m.div>

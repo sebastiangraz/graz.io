@@ -20,7 +20,7 @@ const caseBg = {
   borderBottom: "5px solid ",
   width: "100%",
   //300 - 1 is to prevent subpixel distance between the hero
-  height: `calc(100% - ${(300 - 1) - nextScrollDistance}px)`,
+  height: `calc(100% - ${(300 - 2) - nextScrollDistance}px)`,
   zIndex: -1,
   position: "absolute",
   bottom: 0,
@@ -51,7 +51,9 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const staggeredOffset =
     index !== 0 ? -childPosition.length * offset + index * offset : 0;
 
-  console.log("childPosition: ", childPosition, "childHeight: ", childHeight);
+  // console.log("childPosition: ", childPosition, "childHeight: ", childHeight);
+
+
   // -----POSITION-----
   const updatePos = (v) => {
     const progress =
@@ -63,6 +65,18 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
       [staggeredOffset, -height(0)]
     );
   };
+
+  // const updateActive = (v) => {
+  //   const progress =
+  //     v - position(0) + height(0) + windowHeight;
+
+  //   return transform(
+  //     progress - staggeredOffset,
+  //     [-staggeredOffset, height(0)],
+  //     [0, 1]
+  //   );
+  // };
+
 
   const updatePosNext = (v) => {
     const progress = v - position(1) + height(1);
@@ -82,6 +96,16 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     useTransform(scrollProgress, (v) => updatePosNext(v)),
     { damping: 7, mass: 0.06 }
   );
+
+  // const isActive = useTransform(scrollProgress, (v) => updateActive(v))
+
+  // const [isActiveState, setIsActiveState] = React.useState(false);
+
+  // React.useEffect(() => isActive.onChange(e => {
+  //   setIsActiveState(e > 0 && e < 1);
+  // }), [isActive])
+
+
 
   // -----CLICK TO SCROLLTO CASE-----
   const handleClick = () => {
@@ -122,6 +146,8 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           onClick={handleClick}
           style={{
             y: y,
+            opacity: 0.4
+            // opacity: isActiveState ? 0.4 : 1
           }}
           sx={{
             ...caseParent,

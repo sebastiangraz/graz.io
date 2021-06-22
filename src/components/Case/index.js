@@ -7,8 +7,11 @@ import { m, useSpring, transform, useTransform } from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
-const nextScrollDistance = 66
-
+const settings = {
+  nextScrollDistance : 20,
+  staggerPower: 1.5
+}
+ 
 const caseParent = {
   top: `100vh`,
   position: "fixed",
@@ -31,7 +34,7 @@ function ScrollToTopOnMount(props) {
   React.useEffect(() => {
     document.fonts.ready.then(function () {
       if (window.location.hash === `#${datavar}`) {
-        window.scrollTo(0, position - height - (index !== 1 && nextScrollDistance) + stagger);
+        window.scrollTo(0, position - height - (index !== 1 && settings.nextScrollDistance) + stagger);
       }
     });
   }, [datavar, height, index, position, stagger]);
@@ -46,7 +49,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const Render = data.component;
   const height = React.useCallback((pos) => childHeight[pos ? index - pos : index] || [], [childHeight, index]);
   const position = (pos) => childPosition[pos ? index - pos : index] || [];
-  const offset = (responsiveOffset / (index + 1)) * 1.5;
+  const offset = (responsiveOffset / (index + 1)) * settings.staggerPower;
   const staggeredOffset =
     index !== 0 ? -childPosition.length * offset + index * offset : 0;
 
@@ -67,7 +70,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     return transform(
       progress,
       [-windowHeight , height(1) - windowHeight],
-      [staggeredOffset, staggeredOffset - nextScrollDistance]
+      [staggeredOffset, staggeredOffset - settings.nextScrollDistance]
     );
   };
 
@@ -97,7 +100,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     } else {
       window.history.replaceState(null, null, " ");
     }
-    window.scrollTo(0, position(0) - height(0) - (index !== 1 && nextScrollDistance) + staggeredOffset);
+    window.scrollTo(0, position(0) - height(0) - (index !== 1 && settings.nextScrollDistance) + staggeredOffset);
   };
   return (
     <>
@@ -143,19 +146,19 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           {console.log("render child :(")}
           <m.div style={{
               ...(index === 1 ) && {
-                top: nextScrollDistance,
+                top: settings.nextScrollDistance, 
                 position:"relative"
               },
               y: yNext,
               willChange: "transform",
             }}>
-            <CaseHero bg={data?.bg}>{data?.name}</CaseHero>
+            <CaseHero bg={data?.bg} name={data?.name} padding={responsiveOffset}/>
           </m.div>
           <div
             sx={{
               ...caseBg,
                 //300 - 2 is to prevent subpixel distance between the hero
-              height: `calc(100% - ${(300 - 2) - nextScrollDistance + staggeredOffset}px)`, 
+              height: `calc(100% - ${(300 - 2) - settings.nextScrollDistance + staggeredOffset}px)`, 
               backgroundColor: data?.bg,
             }}
           >

@@ -7,7 +7,8 @@ import uuid from "react-uuid";
 
 const ignoreUpdatedProps = () => true;
 
-export const CaseHero = React.memo(({ bg, id = uuid(), children }) => {
+export const CaseHero = React.memo((props,{ id = uuid(), children }) => {
+  const { bg, name, padding } = props
   const [loaded, setLoaded] = React.useState(false);
   React.useEffect(() => {
     document.fonts.ready.then(function () {
@@ -24,7 +25,7 @@ export const CaseHero = React.memo(({ bg, id = uuid(), children }) => {
         width: "100%",
         height: 300,
         letterSpacing: "-0.075em",
-        fontSize: "min(12vw, 140px)",
+        fontSize: "min(12vw, 160px)",
         color: bg,
       }}
       height="300"
@@ -44,15 +45,15 @@ export const CaseHero = React.memo(({ bg, id = uuid(), children }) => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <rect width="32" height="16" rx="8" fill="black" />
+            <rect width="20" height="6" rx="3" fill="black" />
           </svg>
 
           <text
             dominantBaseline="hanging"
-            transform={`translate(${100 - 4} ${100 - 7})`}
+            transform={`translate(${padding - 4} ${padding - 7})`}
           >
             {/* hack: using zero-width space to render the correct font */}
-            {loaded ? children : "​"}
+            {loaded ? name : "​"}
           </text>
         </mask>
       </defs>

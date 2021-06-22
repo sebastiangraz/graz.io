@@ -6,6 +6,7 @@ import {
   useMotionValue,
   useViewportScroll,
 } from "framer-motion";
+import { Grid } from "theme-ui";
 
 const CaseWrapperContext = React.createContext(null);
 const useCaseWrapperContext = () => React.useContext(CaseWrapperContext);
@@ -60,7 +61,7 @@ const CaseWrapper = ({ children }) => {
     <LazyMotion features={domAnimation} strict>
       <div
         style={{
-          willChange: "height",
+          display: "grid",
           height: state.childSum,
         }}
       >

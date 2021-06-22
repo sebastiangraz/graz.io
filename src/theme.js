@@ -61,6 +61,7 @@ export default {
   },
   styles: {
     root: {
+      background: "#FFF5DD",
       "-webkit-font-smoothing": "antialiased",
       "-moz-osx-font-smoothing": "grayscale",
       variant: "text.default",

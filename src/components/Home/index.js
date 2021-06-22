@@ -41,9 +41,9 @@ export const Home = () => {
   return (
     <Grid
       sx={{
-        marginBottom: ["50vh", 0, null],
         minHeight: "100vh",
-        p: [7, 8, 9],
+        pt: [7, 8, 9],
+        p: [7, 0, null],
         rowGap: [8, 9, "16vh"],
         columnGap: 0,
         display: "grid",
@@ -57,25 +57,24 @@ export const Home = () => {
           `,
           //tablet
           `
-          'logo years contact'
-          'intro intro .'
-          'meta meta meta'
+          '. logo logo . . . years years  . .  contact .'
+          '. intro intro intro . . . . . . . .'
+          '. meta meta meta meta meta meta meta meta meta meta meta '
           `,
           //desktop
           `
-          'logo logo . . . years years . . .  contact .'
-          'intro intro intro intro . meta meta meta meta meta meta meta'
+          '. logo logo . . . years years  . .  contact .'
+          '. intro intro intro .  . meta meta meta meta meta meta'
           `,
           //wide
           `
-          'logo logo . . . . years years  . .  contact .'
-          'intro intro intro . . . meta meta meta meta meta meta'
+          '. logo logo . . . years years  . .  contact .'
+          '. intro intro intro .  . meta meta meta meta meta meta'
           `,
         ],
         "grid-template-rows": "auto auto 1fr",
         "grid-template-columns": [
           "repeat(2, 1fr)",
-          "repeat(3, 1fr)",
           "repeat(12, 1fr)",
         ],
       }}

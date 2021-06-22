@@ -7,7 +7,7 @@ import { useResponsiveValue } from "@theme-ui/match-media";
 import { useThemeUI } from "theme-ui";
 
 const settings = {
-  nextScrollDistance : 20,
+  nextScrollDistance : 60,
   staggerPower: 1
 }
  
@@ -19,7 +19,7 @@ const caseParent = {
 };
 
 const caseBg = {
-  borderBottom: "5px solid ",
+  // borderBottom: "5px solid ",
   width: "100%",
   zIndex: -1,
   position: "absolute",
@@ -145,7 +145,8 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           }}
         >
           {console.log("render child :(")}
-          <m.div style={{
+          <m.div
+           style={{
               ...(index === 1 ) && {
                 top: settings.nextScrollDistance, 
                 position:"relative"

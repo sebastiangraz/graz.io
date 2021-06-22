@@ -4,10 +4,11 @@ import React from "react";
 import { m, useSpring, transform, useTransform } from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
+import { useThemeUI } from "theme-ui";
 
 const settings = {
   nextScrollDistance : 20,
-  staggerPower: 1.5
+  staggerPower: 1
 }
  
 const caseParent = {
@@ -20,7 +21,6 @@ const caseParent = {
 const caseBg = {
   borderBottom: "5px solid ",
   width: "100%",
-
   zIndex: -1,
   position: "absolute",
   bottom: 0,
@@ -43,7 +43,8 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   let { childHeight, childPosition, windowHeight, scrollProgress } =
     useCaseWrapperContext();
 
-  const responsiveOffset = useResponsiveValue([50, 75, 100, 150]);
+  const context = useThemeUI();
+  const responsiveOffset = useResponsiveValue([50, 75, 160, 300]);
   const Render = data.component;
   const height = React.useCallback((pos) => childHeight[pos ? index - pos : index] || [], [childHeight, index]);
   const position = (pos) => childPosition[pos ? index - pos : index] || [];
@@ -100,6 +101,8 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     }
     window.scrollTo(0, position(0) - height(0) - (index !== 1 && settings.nextScrollDistance) + staggeredOffset);
   };
+
+  
   return (
     <>
       {index === 0 ? (
@@ -135,7 +138,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
             ...caseParent,
             color: data?.color,
             zIndex: index,
-            width: ["100%", `calc(min(100%, 1495px) - ${index * 2.5}%)`],
+            width: ["100%", `calc(min(100%, 1495px) - ${index * context.theme.space[9]}px)`],
             "&:nth-of-type(odd)": {
               left: 0,
             },
@@ -150,7 +153,8 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
               y: yNext,
               willChange: "transform",
             }}>
-            <CaseHero bg={data?.bg} name={data?.name}/>
+     
+            <CaseHero bg={data?.bg} name={data?.name} padding={context.theme.space[9]}/>
           </m.div>
           <div
             sx={{

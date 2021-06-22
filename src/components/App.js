@@ -33,7 +33,7 @@ export let cases = new Map([
     },
   ],
   ["canon", { name: "Canon", slug: "canon", component: Canon, bg: "#ff3824" }],
-  ["random", { name: "Random Shiz", slug: "random", component: Loupe, bg: "#f9eaa2" }],
+  ["random", { name: "Random", slug: "random", component: Loupe, bg: "#f9eaa2" }],
 ]);
 
 function App() {

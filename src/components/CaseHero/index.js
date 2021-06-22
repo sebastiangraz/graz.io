@@ -5,7 +5,8 @@ import uuid from "react-uuid";
 
 const ignoreUpdatedProps = () => true;
 
-export const CaseHero = React.memo((props,{ id = uuid(), children }) => {
+export const CaseHero = React.memo((props,{ id = uuid() }) => {
+
 
   const { bg, name, padding } = props
 
@@ -49,7 +50,7 @@ export const CaseHero = React.memo((props,{ id = uuid(), children }) => {
           </svg>
           <text
             dominantBaseline="hanging"
-            transform={`translate(${padding - 4} ${padding - 7})`}
+            transform={`translate(${padding + 30} ${padding - 0})`}
           >
             {/* hack: using zero-width space to render the correct font */}
             {loaded ? name : "​"}

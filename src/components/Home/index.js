@@ -42,10 +42,10 @@ export const Home = () => {
   return (
     <Grid
       sx={{
-        marginBottom: ["100vh", 0, null],
+        marginBottom: ["50vh", 0, null],
         minHeight: "100vh",
         p: [7, 8, 9],
-        rowGap: [8, 10, "20vh"],
+        rowGap: [8, 9, "16vh"],
         columnGap: 0,
         display: "grid",
         alignItems: ["center", "start"],
@@ -73,7 +73,7 @@ export const Home = () => {
           'intro intro intro . . . meta meta meta meta meta meta'
           `,
         ],
-        "grid-template-rows": "auto",
+        "grid-template-rows": "auto auto 1fr",
         "grid-template-columns": [
           "repeat(2, 1fr)",
           "repeat(3, 1fr)",

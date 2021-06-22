@@ -45,7 +45,7 @@ export const CaseHero = React.memo((props,{ id = uuid(), children }) => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <rect width="20" height="6" rx="3" fill="black" />
+            <rect width="20" height="10" rx="5" fill="black" />
           </svg>
 
           <text

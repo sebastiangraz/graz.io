@@ -1,6 +1,5 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
+
 
 export function Character({ char, ref, setCharacter, setFeature, character }) {
   return (

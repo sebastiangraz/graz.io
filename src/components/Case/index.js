@@ -1,7 +1,5 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
+/** @jsxImportSource theme-ui */
 
-import { jsx } from "theme-ui";
 import React from "react";
 import { m, useSpring, transform, useTransform } from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
@@ -152,7 +150,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
               y: yNext,
               willChange: "transform",
             }}>
-            <CaseHero bg={data?.bg} name={data?.name} padding={responsiveOffset}/>
+            <CaseHero bg={data?.bg} name={data?.name}/>
           </m.div>
           <div
             sx={{

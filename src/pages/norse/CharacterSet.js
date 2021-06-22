@@ -1,6 +1,5 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx, Box, Text } from "theme-ui";
+/** @jsxImportSource theme-ui */
+import {  Box, Text } from "theme-ui";
 import * as React from "react";
 import { Character } from "./Character";
 import { CharacterWeight } from "./CharacterWeight";

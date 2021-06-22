@@ -1,8 +1,7 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
+/** @jsxImportSource theme-ui */
 
 import React from "react";
-import { jsx, Text, Grid, Link } from "theme-ui";
+import {  Text, Grid } from "theme-ui";
 import { Logo, List } from "../";
 
 const awards = [

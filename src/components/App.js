@@ -24,47 +24,16 @@ export let cases = new Map([
     },
   ],
   [
-    "norse1",
-    {
-      name: "Norse",
-      slug: "norse1",
-      component: Norse,
-      bg: "#7a3",
-      color: "#fff",
-    },
-  ],
-  [
-    "norse2",
-    {
-      name: "Norse",
-      slug: "norse2",
-      component: Norse,
-      bg: "#a3c",
-      color: "#fff",
-    },
-  ],
-  [
     "norse",
     {
       name: "Norse",
       slug: "norse",
       component: Norse,
       bg: "#111",
-      color: "#fff",
     },
   ],
-
   ["canon", { name: "Canon", slug: "canon", component: Canon, bg: "#ff3824" }],
-  [
-    "random",
-    {
-      name: "Random",
-      slug: "random",
-      component: Norse,
-      bg: "#d5f5d1",
-      color: "#276",
-    },
-  ],
+  ["random", { name: "Random Shiz", slug: "random", component: Loupe, bg: "#f9eaa2" }],
 ]);
 
 function App() {

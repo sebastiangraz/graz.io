@@ -1,14 +1,14 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
+/** @jsxImportSource theme-ui */
 
 import React from "react";
-import { jsx } from "theme-ui";
 import uuid from "react-uuid";
 
 const ignoreUpdatedProps = () => true;
 
 export const CaseHero = React.memo((props,{ id = uuid(), children }) => {
+
   const { bg, name, padding } = props
+
   const [loaded, setLoaded] = React.useState(false);
   React.useEffect(() => {
     document.fonts.ready.then(function () {
@@ -47,7 +47,6 @@ export const CaseHero = React.memo((props,{ id = uuid(), children }) => {
           >
             <rect width="20" height="10" rx="5" fill="black" />
           </svg>
-
           <text
             dominantBaseline="hanging"
             transform={`translate(${padding - 4} ${padding - 7})`}
@@ -55,6 +54,8 @@ export const CaseHero = React.memo((props,{ id = uuid(), children }) => {
             {/* hack: using zero-width space to render the correct font */}
             {loaded ? name : "​"}
           </text>
+         
+  
         </mask>
       </defs>
       <rect

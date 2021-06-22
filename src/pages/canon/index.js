@@ -1,10 +1,9 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
+/** @jsxImportSource theme-ui */
 
 import React from "react";
-import { jsx, Box, Text, Heading } from "theme-ui";
+import {  Box, Text, Heading } from "theme-ui";
 import { GridParent, Video, Img, List } from "../../components";
-import { icons, images, videos } from "./assets";
+import {  images, videos } from "./assets";
 
 const Sections = {
   Define: () => {

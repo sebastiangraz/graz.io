@@ -1,7 +1,6 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
+/** @jsxImportSource theme-ui */
 
-import { jsx } from "theme-ui";
+
 
 export const Logo = ({ weight, ...rest }) => {
   return (

@@ -1,6 +1,5 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
+
 import { useRef, useEffect } from "react";
 import * as React from "react";
 import { useInView } from "react-intersection-observer";

@@ -1,6 +1,5 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
+
 import styles from "./style.module.scss";
 
 export const GridParent = ({ children, className, ...rest }) => {

@@ -1,9 +1,8 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
+/** @jsxImportSource theme-ui */
 
 import * as React from "react";
 
-import { jsx, Heading, Link, Text, Box } from "theme-ui";
+import { Heading, Link, Text, Box } from "theme-ui";
 import { GridParent, Video } from "../../components";
 
 import { m, useAnimation } from "framer-motion";

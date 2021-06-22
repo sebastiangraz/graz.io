@@ -50,7 +50,7 @@ export const CaseHero = React.memo((props,{ id = uuid() }) => {
           </svg>
           <text
             dominantBaseline="hanging"
-            transform={`translate(${padding + 30} ${padding - 0})`}
+            transform={`translate(${padding} ${padding})`}
           >
             {/* hack: using zero-width space to render the correct font */}
             {loaded ? name : "​"}

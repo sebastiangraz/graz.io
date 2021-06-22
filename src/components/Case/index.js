@@ -8,7 +8,8 @@ import { useThemeUI } from "theme-ui";
 
 const settings = {
   nextScrollDistance : 60,
-  staggerPower: 1
+  staggerPower: 0.75,
+  springOptions: { damping: 10, mass: 0.2  }
 }
  
 const caseParent = {
@@ -73,14 +74,16 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     );
   };
 
+
+
   const y = useSpring(
     useTransform(scrollProgress, (v) => updatePos(v)),
-    { damping: 7, mass: 0.06 }
+    settings.springOptions
   );
 
   const yNext = useSpring(
     useTransform(scrollProgress, (v) => updatePosNext(v)),
-    { damping: 7, mass: 0.06 }
+    settings.springOptions
   );
 
   const isActive = useTransform(scrollProgress, (v) => updatePos(v))

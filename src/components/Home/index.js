@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 
 import React from "react";
-import {  Text, Grid } from "theme-ui";
+import { Text, Grid } from "theme-ui";
 import { Logo, List } from "../";
 
 const awards = [
@@ -42,12 +42,13 @@ export const Home = () => {
     <Grid
       sx={{
         minHeight: "100vh",
-        pt: [7, 8, 9],
-        p: [7, 0, null],
+        py: [7, 8, 9],
+        px: [7, 0, null],
         rowGap: [8, 9, "16vh"],
         columnGap: 0,
         display: "grid",
-        alignItems: ["center", "start"],
+        alignItems: ["start", "start"],
+        maxWidth: "2400px",
         gridTemplateAreas: [
           //phone
           `
@@ -72,11 +73,8 @@ export const Home = () => {
           '. intro intro intro .  . meta meta meta meta meta meta'
           `,
         ],
-        "grid-template-rows": "auto auto 1fr",
-        "grid-template-columns": [
-          "repeat(2, 1fr)",
-          "repeat(12, 1fr)",
-        ],
+        "grid-template-rows": "auto auto auto",
+        "grid-template-columns": ["repeat(2, 1fr)", "repeat(12, 1fr)"],
       }}
     >
       <Logo
@@ -141,7 +139,7 @@ export const Home = () => {
           variant="lead"
           sx={{
             mt: -2,
-            maxWidth: [200, "initial", null],
+            maxWidth: ["100%", "initial", null],
             width: ["100%", 440, 360, 540],
           }}
         >

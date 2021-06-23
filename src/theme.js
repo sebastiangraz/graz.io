@@ -62,7 +62,7 @@ export default {
   styles: {
     root: {
       background: "#FFF5DD",
-      "-webkit-font-smoothing": "antialiased",
+      webkitFontSmoothing: "antialiased",
       "-moz-osx-font-smoothing": "grayscale",
       variant: "text.default",
       fontVariationSettings: `'wght' 66`,

@@ -7,16 +7,21 @@ import { useResponsiveValue } from "@theme-ui/match-media";
 import { useThemeUI } from "theme-ui";
 
 const settings = {
-  nextScrollDistance : 60,
-  staggerPower: 0.75,
-  springOptions: { damping: 10, mass: 0.2  }
-}
- 
+  nextScrollDistance: 60,
+  staggerPower: 0.6,
+  springOptions: { damping: 10, mass: 0.2 },
+};
+
 const caseParent = {
   top: `100vh`,
+  width: "100%",
+  maxWidth: "2400px",
   position: "fixed",
+  pointerEvents: "none",
   willChange: "transform",
-  right: 0,
+  display: "grid",
+  gridTemplateColumns: "repeat(12, 1fr)",
+  left: 0,
 };
 
 const caseBg = {
@@ -33,7 +38,13 @@ function ScrollToTopOnMount(props) {
   React.useEffect(() => {
     document.fonts.ready.then(function () {
       if (window.location.hash === `#${datavar}`) {
-        window.scrollTo(0, position - height - (index !== 1 && settings.nextScrollDistance) + stagger);
+        window.scrollTo(
+          0,
+          position -
+            height -
+            (index !== 1 && settings.nextScrollDistance) +
+            stagger
+        );
       }
     });
   }, [datavar, height, index, position, stagger]);
@@ -47,7 +58,10 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   const context = useThemeUI();
   const responsiveOffset = useResponsiveValue([50, 75, 160, 300]);
   const Render = data.component;
-  const height = React.useCallback((pos) => childHeight[pos ? index - pos : index] || [], [childHeight, index]);
+  const height = React.useCallback(
+    (pos) => childHeight[pos ? index - pos : index] || [],
+    [childHeight, index]
+  );
   const position = (pos) => childPosition[pos ? index - pos : index] || [];
   const offset = (responsiveOffset / (index + 1)) * settings.staggerPower;
   const staggeredOffset =
@@ -55,26 +69,19 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
   // -----POSITION-----
   const updatePos = (v) => {
-    const progress =
-      v - position(0) + height(0) + windowHeight;
+    const progress = v - position(0) + height(0) + windowHeight;
 
-    return transform(
-      progress,
-      [0, height(0)],
-      [0, -height(0)]
-    );
+    return transform(progress, [0, height(0)], [0, -height(0)]);
   };
 
   const updatePosNext = (v) => {
     const progress = v - position(1) + height(1);
     return transform(
       progress,
-      [-windowHeight , height(1) - windowHeight],
+      [-windowHeight, height(1) - windowHeight],
       [staggeredOffset, staggeredOffset - settings.nextScrollDistance]
     );
   };
-
-
 
   const y = useSpring(
     useTransform(scrollProgress, (v) => updatePos(v)),
@@ -86,14 +93,16 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     settings.springOptions
   );
 
-  const isActive = useTransform(scrollProgress, (v) => updatePos(v))
+  const isActive = useTransform(scrollProgress, (v) => updatePos(v));
   const [isActiveState, setIsActiveState] = React.useState(false);
 
-  React.useEffect(() => isActive.onChange(e => {
-    setIsActiveState(e > -height(0) && e < 0);
-  }), [isActive, height])
-
-
+  React.useEffect(
+    () =>
+      isActive.onChange((e) => {
+        setIsActiveState(e > -height(0) && e < 0);
+      }),
+    [isActive, height]
+  );
 
   // -----CLICK TO SCROLLTO CASE-----
   const handleClick = () => {
@@ -102,10 +111,15 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     } else {
       window.history.replaceState(null, null, " ");
     }
-    window.scrollTo(0, position(0) - height(0) - (index !== 1 && settings.nextScrollDistance) + staggeredOffset);
+    window.scrollTo(
+      0,
+      position(0) -
+        height(0) -
+        (index !== 1 && settings.nextScrollDistance) +
+        staggeredOffset
+    );
   };
 
-  
   return (
     <>
       {index === 0 ? (
@@ -133,7 +147,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
         <m.div
           id={`#${data.slug}`}
           ref={ref}
-          onClick={!isActiveState && handleClick}
           style={{
             y: y,
           }}
@@ -141,37 +154,48 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
             ...caseParent,
             color: data?.color,
             zIndex: index,
-            width: ["100%", `calc(min(100%, 1495px) - ${index * context.theme.space[9]}px)`],
-            "&:nth-of-type(odd)": {
-              left: 0,
-            },
+            // width: ["100%", `calc(min(100%, 1495px) - ${index * context.theme.space[9]}px)`],
           }}
         >
           {console.log("render child :(")}
-          <m.div
-           style={{
-              ...(index === 1 ) && {
-                top: settings.nextScrollDistance, 
-                position:"relative"
-              },
-              y: yNext,
-              willChange: "transform",
-            }}>
-     
-            <CaseHero bg={data?.bg} name={data?.name} padding={context.theme.space[9]}/>
-          </m.div>
           <div
+            onClick={!isActiveState ? handleClick : null}
             sx={{
-              ...caseBg,
-                //300 - 2 is to prevent subpixel distance between the hero
-              height: `calc(100% - ${(300 - 2) - settings.nextScrollDistance + staggeredOffset}px)`, 
-              backgroundColor: data?.bg,
+              pointerEvents: "auto",
+              position: "relative",
+              gridColumn: ["span 12", null, data?.grid],
             }}
           >
-          </div>
+            <m.div
+              style={{
+                ...(index === 1 && {
+                  top: settings.nextScrollDistance,
+                  position: "relative",
+                }),
+                y: yNext,
+                willChange: "transform",
+              }}
+            >
+              <CaseHero
+                bg={data?.bg}
+                name={data?.name}
+                padding={context.theme.space[9]}
+              />
+            </m.div>
+            <div
+              sx={{
+                ...caseBg,
+                //300 - 2 is to prevent subpixel distance between the hero
+                height: `calc(100% - ${
+                  300 - 2 - settings.nextScrollDistance + staggeredOffset
+                }px)`,
+                backgroundColor: data?.bg,
+              }}
+            ></div>
 
-          <div sx={{ my: "100vh" }}>
-            <Render />
+            <div sx={{ my: "100vh" }}>
+              <Render />
+            </div>
           </div>
         </m.div>
       )}

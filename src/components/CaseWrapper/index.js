@@ -61,7 +61,6 @@ const CaseWrapper = ({ children }) => {
     <LazyMotion features={domAnimation} strict>
       <div
         style={{
-          display: "grid",
           height: state.childSum,
         }}
       >

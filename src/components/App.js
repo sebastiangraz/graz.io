@@ -21,7 +21,7 @@ export let cases = new Map([
       component: Loupe,
       bg: "#184629",
       color: "#e8e0d6",
-      grid: "2 / span 9",
+      grid: "1 / span 9",
     },
   ],
   [
@@ -32,7 +32,7 @@ export let cases = new Map([
       component: Norse,
       bg: "#111",
       color: "#e8e0d6",
-      grid: "3 / span 9",
+      grid: "2 / span 9",
     },
   ],
   [
@@ -42,7 +42,7 @@ export let cases = new Map([
       slug: "canon",
       component: Canon,
       bg: "#ff3824",
-      grid: "4 / span 9",
+      grid: "3 / span 9",
     },
   ],
   [

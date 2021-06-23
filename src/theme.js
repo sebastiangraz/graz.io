@@ -1,3 +1,4 @@
+import { transparentize } from "@theme-ui/color";
 const colors = {
   text: "#111",
 };
@@ -7,6 +8,22 @@ const capsStyle = {
   textTransform: "uppercase",
   fontFeatureSettings: `"c2sc"`,
   letterSpacing: "caps",
+};
+export const scroll = {
+  "&::-webkit-scrollbar": {
+    width: "6px",
+    height: "6px",
+  },
+  "&::-webkit-scrollbar-track": {
+    backgroundColor: "transparent",
+  },
+  "&::-webkit-scrollbar-thumb": {
+    backgroundColor: (t) => `${transparentize("text", 0)(t)}`,
+  },
+  "&::-webkit-scrollbar-thumb:hover": {
+    cursor: "pointer",
+    backgroundColor: (t) => `${transparentize("text", 0.1)(t)}`,
+  },
 };
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
@@ -61,6 +78,7 @@ export default {
   },
   styles: {
     root: {
+      ...scroll,
       background: "#FFF5DD",
       webkitFontSmoothing: "antialiased",
       "-moz-osx-font-smoothing": "grayscale",

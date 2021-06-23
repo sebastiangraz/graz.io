@@ -8,7 +8,7 @@ import { useThemeUI } from "theme-ui";
 
 const settings = {
   nextScrollDistance: 60,
-  staggerPower: 0.6,
+  staggerPower: 0.5,
   springOptions: { damping: 10, mass: 0.2 },
 };
 

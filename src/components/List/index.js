@@ -1,5 +1,5 @@
 /** @jsxImportSource theme-ui */
-import { Text, jsx } from "theme-ui";
+import { Text } from "theme-ui";
 import * as React from "react";
 
 export const List = ({ children, noBullets }) => {

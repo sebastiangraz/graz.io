@@ -1,7 +1,5 @@
 /** @jsxImportSource theme-ui */
 
-
-
 export const Logo = ({ weight, ...rest }) => {
   return (
     <div {...rest} sx={{ display: "inline-flex", position: "relative" }}>

@@ -1,7 +1,5 @@
 /** @jsxImportSource theme-ui */
 
-import React from "react";
-
 export const Img = ({ imageData, cover, plate, ...rest }) => {
   return (
     <div

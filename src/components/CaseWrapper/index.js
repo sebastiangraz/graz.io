@@ -6,7 +6,6 @@ import {
   useMotionValue,
   useViewportScroll,
 } from "framer-motion";
-import { Grid } from "theme-ui";
 
 const CaseWrapperContext = React.createContext(null);
 const useCaseWrapperContext = () => React.useContext(CaseWrapperContext);

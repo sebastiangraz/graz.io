@@ -5,10 +5,8 @@ import uuid from "react-uuid";
 
 const ignoreUpdatedProps = () => true;
 
-export const CaseHero = React.memo((props,{ id = uuid() }) => {
-
-
-  const { bg, name, padding } = props
+export const CaseHero = React.memo((props, { id = uuid() }) => {
+  const { bg, name, padding, debug } = props;
 
   const [loaded, setLoaded] = React.useState(false);
   React.useEffect(() => {
@@ -21,6 +19,9 @@ export const CaseHero = React.memo((props,{ id = uuid() }) => {
       sx={{
         position: "absolute",
         top: 0,
+        ...(debug && {
+          opacity: 0.4,
+        }),
         textTransform: "uppercase",
         fontWeight: 600,
         width: "100%",
@@ -55,8 +56,6 @@ export const CaseHero = React.memo((props,{ id = uuid() }) => {
             {/* hack: using zero-width space to render the correct font */}
             {loaded ? name : "​"}
           </text>
-         
-  
         </mask>
       </defs>
       <rect

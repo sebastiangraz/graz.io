@@ -15,9 +15,8 @@ const settings = {
 
 const debugStyle = {
   ...(settings.debug && {
-    boxShadow: "0 0 0 10px inset purple",
-    opacity: 0.7,
-    zIndex: 1,
+    boxShadow: "0 0 0 8px inset #319c4eaa, 0 0 0 8px #ef9e47aa",
+    background: "linear-gradient(#ff000000, #ff000088) !important",
   }),
 };
 
@@ -136,9 +135,9 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           sx={{
             mt: "-10px",
             fontFamily: "monospace",
-            fontSize: 4,
+            fontSize: 3,
             position: "fixed",
-            top: (index + 1) * 20,
+            top: (index + 1) * 17,
             left: 0,
             zIndex: 10000,
             px: 3,
@@ -204,7 +203,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           >
             <m.div
               style={{
-                ...debugStyle,
                 ...(index === 1 && {
                   top: settings.nextScrollDistance,
                   position: "relative",
@@ -214,6 +212,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
               }}
             >
               <CaseHero
+                debug={settings.debug}
                 bg={data?.bg}
                 name={data?.name}
                 padding={context.theme.space[9]}

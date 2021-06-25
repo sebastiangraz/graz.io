@@ -131,6 +131,34 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
   return (
     <>
+      {settings.debug && (
+        <p
+          sx={{
+            mt: "-10px",
+            fontFamily: "monospace",
+            fontSize: 4,
+            position: "fixed",
+            top: (index + 1) * 20,
+            left: 0,
+            zIndex: 10000,
+            px: 3,
+          }}
+        >
+          <span
+            sx={{
+              bg: data?.bg,
+              px: 3,
+              color: data?.color,
+              width: 210,
+              mr: 20,
+              display: "inline-block",
+            }}
+          >
+            {data?.slug} — active: {isActiveState ? "[TRUE]" : "false"}{" "}
+          </span>
+          height: {Math.trunc(height(0))} pos: {Math.trunc(position(0))}px
+        </p>
+      )}
       {index === 0 ? (
         // -----HOME-----
         <m.div
@@ -185,11 +213,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
                 willChange: "transform",
               }}
             >
-              {settings.debug && (
-                <span sx={{ position: "absolute", top: 0, left: 0, zIndex: 1 }}>
-                  height: {height(0)} pos: {position(0)}
-                </span>
-              )}
               <CaseHero
                 bg={data?.bg}
                 name={data?.name}

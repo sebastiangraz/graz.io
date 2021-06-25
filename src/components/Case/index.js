@@ -7,9 +7,18 @@ import { useResponsiveValue } from "@theme-ui/match-media";
 import { useThemeUI } from "theme-ui";
 
 const settings = {
+  debug: true,
   nextScrollDistance: 60,
   staggerPower: 0.5,
   springOptions: { damping: 10, mass: 0.2 },
+};
+
+const debugStyle = {
+  ...(settings.debug && {
+    boxShadow: "0 0 0 10px inset purple",
+    opacity: 0.7,
+    zIndex: 1,
+  }),
 };
 
 const caseParent = {
@@ -25,7 +34,7 @@ const caseParent = {
 };
 
 const caseBg = {
-  // borderBottom: "5px solid ",
+  ...debugStyle,
   width: "100%",
   zIndex: -1,
   position: "absolute",
@@ -154,7 +163,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
             ...caseParent,
             color: data?.color,
             zIndex: index,
-            // width: ["100%", `calc(min(100%, 1495px) - ${index * context.theme.space[9]}px)`],
           }}
         >
           {console.log("render child :(")}
@@ -168,6 +176,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           >
             <m.div
               style={{
+                ...debugStyle,
                 ...(index === 1 && {
                   top: settings.nextScrollDistance,
                   position: "relative",
@@ -176,6 +185,11 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
                 willChange: "transform",
               }}
             >
+              {settings.debug && (
+                <span sx={{ position: "absolute", top: 0, left: 0, zIndex: 1 }}>
+                  height: {height(0)} pos: {position(0)}
+                </span>
+              )}
               <CaseHero
                 bg={data?.bg}
                 name={data?.name}
@@ -185,7 +199,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
             <div
               sx={{
                 ...caseBg,
-                //300 - 2 is to prevent subpixel distance between the hero
                 height: `calc(100% - ${
                   300 - 2 - settings.nextScrollDistance + staggeredOffset
                 }px)`,

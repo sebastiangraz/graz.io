@@ -228,7 +228,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
               }}
             ></div>
 
-            <div sx={{ my: "100vh" }}>
+            <div sx={{ my: "0" }}>
               <Render />
             </div>
           </div>

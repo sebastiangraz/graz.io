@@ -73,8 +73,8 @@ export const Home = () => {
           '. intro intro intro .  . meta meta meta meta meta meta'
           `,
         ],
-        "grid-template-rows": "auto auto auto",
-        "grid-template-columns": ["repeat(2, 1fr)", "repeat(12, 1fr)"],
+        gridTemplateRows: "auto auto auto",
+        gridTemplateColumns: ["repeat(2, 1fr)", "repeat(12, 1fr)"],
       }}
     >
       <Logo

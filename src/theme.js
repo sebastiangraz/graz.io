@@ -81,7 +81,7 @@ export default {
       ...scroll,
       background: "#FFF5DD",
       webkitFontSmoothing: "antialiased",
-      "-moz-osx-font-smoothing": "grayscale",
+      MozOsxFontSmoothing: "grayscale",
       variant: "text.default",
       fontVariationSettings: `'wght' 66`,
       fontFeatureSettings: `"liga"`,

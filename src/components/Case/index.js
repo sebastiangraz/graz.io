@@ -7,7 +7,7 @@ import { useResponsiveValue } from "@theme-ui/match-media";
 import { useThemeUI } from "theme-ui";
 
 const settings = {
-  debug: true,
+  debug: false,
   nextScrollDistance: 60,
   staggerPower: 0.5,
   springOptions: { damping: 10, mass: 0.2 },
@@ -207,6 +207,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
                   top: settings.nextScrollDistance,
                   position: "relative",
                 }),
+                height: 300,
                 y: yNext,
                 willChange: "transform",
               }}
@@ -228,7 +229,11 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
               }}
             ></div>
 
-            <div sx={{ my: "0" }}>
+            <div
+              sx={{
+                my: "90vh",
+              }}
+            >
               <Render />
             </div>
           </div>

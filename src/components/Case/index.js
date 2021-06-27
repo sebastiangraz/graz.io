@@ -7,7 +7,7 @@ import { useResponsiveValue } from "@theme-ui/match-media";
 import { useThemeUI } from "theme-ui";
 
 const settings = {
-  debug: false,
+  debug: true,
   nextScrollDistance: 60,
   staggerPower: 0.5,
   springOptions: { damping: 10, mass: 0.2 },
@@ -128,9 +128,9 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     );
   };
 
-  return (
-    <>
-      {settings.debug && (
+  const Debugger = () => {
+    return (
+      settings.debug && (
         <p
           sx={{
             mt: "-10px",
@@ -157,7 +157,13 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           </span>
           height: {Math.trunc(height(0))} pos: {Math.trunc(position(0))}px
         </p>
-      )}
+      )
+    );
+  };
+
+  return (
+    <>
+      <Debugger />
       {index === 0 ? (
         // -----HOME-----
         <m.div

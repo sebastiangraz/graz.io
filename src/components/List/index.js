@@ -10,7 +10,7 @@ export const List = ({ children, noBullets }) => {
           <li
             key={i}
             sx={{
-              mb: 1,
+              mb: 2,
               position: "relative",
               ...(!noBullets && {
                 "&:before": {
@@ -26,7 +26,7 @@ export const List = ({ children, noBullets }) => {
               }),
             }}
           >
-            <Text>{child}</Text>
+            <Text mb={0}>{child}</Text>
           </li>
         );
       })}

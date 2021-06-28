@@ -191,14 +191,15 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           style={{
             y: y,
           }}
+          className="CASEPARENT"
           sx={{
             "--gridCount": `${gridCount - 2}`,
+            "--caseBg": data.bg,
             ...caseParent,
             color: data?.color,
             zIndex: index,
           }}
         >
-          {console.log("render child :(")}
           <div
             onClick={!isActiveState ? handleClick : null}
             sx={{
@@ -220,7 +221,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
             >
               <CaseHero
                 debug={settings.debug}
-                bg={data?.bg}
                 name={data?.name}
                 forceRender={childHeight}
               />

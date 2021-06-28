@@ -3,39 +3,57 @@
 import { useRef, useEffect } from "react";
 import * as React from "react";
 import { useInView } from "react-intersection-observer";
+import { m, useReducedMotion } from "framer-motion";
 
 export const Video = ({ videoData, ...rest }) => {
-  // const ref = useRef(null);
-  // const [inViewRef, inView] = useInView({ rootMargin: "-100px 0px" });
+  const shouldReduceMotion = useReducedMotion();
+  const ref = useRef(null);
+  const [inViewRef, inView] = useInView({ rootMargin: "-100px 0px" });
+  const [loaded, setLoaded] = React.useState(false);
+  const [isPlaying, setIsPlaying] = React.useState(false);
 
-  // const handlePlay = () => {
-  //   return console.log("play");
-  // };
+  async function Play() {
+    ref.current.previousSibling.classList.add("isPlaying");
+    try {
+      setIsPlaying(true);
+      await ref.current.play();
+    } catch (err) {}
+  }
 
-  // useEffect(() => {
-  //   if (inView) {
-  //     ref.current.play();
-  //   } else {
-  //     ref.current.pause();
-  //   }
-  //   ref.current.setAttribute("muted", "");
-  // }, [inView]);
+  async function Pause() {
+    ref.current.previousSibling.classList.remove("isPlaying");
+    try {
+      setIsPlaying(false);
+      await ref.current.pause();
+    } catch (err) {}
+  }
 
-  // const setRefs = React.useCallback(
-  //   (node) => {
-  //     // Ref's from useRef needs to have the node assigned to `current`
-  //     ref.current = node;
-  //     // Callback refs, like the one from `useInView`, is a function that takes the node as an argument
-  //     inViewRef(node);
-  //   },
-  //   [inViewRef]
-  // );
+  useEffect(() => {
+    if (inView) {
+      shouldReduceMotion ? ref.current.pause() : Play();
+    } else {
+      ref.current.pause();
+    }
+    ref.current.setAttribute("muted", "");
+  }, [ref, inView, inViewRef, shouldReduceMotion]);
+
+  const setRefs = React.useCallback(
+    (node) => {
+      // Ref's from useRef needs to have the node assigned to `current`
+      ref.current = node;
+      // Callback refs, like the one from `useInView`, is a function that takes the node as an argument
+      inViewRef(node);
+    },
+    [inViewRef]
+  );
 
   return (
     <div
-      // {...rest}
-      // onClick={handlePlay}
+      {...rest}
+      onClick={isPlaying ? Pause : Play}
       sx={{
+        transition: "opacity 1s ease",
+        opacity: loaded ? 1 : 0,
         paddingBottom: `calc(${videoData.height} / ${videoData.width} * 100%)`,
         position: "relative",
         width: "100%",
@@ -43,14 +61,13 @@ export const Video = ({ videoData, ...rest }) => {
         zIndex: 1,
       }}
     >
-      {/* <div
+      <div
         sx={{
           position: "absolute",
           zIndex: 1,
           left: "calc(50% - 24px)",
           top: "calc(50% - 24px)",
-          backgroundColor: "#fff",
-          color: "text",
+          background: "currentColor",
           width: 48,
           userSelect: "none",
           height: 48,
@@ -65,11 +82,10 @@ export const Video = ({ videoData, ...rest }) => {
         className="play"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11">
-          <path d="M 0 0 L 0 11 L 11 5.5 Z" fill="currentColor"></path>
+          <path d="M 0 0 L 0 11 L 11 5.5 Z" fill="var(--caseBg)"></path>
         </svg>
       </div>
-      <video
-        rel="preload"
+      <m.video
         sx={{
           position: "absolute",
           top: 0,
@@ -81,10 +97,11 @@ export const Video = ({ videoData, ...rest }) => {
         src={videoData.url.default}
         ref={setRefs}
         loop
+        onLoadedData={() => setLoaded(true)}
         playsInline
         autoPlay={true}
         muted
-      /> */}
+      />
     </div>
   );
 };

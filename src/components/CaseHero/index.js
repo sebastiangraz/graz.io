@@ -6,7 +6,7 @@ import uuid from "react-uuid";
 const ignoreUpdatedProps = () => true;
 
 export const CaseHero = React.memo((props, { id = uuid() }) => {
-  const { bg, name, debug } = props;
+  const { name, debug } = props;
   const [loaded, setLoaded] = React.useState(false);
   React.useEffect(() => {
     document.fonts.ready.then(function () {
@@ -15,6 +15,7 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
   }, []);
   return (
     <svg
+      className="CASEHERO"
       sx={{
         position: "absolute",
         top: 0,
@@ -26,7 +27,7 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
         height: 300,
         letterSpacing: "-0.075em",
         fontSize: "min(12vw, 160px)",
-        color: bg,
+        color: `var(--caseBg)`,
       }}
       height="300"
       width="100%"
@@ -34,7 +35,6 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
       preserveAspectRatio="xMinYMax slice"
     >
       <defs>
-        {console.log("render CaseHero :(")}
         <mask id={`${"sample-" + id}`}>
           <rect width="100%" height="100%" fill="white"></rect>
           <svg

@@ -2,7 +2,7 @@
 
 import { Flex, Text, Box, Heading } from "theme-ui";
 import { Video, Img, GridParent } from "../../components";
-// import { Logo } from "./Logo";
+import { Logo } from "./Logo";
 import { videos, images } from "./assets";
 
 const colors = {
@@ -14,12 +14,6 @@ const colors = {
   magenta: "#e900a1",
   maroon: "#560000",
 };
-
-// const Sections = {
-//   Define: () => {
-//     return <div style={{ height: "6666px" }}></div>;
-//   },
-// };
 
 const Sections = {
   Define: () => {
@@ -77,7 +71,7 @@ const Sections = {
     return (
       <>
         <GridParent py={10}>
-          <Box sx={{ mb: 8, gridColumn: ["span 8", "span 8"] }}>
+          <Box sx={{ mb: 10, gridColumn: ["span 8", "span 8"] }}>
             <Heading variant="heading">Branding</Heading>
             <Text variant="lead">
               Loupe being a fairly young event, faced the challenge of
@@ -194,7 +188,9 @@ const Sections = {
               gridColumn: ["1 / span 8", "1 / span 3"],
             }}
           >
-            <div sx={{ height: "100%" }}>{/* <Logo></Logo> */}</div>
+            <div sx={{ height: "100%" }}>
+              <Logo></Logo>
+            </div>
           </Box>
           <Box
             sx={{
@@ -206,6 +202,7 @@ const Sections = {
             </div>
           </Box>
           <Text
+            variant="lead"
             sx={{
               gridColumn: ["1 / span 8", "1 / span 4"],
               gridRow: "span 1",
@@ -216,6 +213,7 @@ const Sections = {
             is up to the observer to decide what meanings they see.
           </Text>
           <Text
+            variant="lead"
             sx={{ gridColumn: ["1 / span 8", "6 / span 3"], gridRow: "span 1" }}
           >
             Additionally, I wanted to create a logo mark that could extend its
@@ -231,7 +229,7 @@ const Sections = {
               placeSelf: "center",
             }}
           >
-            <Text mb={4}>
+            <Text variant="lead">
               The unremarkable shapes made the icons feel deliberately
               unassuming yet very legible in smaller sizes.
             </Text>

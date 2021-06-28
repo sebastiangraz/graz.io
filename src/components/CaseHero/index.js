@@ -48,15 +48,16 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
           >
             <rect width="20" height="10" rx="5" fill="black" />
           </svg>
-          <text
-            dominantBaseline="hanging"
+          <g
             style={{
               transform: `translate(min(190px, calc(8vw - 5px)), min(100px, 6vw))`,
             }}
           >
-            {/* hack: using zero-width space to render the correct font */}
-            {loaded ? name : "​"}
-          </text>
+            <text dominantBaseline="hanging">
+              {/* hack: using zero-width space to render the correct font */}
+              {loaded ? name : "​"}
+            </text>
+          </g>
         </mask>
       </defs>
       <rect

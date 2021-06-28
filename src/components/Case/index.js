@@ -6,7 +6,7 @@ import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
 const settings = {
-  debug: false,
+  debug: true,
   nextScrollDistance: 60,
   staggerPower: 0.62,
   springOptions: { damping: 10, mass: 0.2 },
@@ -192,9 +192,9 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           style={{
             y: y,
             x: "-50%",
-            "--gridCount": `${gridCount - 2}`,
           }}
           sx={{
+            "--gridCount": `${gridCount - 2}`,
             ...caseParent,
             color: data?.color,
             zIndex: index,

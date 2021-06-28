@@ -79,6 +79,8 @@ export default {
   styles: {
     root: {
       ...scroll,
+      overflowY: "auto",
+      overflowX: "hidden",
       background: "#FFF5DD",
       webkitFontSmoothing: "antialiased",
       MozOsxFontSmoothing: "grayscale",

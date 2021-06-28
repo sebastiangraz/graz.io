@@ -4,10 +4,9 @@ import React from "react";
 import { m, useSpring, transform, useTransform } from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
-import { useThemeUI } from "theme-ui";
 
 const settings = {
-  debug: false,
+  debug: true,
   nextScrollDistance: 60,
   staggerPower: 1,
   springOptions: { damping: 10, mass: 0.2 },
@@ -63,7 +62,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
   let { childHeight, childPosition, windowHeight, scrollProgress } =
     useCaseWrapperContext();
 
-  const context = useThemeUI();
   const responsiveOffset = useResponsiveValue([50, 75, 160, 300]);
   const Render = data.component;
   const height = React.useCallback(

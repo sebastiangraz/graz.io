@@ -6,9 +6,9 @@ import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
 const settings = {
-  debug: true,
+  debug: false,
   nextScrollDistance: 60,
-  staggerPower: 1,
+  staggerPower: 0.62,
   springOptions: { damping: 10, mass: 0.2 },
 };
 
@@ -216,7 +216,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
                 height: 300,
                 y: yNext,
                 willChange: "transform",
-                gridTemplateColumns: `repeat(${gridCount}, 1fr)`,
               }}
             >
               <CaseHero
@@ -238,10 +237,14 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
 
             <div
               sx={{
-                my: "90vh",
+                display: "grid",
+                gridTemplateColumns: `repeat(${gridCount}, 1fr)`,
+                my: "20vh",
               }}
             >
-              <Render />
+              <div sx={{ gridColumn: "2 / span 7" }}>
+                <Render />
+              </div>
             </div>
           </div>
         </m.div>

@@ -30,7 +30,7 @@ export let cases = new Map([
       name: "Norse",
       slug: "norse",
       component: Norse,
-      bg: "#111",
+      bg: "#000",
       color: "#e8e0d6",
       grid: "2 / span 9",
     },
@@ -52,7 +52,7 @@ export let cases = new Map([
       slug: "random",
       component: Loupe,
       bg: "#f9eaa2",
-      grid: "3 / span 8",
+      grid: "1 / span 8",
     },
   ],
 ]);

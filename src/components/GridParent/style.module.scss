@@ -1,6 +1,6 @@
 :root {
   --gutter: 0px;
-  --wrapper: calc(88vw - (2 * var(--gutter)));
+  --wrapper: calc(77vw - (2 * var(--gutter)));
   --noOfColumns: 8;
   --noOfGutters: calc(var(--noOfColumns) - 1);
   --ratioA: 1;
@@ -14,11 +14,11 @@
   );
 
   @media (min-width: 896px) {
-    --wrapper: 65vw;
+    --wrapper: 58vw;
   }
 
-  @media (min-width: 1800px) {
-    --wrapper: 1200px;
+  @media (min-width: 2400px) {
+    --wrapper: 1400px;
     --gutter: 0px;
     --noOfColumns: 8;
     --ratioA: 1;

@@ -61,15 +61,18 @@ export default {
       lineHeight: "body",
       letterSpacing: "body",
       display: "block",
+      mb: ["0.75em"],
     },
     caps: {
       ...capsStyle,
+      mb: [3],
     },
     lead: {
       variant: "text.default",
       fontSize: space.slice(5, 8),
       letterSpacing: "lead",
       lineHeight: "lead",
+      mb: ["1.5em"],
     },
     heading: {
       ...capsStyle,

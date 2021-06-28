@@ -1,8 +1,9 @@
 /** @jsxImportSource theme-ui */
+import { Box } from "theme-ui";
 
 export const GridParent = ({ children, ...rest }) => {
   return (
-    <div
+    <Box
       {...rest}
       sx={{
         // 6px scrollbar width included in the calc
@@ -50,6 +51,6 @@ export const GridParent = ({ children, ...rest }) => {
       }}
     >
       {children}
-    </div>
+    </Box>
   );
 };

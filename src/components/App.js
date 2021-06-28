@@ -52,7 +52,7 @@ export let cases = new Map([
       slug: "random",
       component: Loupe,
       bg: "#f9eaa2",
-      grid: "1 / span 8",
+      grid: "3 / span 8",
     },
   ],
 ]);

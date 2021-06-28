@@ -26,7 +26,6 @@ const CaseWrapper = ({ children }) => {
 
   React.useEffect(() => {
     const onResize = debounce(() => {
-      console.log("debounced");
       const childHeightVar = children.map((child) => {
         return (
           child.ref.current && child.ref.current.getBoundingClientRect().height

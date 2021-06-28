@@ -7,9 +7,9 @@ import { useResponsiveValue } from "@theme-ui/match-media";
 import { useThemeUI } from "theme-ui";
 
 const settings = {
-  debug: true,
+  debug: false,
   nextScrollDistance: 60,
-  staggerPower: 0.5,
+  staggerPower: 1,
   springOptions: { damping: 10, mass: 0.2 },
 };
 
@@ -161,6 +161,8 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     );
   };
 
+  const gridCount = data?.grid && data.grid.split("span ")[1];
+
   return (
     <>
       <Debugger />
@@ -216,13 +218,14 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
                 height: 300,
                 y: yNext,
                 willChange: "transform",
+                gridTemplateColumns: `repeat(${gridCount}, 1fr)`,
               }}
             >
               <CaseHero
                 debug={settings.debug}
                 bg={data?.bg}
                 name={data?.name}
-                padding={context.theme.space[9]}
+                forceRender={childHeight}
               />
             </m.div>
             <div

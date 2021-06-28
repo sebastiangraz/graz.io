@@ -6,8 +6,7 @@ import uuid from "react-uuid";
 const ignoreUpdatedProps = () => true;
 
 export const CaseHero = React.memo((props, { id = uuid() }) => {
-  const { bg, name, padding, debug } = props;
-
+  const { bg, name, debug } = props;
   const [loaded, setLoaded] = React.useState(false);
   React.useEffect(() => {
     document.fonts.ready.then(function () {
@@ -24,7 +23,6 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
         }),
         textTransform: "uppercase",
         fontWeight: 600,
-        width: "100%",
         height: 300,
         letterSpacing: "-0.075em",
         fontSize: "min(12vw, 160px)",
@@ -32,7 +30,8 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
       }}
       height="300"
       width="100%"
-      preserveAspectRatio="xMinYMin meet"
+      viewBox="0 0 2000 300"
+      preserveAspectRatio="xMinYMax slice"
     >
       <defs>
         {console.log("render CaseHero :(")}
@@ -51,7 +50,9 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
           </svg>
           <text
             dominantBaseline="hanging"
-            transform={`translate(${padding} ${padding})`}
+            style={{
+              transform: `translate(min(190px, calc(8vw - 5px)), min(100px, 6vw))`,
+            }}
           >
             {/* hack: using zero-width space to render the correct font */}
             {loaded ? name : "​"}

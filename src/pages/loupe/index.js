@@ -1,7 +1,6 @@
 /** @jsxImportSource theme-ui */
 
-import {  Flex, Text, Box } from "theme-ui";
-import * as React from "react";
+import { Flex, Text, Box } from "theme-ui";
 import { Video, Img, GridParent } from "../../components";
 // import { Logo } from "./Logo";
 import { videos, images } from "./assets";

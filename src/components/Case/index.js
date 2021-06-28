@@ -244,7 +244,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
                 mt: "20vh",
               }}
             >
-              <div sx={{ gridColumn: "2 / span 7" }}>
+              <div sx={{ gridColumn: `2 / span ${gridCount - 2}` }}>
                 <Render />
               </div>
             </div>

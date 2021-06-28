@@ -28,7 +28,7 @@ const caseParent = {
   willChange: "transform",
   display: "grid",
   gridTemplateColumns: "repeat(12, 1fr)",
-  left: 0,
+  left: "50%",
 };
 
 const caseBg = {
@@ -191,6 +191,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           ref={ref}
           style={{
             y: y,
+            x: "-50%",
           }}
           sx={{
             ...caseParent,
@@ -239,7 +240,8 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
               sx={{
                 display: "grid",
                 gridTemplateColumns: `repeat(${gridCount}, 1fr)`,
-                my: "20vh",
+                mb: "100vh",
+                mt: "20vh",
               }}
             >
               <div sx={{ gridColumn: "2 / span 7" }}>

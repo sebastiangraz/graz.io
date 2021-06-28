@@ -1,6 +1,8 @@
-:root {
+.gridParent {
+  // calc width of scrollbar (6)
+  --calcWrapper: var(--gridCount) / 12 * 100vw;
   --gutter: 0px;
-  --wrapper: calc(77vw - (2 * var(--gutter)));
+
   --noOfColumns: 8;
   --noOfGutters: calc(var(--noOfColumns) - 1);
   --ratioA: 1;
@@ -8,26 +10,19 @@
   --factor: calc(var(--ratioB) / var(--ratioA));
   --rh: calc(
     (
-        (var(--wrapper) - (var(--noOfGutters) * var(--gutter))) /
+        (var(--calcWrapper) - (var(--noOfGutters) * var(--gutter))) /
           var(--noOfColumns)
       ) * var(--factor)
   );
 
-  @media (min-width: 896px) {
-    --wrapper: 58.335vw;
-  }
-
   @media (min-width: 2400px) {
-    --wrapper: 1400px;
     --gutter: 0px;
     --noOfColumns: 8;
     --ratioA: 1;
     --ratioB: 1;
   }
-}
 
-.gridParent {
-  max-width: var(--wrapper);
+  max-width: var(--calcWrapper);
   display: grid;
   grid-template-columns: repeat(var(--noOfColumns), minmax(0, 1fr));
   grid-auto-flow: dense;

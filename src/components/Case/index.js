@@ -192,6 +192,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           style={{
             y: y,
             x: "-50%",
+            "--gridCount": `${gridCount - 2}`,
           }}
           sx={{
             ...caseParent,

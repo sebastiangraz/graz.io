@@ -52,12 +52,23 @@ export let cases = new Map([
       slug: "random",
       component: Loupe,
       bg: "#f9eaa2",
-      grid: "1 / span 8",
+      grid: "1 / span 6",
     },
   ],
 ]);
 
 function App() {
+  const setVH = function () {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  };
+
+  React.useEffect(() => {
+    setVH();
+    window.addEventListener("resize", setVH, false);
+    window.addEventListener("orientationchange", setVH, false);
+  }, []);
+
   const myRefs = React.useRef([]);
   myRefs.current = [...cases].map(
     (i) => myRefs.current[i] ?? React.createRef()

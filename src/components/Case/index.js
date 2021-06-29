@@ -193,7 +193,7 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           }}
           className="CASEPARENT"
           sx={{
-            "--gridCount": `${gridCount - 2}`,
+            "--gridCount": `${gridCount}`,
             "--caseBg": data.bg,
             ...caseParent,
             color: data?.color,

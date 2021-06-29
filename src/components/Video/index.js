@@ -30,9 +30,9 @@ export const Video = ({ videoData, ...rest }) => {
 
   useEffect(() => {
     if (inView) {
-      shouldReduceMotion ? ref.current.pause() : Play();
+      shouldReduceMotion ? Pause() : Play();
     } else {
-      ref.current.pause();
+      shouldReduceMotion ? Play() : Pause();
     }
     ref.current.setAttribute("muted", "");
   }, [ref, inView, inViewRef, shouldReduceMotion]);

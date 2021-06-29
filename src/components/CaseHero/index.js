@@ -15,8 +15,8 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
   }, []);
   return (
     <svg
-      className="CASEHERO"
       sx={{
+        display: ["none", "block"],
         position: "absolute",
         top: 0,
         ...(debug && {

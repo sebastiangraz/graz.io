@@ -16,7 +16,6 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
   return (
     <svg
       sx={{
-        display: ["none", "block"],
         position: "absolute",
         top: 0,
         ...(debug && {
@@ -34,7 +33,7 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
       viewBox="0 0 2000 300"
       preserveAspectRatio="xMinYMax slice"
     >
-      <defs>
+      <defs sx={{ display: ["none", "block"] }}>
         <mask id={`${"sample-" + id}`}>
           <rect width="100%" height="100%" fill="white"></rect>
           <svg
@@ -60,6 +59,7 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
           </g>
         </mask>
       </defs>
+
       <rect
         fillRule="evenodd"
         mask={`url(#${"sample-" + id})`}

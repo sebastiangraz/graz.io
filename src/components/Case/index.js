@@ -8,7 +8,7 @@ import { useResponsiveValue } from "@theme-ui/match-media";
 const settings = {
   debug: false,
   nextScrollDistance: 60,
-  staggerPower: 0.62,
+  staggerPower: 0.75,
   springOptions: { damping: 10, mass: 0.2 },
 };
 
@@ -191,7 +191,6 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
           style={{
             y: y,
           }}
-          className="CASEPARENT"
           sx={{
             "--gridCount": `${gridCount}`,
             "--caseBg": data.bg,
@@ -228,9 +227,12 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
             <div
               sx={{
                 ...caseBg,
-                height: `calc(100% - ${
-                  300 - 2 - settings.nextScrollDistance + staggeredOffset
-                }px)`,
+                height: [
+                  // `calc(100% - ${staggeredOffset}px)`,
+                  `calc(100% - ${
+                    300 - 2 - settings.nextScrollDistance + staggeredOffset
+                  }px)`,
+                ],
                 backgroundColor: data?.bg,
               }}
             ></div>

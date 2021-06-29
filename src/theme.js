@@ -69,7 +69,7 @@ export default {
     },
     lead: {
       variant: "text.default",
-      fontSize: space.slice(5, 8),
+      fontSize: [6, 6, 7, 7],
       letterSpacing: "lead",
       lineHeight: "lead",
       mb: ["1.5em"],

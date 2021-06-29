@@ -238,12 +238,24 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
             <div
               sx={{
                 display: "grid",
-                gridTemplateColumns: `repeat(${gridCount}, 1fr)`,
+                gridTemplateColumns: [
+                  `repeat(12, 1fr)`,
+                  null,
+                  `repeat(${gridCount}, 1fr)`,
+                ],
                 mb: "100vh",
                 mt: "20vh",
               }}
             >
-              <div sx={{ gridColumn: `2 / span ${gridCount - 2}` }}>
+              <div
+                sx={{
+                  gridColumn: [
+                    `2 / span 10`,
+                    null,
+                    `2 / span ${gridCount - 2}`,
+                  ],
+                }}
+              >
                 <Render />
               </div>
             </div>

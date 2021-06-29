@@ -49,7 +49,6 @@ export const Home = () => {
         display: "grid",
         alignItems: ["start", "start"],
         maxWidth: "2400px",
-        margin: "0 auto",
         gridTemplateRows: "auto auto auto",
         gridTemplateColumns: ["repeat(2, 1fr)", "repeat(12, 1fr)"],
         gridTemplateAreas: [

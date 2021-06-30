@@ -25,7 +25,7 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
         fontWeight: 600,
         height: 300,
         letterSpacing: "-0.075em",
-        fontSize: "min(12vw, 160px)",
+        fontSize: "min(12vw, 156px)",
         color: `var(--caseBg)`,
       }}
       height="300"

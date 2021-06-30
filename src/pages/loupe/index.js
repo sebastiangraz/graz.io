@@ -378,6 +378,90 @@ const Sections = {
             </div>
           </div>
         </GridParent>
+        <GridParent py={10}>
+          <Box
+            sx={{
+              gridColumn: ["3 / span 6", "5 / span 3"],
+              gridRow: ["11 / span 1", "3 / span 3"],
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <div sx={{ paddingTop: [5], paddingBottom: [5] }}>
+              <Text variant="caps" mb={3}>
+                Beyond static
+              </Text>
+              <Text>
+                I used different displacement methods to bring the colourful
+                assets into life. Also composited photography with animated
+                skies.
+              </Text>
+            </div>
+          </Box>
+          <div
+            sx={{
+              background: colors.green,
+              gridColumn: ["1 / span 6", "1 / span 3"],
+              gridRow: ["4 / span 4", "3 / span 3"],
+              display: "flex",
+              padding: ["16%"],
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              isolation: "isolate",
+            }}
+          >
+            <Video
+              sx={{
+                mixBlendMode: "lighten",
+                video: {
+                  borderRadius: "50%",
+                  overflow: "hidden",
+                },
+              }}
+              videoData={videos.mesh1}
+            />
+          </div>
+          <Box
+            sx={{
+              background: "transparent",
+              gridColumn: ["3 / span 6", "4 / span 5"],
+              gridRow: ["1 / span 3", "1 / span 2"],
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Video videoData={videos.muziekclip} />
+          </Box>
+          <div
+            sx={{
+              background: "#F47722",
+              gridColumn: ["3 / span 6", "4 / span 5"],
+              gridRow: ["7 / span 4", "6 / span 5"],
+              display: "flex",
+              padding: ["16%"],
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              isolation: "isolate",
+            }}
+          >
+            <Video
+              sx={{
+                mixBlendMode: "multiply",
+                video: {
+                  borderRadius: "50%",
+                  overflow: "hidden",
+                },
+              }}
+              videoData={videos.mesh}
+            />
+          </div>
+        </GridParent>
       </>
     );
   },

@@ -57,7 +57,7 @@ function ScrollToTopOnMount(props) {
   return null;
 }
 
-export const Case = React.forwardRef(({ index, data }, ref) => {
+const Case = React.forwardRef(({ index, data }, ref) => {
   let { childHeight, childPosition, windowHeight, scrollProgress } =
     useCaseWrapperContext();
 
@@ -274,3 +274,5 @@ export const Case = React.forwardRef(({ index, data }, ref) => {
     </>
   );
 });
+
+export default Case;

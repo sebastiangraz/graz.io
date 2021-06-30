@@ -1,6 +1,6 @@
 export { Logo } from "./Logo";
 export { Home } from "./Home";
-export { Case } from "./Case";
+export { default as Case } from "./Case";
 export { CaseHero } from "./CaseHero";
 export { CaseWrapper, useCaseWrapperContext } from "./CaseWrapper";
 export { GridParent } from "./GridParent";

@@ -55,7 +55,7 @@ export default {
   colors: colors,
   text: {
     default: {
-      fontSize: [4, 4, 4, 5],
+      fontSize: [5, 5, 5, 6],
       fontWeight: 400,
       fontFamily: "body",
       lineHeight: "body",
@@ -64,6 +64,7 @@ export default {
       mb: ["0.75em"],
     },
     caps: {
+      display: "block",
       ...capsStyle,
       mb: [3],
     },

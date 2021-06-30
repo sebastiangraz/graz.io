@@ -1,6 +1,6 @@
 /** @jsxImportSource theme-ui */
 
-import { Flex, Text, Box, Heading } from "theme-ui";
+import { Flex, Text, Box, Heading, Grid } from "theme-ui";
 import { Video, Img, GridParent } from "../../components";
 import { Logo } from "./Logo";
 import { videos, images } from "./assets";
@@ -390,7 +390,7 @@ const Sections = {
             }}
           >
             <div sx={{ paddingTop: [5], paddingBottom: [5] }}>
-              <Text variant="caps" mb={3}>
+              <Text variant="caps" my={[7, 5, 5, 7]}>
                 Beyond static
               </Text>
               <Text>
@@ -462,6 +462,245 @@ const Sections = {
             />
           </div>
         </GridParent>
+      </>
+    );
+  },
+  Design: () => {
+    return (
+      <>
+        <GridParent>
+          <Box sx={{ gridColumn: "span 8" }}>
+            <Heading>Design</Heading>
+            <Grid gap={8} columns={[1, "1fr 1fr"]}>
+              <Text variant="lead">
+                Creating the web page was a matter of using the branding
+                elements together. New ideas and changes to the site also
+                informed the overall branding look&nbsp;&&nbsp;feel.
+              </Text>
+
+              <Text variant="lead">
+                It would be difficult put a dot on the branding and call it a
+                “done”. It will always evolve over time the more you nurture it.
+                A bit like a Pokemon.
+              </Text>
+            </Grid>
+          </Box>
+        </GridParent>
+
+        <Box
+          sx={{
+            marginTop: [5, 6, 7],
+            marginBottom: [5, 6, 7],
+          }}
+        >
+          <GridParent>
+            <Text
+              variant="caps"
+              sx={{
+                marginTop: 0,
+                marginBottom: [0],
+                gridColumn: "1 / span 2",
+                gridRow: "span 1",
+              }}
+            >
+              Overview
+            </Text>
+            <Text
+              sx={{
+                marginBottom: [4, 5, 5, 6],
+                gridColumn: ["1 / span 8", "4 / span 5", "4 / span 4"],
+                gridRow: "span 1",
+              }}
+            >
+              After the V1 of the Loupe website was launched it got featured on
+              a few showcase websites, attracting more designers to check out
+              the conference.
+            </Text>
+          </GridParent>
+          <Box sx={{ maxWidth: 2000, margin: "0 auto" }}>
+            <Img imageData={images.overview} />
+          </Box>
+        </Box>
+        <Box
+          sx={{
+            marginBottom: [5, 6, 7],
+          }}
+        >
+          <GridParent>
+            <Text
+              variant="caps"
+              sx={{
+                marginTop: 0,
+                marginBottom: [0],
+                gridColumn: "1 / span 8",
+                gridRow: "span 1",
+              }}
+            >
+              Home
+            </Text>
+            <div sx={{ marginBottom: 5, gridColumn: "4 / span 5" }}>
+              <Img plate imageData={images.pageHome} />
+            </div>
+            <div sx={{ marginBottom: 5, gridColumn: "1 / span 2" }}>
+              <Img plate imageData={images.pageHomeMobile} />
+            </div>
+          </GridParent>
+        </Box>
+        <Box
+          sx={{
+            marginBottom: [5, 6, 7],
+          }}
+        >
+          <GridParent>
+            <Text
+              variant="caps"
+              sx={{
+                marginTop: 0,
+                marginBottom: [0],
+                gridColumn: "1 / span 8",
+                gridRow: "span 1",
+              }}
+            >
+              Tickets
+            </Text>
+
+            <div sx={{ marginBottom: 5, gridColumn: "4 / span 5" }}>
+              <Img plate imageData={images.pageTickets} />
+            </div>
+            <div sx={{ marginBottom: 5, gridColumn: "1 / span 2" }}>
+              <Img plate imageData={images.pageTicketsMobile} />
+            </div>
+          </GridParent>
+        </Box>
+        <Box
+          sx={{
+            marginBottom: [5, 6, 7],
+          }}
+        >
+          <GridParent>
+            <Text
+              variant="caps"
+              sx={{
+                marginTop: 0,
+                marginBottom: [0],
+                gridColumn: "1 / span 2",
+                gridRow: "span 1",
+              }}
+            >
+              FAQ
+            </Text>
+            <div
+              sx={{
+                gridColumn: "1 / span 8",
+              }}
+            >
+              <Img plate imageData={images.pageFaq} />
+            </div>
+          </GridParent>
+        </Box>
+        <Box
+          sx={{
+            marginBottom: [5, 6, 7],
+          }}
+        >
+          <GridParent>
+            <Text
+              variant="caps"
+              sx={{
+                marginTop: 0,
+                marginBottom: [0],
+                gridColumn: "1 / span 2",
+                gridRow: "span 1",
+              }}
+            >
+              Information
+            </Text>
+            <Text
+              sx={{
+                marginBottom: [4, 5, 5, 6],
+                gridColumn: ["1 / span 8", "4 / span 5", "4 / span 4"],
+                gridRow: "span 1",
+              }}
+            >
+              That year again we were fortunate that we’re able to use the
+              amazing architectural photography by Adam Mørk to showcase the
+              amazing venue space.
+            </Text>
+
+            <div sx={{ marginBottom: 5, gridColumn: "3 / span 6" }}>
+              <Img plate imageData={images.pageInformation1} />
+            </div>
+            <div sx={{ marginBottom: 5, gridColumn: "1 / span 6" }}>
+              <Img plate imageData={images.pageInformation2} />
+            </div>
+            <div sx={{ gridColumn: "3 / span 6" }}>
+              <Img plate imageData={images.pageInformation3} />
+            </div>
+          </GridParent>
+        </Box>
+        <Box
+          sx={{
+            marginBottom: [5, 6, 7],
+          }}
+        >
+          <GridParent>
+            <Text
+              variant="caps"
+              sx={{
+                marginTop: 0,
+                marginBottom: [0],
+                gridColumn: "1 / span 2",
+                gridRow: "span 1",
+              }}
+            >
+              Workshops
+            </Text>
+            <Text
+              sx={{
+                marginBottom: [4, 5, 5, 6],
+                gridColumn: ["1 / span 8", "4 / span 5", "4 / span 4"],
+                gridRow: "span 1",
+              }}
+            >
+              Feedback from the previous conference told us that the workshops
+              on the site were confusing as they didn’t include what
+              requirements or skills were needed to attend. For Loupe 2020 we
+              made sure to visualize it better.
+            </Text>
+
+            <div sx={{ marginBottom: 5, gridColumn: "3 / span 6" }}>
+              <Img plate imageData={images.pageWorkshops1} />
+            </div>
+            <div sx={{ marginBottom: 5, gridColumn: "1 / span 6" }}>
+              <Img plate imageData={images.pageWorkshops2} />
+            </div>
+          </GridParent>
+        </Box>
+        <Box
+          sx={{
+            marginBottom: [5, 6, 7],
+          }}
+        >
+          <GridParent>
+            <Text
+              variant="caps"
+              sx={{
+                marginTop: 0,
+                marginBottom: [0],
+                gridColumn: ["1 / span 8", "1 / span 2"],
+                gridRow: "span 1",
+              }}
+            >
+              Speakers
+            </Text>
+
+            <div
+              sx={{ marginBottom: 5, gridColumn: ["1 / span 8", "3 / span 6"] }}
+            >
+              <Img plate imageData={images.pageSpeakers} />
+            </div>
+          </GridParent>
+        </Box>
       </>
     );
   },

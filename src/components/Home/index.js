@@ -128,7 +128,10 @@ export const Home = () => {
           <List noBullets>
             {awards.map((char) => (
               <React.Fragment key={char.title}>
-                {char.title} · <Text variant="caps">{char.count}×</Text>
+                {char.title} ·{" "}
+                <Text sx={{ display: "inline" }} variant="caps">
+                  {char.count}×
+                </Text>
               </React.Fragment>
             ))}
           </List>

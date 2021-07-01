@@ -20,6 +20,7 @@ const Sections = {
     return (
       <GridParent py={10}>
         <Flex
+          mb={10}
           sx={{
             placeSelf: "center",
             width: "100%",
@@ -209,11 +210,10 @@ const Sections = {
               maxWidth: 520,
             }}
           >
-            The logo’s goal was not to represent a singular idea. Ultimately it
+            I wanted the logo to represent multiple ideas. Though ultimately it
             is up to the observer to decide what meanings they see.
           </Text>
           <Text
-            variant="lead"
             sx={{ gridColumn: ["1 / span 8", "6 / span 3"], gridRow: "span 1" }}
           >
             Additionally, I wanted to create a logo mark that could extend its
@@ -230,8 +230,8 @@ const Sections = {
             }}
           >
             <Text variant="lead">
-              The unremarkable shapes made the icons feel deliberately
-              unassuming yet very legible in smaller sizes.
+              The simple icon shapes made the icons feel deliberately unassuming
+              yet very legible when displayed at smaller sizes.
             </Text>
           </Flex>
           <div

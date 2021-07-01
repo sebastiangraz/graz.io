@@ -158,7 +158,7 @@ const Case = React.forwardRef(({ index, data }, ref) => {
     );
   };
 
-  const gridCount = data?.grid && data.grid.split("span ")[1];
+  const gridCount = (arr) => data?.grid && data.grid[arr].split("span ")[1];
 
   return (
     <>
@@ -192,7 +192,7 @@ const Case = React.forwardRef(({ index, data }, ref) => {
             y: y,
           }}
           sx={{
-            "--gridCount": `${gridCount}`,
+            "--gridCount": [0, 0, `${gridCount(0)}`, `${gridCount(1)}`],
             "--caseBg": data.bg,
             ...caseParent,
             color: data?.color,
@@ -204,7 +204,7 @@ const Case = React.forwardRef(({ index, data }, ref) => {
             sx={{
               pointerEvents: "auto",
               position: "relative",
-              gridColumn: ["span 12", null, data?.grid],
+              gridColumn: ["span 12", null, data?.grid[0], data?.grid[1]],
             }}
           >
             <m.div
@@ -243,7 +243,8 @@ const Case = React.forwardRef(({ index, data }, ref) => {
                 gridTemplateColumns: [
                   `repeat(12, 1fr)`,
                   null,
-                  `repeat(${gridCount}, 1fr)`,
+                  `repeat(${gridCount(0)}, 1fr)`,
+                  `repeat(${gridCount(1)}, 1fr)`,
                 ],
                 mb: "100vh",
                 mt: "20vh",
@@ -254,7 +255,8 @@ const Case = React.forwardRef(({ index, data }, ref) => {
                   gridColumn: [
                     `2 / span 10`,
                     null,
-                    `2 / span ${gridCount - 2}`,
+                    `2 / span ${gridCount(0) - 2}`,
+                    `2 / span ${gridCount(1) - 2}`,
                   ],
                 }}
               >

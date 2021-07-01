@@ -90,8 +90,15 @@ export const Home = () => {
         weight={42}
       />
 
-      <Text sx={{ gridArea: "years", display: ["none", "block"] }}>Résumé</Text>
-      <Text sx={{ gridArea: "contact" }}>Contact</Text>
+      <Text
+        variant="label"
+        sx={{ gridArea: "years", display: ["none", "block"] }}
+      >
+        Résumé
+      </Text>
+      <Text variant="label" sx={{ gridArea: "contact" }}>
+        Contact
+      </Text>
       <div
         sx={{
           gridArea: "meta",
@@ -102,7 +109,9 @@ export const Home = () => {
         }}
       >
         <div>
-          <Text mb={4}>Associations</Text>
+          <Text variant="label" mb={5}>
+            Associations
+          </Text>
           <List noBullets>
             <span>Husqvarna</span>
             <span>M. Saatchi</span>
@@ -113,7 +122,9 @@ export const Home = () => {
           </List>
         </div>
         <div>
-          <Text mb={4}>Expertise</Text>
+          <Text variant="label" mb={5}>
+            Expertise
+          </Text>
           <List noBullets>
             <span>Empathic design</span>
             <span>Design Systems</span>
@@ -124,7 +135,9 @@ export const Home = () => {
           </List>
         </div>
         <div>
-          <Text mb={4}>Recognitions</Text>
+          <Text variant="label" mb={5}>
+            Recognitions
+          </Text>
           <List noBullets>
             {awards.map((char) => (
               <React.Fragment key={char.title}>
@@ -143,7 +156,7 @@ export const Home = () => {
           sx={{
             mt: -2,
             maxWidth: ["100%", "initial", null],
-            width: ["100%", 440, 360, 540],
+            width: ["100%", 420, 360, 520],
           }}
         >
           I’m Sebastian—as a digital designer I care about our dear users, rapid

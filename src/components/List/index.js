@@ -26,7 +26,9 @@ export const List = ({ children, noBullets }) => {
               }),
             }}
           >
-            <Text mb={0}>{child}</Text>
+            <Text variant="label" mb={0}>
+              {child}
+            </Text>
           </li>
         );
       })}

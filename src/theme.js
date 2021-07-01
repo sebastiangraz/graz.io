@@ -63,6 +63,10 @@ export default {
       display: "block",
       mb: ["0.75em"],
     },
+    label: {
+      variant: "text.default",
+      fontSize: [4, 4, 4, 5],
+    },
     caps: {
       display: "block",
       ...capsStyle,

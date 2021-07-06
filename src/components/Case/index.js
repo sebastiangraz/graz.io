@@ -7,9 +7,9 @@ import { useResponsiveValue } from "@theme-ui/match-media";
 
 const settings = {
   debug: false,
-  nextScrollDistance: 60,
+  nextScrollDistance: 72,
   staggerPower: 0.75,
-  springOptions: { damping: 10, mass: 0.2 },
+  springOptions: { damping: 20, mass: 0.5 },
 };
 
 const debugStyle = {
@@ -61,7 +61,7 @@ const Case = React.forwardRef(({ index, data }, ref) => {
   let { childHeight, childPosition, windowHeight, scrollProgress } =
     useCaseWrapperContext();
 
-  const responsiveOffset = useResponsiveValue([50, 75, 160, 300]);
+  const responsiveOffset = useResponsiveValue([50, 75, 200, 240]);
   const Render = data.component;
   const height = React.useCallback(
     (pos) => childHeight[pos ? index - pos : index] || [],
@@ -196,7 +196,7 @@ const Case = React.forwardRef(({ index, data }, ref) => {
       ) : (
         // -----CASES-----
         <m.div
-          id={`#${data.slug}`}
+          id={data.slug}
           ref={ref}
           style={{
             y: y,

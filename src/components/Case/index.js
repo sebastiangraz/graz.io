@@ -7,7 +7,7 @@ import { useResponsiveValue } from "@theme-ui/match-media";
 
 const settings = {
   debug: false,
-  nextScrollDistance: 72,
+  nextScrollDistance: 60,
   staggerPower: 0.75,
   springOptions: { damping: 20, mass: 0.5 },
 };

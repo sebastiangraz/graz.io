@@ -111,43 +111,43 @@ export const Home = () => {
         <div>
           <Text variant="label" mb={5}>
             Associations
+            <List>
+              <>Husqvarna</>
+              <>M. Saatchi</>
+              <>Delhaize</>
+              <>Framer</>
+              <>Canon</>
+              <>Volvo</>
+            </List>
           </Text>
-          <List noBullets>
-            <span>Husqvarna</span>
-            <span>M. Saatchi</span>
-            <span>Delhaize</span>
-            <span>Framer</span>
-            <span>Canon</span>
-            <span>Volvo</span>
-          </List>
         </div>
         <div>
           <Text variant="label" mb={5}>
             Expertise
+            <List>
+              <>Empathic design</>
+              <>Design Systems</>
+              <>Prototyping</>
+              <>Design Ops</>
+              <>Front-End</>
+              <>Branding</>
+            </List>
           </Text>
-          <List noBullets>
-            <span>Empathic design</span>
-            <span>Design Systems</span>
-            <span>Prototyping</span>
-            <span>Design Ops</span>
-            <span>Front-End</span>
-            <span>Branding</span>
-          </List>
         </div>
         <div>
           <Text variant="label" mb={5}>
             Recognitions
+            <List>
+              {awards.map((char) => (
+                <React.Fragment key={char.title}>
+                  {char.title} ·{" "}
+                  <Text sx={{ display: "inline" }} variant="caps">
+                    {char.count}×
+                  </Text>
+                </React.Fragment>
+              ))}
+            </List>
           </Text>
-          <List noBullets>
-            {awards.map((char) => (
-              <React.Fragment key={char.title}>
-                {char.title} ·{" "}
-                <Text sx={{ display: "inline" }} variant="caps">
-                  {char.count}×
-                </Text>
-              </React.Fragment>
-            ))}
-          </List>
         </div>
       </div>
       <div sx={{ gridArea: "intro" }}>

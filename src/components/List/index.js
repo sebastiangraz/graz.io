@@ -2,33 +2,23 @@
 import { Text } from "theme-ui";
 import * as React from "react";
 
-export const List = ({ children, noBullets }) => {
+export const List = ({ children, noBullets, variant }) => {
   return (
-    <ul sx={{ padding: 0, listStyle: "none" }}>
+    <ul sx={{ p: 0 }}>
       {React.Children.map(children || null, (child, i) => {
         return (
           <li
             key={i}
             sx={{
-              mb: 2,
-              position: "relative",
-              ...(!noBullets && {
-                "&:before": {
-                  content: `""`,
-                  left: "-1em",
-                  top: "0.8em",
-                  position: "absolute",
-                  borderRadius: "50%",
-                  width: "3px",
-                  height: "3px",
-                  bg: "currentColor",
-                },
-              }),
+              mt: 2,
+              "&::marker": {
+                content: `"·  "`,
+                fontSize: "100%",
+                textRendering: "geometricPrecision",
+              },
             }}
           >
-            <Text variant="label" mb={0}>
-              {child}
-            </Text>
+            {child}
           </li>
         );
       })}

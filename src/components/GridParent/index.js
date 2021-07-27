@@ -10,7 +10,7 @@ export const GridParent = ({ children, ...rest }) => {
         "--calcWrapper": [
           "calc(calc(((100 / 12) * 10vw)) - 5px)",
           null,
-          "calc(calc((var(--gridCount) - 2) / 12 * 100vw) - 5px)",
+          "calc(calc((var(--gridCount) - 2) / 12 * min(100vw, 2400px)) - 5px)",
           null,
         ],
 

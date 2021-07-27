@@ -31,7 +31,7 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
       height="300"
       width="100%"
       viewBox="0 0 2000 300"
-      preserveAspectRatio="xMinYMax slice"
+      preserveAspectRatio="xMinYMin slice"
     >
       <defs sx={{ display: ["none", "block"] }}>
         <mask id={`${"sample-" + id}`}>

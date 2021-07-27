@@ -9,7 +9,7 @@ export const Img = ({ imageData, cover, plate, ...rest }) => {
           imageData && imageData.width
         } * 100%)`,
         position: "relative",
-        backgroundColor: plate ? "accent" : "transparent",
+        backgroundColor: plate ? "currentColor" : "transparent",
       }}
     >
       <picture>

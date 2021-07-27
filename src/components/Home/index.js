@@ -110,7 +110,9 @@ export const Home = () => {
       >
         <div>
           <Text variant="label" mb={5}>
-            Associations
+            <Text variant="label" mb={4}>
+              Associations
+            </Text>
             <List>
               <>Husqvarna</>
               <>M. Saatchi</>
@@ -123,7 +125,9 @@ export const Home = () => {
         </div>
         <div>
           <Text variant="label" mb={5}>
-            Expertise
+            <Text variant="label" mb={4}>
+              Expertise
+            </Text>
             <List>
               <>Empathic design</>
               <>Design Systems</>
@@ -136,7 +140,9 @@ export const Home = () => {
         </div>
         <div>
           <Text variant="label" mb={5}>
-            Recognitions
+            <Text variant="label" mb={4}>
+              Recognitions
+            </Text>
             <List>
               {awards.map((char) => (
                 <React.Fragment key={char.title}>

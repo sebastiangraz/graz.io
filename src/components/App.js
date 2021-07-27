@@ -21,7 +21,7 @@ export let cases = new Map([
       component: Loupe,
       bg: "#184629",
       color: "#e8e0d6",
-      grid: ["1 / span 10", "2 / span 9"],
+      grid: ["2 / span 11", "2 / span 11"],
     },
   ],
   [
@@ -32,7 +32,7 @@ export let cases = new Map([
       component: Norse,
       bg: "#000",
       color: "#e8e0d6",
-      grid: ["5 / span 8", "6 / span 7"],
+      grid: ["3 / span 10", "3 / span 10"],
     },
   ],
   [
@@ -42,7 +42,7 @@ export let cases = new Map([
       slug: "canon",
       component: Canon,
       bg: "#ff3824",
-      grid: ["3 / span 9", "3 / span 9"],
+      grid: ["4 / span 9", "4 / span 9"],
     },
   ],
   [
@@ -52,7 +52,7 @@ export let cases = new Map([
       slug: "random",
       component: Loupe,
       bg: "#f9eaa2",
-      grid: ["1 / span 12", "1 / span 12"],
+      grid: ["5 / span 8", "5 / span 8"],
     },
   ],
 ]);

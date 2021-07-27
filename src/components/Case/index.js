@@ -7,8 +7,8 @@ import { useResponsiveValue } from "@theme-ui/match-media";
 
 const settings = {
   debug: false,
-  nextScrollDistance: 60,
-  staggerPower: 0.75,
+  nextScrollDistance: 100,
+  staggerPower: 0.6,
   springOptions: { damping: 20, mass: 0.5 },
 };
 
@@ -237,10 +237,14 @@ const Case = React.forwardRef(({ index, data }, ref) => {
             <div
               sx={{
                 ...caseBg,
+
                 height: [
                   // `calc(100% - ${staggeredOffset}px)`,
                   `calc(100% - ${
-                    300 - 2 - settings.nextScrollDistance + staggeredOffset
+                    300 -
+                    2 -
+                    (index !== 1 ? settings.nextScrollDistance : 0) +
+                    staggeredOffset
                   }px)`,
                 ],
                 backgroundColor: data?.bg,

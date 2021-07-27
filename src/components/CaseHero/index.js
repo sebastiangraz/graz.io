@@ -37,19 +37,19 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
         <mask id={`${"sample-" + id}`}>
           <rect width="100%" height="100%" fill="white"></rect>
           <svg
-            width="32"
-            height="16"
+            width="8"
+            height="8"
             x="24"
             y="24"
-            viewBox="0 0 32 16"
+            viewBox="0 0 8 8"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <rect width="20" height="10" rx="5" fill="black" />
+            <rect width="8" height="8" rx="8" fill="black" />
           </svg>
           <g
             style={{
-              transform: `translate(min(190px, calc(8vw - 5px)), min(100px, 6vw))`,
+              transform: `translate(min(172px, calc(8vw - 5px) ), min(100px, 6vw))`,
             }}
           >
             <text dominantBaseline="hanging">

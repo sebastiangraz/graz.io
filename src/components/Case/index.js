@@ -266,6 +266,10 @@ const Case = React.forwardRef(({ index, data }, ref) => {
             >
               <div
                 sx={{
+                  transition: "opacity 0.2s ease",
+                  ...(isActiveState ? {
+                    opacity: 1,
+                  }: {opacity: 0}) ,
                   gridColumn: [
                     `2 / span 10`,
                     null,
@@ -274,7 +278,7 @@ const Case = React.forwardRef(({ index, data }, ref) => {
                   ],
                 }}
               >
-                <Render />
+                <Render /> 
               </div>
             </div>
           </div>

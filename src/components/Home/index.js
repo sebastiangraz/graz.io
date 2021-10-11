@@ -41,6 +41,7 @@ export const Home = () => {
   return (
     <Grid
       sx={{
+        margin: "0 auto",
         minHeight: "100vh",
         py: [7, 8, 9],
         px: [7, 0, null],

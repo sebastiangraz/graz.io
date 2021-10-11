@@ -199,6 +199,7 @@ const Case = React.forwardRef(({ index, data }, ref) => {
           id={data.slug}
           ref={ref}
           style={{
+            x: "-50%",
             y: y,
           }}
           sx={{
@@ -207,6 +208,7 @@ const Case = React.forwardRef(({ index, data }, ref) => {
             ...caseParent,
             color: data?.color,
             zIndex: index,
+            left: "50%",
           }}
         >
           <div
@@ -267,9 +269,11 @@ const Case = React.forwardRef(({ index, data }, ref) => {
               <div
                 sx={{
                   transition: "opacity 0.2s ease",
-                  ...(isActiveState ? {
-                    opacity: 1,
-                  }: {opacity: 0}) ,
+                  ...(isActiveState
+                    ? {
+                        opacity: 1,
+                      }
+                    : { opacity: 0 }),
                   gridColumn: [
                     `2 / span 10`,
                     null,
@@ -278,7 +282,7 @@ const Case = React.forwardRef(({ index, data }, ref) => {
                   ],
                 }}
               >
-                <Render /> 
+                <Render />
               </div>
             </div>
           </div>

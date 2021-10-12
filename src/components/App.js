@@ -10,8 +10,8 @@ export let cases = new Map([
       name: "Home",
       slug: "home",
       component: Home,
-      bg: "#FFF5DD",
-      color: "#000",
+      color: "hsl(42, 0%, 0%)",
+      bg: "hsl(42, 70%, 93%)",
     },
   ],
   [
@@ -20,8 +20,8 @@ export let cases = new Map([
       name: "Capchase",
       slug: "capchase",
       component: Capchase,
-      bg: "#FFD99F",
       color: "#000",
+      bg: "#FFD99F",
       grid: ["1 / span 11", "3 / span 9"],
     },
   ],
@@ -31,34 +31,11 @@ export let cases = new Map([
       name: "Loupe",
       slug: "loupe",
       component: Loupe,
-      bg: "#D2DAD3",
       color: "#184629",
+      bg: "#D2DAD3",
       grid: ["2 / span 11", "4 / span 9"],
     },
   ],
-
-  // [
-  //   "norse",
-  //   {
-  //     name: "Norse",
-  //     slug: "norse",
-  //     component: Norse,
-  //     bg: "#090706",
-  //     color: "#fff",
-  //     grid: ["3 / span 10", "1 / span 9"],
-  //   },
-  // ],
-
-  // [
-  //   "canon",
-  //   {
-  //     name: "Canon",
-  //     slug: "canon",
-  //     component: Canon,
-  //     bg: "#ff3824",
-  //     grid: ["4 / span 9", "3 / span 8"],
-  //   },
-  // ],
 ]);
 
 function App() {

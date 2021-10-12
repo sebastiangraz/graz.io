@@ -83,11 +83,6 @@ const Case = React.forwardRef(({ index, data }, ref) => {
     return transform(progress, [0, height(0)], [0, -height(0)]);
   };
 
-  const updateHome = (v) => {
-    const progress = v - position(0) + height(0);
-    return transform(progress, [0, height(0)], [1, 0]);
-  };
-
   const updatePosNext = (v) => {
     const progress = v - position(1) + height(1);
     return transform(
@@ -107,10 +102,6 @@ const Case = React.forwardRef(({ index, data }, ref) => {
     settings.springOptions
   );
 
-  const homeOpacity = useSpring(
-    useTransform(scrollProgress, (v) => updateHome(v)),
-    settings.springOptions
-  );
   const isActive = useTransform(scrollProgress, (v) => updatePos(v));
   const [isActiveState, setIsActiveState] = React.useState(false);
 
@@ -182,7 +173,6 @@ const Case = React.forwardRef(({ index, data }, ref) => {
           onClick={handleClick}
           ref={ref}
           style={{
-            opacity: homeOpacity,
             y: y,
           }}
           sx={{
@@ -195,7 +185,7 @@ const Case = React.forwardRef(({ index, data }, ref) => {
             top: `calc(100vh - ${0}px)`,
           }}
         >
-          <Render />
+          <Render data={data} />
         </m.div>
       ) : (
         // -----CASES-----

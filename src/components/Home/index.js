@@ -3,6 +3,7 @@
 import React from "react";
 import { Text, Grid } from "theme-ui";
 import { Logo, List } from "../";
+import { m, useViewportScroll, useTransform } from "framer-motion";
 
 const awards = [
   {
@@ -37,9 +38,16 @@ const awards = [
     year: "2017",
   },
 ];
-export const Home = () => {
+export const Home = ({ data }) => {
+  const y = [0, window.innerHeight / 1.2, window.innerHeight];
+  const colorOutput = [data.color, "hsl(42, 33%, 93%)", data.bg];
+  const { scrollY } = useViewportScroll();
+  const color = useTransform(scrollY, y, colorOutput);
+
   return (
-    <Grid
+    <m.div
+      as={Grid}
+      style={{ color }}
       sx={{
         margin: "0 auto",
         minHeight: "100vh",
@@ -170,6 +178,6 @@ export const Home = () => {
           prototyping, design systems and brand identities.
         </Text>
       </div>
-    </Grid>
+    </m.div>
   );
 };

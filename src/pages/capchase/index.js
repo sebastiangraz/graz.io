@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 
 import React from "react";
-import { Box, Text, Heading } from "theme-ui";
+import { Box, Text } from "theme-ui";
 import { GridParent, Video, Img, List } from "../../components";
 import { images, videos, icons } from "./assets";
 

@@ -51,7 +51,6 @@ export const Home = ({ data }) => {
 
   const logo = transform(scrollY, y, logoOutput);
   const filter = useTransform(scrollY, (v) => updateLogo(v));
-  // const filter = useTransform(scrollY, (v) => `"wght" ${v}`);
 
   return (
     <m.div
@@ -106,7 +105,6 @@ export const Home = ({ data }) => {
             ? ["scale(1)", "scale(1)", "scale(0.8)"]
             : "scale(1)",
         }}
-        weight={{ logo }}
       />
 
       <Text

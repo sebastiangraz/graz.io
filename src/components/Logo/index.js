@@ -2,7 +2,7 @@
 
 import { m } from "framer-motion";
 
-export const Logo = ({ weight, ...rest }) => {
+export const Logo = ({ ...rest }) => {
   return (
     <m.div {...rest} sx={{ display: "inline-flex", position: "relative" }}>
       <h1
@@ -15,15 +15,10 @@ export const Logo = ({ weight, ...rest }) => {
           fontFamily: "G",
           fontSize: "inherit",
           lineHeight: 0.5,
+          userSelect: "none",
           textRendering: "optimizeLegibility",
           fontWeight: "normal",
           margin: 0,
-          // fontVariationSettings: `"wght" ${weight ? weight : 50}`,
-          // transition: `font-variation-settings cubic-bezier(0.5,0,0,1) 0.4s`,
-          "&:hover": {
-            cursor: "pointer",
-            // fontVariationSettings: `"wght" 80`,
-          },
         }}
       >
         G

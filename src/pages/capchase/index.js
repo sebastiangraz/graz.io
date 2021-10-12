@@ -10,7 +10,14 @@ const Sections = {
     return (
       <div sx={{ position: "relative" }}>
         <GridParent>
-          <Img imageData={images.homepage1} />
+          <div
+            sx={{
+              background: "#f00",
+              gridRow: "span 8",
+              gridColumn: ["span 8", "span 8"],
+            }}
+          ></div>
+          {/* <Img imageData={images.homepage1} /> */}
           <div
             sx={{
               display: "flex",

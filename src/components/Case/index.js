@@ -26,7 +26,7 @@ const debugStyle = {
 const caseParent = {
   top: `100vh`,
   width: "100%",
-  maxWidth: "calc(2400px - 5px)", //GridParent scrollbar width hack
+  maxWidth: "2400px", //GridParent scrollbar width hack
   position: "fixed",
   pointerEvents: "none",
   willChange: "transform",
@@ -249,35 +249,23 @@ const Case = React.forwardRef(({ index, data }, ref) => {
 
             <div
               sx={{
-                display: "grid",
-                gridTemplateColumns: [
-                  `repeat(12, 1fr)`,
-                  null,
-                  `repeat(${gridCount(0)}, 1fr)`,
-                  `repeat(${gridCount(1)}, 1fr)`,
-                ],
                 mb: "100vh",
                 mt: "20vh",
+                transition: "opacity 0.2s ease",
+                ...(isActiveState
+                  ? {
+                      opacity: 1,
+                    }
+                  : { opacity: 0 }),
+                // gridColumn: [
+                //   `1 / span ${gridCount(1)}`,
+                //   null,
+                //   // `2 / span ${gridCount(0) - 2}`,
+                //   // `2 / span ${gridCount(1) - 2}`,
+                // ],
               }}
             >
-              <div
-                sx={{
-                  transition: "opacity 0.2s ease",
-                  ...(isActiveState
-                    ? {
-                        opacity: 1,
-                      }
-                    : { opacity: 0 }),
-                  gridColumn: [
-                    `2 / span 10`,
-                    null,
-                    `2 / span ${gridCount(0) - 2}`,
-                    `2 / span ${gridCount(1) - 2}`,
-                  ],
-                }}
-              >
-                <Render />
-              </div>
+              <Render />
             </div>
           </div>
         </m.div>

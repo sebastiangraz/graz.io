@@ -3,7 +3,7 @@
 import React from "react";
 import { Text, Grid } from "theme-ui";
 import { Logo, List } from "../";
-import { m, useViewportScroll, useTransform } from "framer-motion";
+import { m, useViewportScroll, useTransform, transform } from "framer-motion";
 
 const awards = [
   {
@@ -41,8 +41,17 @@ const awards = [
 export const Home = ({ data }) => {
   const y = [0, window.innerHeight / 1.2, window.innerHeight];
   const colorOutput = [data.color, "hsl(42, 33%, 93%)", data.bg];
+  const logoOutput = [`"wght" ${60}`, `"wght" ${12}`, `"wght" ${5}`];
   const { scrollY } = useViewportScroll();
   const color = useTransform(scrollY, y, colorOutput);
+
+  const updateLogo = (v) => {
+    return transform(v, y, logoOutput);
+  };
+
+  const logo = transform(scrollY, y, logoOutput);
+  const filter = useTransform(scrollY, (v) => updateLogo(v));
+  // const filter = useTransform(scrollY, (v) => `"wght" ${v}`);
 
   return (
     <m.div
@@ -87,6 +96,7 @@ export const Home = ({ data }) => {
       }}
     >
       <Logo
+        style={{ fontVariationSettings: filter }}
         sx={{
           gridArea: "logo",
           fontSize: 9,
@@ -96,7 +106,7 @@ export const Home = ({ data }) => {
             ? ["scale(1)", "scale(1)", "scale(0.8)"]
             : "scale(1)",
         }}
-        weight={42}
+        weight={{ logo }}
       />
 
       <Text

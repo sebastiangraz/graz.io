@@ -5,15 +5,19 @@ import { m, useSpring, transform, useTransform } from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 
+const debug = false;
+
 const settings = {
-  debug: false,
   nextScrollDistance: 100,
   staggerPower: 0.6,
-  springOptions: { damping: 20, mass: 0.5 },
+  springOptions: {
+    damping: 11,
+    mass: 0.25,
+  },
 };
 
 const debugStyle = {
-  ...(settings.debug && {
+  ...(debug && {
     boxShadow: "0 0 0 8px inset #319c4eaa, 0 0 0 8px #ef9e47aa",
     background: "linear-gradient(#ff000000, #ff000088) !important",
   }),
@@ -136,7 +140,7 @@ const Case = React.forwardRef(({ index, data }, ref) => {
 
   const Debugger = () => {
     return (
-      settings.debug && (
+      debug && (
         <p
           sx={{
             mt: "-10px",
@@ -231,7 +235,7 @@ const Case = React.forwardRef(({ index, data }, ref) => {
               }}
             >
               <CaseHero
-                debug={settings.debug}
+                debug={debug}
                 name={data?.name}
                 forceRender={childHeight}
               />

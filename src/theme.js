@@ -93,7 +93,6 @@ export default {
       webkitFontSmoothing: "antialiased",
       MozOsxFontSmoothing: "grayscale",
       variant: "text.default",
-      fontVariationSettings: `'wght' 66`,
       fontFeatureSettings: `"liga"`,
     },
     a: { color: "inherit", "&:hover": { textDecoration: "none" } },

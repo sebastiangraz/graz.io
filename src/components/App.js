@@ -2,6 +2,7 @@ import React from "react";
 import { Loupe, Norse, Canon } from "../pages";
 import { CaseWrapper, Case, Home } from "../components";
 import "../base.css";
+import Capchase from "../pages/capchase";
 export let cases = new Map([
   [
     "home",
@@ -19,20 +20,9 @@ export let cases = new Map([
       name: "Loupe",
       slug: "loupe",
       component: Loupe,
-      bg: "#184629",
-      color: "#e8e0d6",
+      bg: "#D2DAD3",
+      color: "#184629",
       grid: ["2 / span 11", "4 / span 9"],
-    },
-  ],
-  [
-    "capchase",
-    {
-      name: "Capchase",
-      slug: "capchase",
-      component: Loupe,
-      bg: "#e5e58c",
-      color: "#000",
-      grid: ["1 / span 11", "3 / span 9"],
     },
   ],
   [
@@ -41,21 +31,34 @@ export let cases = new Map([
       name: "Norse",
       slug: "norse",
       component: Norse,
-      bg: "#000",
+      bg: "#090706",
       color: "#e8e0d6",
       grid: ["3 / span 10", "1 / span 9"],
     },
   ],
+
   [
-    "canon",
+    "capchase",
     {
-      name: "Canon",
-      slug: "canon",
-      component: Canon,
-      bg: "#ff3824",
-      grid: ["4 / span 9", "3 / span 8"],
+      name: "Capchase",
+      slug: "capchase",
+      component: Capchase,
+      bg: "#FFD99F",
+      color: "#000",
+      grid: ["1 / span 11", "3 / span 9"],
     },
   ],
+
+  // [
+  //   "canon",
+  //   {
+  //     name: "Canon",
+  //     slug: "canon",
+  //     component: Canon,
+  //     bg: "#ff3824",
+  //     grid: ["4 / span 9", "3 / span 8"],
+  //   },
+  // ],
 ]);
 
 function App() {

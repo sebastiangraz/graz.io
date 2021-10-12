@@ -15,29 +15,6 @@ export let cases = new Map([
     },
   ],
   [
-    "loupe",
-    {
-      name: "Loupe",
-      slug: "loupe",
-      component: Loupe,
-      bg: "#D2DAD3",
-      color: "#184629",
-      grid: ["2 / span 11", "4 / span 9"],
-    },
-  ],
-  [
-    "norse",
-    {
-      name: "Norse",
-      slug: "norse",
-      component: Norse,
-      bg: "#090706",
-      color: "#e8e0d6",
-      grid: ["3 / span 10", "1 / span 9"],
-    },
-  ],
-
-  [
     "capchase",
     {
       name: "Capchase",
@@ -48,6 +25,29 @@ export let cases = new Map([
       grid: ["1 / span 11", "3 / span 9"],
     },
   ],
+  [
+    "loupe",
+    {
+      name: "Loupe",
+      slug: "loupe",
+      component: Loupe,
+      bg: "#D2DAD3",
+      color: "#184629",
+      grid: ["2 / span 11", "4 / span 9"],
+    },
+  ],
+
+  // [
+  //   "norse",
+  //   {
+  //     name: "Norse",
+  //     slug: "norse",
+  //     component: Norse,
+  //     bg: "#090706",
+  //     color: "#fff",
+  //     grid: ["3 / span 10", "1 / span 9"],
+  //   },
+  // ],
 
   // [
   //   "canon",

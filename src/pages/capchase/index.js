@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 
 import React from "react";
-import { Box, Text } from "theme-ui";
+import { Box, Text, Heading } from "theme-ui";
 import { GridParent, Video, Img, List } from "../../components";
 import { images, videos, icons } from "./assets";
 
@@ -15,23 +15,20 @@ const Sections = {
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
-              gridColumn: ["span 8", "span 3"],
+              gridColumn: ["span 8", "span 5"],
               gridRow: "span 1",
             }}
           >
-            <div sx={{ marginBottom: 5 }}>
-              <Text variant="caps" mb={4}>
-                Capital Chasers
-              </Text>
-              <Box sx={{ maxWidth: 340 }}>
-                <Text mb={2}>
-                  Capchase, one of the largest non-dilutive funding companies
-                  needed a time sensitive brand refresh. Time was of the essence
-                  as they increased their momentum for both brand awareness
-                  while establishing their slice of the market.
-                </Text>
-              </Box>
-            </div>
+            <Text mb={6} variant="lead">
+              Capchase, one of the largest non-dilutive funding companies needed
+              a time sensitive visual refresh of all their digital and print
+              assets.
+            </Text>
+            <Text variant="lead">
+              Time was of the essence as they increased their momentum for both
+              brand awareness while establishing their slice of the market. Big
+              slices too.
+            </Text>
           </div>
         </GridParent>
       </div>

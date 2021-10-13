@@ -5,51 +5,119 @@ import { Box, Text, Heading } from "theme-ui";
 import { GridParent, Video, Img, List } from "../../components";
 import { images, videos, icons } from "./assets";
 
-const Sections = {
-  Intro: () => {
-    return (
-      <div sx={{ position: "relative" }}>
-        <GridParent>
-          <div
-            sx={{
-              background: "#f00",
-              gridRow: "span 8",
-              gridColumn: ["span 8", "span 8"],
-            }}
-          ></div>
-          {/* <Img imageData={images.homepage1} /> */}
-          <div
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              gridColumn: ["span 8", "span 5"],
-              gridRow: "span 1",
-            }}
-          >
-            <Text mb={6} variant="lead">
-              Capchase, one of the largest non-dilutive funding companies needed
-              a time sensitive visual refresh of all their digital and print
-              assets.
-            </Text>
-            <Text variant="lead">
-              Time was of the essence as they increased their momentum for both
-              brand awareness while establishing their slice of the market. Big
-              slices too.
-            </Text>
-          </div>
-        </GridParent>
-      </div>
-    );
-  },
+const OffGrid = ({ children, gridCount }) => {
+  return (
+    <GridParent
+      gridCountOverride={0}
+      sx={{
+        width: "100%",
+        gridColumn: [
+          `2 / span 10`,
+          null,
+          `1 / span ${gridCount(0)}`,
+          `1 / span ${gridCount(1)}`,
+        ],
+      }}
+    >
+      {children}
+    </GridParent>
+  );
+};
+const OnGrid = ({ children, gridCount }) => {
+  return (
+    <GridParent
+      gridCountOverride={2}
+      sx={{
+        width: "100%",
+        gridColumn: [
+          `2 / span 10`,
+          null,
+          `2 / span ${gridCount(0) - 2}`,
+          `2 / span ${gridCount(1) - 2}`,
+        ],
+      }}
+    >
+      {children}
+    </GridParent>
+  );
 };
 
-const Capchase = () => {
-  return Object.entries(Sections).map(([k, Section]) => (
-    <Box key={k}>
-      <Section />
-    </Box>
-  ));
+const Capchase = ({ gridCount }) => {
+  const Sections = {
+    Intro: () => {
+      return (
+        <>
+          <OnGrid gridCount={gridCount}>
+            <div
+              sx={{
+                background: "#333",
+                gridRow: "span 4",
+                gridColumn: ["span 4", "span 4"],
+              }}
+            ></div>
+            <div
+              sx={{
+                background: "#222",
+                gridRow: "span 4",
+                gridColumn: ["span 4", "span 4"],
+              }}
+            ></div>
+
+            <div
+              sx={{
+                background: "#111",
+                gridRow: "span 8",
+                gridColumn: ["span 8", "span 8"],
+              }}
+            ></div>
+          </OnGrid>
+          <OffGrid gridCount={gridCount}>
+            <div
+              sx={{
+                background: "#333",
+                gridRow: "span 4",
+                gridColumn: ["span 4", "span 4"],
+              }}
+            ></div>
+            <div
+              sx={{
+                background: "#222",
+                gridRow: "span 4",
+                gridColumn: ["span 4", "span 4"],
+              }}
+            ></div>
+
+            <div
+              sx={{
+                background: "#111",
+                gridRow: "span 8",
+                gridColumn: ["span 8", "span 8"],
+              }}
+            ></div>
+          </OffGrid>
+        </>
+      );
+    },
+  };
+
+  return (
+    <div
+      sx={{
+        position: "relative",
+        display: "grid",
+        gridTemplateColumns: [
+          `repeat(12, 1fr)`,
+          null,
+          `repeat(${gridCount(0)}, 1fr)`,
+          `repeat(${gridCount(1)}, 1fr)`,
+        ],
+      }}
+    >
+      {Object.entries(Sections).map(([k, Section]) => (
+        <Section key={k} />
+      ))}
+    </div>
+  );
 };
 
 export default Capchase;

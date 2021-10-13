@@ -231,11 +231,10 @@ const Case = React.forwardRef(({ index, data }, ref) => {
               />
             </m.div>
             <div
+              className="background-layer"
               sx={{
                 ...caseBg,
-
                 height: [
-                  // `calc(100% - ${staggeredOffset}px)`,
                   `calc(100% - ${
                     300 -
                     2 -
@@ -249,35 +248,17 @@ const Case = React.forwardRef(({ index, data }, ref) => {
 
             <div
               sx={{
-                display: "grid",
-                gridTemplateColumns: [
-                  `repeat(12, 1fr)`,
-                  null,
-                  `repeat(${gridCount(0)}, 1fr)`,
-                  `repeat(${gridCount(1)}, 1fr)`,
-                ],
                 mb: "100vh",
                 mt: "20vh",
+                transition: "opacity 0.2s ease",
+                ...(isActiveState
+                  ? {
+                      opacity: 1,
+                    }
+                  : { opacity: 0 }),
               }}
             >
-              <div
-                sx={{
-                  transition: "opacity 0.2s ease",
-                  ...(isActiveState
-                    ? {
-                        opacity: 1,
-                      }
-                    : { opacity: 0 }),
-                  gridColumn: [
-                    `2 / span 10`,
-                    null,
-                    `2 / span ${gridCount(0) - 2}`,
-                    `2 / span ${gridCount(1) - 2}`,
-                  ],
-                }}
-              >
-                <Render />
-              </div>
+              <Render gridCount={gridCount} />
             </div>
           </div>
         </m.div>

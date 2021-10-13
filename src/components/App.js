@@ -22,7 +22,7 @@ export let cases = new Map([
       component: Capchase,
       color: "#000",
       bg: "#FFD99F",
-      grid: ["1 / span 11", "3 / span 9"],
+      grid: ["1 / span 11", "1 / span 16"],
     },
   ],
   [
@@ -33,7 +33,18 @@ export let cases = new Map([
       component: Loupe,
       color: "#184629",
       bg: "#D2DAD3",
-      grid: ["2 / span 11", "4 / span 9"],
+      grid: ["2 / span 11", "3 / span 10"],
+    },
+  ],
+  [
+    "loupe2",
+    {
+      name: "Loupe",
+      slug: "loupe",
+      component: Loupe,
+      color: "#0f0fff",
+      bg: "#444",
+      grid: ["2 / span 11", "7 / span 8"],
     },
   ],
 ]);

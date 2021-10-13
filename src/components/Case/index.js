@@ -31,7 +31,7 @@ const caseParent = {
   pointerEvents: "none",
   willChange: "transform",
   display: "grid",
-  gridTemplateColumns: "repeat(12, 1fr)",
+  gridTemplateColumns: "repeat(17, 1fr)",
 };
 
 const caseBg = {
@@ -249,6 +249,13 @@ const Case = React.forwardRef(({ index, data }, ref) => {
 
             <div
               sx={{
+                display: "grid",
+                gridTemplateColumns: [
+                  `repeat(17, 1fr)`,
+                  null,
+                  `repeat(${gridCount(0)}, 1fr)`,
+                  `repeat(${gridCount(1)}, 1fr)`,
+                ],
                 mb: "100vh",
                 mt: "20vh",
                 transition: "opacity 0.2s ease",
@@ -265,7 +272,24 @@ const Case = React.forwardRef(({ index, data }, ref) => {
                 // ],
               }}
             >
-              <Render />
+              <div
+                sx={{
+                  transition: "opacity 0.2s ease",
+                  ...(isActiveState
+                    ? {
+                        opacity: 1,
+                      }
+                    : { opacity: 0 }),
+                  gridColumn: [
+                    `1 / span 10`,
+                    null,
+                    `1 / span ${gridCount(0)}`,
+                    `1 / span ${gridCount(1)}`,
+                  ],
+                }}
+              >
+                <Render />
+              </div>
             </div>
           </div>
         </m.div>

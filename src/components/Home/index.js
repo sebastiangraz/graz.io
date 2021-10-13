@@ -67,7 +67,7 @@ export const Home = ({ data }) => {
         alignItems: ["start", "start"],
         maxWidth: "2400px",
         gridTemplateRows: "auto auto auto",
-        gridTemplateColumns: ["repeat(2, 1fr)", "repeat(12, 1fr)"],
+        gridTemplateColumns: ["repeat(2, 1fr)", "repeat(17, 1fr)"],
         gridTemplateAreas: [
           //phone
           `

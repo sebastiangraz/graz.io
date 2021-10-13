@@ -12,82 +12,158 @@ const Sections = {
         <GridParent>
           <div
             sx={{
+              background: "#888",
+              gridRow: "span 4",
+              gridColumn: ["span 8", "3 / span 4"],
+            }}
+          ></div>
+          <div
+            sx={{
+              background: "#777",
+              gridRow: "span 4",
+              gridColumn: ["span 8", "7 / span 4"],
+            }}
+          ></div>
+
+          <div
+            sx={{
+              background: "#666",
+              gridRow: "span 4",
+              gridColumn: ["span 8", "11 / span 4"],
+            }}
+          ></div>
+          <div
+            sx={{
+              background: "#555",
+              gridRow: "span 3",
+              gridColumn: ["span 8", "3 / span 3"],
+            }}
+          ></div>
+          <div
+            sx={{
+              background: "#444",
+              gridRow: "span 3",
+              gridColumn: ["span 8", "6 / span 3"],
+            }}
+          ></div>
+          <div
+            sx={{
+              background: "#333",
+              gridRow: "span 3",
+              gridColumn: ["span 8", "9 / span 3"],
+            }}
+          ></div>
+
+          <div
+            sx={{
+              background: "#111",
+              gridRow: "span 3",
+              gridColumn: ["span 8", "12 / span 3"],
+            }}
+          ></div>
+        </GridParent>
+        <GridParent>
+          <div
+            sx={{
               background: "#ddd",
               gridRow: "span 2",
-              gridColumn: ["span 2", "7 / span 2"],
+              gridColumn: ["span 8", " span 2"],
             }}
           ></div>
           <div
             sx={{
               background: "#ccc",
               gridRow: "span 2",
-              gridColumn: ["span 2", "5 / span 2"],
-            }}
-          ></div>
-          <div
-            sx={{
-              background: "#aaa",
-              gridRow: "span 2",
-              gridColumn: ["span 2", "3 / span 2"],
+              gridColumn: ["span 8", " span 2"],
             }}
           ></div>
           <div
             sx={{
               background: "#bbb",
               gridRow: "span 2",
-              gridColumn: ["span 2", "1 / span 2"],
-            }}
-          ></div>
-          <div
-            sx={{
-              background: "#ccc",
-              gridRow: "span 2",
-              gridColumn: ["span 2", "6 / span 2"],
+              gridColumn: ["span 8", " span 2"],
             }}
           ></div>
           <div
             sx={{
               background: "#aaa",
               gridRow: "span 2",
-              gridColumn: ["span 2", "4 / span 2"],
-            }}
-          ></div>
-          <div
-            sx={{
-              background: "#bbb",
-              gridRow: "span 2",
-              gridColumn: ["span 2", "2 / span 2"],
-            }}
-          ></div>
-          <div
-            sx={{
-              background: "#f00",
-              gridRow: "span 3",
-              gridColumn: ["span 3", "5 / span 3"],
+              gridColumn: ["span 8", " span 2"],
             }}
           ></div>
           <div
             sx={{
               background: "#999",
-              gridRow: "span 3",
-              gridColumn: ["span 3", "2 / span 3"],
+              gridRow: "span 2",
+              gridColumn: ["span 8", " span 2"],
             }}
           ></div>
           <div
             sx={{
               background: "#888",
-              gridRow: "span 6",
-              gridColumn: ["span 6", "2 / span 6"],
+              gridRow: "span 2",
+              gridColumn: ["span 8", " span 2"],
+            }}
+          ></div>
+          <div
+            sx={{
+              background: "#777",
+              gridRow: "span 2",
+              gridColumn: ["span 8", " span 2"],
             }}
           ></div>
           <div
             sx={{
               background: "#666",
-              gridRow: "span 6",
-              gridColumn: ["1 / span 8", "1 / span 8"],
+              gridRow: "span 2",
+              gridColumn: ["span 8", " span 2"],
             }}
           ></div>
           <div
+            sx={{
+              background: "#555",
+              gridRow: "span 4",
+              gridColumn: ["span 8", "span 4"],
+            }}
+          ></div>
+          <div
+            sx={{
+              background: "#444",
+              gridRow: "span 4",
+              gridColumn: ["span 8", "span 4"],
+            }}
+          ></div>
+          <div
+            sx={{
+              background: "#333",
+              gridRow: "span 4",
+              gridColumn: ["span 8", "span 4"],
+            }}
+          ></div>
+          <div
+            sx={{
+              background: "#303030",
+              gridRow: "span 4",
+              gridColumn: ["span 8", "span 4"],
+            }}
+          ></div>
+          <div
+            sx={{
+              background: "#222",
+              gridRow: "span 8",
+              gridColumn: ["span 8", "1 / span 16"],
+            }}
+          ></div>
+          <div
+            sx={{
+              background: "#111",
+              gridRow: "span 7",
+              gridColumn: ["span 8", "3 / span 12"],
+            }}
+          ></div>
+
+          {/* <Img imageData={images.homepage1} /> */}
+          {/* <div
             sx={{
               display: "flex",
               flexDirection: "column",
@@ -106,7 +182,7 @@ const Sections = {
               brand awareness while establishing their slice of the market. Big
               slices too.
             </Text>
-          </div>
+          </div> */}
         </GridParent>
       </div>
     );

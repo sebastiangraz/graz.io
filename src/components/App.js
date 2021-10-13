@@ -30,10 +30,10 @@ export let cases = new Map([
     {
       name: "Loupe",
       slug: "loupe",
-      component: Loupe,
+      component: Capchase,
       color: "#184629",
       bg: "#D2DAD3",
-      grid: ["2 / span 11", "3 / span 10"],
+      grid: ["2 / span 11", "1 / span 10"],
     },
   ],
   [
@@ -41,10 +41,10 @@ export let cases = new Map([
     {
       name: "Loupe",
       slug: "loupe",
-      component: Loupe,
+      component: Capchase,
       color: "#0f0fff",
       bg: "#444",
-      grid: ["2 / span 11", "7 / span 8"],
+      grid: ["2 / span 11", "6 / span 7"],
     },
   ],
 ]);

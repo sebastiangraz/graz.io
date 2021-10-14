@@ -10,7 +10,7 @@
     "@theme-ui/color": "^0.6.0",
     "@theme-ui/css": "^0.6.2",
     "@theme-ui/match-media": "^0.6.2",
-    "framer-motion": "^4.1.13",
+    "framer-motion": "^4.1.17",
     "lodash": "^4.17.21",
     "react": "^18.0.0-alpha-386e8f2ea-20210624",
     "react-dom": "^18.0.0-alpha-386e8f2ea-20210624",

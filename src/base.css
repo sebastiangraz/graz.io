@@ -1,6 +1,6 @@
 body,
 html {
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
   overscroll-behavior-y: none;
 }
 body {

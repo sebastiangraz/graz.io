@@ -8847,14 +8847,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:^4.1.13":
-  version: 4.1.13
-  resolution: "framer-motion@npm:4.1.13"
+"framer-motion@npm:^4.1.17":
+  version: 4.1.17
+  resolution: "framer-motion@npm:4.1.17"
   dependencies:
     "@emotion/is-prop-valid": ^0.8.2
     framesync: 5.3.0
     hey-listen: ^1.0.8
-    popmotion: 9.3.5
+    popmotion: 9.3.6
     style-value-types: 4.1.4
     tslib: ^2.1.0
   peerDependencies:
@@ -8863,7 +8863,7 @@ __metadata:
   dependenciesMeta:
     "@emotion/is-prop-valid":
       optional: true
-  checksum: db81fa744674c6581a1f4bbeb984e56060d5ab7bcb9a4c66d4e7214af0244d0580cb978af5fb23f23094ed96961966edc28da841da07adfc482f2ac1472b576e
+  checksum: f6b5fc8f189e6760353aa5b67515b6576ebaa164d8df73118780a09d1d4a162e54dfeb126a05c6a28727af88f4a80f8b94900ff9510be44dada6496a99273fde
   languageName: node
   linkType: hard
 
@@ -14042,15 +14042,15 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"popmotion@npm:9.3.5":
-  version: 9.3.5
-  resolution: "popmotion@npm:9.3.5"
+"popmotion@npm:9.3.6":
+  version: 9.3.6
+  resolution: "popmotion@npm:9.3.6"
   dependencies:
     framesync: 5.3.0
     hey-listen: ^1.0.8
     style-value-types: 4.1.4
     tslib: ^2.1.0
-  checksum: 8f05f5ae6cb71a237732f0345a5e8295690061bf43cf45553954a9cdeea84a60a3ead4ca9136c43a6e8ed5490cde90e763076a347d0f6814e5a13d63aefbf1ce
+  checksum: 551446ec3763790efde7a3bb8c43189122f9b559985be2efa79842138257c4e331efcff606732a4bd5ac82d9bde1b236258d69a435f4bb5e9fc5908241b5ba3f
   languageName: node
   linkType: hard
 
@@ -16463,7 +16463,7 @@ resolve@1.18.1:
     "@theme-ui/color": ^0.6.0
     "@theme-ui/css": ^0.6.2
     "@theme-ui/match-media": ^0.6.2
-    framer-motion: ^4.1.13
+    framer-motion: ^4.1.17
     intersection-observer: ^0.12.0
     jest-performance-testing: ^1.0.0
     lodash: ^4.17.21

@@ -2,9 +2,9 @@
 
 import * as React from "react";
 
-export const List = ({ children, noBullets, variant }) => {
+export const List = ({ children, noBullets, variant, ...rest }) => {
   return (
-    <ul sx={{ p: 0 }}>
+    <ul {...rest} sx={{ p: 0 }}>
       {React.Children.map(children || null, (child, i) => {
         return (
           <li

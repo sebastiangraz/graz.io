@@ -1,8 +1,9 @@
 /** @jsxImportSource theme-ui */
 
 import React from "react";
-import { GridParent, Img, List } from "../../components";
+import { GridParent, Img, List, CaseMeta } from "../../components";
 import { images, videos, icons } from "./assets";
+import { Text, Box } from "theme-ui";
 
 const colors = {
   black: "#0F0F14",
@@ -63,11 +64,25 @@ const phoneBorder = () => {
   };
 };
 
-const Capchase = () => {
+const Capchase = ({ data }) => {
   const Sections = {
     Intro: () => {
       return (
         <>
+          <GridParent>
+            <Box sx={{ gridColumn: ["span 8", " 2/ span 4"] }}>
+              <Text variant="lead" mb={8}>
+                Capchase, one of the largest non-dilutive funding companies
+                needed a time sensitive visual refresh of all their digital and
+                print assets.
+              </Text>
+              <Text variant="lead" mb={10}>
+                Time was of the essence as they increased their momentum for
+                both brand awareness while establishing their slice of the
+                market. Big&nbsp;slices&nbsp;too.
+              </Text>
+            </Box>
+          </GridParent>
           <GridParent>
             <div
               sx={{
@@ -209,17 +224,14 @@ const Capchase = () => {
   };
 
   return (
-    <div
-      sx={{
-        position: "relative",
-        display: "grid",
-        gridTemplateColumns: [`repeat(12, 1fr)`],
-      }}
-    >
+    <>
+      <GridParent>
+        <CaseMeta data={data} />
+      </GridParent>
       {Object.entries(Sections).map(([k, Section]) => (
         <Section key={k} />
       ))}
-    </div>
+    </>
   );
 };
 

@@ -3,6 +3,7 @@ export { Home } from "./Home";
 export { default as Case } from "./Case";
 export { CaseHero } from "./CaseHero";
 export { CaseWrapper, useCaseWrapperContext } from "./CaseWrapper";
+export { CaseMeta } from "./CaseMeta";
 export { GridParent } from "./GridParent";
 export { Video } from "./Video";
 export { Img } from "./Img";

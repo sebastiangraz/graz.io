@@ -237,7 +237,7 @@ const Case = React.forwardRef(({ index, data }, ref) => {
                 transition: "opacity 0.2s ease",
               }}
             >
-              <Render />
+              <Render data={data} />
             </div>
           </div>
         </m.div>

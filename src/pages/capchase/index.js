@@ -1,8 +1,7 @@
 /** @jsxImportSource theme-ui */
 
 import React from "react";
-import { Box, Text, Heading } from "theme-ui";
-import { GridParent, Video, Img, List } from "../../components";
+import { GridParent, Img, List } from "../../components";
 import { images, videos, icons } from "./assets";
 
 const OffGrid = ({ children }) => {
@@ -45,7 +44,37 @@ const radius = (small) => {
   return small ? radiusSmall : radiusLarge;
 };
 
-console.log(radius());
+const phoneBorder = () => {
+  return {
+    position: "relative",
+    zIndex: "0",
+    "&:after": {
+      borderRadius: radius().default,
+      content: "''",
+      position: "absolute",
+      left: 0,
+      top: 0,
+      width: "100%",
+      height: "100%",
+      zIndex: "1",
+      boxShadow:
+        "inset 0px 3px 1px -2px #FFF7E8, inset 0px -1px 1px -1px rgba(73, 46, 34, 0.5), inset 0px 0px 5px -1px #C66705, inset 0px 0px 1px 3px #E9D9C0",
+    },
+    "&:before": {
+      borderRadius: radius().default,
+      content: "''",
+      position: "absolute",
+      left: 0,
+      top: 0,
+      width: "100%",
+      height: "100%",
+      zIndex: "1",
+      outline: "solid #000",
+      outlineOffset: "-10px",
+      outlineWidth: "8px",
+    },
+  };
+};
 
 const Capchase = ({ gridCount }) => {
   const Sections = {
@@ -78,14 +107,30 @@ const Capchase = ({ gridCount }) => {
             </div>
             <div
               sx={{
-                overflow: "hidden",
-                borderRadius: radius().default,
+                position: "relative",
+                ...phoneBorder(),
 
+                borderRadius: radius().default,
                 gridRow: ["span 8", "span 4"],
                 gridColumn: ["span 8", "span 2"],
               }}
             >
-              <Img sx={{}} imageData={images.mobileIntro} />
+              <div
+                sx={{
+                  zIndex: 2,
+                  top: "56px",
+                  right: "-10px",
+                  width: 16,
+                  height: 40,
+                  position: "absolute",
+                }}
+              >
+                <Img imageData={images.crown} />
+              </div>
+              <Img
+                sx={{ overflow: "hidden", borderRadius: radius().default }}
+                imageData={images.mobileIntro}
+              />
             </div>
           </OffGrid>
           <OffGrid>

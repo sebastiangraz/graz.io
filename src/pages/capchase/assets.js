@@ -3,6 +3,12 @@ import * as React from "react";
 export const videos = {};
 
 export const images = {
+  crown: {
+    url: require("./assets/crown.png"),
+    width: 32,
+    height: 80,
+    alt: "crown",
+  },
   bottle: {
     url: require("./assets/bottle.png"),
     width: 830,

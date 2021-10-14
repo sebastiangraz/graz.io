@@ -1,14 +1,19 @@
 /** @jsxImportSource theme-ui */
 import { Box } from "theme-ui";
 
-export const GridParent = ({ children, gridCountOverride, ...rest }) => {
+export const GridParent = ({
+  children,
+  gridCountOverride,
+  noOfColumns,
+  ...rest
+}) => {
   return (
     <Box
       {...rest}
       sx={{
         // 6px scrollbar width included in the calc
         "--calcWrapper": [
-          "calc(calc(((100 / 12) * 10vw)) - 5px)",
+          "calc(calc(((100 / 12) * 10vw)) - 6px)",
           null,
           `calc(calc((var(--gridCount) - ${
             gridCountOverride ?? 2
@@ -17,7 +22,7 @@ export const GridParent = ({ children, gridCountOverride, ...rest }) => {
         ],
 
         "--gutter": "0px",
-        "--noOfColumns": "8",
+        "--noOfColumns": noOfColumns ?? 8,
         "--noOfGutters": "calc(var(--noOfColumns) - 1)",
         "--ratioA": "1",
         "--ratioB": "1",
@@ -36,11 +41,6 @@ export const GridParent = ({ children, gridCountOverride, ...rest }) => {
         gridAutoRows: "minmax(var(--rh), auto)",
         gridGap: "var(--gutter)",
         margin: "var(--gutter) auto",
-
-        // "& > *": {
-        //   gridColumn: "span 4",
-        //   gridRow: "span 4",
-        // },
       }}
     >
       {children}

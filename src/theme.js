@@ -29,6 +29,9 @@ export const scroll = {
 export default {
   space: space,
   sizes: space,
+  shadows: {
+    capchase: `0px 138px 114px rgba(61, 32, 12, 0.15), 0px 75.716px 53.8638px rgba(61, 32, 12, 0.11405), 0px 45.1107px 33.2312px rgba(61, 32, 12, 0.0977383), 0px 26.7192px 20.7632px rgba(61, 32, 12, 0.0856342), 0px 15.0125px 12.5357px rgba(61, 32, 12, 0.075), 0px 7.55637px 7.00841px rgba(61, 32, 12, 0.0643658), 0px 3.04666px 3.37883px rgba(61, 32, 12, 0.0522617), 0px 0.698188px 1.15603px rgba(61, 32, 12, 0.0359501)`,
+  },
   radii: { ...space.slice(0, 5), pill: "99em" },
   fonts: {
     body: 'Styrene, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',

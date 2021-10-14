@@ -7,12 +7,7 @@ export const GridParent = ({ children, ...rest }) => {
       {...rest}
       sx={{
         // 6px scrollbar width included in the calc
-        "--calcWrapper": [
-          "calc(calc(((100 / 12) * 10vw)) - 6px)",
-          null,
-          `calc(calc((var(--gridCount)) / 12 * min(100vw, 2400px)) - 0px)`,
-          null,
-        ],
+        "--calcWrapper": `calc(calc((var(--gridCount)) / 12 * min(100vw, 2400px)) - 0px)`,
 
         "--gutter": "0px",
         "--noOfColumns": "10",

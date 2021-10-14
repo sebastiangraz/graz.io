@@ -197,7 +197,7 @@ const Case = React.forwardRef(({ index, data }, ref) => {
             y: y,
           }}
           sx={{
-            "--gridCount": [0, 0, `${gridCount(0)}`, `${gridCount(1)}`],
+            "--gridCount": [12, 12, `${gridCount(0)}`, `${gridCount(1)}`],
             "--caseBg": data.bg,
             ...caseParent,
             color: data?.color,

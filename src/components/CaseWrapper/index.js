@@ -53,7 +53,7 @@ const CaseWrapper = ({ children }) => {
     return () => {
       window.removeEventListener("resize", onResize, { passive: true });
     };
-  }, [children, scrollY]);
+  }, [children, scrollY]); //  }, [children, scrollY]);
 
   return (
     <LazyMotion features={domAnimation} strict>

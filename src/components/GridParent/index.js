@@ -1,12 +1,7 @@
 /** @jsxImportSource theme-ui */
 import { Box } from "theme-ui";
 
-export const GridParent = ({
-  children,
-  gridCountOverride,
-  noOfColumns,
-  ...rest
-}) => {
+export const GridParent = ({ children, ...rest }) => {
   return (
     <Box
       {...rest}
@@ -15,14 +10,12 @@ export const GridParent = ({
         "--calcWrapper": [
           "calc(calc(((100 / 12) * 10vw)) - 6px)",
           null,
-          `calc(calc((var(--gridCount) - ${
-            gridCountOverride ?? 2
-          }) / 12 * min(100vw, 2400px)) - 0px)`,
+          `calc(calc((var(--gridCount)) / 12 * min(100vw, 2400px)) - 0px)`,
           null,
         ],
 
         "--gutter": "0px",
-        "--noOfColumns": noOfColumns ?? 8,
+        "--noOfColumns": "10",
         "--noOfGutters": "calc(var(--noOfColumns) - 1)",
         "--ratioA": "1",
         "--ratioB": "1",
@@ -41,6 +34,9 @@ export const GridParent = ({
         gridAutoRows: "minmax(var(--rh), auto)",
         gridGap: "var(--gutter)",
         margin: "var(--gutter) auto",
+        // "& > *": {
+        //   gridColumnStart: "2",
+        // },
       }}
     >
       {children}

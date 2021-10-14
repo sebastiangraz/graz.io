@@ -33,7 +33,7 @@ export let cases = new Map([
       component: Loupe,
       color: "#184629",
       bg: "#D2DAD3",
-      grid: ["2 / span 11", "4 / span 9"],
+      grid: ["2 / span 11", "3 / span 9"],
     },
   ],
 ]);

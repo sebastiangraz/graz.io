@@ -9,8 +9,6 @@ const Capchase = ({ gridCount }) => {
   const OffGrid = ({ children }) => {
     return (
       <GridParent
-        noOfColumns={9}
-        gridCountOverride={0}
         sx={{
           width: "100%",
           gridColumn: [
@@ -18,25 +16,6 @@ const Capchase = ({ gridCount }) => {
             null,
             `1 / span ${gridCount(0)}`,
             `1 / span ${gridCount(1)}`,
-          ],
-        }}
-      >
-        {children}
-      </GridParent>
-    );
-  };
-  const OnGrid = ({ children }) => {
-    return (
-      <GridParent
-        noOfColumns={8}
-        gridCountOverride={2}
-        sx={{
-          width: "100%",
-          gridColumn: [
-            `2 / span 10`,
-            null,
-            `2 / span ${gridCount(0) - 2}`,
-            `2 / span ${gridCount(1) - 2}`,
           ],
         }}
       >
@@ -77,23 +56,23 @@ const Capchase = ({ gridCount }) => {
               sx={{
                 background: "#111",
                 gridRow: "span 1",
-                gridColumn: ["span 8", "2/ span 9"],
+                gridColumn: ["span 8", "span 10"],
               }}
             ></div>
           </OffGrid>
-          <OnGrid>
+          <OffGrid>
             <div
               sx={{
                 background: "#333",
                 gridRow: "span 4",
-                gridColumn: ["span 4", "span 4"],
+                gridColumn: ["span 4", "6 / span 4"],
               }}
             ></div>
             <div
               sx={{
                 background: "#222",
                 gridRow: "span 4",
-                gridColumn: ["span 4", "span 4"],
+                gridColumn: ["span 4", "2 / span 4"],
               }}
             ></div>
 
@@ -101,10 +80,10 @@ const Capchase = ({ gridCount }) => {
               sx={{
                 background: "#111",
                 gridRow: "span 8",
-                gridColumn: ["span 8", "span 8"],
+                gridColumn: ["span 4", "2 / span 8"],
               }}
             ></div>
-          </OnGrid>
+          </OffGrid>
         </>
       );
     },

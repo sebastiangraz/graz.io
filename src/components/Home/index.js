@@ -100,10 +100,6 @@ export const Home = ({ data }) => {
           gridArea: "logo",
           fontSize: 9,
           display: "flex",
-          transition: `.5s cubic-bezier(1,0,0,1) opacity, 1s cubic-bezier(1,0,0,1) transform`,
-          transform: false
-            ? ["scale(1)", "scale(1)", "scale(0.8)"]
-            : "scale(1)",
         }}
       />
 

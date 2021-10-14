@@ -6,7 +6,7 @@ import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 import { Debugger } from "../";
 
-const debug = true;
+const debug = false;
 
 const settings = {
   nextScrollDistance: 100,

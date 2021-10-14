@@ -15,7 +15,7 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
   }, []);
   return (
     <svg
-      sx={{
+      style={{
         position: "absolute",
         top: 0,
         ...(debug && {

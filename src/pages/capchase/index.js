@@ -9,7 +9,7 @@ const Capchase = ({ gridCount }) => {
   const OffGrid = ({ children }) => {
     return (
       <GridParent
-        noOfColumns={9}
+        noOfColumns={10}
         gridCountOverride={0}
         sx={{
           width: "100%",

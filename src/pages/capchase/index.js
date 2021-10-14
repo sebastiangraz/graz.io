@@ -9,9 +9,10 @@ const Capchase = ({ gridCount }) => {
   const OffGrid = ({ children }) => {
     return (
       <GridParent
-        noOfColumns={10}
+        noOfColumns={12}
         gridCountOverride={0}
         sx={{
+          mt: 10,
           width: "100%",
           gridColumn: [
             `2 / span 10`,
@@ -31,6 +32,7 @@ const Capchase = ({ gridCount }) => {
         noOfColumns={8}
         gridCountOverride={2}
         sx={{
+          mt: 10,
           width: "100%",
           gridColumn: [
             `2 / span 10`,
@@ -54,7 +56,7 @@ const Capchase = ({ gridCount }) => {
                 borderRadius: "0 48px 48px 0",
                 background: "#333",
                 gridRow: ["span 4", "span 2"],
-                gridColumn: ["span 8", "span 3"],
+                gridColumn: ["span 8", "span 4"],
               }}
             ></div>
             <div
@@ -76,8 +78,8 @@ const Capchase = ({ gridCount }) => {
             <div
               sx={{
                 background: "#111",
-                gridRow: "span 1",
-                gridColumn: ["span 8", "2/ span 9"],
+                gridRow: "span 2",
+                gridColumn: ["2 / span 2", "2 / span 2"],
               }}
             ></div>
           </OffGrid>

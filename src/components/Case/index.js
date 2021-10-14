@@ -4,8 +4,9 @@ import React from "react";
 import { m, useSpring, transform, useTransform } from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
+import { Debugger } from "../";
 
-const debug = false;
+const debug = true;
 
 const settings = {
   nextScrollDistance: 100,
@@ -129,44 +130,18 @@ const Case = React.forwardRef(({ index, data }, ref) => {
     );
   };
 
-  const Debugger = () => {
-    return (
-      debug && (
-        <p
-          sx={{
-            mt: "-10px",
-            fontFamily: "monospace",
-            fontSize: 3,
-            position: "fixed",
-            top: (index + 1) * 17,
-            left: 0,
-            zIndex: 10000,
-            px: 3,
-          }}
-        >
-          <span
-            sx={{
-              bg: data?.bg,
-              px: 3,
-              color: data?.color,
-              width: 210,
-              mr: 20,
-              display: "inline-block",
-            }}
-          >
-            {data?.slug} — active: {isActiveState ? "[TRUE]" : "false"}{" "}
-          </span>
-          height: {Math.trunc(height(0))} pos: {Math.trunc(position(0))}px
-        </p>
-      )
-    );
-  };
-
   const gridCount = (arr) => data?.grid && data.grid[arr].split("span ")[1];
 
   return (
     <>
-      <Debugger />
+      <Debugger
+        data={data}
+        index={index}
+        height={height}
+        position={position}
+        isActiveState={isActiveState}
+        debug={debug}
+      />
       {index === 0 ? (
         // -----HOME-----
         <m.div
@@ -174,15 +149,15 @@ const Case = React.forwardRef(({ index, data }, ref) => {
           ref={ref}
           style={{
             y: y,
-          }}
-          sx={{
             color: data?.color,
             backgroundColor: data?.bg,
+          }}
+          sx={{
             width: "100%",
             minHeight: "100%",
             position: "fixed",
             left: 0,
-            top: `calc(100vh - ${0}px)`,
+            top: `calc(100vh)`,
           }}
         >
           <Render data={data} />
@@ -232,8 +207,7 @@ const Case = React.forwardRef(({ index, data }, ref) => {
             </m.div>
             <div
               className="background-layer"
-              sx={{
-                ...caseBg,
+              style={{
                 height: [
                   `calc(100% - ${
                     300 -
@@ -244,21 +218,26 @@ const Case = React.forwardRef(({ index, data }, ref) => {
                 ],
                 backgroundColor: data?.bg,
               }}
+              sx={{
+                ...caseBg,
+              }}
             ></div>
 
             <div
-              sx={{
-                mb: "100vh",
-                mt: "20vh",
-                transition: "opacity 0.2s ease",
+              style={{
                 ...(isActiveState
                   ? {
                       opacity: 1,
                     }
                   : { opacity: 0 }),
               }}
+              sx={{
+                mb: "100vh",
+                mt: "20vh",
+                transition: "opacity 0.2s ease",
+              }}
             >
-              <Render gridCount={gridCount} />
+              <Render />
             </div>
           </div>
         </m.div>

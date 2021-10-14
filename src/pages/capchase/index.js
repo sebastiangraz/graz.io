@@ -76,7 +76,7 @@ const phoneBorder = () => {
   };
 };
 
-const Capchase = ({ gridCount }) => {
+const Capchase = () => {
   const Sections = {
     Intro: () => {
       return (
@@ -226,12 +226,7 @@ const Capchase = ({ gridCount }) => {
       sx={{
         position: "relative",
         display: "grid",
-        gridTemplateColumns: [
-          `repeat(12, 1fr)`,
-          null,
-          `repeat(${gridCount(0)}, 1fr)`,
-          `repeat(${gridCount(1)}, 1fr)`,
-        ],
+        gridTemplateColumns: [`repeat(12, 1fr)`],
       }}
     >
       {Object.entries(Sections).map(([k, Section]) => (

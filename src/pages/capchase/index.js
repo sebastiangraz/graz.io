@@ -4,19 +4,6 @@ import React from "react";
 import { GridParent, Img, List } from "../../components";
 import { images, videos, icons } from "./assets";
 
-const OffGrid = ({ children }) => {
-  return (
-    <GridParent
-      sx={{
-        width: "100%",
-        gridColumn: `1 / span 12`,
-      }}
-    >
-      {children}
-    </GridParent>
-  );
-};
-
 const colors = {
   black: "#0F0F14",
   white: "#FCFBF8",
@@ -81,7 +68,7 @@ const Capchase = () => {
     Intro: () => {
       return (
         <>
-          <OffGrid>
+          <GridParent>
             <div
               sx={{
                 pr: 9,
@@ -132,8 +119,8 @@ const Capchase = () => {
                 imageData={images.mobileIntro}
               />
             </div>
-          </OffGrid>
-          <OffGrid>
+          </GridParent>
+          <GridParent>
             <div
               sx={{
                 borderRadius: radius().default,
@@ -215,7 +202,7 @@ const Capchase = () => {
             >
               <Img imageData={images.totes} />
             </div>
-          </OffGrid>
+          </GridParent>
         </>
       );
     },

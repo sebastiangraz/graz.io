@@ -10,12 +10,14 @@ export const List = ({ children, noBullets, variant, ...rest }) => {
           <li
             key={i}
             sx={{
-              mt: 2,
-              "&::marker": {
-                content: `"·  "`,
-                fontSize: "100%",
-                textRendering: "geometricPrecision",
-              },
+              mb: 2,
+              listStyle: "none",
+              ...(!noBullets && {
+                "&::marker": {
+                  content: `"·  "`,
+                  textRendering: "geometricPrecision",
+                },
+              }),
             }}
           >
             {child}

@@ -1,8 +1,8 @@
 /** @jsxImportSource theme-ui */
 
 import React from "react";
-import { GridParent, Img, List, CaseMeta } from "../../components";
-import { images, videos, icons } from "./assets";
+import { GridParent, Img, CaseMeta, NumberedList } from "../../components";
+import { images, icons } from "./assets";
 import { Text, Box } from "theme-ui";
 
 const colors = {
@@ -81,6 +81,17 @@ const Capchase = ({ data }) => {
                 both brand awareness while establishing their slice of the
                 market. Big&nbsp;slices&nbsp;too.
               </Text>
+            </Box>
+            <Box sx={{ gridColumn: ["span 8", " 2/ span 4"] }}>
+              <NumberedList
+                labelColor={colors.yellow}
+                horizontal
+                labels={[
+                  "Create brand and execute it for a very perceptive audience.",
+                  "Create brand and execute it for a very perceptive audience.",
+                  "Position Capchase as a",
+                ]}
+              />
             </Box>
           </GridParent>
           <GridParent>

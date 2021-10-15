@@ -14,6 +14,7 @@ export const CaseMeta = ({ data }) => {
       <Box sx={{ gridColumn: "1 / span 1" }}>
         <Text variant="caps">Scope</Text>
         <List
+          noBullets
           sx={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
@@ -31,22 +32,18 @@ export const CaseMeta = ({ data }) => {
       </Box>
       <Box sx={{ gridColumn: "4 / span 2" }}>
         <Text variant="caps">Role</Text>
-        <List>
-          <Text variant="label">{data.role}</Text>
-        </List>
+
+        <Text variant="label">{data.role}</Text>
       </Box>
       <Box sx={{ gridColumn: "6 / span 2" }}>
         <Text variant="caps">Period</Text>
-        <List>
-          <Text variant="label">{data.period}</Text>
-        </List>
+        <Text variant="label">{data.period}</Text>
       </Box>
 
       <Box sx={{ gridColumn: "8 / span 2" }}>
         <Text variant="caps">Year</Text>
-        <List>
-          <Text variant="label">{data.year}</Text>
-        </List>
+
+        <Text variant="label">{data.year}</Text>
       </Box>
     </Box>
   );

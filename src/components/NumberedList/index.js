@@ -43,7 +43,7 @@ export const NumberedList = ({ labelColor, horizontal, labels, ...rest }) => {
                 color: labelColor ? labelColor : "#fff",
               }}
             >
-              {i}
+              {i + 1}
             </span>
             <Text variant="label" m={0}>
               {label}

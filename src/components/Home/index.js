@@ -58,26 +58,9 @@ export const Home = ({ data }) => {
 
   const logo = useTransform(scrollY, (v) => updateLogo(v));
 
-  function Content() {
-    return (
-      <m.div
-        layout
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-      >
-        10 years of experience working with global clients with unique
-        challenges. With great gusto the studio specialises in unique layouts,
-        evoking colors, intricate interactions with a detail-oriented finish.
-        Are all attributes the studio strives
-      </m.div>
-    );
-  }
-  function Item() {
+  const Button = () => {
     const [isOpen, setIsOpen] = React.useState(false);
-
     const toggleOpen = () => setIsOpen(!isOpen);
-
     return (
       <>
         <m.span
@@ -88,6 +71,7 @@ export const Home = ({ data }) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           sx={{
+            margin: 0,
             width: "1em",
             height: "1em",
             verticalAlign: "middle",
@@ -95,19 +79,51 @@ export const Home = ({ data }) => {
             display: "inline-grid",
             alignItems: "center",
             justifyContent: "center",
+            position: "relative",
             "&:hover": {
               cursor: "pointer",
             },
+            "&:before": {
+              content: "''",
+              backgroundColor: data.bg,
+              width: "10px",
+              height: "2px",
+              left: "calc(50% - 5px)",
+              position: "absolute",
+            },
+            "&:after": {
+              content: "''",
+              transition: "background .3s ease",
+              backgroundColor: isOpen ? "transparent" : data.bg,
+              height: "10px",
+              width: "2px",
+              left: "calc(50% - 1px)",
+              position: "absolute",
+            },
           }}
-        >
-          <Text sx={{ color: data.bg }} variant="label" m={0}>
-            +
-          </Text>
-        </m.span>
-        <AnimatePresence>{isOpen && <Content />}</AnimatePresence>
+        ></m.span>
+
+        <AnimatePresence>
+          {isOpen && (
+            <m.div
+              layout
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <Text mt={6}>
+                10 years of experience working with global clients with unique
+                challenges. With great gusto the studio specialises in unique
+                layouts, evoking colors, intricate interactions with a
+                detail-oriented finish. Are all attributes the studio strives
+                towards.
+              </Text>
+            </m.div>
+          )}
+        </AnimatePresence>
       </>
     );
-  }
+  };
 
   return (
     <m.div
@@ -232,24 +248,14 @@ export const Home = ({ data }) => {
           <m.div
             layout="position"
             sx={{
-              mt: -2,
               maxWidth: ["100%", "initial", null],
               width: ["100%", 420, 360, 500],
             }}
           >
-            <Text variant="lead">
+            <Text variant="lead" mb={4}>
               Sebastian Graz is a design studio for all things branding, digital
-              design & systems, served with a technological edge.{" "}
+              design & systems, served with a technological edge. <Button />
             </Text>
-            <m.span
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-              }}
-              layout
-            >
-              <Item layout key={1} />
-            </m.span>
           </m.div>
         </div>
       </AnimateSharedLayout>

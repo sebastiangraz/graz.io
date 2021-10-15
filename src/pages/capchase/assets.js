@@ -57,6 +57,18 @@ export const images = {
     height: 744,
     alt: "stats",
   },
+  brandbook1: {
+    url: require("./assets/brandbook-1.png"),
+    width: 2662,
+    height: 2240,
+    alt: "brandbook1",
+  },
+  brandbook2: {
+    url: require("./assets/brandbook-2.png"),
+    width: 2662,
+    height: 2868,
+    alt: "brandbook2",
+  },
 };
 
 export const icons = {

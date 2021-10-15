@@ -233,6 +233,44 @@ const Capchase = ({ data }) => {
         </>
       );
     },
+    BrandBook: () => {
+      return (
+        <>
+          <GridParent>
+            <div
+              sx={{
+                gridRow: "3/ span 4",
+                gridColumn: ["span 2", "2 / span 9"],
+              }}
+            >
+              <Img imageData={images.brandbook1} />
+            </div>
+            <div
+              sx={{
+                mt: 8,
+                gridRow: "7/span 4",
+                gridColumn: ["span 2", "2 / span 9"],
+              }}
+            >
+              <Img imageData={images.brandbook2} />
+            </div>
+            <div
+              sx={{
+                gridRow: "5/span 2",
+                gridColumn: ["span 2", "5 / span 5"],
+              }}
+            >
+              <Text variant="caps">Rules that matter</Text>
+              <Text sx={{ maxWidth: 480 }}>
+                Because we were free from the clutches of text-heavy rules. The
+                final guideline deliverable took on a relaxed yet inspirational
+                format.
+              </Text>
+            </div>
+          </GridParent>
+        </>
+      );
+    },
   };
 
   return (

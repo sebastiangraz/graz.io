@@ -2,7 +2,7 @@
 import { Box, Text } from "theme-ui";
 import { List } from "../";
 export const CaseMeta = ({ data }) => {
-  console.log();
+
   return (
     <Box
       mb={10}

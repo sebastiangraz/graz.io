@@ -4,7 +4,19 @@ import { Text } from "theme-ui";
 
 export const NumberedList = ({ labelColor, horizontal, labels, ...rest }) => {
   return (
-    <ul {...rest} sx={{ p: 0, display: "grid", rowGap: 5, mb: 10 }}>
+    <ul
+      {...rest}
+      sx={{
+        ...(horizontal && {
+          gridTemplateColumns: "1fr 1fr",
+          columnGap: 8,
+        }),
+        p: 0,
+        display: "grid",
+        rowGap: 7,
+        mb: 10,
+      }}
+    >
       {labels.map((label, i) => {
         return (
           <li

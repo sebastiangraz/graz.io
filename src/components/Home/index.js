@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 
 import React from "react";
-import { Text, Grid } from "theme-ui";
+import { Text, Grid, Link } from "theme-ui";
 import { Logo, List } from "../";
 import { m, useViewportScroll, useTransform, transform } from "framer-motion";
 
@@ -129,7 +129,7 @@ export const Home = ({ data }) => {
             <List>
               <>Husqvarna</>
               <>M. Saatchi</>
-              <>Delhaize</>
+              <>Capchase</>
               <>Framer</>
               <>Canon</>
               <>Volvo</>
@@ -144,8 +144,8 @@ export const Home = ({ data }) => {
             <List>
               <>Empathic design</>
               <>Design Systems</>
+              <>Art direction</>
               <>Prototyping</>
-              <>Design Ops</>
               <>Front-End</>
               <>Branding</>
             </List>
@@ -175,11 +175,30 @@ export const Home = ({ data }) => {
           sx={{
             mt: -2,
             maxWidth: ["100%", "initial", null],
-            width: ["100%", 420, 360, 520],
+            width: ["100%", 420, 360, 500],
           }}
         >
-          I’m Sebastian—as a digital designer I care about our dear users, rapid
-          prototyping, design systems and brand identities.
+          Studio Sebastian Graz is a design specialist for all things branding,
+          digital design & systems, served with a technological edge{" "}
+          <span
+            style={{ backgroundColor: "currentColor" }}
+            sx={{
+              width: "1em",
+              height: "1em",
+              verticalAlign: "middle",
+              borderRadius: "pill",
+              display: "inline-grid",
+              alignItems: "center",
+              justifyContent: "center",
+              "&:hover": {
+                cursor: "pointer",
+              },
+            }}
+          >
+            <Text sx={{ color: data.bg }} variant="label" m={0}>
+              +
+            </Text>
+          </span>
         </Text>
       </div>
     </m.div>

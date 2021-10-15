@@ -82,14 +82,24 @@ const Capchase = ({ data }) => {
                 market. Big&nbsp;slices&nbsp;too.
               </Text>
             </Box>
-            <Box sx={{ gridColumn: ["span 8", " 2/ span 4"] }}>
+            <Box sx={{ gridColumn: ["span 8", " 2/ span 5"] }}>
               <NumberedList
                 labelColor={colors.yellow}
                 horizontal
                 labels={[
                   "Create brand and execute it for a very perceptive audience.",
+                  "Position Capchase as a leader in non-dilutable financing.",
+                  "Proofing Capchase’s brand for longevity & recognizability. ",
+                  "Capchase to feel like a business partner not a tool.",
+                ]}
+              />
+              <NumberedList
+                labelColor={colors.yellow}
+                labels={[
                   "Create brand and execute it for a very perceptive audience.",
-                  "Position Capchase as a",
+                  "Position Capchase as a leader in non-dilutable financing.",
+                  "Proofing Capchase’s brand for longevity & recognizability. ",
+                  "Capchase to feel like a business partner not a tool.",
                 ]}
               />
             </Box>

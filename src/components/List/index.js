@@ -10,7 +10,7 @@ export const List = ({ children, noBullets, variant, ...rest }) => {
           <li
             key={i}
             sx={{
-              mb: 2,
+              mb: 3,
               listStyle: "none",
               ...(!noBullets && {
                 "&::marker": {

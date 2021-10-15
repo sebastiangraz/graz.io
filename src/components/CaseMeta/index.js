@@ -2,7 +2,6 @@
 import { Box, Text } from "theme-ui";
 import { List } from "../";
 export const CaseMeta = ({ data }) => {
-
   return (
     <Box
       mb={10}
@@ -21,7 +20,7 @@ export const CaseMeta = ({ data }) => {
             columnGap: "60px",
           }}
         >
-          {data?.scope.map((e) => {
+          {data.scope?.map((e) => {
             return (
               <Text sx={{ whiteSpace: "pre" }} m={0} variant="label">
                 {e}

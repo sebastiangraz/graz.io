@@ -93,15 +93,6 @@ const Capchase = ({ data }) => {
                   "Capchase to feel like a business partner not a tool.",
                 ]}
               />
-              <NumberedList
-                labelColor={colors.yellow}
-                labels={[
-                  "Create brand and execute it for a very perceptive audience.",
-                  "Position Capchase as a leader in non-dilutable financing.",
-                  "Proofing Capchase’s brand for longevity & recognizability. ",
-                  "Capchase to feel like a business partner not a tool.",
-                ]}
-              />
             </Box>
           </GridParent>
           <GridParent>

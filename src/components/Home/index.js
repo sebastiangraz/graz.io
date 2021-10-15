@@ -3,7 +3,14 @@
 import React from "react";
 import { Text, Grid, Link } from "theme-ui";
 import { Logo, List } from "../";
-import { m, useViewportScroll, useTransform, transform } from "framer-motion";
+import {
+  m,
+  useViewportScroll,
+  useTransform,
+  transform,
+  AnimatePresence,
+  AnimateSharedLayout,
+} from "framer-motion";
 
 const awards = [
   {
@@ -49,8 +56,58 @@ export const Home = ({ data }) => {
     return transform(v, y, logoOutput);
   };
 
-  const logo = transform(scrollY, y, logoOutput);
-  const filter = useTransform(scrollY, (v) => updateLogo(v));
+  const logo = useTransform(scrollY, (v) => updateLogo(v));
+
+  function Content() {
+    return (
+      <m.div
+        layout
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        10 years of experience working with global clients with unique
+        challenges. With great gusto the studio specialises in unique layouts,
+        evoking colors, intricate interactions with a detail-oriented finish.
+        Are all attributes the studio strives
+      </m.div>
+    );
+  }
+  function Item() {
+    const [isOpen, setIsOpen] = React.useState(false);
+
+    const toggleOpen = () => setIsOpen(!isOpen);
+
+    return (
+      <>
+        <m.span
+          layout
+          onClick={toggleOpen}
+          style={{ backgroundColor: "currentColor" }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          sx={{
+            width: "1em",
+            height: "1em",
+            verticalAlign: "middle",
+            borderRadius: "pill",
+            display: "inline-grid",
+            alignItems: "center",
+            justifyContent: "center",
+            "&:hover": {
+              cursor: "pointer",
+            },
+          }}
+        >
+          <Text sx={{ color: data.bg }} variant="label" m={0}>
+            +
+          </Text>
+        </m.span>
+        <AnimatePresence>{isOpen && <Content />}</AnimatePresence>
+      </>
+    );
+  }
 
   return (
     <m.div
@@ -94,113 +151,108 @@ export const Home = ({ data }) => {
         ],
       }}
     >
-      <Logo
-        style={{ fontVariationSettings: filter }}
-        sx={{
-          gridArea: "logo",
-          fontSize: 9,
-          display: "flex",
-        }}
-      />
-
-      <Text
-        variant="label"
-        sx={{ gridArea: "years", display: ["none", "block"] }}
-      >
-        Résumé
-      </Text>
-      <Text variant="label" sx={{ gridArea: "contact" }}>
-        Contact
-      </Text>
-      <div
-        sx={{
-          gridArea: "meta",
-          display: "grid",
-          rowGap: [7, null],
-          gridTemplateColumns: ["repeat(2, 1fr)", "repeat(3, 1fr)"],
-          width: "100%",
-        }}
-      >
-        <div>
-          <Text variant="label" mb={5}>
-            <Text variant="label" mb={4}>
-              Associations
-            </Text>
-            <List>
-              <>Husqvarna</>
-              <>M. Saatchi</>
-              <>Capchase</>
-              <>Framer</>
-              <>Canon</>
-              <>Volvo</>
-            </List>
-          </Text>
-        </div>
-        <div>
-          <Text variant="label" mb={5}>
-            <Text variant="label" mb={4}>
-              Expertise
-            </Text>
-            <List>
-              <>Empathic design</>
-              <>Design Systems</>
-              <>Art direction</>
-              <>Prototyping</>
-              <>Front-End</>
-              <>Branding</>
-            </List>
-          </Text>
-        </div>
-        <div>
-          <Text variant="label" mb={5}>
-            <Text variant="label" mb={4}>
-              Recognitions
-            </Text>
-            <List>
-              {awards.map((char) => (
-                <React.Fragment key={char.title}>
-                  {char.title} ·{" "}
-                  <Text sx={{ display: "inline" }} variant="caps">
-                    {char.count}×
-                  </Text>
-                </React.Fragment>
-              ))}
-            </List>
-          </Text>
-        </div>
-      </div>
-      <div sx={{ gridArea: "intro" }}>
-        <Text
-          variant="lead"
+      <AnimateSharedLayout>
+        <Logo
+          style={{ fontVariationSettings: logo }}
           sx={{
-            mt: -2,
-            maxWidth: ["100%", "initial", null],
-            width: ["100%", 420, 360, 500],
+            gridArea: "logo",
+            fontSize: 9,
+            display: "flex",
+          }}
+        />
+
+        <Text
+          variant="label"
+          sx={{ gridArea: "years", display: ["none", "block"] }}
+        >
+          Résumé
+        </Text>
+        <Text variant="label" sx={{ gridArea: "contact" }}>
+          Contact
+        </Text>
+        <m.div
+          layout
+          sx={{
+            gridArea: "meta",
+            display: "grid",
+            rowGap: [7, null],
+            gridTemplateColumns: ["repeat(2, 1fr)", "repeat(3, 1fr)"],
+            width: "100%",
           }}
         >
-          Studio Sebastian Graz is a design specialist for all things branding,
-          digital design & systems, served with a technological edge{" "}
-          <span
-            style={{ backgroundColor: "currentColor" }}
+          <div>
+            <Text variant="label" mb={5}>
+              <Text variant="label" mb={4}>
+                Associations
+              </Text>
+              <List>
+                <>Husqvarna</>
+                <>M. Saatchi</>
+                <>Capchase</>
+                <>Framer</>
+                <>Canon</>
+                <>Volvo</>
+              </List>
+            </Text>
+          </div>
+          <div>
+            <Text variant="label" mb={5}>
+              <Text variant="label" mb={4}>
+                Expertise
+              </Text>
+              <List>
+                <>Empathic design</>
+                <>Design Systems</>
+                <>Art direction</>
+                <>Prototyping</>
+                <>Front-End</>
+                <>Branding</>
+              </List>
+            </Text>
+          </div>
+          <div>
+            <Text variant="label" mb={5}>
+              <Text variant="label" mb={4}>
+                Recognitions
+              </Text>
+              <List>
+                {awards.map((char) => (
+                  <React.Fragment key={char.title}>
+                    {char.title} ·{" "}
+                    <Text sx={{ display: "inline" }} variant="caps">
+                      {char.count}×
+                    </Text>
+                  </React.Fragment>
+                ))}
+              </List>
+            </Text>
+          </div>
+        </m.div>
+        <div sx={{ gridArea: "intro" }}>
+          <m.div
+            layout="position"
             sx={{
-              width: "1em",
-              height: "1em",
-              verticalAlign: "middle",
-              borderRadius: "pill",
-              display: "inline-grid",
-              alignItems: "center",
-              justifyContent: "center",
-              "&:hover": {
-                cursor: "pointer",
-              },
+              mt: -2,
+              maxWidth: ["100%", "initial", null],
+              width: ["100%", 420, 360, 500],
             }}
           >
-            <Text sx={{ color: data.bg }} variant="label" m={0}>
-              +
+            <Text variant="lead">
+              Sebastian Graz is a design studio for all things branding, digital
+              design & systems, served with a technological edge.{" "}
             </Text>
-          </span>
-        </Text>
-      </div>
+            <m.span
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+              layout
+            >
+              <Item layout key={1} />
+            </m.span>
+          </m.div>
+        </div>
+      </AnimateSharedLayout>
     </m.div>
   );
 };

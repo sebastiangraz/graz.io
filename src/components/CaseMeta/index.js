@@ -23,7 +23,7 @@ export const CaseMeta = ({ data }) => {
         >
           {data.scope?.map((e) => {
             return (
-              <Text sx={{ whiteSpace: "pre" }} m={0} variant="label">
+              <Text key={e} sx={{ whiteSpace: "pre" }} m={0} variant="label">
                 {e}
               </Text>
             );

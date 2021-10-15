@@ -5,6 +5,7 @@ import {
   domAnimation,
   useMotionValue,
   useViewportScroll,
+  domMax,
 } from "framer-motion";
 
 const CaseWrapperContext = React.createContext(null);
@@ -56,7 +57,7 @@ const CaseWrapper = ({ children }) => {
   }, [children, scrollY]); //  }, [children, scrollY]);
 
   return (
-    <LazyMotion features={domAnimation} strict>
+    <LazyMotion features={domMax}>
       <div
         style={{
           height: state.childSum,

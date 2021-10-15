@@ -67,9 +67,6 @@ export const Home = ({ data }) => {
           layout
           onClick={toggleOpen}
           style={{ backgroundColor: "currentColor" }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
           sx={{
             margin: 0,
             width: "1em",

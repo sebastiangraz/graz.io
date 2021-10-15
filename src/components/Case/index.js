@@ -1,7 +1,13 @@
 /** @jsxImportSource theme-ui */
 
 import React from "react";
-import { m, useSpring, transform, useTransform } from "framer-motion";
+import {
+  m,
+  useSpring,
+  transform,
+  useTransform,
+  useViewportScroll,
+} from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 import { Debugger } from "../";
@@ -63,8 +69,8 @@ function ScrollToTopOnMount(props) {
 }
 
 const Case = React.forwardRef(({ index, data }, ref) => {
-  let { childHeight, childPosition, windowHeight, scrollProgress } =
-    useCaseWrapperContext();
+  const { scrollY } = useViewportScroll();
+  let { childHeight, childPosition, windowHeight } = useCaseWrapperContext();
 
   const responsiveOffset = useResponsiveValue([50, 75, 200, 240]);
   const Render = data.component;
@@ -94,16 +100,16 @@ const Case = React.forwardRef(({ index, data }, ref) => {
   };
 
   const y = useSpring(
-    useTransform(scrollProgress, (v) => updatePos(v)),
+    useTransform(scrollY, (v) => updatePos(v)),
     settings.springOptions
   );
 
   const yNext = useSpring(
-    useTransform(scrollProgress, (v) => updatePosNext(v)),
+    useTransform(scrollY, (v) => updatePosNext(v)),
     settings.springOptions
   );
 
-  const isActive = useTransform(scrollProgress, (v) => updatePos(v));
+  const isActive = useTransform(scrollY, (v) => updatePos(v));
   const [isActiveState, setIsActiveState] = React.useState(false);
 
   React.useEffect(

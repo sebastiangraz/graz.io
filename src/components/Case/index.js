@@ -68,7 +68,8 @@ function ScrollToTopOnMount(props) {
   return null;
 }
 
-const Case = React.forwardRef(({ index, data }, ref) => {
+const MemoCase = React.forwardRef(({ index, data }, ref) => {
+  console.log("Case Rerendered");
   const { scrollY } = useViewportScroll();
   let { childHeight, childPosition, windowHeight } = useCaseWrapperContext();
 
@@ -109,32 +110,32 @@ const Case = React.forwardRef(({ index, data }, ref) => {
     settings.springOptions
   );
 
-  const isActive = useTransform(scrollY, (v) => updatePos(v));
-  const [isActiveState, setIsActiveState] = React.useState(false);
+  // const isActive = useTransform(scrollY, (v) => updatePos(v));
+  // const [isActiveState, setIsActiveState] = React.useState(false);
 
-  React.useEffect(
-    () =>
-      isActive.onChange((e) => {
-        setIsActiveState(e > -height(0) && e < 0);
-      }),
-    [isActive, height]
-  );
+  // React.useEffect(
+  //   () =>
+  //     isActive.onChange((e) => {
+  //       setIsActiveState(e > -height(0) && e < 0);
+  //     }),
+  //   [isActive, height]
+  // );
 
   // -----CLICK TO SCROLLTO CASE-----
-  const handleClick = () => {
-    if (index !== 0) {
-      window.history.replaceState(null, null, `#${data.slug}`);
-    } else {
-      window.history.replaceState(null, null, " ");
-    }
-    window.scrollTo(
-      0,
-      position(0) -
-        height(0) -
-        (index !== 1 && settings.nextScrollDistance) +
-        staggeredOffset
-    );
-  };
+  // const handleClick = () => {
+  //   if (index !== 0) {
+  //     window.history.replaceState(null, null, `#${data.slug}`);
+  //   } else {
+  //     window.history.replaceState(null, null, " ");
+  //   }
+  //   window.scrollTo(
+  //     0,
+  //     position(0) -
+  //       height(0) -
+  //       (index !== 1 && settings.nextScrollDistance) +
+  //       staggeredOffset
+  //   );
+  // };
 
   const gridCount = (arr) => data?.grid && data.grid[arr].split("span ")[1];
 
@@ -145,13 +146,13 @@ const Case = React.forwardRef(({ index, data }, ref) => {
         index={index}
         height={height}
         position={position}
-        isActiveState={isActiveState}
+        // isActiveState={isActiveState}
         debug={debug}
       />
       {index === 0 ? (
         // -----HOME-----
         <m.div
-          onClick={handleClick}
+          // onClick={handleClick}
           ref={ref}
           style={{
             y: y,
@@ -160,10 +161,9 @@ const Case = React.forwardRef(({ index, data }, ref) => {
           }}
           sx={{
             width: "100%",
-            minHeight: "100%",
+            top: "100%",
             position: "fixed",
             left: 0,
-            top: `calc(100vh)`,
           }}
         >
           <Render data={data} />
@@ -187,7 +187,7 @@ const Case = React.forwardRef(({ index, data }, ref) => {
           }}
         >
           <div
-            onClick={!isActiveState ? handleClick : null}
+            // onClick={!isActiveState ? handleClick : null}
             sx={{
               pointerEvents: "auto",
               position: "relative",
@@ -230,13 +230,13 @@ const Case = React.forwardRef(({ index, data }, ref) => {
             ></div>
 
             <div
-              style={{
-                ...(isActiveState
-                  ? {
-                      opacity: 1,
-                    }
-                  : { opacity: 0 }),
-              }}
+              // style={{
+              //   ...(isActiveState
+              //     ? {
+              //         opacity: 1,
+              //       }
+              //     : { opacity: 0 }),
+              // }}
               sx={{
                 mb: "100vh",
                 mt: "20vh",
@@ -259,4 +259,4 @@ const Case = React.forwardRef(({ index, data }, ref) => {
   );
 });
 
-export default Case;
+export const Case = React.memo(MemoCase);

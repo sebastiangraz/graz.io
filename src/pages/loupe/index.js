@@ -189,9 +189,7 @@ const Sections = {
               gridColumn: ["1 / span 8", "1 / span 3"],
             }}
           >
-            <div sx={{ height: "100%" }}>
-              <Logo></Logo>
-            </div>
+            <div sx={{ height: "100%" }}>{/* <Logo></Logo> */}</div>
           </Box>
           <Box
             sx={{

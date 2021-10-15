@@ -8,7 +8,7 @@ import { m, useReducedMotion } from "framer-motion";
 export const Video = ({ videoData, ...rest }) => {
   const shouldReduceMotion = useReducedMotion();
   const ref = useRef(null);
-  const [inViewRef, inView] = useInView({ rootMargin: "-100px 0px" });
+  // const [inViewRef, inView] = useInView({ rootMargin: "-100px 0px" });
   const [loaded, setLoaded] = React.useState(false);
   const [isPlaying, setIsPlaying] = React.useState(false);
 
@@ -28,24 +28,24 @@ export const Video = ({ videoData, ...rest }) => {
     } catch (err) {}
   }
 
-  useEffect(() => {
-    if (inView) {
-      shouldReduceMotion ? Pause() : Play();
-    } else {
-      shouldReduceMotion ? Play() : Pause();
-    }
-    ref.current.setAttribute("muted", "");
-  }, [ref, inView, inViewRef, shouldReduceMotion]);
+  // useEffect(() => {
+  //   if (inView) {
+  //     shouldReduceMotion ? Pause() : Play();
+  //   } else {
+  //     shouldReduceMotion ? Play() : Pause();
+  //   }
+  //   ref.current.setAttribute("muted", "");
+  // }, [ref, inView, inViewRef, shouldReduceMotion]);
 
-  const setRefs = React.useCallback(
-    (node) => {
-      // Ref's from useRef needs to have the node assigned to `current`
-      ref.current = node;
-      // Callback refs, like the one from `useInView`, is a function that takes the node as an argument
-      inViewRef(node);
-    },
-    [inViewRef]
-  );
+  // const setRefs = React.useCallback(
+  //   (node) => {
+  //     // Ref's from useRef needs to have the node assigned to `current`
+  //     ref.current = node;
+  //     // Callback refs, like the one from `useInView`, is a function that takes the node as an argument
+  //     inViewRef(node);
+  //   },
+  //   [inViewRef]
+  // );
 
   return (
     <div
@@ -95,7 +95,7 @@ export const Video = ({ videoData, ...rest }) => {
           objectFit: videoData.fit ? videoData.fit : "contain",
         }}
         src={videoData.url.default}
-        ref={setRefs}
+        // ref={setRefs}
         loop
         onLoadedData={() => setLoaded(true)}
         playsInline

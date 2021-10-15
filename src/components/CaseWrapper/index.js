@@ -3,9 +3,10 @@ import debounce from "lodash.debounce";
 import { LazyMotion, domMax } from "framer-motion";
 
 const CaseWrapperContext = React.createContext(null);
-const useCaseWrapperContext = () => React.useContext(CaseWrapperContext);
+export const useCaseWrapperContext = () => React.useContext(CaseWrapperContext);
 
-const CaseWrapper = ({ children }) => {
+const MemoCaseWrapper = ({ children }) => {
+  console.log("CaseWrapper Rerendered");
   const [state, setCase] = React.useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
@@ -29,6 +30,7 @@ const CaseWrapper = ({ children }) => {
         childPosition.push(acc + child);
         return acc + child;
       }, 0);
+
       setCase({
         childHeight: childHeightVar,
         childPosition: childPosition,
@@ -61,4 +63,4 @@ const CaseWrapper = ({ children }) => {
   );
 };
 
-export { CaseWrapper, useCaseWrapperContext };
+export const CaseWrapper = React.memo(MemoCaseWrapper);

@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 
 import React from "react";
-import { Text, Grid, Link } from "theme-ui";
+import { Text, Grid } from "theme-ui";
 import { Logo, List } from "../";
 import {
   m,
@@ -48,15 +48,8 @@ const awards = [
 export const Home = ({ data }) => {
   const y = [0, window.innerHeight / 1.2, window.innerHeight];
   const colorOutput = [data.color, "hsl(42, 33%, 93%)", data.bg];
-  const logoOutput = [`"wght" ${60}`, `"wght" ${12}`, `"wght" ${5}`];
   const { scrollY } = useViewportScroll();
   const color = useTransform(scrollY, y, colorOutput);
-
-  const updateLogo = (v) => {
-    return transform(v, y, logoOutput);
-  };
-
-  const logo = useTransform(scrollY, (v) => updateLogo(v));
 
   const Button = () => {
     const [isOpen, setIsOpen] = React.useState(false);
@@ -127,6 +120,7 @@ export const Home = ({ data }) => {
       as={Grid}
       style={{ color }}
       sx={{
+        willChange: "color",
         margin: "0 auto",
         minHeight: "100vh",
         py: [7, 8, 9],
@@ -166,8 +160,8 @@ export const Home = ({ data }) => {
     >
       <AnimateSharedLayout>
         <Logo
-          style={{ fontVariationSettings: logo }}
           sx={{
+            fontVariationSettings: `"wght" 43`,
             gridArea: "logo",
             fontSize: 9,
             display: "flex",

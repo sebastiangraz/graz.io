@@ -6,19 +6,22 @@ export const CaseMeta = ({ data }) => {
     <Box
       mb={10}
       sx={{
-        display: "grid",
+        flexDirection: "column",
+        display: ["flex", null, "grid"],
         gridColumn: "2 / span 8",
+        gap: [8, null, 2],
         gridTemplateColumns: "repeat(8, 1fr)",
       }}
     >
-      <Box sx={{ gridColumn: "1 / span 1" }}>
+      <Box sx={{ gridColumn: "1 / span 2" }}>
         <Text variant="caps">Scope</Text>
         <List
           noBullets
           sx={{
             display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            columnGap: "60px",
+            gridTemplateColumns:
+              "repeat(auto-fit, minmax(min(120px, 100%), 1fr))",
+            columnGap: "32px",
           }}
         >
           {data.scope?.map((e) => {

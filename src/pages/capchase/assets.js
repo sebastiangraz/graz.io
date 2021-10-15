@@ -69,6 +69,12 @@ export const images = {
     height: 2868,
     alt: "brandbook2",
   },
+  webdesign: {
+    url: require("./assets/webdesign.png"),
+    width: 2760,
+    height: 5231,
+    alt: "webdesign",
+  },
 };
 
 export const icons = {

@@ -271,6 +271,25 @@ const Capchase = ({ data }) => {
         </>
       );
     },
+    Webdesign: () => {
+      return (
+        <>
+          <GridParent>
+            <div
+              sx={{
+                gridRow: "3/ span 4",
+                gridColumn: ["span 2", "2 / span 8"],
+                img: {
+                  transform: "scale(1.205)",
+                },
+              }}
+            >
+              <Img imageData={images.webdesign} />
+            </div>
+          </GridParent>
+        </>
+      );
+    },
   };
 
   return (

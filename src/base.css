@@ -4,7 +4,7 @@ html {
   overscroll-behavior-y: none;
 }
 body {
-  overflow-y: scroll;
+  overflow-y: hidden;
 }
 * {
   margin: 0;

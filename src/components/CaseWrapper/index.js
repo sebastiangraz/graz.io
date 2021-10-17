@@ -1,12 +1,18 @@
 import React from "react";
 import debounce from "lodash.debounce";
-import { LazyMotion, domMax } from "framer-motion";
+import {
+  LazyMotion,
+  domMax,
+  useMotionValue,
+  useElementScroll,
+} from "framer-motion";
 
 const CaseWrapperContext = React.createContext(null);
 export const useCaseWrapperContext = () => React.useContext(CaseWrapperContext);
 
-const MemoCaseWrapper = ({ children }) => {
-  console.log("CaseWrapper Rerendered");
+export const CaseWrapper = ({ children }) => {
+  const ref = React.useRef();
+  const { scrollY } = useElementScroll(ref);
   const [state, setCase] = React.useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
@@ -14,6 +20,7 @@ const MemoCaseWrapper = ({ children }) => {
       childPosition: [],
       childSum: 0,
       windowHeight: 0,
+      scrollProgress: useMotionValue(0),
     }
   );
 
@@ -36,6 +43,7 @@ const MemoCaseWrapper = ({ children }) => {
         childPosition: childPosition,
         childSum: childSum,
         windowHeight: window.innerHeight,
+        scrollProgress: scrollY,
       });
     }, 100);
 
@@ -46,21 +54,24 @@ const MemoCaseWrapper = ({ children }) => {
     return () => {
       window.removeEventListener("resize", onResize, { passive: true });
     };
-  }, [children]);
+  }, [children, scrollY]);
 
   return (
     <LazyMotion features={domMax}>
       <div
-        style={{
-          height: state.childSum,
-        }}
+        ref={ref}
+        style={{ height: "100vh", width: "100%", overflowY: "scroll" }}
       >
-        <CaseWrapperContext.Provider value={state}>
-          {children}
-        </CaseWrapperContext.Provider>
+        <div
+          style={{
+            height: state.childSum,
+          }}
+        >
+          <CaseWrapperContext.Provider value={state}>
+            {children}
+          </CaseWrapperContext.Provider>
+        </div>
       </div>
     </LazyMotion>
   );
 };
-
-export const CaseWrapper = React.memo(MemoCaseWrapper);

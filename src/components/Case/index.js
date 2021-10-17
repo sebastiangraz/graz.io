@@ -12,7 +12,7 @@ import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 import { Debugger } from "../";
 
-const debug = false;
+const debug = true;
 
 const settings = {
   nextScrollDistance: 100,
@@ -35,7 +35,7 @@ const caseParent = {
   width: "100%",
   maxWidth: "2395px", //GridParent scrollbar width hack
   position: "fixed",
-  pointerEvents: "none",
+  // pointerEvents: "none",
   willChange: "transform",
   display: "grid",
   gridTemplateColumns: "repeat(12, 1fr)",
@@ -68,10 +68,9 @@ function ScrollToTopOnMount(props) {
   return null;
 }
 
-const MemoCase = React.forwardRef(({ index, data }, ref) => {
-  console.log("Case Rerendered");
-  const { scrollY } = useViewportScroll();
-  let { childHeight, childPosition, windowHeight } = useCaseWrapperContext();
+export const Case = React.forwardRef(({ index, data }, ref) => {
+  let { childHeight, childPosition, windowHeight, scrollProgress } =
+    useCaseWrapperContext();
 
   const responsiveOffset = useResponsiveValue([50, 75, 200, 240]);
   const Render = data.component;
@@ -87,7 +86,6 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
   // -----POSITION-----
   const updatePos = (v) => {
     const progress = v - position(0) + height(0) + windowHeight;
-
     return transform(progress, [0, height(0)], [0, -height(0)]);
   };
 
@@ -101,16 +99,16 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
   };
 
   const y = useSpring(
-    useTransform(scrollY, (v) => updatePos(v)),
+    useTransform(scrollProgress, (v) => updatePos(v)),
     settings.springOptions
   );
 
   const yNext = useSpring(
-    useTransform(scrollY, (v) => updatePosNext(v)),
+    useTransform(scrollProgress, (v) => updatePosNext(v)),
     settings.springOptions
   );
 
-  // const isActive = useTransform(scrollY, (v) => updatePos(v));
+  // const isActive = useTransform(scrollProgress, (v) => updatePos(v));
   // const [isActiveState, setIsActiveState] = React.useState(false);
 
   // React.useEffect(
@@ -189,7 +187,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
           <div
             // onClick={!isActiveState ? handleClick : null}
             sx={{
-              pointerEvents: "auto",
+              // pointerEvents: "auto",
               position: "relative",
               gridColumn: ["span 12", null, data?.grid[0], data?.grid[1]],
             }}
@@ -258,5 +256,3 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
     </>
   );
 });
-
-export const Case = React.memo(MemoCase);

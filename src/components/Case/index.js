@@ -30,16 +30,7 @@ const debugStyle = {
   }),
 };
 
-const caseParent = {
-  top: `100vh`,
-  width: "100%",
-  maxWidth: "2395px", //GridParent scrollbar width hack
-  position: "fixed",
-  pointerEvents: "none",
-  willChange: "transform",
-  display: "grid",
-  gridTemplateColumns: "repeat(12, 1fr)",
-};
+const caseParent = {};
 
 const caseBg = {
   ...debugStyle,
@@ -68,7 +59,7 @@ function ScrollToTopOnMount(props) {
   return null;
 }
 
-const MemoCase = React.forwardRef(({ index, data }, ref) => {
+const MemoCase = ({ index, data }) => {
   console.log("Case Rerendered");
   const { scrollY } = useViewportScroll();
   let { childHeight, childPosition, windowHeight } = useCaseWrapperContext();
@@ -153,7 +144,6 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
         // -----HOME-----
         <m.div
           // onClick={handleClick}
-          ref={ref}
           style={{
             y: y,
             color: data?.color,
@@ -172,15 +162,18 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
         // -----CASES-----
         <m.div
           id={data.slug}
-          ref={ref}
-          style={{
-            x: "-50%",
-            y: y,
-          }}
           sx={{
             "--gridCount": [12, 12, `${gridCount(0)}`, `${gridCount(1)}`],
             "--caseBg": data.bg,
-            ...caseParent,
+            // top: `100vh`,
+            width: "100%",
+            maxWidth: "2395px", //GridParent scrollbar width hack
+            position: "sticky",
+            top: `calc(${windowHeight}px - ${height(0)}px)`,
+            pointerEvents: "none",
+            willChange: "transform",
+            display: "grid",
+            gridTemplateColumns: "repeat(12, 1fr)",
             color: data?.color,
             zIndex: index,
             left: "50%",
@@ -257,6 +250,6 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
       />
     </>
   );
-});
+};
 
 export const Case = React.memo(MemoCase);

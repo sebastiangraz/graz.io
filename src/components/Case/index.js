@@ -30,8 +30,6 @@ const debugStyle = {
   }),
 };
 
-const caseParent = {};
-
 const caseBg = {
   ...debugStyle,
   width: "100%",
@@ -43,6 +41,7 @@ const caseBg = {
 
 function ScrollToTopOnMount(props) {
   const { position, height, stagger, datavar, index } = props;
+
   React.useEffect(() => {
     document.fonts.ready.then(function () {
       if (window.location.hash === `#${datavar}`) {
@@ -59,7 +58,7 @@ function ScrollToTopOnMount(props) {
   return null;
 }
 
-const MemoCase = ({ index, data }) => {
+const MemoCase = React.forwardRef(({ index, data }, ref) => {
   console.log("Case Rerendered");
   const { scrollY } = useViewportScroll();
   let { childHeight, childPosition, windowHeight } = useCaseWrapperContext();
@@ -101,32 +100,32 @@ const MemoCase = ({ index, data }) => {
     settings.springOptions
   );
 
-  // const isActive = useTransform(scrollY, (v) => updatePos(v));
-  // const [isActiveState, setIsActiveState] = React.useState(false);
+  const isActive = useTransform(scrollY, (v) => updatePos(v));
+  const [isActiveState, setIsActiveState] = React.useState(false);
 
-  // React.useEffect(
-  //   () =>
-  //     isActive.onChange((e) => {
-  //       setIsActiveState(e > -height(0) && e < 0);
-  //     }),
-  //   [isActive, height]
-  // );
+  React.useEffect(
+    () =>
+      isActive.onChange((e) => {
+        setIsActiveState(e > -height(0) && e < 0);
+      }),
+    [isActive, height]
+  );
 
   // -----CLICK TO SCROLLTO CASE-----
-  // const handleClick = () => {
-  //   if (index !== 0) {
-  //     window.history.replaceState(null, null, `#${data.slug}`);
-  //   } else {
-  //     window.history.replaceState(null, null, " ");
-  //   }
-  //   window.scrollTo(
-  //     0,
-  //     position(0) -
-  //       height(0) -
-  //       (index !== 1 && settings.nextScrollDistance) +
-  //       staggeredOffset
-  //   );
-  // };
+  const handleClick = () => {
+    if (index !== 0) {
+      window.history.replaceState(null, null, `#${data.slug}`);
+    } else {
+      window.history.replaceState(null, null, " ");
+    }
+    window.scrollTo(
+      0,
+      position(0) -
+        height(0) -
+        (index !== 1 && settings.nextScrollDistance) +
+        staggeredOffset
+    );
+  };
 
   const gridCount = (arr) => data?.grid && data.grid[arr].split("span ")[1];
 
@@ -137,23 +136,24 @@ const MemoCase = ({ index, data }) => {
         index={index}
         height={height}
         position={position}
-        // isActiveState={isActiveState}
+        isActiveState={isActiveState}
         debug={debug}
       />
       {index === 0 ? (
         // -----HOME-----
         <m.div
-          // onClick={handleClick}
+          onClick={handleClick}
+          ref={ref}
           style={{
-            y: y,
             color: data?.color,
             backgroundColor: data?.bg,
           }}
           sx={{
+            minHeight: "100vh",
             width: "100%",
-            top: "100%",
-            position: "fixed",
             left: 0,
+            top: `calc(${windowHeight}px - ${height(0)}px)`,
+            position: "sticky",
           }}
         >
           <Render data={data} />
@@ -162,14 +162,21 @@ const MemoCase = ({ index, data }) => {
         // -----CASES-----
         <m.div
           id={data.slug}
+          ref={ref}
+          style={
+            {
+              // x: "-50%",
+              // y: y,
+            }
+          }
           sx={{
             "--gridCount": [12, 12, `${gridCount(0)}`, `${gridCount(1)}`],
             "--caseBg": data.bg,
             // top: `100vh`,
+            top: `calc(${windowHeight}px - ${height(0)}px)`,
             width: "100%",
             maxWidth: "2395px", //GridParent scrollbar width hack
             position: "sticky",
-            top: `calc(${windowHeight}px - ${height(0)}px)`,
             pointerEvents: "none",
             willChange: "transform",
             display: "grid",
@@ -180,7 +187,7 @@ const MemoCase = ({ index, data }) => {
           }}
         >
           <div
-            // onClick={!isActiveState ? handleClick : null}
+            onClick={!isActiveState ? handleClick : null}
             sx={{
               pointerEvents: "auto",
               position: "relative",
@@ -223,13 +230,13 @@ const MemoCase = ({ index, data }) => {
             ></div>
 
             <div
-              // style={{
-              //   ...(isActiveState
-              //     ? {
-              //         opacity: 1,
-              //       }
-              //     : { opacity: 0 }),
-              // }}
+              style={{
+                ...(isActiveState
+                  ? {
+                      opacity: 1,
+                    }
+                  : { opacity: 0 }),
+              }}
               sx={{
                 mb: "100vh",
                 mt: "20vh",
@@ -250,6 +257,6 @@ const MemoCase = ({ index, data }) => {
       />
     </>
   );
-};
+});
 
 export const Case = React.memo(MemoCase);

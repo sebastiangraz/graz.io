@@ -18,8 +18,10 @@ const settings = {
   nextScrollDistance: 100,
   staggerPower: 0.6,
   springOptions: {
-    damping: 7,
-    mass: 0.07,
+    damping: 12,
+    mass: 0.1,
+    // damping: 7,
+    // mass: 0.07,
   },
 };
 
@@ -127,16 +129,16 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
 
   const yStyle = useResponsiveValue([{ y: 0 }, { y: y }, { y: y }, { y: y }]);
 
-  // const isActive = useTransform(scrollY, (v) => updatePos(v));
-  // const [isActiveState, setIsActiveState] = React.useState(false);
+  const isActive = useTransform(scrollY, (v) => updatePos(v));
+  const [isActiveState, setIsActiveState] = React.useState(false);
 
-  // React.useEffect(
-  //   () =>
-  //     isActive.onChange((e) => {
-  //       setIsActiveState(e > -height(0) && e < 0);
-  //     }),
-  //   [isActive, height]
-  // );
+  React.useEffect(
+    () =>
+      isActive.onChange((e) => {
+        setIsActiveState(e > -height(0) && e < 0);
+      }),
+    [isActive, height]
+  );
 
   // -----CLICK TO SCROLLTO CASE-----
   const handleClick = () => {
@@ -163,7 +165,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
         index={index}
         height={height}
         position={position}
-        // isActiveState={isActiveState}
+        isActiveState={isActiveState}
         debug={debug}
       />
       {index === 0 ? (
@@ -204,7 +206,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
           }}
         >
           <div
-            // onClick={!isActiveState ? handleClick : null}
+            onClick={!isActiveState ? handleClick : null}
             sx={{
               pointerEvents: "auto",
               position: "relative",
@@ -251,12 +253,6 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
 
             <div
               sx={{
-                // ...(isActiveState
-                //   ? {
-                //       opacity: 1,
-                //     }
-                //   : { opacity: [1, 0] }),
-
                 mb: ["20vh", "100vh"],
                 mt: "0",
                 transition: "opacity 0.2s ease",

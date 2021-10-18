@@ -45,10 +45,20 @@ const awards = [
   },
 ];
 export const Home = ({ data }) => {
-  const y = [0, window.innerHeight / 1.2, window.innerHeight];
+  const scrollProgress = [0, window.innerHeight / 1.2, window.innerHeight];
   const colorOutput = [data.color, "hsl(42, 33%, 93%)", data.bg];
+  const transformOutput = [0, -11, -32];
   const { scrollY } = useViewportScroll();
-  const color = useTransform(scrollY, y, colorOutput);
+
+  const color = useTransform(scrollY, scrollProgress, colorOutput, {
+    damping: 12,
+    mass: 0.1,
+  });
+
+  const y = useTransform(scrollY, scrollProgress, transformOutput, {
+    damping: 12,
+    mass: 0.1,
+  });
 
   const Button = () => {
     const [isOpen, setIsOpen] = React.useState(false);
@@ -117,7 +127,7 @@ export const Home = ({ data }) => {
   return (
     <m.div
       as={Grid}
-      style={{ color }}
+      style={{ color, y }}
       sx={{
         willChange: "color",
         margin: "0 auto",

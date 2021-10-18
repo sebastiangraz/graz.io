@@ -127,16 +127,16 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
 
   const yStyle = useResponsiveValue([{ y: 0 }, { y: y }, { y: y }, { y: y }]);
 
-  const isActive = useTransform(scrollY, (v) => updatePos(v));
-  const [isActiveState, setIsActiveState] = React.useState(false);
+  // const isActive = useTransform(scrollY, (v) => updatePos(v));
+  // const [isActiveState, setIsActiveState] = React.useState(false);
 
-  React.useEffect(
-    () =>
-      isActive.onChange((e) => {
-        setIsActiveState(e > -height(0) && e < 0);
-      }),
-    [isActive, height]
-  );
+  // React.useEffect(
+  //   () =>
+  //     isActive.onChange((e) => {
+  //       setIsActiveState(e > -height(0) && e < 0);
+  //     }),
+  //   [isActive, height]
+  // );
 
   // -----CLICK TO SCROLLTO CASE-----
   const handleClick = () => {
@@ -163,7 +163,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
         index={index}
         height={height}
         position={position}
-        isActiveState={isActiveState}
+        // isActiveState={isActiveState}
         debug={debug}
       />
       {index === 0 ? (
@@ -204,7 +204,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
           }}
         >
           <div
-            onClick={!isActiveState ? handleClick : null}
+            // onClick={!isActiveState ? handleClick : null}
             sx={{
               pointerEvents: "auto",
               position: "relative",
@@ -233,7 +233,11 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
             <div
               className="background-layer"
               style={{
+                backgroundColor: data?.bg,
+              }}
+              sx={{
                 height: [
+                  "calc(100% - 298px)",
                   `calc(100% - ${
                     300 -
                     2 -
@@ -241,24 +245,20 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
                     staggeredOffset
                   }px)`,
                 ],
-                backgroundColor: data?.bg,
-              }}
-              sx={{
                 ...caseBg,
               }}
             ></div>
 
             <div
-              style={{
-                ...(isActiveState
-                  ? {
-                      opacity: 1,
-                    }
-                  : { opacity: 0 }),
-              }}
               sx={{
+                // ...(isActiveState
+                //   ? {
+                //       opacity: 1,
+                //     }
+                //   : { opacity: [1, 0] }),
+
                 mb: ["20vh", "100vh"],
-                mt: "20vh",
+                mt: "0",
                 transition: "opacity 0.2s ease",
               }}
             >

@@ -106,6 +106,11 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
     settings.springOptions
   );
 
+  const yNext = useSpring(
+    useTransform(scrollY, (v) => updatePosNext(v)),
+    settings.springOptions
+  );
+
   const xStyle = useResponsiveValue([
     { x: "0%" },
     { x: "-50%" },
@@ -113,12 +118,14 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
     { x: "-50%" },
   ]);
 
-  const yStyle = useResponsiveValue([{ y: 0 }, { y: y }, { y: y }, { y: y }]);
+  const yNextStyle = useResponsiveValue([
+    { y: 0 },
+    { y: yNext },
+    { y: yNext },
+    { y: yNext },
+  ]);
 
-  const yNext = useSpring(
-    useTransform(scrollY, (v) => updatePosNext(v)),
-    settings.springOptions
-  );
+  const yStyle = useResponsiveValue([{ y: 0 }, { y: y }, { y: y }, { y: y }]);
 
   const isActive = useTransform(scrollY, (v) => updatePos(v));
   const [isActiveState, setIsActiveState] = React.useState(false);
@@ -167,7 +174,6 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
           style={{
             ...yStyle,
             color: data?.color,
-            backgroundColor: data?.bg,
           }}
           sx={{
             width: "100%",
@@ -191,6 +197,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
             "--gridCount": [12, 12, `${gridCount(0)}`, `${gridCount(1)}`],
             "--caseBg": data.bg,
             ...caseParent,
+            // pt: [3, 0, null],
             color: data?.color,
             zIndex: index,
             left: [0, "50%"],
@@ -206,13 +213,15 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
           >
             <m.div
               style={{
+                ...yNextStyle,
+                height: 300,
+                willChange: "transform",
+              }}
+              sx={{
                 ...(index === 1 && {
-                  top: settings.nextScrollDistance,
+                  top: ["auto", settings.nextScrollDistance],
                   position: "relative",
                 }),
-                height: 300,
-                y: yNext,
-                willChange: "transform",
               }}
             >
               <CaseHero
@@ -248,7 +257,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
                   : { opacity: 0 }),
               }}
               sx={{
-                mb: "100vh",
+                mb: ["20vh", "100vh"],
                 mt: "20vh",
                 transition: "opacity 0.2s ease",
               }}

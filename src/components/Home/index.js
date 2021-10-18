@@ -7,7 +7,6 @@ import {
   m,
   useViewportScroll,
   useTransform,
-  transform,
   AnimatePresence,
   AnimateSharedLayout,
 } from "framer-motion";
@@ -122,8 +121,9 @@ export const Home = ({ data }) => {
       sx={{
         willChange: "color",
         margin: "0 auto",
-        minHeight: "100vh",
-        py: [7, 8, 9],
+        minHeight: ["auto", "100vh"],
+        pt: [7, 8, 9],
+        pb: 10,
         px: [7, 0, null],
         rowGap: [8, 9, "16vh"],
         columnGap: 0,
@@ -178,7 +178,7 @@ export const Home = ({ data }) => {
           Contact
         </Text>
         <m.div
-          layout
+          layout="position"
           sx={{
             gridArea: "meta",
             display: "grid",

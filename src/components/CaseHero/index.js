@@ -40,8 +40,8 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
           <svg
             width="8"
             height="8"
-            x="24"
-            y="24"
+            x="18"
+            y="18"
             viewBox="0 0 8 8"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -49,8 +49,11 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
             <rect width="8" height="8" rx="8" fill="black" />
           </svg>
           <g
-            style={{
-              transform: `translate(min(172px, calc(8vw - 5px) ), min(100px, 6vw))`,
+            sx={{
+              transform: [
+                `translate(min(172px, calc(12vw - 5px) ), min(100px, 12vw))`,
+                `translate(min(172px, calc(8vw - 5px) ), min(100px, 6vw))`,
+              ],
             }}
           >
             <text dominantBaseline="hanging">

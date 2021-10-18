@@ -8,7 +8,7 @@ export const NumberedList = ({ labelColor, horizontal, labels, ...rest }) => {
       {...rest}
       sx={{
         ...(horizontal && {
-          gridTemplateColumns: "1fr 1fr",
+          gridTemplateColumns: ["1fr", "1fr 1fr"],
           columnGap: 8,
         }),
         p: 0,

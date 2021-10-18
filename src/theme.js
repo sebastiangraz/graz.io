@@ -60,7 +60,6 @@ export default {
       lineHeight: "body",
       letterSpacing: "body",
       display: "block",
-      mb: ["0.75em"],
     },
     label: {
       variant: "text.default",
@@ -89,7 +88,7 @@ export default {
       ...scroll,
       overflowY: "auto",
       overflowX: "hidden",
-      background: "#FFF5DD",
+      background: "hsl(42, 70%, 93%)",
       webkitFontSmoothing: "antialiased",
       MozOsxFontSmoothing: "grayscale",
       variant: "text.default",

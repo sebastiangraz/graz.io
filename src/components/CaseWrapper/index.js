@@ -1,3 +1,5 @@
+/** @jsxImportSource theme-ui */
+
 import React from "react";
 import debounce from "lodash.debounce";
 import { LazyMotion, domMax } from "framer-motion";
@@ -51,8 +53,8 @@ const MemoCaseWrapper = ({ children }) => {
   return (
     <LazyMotion features={domMax}>
       <div
-        style={{
-          height: state.childSum,
+        sx={{
+          height: ["auto", state.childSum],
         }}
       >
         <CaseWrapperContext.Provider value={state}>

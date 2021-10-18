@@ -34,7 +34,7 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
       viewBox="0 0 2000 300"
       preserveAspectRatio="xMinYMin slice"
     >
-      <defs sx={{ display: ["none", "block"] }}>
+      <defs>
         <mask id={`${"sample-" + id}`}>
           <rect width="100%" height="100%" fill="white"></rect>
           <svg

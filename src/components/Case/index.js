@@ -31,10 +31,10 @@ const debugStyle = {
 };
 
 const caseParent = {
-  top: `100vh`,
+  top: [0, `100vh`],
   width: "100%",
   maxWidth: "2395px", //GridParent scrollbar width hack
-  position: "fixed",
+  position: ["relative", "fixed"],
   pointerEvents: "none",
   willChange: "transform",
   display: "grid",
@@ -74,6 +74,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
   let { childHeight, childPosition, windowHeight } = useCaseWrapperContext();
 
   const responsiveOffset = useResponsiveValue([50, 75, 200, 240]);
+
   const Render = data.component;
   const height = React.useCallback(
     (pos) => childHeight[pos ? index - pos : index] || [],
@@ -105,37 +106,46 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
     settings.springOptions
   );
 
+  const xStyle = useResponsiveValue([
+    { x: "0%" },
+    { x: "-50%" },
+    { x: "-50%" },
+    { x: "-50%" },
+  ]);
+
+  const yStyle = useResponsiveValue([{ y: 0 }, { y: y }, { y: y }, { y: y }]);
+
   const yNext = useSpring(
     useTransform(scrollY, (v) => updatePosNext(v)),
     settings.springOptions
   );
 
-  // const isActive = useTransform(scrollY, (v) => updatePos(v));
-  // const [isActiveState, setIsActiveState] = React.useState(false);
+  const isActive = useTransform(scrollY, (v) => updatePos(v));
+  const [isActiveState, setIsActiveState] = React.useState(false);
 
-  // React.useEffect(
-  //   () =>
-  //     isActive.onChange((e) => {
-  //       setIsActiveState(e > -height(0) && e < 0);
-  //     }),
-  //   [isActive, height]
-  // );
+  React.useEffect(
+    () =>
+      isActive.onChange((e) => {
+        setIsActiveState(e > -height(0) && e < 0);
+      }),
+    [isActive, height]
+  );
 
   // -----CLICK TO SCROLLTO CASE-----
-  // const handleClick = () => {
-  //   if (index !== 0) {
-  //     window.history.replaceState(null, null, `#${data.slug}`);
-  //   } else {
-  //     window.history.replaceState(null, null, " ");
-  //   }
-  //   window.scrollTo(
-  //     0,
-  //     position(0) -
-  //       height(0) -
-  //       (index !== 1 && settings.nextScrollDistance) +
-  //       staggeredOffset
-  //   );
-  // };
+  const handleClick = () => {
+    if (index !== 0) {
+      window.history.replaceState(null, null, `#${data.slug}`);
+    } else {
+      window.history.replaceState(null, null, " ");
+    }
+    window.scrollTo(
+      0,
+      position(0) -
+        height(0) -
+        (index !== 1 && settings.nextScrollDistance) +
+        staggeredOffset
+    );
+  };
 
   const gridCount = (arr) => data?.grid && data.grid[arr].split("span ")[1];
 
@@ -146,23 +156,23 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
         index={index}
         height={height}
         position={position}
-        // isActiveState={isActiveState}
+        isActiveState={isActiveState}
         debug={debug}
       />
       {index === 0 ? (
         // -----HOME-----
         <m.div
-          // onClick={handleClick}
+          onClick={handleClick}
           ref={ref}
           style={{
-            y: y,
+            ...yStyle,
             color: data?.color,
             backgroundColor: data?.bg,
           }}
           sx={{
             width: "100%",
             top: "100%",
-            position: "fixed",
+            position: ["relative", "fixed"],
             left: 0,
           }}
         >
@@ -174,8 +184,8 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
           id={data.slug}
           ref={ref}
           style={{
-            x: "-50%",
-            y: y,
+            ...yStyle,
+            ...xStyle,
           }}
           sx={{
             "--gridCount": [12, 12, `${gridCount(0)}`, `${gridCount(1)}`],
@@ -183,11 +193,11 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
             ...caseParent,
             color: data?.color,
             zIndex: index,
-            left: "50%",
+            left: [0, "50%"],
           }}
         >
           <div
-            // onClick={!isActiveState ? handleClick : null}
+            onClick={!isActiveState ? handleClick : null}
             sx={{
               pointerEvents: "auto",
               position: "relative",
@@ -230,13 +240,13 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
             ></div>
 
             <div
-              // style={{
-              //   ...(isActiveState
-              //     ? {
-              //         opacity: 1,
-              //       }
-              //     : { opacity: 0 }),
-              // }}
+              style={{
+                ...(isActiveState
+                  ? {
+                      opacity: 1,
+                    }
+                  : { opacity: 0 }),
+              }}
               sx={{
                 mb: "100vh",
                 mt: "20vh",

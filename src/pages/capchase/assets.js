@@ -11,8 +11,8 @@ export const images = {
   },
   bottle: {
     url: require("./assets/bottle.png"),
-    width: 830,
-    height: 432,
+    width: 1552,
+    height: 864,
     alt: "bottle",
   },
   ramp: {

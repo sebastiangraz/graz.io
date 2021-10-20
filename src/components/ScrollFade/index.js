@@ -5,17 +5,27 @@ import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { m, motion, useAnimation } from "framer-motion";
 
-export const ScrollFade = ({ children, style, delay }) => {
+export const ScrollFade = ({
+  children,
+  style,
+  delay,
+  effect,
+  duration,
+  ...rest
+}) => {
+  const delayVal = delay ? delay : 0.3;
+  const effectVal = effect ? effect : [{ opacity: 0 }, { opacity: 1 }];
+  const durationVal = duration ? duration : 0.6;
+
   const squareVariants = {
+    hidden: { ...effectVal[0] },
     visible: (custom) => ({
-      scale: 1,
-      opacity: 1,
+      ...effectVal[1],
       transition: {
-        duration: 1,
-        delay: custom * 0.4,
+        duration: durationVal,
+        delay: delayVal + custom * 0.1,
       },
     }),
-    hidden: { opacity: 0.5, scale: 1.01, transition: { staggerChildren: 1 } },
   };
 
   const controls = useAnimation();
@@ -29,6 +39,7 @@ export const ScrollFade = ({ children, style, delay }) => {
 
   return (
     <motion.div
+      {...rest}
       sx={{ ...style, willChange: "transform" }}
       ref={ref}
       animate={controls}
@@ -37,7 +48,7 @@ export const ScrollFade = ({ children, style, delay }) => {
     >
       {React.Children.map(children || null, (child, i) => {
         return (
-          <m.div custom={i * 1} variants={squareVariants}>
+          <m.div key={i} custom={i} variants={squareVariants}>
             {child}
           </m.div>
         );

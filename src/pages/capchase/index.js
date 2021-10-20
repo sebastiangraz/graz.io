@@ -112,9 +112,17 @@ const Capchase = ({ data }) => {
                 gridRow: ["span 4", "span 2"],
                 gridColumn: ["span 8", "span 3"],
                 boxShadow: "capchase",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
-              <Img sx={{ height: "100%" }} imageData={images.bottle} />
+              <ScrollFade duration={2} sx={{ width: "100%" }}>
+                <Img
+                  sx={{ width: "100%", height: "auto" }}
+                  imageData={images.bottle}
+                />
+              </ScrollFade>
             </div>
             <div
               sx={{
@@ -175,7 +183,9 @@ const Capchase = ({ data }) => {
                 gridColumn: ["span 2", "4 / span 2"],
               }}
             >
-              <Img imageData={images.loop} />
+              <ScrollFade duration={2} effect={[{ rotate: 30 }, { rotate: 0 }]}>
+                <Img imageData={images.loop} />
+              </ScrollFade>
             </div>
             <div
               sx={{

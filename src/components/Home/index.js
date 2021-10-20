@@ -162,7 +162,7 @@ export const Home = ({ data }) => {
           justifySelf: ["flex-end", "flex-start"],
         }}
       >
-        <Text sx={{ pt: 2, p: 3 }} variant="label">
+        <Text sx={{ pt: 2, p: 3, ml: -3 }} variant="label">
           Contact
         </Text>
         <m.div
@@ -218,21 +218,6 @@ export const Home = ({ data }) => {
         <div>
           <Text variant="label" mb={5}>
             <Text variant="label" mb={4}>
-              Associations
-            </Text>
-            <List>
-              <>Husqvarna</>
-              <>M. Saatchi</>
-              <>Capchase</>
-              <>Framer</>
-              <>Canon</>
-              <>Volvo</>
-            </List>
-          </Text>
-        </div>
-        <div>
-          <Text variant="label" mb={5}>
-            <Text variant="label" mb={4}>
               Expertise
             </Text>
             <List>
@@ -262,17 +247,33 @@ export const Home = ({ data }) => {
             </List>
           </Text>
         </div>
+
+        <div sx={{ order: [-1, 0] }}>
+          <Text variant="label" mb={5}>
+            <Text variant="label" mb={4}>
+              Associations
+            </Text>
+            <List>
+              <>Husqvarna</>
+              <>M. Saatchi</>
+              <>Capchase</>
+              <>Framer</>
+              <>Canon</>
+              <>Volvo</>
+            </List>
+          </Text>
+        </div>
       </div>
       <div sx={{ gridArea: "intro" }}>
         <div
           sx={{
             maxWidth: ["100%", "initial", null],
-            width: ["100%", 420, 360, 480],
+            width: ["100%", 420, 360, 360],
           }}
         >
           <Text variant="lead" mb={4}>
             Sebastian Graz is a design studio for all things branding, digital
-            design & systems, served with a technological edge.
+            design, served with a technological edge.
           </Text>
         </div>
       </div>

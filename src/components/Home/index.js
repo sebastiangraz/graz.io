@@ -3,12 +3,8 @@
 import React from "react";
 import { Text, Grid, Link } from "theme-ui";
 import { Logo, List, EmailLink } from "../";
-import {
-  m,
-  useViewportScroll,
-  useTransform,
-  useAnimation,
-} from "framer-motion";
+import { m, useViewportScroll, useTransform } from "framer-motion";
+import { shade } from "@theme-ui/color";
 import resume from "../../files/cv-sebastiangraz.pdf";
 const awards = [
   {
@@ -63,10 +59,9 @@ export const Home = ({ data }) => {
     rest: (custom) => ({
       opacity: 0,
       transition: {
-        duration: 0.6,
+        duration: 2,
         type: "tween",
         ease: "easeInOut",
-        delay: custom * 0.1,
       },
     }),
 
@@ -176,11 +171,20 @@ export const Home = ({ data }) => {
             background: data.bg,
             pt: 2,
             p: 3,
+            boxShadow: [
+              (t) => `0 0 0 1px  ${shade(data.bg, 0.1)(t)}`,
+              "none",
+              "none",
+              "none",
+            ],
+            borderRadius: "1em",
             cursor: "auto",
             position: "absolute",
-            left: 0,
+            right: [0, null],
+            left: [null, 0],
             top: "100%",
-            width: "100%",
+            width: ["200px", "auto"],
+            minWidth: "100%",
           }}
         >
           <Text variant="label">

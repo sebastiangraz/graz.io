@@ -17,11 +17,9 @@ export const EmailLink = ({ string }) => {
         return navigator.clipboard
           .writeText(string)
           .then(function () {
-            console.log("then 1st");
             setCopy(true);
           })
           .finally(
-            console.log("then 2st"),
             setTimeout(function () {
               setCopy(false);
             }, 2000)

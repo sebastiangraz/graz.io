@@ -12,6 +12,9 @@ export const List = ({ children, noBullets, variant, ...rest }) => {
             key={i}
             sx={{
               mb: 3,
+              "&:last-child": {
+                mb: 0,
+              },
               listStyle: "none",
               ...(!noBullets && {
                 "&::marker": {

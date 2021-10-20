@@ -3,7 +3,7 @@
 import React from "react";
 import { GridParent, Img, CaseMeta, NumberedList } from "../../components";
 import { images, icons } from "./assets";
-import { Text, Box } from "theme-ui";
+import { Text, Box, Link } from "theme-ui";
 
 const colors = {
   black: "#0F0F14",

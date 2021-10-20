@@ -54,11 +54,62 @@ export const Home = ({ data }) => {
     mass: 0.1,
   });
 
+  const transitionStyle = {
+    type: "ease",
+    ease: "easeInOut",
+  };
+
+  const list = {
+    visible: {
+      display: "block",
+      opacity: 1,
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.1,
+      },
+    },
+    hidden: {
+      display: "none",
+      opacity: 0,
+      transition: {
+        when: "afterChildren",
+        staggerChildren: 0.05,
+        staggerDirection: -1,
+      },
+    },
+  };
+
+  const item = {
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.4,
+        ...transitionStyle,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      y: -8,
+      transition: {
+        duration: 0.33,
+        ...transitionStyle,
+      },
+    },
+  };
+
+  const [toggled, setToggled] = React.useState(false);
+
   return (
     <m.div
       as={Grid}
       style={{ color, y }}
       sx={{
+        a: {
+          textDecoration: "none",
+          color: "inherit",
+          "&:hover": { textDecoration: "underline" },
+        },
         willChange: "color",
         margin: "0 auto",
         minHeight: ["auto", "100vh"],
@@ -109,25 +160,35 @@ export const Home = ({ data }) => {
 
       <Text
         variant="label"
-        sx={{ gridArea: "years", display: ["none", "block"] }}
+        sx={{
+          p: 3,
+          ml: -3,
+          gridArea: "years",
+          display: ["none", "block"],
+        }}
       >
         <Link target="_blank" href={resume}>
           Résumé
         </Link>
       </Text>
-      <Text
-        variant="label"
+      <m.div
         sx={{
-          p: 3,
-          mt: -3,
-          ml: -3,
           cursor: "pointer",
           gridArea: "contact",
           position: "relative",
-          "&:hover > span": { display: "block" },
+          justifySelf: ["flex-end", "flex-start"],
+          // "&:hover > span": { display: "block" },
         }}
       >
-        Contact
+        <Text
+          onClick={() => {
+            setToggled(!toggled);
+          }}
+          variant="label"
+        >
+          Contact
+        </Text>
+
         <span
           sx={{
             p: 3,
@@ -137,20 +198,30 @@ export const Home = ({ data }) => {
             top: "100%",
             width: "100%",
             pt: 2,
-            display: "none",
           }}
         >
-          <List noBullets>
-            <EmailLink string="hi@graz.io">Email</EmailLink>
-            <Link target="_blank" href="https://twitter.com/grazsebastian">
-              Twitter
-            </Link>
-            <Link target="_blank" href="https://vsco.co/sgraz/">
-              VSCO
-            </Link>
-          </List>
+          <m.ul
+            variants={list}
+            initial="hidden"
+            animate={toggled ? "visible" : "hidden"}
+          >
+            <m.li variants={item}>
+              <EmailLink string="hi@graz.io">Email</EmailLink>
+            </m.li>
+
+            <m.li variants={item}>
+              <Link target="_blank" href="https://twitter.com/grazsebastian">
+                Twitter
+              </Link>
+            </m.li>
+            <m.li variants={item}>
+              <Link target="_blank" href="https://vsco.co/sgraz/">
+                VSCO
+              </Link>
+            </m.li>
+          </m.ul>
         </span>
-      </Text>
+      </m.div>
       <div
         sx={{
           gridArea: "meta",

@@ -10,6 +10,7 @@ export const EmailLink = ({ string }) => {
   const [count, setCount] = React.useState(0);
   return (
     <Link
+      sx={{ whiteSpace: "pre" }}
       href="#"
       onClick={(e) => {
         setCount(count + 1);

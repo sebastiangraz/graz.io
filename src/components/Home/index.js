@@ -3,7 +3,12 @@
 import React from "react";
 import { Text, Grid, Link } from "theme-ui";
 import { Logo, List, EmailLink } from "../";
-import { m, useViewportScroll, useTransform } from "framer-motion";
+import {
+  m,
+  useViewportScroll,
+  useTransform,
+  useAnimation,
+} from "framer-motion";
 import resume from "../../files/cv-sebastiangraz.pdf";
 const awards = [
   {
@@ -54,51 +59,27 @@ export const Home = ({ data }) => {
     mass: 0.1,
   });
 
-  const transitionStyle = {
-    type: "ease",
-    ease: "easeInOut",
-  };
-
   const list = {
-    visible: {
-      display: "block",
-      opacity: 1,
-      transition: {
-        when: "beforeChildren",
-        staggerChildren: 0.1,
-      },
-    },
-    hidden: {
-      display: "none",
+    rest: (custom) => ({
       opacity: 0,
       transition: {
-        when: "afterChildren",
-        staggerChildren: 0.05,
-        staggerDirection: -1,
+        duration: 0.6,
+        type: "tween",
+        ease: "easeInOut",
+        delay: custom * 0.1,
       },
-    },
-  };
+    }),
 
-  const item = {
-    visible: {
+    hover: (custom) => ({
       opacity: 1,
-      y: 0,
       transition: {
-        duration: 0.4,
-        ...transitionStyle,
+        duration: 0.8,
+        type: "tween",
+        ease: "easeInOut",
+        delay: custom * 0.1,
       },
-    },
-    hidden: {
-      opacity: 0,
-      y: -8,
-      transition: {
-        duration: 0.33,
-        ...transitionStyle,
-      },
-    },
+    }),
   };
-
-  const [toggled, setToggled] = React.useState(false);
 
   return (
     <m.div
@@ -172,55 +153,54 @@ export const Home = ({ data }) => {
         </Link>
       </Text>
       <m.div
+        tabIndex="0"
+        initial="rest"
+        whileFocus="hover"
+        whileHover="hover"
+        animate="rest"
         sx={{
+          outline: "none",
+          userSelect: "none",
           cursor: "pointer",
           gridArea: "contact",
           position: "relative",
           justifySelf: ["flex-end", "flex-start"],
-          // "&:hover > span": { display: "block" },
         }}
       >
-        <Text
-          onClick={() => {
-            setToggled(!toggled);
-          }}
-          variant="label"
-        >
+        <Text sx={{ pt: 2, p: 3 }} variant="label">
           Contact
         </Text>
-
-        <span
+        <m.div
+          variants={list}
           sx={{
+            background: data.bg,
+            pt: 2,
             p: 3,
             cursor: "auto",
             position: "absolute",
             left: 0,
             top: "100%",
             width: "100%",
-            pt: 2,
           }}
         >
-          <m.ul
-            variants={list}
-            initial="hidden"
-            animate={toggled ? "visible" : "hidden"}
-          >
-            <m.li variants={item}>
-              <EmailLink string="hi@graz.io">Email</EmailLink>
-            </m.li>
-
-            <m.li variants={item}>
-              <Link target="_blank" href="https://twitter.com/grazsebastian">
-                Twitter
-              </Link>
-            </m.li>
-            <m.li variants={item}>
-              <Link target="_blank" href="https://vsco.co/sgraz/">
-                VSCO
-              </Link>
-            </m.li>
-          </m.ul>
-        </span>
+          <Text variant="label">
+            <List noBullets>
+              <m.div variants={list} custom={1}>
+                <EmailLink string="hi@graz.io">Email</EmailLink>
+              </m.div>
+              <m.div variants={list} custom={2}>
+                <Link target="_blank" href="https://twitter.com/grazsebastian">
+                  Twitter
+                </Link>
+              </m.div>
+              <m.div variants={list} custom={3}>
+                <Link target="_blank" href="https://vsco.co/sgraz/">
+                  VSCO
+                </Link>
+              </m.div>
+            </List>
+          </Text>
+        </m.div>
       </m.div>
       <div
         sx={{

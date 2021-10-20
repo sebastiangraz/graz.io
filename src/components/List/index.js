@@ -5,7 +5,7 @@ import { m } from "framer-motion";
 
 export const List = ({ children, noBullets, variant, ...rest }) => {
   return (
-    <m.ul {...rest} sx={{ p: 0 }}>
+    <ul {...rest} sx={{ p: 0 }}>
       {React.Children.map(children || null, (child, i) => {
         return (
           <li
@@ -25,6 +25,6 @@ export const List = ({ children, noBullets, variant, ...rest }) => {
           </li>
         );
       })}
-    </m.ul>
+    </ul>
   );
 };

@@ -238,6 +238,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
                 backgroundColor: data?.bg,
               }}
               sx={{
+                borderRadius: ["0 0 32px 32px", 0],
                 height: [
                   "calc(100% - 298px)",
                   `calc(100% - ${

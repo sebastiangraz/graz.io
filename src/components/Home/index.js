@@ -105,7 +105,6 @@ export const Home = ({ data }) => {
         <AnimatePresence>
           {isOpen && (
             <m.div
-              layout
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -126,6 +125,7 @@ export const Home = ({ data }) => {
 
   return (
     <m.div
+      layout="position"
       as={Grid}
       style={{ color, y }}
       sx={{
@@ -247,7 +247,6 @@ export const Home = ({ data }) => {
         </m.div>
         <div sx={{ gridArea: "intro" }}>
           <m.div
-            layout="position"
             sx={{
               maxWidth: ["100%", "initial", null],
               width: ["100%", 420, 360, 500],

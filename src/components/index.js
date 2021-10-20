@@ -8,5 +8,6 @@ export { GridParent } from "./GridParent";
 export { Video } from "./Video";
 export { Img } from "./Img";
 export { List } from "./List";
+export { EmailLink } from "./EmailLink";
 export { NumberedList } from "./NumberedList";
 export { Debugger } from "./Debugger";

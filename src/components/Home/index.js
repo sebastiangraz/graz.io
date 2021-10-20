@@ -1,10 +1,10 @@
 /** @jsxImportSource theme-ui */
 
 import React from "react";
-import { Text, Grid } from "theme-ui";
-import { Logo, List } from "../";
-import { useViewportScroll, useTransform } from "framer-motion";
-
+import { Text, Grid, Link } from "theme-ui";
+import { Logo, List, EmailLink } from "../";
+import { m, useViewportScroll, useTransform } from "framer-motion";
+import resume from "../../files/cv-sebastiangraz.pdf";
 const awards = [
   {
     title: "Creative Bloq",
@@ -55,7 +55,7 @@ export const Home = ({ data }) => {
   });
 
   return (
-    <div
+    <m.div
       as={Grid}
       style={{ color, y }}
       sx={{
@@ -70,7 +70,7 @@ export const Home = ({ data }) => {
         display: "grid",
         alignItems: ["center", "start"],
         maxWidth: "2400px",
-        gridTemplateRows: "max-content max-content max-content",
+        gridTemplateRows: "auto auto auto",
         gridTemplateColumns: ["repeat(2, 1fr)", "repeat(12, 1fr)"],
         gridTemplateAreas: [
           //phone
@@ -111,10 +111,45 @@ export const Home = ({ data }) => {
         variant="label"
         sx={{ gridArea: "years", display: ["none", "block"] }}
       >
-        Résumé
+        <Link target="_blank" href={resume}>
+          Résumé
+        </Link>
       </Text>
-      <Text variant="label" sx={{ gridArea: "contact" }}>
+      <Text
+        variant="label"
+        sx={{
+          p: 3,
+          mt: -3,
+          ml: -3,
+          cursor: "pointer",
+          gridArea: "contact",
+          position: "relative",
+          "&:hover > span": { display: "block" },
+        }}
+      >
         Contact
+        <span
+          sx={{
+            p: 3,
+            cursor: "auto",
+            position: "absolute",
+            left: 0,
+            top: "100%",
+            width: "100%",
+            pt: 2,
+            display: "none",
+          }}
+        >
+          <List noBullets>
+            <EmailLink string="hi@graz.io">Email</EmailLink>
+            <Link target="_blank" href="https://twitter.com/grazsebastian">
+              Twitter
+            </Link>
+            <Link target="_blank" href="https://vsco.co/sgraz/">
+              VSCO
+            </Link>
+          </List>
+        </span>
       </Text>
       <div
         sx={{
@@ -177,7 +212,7 @@ export const Home = ({ data }) => {
         <div
           sx={{
             maxWidth: ["100%", "initial", null],
-            width: ["100%", 420, 360, 500],
+            width: ["100%", 420, 360, 480],
           }}
         >
           <Text variant="lead" mb={4}>
@@ -186,6 +221,6 @@ export const Home = ({ data }) => {
           </Text>
         </div>
       </div>
-    </div>
+    </m.div>
   );
 };

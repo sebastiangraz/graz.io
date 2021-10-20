@@ -1,9 +1,15 @@
 /** @jsxImportSource theme-ui */
 
 import React from "react";
-import { GridParent, Img, CaseMeta, NumberedList } from "../../components";
+import {
+  GridParent,
+  Img,
+  CaseMeta,
+  NumberedList,
+  ScrollFade,
+} from "../../components";
 import { images, icons } from "./assets";
-import { Text, Box, Link } from "theme-ui";
+import { Text, Box } from "theme-ui";
 
 const colors = {
   black: "#0F0F14",
@@ -71,16 +77,18 @@ const Capchase = ({ data }) => {
         <>
           <GridParent>
             <Box sx={{ gridColumn: ["span 8", " 2/ span 4"] }}>
-              <Text variant="lead" mb={8}>
-                Capchase, one of the largest non-dilutive funding companies
-                needed a time sensitive visual refresh of all their digital and
-                print assets.
-              </Text>
-              <Text variant="lead" mb={10}>
-                Time was of the essence as they increased their momentum for
-                both brand awareness while establishing their slice of the
-                market. Big&nbsp;slices&nbsp;too.
-              </Text>
+              <ScrollFade>
+                <Text variant="lead" mb={8}>
+                  Capchase, one of the largest non-dilutive funding companies
+                  needed a time sensitive visual refresh of all their digital
+                  and print assets.
+                </Text>
+                <Text variant="lead" mb={10}>
+                  Time was of the essence as they increased their momentum for
+                  both brand awareness while establishing their slice of the
+                  market. Big&nbsp;slices&nbsp;too.
+                </Text>
+              </ScrollFade>
             </Box>
             <Box sx={{ gridColumn: ["span 8", " 2/ span 5"] }}>
               <NumberedList

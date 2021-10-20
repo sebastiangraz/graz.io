@@ -35,7 +35,7 @@ const debugStyle = {
 const caseParent = {
   top: [0, `100vh`],
   width: "100%",
-  maxWidth: "2395px", //GridParent scrollbar width hack
+  maxWidth: "2400px", //GridParent scrollbar width hack
   position: ["relative", "fixed"],
   pointerEvents: "none",
   willChange: "transform",

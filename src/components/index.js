@@ -10,5 +10,5 @@ export { Img } from "./Img";
 export { List } from "./List";
 export { EmailLink } from "./EmailLink";
 export { NumberedList } from "./NumberedList";
-export { ScrollFade } from "./ScrollFade";
+export { ScrollReveal } from "./ScrollReveal";
 export { Debugger } from "./Debugger";

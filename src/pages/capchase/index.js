@@ -6,7 +6,7 @@ import {
   Img,
   CaseMeta,
   NumberedList,
-  ScrollFade,
+  ScrollReveal,
 } from "../../components";
 import { images, icons } from "./assets";
 import { Text, Box } from "theme-ui";
@@ -77,7 +77,7 @@ const Capchase = ({ data }) => {
         <>
           <GridParent>
             <Box sx={{ gridColumn: ["span 8", " 2/ span 4"] }}>
-              <ScrollFade>
+              <ScrollReveal>
                 <Text variant="lead" mb={8}>
                   Capchase, one of the largest non-dilutive funding companies
                   needed a time sensitive visual refresh of all their digital
@@ -88,7 +88,7 @@ const Capchase = ({ data }) => {
                   both brand awareness while establishing their slice of the
                   market. Big&nbsp;slices&nbsp;too.
                 </Text>
-              </ScrollFade>
+              </ScrollReveal>
             </Box>
             <Box sx={{ gridColumn: ["span 8", " 2/ span 5"] }}>
               <NumberedList
@@ -117,12 +117,9 @@ const Capchase = ({ data }) => {
                 alignItems: "center",
               }}
             >
-              <ScrollFade duration={2} sx={{ width: "100%" }}>
-                <Img
-                  sx={{ width: "100%", height: "auto" }}
-                  imageData={images.bottle}
-                />
-              </ScrollFade>
+              <ScrollReveal duration={2} sx={{ width: "100%" }}>
+                <Img sx={{ width: "100%" }} imageData={images.bottle} />
+              </ScrollReveal>
             </div>
             <div
               sx={{
@@ -157,10 +154,13 @@ const Capchase = ({ data }) => {
               >
                 <Img imageData={images.crown} />
               </div>
-              <Img
-                sx={{ overflow: "hidden", borderRadius: radius().default }}
-                imageData={images.mobileIntro}
-              />
+
+              <ScrollReveal>
+                <Img
+                  sx={{ overflow: "hidden", borderRadius: radius().default }}
+                  imageData={images.mobileIntro}
+                />
+              </ScrollReveal>
             </div>
           </GridParent>
           <GridParent>
@@ -183,9 +183,12 @@ const Capchase = ({ data }) => {
                 gridColumn: ["span 2", "4 / span 2"],
               }}
             >
-              <ScrollFade duration={2} effect={[{ rotate: 30 }, { rotate: 0 }]}>
+              <ScrollReveal
+                duration={2}
+                effect={[{ rotate: 10 }, { rotate: 0 }]}
+              >
                 <Img imageData={images.loop} />
-              </ScrollFade>
+              </ScrollReveal>
             </div>
             <div
               sx={{

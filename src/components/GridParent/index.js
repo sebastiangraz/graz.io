@@ -10,11 +10,11 @@ export const GridParent = ({ children, ...rest }) => {
         gridColumn: `1 / span 12`,
         // 6px scrollbar width included in the calc
         "--calcWrapper": [
-          `calc(calc((var(--gridCount)) / 12 * min(100vw, 2400px)) - 5px)`,
+          `calc(calc((var(--gridCount)) / 12 * min(100vw, 2400px)) - 0px)`,
           null,
-          `calc(calc((var(--gridCount)) / 12 * min(100vw, 2400px)) - 5px)`,
+          `calc(calc((var(--gridCount)) / 12 * min(100vw, 2400px)) - 0px)`,
         ],
-        "--gutter": "0px",
+        "--gutter": "0",
         "--noOfColumns": "10",
         "--noOfGutters": "calc(var(--noOfColumns) - 1)",
         "--ratioA": "1",
@@ -32,8 +32,8 @@ export const GridParent = ({ children, ...rest }) => {
         gridTemplateColumns: "repeat(var(--noOfColumns), minmax(0, 1fr))",
         gridAutoFlow: "dense",
         gridAutoRows: "minmax(var(--rh), auto)",
-        gridGap: "var(--gutter)",
-        margin: "var(--gutter) auto",
+        // gridGap: "var(--gutter)",
+        margin: 0, //"var(--gutter) auto",
         // "& > *": {
         //   gridColumnStart: "2",
         // },

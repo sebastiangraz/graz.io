@@ -11,8 +11,8 @@ const capsStyle = {
 };
 export const scroll = {
   "&::-webkit-scrollbar": {
-    width: "6px",
-    height: "6px",
+    width: "5px",
+    height: "5px",
   },
   "&::-webkit-scrollbar-track": {
     backgroundColor: "transparent",

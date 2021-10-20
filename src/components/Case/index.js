@@ -52,6 +52,8 @@ const caseBg = {
   left: 0,
 };
 
+const media_query = "screen and (min-width:640px)";
+
 function ScrollToTopOnMount(props) {
   const { position, height, stagger, datavar, index } = props;
   React.useEffect(() => {
@@ -264,13 +266,15 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
           </div>
         </m.div>
       )}
-      <ScrollToTopOnMount
-        position={position(0)}
-        height={height(0)}
-        stagger={staggeredOffset}
-        datavar={data.slug}
-        index={index}
-      />
+      {!window.matchMedia(media_query).matches ? null : (
+        <ScrollToTopOnMount
+          position={position(0)}
+          height={height(0)}
+          stagger={staggeredOffset}
+          datavar={data.slug}
+          index={index}
+        />
+      )}
     </>
   );
 });

@@ -7,6 +7,7 @@ import { LazyMotion, domMax } from "framer-motion";
 export const useCaseWrapperContext = () => React.useContext(CaseWrapperContext);
 
 const CaseWrapperContext = React.createContext(null);
+
 const media_query = "screen and (min-width:640px)";
 
 const MemoCaseWrapper = ({ children }) => {

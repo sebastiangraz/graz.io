@@ -261,7 +261,7 @@ const Capchase = ({ data }) => {
           <GridParent>
             <div
               sx={{
-                gridRow: "span 4",
+                gridRow: "span 1",
                 gridColumn: ["span 2", "2 / span 4"],
               }}
             >
@@ -269,7 +269,7 @@ const Capchase = ({ data }) => {
             </div>
             <div
               sx={{
-                gridRow: "span 4",
+                gridRow: "span 1",
                 gridColumn: ["span 2", "6 / span 4"],
               }}
             >
@@ -295,13 +295,6 @@ const Capchase = ({ data }) => {
             >
               <Video videoData={videos.brandbook} />
             </div>
-            <div
-              sx={{
-                background: "#f00",
-                gridRow: "span 1",
-                gridColumn: "span 1",
-              }}
-            ></div>
           </GridParent>
           <GridParent>
             <div

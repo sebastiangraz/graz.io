@@ -12,9 +12,9 @@ export const GridParent = ({ children, ...rest }) => {
         "--calcWrapper": [
           `calc(calc((var(--gridCount)) / 12 * min(100vw, 2400px)) - 0px)`,
           null,
-          `calc(calc((var(--gridCount)) / 12 * min(100vw, 2400px)) - 0px)`,
+          `calc(calc((var(--gridCount)) / 12 * min(100vw, 2406px)) - 5px)`,
         ],
-        "--gutter": "0",
+        "--gutter": "0px",
         "--noOfColumns": "10",
         "--noOfGutters": "calc(var(--noOfColumns) - 1)",
         "--ratioA": "1",
@@ -32,8 +32,8 @@ export const GridParent = ({ children, ...rest }) => {
         gridTemplateColumns: "repeat(var(--noOfColumns), minmax(0, 1fr))",
         gridAutoFlow: "dense",
         gridAutoRows: "minmax(var(--rh), auto)",
-        // gridGap: "var(--gutter)",
-        margin: 0, //"var(--gutter) auto",
+        gridGap: "var(--gutter)",
+        margin: "var(--gutter) auto",
         // "& > *": {
         //   gridColumnStart: "2",
         // },

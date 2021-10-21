@@ -7,8 +7,9 @@ import {
   CaseMeta,
   NumberedList,
   ScrollReveal,
+  Video,
 } from "../../components";
-import { images, icons } from "./assets";
+import { images, icons, videos } from "./assets";
 import { Text, Box } from "theme-ui";
 
 const colors = {
@@ -163,7 +164,7 @@ const Capchase = ({ data }) => {
               </ScrollReveal>
             </div>
           </GridParent>
-          <GridParent>
+          <GridParent sx={{ mb: 11 }}>
             <div
               sx={{
                 borderRadius: radius().default,
@@ -257,6 +258,51 @@ const Capchase = ({ data }) => {
     BrandBook: () => {
       return (
         <>
+          <GridParent>
+            <div
+              sx={{
+                gridRow: "span 4",
+                gridColumn: ["span 2", "2 / span 4"],
+              }}
+            >
+              <Text variant="heading">Brand book</Text>
+            </div>
+            <div
+              sx={{
+                gridRow: "span 4",
+                gridColumn: ["span 2", "6 / span 4"],
+              }}
+            >
+              <Text variant="lead">
+                The main deliverable was the Brand Book that would inform the
+                new direction of the design language.
+              </Text>
+              <Text variant="lead">
+                We wanted to keep the content more aspirational than riddled
+                with do’s and don’ts. The real design system would later be
+                handled by design software.
+              </Text>
+            </div>
+            <div
+              sx={{
+                my: 10,
+                borderRadius: "48px",
+                // boxShadow: "capchase",
+                overflow: "hidden",
+                gridRow: "span 4",
+                gridColumn: ["span 2", "2 / span 8"],
+              }}
+            >
+              <Video videoData={videos.brandbook} />
+            </div>
+            <div
+              sx={{
+                background: "#f00",
+                gridRow: "span 1",
+                gridColumn: "span 1",
+              }}
+            ></div>
+          </GridParent>
           <GridParent>
             <div
               sx={{

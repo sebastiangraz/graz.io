@@ -1,6 +1,12 @@
 import * as React from "react";
 
-export const videos = {};
+export const videos = {
+  brandbook: {
+    url: require("./assets/brandbook.mp4"),
+    width: 1920,
+    height: 1080,
+  },
+};
 
 export const images = {
   crown: {

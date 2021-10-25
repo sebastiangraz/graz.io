@@ -59,14 +59,12 @@ const phoneBorder = () => {
       borderRadius: radius().default,
       content: "''",
       position: "absolute",
-      left: 0,
-      top: 0,
-      width: "100%",
-      height: "100%",
+      left: "1px",
+      top: "1px",
+      width: "calc(100% - 2px)",
+      height: "calc(100% - 2px)",
       zIndex: "1",
-      outline: "solid #000",
-      outlineOffset: "-10px",
-      outlineWidth: "8px",
+      boxShadow: "0 0 0 5px #000 inset",
     },
   };
 };
@@ -77,7 +75,7 @@ const Capchase = ({ data }) => {
       return (
         <>
           <GridParent>
-            <Box sx={{ gridColumn: ["span 8", " 2/span 4"] }}>
+            <Box sx={{ gridColumn: ["2/span 8", " 2/span 4"] }}>
               <ScrollReveal>
                 <Text variant="lead" mb={8}>
                   Capchase, one of the largest non-dilutive funding companies
@@ -91,7 +89,7 @@ const Capchase = ({ data }) => {
                 </Text>
               </ScrollReveal>
             </Box>
-            <Box sx={{ gridColumn: ["span 8", "2/span 5"] }}>
+            <Box sx={{ gridColumn: ["2/span 8", "2/span 5"] }}>
               <NumberedList
                 labelColor={colors.yellow}
                 horizontal
@@ -107,11 +105,11 @@ const Capchase = ({ data }) => {
           <GridParent>
             <div
               sx={{
-                pr: 9,
+                pr: [2, 9],
                 borderRadius: radius().right,
                 background: colors.black,
                 gridRow: ["span 4", "span 2"],
-                gridColumn: ["span 8", "span 3"],
+                gridColumn: ["span 3"],
                 boxShadow: "capchase",
                 display: "flex",
                 justifyContent: "center",
@@ -127,8 +125,8 @@ const Capchase = ({ data }) => {
                 padding: "10%",
                 borderRadius: radius().default,
                 background: colors.purple,
-                gridRow: ["span 8", "span 4"],
-                gridColumn: ["span 8", "span 4"],
+                gridRow: ["span 4", "span 4"],
+                gridColumn: ["span 4", "span 4"],
               }}
             >
               <Img imageData={images.elements} />
@@ -139,8 +137,8 @@ const Capchase = ({ data }) => {
                 ...phoneBorder(),
 
                 borderRadius: radius().default,
-                gridRow: ["span 8", "span 4"],
-                gridColumn: ["span 8", "span 2"],
+                gridRow: ["span 5", "span 4"],
+                gridColumn: ["span 3", "span 2"],
               }}
             >
               <div
@@ -177,11 +175,11 @@ const Capchase = ({ data }) => {
             </div>
             <div
               sx={{
-                padding: 8,
+                padding: [3, 8],
                 borderRadius: radius().default,
                 background: colors.black,
                 gridRow: "3/span 2",
-                gridColumn: ["span 2", "4/span 2"],
+                gridColumn: ["2/span 4", "4/span 2"],
               }}
             >
               <ScrollReveal
@@ -198,8 +196,8 @@ const Capchase = ({ data }) => {
                 justifyContent: "center",
                 borderRadius: radius(true).default,
                 background: colors.purple,
-                gridRow: "2/span 1",
-                gridColumn: ["span 1", "6/span 1"],
+                gridRow: ["1/span 1", "2/span 1"],
+                gridColumn: ["6/span 1", "6/span 1"],
                 color: colors.yellow,
                 svg: {
                   margin: "0 auto",
@@ -213,8 +211,8 @@ const Capchase = ({ data }) => {
             <div
               sx={{
                 borderRadius: radius().default,
-                gridRow: "3/span 2",
-                gridColumn: ["span 2", "6/span 2"],
+                gridRow: ["1/span 2", "3/span 2"],
+                gridColumn: ["2/span 2", "6/span 2"],
               }}
             >
               <Img imageData={images.ramp} />
@@ -227,8 +225,8 @@ const Capchase = ({ data }) => {
                 position: "relative",
                 borderRadius: radius().left,
                 background: colors.black,
-                gridRow: "2/span 3",
-                gridColumn: ["span 2", "8/span 3"],
+                gridRow: ["1/span 3", "2/span 3"],
+                gridColumn: ["8/span 3", "8/span 3"],
                 alignItems: "center",
                 display: "grid",
                 img: {
@@ -246,8 +244,8 @@ const Capchase = ({ data }) => {
                 overflow: "hidden",
                 borderRadius: radius().default,
                 background: colors.purple,
-                gridRow: "5/span 2",
-                gridColumn: ["span 2", "8/span 2"],
+                gridRow: ["3/span 2", "5/span 2"],
+                gridColumn: ["6/span 4", "8/span 2"],
               }}
             >
               <Img imageData={images.totes} />

@@ -22,7 +22,7 @@ export let cases = new Map([
       component: Capchase,
       color: "#000",
       bg: "#FFD99F",
-      grid: ["2 / span 10", "2 / span 9"],
+      grid: ["2 / span 10", "2 / span 8"],
       scope: [
         "Visual identity",
         "Art direction",

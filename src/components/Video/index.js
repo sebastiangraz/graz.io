@@ -102,12 +102,15 @@ export const Video = ({ videoData, ...props }) => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            svg: {
+              position: "relative",
+              left: "1px",
+            },
 
             "&:hover": {
               cursor: "pointer",
               background: "var(--caseBg)",
               "svg path": {
-                position: "relative",
                 fill: "currentColor",
               },
             },

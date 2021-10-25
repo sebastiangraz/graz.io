@@ -202,8 +202,9 @@ const Capchase = ({ data }) => {
                 gridColumn: ["span 1", "6 / span 1"],
                 color: colors.yellow,
                 svg: {
-                  width: [24, 44, 56, 72],
-                  height: [24, 44, 56, 72],
+                  margin: "0 auto",
+                  width: "50%",
+                  height: "auto",
                 },
               }}
             >
@@ -371,10 +372,15 @@ const Capchase = ({ data }) => {
                 svg: { width: "100%" },
               }}
             >
-              {vectors.logotype}
+              <ScrollReveal duration={1.5} delay={0.3}>
+                {" "}
+                {vectors.logotype}
+              </ScrollReveal>
             </Box>
             <Box sx={{ gridColumn: ["span 8", " 2/ span 8"] }}>
-              <ul
+              <ScrollReveal
+                // effect={[{ translateY: 10 }, { translateY: 0 }]}
+                delay={1}
                 sx={{
                   display: "grid",
                   alignItems: "center",
@@ -397,12 +403,18 @@ const Capchase = ({ data }) => {
                   </Text>
                 </li>
                 <li sx={{ display: "flex", alignItems: "center" }}>
-                  {vectors.transparentIcon}
+                  <ScrollReveal
+                    delay={0.9}
+                    duration={2}
+                    effect={[{ rotate: -20 }, { rotate: 0 }]}
+                  >
+                    {vectors.transparentIcon}
+                  </ScrollReveal>
                   <Text sx={{ ml: 7, maxWidth: 200 }} variant="label">
                     Feel transparent and humble.
                   </Text>
                 </li>
-              </ul>
+              </ScrollReveal>
               {/* <NumberedList
                 labelColor={colors.yellow}
                 horizontal
@@ -419,7 +431,7 @@ const Capchase = ({ data }) => {
               sx={{
                 zIndex: 1,
                 overflow: "hidden",
-                borderRadius: radius().default,
+                borderRadius: radius(true).default,
                 background: colors.purple,
                 gridRow: ["span 4", "1/span 1"],
                 gridColumn: ["span 8", "2/span 1"],
@@ -429,19 +441,20 @@ const Capchase = ({ data }) => {
                 justifyContent: "center",
                 alignItems: "center",
                 svg: {
-                  width: [24, 44, 72, 120],
-                  height: [24, 44, 72, 120],
+                  margin: "0 auto",
+                  width: "50%",
+                  height: "auto",
                 },
               }}
             >
-              <ScrollReveal duration={2}>{vectors.logo}</ScrollReveal>
+              {vectors.logo}
             </div>
 
             <div
               sx={{
                 overflow: "hidden",
                 position: "relative",
-                borderRadius: radius().default,
+                borderRadius: radius(true).default,
                 background: colors.purple,
                 gridRow: ["span 4", "1/span 1"],
                 gridColumn: ["span 8", "2/span 2"],
@@ -502,8 +515,6 @@ const Capchase = ({ data }) => {
             </div>
             <div
               sx={{
-                p: 9,
-                pr: 0,
                 overflow: "hidden",
                 position: "relative",
                 borderRadius: radius().default,
@@ -517,10 +528,24 @@ const Capchase = ({ data }) => {
                 },
               }}
             >
-              <Img
-                sx={{ position: "absolute", width: "100%" }}
-                imageData={images.stats}
-              />
+              <Text
+                sx={{
+                  bottom: 0,
+                  p: [4, 7, 8],
+                  maxWidth: "560px",
+                  margin: "0 auto",
+                  zIndex: 2,
+                  position: "absolute",
+                  color: colors.yellow,
+                  background: `linear-gradient(360deg, ${colors.black}, transparent)`,
+                }}
+                variant="label"
+              >
+                While exploring ideas we also found that having a modular logo
+                would be important later down the line as Capchase starts
+                releasing sectioned finance products.
+              </Text>
+              <Video videoData={videos.reveal} />
             </div>
             <div
               sx={{
@@ -550,6 +575,225 @@ const Capchase = ({ data }) => {
             <Box mt={11} sx={{ gridColumn: ["span 8", " 2/ span 4"] }}>
               <ScrollReveal>
                 <Text variant="heading">Art Direction</Text>
+                <Text variant="lead" mb={8}>
+                  We came up with a variety of wavy patterns to represent flow
+                  and movement. A concept that sits closely to the financial
+                  term liquidity.
+                </Text>
+                <Text variant="lead" mb={10}>
+                  Some of the shapes are also animated to further emphasize
+                  movement.
+                </Text>
+              </ScrollReveal>
+            </Box>
+          </GridParent>
+          <GridParent>
+            <Box
+              sx={{
+                overflow: "hidden",
+                borderRadius: radius().default,
+                background: colors.black,
+                gridRow: ["span 8", "1/span 4"],
+                gridColumn: ["span 8", "2/span 4"],
+                display: "flex",
+                justifyContent: "start",
+                alignItems: "end",
+              }}
+            >
+              <Img
+                sx={{
+                  width: "100%",
+                  img: { width: "70%", objectPosition: "bottom" },
+                }}
+                imageData={images.artDirection1}
+              />
+            </Box>
+            <Box
+              sx={{
+                overflow: "hidden",
+                borderRadius: "pill",
+
+                gridRow: ["span 8", "1/span 2"],
+                gridColumn: ["span 8", "6/span 2"],
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                video: {
+                  transform: "scale(1.65)",
+                  transformOrigin: "100% 55%",
+                },
+              }}
+            >
+              <Video videoData={videos.yellowPurple} />
+            </Box>
+            <Box
+              sx={{
+                padding: "10%",
+                borderRadius: radius().default,
+                background: colors.white,
+                gridRow: ["span 8", "3/span 4"],
+                gridColumn: ["span 8", "6/span 4"],
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Img sx={{ width: "70%" }} imageData={images.artDirection2} />
+            </Box>
+            <Box
+              sx={{
+                padding: "10%",
+                borderRadius: radius().default,
+                background: colors.black,
+                gridRow: ["span 8", "7/span 4"],
+                gridColumn: ["span 8", "2/span 4"],
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Img sx={{ width: "70%" }} imageData={images.artDirection3} />
+            </Box>
+            <Box
+              sx={{
+                gridRow: ["span 8", "7/span 4"],
+                gridColumn: ["span 8", "6/span 4"],
+                display: "flex",
+                justifyContent: "start",
+                alignItems: "center",
+              }}
+            >
+              <Img sx={{ width: "70%" }} imageData={images.artDirection4} />
+            </Box>
+            <Box
+              sx={{
+                padding: "10%",
+                borderRadius: radius().default,
+                background: colors.black,
+                gridRow: ["span 8", "11/span 4"],
+                gridColumn: ["span 8", "6/span 4"],
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Img sx={{ width: "70%" }} imageData={images.artDirection5} />
+            </Box>
+            <Box
+              sx={{
+                position: "relative",
+                overflow: "hidden",
+                borderRadius: radius().default,
+                background: colors.pink,
+                gridRow: ["span 8", "13/span 2"],
+                gridColumn: ["span 8", "4/span 4"],
+                display: "flex",
+                zIndex: -1,
+                justifyContent: "start",
+                alignItems: "end",
+              }}
+            >
+              <Img
+                sx={{
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  width: "50%",
+                  img: { width: "70%", objectPosition: "bottom" },
+                }}
+                imageData={images.artDirection6}
+              />
+            </Box>
+            <Box
+              sx={{
+                overflow: "hidden",
+                borderRadius: radius().default,
+                background: colors.black,
+                gridRow: ["span 8", "15/span 3"],
+                gridColumn: ["span 8", "2/span 2"],
+                display: "flex",
+                justifyContent: "start",
+                alignItems: "end",
+              }}
+            >
+              <Img
+                sx={{
+                  width: "100%",
+                  img: { width: "70%", objectPosition: "bottom" },
+                }}
+                imageData={images.artDirection7}
+              />
+            </Box>
+            <Box
+              sx={{
+                padding: "5%",
+                borderRadius: radius().default,
+                background: colors.black,
+                gridRow: ["span 8", "16/span 4"],
+                gridColumn: ["span 8", "6/span 4"],
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Img sx={{ width: "70%" }} imageData={images.artDirection8} />
+            </Box>
+
+            <Box
+              sx={{
+                overflow: "hidden",
+                borderRadius: radius().default,
+                background: colors.white,
+                gridRow: ["span 8", "18/span 4"],
+                gridColumn: ["span 8", "2/span 4"],
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Img sx={{ width: "100%" }} imageData={images.artDirection9} />
+            </Box>
+          </GridParent>
+          <GridParent>
+            <Box
+              sx={{
+                padding: "10%",
+                borderRadius: radius().default,
+                background: colors.black,
+                gridRow: ["span 8", "3 /span 4"],
+                gridColumn: ["span 8", "2/span 6"],
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {/* <Img sx={{ width: "70%" }} imageData={images.logoart1} /> */}
+            </Box>
+            <Box
+              sx={{
+                padding: "10%",
+                borderRadius: radius().default,
+                background: colors.white,
+                gridRow: ["span 8", "3 /span 8"],
+                gridColumn: ["span 8", "6/span 4"],
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {/* <Img sx={{ width: "70%" }} imageData={images.logoart1} /> */}
+            </Box>
+            <Box
+              sx={{
+                gridRow: ["span 8", "7 /span 8"],
+                gridColumn: ["span 8", "2/span 3"],
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <ScrollReveal>
+                <Text variant="heading">Typography</Text>
                 <Text variant="lead" mb={8}>
                   We came up with a variety of wavy patterns to represent flow
                   and movement. A concept that sits closely to the financial

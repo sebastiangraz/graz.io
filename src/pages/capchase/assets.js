@@ -6,6 +6,26 @@ export const videos = {
     width: 1920,
     height: 1080,
   },
+  reveal: {
+    url: require("./assets/reveal.mp4"),
+    width: 1920,
+    height: 1080,
+  },
+  generic: {
+    url: require("./assets/generic-outro-portfolio.mp4"),
+    width: 1920,
+    height: 1080,
+  },
+  outro: {
+    url: require("./assets/creative-outro.mp4"),
+    width: 1920,
+    height: 1080,
+  },
+  yellowPurple: {
+    url: require("./assets/yellowpurple.mp4"),
+    width: 1500,
+    height: 1500,
+  },
 };
 
 export const images = {
@@ -110,6 +130,60 @@ export const images = {
     width: 288,
     height: 288,
     alt: "logoart3",
+  },
+  artDirection1: {
+    url: require("./assets/artDirection1.png"),
+    width: 834,
+    height: 908,
+    alt: "Art Direction 1",
+  },
+  artDirection2: {
+    url: require("./assets/artDirection2.png"),
+    width: 1,
+    height: 1,
+    alt: "Art Direction 2",
+  },
+  artDirection3: {
+    url: require("./assets/artDirection3.png"),
+    width: 1,
+    height: 1,
+    alt: "Art Direction 3",
+  },
+  artDirection4: {
+    url: require("./assets/artDirection4.png"),
+    width: 1,
+    height: 1,
+    alt: "Art Direction 4",
+  },
+  artDirection5: {
+    url: require("./assets/artDirection5.png"),
+    width: 1,
+    height: 1,
+    alt: "Art Direction 5",
+  },
+  artDirection6: {
+    url: require("./assets/artDirection6.png"),
+    width: 442,
+    height: 456,
+    alt: "Art Direction 6",
+  },
+  artDirection7: {
+    url: require("./assets/artDirection7.png"),
+    width: 427,
+    height: 601,
+    alt: "Art Direction 7",
+  },
+  artDirection8: {
+    url: require("./assets/artDirection8.png"),
+    width: 1,
+    height: 1,
+    alt: "Art Direction 8",
+  },
+  artDirection9: {
+    url: require("./assets/artDirection9.png"),
+    width: 1,
+    height: 1,
+    alt: "Art Direction 9",
   },
 };
 

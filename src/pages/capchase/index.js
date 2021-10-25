@@ -338,32 +338,32 @@ const Capchase = ({ data }) => {
     Webdesign: () => {
       return (
         <>
-          <GridParent>
+          <GridParent mb={[10, 11]}>
             <Box
               sx={{
-                gridRow: "span 1",
+                gridRow: ["1/span 1"],
                 gridColumn: ["2/span 8", "2/span 4"],
               }}
             >
               <Text variant="heading">Design Execution</Text>
             </Box>
             <Box
-              mb={11}
+              mb={[10, 11]}
               sx={{
-                gridRow: "1/span 1",
+                gridRow: ["2/span 1", "1/span 1"],
                 gridColumn: ["2/span 8", "6/span 4"],
               }}
             >
               <Text variant="lead">
                 The direction of the website was formed alongside the visual
                 language. Sometimes design discoveries in the final mocks would
-                inform the core brand principles, and visa versa.
+                inform the core brand principles, and vice versa.
               </Text>
             </Box>
 
             <div
               sx={{
-                gridRow: "3/span 4",
+                gridRow: ["4/span 4", "3/span 4"],
                 gridColumn: ["2/ span 8", "2/span 8"],
                 img: {
                   transform: "scale(1.205)",
@@ -397,15 +397,11 @@ const Capchase = ({ data }) => {
                 svg: { width: "100%" },
               }}
             >
-              <ScrollReveal duration={1.5} delay={0.3}>
-                {" "}
-                {vectors.logotype}
-              </ScrollReveal>
+              <ScrollReveal duration={1.5}> {vectors.logotype}</ScrollReveal>
             </Box>
             <Box mb={10} sx={{ gridColumn: ["2/ span 8", " 2/span 8"] }}>
               <ScrollReveal
                 effect={[{ translateY: 20 }, { translateY: 0 }]}
-                delay={0.3}
                 sx={{
                   display: "grid",
                   alignItems: "center",
@@ -450,7 +446,6 @@ const Capchase = ({ data }) => {
                   <ScrollReveal
                     ignoreParentFade
                     sx={{ width: ["32px", "72px"] }}
-                    delay={0.3}
                     duration={2}
                     effect={[{ rotate: -20 }, { rotate: 0 }]}
                   >
@@ -614,17 +609,13 @@ const Capchase = ({ data }) => {
       return (
         <>
           <GridParent>
-            <Box mt={11} sx={{ gridColumn: ["2/ span 8", " 2/span 4"] }}>
+            <Box mt={11} sx={{ gridColumn: ["2/ span 8", " 2/span 5"] }}>
               <ScrollReveal>
                 <Text variant="heading">Art Direction</Text>
-                <Text variant="lead" mb={8}>
-                  We came up with a variety of wavy patterns to represent flow
+                <Text variant="lead" mb={10}>
+                  We came up with a variety of wave patterns to represent flow
                   and movement. A concept that sits closely to the financial
                   term liquidity.
-                </Text>
-                <Text variant="lead" mb={10}>
-                  Some of the shapes are also animated to further emphasize
-                  movement.
                 </Text>
               </ScrollReveal>
             </Box>
@@ -635,8 +626,8 @@ const Capchase = ({ data }) => {
                 overflow: "hidden",
                 borderRadius: radius().default,
                 background: colors.black,
-                gridRow: ["span 8", "1/span 4"],
-                gridColumn: ["span 8", "2/span 4"],
+                gridRow: ["span 4", "1/span 4"],
+                gridColumn: ["2/span 4", "2/span 4"],
                 display: "flex",
                 justifyContent: "start",
                 alignItems: "end",
@@ -645,7 +636,10 @@ const Capchase = ({ data }) => {
               <Img
                 sx={{
                   width: "100%",
-                  img: { width: "70%", objectPosition: "bottom" },
+                  img: {
+                    width: "70%",
+                    objectPosition: "bottom",
+                  },
                 }}
                 imageData={images.artDirection1}
               />
@@ -655,8 +649,8 @@ const Capchase = ({ data }) => {
                 overflow: "hidden",
                 borderRadius: "pill",
                 isolation: "isolate",
-                gridRow: ["span 8", "1/span 2"],
-                gridColumn: ["span 8", "6/span 2"],
+                gridRow: ["span 4", "1/span 2"],
+                gridColumn: ["6/span 4", "6/span 2"],
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -670,11 +664,11 @@ const Capchase = ({ data }) => {
             </Box>
             <Box
               sx={{
-                padding: "10%",
+                padding: ["5%", "10%"],
                 borderRadius: radius().default,
                 background: colors.white,
                 gridRow: ["span 8", "3/span 4"],
-                gridColumn: ["span 8", "6/span 4"],
+                gridColumn: ["2/span 8", "6/span 4"],
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -687,8 +681,8 @@ const Capchase = ({ data }) => {
                 padding: "10%",
                 borderRadius: radius().default,
                 background: colors.black,
-                gridRow: ["span 8", "7/span 4"],
-                gridColumn: ["span 8", "2/span 4"],
+                gridRow: ["span 4", "7/span 4"],
+                gridColumn: ["2/span 4", "2/span 4"],
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -698,8 +692,8 @@ const Capchase = ({ data }) => {
             </Box>
             <Box
               sx={{
-                gridRow: ["span 8", "7/span 4"],
-                gridColumn: ["span 8", "6/span 4"],
+                gridRow: ["span 4", "7/span 4"],
+                gridColumn: ["span 4", "6/span 4"],
                 display: "flex",
                 justifyContent: "start",
                 alignItems: "center",
@@ -713,7 +707,7 @@ const Capchase = ({ data }) => {
                 borderRadius: radius().default,
                 background: colors.black,
                 gridRow: ["span 8", "11/span 4"],
-                gridColumn: ["span 8", "6/span 4"],
+                gridColumn: ["2/span 8", "6/span 4"],
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -727,8 +721,8 @@ const Capchase = ({ data }) => {
                 overflow: "hidden",
                 borderRadius: radius().default,
                 background: colors.pink,
-                gridRow: ["span 8", "13/span 2"],
-                gridColumn: ["span 8", "4/span 4"],
+                gridRow: ["span 3", "13/span 2"],
+                gridColumn: ["2/span 4", "4/span 4"],
                 display: "flex",
                 zIndex: -1,
                 justifyContent: "start",
@@ -740,8 +734,8 @@ const Capchase = ({ data }) => {
                   position: "absolute",
                   bottom: 0,
                   left: 0,
-                  width: "50%",
-                  img: { width: "70%", objectPosition: "bottom" },
+                  width: ["50%", "100%"],
+                  img: { width: ["100%", "70%"], objectPosition: "bottom" },
                 }}
                 imageData={images.artDirection6}
               />
@@ -751,8 +745,8 @@ const Capchase = ({ data }) => {
                 overflow: "hidden",
                 borderRadius: radius().default,
                 background: colors.black,
-                gridRow: ["span 8", "15/span 3"],
-                gridColumn: ["span 8", "2/span 2"],
+                gridRow: ["span 4", "15/span 3"],
+                gridColumn: ["span 4", "2/span 2"],
                 display: "flex",
                 justifyContent: "start",
                 alignItems: "end",
@@ -772,7 +766,7 @@ const Capchase = ({ data }) => {
                 borderRadius: radius().default,
                 background: colors.black,
                 gridRow: ["span 8", "16/span 4"],
-                gridColumn: ["span 8", "6/span 4"],
+                gridColumn: ["2/span 8", "6/span 4"],
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -786,8 +780,8 @@ const Capchase = ({ data }) => {
                 overflow: "hidden",
                 borderRadius: radius().default,
                 background: colors.white,
-                gridRow: ["span 8", "18/span 4"],
-                gridColumn: ["span 8", "2/span 4"],
+                gridRow: ["span 4", "18/span 4"],
+                gridColumn: ["2/span 4", "2/span 4"],
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -803,9 +797,10 @@ const Capchase = ({ data }) => {
                 overflow: "hidden",
                 borderRadius: radius().default,
                 background: colors.black,
-                gridRow: ["span 8", "7/span 4"],
-                gridColumn: ["span 8", "2/span 5"],
+                gridRow: ["2/span 8", "7/span 4"],
+                gridColumn: ["2/span 8", "2/span 5"],
                 display: "flex",
+                zIndex: [2, 0],
                 justifyContent: "center",
                 alignItems: "center",
               }}
@@ -828,8 +823,8 @@ const Capchase = ({ data }) => {
                 zIndex: 1,
                 borderRadius: radius().default,
                 background: colors.white,
-                gridRow: ["span 8", "4/span 6"],
-                gridColumn: ["span 8", "6/span 4"],
+                gridRow: ["9/span 8", "4/span 6"],
+                gridColumn: ["2/span 8", "6/span 4"],
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -846,9 +841,10 @@ const Capchase = ({ data }) => {
               </ScrollReveal>
             </Box>
             <Box
+              mt={[10, 0]}
               sx={{
-                gridRow: ["span 8", "4/span 6"],
-                gridColumn: ["span 8", "2/span 4"],
+                gridRow: ["1/span 1", "4/span 6"],
+                gridColumn: ["2/span 8", "2/span 4"],
               }}
             >
               <ScrollReveal>
@@ -856,14 +852,14 @@ const Capchase = ({ data }) => {
                 <Text variant="lead" mb={8} sx={{ maxWidth: 490, mr: 8 }}>
                   We chose a geometric sans-serif named ES Build for it’s
                   inherent neutrality and simplicity. The rounded features go
-                  hand in hand with the wavy illustrations.
+                  hand in hand with the wave illustrations.
                 </Text>
               </ScrollReveal>
             </Box>
             <Box
               sx={{
                 gridRow: ["span 8", "9/span 8"],
-                gridColumn: ["span 8", "2/span 4"],
+                gridColumn: ["2/span 8", "2/span 4"],
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -879,7 +875,7 @@ const Capchase = ({ data }) => {
               sx={{
                 position: "relative",
                 gridRow: ["span 8", "12/span 2"],
-                gridColumn: ["span 8", "8/span 2"],
+                gridColumn: ["2/span 4", "8/span 2"],
               }}
             >
               <ScrollReveal

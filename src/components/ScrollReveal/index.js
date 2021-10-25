@@ -13,7 +13,7 @@ export const ScrollReveal = ({
   ignoreParentFade,
   ...rest
 }) => {
-  const delayVal = delay ? delay : 0.3;
+  const delayVal = delay ? delay : 0.05;
   const effectVal = effect ? effect : [{ opacity: 0 }, { opacity: 1 }];
   const durationVal = duration ? duration : 1;
 

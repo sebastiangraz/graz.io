@@ -20,7 +20,7 @@ export const CaseMeta = ({ data }) => {
           sx={{
             display: "grid",
             gridTemplateColumns:
-              "repeat(auto-fit, minmax(min(120px, 100%), 1fr))",
+              "repeat(auto-fit, minmax(min(112px, 100%), 1fr))",
             columnGap: "32px",
           }}
         >

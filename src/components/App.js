@@ -38,17 +38,17 @@ export let cases = new Map([
       year: "2021",
     },
   ],
-  [
-    "loupe",
-    {
-      name: "Loupe",
-      slug: "loupe",
-      component: Loupe,
-      color: "#184629",
-      bg: "#D2DAD3",
-      grid: ["3 / span 9", "3 / span 9"],
-    },
-  ],
+  // [
+  //   "loupe",
+  //   {
+  //     name: "Loupe",
+  //     slug: "loupe",
+  //     component: Loupe,
+  //     color: "#184629",
+  //     bg: "#D2DAD3",
+  //     grid: ["3 / span 9", "3 / span 9"],
+  //   },
+  // ],
 ]);
 
 const MemoApp = () => {

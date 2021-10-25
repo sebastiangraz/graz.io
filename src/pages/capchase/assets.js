@@ -190,8 +190,7 @@ export const images = {
 export const vectors = {
   transparentIcon: (
     <svg
-      width="76"
-      height="72"
+      preserveAspectRatio="xMidYMid meet"
       viewBox="0 0 76 72"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -224,8 +223,7 @@ export const vectors = {
   ),
   growthIcon: (
     <svg
-      width="78"
-      height="72"
+      preserveAspectRatio="xMidYMid meet"
       viewBox="0 0 78 72"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -278,8 +276,7 @@ export const vectors = {
   ),
   forwardIcon: (
     <svg
-      width="73"
-      height="66"
+      preserveAspectRatio="xMidYMid meet"
       viewBox="0 0 73 66"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

@@ -164,7 +164,7 @@ const Capchase = ({ data }) => {
               </ScrollReveal>
             </div>
           </GridParent>
-          <GridParent sx={{ mb: 11 }}>
+          <GridParent sx={{ mb: [10, 11] }}>
             <div
               sx={{
                 borderRadius: radius().default,
@@ -286,12 +286,12 @@ const Capchase = ({ data }) => {
             </div>
             <div
               sx={{
+                isolation: "isolate",
                 my: 10,
                 borderRadius: ["12px", "48px"],
-                // boxShadow: "capchase",
                 overflow: "hidden",
                 gridRow: "span 4",
-                gridColumn: ["2/ span 8", "2/span 8"],
+                gridColumn: ["1/ span 10", "2/span 8"],
               }}
             >
               <Video videoData={videos.brandbook} />
@@ -318,7 +318,7 @@ const Capchase = ({ data }) => {
             <div
               sx={{
                 gridRow: ["1/span 1", "5/span 2"],
-                gridColumn: ["2/ span 9", "5/span 5"],
+                gridColumn: ["2/ span 8", "5/span 5"],
               }}
             >
               <Text variant="caps">Rules that matter</Text>
@@ -537,6 +537,7 @@ const Capchase = ({ data }) => {
                 gridColumn: ["2/span 8", "6/span 4"],
                 alignItems: "center",
                 display: "grid",
+                zIndex: 2,
               }}
             >
               <Box
@@ -587,7 +588,7 @@ const Capchase = ({ data }) => {
       return (
         <>
           <GridParent>
-            <Box mt={11} sx={{ gridColumn: ["span 8", " 2/span 4"] }}>
+            <Box mt={11} sx={{ gridColumn: ["2/ span 8", " 2/span 4"] }}>
               <ScrollReveal>
                 <Text variant="heading">Art Direction</Text>
                 <Text variant="lead" mb={8}>
@@ -627,7 +628,7 @@ const Capchase = ({ data }) => {
               sx={{
                 overflow: "hidden",
                 borderRadius: "pill",
-
+                isolation: "isolate",
                 gridRow: ["span 8", "1/span 2"],
                 gridColumn: ["span 8", "6/span 2"],
                 display: "flex",

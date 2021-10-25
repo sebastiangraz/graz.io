@@ -120,7 +120,11 @@ const Capchase = ({ data }) => {
                 alignItems: "center",
               }}
             >
-              <ScrollReveal duration={2} sx={{ width: "100%" }}>
+              <ScrollReveal
+                effect={[{ translateY: 5 }, { translateY: 0 }]}
+                duration={1.5}
+                sx={{ width: "100%" }}
+              >
                 <Img sx={{ width: "100%" }} imageData={images.bottle} />
               </ScrollReveal>
             </div>
@@ -253,7 +257,12 @@ const Capchase = ({ data }) => {
                 gridColumn: ["6/span 4", "8/span 2"],
               }}
             >
-              <Img imageData={images.totes} />
+              <ScrollReveal
+                delay={0.7}
+                effect={[{ rotate: -6 }, { rotate: 0 }]}
+              >
+                <Img imageData={images.totes} />
+              </ScrollReveal>
             </div>
           </GridParent>
         </>
@@ -399,14 +408,14 @@ const Capchase = ({ data }) => {
             >
               <ScrollReveal duration={1.5}> {vectors.logotype}</ScrollReveal>
             </Box>
-            <Box mb={10} sx={{ gridColumn: ["2/ span 8", " 2/span 8"] }}>
+            <Box mb={[9, 10]} sx={{ gridColumn: ["2/ span 8", " 2/span 8"] }}>
               <ScrollReveal
                 effect={[{ translateY: 20 }, { translateY: 0 }]}
                 sx={{
                   display: "grid",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  gridGap: [5, 8],
+                  gridGap: [7, 8],
                   gridTemplateColumns: ["auto", "auto auto auto"],
                   width: "100%",
                   padding: 0,
@@ -416,55 +425,58 @@ const Capchase = ({ data }) => {
                   sx={{
                     display: "flex",
                     alignItems: "center",
-                    svg: { width: ["32px", "72px"] },
+                    svg: { width: ["36px", "72px"] },
                   }}
                 >
                   {vectors.forwardIcon}
                   <Text
-                    sx={{ ml: [5, 7], maxWidth: 200, width: "100%" }}
+                    sx={{ ml: [5, 7], maxWidth: [170, 200], width: "100%" }}
                     variant="label"
                   >
-                    Represent progression and moving forward.
+                    Represents progression and moving forward.
                   </Text>
                 </li>
                 <li
                   sx={{
                     display: "flex",
                     alignItems: "center",
-                    svg: { width: ["32px", "72px"] },
+                    svg: { width: ["36px", "72px"] },
                   }}
                 >
                   {vectors.growthIcon}
                   <Text
-                    sx={{ ml: [5, 7], maxWidth: 200, width: "100%" }}
+                    sx={{ ml: [5, 7], maxWidth: [170, 200], width: "100%" }}
                     variant="label"
                   >
-                    Display a sense of growth & adaptability.
+                    Displays a sense of growth & adaptability.
                   </Text>
                 </li>
                 <li sx={{ display: "flex", alignItems: "center" }}>
                   <ScrollReveal
                     ignoreParentFade
-                    sx={{ width: ["32px", "72px"] }}
+                    sx={{ width: ["36px", "72px"] }}
                     duration={2}
                     effect={[{ rotate: -20 }, { rotate: 0 }]}
                   >
                     {vectors.transparentIcon}
                   </ScrollReveal>
                   <Text
-                    sx={{ ml: [5, 7], maxWidth: 200, width: "100%" }}
+                    sx={{ ml: [5, 7], maxWidth: [170, 200], width: "100%" }}
                     variant="label"
                   >
-                    Feel transparent and humble.
+                    Display transparency and humbleness.
                   </Text>
                 </li>
               </ScrollReveal>
             </Box>
           </GridParent>
           <GridParent>
-            <div
+            <ScrollReveal
+              effect={[{ x: -25 }, { x: 0 }]}
+              parentEffect={[{ x: 50 }, { x: 0 }]}
               sx={{
                 zIndex: 1,
+                position: "relative",
                 overflow: "hidden",
                 borderRadius: radius().default,
                 background: colors.purple,
@@ -483,14 +495,14 @@ const Capchase = ({ data }) => {
               }}
             >
               {vectors.logo}
-            </div>
+            </ScrollReveal>
 
             <div
               sx={{
                 overflow: "hidden",
                 position: "relative",
                 borderRadius: radius().default,
-                background: colors.purple,
+                background: colors.white,
                 gridRow: ["1/span 4", "1/span 1"],
                 gridColumn: ["2/ span 8", "2/span 2"],
               }}
@@ -609,10 +621,10 @@ const Capchase = ({ data }) => {
       return (
         <>
           <GridParent>
-            <Box mt={11} sx={{ gridColumn: ["2/ span 8", " 2/span 5"] }}>
+            <Box mt={[10, 11]} sx={{ gridColumn: ["2/ span 8", " 2/span 5"] }}>
               <ScrollReveal>
                 <Text variant="heading">Art Direction</Text>
-                <Text variant="lead" mb={10}>
+                <Text variant="lead" mb={[9, 10]}>
                   We came up with a variety of wave patterns to represent flow
                   and movement. A concept that sits closely to the financial
                   term liquidity.
@@ -809,7 +821,9 @@ const Capchase = ({ data }) => {
                 duration={3}
                 effect={[{ scale: 0.95 }, { scale: 1 }]}
                 sx={{
-                  width: "100%",
+                  position: "relative",
+                  left: ["16%", 0],
+                  width: ["100%"],
                 }}
               >
                 <Img imageData={images.grow} />
@@ -849,7 +863,11 @@ const Capchase = ({ data }) => {
             >
               <ScrollReveal>
                 <Text variant="heading">Typography</Text>
-                <Text variant="lead" mb={8} sx={{ maxWidth: 490, mr: 8 }}>
+                <Text
+                  variant="lead"
+                  mb={8}
+                  sx={{ maxWidth: "100%", mr: [0, 8] }}
+                >
                   We chose a geometric sans-serif named ES Build for it’s
                   inherent neutrality and simplicity. The rounded features go
                   hand in hand with the wave illustrations.
@@ -865,7 +883,7 @@ const Capchase = ({ data }) => {
                 alignItems: "center",
               }}
             >
-              <Text variant="lead" my={10}>
+              <Text variant="lead" mt={10} mb={9}>
                 The chosen typeface works well both for headings as well as body
                 copy. Since you can control the level of neutrality with some
                 nifty CSS features.
@@ -875,7 +893,7 @@ const Capchase = ({ data }) => {
               sx={{
                 position: "relative",
                 gridRow: ["span 8", "12/span 2"],
-                gridColumn: ["2/span 4", "8/span 2"],
+                gridColumn: ["3/span 6", "8/span 2"],
               }}
             >
               <ScrollReveal

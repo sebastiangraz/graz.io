@@ -9,18 +9,22 @@ export const ScrollReveal = ({
   children,
   delay,
   effect,
+  parentEffect,
   duration,
   ignoreParentFade,
   ...rest
 }) => {
   const delayVal = delay ? delay : 0.05;
   const effectVal = effect ? effect : [{ opacity: 0 }, { opacity: 1 }];
+  const parentEffectVal = parentEffect
+    ? parentEffect
+    : [{ opacity: 0 }, { opacity: 1 }];
   const durationVal = duration ? duration : 1;
 
   const parentVariant = {
-    hidden: { opacity: 0 },
+    hidden: parentEffectVal[0],
     visible: {
-      opacity: 1,
+      ...parentEffectVal[1],
       transition: {
         ease: [0.83, 0, 0.17, 1],
         duration: durationVal,
@@ -61,7 +65,12 @@ export const ScrollReveal = ({
     >
       {React.Children.map(children || null, (child, i) => {
         return (
-          <m.div key={i} custom={i} variants={squareVariants}>
+          <m.div
+            sx={{ display: "grid" }}
+            key={i}
+            custom={i}
+            variants={squareVariants}
+          >
             {child}
           </m.div>
         );

@@ -171,6 +171,7 @@ export const Home = ({ data }) => {
             background: data.bg,
             pt: 2,
             p: 3,
+            pl: [3, 0],
             boxShadow: [
               (t) => `0 0 0 1px  ${shade(data.bg, 0.1)(t)}`,
               "none",

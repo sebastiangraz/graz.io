@@ -77,7 +77,7 @@ const Capchase = ({ data }) => {
       return (
         <>
           <GridParent>
-            <Box sx={{ gridColumn: ["span 8", " 2/ span 4"] }}>
+            <Box sx={{ gridColumn: ["span 8", " 2/span 4"] }}>
               <ScrollReveal>
                 <Text variant="lead" mb={8}>
                   Capchase, one of the largest non-dilutive funding companies
@@ -91,7 +91,7 @@ const Capchase = ({ data }) => {
                 </Text>
               </ScrollReveal>
             </Box>
-            <Box sx={{ gridColumn: ["span 8", " 2/ span 5"] }}>
+            <Box sx={{ gridColumn: ["span 8", "2/span 5"] }}>
               <NumberedList
                 labelColor={colors.yellow}
                 horizontal
@@ -170,7 +170,7 @@ const Capchase = ({ data }) => {
                 borderRadius: radius().default,
                 background: colors.black,
                 gridRow: "span 2",
-                gridColumn: ["span 2", "2 / span 2"],
+                gridColumn: ["span 2", "2/span 2"],
               }}
             >
               <Img imageData={images.forward} />
@@ -180,8 +180,8 @@ const Capchase = ({ data }) => {
                 padding: 8,
                 borderRadius: radius().default,
                 background: colors.black,
-                gridRow: "3 / span 2",
-                gridColumn: ["span 2", "4 / span 2"],
+                gridRow: "3/span 2",
+                gridColumn: ["span 2", "4/span 2"],
               }}
             >
               <ScrollReveal
@@ -198,8 +198,8 @@ const Capchase = ({ data }) => {
                 justifyContent: "center",
                 borderRadius: radius(true).default,
                 background: colors.purple,
-                gridRow: "2 / span 1",
-                gridColumn: ["span 1", "6 / span 1"],
+                gridRow: "2/span 1",
+                gridColumn: ["span 1", "6/span 1"],
                 color: colors.yellow,
                 svg: {
                   margin: "0 auto",
@@ -213,8 +213,8 @@ const Capchase = ({ data }) => {
             <div
               sx={{
                 borderRadius: radius().default,
-                gridRow: "3 / span 2",
-                gridColumn: ["span 2", "6 / span 2"],
+                gridRow: "3/span 2",
+                gridColumn: ["span 2", "6/span 2"],
               }}
             >
               <Img imageData={images.ramp} />
@@ -227,8 +227,8 @@ const Capchase = ({ data }) => {
                 position: "relative",
                 borderRadius: radius().left,
                 background: colors.black,
-                gridRow: "2 / span 3",
-                gridColumn: ["span 2", "8 / span 3"],
+                gridRow: "2/span 3",
+                gridColumn: ["span 2", "8/span 3"],
                 alignItems: "center",
                 display: "grid",
                 img: {
@@ -246,8 +246,8 @@ const Capchase = ({ data }) => {
                 overflow: "hidden",
                 borderRadius: radius().default,
                 background: colors.purple,
-                gridRow: "5 / span 2",
-                gridColumn: ["span 2", "8 / span 2"],
+                gridRow: "5/span 2",
+                gridColumn: ["span 2", "8/span 2"],
               }}
             >
               <Img imageData={images.totes} />
@@ -263,7 +263,7 @@ const Capchase = ({ data }) => {
             <div
               sx={{
                 gridRow: "span 1",
-                gridColumn: ["span 2", "2 / span 4"],
+                gridColumn: ["span 2", "2/span 4"],
               }}
             >
               <Text variant="heading">Brand book</Text>
@@ -271,7 +271,7 @@ const Capchase = ({ data }) => {
             <div
               sx={{
                 gridRow: "span 1",
-                gridColumn: ["span 2", "6 / span 4"],
+                gridColumn: ["span 2", "6/span 4"],
               }}
             >
               <Text variant="lead">
@@ -291,7 +291,7 @@ const Capchase = ({ data }) => {
                 // boxShadow: "capchase",
                 overflow: "hidden",
                 gridRow: "span 4",
-                gridColumn: ["span 2", "2 / span 8"],
+                gridColumn: ["span 2", "2/span 8"],
               }}
             >
               <Video videoData={videos.brandbook} />
@@ -300,8 +300,8 @@ const Capchase = ({ data }) => {
           <GridParent>
             <div
               sx={{
-                gridRow: "3/ span 4",
-                gridColumn: ["span 2", "2 / span 9"],
+                gridRow: "3/span 4",
+                gridColumn: ["span 2", "2/span 9"],
               }}
             >
               <Img imageData={images.brandbook1} />
@@ -310,7 +310,7 @@ const Capchase = ({ data }) => {
               sx={{
                 mt: 8,
                 gridRow: "7/span 4",
-                gridColumn: ["span 2", "2 / span 9"],
+                gridColumn: ["span 2", "2/span 9"],
               }}
             >
               <Img imageData={images.brandbook2} />
@@ -318,7 +318,7 @@ const Capchase = ({ data }) => {
             <div
               sx={{
                 gridRow: "5/span 2",
-                gridColumn: ["span 2", "5 / span 5"],
+                gridColumn: ["span 2", "5/span 5"],
               }}
             >
               <Text variant="caps">Rules that matter</Text>
@@ -338,8 +338,8 @@ const Capchase = ({ data }) => {
           <GridParent>
             <div
               sx={{
-                gridRow: "3/ span 4",
-                gridColumn: ["span 2", "2 / span 8"],
+                gridRow: "3/span 4",
+                gridColumn: ["span 2", "2/span 8"],
                 img: {
                   transform: "scale(1.205)",
                 },
@@ -355,7 +355,7 @@ const Capchase = ({ data }) => {
       return (
         <>
           <GridParent>
-            <Box mt={11} sx={{ gridColumn: ["span 8", " 2/ span 7"] }}>
+            <Box mt={11} sx={{ gridColumn: ["span 8", " 2/span 7"] }}>
               <ScrollReveal>
                 <Text variant="heading">Logotype</Text>
                 <Text variant="lead" mb={10}>
@@ -368,7 +368,7 @@ const Capchase = ({ data }) => {
             <Box
               mb={10}
               sx={{
-                gridColumn: ["span 8", " 2/ span 8"],
+                gridColumn: ["span 8", " 2/span 8"],
                 svg: { width: "100%" },
               }}
             >
@@ -377,7 +377,7 @@ const Capchase = ({ data }) => {
                 {vectors.logotype}
               </ScrollReveal>
             </Box>
-            <Box sx={{ gridColumn: ["span 8", " 2/ span 8"] }}>
+            <Box sx={{ gridColumn: ["span 8", " 2/span 8"] }}>
               <ScrollReveal
                 // effect={[{ translateY: 10 }, { translateY: 0 }]}
                 delay={1}
@@ -519,8 +519,8 @@ const Capchase = ({ data }) => {
                 position: "relative",
                 borderRadius: radius().default,
                 background: colors.black,
-                gridRow: "2 / span 4",
-                gridColumn: ["span 2", "6 / span 4"],
+                gridRow: "2/span 4",
+                gridColumn: ["span 2", "6/span 4"],
                 alignItems: "center",
                 display: "grid",
                 img: {
@@ -572,7 +572,7 @@ const Capchase = ({ data }) => {
       return (
         <>
           <GridParent>
-            <Box mt={11} sx={{ gridColumn: ["span 8", " 2/ span 4"] }}>
+            <Box mt={11} sx={{ gridColumn: ["span 8", " 2/span 4"] }}>
               <ScrollReveal>
                 <Text variant="heading">Art Direction</Text>
                 <Text variant="lead" mb={8}>
@@ -760,7 +760,7 @@ const Capchase = ({ data }) => {
                 padding: "10%",
                 borderRadius: radius().default,
                 background: colors.black,
-                gridRow: ["span 8", "3 /span 4"],
+                gridRow: ["span 8", "3/span 4"],
                 gridColumn: ["span 8", "2/span 6"],
                 display: "flex",
                 justifyContent: "center",
@@ -774,7 +774,7 @@ const Capchase = ({ data }) => {
                 padding: "10%",
                 borderRadius: radius().default,
                 background: colors.white,
-                gridRow: ["span 8", "3 /span 8"],
+                gridRow: ["span 8", "3/span 8"],
                 gridColumn: ["span 8", "6/span 4"],
                 display: "flex",
                 justifyContent: "center",
@@ -785,7 +785,7 @@ const Capchase = ({ data }) => {
             </Box>
             <Box
               sx={{
-                gridRow: ["span 8", "7 /span 8"],
+                gridRow: ["span 8", "7/span 8"],
                 gridColumn: ["span 8", "2/span 3"],
                 display: "flex",
                 justifyContent: "center",

@@ -7,21 +7,34 @@ import { m, motion, useAnimation } from "framer-motion";
 
 export const ScrollReveal = ({
   children,
-  style,
   delay,
   effect,
   duration,
+  ignoreParentFade,
   ...rest
 }) => {
   const delayVal = delay ? delay : 0.3;
   const effectVal = effect ? effect : [{ opacity: 0 }, { opacity: 1 }];
-  const durationVal = duration ? duration : 0.6;
+  const durationVal = duration ? duration : 1;
+
+  const parentVariant = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        ease: [0.83, 0, 0.17, 1],
+        duration: durationVal,
+        delay: delayVal,
+      },
+    },
+  };
 
   const squareVariants = {
     hidden: effectVal[0],
     visible: (custom) => ({
       ...effectVal[1],
       transition: {
+        ease: [0.83, 0, 0.17, 1],
         duration: durationVal,
         delay: delayVal + custom * 0.1,
       },
@@ -40,11 +53,11 @@ export const ScrollReveal = ({
   return (
     <motion.div
       {...rest}
-      sx={{ ...style, willChange: "transform" }}
+      sx={{ willChange: "transform opacity" }}
       ref={ref}
       animate={controls}
       initial="hidden"
-      variants={squareVariants}
+      variants={!ignoreParentFade && parentVariant}
     >
       {React.Children.map(children || null, (child, i) => {
         return (

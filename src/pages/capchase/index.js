@@ -379,8 +379,8 @@ const Capchase = ({ data }) => {
             </Box>
             <Box mb={10} sx={{ gridColumn: ["2/ span 8", " 2/span 8"] }}>
               <ScrollReveal
-                // effect={[{ translateY: 10 }, { translateY: 0 }]}
-                delay={1}
+                effect={[{ translateY: 20 }, { translateY: 0 }]}
+                delay={0.3}
                 sx={{
                   display: "grid",
                   alignItems: "center",
@@ -423,8 +423,9 @@ const Capchase = ({ data }) => {
                 </li>
                 <li sx={{ display: "flex", alignItems: "center" }}>
                   <ScrollReveal
-                    style={{ width: ["32px", "72px"] }}
-                    delay={0.9}
+                    ignoreParentFade
+                    sx={{ width: ["32px", "72px"] }}
+                    delay={0.3}
                     duration={2}
                     effect={[{ rotate: -20 }, { rotate: 0 }]}
                   >
@@ -773,31 +774,47 @@ const Capchase = ({ data }) => {
           <GridParent>
             <Box
               sx={{
-                padding: "10%",
+                overflow: "hidden",
                 borderRadius: radius().default,
                 background: colors.black,
                 gridRow: ["span 8", "3/span 4"],
-                gridColumn: ["span 8", "2/span 6"],
+                gridColumn: ["span 8", "2/span 5"],
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
               }}
             >
-              {/* <Img sx={{ width: "70%" }} imageData={images.logoart1} /> */}
+              <ScrollReveal
+                sx={{
+                  width: "100%",
+                }}
+              >
+                <Img imageData={images.grow} />
+              </ScrollReveal>
             </Box>
             <Box
               sx={{
-                padding: "10%",
+                top: "60px",
+                position: "relative",
+                overflow: "hidden",
+                zIndex: 1,
                 borderRadius: radius().default,
                 background: colors.white,
-                gridRow: ["span 8", "3/span 8"],
+                gridRow: ["span 8", "3/span 7"],
                 gridColumn: ["span 8", "6/span 4"],
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
               }}
             >
-              {/* <Img sx={{ width: "70%" }} imageData={images.logoart1} /> */}
+              <ScrollReveal
+                effect={[{ translateY: 50 }, { translateY: 0 }]}
+                sx={{
+                  width: "100%",
+                }}
+              >
+                <Img imageData={images.flow} />
+              </ScrollReveal>
             </Box>
             <Box
               sx={{

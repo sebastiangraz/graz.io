@@ -185,6 +185,18 @@ export const images = {
     height: 1,
     alt: "Art Direction 9",
   },
+  grow: {
+    url: require("./assets/grow.png"),
+    width: 1440,
+    height: 1100,
+    alt: "Grow",
+  },
+  flow: {
+    url: require("./assets/flow.png"),
+    width: 1152,
+    height: 2126,
+    alt: "Flow",
+  },
 };
 
 export const vectors = {

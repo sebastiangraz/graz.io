@@ -197,6 +197,12 @@ export const images = {
     height: 2126,
     alt: "Flow",
   },
+  esbuildcss: {
+    url: require("./assets/esbuildcss.png"),
+    width: 464,
+    height: 464,
+    alt: "ES Build CSS",
+  },
 };
 
 export const vectors = {

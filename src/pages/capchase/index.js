@@ -76,14 +76,14 @@ const Capchase = ({ data }) => {
       return (
         <>
           <GridParent>
-            <Box sx={{ gridColumn: ["2/span 8", " 2/span 4"] }}>
+            <Box sx={{ gridColumn: ["2/span 8", " 2/span 5"] }}>
               <ScrollReveal>
-                <Text variant="lead" mb={8}>
+                <Text variant="heading" mb={8} sx={{ maxWidth: 580 }}>
                   Capchase, one of the largest non-dilutive funding companies
-                  needed a time sensitive visual refresh of all their digital
-                  and print assets.
+                  needed a time sensitive visual refresh of all their digital &
+                  print assets.
                 </Text>
-                <Text variant="lead" mb={10}>
+                <Text variant="lead" mb={10} sx={{ maxWidth: 580 }}>
                   Time was of the essence as they increased their momentum for
                   both brand awareness while establishing their slice of the
                   market. Big&nbsp;slices&nbsp;too.
@@ -91,6 +91,9 @@ const Capchase = ({ data }) => {
               </ScrollReveal>
             </Box>
             <Box sx={{ gridColumn: ["2/span 8", "2/span 5"] }}>
+              <Text variant="caps" mb={7}>
+                Goals
+              </Text>
               <NumberedList
                 labelColor={colors.yellow}
                 horizontal
@@ -336,6 +339,28 @@ const Capchase = ({ data }) => {
       return (
         <>
           <GridParent>
+            <Box
+              sx={{
+                gridRow: "span 1",
+                gridColumn: ["2/span 8", "2/span 4"],
+              }}
+            >
+              <Text variant="heading">Design Execution</Text>
+            </Box>
+            <Box
+              mb={11}
+              sx={{
+                gridRow: "1/span 1",
+                gridColumn: ["2/span 8", "6/span 4"],
+              }}
+            >
+              <Text variant="lead">
+                The direction of the website was formed alongside the visual
+                language. Sometimes design discoveries in the final mocks would
+                inform the core brand principles, and visa versa.
+              </Text>
+            </Box>
+
             <div
               sx={{
                 gridRow: "3/span 4",
@@ -355,10 +380,10 @@ const Capchase = ({ data }) => {
       return (
         <>
           <GridParent>
-            <Box mt={11} sx={{ gridColumn: ["2/ span 8", " 2/span 7"] }}>
+            <Box mt={11} sx={{ gridColumn: ["2/span 8"] }}>
               <ScrollReveal>
                 <Text variant="heading">Logotype</Text>
-                <Text variant="lead" mb={10}>
+                <Text variant="lead" mb={10} sx={{ maxWidth: 840 }}>
                   The logotype discovery phase went though a thorough process.
                   we designed a little over 100 logotype branches before finding
                   the right path to follow.
@@ -774,10 +799,11 @@ const Capchase = ({ data }) => {
           <GridParent>
             <Box
               sx={{
+                boxShadow: "capchase",
                 overflow: "hidden",
                 borderRadius: radius().default,
                 background: colors.black,
-                gridRow: ["span 8", "3/span 4"],
+                gridRow: ["span 8", "7/span 4"],
                 gridColumn: ["span 8", "2/span 5"],
                 display: "flex",
                 justifyContent: "center",
@@ -785,6 +811,8 @@ const Capchase = ({ data }) => {
               }}
             >
               <ScrollReveal
+                duration={3}
+                effect={[{ scale: 0.95 }, { scale: 1 }]}
                 sx={{
                   width: "100%",
                 }}
@@ -794,13 +822,13 @@ const Capchase = ({ data }) => {
             </Box>
             <Box
               sx={{
-                top: "60px",
+                top: [null, "3%"],
                 position: "relative",
                 overflow: "hidden",
                 zIndex: 1,
                 borderRadius: radius().default,
                 background: colors.white,
-                gridRow: ["span 8", "3/span 7"],
+                gridRow: ["span 8", "4/span 6"],
                 gridColumn: ["span 8", "6/span 4"],
                 display: "flex",
                 justifyContent: "center",
@@ -808,7 +836,8 @@ const Capchase = ({ data }) => {
               }}
             >
               <ScrollReveal
-                effect={[{ translateY: 50 }, { translateY: 0 }]}
+                duration={3}
+                effect={[{ translateY: -50 }, { translateY: 0 }]}
                 sx={{
                   width: "100%",
                 }}
@@ -818,24 +847,47 @@ const Capchase = ({ data }) => {
             </Box>
             <Box
               sx={{
-                gridRow: ["span 8", "7/span 8"],
-                gridColumn: ["span 8", "2/span 3"],
+                gridRow: ["span 8", "4/span 6"],
+                gridColumn: ["span 8", "2/span 4"],
+              }}
+            >
+              <ScrollReveal>
+                <Text variant="heading">Typography</Text>
+                <Text variant="lead" mb={8} sx={{ maxWidth: 490, mr: 8 }}>
+                  We chose a geometric sans-serif named ES Build for it’s
+                  inherent neutrality and simplicity. The rounded features go
+                  hand in hand with the wavy illustrations.
+                </Text>
+              </ScrollReveal>
+            </Box>
+            <Box
+              sx={{
+                gridRow: ["span 8", "9/span 8"],
+                gridColumn: ["span 8", "2/span 4"],
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
               }}
             >
-              <ScrollReveal>
-                <Text variant="heading">Typography</Text>
-                <Text variant="lead" mb={8}>
-                  We came up with a variety of wavy patterns to represent flow
-                  and movement. A concept that sits closely to the financial
-                  term liquidity.
-                </Text>
-                <Text variant="lead" mb={10}>
-                  Some of the shapes are also animated to further emphasize
-                  movement.
-                </Text>
+              <Text variant="lead" my={10}>
+                The chosen typeface works well both for headings as well as body
+                copy. Since you can control the level of neutrality with some
+                nifty CSS features.
+              </Text>
+            </Box>
+            <Box
+              sx={{
+                position: "relative",
+                gridRow: ["span 8", "12/span 2"],
+                gridColumn: ["span 8", "8/span 2"],
+              }}
+            >
+              <ScrollReveal
+                sx={{
+                  width: "100%",
+                }}
+              >
+                <Img imageData={images.esbuildcss} />
               </ScrollReveal>
             </Box>
           </GridParent>

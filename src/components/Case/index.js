@@ -173,7 +173,6 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
       {index === 0 ? (
         // -----HOME-----
         <m.div
-          onClick={handleClick}
           ref={ref}
           style={{
             ...yStyle,

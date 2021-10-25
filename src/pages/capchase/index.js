@@ -9,7 +9,7 @@ import {
   ScrollReveal,
   Video,
 } from "../../components";
-import { images, icons, videos } from "./assets";
+import { images, vectors, videos } from "./assets";
 import { Text, Box } from "theme-ui";
 
 const colors = {
@@ -207,7 +207,7 @@ const Capchase = ({ data }) => {
                 },
               }}
             >
-              {icons.logo}
+              {vectors.logo}
             </div>
             <div
               sx={{
@@ -346,6 +346,221 @@ const Capchase = ({ data }) => {
             >
               <Img imageData={images.webdesign} />
             </div>
+          </GridParent>
+        </>
+      );
+    },
+    Logotype: () => {
+      return (
+        <>
+          <GridParent>
+            <Box mt={11} sx={{ gridColumn: ["span 8", " 2/ span 7"] }}>
+              <ScrollReveal>
+                <Text variant="heading">Logotype</Text>
+                <Text variant="lead" mb={10}>
+                  The logotype discovery phase went though a thorough process.
+                  we designed a little over 100 logotype branches before finding
+                  the right path to follow.
+                </Text>
+              </ScrollReveal>
+            </Box>
+            <Box
+              mb={10}
+              sx={{
+                gridColumn: ["span 8", " 2/ span 8"],
+                svg: { width: "100%" },
+              }}
+            >
+              {vectors.logotype}
+            </Box>
+            <Box sx={{ gridColumn: ["span 8", " 2/ span 8"] }}>
+              <ul
+                sx={{
+                  display: "grid",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  gridTemplateColumns: ["auto auto auto"],
+                  width: "100%",
+                  padding: 0,
+                }}
+              >
+                <li sx={{ display: "flex", alignItems: "center" }}>
+                  {vectors.forwardIcon}
+                  <Text sx={{ ml: 7, maxWidth: 200 }} variant="label">
+                    Represent progression and moving forward.
+                  </Text>
+                </li>
+                <li sx={{ display: "flex", alignItems: "center" }}>
+                  {vectors.growthIcon}
+                  <Text sx={{ ml: 7, maxWidth: 200 }} variant="label">
+                    Display a sense of growth & adaptability.
+                  </Text>
+                </li>
+                <li sx={{ display: "flex", alignItems: "center" }}>
+                  {vectors.transparentIcon}
+                  <Text sx={{ ml: 7, maxWidth: 200 }} variant="label">
+                    Feel transparent and humble.
+                  </Text>
+                </li>
+              </ul>
+              {/* <NumberedList
+                labelColor={colors.yellow}
+                horizontal
+                labels={[
+                  "Represent progression and moving forward.",
+                  "Display a sense of growth & adaptability.",
+                  "Feel transparent and humble.",
+                ]}
+              /> */}
+            </Box>
+          </GridParent>
+          <GridParent>
+            <div
+              sx={{
+                zIndex: 1,
+                overflow: "hidden",
+                borderRadius: radius().default,
+                background: colors.purple,
+                gridRow: ["span 4", "1/span 1"],
+                gridColumn: ["span 8", "2/span 1"],
+                boxShadow: "capchase",
+                display: "flex",
+                color: colors.yellow,
+                justifyContent: "center",
+                alignItems: "center",
+                svg: {
+                  width: [24, 44, 72, 120],
+                  height: [24, 44, 72, 120],
+                },
+              }}
+            >
+              <ScrollReveal duration={2}>{vectors.logo}</ScrollReveal>
+            </div>
+
+            <div
+              sx={{
+                overflow: "hidden",
+                position: "relative",
+                borderRadius: radius().default,
+                background: colors.purple,
+                gridRow: ["span 4", "1/span 1"],
+                gridColumn: ["span 8", "2/span 2"],
+              }}
+            >
+              <ScrollReveal
+                sx={{
+                  position: "absolute",
+                  top: "50%",
+                  right: "6%",
+                  width: "100%",
+                  transform: "translateY(-50%) scale(0.51)",
+                  transformOrigin: "center right",
+                }}
+                duration={2}
+              >
+                <Img imageData={images.logoart2} />
+              </ScrollReveal>
+            </div>
+            <div
+              sx={{
+                p: 9,
+                borderRadius: radius().default,
+                background: colors.purple,
+                gridRow: ["span 4", "5/span 3"],
+                gridColumn: ["span 8", "2/span 3"],
+                boxShadow: "capchase",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <ScrollReveal duration={2} sx={{ width: "100%" }}>
+                <Img sx={{ width: "100%" }} imageData={images.icons} />
+              </ScrollReveal>
+            </div>
+            <div
+              sx={{
+                padding: "10%",
+                borderRadius: radius().default,
+                background: colors.white,
+                gridRow: ["span 8", "2/span 2"],
+                gridColumn: ["span 8", "4/span 2"],
+              }}
+            >
+              <Img imageData={images.logoart} />
+            </div>
+            <div
+              sx={{
+                overflow: "hidden",
+                borderRadius: radius().default,
+                background: colors.white,
+                gridRow: ["span 8", "5/span 1"],
+                gridColumn: ["span 8", "5/span 1"],
+              }}
+            >
+              <Img imageData={images.logoart3} />
+            </div>
+            <div
+              sx={{
+                p: 9,
+                pr: 0,
+                overflow: "hidden",
+                position: "relative",
+                borderRadius: radius().default,
+                background: colors.black,
+                gridRow: "2 / span 4",
+                gridColumn: ["span 2", "6 / span 4"],
+                alignItems: "center",
+                display: "grid",
+                img: {
+                  objectPosition: "center right",
+                },
+              }}
+            >
+              <Img
+                sx={{ position: "absolute", width: "100%" }}
+                imageData={images.stats}
+              />
+            </div>
+            <div
+              sx={{
+                padding: "10%",
+                borderRadius: radius().default,
+                background: colors.white,
+                gridRow: ["span 8", "6/span 2"],
+                gridColumn: ["span 8", "7/span 2"],
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                // img: {
+                //   objectPosition: "center center",
+                // },
+              }}
+            >
+              <Img sx={{ width: "70%" }} imageData={images.logoart1} />
+            </div>
+          </GridParent>
+        </>
+      );
+    },
+    ArtDirection: () => {
+      return (
+        <>
+          <GridParent>
+            <Box mt={11} sx={{ gridColumn: ["span 8", " 2/ span 4"] }}>
+              <ScrollReveal>
+                <Text variant="heading">Art Direction</Text>
+                <Text variant="lead" mb={8}>
+                  We came up with a variety of wavy patterns to represent flow
+                  and movement. A concept that sits closely to the financial
+                  term liquidity.
+                </Text>
+                <Text variant="lead" mb={10}>
+                  Some of the shapes are also animated to further emphasize
+                  movement.
+                </Text>
+              </ScrollReveal>
+            </Box>
           </GridParent>
         </>
       );

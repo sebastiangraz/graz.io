@@ -1,6 +1,6 @@
 /** @jsxImportSource theme-ui */
 
-import { Flex, Text, Box, Heading, Grid } from "theme-ui";
+import { Flex, Text, Box } from "theme-ui";
 import {
   Video,
   Img,

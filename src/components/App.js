@@ -1,8 +1,7 @@
 import React from "react";
-import { Loupe, Norse, Canon } from "../pages";
+import { Loupe, Capchase } from "../pages";
 import { CaseWrapper, Case, Home } from "../components";
 import "../base.css";
-import Capchase from "../pages/capchase";
 export let cases = new Map([
   [
     "home",

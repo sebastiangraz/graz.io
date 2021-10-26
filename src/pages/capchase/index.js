@@ -111,10 +111,10 @@ const Capchase = ({ data }) => {
               sx={{
                 pr: [2, 9],
                 borderRadius: radius().right,
-                background: colors.black,
+                background: colors.purple,
                 gridRow: ["span 4", "span 2"],
                 gridColumn: ["span 3"],
-                boxShadow: "capchase",
+
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -130,20 +130,22 @@ const Capchase = ({ data }) => {
             </div>
             <div
               sx={{
-                padding: "10%",
+                overflow: "hidden",
+                isolation: "isolate",
                 borderRadius: radius().default,
-                background: colors.purple,
+
                 gridRow: ["span 4", "span 4"],
                 gridColumn: ["span 4", "span 4"],
               }}
             >
-              <Img imageData={images.elements} />
+              <Video videoData={videos.intro} />
             </div>
             <div
               sx={{
                 position: "relative",
                 ...phoneBorder(),
-
+                boxShadow: "capchase",
+                overflow: "hidden",
                 borderRadius: radius().default,
                 gridRow: ["span 5", "span 4"],
                 gridColumn: ["span 3", "span 2"],
@@ -163,9 +165,17 @@ const Capchase = ({ data }) => {
                 <Img imageData={images.crown} />
               </div>
 
-              <ScrollReveal>
+              <ScrollReveal effect={[{ translateY: 20 }, { translateY: 0 }]}>
                 <Img
-                  sx={{ overflow: "hidden", borderRadius: radius().default }}
+                  sx={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    overflow: "hidden",
+                    borderRadius: radius().default,
+                  }}
                   imageData={images.mobileIntro}
                 />
               </ScrollReveal>
@@ -186,16 +196,15 @@ const Capchase = ({ data }) => {
               sx={{
                 padding: [4, 8],
                 borderRadius: radius().default,
-                background: colors.black,
+                background: colors.purple,
+
                 gridRow: "3/span 2",
                 gridColumn: ["2/span 4", "4/span 2"],
               }}
             >
-              <ScrollReveal
-                duration={2}
-                effect={[{ rotate: 10 }, { rotate: 0 }]}
-              >
-                <Img imageData={images.loop} />
+              <ScrollReveal duration={2}>
+                {/* <Img imageData={images.loop} /> */}
+                <Img imageData={images.elements} />
               </ScrollReveal>
             </div>
             <div

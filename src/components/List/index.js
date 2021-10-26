@@ -1,7 +1,6 @@
 /** @jsxImportSource theme-ui */
 
 import * as React from "react";
-import { m } from "framer-motion";
 
 export const List = ({ children, noBullets, variant, ...rest }) => {
   return (

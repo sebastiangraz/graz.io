@@ -1,6 +1,11 @@
 import * as React from "react";
 
 export const videos = {
+  intro: {
+    url: require("./assets/intro.mp4"),
+    width: 1920,
+    height: 1920,
+  },
   brandbook: {
     url: require("./assets/brandbook.mp4"),
     width: 1920,
@@ -37,8 +42,8 @@ export const images = {
   },
   bottle: {
     url: require("./assets/bottle.png"),
-    width: 1552,
-    height: 864,
+    width: 766,
+    height: 432,
     alt: "bottle",
   },
   ramp: {

@@ -57,7 +57,7 @@ export const ScrollReveal = ({
   return (
     <motion.div
       {...rest}
-      sx={{ willChange: "transform opacity" }}
+      sx={{ willChange: "transform" }}
       ref={ref}
       animate={controls}
       initial="hidden"
@@ -66,6 +66,7 @@ export const ScrollReveal = ({
       {React.Children.map(children || null, (child, i) => {
         return (
           <m.div
+            style={{ originX: 0.5, originY: 0.5 }}
             sx={{ display: "grid" }}
             key={i}
             custom={i}

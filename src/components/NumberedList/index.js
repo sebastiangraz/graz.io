@@ -2,7 +2,13 @@
 
 import { Text } from "theme-ui";
 
-export const NumberedList = ({ labelColor, horizontal, labels, ...rest }) => {
+export const NumberedList = ({
+  labelColor,
+  bgColor,
+  horizontal,
+  labels,
+  ...rest
+}) => {
   return (
     <ul
       {...rest}
@@ -39,7 +45,7 @@ export const NumberedList = ({ labelColor, horizontal, labels, ...rest }) => {
                 display: "inline-grid",
                 alignItems: "center",
                 justifyContent: "center",
-                bg: "text",
+                bg: bgColor ? bgColor : "text",
                 color: labelColor ? labelColor : "#fff",
               }}
             >

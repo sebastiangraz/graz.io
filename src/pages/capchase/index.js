@@ -41,7 +41,7 @@ const radius = (small) => {
 
 const phoneBorder = () => {
   return {
-    boxShadow: "capchase",
+    // boxShadow: "capchase", too laggy
     position: "relative",
     zIndex: "0",
     "&:after": {
@@ -373,9 +373,9 @@ const Capchase = ({ data }) => {
             <div
               sx={{
                 gridRow: ["4/span 4", "3/span 4"],
-                gridColumn: ["2/ span 8", "2/span 8"],
+                gridColumn: ["2/ span 8", "1/span 10"],
                 img: {
-                  transform: "scale(1.205)",
+                  transform: "scale(1.05)",
                 },
               }}
             >

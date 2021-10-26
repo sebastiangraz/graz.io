@@ -38,7 +38,7 @@ const caseParent = {
   maxWidth: "2400px", //GridParent scrollbar width hack
   position: ["relative", "fixed"],
   pointerEvents: "none",
-  willChange: "transform",
+  // willChange: "transform",
   display: "grid",
   gridTemplateColumns: "repeat(12, 1fr)",
 };

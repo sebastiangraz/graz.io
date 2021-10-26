@@ -10,8 +10,8 @@ export let cases = new Map([
       name: "Home",
       slug: "home",
       component: Home,
-      color: "hsl(42, 0%, 0%)",
-      bg: "hsl(42, 70%, 93%)",
+      color: "hsl(186, 78%, 13%)",
+      bg: "hsl(244, 42%, 96%)",
     },
   ],
   [
@@ -21,8 +21,8 @@ export let cases = new Map([
       slug: "capchase",
       component: Capchase,
       color: "#000",
-      bg: "#FFD99F",
-      grid: ["2 / span 10", "2 / span 8"],
+      bg: "#FFD99F", //FFDAAF looks cool
+      grid: ["2 / span 10", "2 / span 10"],
       scope: [
         "Visual identity",
         "Art direction",
@@ -34,21 +34,34 @@ export let cases = new Map([
         "Print",
       ],
       role: "Design Consultant",
-      period: "3 months",
+      timeframe: "3 months",
       year: "2021",
     },
   ],
-  // [
-  //   "loupe",
-  //   {
-  //     name: "Loupe",
-  //     slug: "loupe",
-  //     component: Loupe,
-  //     color: "#184629",
-  //     bg: "#D2DAD3",
-  //     grid: ["3 / span 9", "3 / span 9"],
-  //   },
-  // ],
+  [
+    "loupe",
+    {
+      name: "Loupe",
+      slug: "loupe",
+      component: Loupe,
+      color: "#184629",
+      bg: "#D2DAD3",
+      grid: ["2 / span 10", "3 / span 10"],
+      scope: [
+        "Visual identity",
+        "Art direction",
+        "Merchandise",
+        "Logotype",
+        "Social assets",
+        "Web design",
+        "Animation",
+        "Print",
+      ],
+      role: "Design Consultant",
+      timeframe: "3 months",
+      year: "2021",
+    },
+  ],
 ]);
 
 const MemoApp = () => {

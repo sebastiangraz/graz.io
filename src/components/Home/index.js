@@ -41,7 +41,7 @@ const awards = [
 ];
 export const Home = ({ data }) => {
   const scrollProgress = [0, window.innerHeight / 1.2, window.innerHeight];
-  const colorOutput = [data.color, "hsl(42, 33%, 93%)", data.bg];
+  const colorOutput = [data.color, "hsl(186, 0%, 63%)", data.bg];
   const transformOutput = [0, -11, -32];
   const { scrollY } = useViewportScroll();
 
@@ -86,6 +86,7 @@ export const Home = ({ data }) => {
           color: "inherit",
           "&:hover": { textDecoration: "underline" },
         },
+        background: data.bg,
         willChange: "color",
         margin: "0 auto",
         minHeight: ["auto", "100vh"],

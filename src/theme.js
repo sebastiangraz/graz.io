@@ -1,4 +1,6 @@
 import { transparentize } from "@theme-ui/color";
+import { cases } from "./components/App";
+
 const colors = {
   text: "#111",
 };
@@ -88,7 +90,7 @@ export default {
       ...scroll,
       overflowY: "auto",
       overflowX: "hidden",
-      background: "hsl(42, 70%, 93%)",
+      background: cases.get("home").bg,
       webkitFontSmoothing: "antialiased",
       MozOsxFontSmoothing: "grayscale",
       variant: "text.default",

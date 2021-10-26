@@ -46,7 +46,7 @@ export function Logo() {
       ref={ref}
       viewBox="0 0 280 280"
       variants={list}
-      sx={{ height: "100%", width: "100%" }}
+      sx={{ height: "auto", width: "100%" }}
       animate={entry < 0.4 ? "hidden" : "visible"}
     >
       <m.path

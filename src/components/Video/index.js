@@ -77,6 +77,7 @@ export const Video = ({ videoData, ...props }) => {
 
   return (
     <div
+      {...props}
       sx={{
         transition: "opacity 1s ease",
         paddingBottom: `calc(${videoData.height} / ${videoData.width} * 100%)`,
@@ -137,7 +138,6 @@ export const Video = ({ videoData, ...props }) => {
         playsInline
         autoPlay={true}
         muted
-        {...props}
         ref={videoElementRef}
         src={videoData.url.default}
       />

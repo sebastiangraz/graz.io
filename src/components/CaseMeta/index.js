@@ -39,8 +39,8 @@ export const CaseMeta = ({ data }) => {
         <Text variant="label">{data.role}</Text>
       </Box>
       <Box sx={{ gridColumn: "6 / span 2" }}>
-        <Text variant="caps">Period</Text>
-        <Text variant="label">{data.period}</Text>
+        <Text variant="caps">Time frame</Text>
+        <Text variant="label">{data.timeframe}</Text>
       </Box>
 
       <Box sx={{ gridColumn: "8 / span 2" }}>

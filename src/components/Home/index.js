@@ -71,7 +71,7 @@ export const Home = ({ data }) => {
         duration: 0.8,
         type: "tween",
         ease: "easeInOut",
-        delay: custom * 0.1,
+        delay: custom * 0.12,
       },
     }),
   };

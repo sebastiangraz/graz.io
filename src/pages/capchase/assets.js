@@ -5,6 +5,7 @@ export const videos = {
     url: require("./assets/intro.mp4"),
     width: 1920,
     height: 1920,
+    poster: require("./assets/logoart.png"),
   },
   brandbook: {
     url: require("./assets/brandbook.mp4"),

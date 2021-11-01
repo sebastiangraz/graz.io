@@ -101,7 +101,7 @@ const Capchase = ({ data }) => {
                   "Create brand and execute it for a very perceptive audience.",
                   "Position Capchase as a leader in non-dilutable financing.",
                   "Proofing Capchase’s brand for longevity & recognizability. ",
-                  "Capchase to feel like a business partner not a tool.",
+                  "To look & feel like a business partner not a business tool.",
                 ]}
               />
             </Box>
@@ -165,20 +165,18 @@ const Capchase = ({ data }) => {
                 <Img imageData={images.crown} />
               </div>
 
-              <ScrollReveal effect={[{ translateY: 20 }, { translateY: 0 }]}>
-                <Img
-                  sx={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%",
-                    overflow: "hidden",
-                    borderRadius: radius().default,
-                  }}
-                  imageData={images.mobileIntro}
-                />
-              </ScrollReveal>
+              <Img
+                sx={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  overflow: "hidden",
+                  borderRadius: radius().default,
+                }}
+                imageData={images.mobileIntro}
+              />
             </div>
           </GridParent>
           <GridParent sx={{ mb: [10, 11] }}>
@@ -213,10 +211,11 @@ const Capchase = ({ data }) => {
                 alignItems: "center",
                 justifyContent: "center",
                 borderRadius: radius(true).default,
-                background: colors.purple,
+                background: colors.white,
+                color: colors.black,
                 gridRow: ["1/span 1", "2/span 1"],
                 gridColumn: ["6/span 1", "6/span 1"],
-                color: colors.yellow,
+
                 svg: {
                   margin: "0 auto",
                   width: "50%",
@@ -302,7 +301,7 @@ const Capchase = ({ data }) => {
               <Text variant="lead">
                 We wanted to keep the content more aspirational than riddled
                 with do’s and don’ts. The real design system would later be
-                handled by design software.
+                handled by the design software.
               </Text>
             </div>
             <div

@@ -10,18 +10,9 @@ import {
 } from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
-import { Debugger } from "../";
-import { keyframes } from "@emotion/react";
-import { cases } from "../App";
-import { lighten } from "@theme-ui/color";
+import { Debugger, ScrollDown } from "../";
 
 const debug = false;
-
-const arrow = keyframes`
-    0%   { opacity: 0; transform: translateY(-8px);  }
-    50%   { opacity: 1; transform: translateY(0px); }
-    100%  { opacity: 0; transform: translateY(8px); }
-    `;
 
 const settings = {
   nextScrollDistance: 100,
@@ -209,59 +200,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
             left: [0, "50%"],
           }}
         >
-          {/* ARROW */}
-          {index === 1 && (
-            <m.div
-              style={{
-                color: data?.color,
-                opacity: scrollOnePixel ? 1 : 0,
-              }}
-              sx={{
-                gridColumn: "2 / span 1",
-                transition: "opacity 0.9s ease",
-                backgroundColor: lighten(cases.get("home").color, 0.75),
-                position: "absolute",
-                left: 0,
-                top: ["-100px", "-200px", "-240px"],
-                width: 8,
-                height: 8,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                borderRadius: "pill",
-                svg: {
-                  position: "absolute",
-                  animationName: `${arrow}`,
-                  animationDuration: "2s",
-                  animationFillMode: "backwards",
-                  animationIterationCount: "infinite",
-                  animationTimingFunction: "linear", // "cubic-bezier(.1, 0.82, 0.165, 1)",
-                },
-              }}
-            >
-              <svg
-                width="10"
-                height="10"
-                viewBox="0 0 10 10"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M1 4L5 8L9 4" stroke="black" strokeWidth="2" />
-              </svg>
-              <svg
-                sx={{
-                  animationDelay: "1s",
-                }}
-                width="10"
-                height="10"
-                viewBox="0 0 10 10"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M1 4L5 8L9 4" stroke="black" strokeWidth="2" />
-              </svg>
-            </m.div>
-          )}
+          {index === 1 && <ScrollDown data={data} />}
           <div
             sx={{
               pointerEvents: "auto",

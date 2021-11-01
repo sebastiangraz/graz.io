@@ -9,7 +9,7 @@ export let cases = new Map([
       name: "Home",
       slug: "home",
       component: Home,
-      color: "hsl(186, 78%, 13%)",
+      color: "hsl(310, 9%, 13%)",
       bg: "hsl(244, 42%, 96%)",
     },
   ],

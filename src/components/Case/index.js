@@ -132,16 +132,16 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
 
   const yStyle = useResponsiveValue([{ y: 0 }, { y: y }, { y: y }, { y: y }]);
 
-  const isActive = useTransform(scrollY, (v) => updatePos(v));
-  const [isActiveState, setIsActiveState] = React.useState(false);
+  // const isActive = useTransform(scrollY, (v) => updatePos(v));
+  // const [isActiveState, setIsActiveState] = React.useState(false);
 
-  React.useEffect(
-    () =>
-      isActive.onChange((e) => {
-        setIsActiveState(e > -height(0) && e < 0);
-      }),
-    [isActive, height]
-  );
+  // React.useEffect(
+  //   () =>
+  //     isActive.onChange((e) => {
+  //       setIsActiveState(e > -height(0) && e < 0);
+  //     }),
+  //   [isActive, height]
+  // );
 
   // -----CLICK TO SCROLLTO CASE-----
   const handleClick = () => {
@@ -160,17 +160,20 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
   };
 
   const gridCount = (arr) => data?.grid && data.grid[arr].split("span ")[1];
+  const scrollOnePixel = scrollY.get() >= 1 ? 0 : 1;
 
   return (
     <>
-      <Debugger
-        data={data}
-        index={index}
-        height={height}
-        position={position}
-        isActiveState={isActiveState}
-        debug={debug}
-      />
+      {debug && (
+        <Debugger
+          data={data}
+          index={index}
+          height={height}
+          position={position}
+          // isActiveState={isActiveState}
+          debug={debug}
+        />
+      )}
       {index === 0 ? (
         // -----HOME-----
         <m.div
@@ -207,8 +210,40 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
             left: [0, "50%"],
           }}
         >
+          {index === 1 && (
+            <m.div
+              style={{
+                color: data?.color,
+                opacity: scrollOnePixel ? 1 : 0,
+              }}
+              sx={{
+                gridColumn: "2 / span 1",
+                transition: "opacity 0.9s ease",
+                background: "#999",
+                position: "absolute",
+                left: 0,
+                top: ["-100px", "-200px", "-240px"],
+                width: 8,
+                height: 8,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: "pill",
+              }}
+            >
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 10 10"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M1 4L5 8L9 4" stroke="black" strokeWidth="2" />
+              </svg>
+            </m.div>
+          )}
           <div
-            onClick={!isActiveState ? handleClick : null}
+            // onClick={!isActiveState ? handleClick : null}
             sx={{
               pointerEvents: "auto",
               position: "relative",

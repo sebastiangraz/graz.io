@@ -252,7 +252,7 @@ export const vectors = {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_961:9079)">
+      <g clipPath="url(#clip0_961:9079)">
         <path
           d="M10.1048 94C11.9973 94 13.746 92.9873 14.6922 91.3434L25.8261 72L13.1631 72L25.8261 50L16.2213 50C14.3289 50 12.5802 51.0127 11.6339 52.6566L0.499999 72L13.1631 72L0.5 94L10.1048 94Z"
           fill="#0F0F14"
@@ -305,7 +305,7 @@ export const vectors = {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_961:9074)">
+      <g clipPath="url(#clip0_961:9074)">
         <path
           d="M18.2156 52.5L36.4312 42V52.4999L18.2156 62.9999V52.5Z"
           fill="#0F0F14"
@@ -359,8 +359,8 @@ export const vectors = {
           fill="#0F0F14"
         />
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M18.2156 20.9999L36.4312 31.4999V21L54.6468 31.4999V21L36.4312 10.5V21L18.2156 10.5V20.9999ZM54.6468 31.5001L36.4312 42.0001V31.5001L18.2156 42.0001V52.5L36.4312 42.0001V52.5L54.6468 42.0001V31.5001Z"
           fill="#FFD99F"
         />

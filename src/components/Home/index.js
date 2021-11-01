@@ -45,7 +45,7 @@ export const Home = ({ data }) => {
   const transformOutput = [0, -11, -32];
   const { scrollY } = useViewportScroll();
 
-  const color = useTransform(scrollY, scrollProgress, colorOutput, {
+  const colorVal = useTransform(scrollY, scrollProgress, colorOutput, {
     damping: 12,
     mass: 0.1,
   });
@@ -79,7 +79,7 @@ export const Home = ({ data }) => {
   return (
     <m.div
       as={Grid}
-      style={{ color, y }}
+      style={{ color: colorVal, y }}
       sx={{
         a: {
           textDecoration: "none",

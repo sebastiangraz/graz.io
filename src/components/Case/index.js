@@ -16,7 +16,7 @@ const debug = false;
 
 const settings = {
   nextScrollDistance: 100,
-  staggerPower: 0.6,
+  staggerPower: 0.72,
   springOptions: {
     damping: 12,
     mass: 0.1,
@@ -41,7 +41,12 @@ const caseParent = {
   pointerEvents: "none",
   // willChange: "transform", //willChange messes up antialiasing but at the cost of performance. (Performance gains negligible though)
   display: "grid",
-  gridTemplateColumns: "repeat(12, 1fr)",
+  gridTemplateColumns: [
+    "repeat(10, 1fr)",
+    "repeat(10, 1fr)",
+    "repeat(12, 1fr)",
+    "repeat(12, 1fr)",
+  ],
 };
 
 const caseBg = {
@@ -148,7 +153,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
   };
 
   const gridCount = (arr) => data?.grid && data.grid[arr].split("span ")[1];
-  const scrollOnePixel = scrollY.get() >= 1 ? 0 : 1; //needs a rerender of Case to work
+  const gridPosition = (arr) => data?.grid && data.grid[arr].split(" /")[0];
 
   return (
     <>
@@ -200,7 +205,16 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
             left: [0, "50%"],
           }}
         >
-          {index === 1 && <ScrollDown data={data} />}
+          {index === 1 && (
+            <ScrollDown
+              gridPosition={gridPosition}
+              settings={settings}
+              staggeredOffset={staggeredOffset}
+              height={height}
+              position={position}
+              data={data}
+            />
+          )}
           <div
             sx={{
               pointerEvents: "auto",

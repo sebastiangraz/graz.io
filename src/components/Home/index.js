@@ -92,26 +92,30 @@ export const Home = ({ data }) => {
         minHeight: ["auto", "100vh"],
         pt: [7, 8, 9],
         pb: 10,
-        px: [7, 0, null],
+        px: [0],
         rowGap: [8, 9, "16vh"],
         columnGap: 0,
         display: "grid",
         alignItems: ["center", "start"],
         maxWidth: "2400px",
         gridTemplateRows: "auto auto auto",
-        gridTemplateColumns: ["repeat(2, 1fr)", "repeat(12, 1fr)"],
+        gridTemplateColumns: [
+          "repeat(10, 1fr)",
+          "repeat(10, 1fr)",
+          "repeat(12, 1fr)",
+        ],
         gridTemplateAreas: [
           //phone
           `
-          'logo contact'
-          'intro intro'
-          'meta meta'
+          '. logo logo logo . . . contact contact .'
+          '. intro intro intro intro intro intro intro intro .'
+          '. meta meta meta meta meta meta meta meta .'
           `,
           //tablet
           `
-          '. logo logo . . . years years  . .  contact .'
-          '. intro intro intro . . . . . . . .'
-          '. meta meta meta meta meta meta meta meta meta meta meta '
+          '. logo logo . . . years .  contact .'
+          '. intro intro intro . . . . . .'
+          '. meta meta meta meta meta meta meta meta meta '
           `,
           //desktop
           `

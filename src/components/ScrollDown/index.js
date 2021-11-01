@@ -2,7 +2,7 @@
 
 import React from "react";
 import { cases } from "../App";
-import { lighten } from "@theme-ui/color";
+import { darken } from "@theme-ui/color";
 import { keyframes } from "@emotion/react";
 
 const arrow = keyframes`
@@ -11,23 +11,52 @@ const arrow = keyframes`
     100%  { opacity: 0; transform: translateY(8px); }
     `;
 
-export const ScrollDown = () => {
+export const ScrollDown = ({
+  staggeredOffset,
+  settings,
+  data,
+  height,
+  gridPosition,
+  position,
+}) => {
+  const handleClick = () => {
+    window.scrollTo(
+      0,
+      position(0) -
+        height(0) -
+        (0 && settings.nextScrollDistance) +
+        staggeredOffset
+    );
+  };
+
   return (
     <div
+      onClick={handleClick}
       sx={{
-        gridColumn: "2 / span 1",
-        transition: "opacity 0.9s ease",
+        gridColumn: [
+          "2 / span 1",
+          "2 / span 1",
+          `${gridPosition(0) === "1" ? "2" : gridPosition(0)} / span 1`,
+          `${gridPosition(1) === "1" ? "2" : gridPosition(1)} / span 1`,
+        ],
+        transition: "all 0.9s ease",
         color: cases.get("home").color,
-        backgroundColor: lighten(cases.get("home").color, 0.78),
+        backgroundColor: darken(cases.get("home").bg, 0.05),
         position: "absolute",
+        zIndex: 10,
         left: 0,
-        top: ["-100px", "-200px", "-240px"],
+        top: ["-100px", "-140px", "-240px", "-280px"],
         width: 8,
         height: 8,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         borderRadius: "pill",
+        pointerEvents: "all",
+        "&:hover": {
+          cursor: "pointer",
+          background: darken(cases.get("home").bg, 0.1),
+        },
         svg: {
           position: "absolute",
           animationName: `${arrow}`,

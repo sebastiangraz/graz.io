@@ -14,7 +14,7 @@ import { Text, Box } from "theme-ui";
 
 const colors = {
   black: "#0F0F14",
-  white: "#FCFBF8",
+  white: "#FFFFFF",
   purple: "#712FFF",
   yellow: "#FFD99F",
   green: "#E7FDE2",

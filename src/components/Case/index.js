@@ -11,8 +11,17 @@ import {
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 import { Debugger } from "../";
+import { keyframes } from "@emotion/react";
+import { cases } from "../App";
+import { lighten } from "@theme-ui/color";
 
 const debug = false;
+
+const arrow = keyframes`
+    0%   { opacity: 0; transform: translateY(-8px);  }
+    50%   { opacity: 1; transform: translateY(0px); }
+    100%  { opacity: 0; transform: translateY(8px); }
+    `;
 
 const settings = {
   nextScrollDistance: 100,
@@ -36,10 +45,10 @@ const caseParent = {
   top: [0, `100vh`],
   width: "100%",
   mt: [3, 0],
-  maxWidth: "2400px", //GridParent scrollbar width hack
+  maxWidth: "2400px",
   position: ["relative", "fixed"],
   pointerEvents: "none",
-  // willChange: "transform",
+  // willChange: "transform", //willChange messes up antialiasing but at the cost of performance. (Performance gains negligible though)
   display: "grid",
   gridTemplateColumns: "repeat(12, 1fr)",
 };
@@ -74,7 +83,6 @@ function ScrollToTopOnMount(props) {
 }
 
 const MemoCase = React.forwardRef(({ index, data }, ref) => {
-  console.log("Case Rerendered");
   const { scrollY } = useViewportScroll();
   let { childHeight, childPosition, windowHeight } = useCaseWrapperContext();
 
@@ -132,17 +140,6 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
 
   const yStyle = useResponsiveValue([{ y: 0 }, { y: y }, { y: y }, { y: y }]);
 
-  // const isActive = useTransform(scrollY, (v) => updatePos(v));
-  // const [isActiveState, setIsActiveState] = React.useState(false);
-
-  // React.useEffect(
-  //   () =>
-  //     isActive.onChange((e) => {
-  //       setIsActiveState(e > -height(0) && e < 0);
-  //     }),
-  //   [isActive, height]
-  // );
-
   // -----CLICK TO SCROLLTO CASE-----
   const handleClick = () => {
     if (index !== 0) {
@@ -160,17 +157,18 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
   };
 
   const gridCount = (arr) => data?.grid && data.grid[arr].split("span ")[1];
-  const scrollOnePixel = scrollY.get() >= 1 ? 0 : 1;
+  const scrollOnePixel = scrollY.get() >= 1 ? 0 : 1; //needs a rerender of Case to work
 
   return (
     <>
       {debug && (
         <Debugger
+          updatePos={updatePos}
+          scrollY={scrollY}
           data={data}
           index={index}
           height={height}
           position={position}
-          // isActiveState={isActiveState}
           debug={debug}
         />
       )}
@@ -194,6 +192,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
       ) : (
         // -----CASES-----
         <m.div
+          className="caseWrapper"
           id={data.slug}
           ref={ref}
           style={{
@@ -210,6 +209,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
             left: [0, "50%"],
           }}
         >
+          {/* ARROW */}
           {index === 1 && (
             <m.div
               style={{
@@ -219,7 +219,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
               sx={{
                 gridColumn: "2 / span 1",
                 transition: "opacity 0.9s ease",
-                background: "#999",
+                backgroundColor: lighten(cases.get("home").color, 0.75),
                 position: "absolute",
                 left: 0,
                 top: ["-100px", "-200px", "-240px"],
@@ -229,6 +229,14 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
                 alignItems: "center",
                 justifyContent: "center",
                 borderRadius: "pill",
+                svg: {
+                  position: "absolute",
+                  animationName: `${arrow}`,
+                  animationDuration: "2s",
+                  animationFillMode: "backwards",
+                  animationIterationCount: "infinite",
+                  animationTimingFunction: "linear", // "cubic-bezier(.1, 0.82, 0.165, 1)",
+                },
               }}
             >
               <svg
@@ -240,10 +248,21 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
               >
                 <path d="M1 4L5 8L9 4" stroke="black" strokeWidth="2" />
               </svg>
+              <svg
+                sx={{
+                  animationDelay: "1s",
+                }}
+                width="10"
+                height="10"
+                viewBox="0 0 10 10"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M1 4L5 8L9 4" stroke="black" strokeWidth="2" />
+              </svg>
             </m.div>
           )}
           <div
-            // onClick={!isActiveState ? handleClick : null}
             sx={{
               pointerEvents: "auto",
               position: "relative",
@@ -251,6 +270,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
             }}
           >
             <m.div
+              onClick={handleClick}
               style={{
                 ...yNextStyle,
                 height: 300,

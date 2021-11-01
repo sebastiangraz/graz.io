@@ -81,7 +81,6 @@ export const Video = ({ videoData, ...props }) => {
     <div
       {...props}
       sx={{
-        transition: "opacity 1s ease",
         paddingBottom: `calc(${videoData.height} / ${videoData.width} * 100%)`,
         position: "relative",
         width: "100%",

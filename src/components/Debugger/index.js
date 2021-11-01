@@ -1,6 +1,27 @@
 /** @jsxImportSource theme-ui */
 
-export const Debugger = ({ data, index, height, position, isActiveState }) => {
+import React from "react";
+import { useTransform } from "framer-motion";
+
+export const Debugger = ({
+  data,
+  index,
+  height,
+  position,
+  scrollY,
+  updatePos,
+}) => {
+  const isActive = useTransform(scrollY, (v) => updatePos(v));
+  const [isActiveState, setIsActiveState] = React.useState(false);
+
+  React.useEffect(
+    () =>
+      isActive.onChange((e) => {
+        setIsActiveState(e > -height(0) && e < 0);
+      }),
+    [isActive, height]
+  );
+
   return (
     <p
       sx={{

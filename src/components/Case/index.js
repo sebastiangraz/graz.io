@@ -79,6 +79,7 @@ function ScrollToTopOnMount(props) {
 }
 
 const MemoCase = React.forwardRef(({ index, data }, ref) => {
+  console.log("caserender");
   const { scrollY } = useViewportScroll();
   let { childHeight, childPosition, windowHeight } = useCaseWrapperContext();
 
@@ -212,7 +213,6 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
               staggeredOffset={staggeredOffset}
               height={height}
               position={position}
-              data={data}
             />
           )}
           <div

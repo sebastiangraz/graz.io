@@ -14,12 +14,14 @@ const arrow = keyframes`
 export const ScrollDown = ({
   staggeredOffset,
   settings,
-  data,
   height,
   gridPosition,
   position,
 }) => {
+  const [clicked, setClicked] = React.useState(false);
+
   const handleClick = () => {
+    setClicked(true);
     window.scrollTo(
       0,
       position(0) -
@@ -32,6 +34,7 @@ export const ScrollDown = ({
   return (
     <div
       onClick={handleClick}
+      style={{ opacity: clicked ? 0 : 1 }}
       sx={{
         gridColumn: [
           "2 / span 1",

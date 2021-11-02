@@ -404,7 +404,6 @@ const Capchase = ({ data }) => {
             </div>
             <div
               sx={{
-                mt: [6, 0],
                 gridRow: "7/span 4",
                 gridColumn: ["1/ span 10", "1/span 10"],
                 img: {

@@ -6,7 +6,7 @@ import { Heading, Link, Text, Box } from "theme-ui";
 import { GridParent, Video } from "../../components";
 
 import { m, useAnimation } from "framer-motion";
-import { CharacterSet } from "./CharacterSet";
+// import { CharacterSet } from "./CharacterSet";
 import { videos, images } from "./assets";
 
 const Sections = {

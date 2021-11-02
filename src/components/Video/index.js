@@ -1,41 +1,83 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "theme-ui";
-import { useRef, useEffect } from "react";
-import * as React from "react";
-import { useInView } from "react-intersection-observer";
+/** @jsxImportSource theme-ui */
+import { useEffect, useState, useRef } from "react";
 
-export const Video = ({ videoData, ...rest }) => {
-  // const ref = useRef(null);
-  // const [inViewRef, inView] = useInView({ rootMargin: "-100px 0px" });
+export const Video = ({ videoData, ...props }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isWaiting, setIsWaiting] = useState(false);
 
-  // const handlePlay = () => {
-  //   return console.log("play");
-  // };
+  const isWaitingTimeout = useRef(null);
+  const isPlayingTimeout = useRef(null);
 
-  // useEffect(() => {
-  //   if (inView) {
-  //     ref.current.play();
-  //   } else {
-  //     ref.current.pause();
-  //   }
-  //   ref.current.setAttribute("muted", "");
-  // }, [inView]);
+  const videoElementRef = useRef();
 
-  // const setRefs = React.useCallback(
-  //   (node) => {
-  //     // Ref's from useRef needs to have the node assigned to `current`
-  //     ref.current = node;
-  //     // Callback refs, like the one from `useInView`, is a function that takes the node as an argument
-  //     inViewRef(node);
-  //   },
-  //   [inViewRef]
-  // );
+  const PLAYING_DEBOUNCE_TIME = 50;
+  const WAITING_DEBOUNCE_TIME = 200;
+
+  useEffect(() => {
+    if (!videoElementRef.current) {
+      return;
+    }
+
+    const waitingHandler = () => {
+      clearTimeout(isWaitingTimeout.current);
+
+      isWaitingTimeout.current = setTimeout(() => {
+        setIsWaiting(true);
+      }, WAITING_DEBOUNCE_TIME);
+    };
+
+    const playHandler = () => {
+      clearTimeout(isWaitingTimeout.current);
+      clearTimeout(isPlayingTimeout.current);
+
+      isPlayingTimeout.current = setTimeout(() => {
+        setIsPlaying(true);
+        setIsWaiting(false);
+      }, PLAYING_DEBOUNCE_TIME);
+    };
+
+    const pauseHandler = () => {
+      clearTimeout(isWaitingTimeout.current);
+      clearTimeout(isPlayingTimeout.current);
+
+      isPlayingTimeout.current = setTimeout(() => {
+        setIsPlaying(false);
+        setIsWaiting(false);
+      }, PLAYING_DEBOUNCE_TIME);
+    };
+
+    const element = videoElementRef.current;
+
+    element.addEventListener("waiting", waitingHandler);
+    element.addEventListener("play", playHandler);
+    element.addEventListener("playing", playHandler);
+    element.addEventListener("pause", pauseHandler);
+
+    // clean up
+    return () => {
+      clearTimeout(isWaitingTimeout.current);
+      clearTimeout(isPlayingTimeout.current);
+
+      element.removeEventListener("waiting", waitingHandler);
+      element.removeEventListener("play", playHandler);
+      element.removeEventListener("playing", playHandler);
+      element.removeEventListener("pause", pauseHandler);
+    };
+  }, [videoElementRef]);
+
+  const handlePlayPauseClick = () => {
+    if (videoElementRef.current) {
+      if (isPlaying) {
+        videoElementRef.current.pause();
+      } else {
+        videoElementRef.current.play();
+      }
+    }
+  };
 
   return (
     <div
-      // {...rest}
-      // onClick={handlePlay}
+      {...props}
       sx={{
         paddingBottom: `calc(${videoData.height} / ${videoData.width} * 100%)`,
         position: "relative",
@@ -43,49 +85,62 @@ export const Video = ({ videoData, ...rest }) => {
         height: "100%",
         zIndex: 1,
       }}
+      onClick={handlePlayPauseClick}
     >
-      {/* <div
-        sx={{
-          position: "absolute",
-          zIndex: 1,
-          left: "calc(50% - 24px)",
-          top: "calc(50% - 24px)",
-          backgroundColor: "#fff",
-          color: "text",
-          width: 48,
-          userSelect: "none",
-          height: 48,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          visibility: "visible",
-          "&.isPlaying": {
-            visibility: "hidden",
-          },
-        }}
-        className="play"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11">
-          <path d="M 0 0 L 0 11 L 11 5.5 Z" fill="currentColor"></path>
-        </svg>
-      </div>
+      {!isPlaying && (
+        <div
+          sx={{
+            opacity: isWaiting ? 0 : 1,
+            position: "absolute",
+            zIndex: 1,
+            left: "calc(50% - 28px)",
+            top: "calc(50% - 28px)",
+            background: "currentColor",
+            width: 56,
+            height: 56,
+            borderRadius: "pill",
+            userSelect: "none",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            svg: {
+              position: "relative",
+              left: "1px",
+            },
+
+            "&:hover": {
+              cursor: "pointer",
+              background: "var(--caseBg)",
+              "svg path": {
+                fill: "currentColor",
+              },
+            },
+          }}
+          className="play"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11">
+            <path d="M 0 0 L 0 11 L 11 5.5 Z" fill="var(--caseBg)"></path>
+          </svg>
+        </div>
+      )}
       <video
-        rel="preload"
         sx={{
           position: "absolute",
           top: 0,
           left: 0,
+          transition: "opacity .4s ease",
+          opacity: isPlaying ? 1 : 0.88,
           height: "100%",
           width: "100%",
           objectFit: videoData.fit ? videoData.fit : "contain",
         }}
-        src={videoData.url.default}
-        ref={setRefs}
         loop
         playsInline
         autoPlay={true}
         muted
-      /> */}
+        ref={videoElementRef}
+        src={`${videoData.url.default}#t=0.001`}
+      />
     </div>
   );
 };

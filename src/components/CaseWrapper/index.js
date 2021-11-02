@@ -1,23 +1,28 @@
+/** @jsxImportSource theme-ui */
+
 import React from "react";
 import debounce from "lodash.debounce";
-import { LazyMotion, domAnimation, transform } from "framer-motion";
+import { LazyMotion, domMax } from "framer-motion";
+
+export const useCaseWrapperContext = () => React.useContext(CaseWrapperContext);
 
 const CaseWrapperContext = React.createContext(null);
-const useCaseWrapperContext = () => React.useContext(CaseWrapperContext);
 
-const CaseWrapper = ({ children }) => {
+const media_query = "screen and (min-width:640px)";
+
+const MemoCaseWrapper = ({ children }) => {
   const [state, setCase] = React.useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
       childHeight: [],
       childPosition: [],
       childSum: 0,
+      windowHeight: 0,
     }
   );
 
   React.useEffect(() => {
     const onResize = debounce(() => {
-      console.log("debounced");
       const childHeightVar = children.map((child) => {
         return (
           child.ref.current && child.ref.current.getBoundingClientRect().height
@@ -29,26 +34,40 @@ const CaseWrapper = ({ children }) => {
         childPosition.push(acc + child);
         return acc + child;
       }, 0);
+
       setCase({
         childHeight: childHeightVar,
         childPosition: childPosition,
         childSum: childSum,
+        windowHeight: window.innerHeight,
       });
-    }, 100);
+    }, 300);
 
-    onResize();
-    window.addEventListener("resize", onResize, { passive: true });
+    document.fonts.ready.then(function () {
+      onResize();
+    });
+
+    window.addEventListener(
+      "resize",
+      debounce(() => {
+        var matched = window.matchMedia(media_query).matches;
+        if (matched) {
+          onResize();
+        }
+      }, 300),
+      { passive: true }
+    );
+
     return () => {
       window.removeEventListener("resize", onResize, { passive: true });
     };
   }, [children]);
 
   return (
-    <LazyMotion features={domAnimation} strict>
+    <LazyMotion features={domMax}>
       <div
-        style={{
-          willChange: "height",
-          height: state.childSum,
+        sx={{
+          height: ["auto", state.childSum],
         }}
       >
         <CaseWrapperContext.Provider value={state}>
@@ -59,4 +78,4 @@ const CaseWrapper = ({ children }) => {
   );
 };
 
-export { CaseWrapper, useCaseWrapperContext };
+export const CaseWrapper = React.memo(MemoCaseWrapper);

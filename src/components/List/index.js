@@ -1,33 +1,29 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { Text, jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
+
 import * as React from "react";
 
-export const List = ({ children, noBullets }) => {
+export const List = ({ children, noBullets, variant, ...rest }) => {
   return (
-    <ul sx={{ padding: 0, listStyle: "none" }}>
+    <ul {...rest} sx={{ p: 0 }}>
       {React.Children.map(children || null, (child, i) => {
         return (
           <li
             key={i}
             sx={{
-              mb: 1,
-              position: "relative",
+              mb: 3,
+              "&:last-child": {
+                mb: 0,
+              },
+              listStyle: "none",
               ...(!noBullets && {
-                "&:before": {
-                  content: `""`,
-                  left: "-1em",
-                  top: "0.8em",
-                  position: "absolute",
-                  borderRadius: "50%",
-                  width: "3px",
-                  height: "3px",
-                  bg: "currentColor",
+                "&::marker": {
+                  content: `"·  "`,
+                  textRendering: "geometricPrecision",
                 },
               }),
             }}
           >
-            <Text>{child}</Text>
+            {child}
           </li>
         );
       })}

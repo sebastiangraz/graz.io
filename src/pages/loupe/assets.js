@@ -1,3 +1,14 @@
+export const colors = {
+  red: "#f60000",
+  cyan: "#3edbff",
+  orange: "#f47722",
+  green: "#003807",
+  beige: "#fcf6f5",
+  magenta: "#e900a1",
+  maroon: "#560000",
+  white: "#fff",
+};
+
 export const videos = {
   loupeMesh: {
     url: require("./assets/loupeMesh.mp4"),
@@ -34,6 +45,48 @@ export const videos = {
 };
 
 export const images = {
+  logopart1: {
+    url: require("./assets/logopart1.png"),
+    width: 1,
+    height: 1,
+    alt: "logopart1",
+  },
+  logopart2: {
+    url: require("./assets/logopart2.png"),
+    width: 1,
+    height: 1,
+    alt: "logopart2",
+  },
+  logopart3: {
+    url: require("./assets/logopart3.png"),
+    width: 1,
+    height: 1,
+    alt: "logopart3",
+  },
+  logopart4: {
+    url: require("./assets/logopart4.png"),
+    width: 1,
+    height: 1,
+    alt: "logopart4",
+  },
+  logoassemble1: {
+    url: require("./assets/logoassemble1.png"),
+    width: 1,
+    height: 1,
+    alt: "logoassemble1",
+  },
+  logoassemble2: {
+    url: require("./assets/logoassemble2.png"),
+    width: 1,
+    height: 1,
+    alt: "logoassemble2",
+  },
+  logoassemble3: {
+    url: require("./assets/logoassemble3.png"),
+    width: 1,
+    height: 1,
+    alt: "logoassemble3",
+  },
   shapesFilled: {
     url: require("./assets/shapesFilled.png"),
     webP: require("./assets/shapesFilled.webp"),
@@ -246,5 +299,17 @@ export const images = {
     width: 2336,
     height: 2416,
     alt: "pageHome",
+  },
+  webdesign: {
+    url: require("./assets/webdesign.png"),
+    width: 3020,
+    height: 4492,
+    alt: "Web Design",
+  },
+  execution: {
+    url: require("./assets/execution.png"),
+    width: 3020,
+    height: 9498,
+    alt: "Web Design",
   },
 };

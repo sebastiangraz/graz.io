@@ -1,277 +1,284 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
+/** @jsxImportSource theme-ui */
 
-import { jsx, Flex, Text, Box } from "theme-ui";
-import * as React from "react";
-import { Video, Img, GridParent } from "../../components";
-// import { Logo } from "./Logo";
-import { videos, images } from "./assets";
+import { Flex, Text, Box } from "theme-ui";
+import {
+  Video,
+  Img,
+  GridParent,
+  CaseMeta,
+  ScrollReveal,
+  NumberedList,
+} from "../../components";
+import { Logo } from "./Logo";
+import { videos, images, colors } from "./assets";
 
-const colors = {
-  red: "#f60000",
-  cyan: "#3edbff",
-  orange: "#f47722",
-  green: "#003807",
-  beige: "#fcf6f5",
-  magenta: "#e900a1",
-  maroon: "#560000",
-};
-
-// const Sections = {
-//   Define: () => {
-//     return <div style={{ height: "6666px" }}></div>;
-//   },
-// };
-
-const Sections = {
-  Define: () => {
-    return (
-      <GridParent>
-        <Flex
-          sx={{
-            placeSelf: "center",
-            width: "100%",
-            marginBottom: 8,
-            gridColumn: ["span 8", "span 8"],
-            gridRow: ["span 1", "span 1"],
-          }}
-        >
-          <Text>
-            Loupe is a conference held by Framer each year. The 3rd edition of
-            the conference was planned to be held in Amsterdam 2020, but was
-            cancelled due to COVID-19. Below you'll find the progress of that
-            work.
-          </Text>
-        </Flex>
-        <div></div>
-        <Box bg="#003807">
-          <Video videoData={videos.loupeMesh} />
-        </Box>
-        <div
-          sx={{
-            background: "#F60000",
-            gridColumn: ["5 / span 4", "span 4"],
-            gridRow: ["6 / span 4", "span 4"],
-          }}
-        >
-          <Img imageData={images.monomeshMagenta}></Img>
-        </div>
-        <div></div>
-        <div
-          sx={{
-            gridColumn: ["span 4"],
-            gridRow: ["span 2"],
-          }}
-        ></div>
-        <div
-          sx={{
-            gridColumn: ["3 / span 2", "span 2"],
-            gridRow: ["8 / span 2", "span 2"],
-          }}
-        >
-          <div>
-            <Img imageData={images.multiMesh0} />
-          </div>
-        </div>
-      </GridParent>
-    );
-  },
-  Branding: () => {
-    return (
-      <>
-        <GridParent>
-          <Box sx={{ mb: 8, gridColumn: ["span 8", "span 8"] }}>
-            <Text>Branding</Text>
-            <Text mt={6}>
-              Loupe being a fairly young event, faced the challenge of
-              attracting new conference-goers as well as retaining previous
-              attendees. It had to feel like a new and exciting event, while
-              keeping the brand trust that the conference had built up during
-              the years.
+const Loupe = ({ data }) => {
+  const Sections = {
+    Define: () => {
+      return (
+        <GridParent py={[9, 10]}>
+          <Flex
+            mb={10}
+            sx={{
+              placeSelf: "center",
+              width: "100%",
+              gridRow: ["span 1", "span 1"],
+              gridColumn: ["2 / span 8", "2/span 8"],
+            }}
+          >
+            <Text variant="heading">
+              Loupe is a conference held by Framer each year. The 3rd edition of
+              the conference was planned to be held in Amsterdam 2020, but was
+              cancelled due to COVID-19. Below you'll find the progress of that
+              work.
             </Text>
-            <Text mt={6}>
-              Previous identities were branched of Framers own brand. But this
-              year Loupe put on a new distinguished look. The identity aimed to
-              be extendable and work well both as pixels and as printed media.
-            </Text>
-          </Box>
+          </Flex>
 
-          <Img
-            cover
-            plate
-            sx={{
-              gridColumn: ["span 2"],
-              gridRow: ["span 2"],
-              backgroundColor: "#e8e0d6",
-            }}
-            imageData={images.orbs}
-          ></Img>
-          <Img
-            cover
-            sx={{
-              gridColumn: ["span 2"],
-              gridRow: ["span 2"],
-              borderRadius: "99em 99em 0 0",
-              overflow: "hidden",
-              backgroundColor: colors.red,
-            }}
-            imageData={images.monomeshMagenta1}
-          ></Img>
-          <Img
-            cover
-            plate
-            sx={{
-              gridColumn: ["span 2"],
-              gridRow: ["span 2"],
-              borderRadius: "99em 0 0 99em",
-              overflow: "hidden",
-              backgroundColor: colors.red,
-            }}
-            imageData={images.notes}
-          ></Img>
           <div
             sx={{
-              borderRadius: "0 99em 99em 0",
-              backgroundColor: colors.green,
-              backgroundImage: `url(${images.monomeshCyan1.url.default})`,
-              backgroundSize: "100%",
-              gridColumn: "span 2",
-              gridRow: "span 2",
-              overflow: "hidden",
-              display: "flex",
-              flexDirection: "column",
-              zIndex: 2,
-              justifyContent: "center",
+              gridRow: ["span 4", "span 4"],
+              gridColumn: ["2 / span 8", "2/span 4"],
             }}
           >
-            <Img sx={{ height: "100%" }} cover imageData={images.notes} />
+            <NumberedList
+              sx={{ mr: [0, null, 9, 5], mt: [10, 0], mb: 9 }}
+              bgColor={colors.green}
+              labelColor={data.bg}
+              labels={[
+                "Create brand and execute it for a very perceptive audience.",
+                "Position Capchase as a leader in non-dilutable financing.",
+                "Proofing Capchase’s brand for longevity & recognizability. ",
+              ]}
+            />
           </div>
-          <Img
-            cover
-            plate
-            sx={{
-              borderRadius: "0 0 99em 99em",
-              overflow: "hidden",
-              gridColumn: ["span 2"],
-              gridRow: ["span 2"],
-              backgroundColor: colors.cyan,
-            }}
-            imageData={images.multiMesh0}
-          ></Img>
-          <Img
-            cover
-            sx={{
-              borderRadius: "0 0 0 99em",
-              gridColumn: ["span 2"],
-              gridRow: ["span 2"],
-              overflow: "hidden",
-              backgroundColor: colors.red,
-            }}
-            imageData={images.monomeshOrange}
-          ></Img>
-          <Img
-            cover
-            sx={{
-              borderRadius: "0 99em 99em 0",
-              overflow: "hidden",
-              gridColumn: ["span 2"],
-              gridRow: ["span 2"],
-              background: colors.green,
-            }}
-            imageData={images.multiMesh1}
-          ></Img>
-          <Img
-            cover
-            sx={{
-              overflow: "hidden",
-              borderRadius: "0 99em 99em 0",
-              gridColumn: ["span 2"],
-              gridRow: ["span 2"],
-            }}
-            imageData={images.monomeshOrange}
-          ></Img>
-        </GridParent>
-        <GridParent sx={{ mt: 8 }}>
+
           <Box
             sx={{
-              gridColumn: ["1 / span 8", "1 / span 3"],
+              gridRow: ["2 / span 8", "span 4"],
+              gridColumn: ["2 / span 8", "7/span 4", "6/span 4"],
             }}
           >
-            <div sx={{ height: "100%" }}>{/* <Logo></Logo> */}</div>
+            <Video
+              sx={{ video: { objectFit: "cover" } }}
+              videoData={videos.loupeMesh}
+            />
           </Box>
-          <Box
+          <div
             sx={{
-              gridColumn: ["1 / span 8", "6 / span 3"],
+              overflow: "hidden",
+              borderRadius: "99em 0 99em 99em",
+              background: "#F60000",
+              gridRow: ["10 / span 4", "span 2"],
+              gridColumn: ["6 / span 4", "5/span 2", "4/span 2"],
             }}
           >
-            <div sx={{ maxWidth: 102, margin: "0 auto" }}>
-              <Img imageData={images.logoStrip} />
-            </div>
-          </Box>
-          <Text
-            mt={[4, 5]}
+            <Img imageData={images.monomeshMagenta}></Img>
+          </div>
+
+          <div
             sx={{
-              gridColumn: ["1 / span 8", "1 / span 4"],
-              gridRow: "span 1",
-              maxWidth: 520,
+              overflow: "hidden",
+              borderRadius: "pill",
+              gridRow: ["10 / span 4", "span 2", "span 2"],
+              gridColumn: ["2 / span 4", "3 / span 2", "2/span 2"],
             }}
           >
-            The logo’s goal was not to represent a singular idea. Ultimately it
-            is up to the observer to decide what meanings they see.
-          </Text>
-          <Text
-            mt={[3, 5]}
-            sx={{ gridColumn: ["1 / span 8", "6 / span 3"], gridRow: "span 1" }}
-          >
-            Additionally, I wanted to create a logo mark that could extend its
-            usage into patterns or shapes.
-          </Text>
-        </GridParent>
-        <div sx={{ marginTop: 8 }}>
-          <GridParent>
-            <Flex
+            <Img
               sx={{
-                gridColumn: ["1 / span 8", "1 / span 3"],
-                gridRow: ["1 / span 1", "1 / span 4"],
-                flexDirection: "column",
-                placeSelf: "center",
+                transform: "rotate(120deg) scale(2)",
+                transformOrigin: "40% 60%",
+              }}
+              imageData={images.monomeshOrange}
+            />
+          </div>
+        </GridParent>
+      );
+    },
+    Branding: () => {
+      return (
+        <>
+          <GridParent py={[9, 10]}>
+            <Box sx={{ mr: [0, 7], gridColumn: ["2 / span 8", "2/span 4"] }}>
+              <Text variant="lead">
+                Loupe being a fairly young event, faced the challenge of
+                attracting new conference-goers as well as retaining previous
+                attendees.
+              </Text>
+              <Text variant="lead">
+                It had to feel like a new and exciting event, while keeping the
+                brand trust that the conference had built up during the years.
+              </Text>
+            </Box>
+            <Box sx={{ ml: [0, 7], gridColumn: ["2/ span 8", "6/span 4"] }}>
+              <Text variant="lead">
+                Previous identities were branched of Framers own brand. But this
+                year Loupe put on a new distinguished look.{" "}
+              </Text>
+              <Text variant="lead">
+                The identity aimed to be extendable and work well both as pixels
+                and as printed media.
+              </Text>
+            </Box>
+          </GridParent>
+          <GridParent>
+            <div
+              sx={{
+                overflow: "hidden",
+                gridRow: ["span 4", "span 4"],
+                gridColumn: ["1/span 10", "1/span 10"],
+                img: {
+                  transform: "scale(1.05)",
+                },
               }}
             >
-              <Text mb={4}>
-                The unremarkable shapes made the icons feel deliberately
-                unassuming yet very legible in smaller sizes.
+              <Img imageData={images.webdesign} />
+            </div>
+          </GridParent>
+          <GridParent py={10}>
+            <Box
+              sx={{
+                gridColumn: ["2 / span 8", "2 / span 8"],
+              }}
+            >
+              <Text variant="heading" mb={9}>
+                Logotype
+              </Text>
+            </Box>
+            <Box
+              mb={10}
+              sx={{
+                gridColumn: ["2 / span 8", "2 / span 2"],
+              }}
+            >
+              <Text mb={9}>
+                I created the logo to represent multiple meanings and values.
+              </Text>
+              <Box sx={{ width: ["60%", "100%"], margin: "0 auto" }}>
+                <Logo></Logo>
+              </Box>
+            </Box>
+            <Box
+              mb={10}
+              sx={{
+                gridColumn: ["2 / span 8", "5 / span 2"],
+              }}
+            >
+              <Text mb={9}>
+                Ultimately it is up to the observer to decide what meanings they
+                see.
+              </Text>
+              <ScrollReveal
+                delay={0.2}
+                effect={[{ scale: 0.9 }, { scale: 1 }]}
+                duration={3}
+                repeat
+                sx={{
+                  width: ["60%", "100%"],
+                  margin: "0 auto",
+                  position: "relative",
+                  paddingBottom: ["60%", "100%"],
+                  "& > *": {
+                    width: "100%",
+                    height: "100%",
+                    top: 0,
+                    left: 0,
+                    position: ["absolute"],
+                  },
+                }}
+              >
+                <Img imageData={images.logopart1} />
+                <Img imageData={images.logopart2} />
+                <Img imageData={images.logopart3} />
+                <Img imageData={images.logopart4} />
+              </ScrollReveal>
+            </Box>
+            <Box
+              mb={10}
+              sx={{
+                margin: "0 auto",
+                overflow: "hidden",
+                position: "relative",
+                gridColumn: ["2 / span 8", "8 / span 2"],
+              }}
+            >
+              <Text mb={9}>
+                The logo can extend its usage into additional patterns or
+                shapes.
+              </Text>
+              <ScrollReveal
+                delay={0.2}
+                effect={[{ rotate: 45 }, { rotate: 0 }]}
+                duration={4}
+                repeat
+                sx={{
+                  width: ["60%", "100%"],
+                  margin: "0 auto",
+                  position: "relative",
+                  paddingBottom: ["60%", "100%"],
+                  "& > *": {
+                    width: "100%",
+                    height: "100%",
+                    top: 0,
+                    left: 0,
+                    position: "absolute",
+                  },
+                }}
+              >
+                <Img imageData={images.logoassemble1} />
+                <Img imageData={images.logoassemble2} />
+                <Img imageData={images.logoassemble3} />
+              </ScrollReveal>
+            </Box>
+          </GridParent>
+          <GridParent py={[9, 10]}>
+            <Flex
+              sx={{
+                mr: [0, 9],
+                flexDirection: "column",
+                gridRow: ["span 4", "1/span 4"],
+                gridColumn: ["2 / span 8", "2 / span 4"],
+                justifyContent: "center",
+              }}
+            >
+              <Text variant="heading">Icons</Text>
+              <Text variant="lead" sx={{ maxWidth: 640 }}>
+                The somewhat unremarkable shapes is what makes the icons unique.
+                And yet an important addition to the Loupe brand.
               </Text>
             </Flex>
             <div
               sx={{
-                gridColumn: ["1 / span 8", "5 / span 4"],
+                gridRow: ["span 4", "1/span 4"],
+                gridColumn: ["1/span 10", "6 / span 4"],
                 background: "#003807",
               }}
             >
               <Video videoData={videos.icons} />
             </div>
           </GridParent>
-        </div>
-        <div sx={{ marginTop: 8 }}>
-          <GridParent>
-            <div
+          <GridParent py={10}>
+            <Box
+              mb={8}
               sx={{
-                gridColumn: ["1 / span 8", "6 / span 3"],
-                gridRow: ["1 / span 1", "1 / span 2"],
+                gridRow: ["2/span 1", null, "1 / span 1", "2/span 3"],
+                gridColumn: ["2/span 8", null, "2/span 8", "6/span 4"],
               }}
             >
-              <Text>
+              <Text variant="heading">Typography</Text>
+              <Text variant="lead">
                 Typography was put together to feel approachable and friendly.
                 Previous Loupe branding languages felt masculine and bold. With
                 the goal to attract a more diverse audience the typefaces had to
                 follow suit.
               </Text>
-            </div>
+            </Box>
+
             <div
               sx={{
-                background: "#fff",
-                gridColumn: ["5 / span 2", "5 / span 1"],
-                gridRow: ["3 / span 2", "4 / span 1"],
+                background: colors.white,
+
+                gridRow: ["3 / span 2", "5 / span 1"],
+                gridColumn: ["6 / span 2", "6 / span 1"],
                 overflow: "hidden",
                 display: "flex",
                 flexDirection: "column",
@@ -283,7 +290,7 @@ const Sections = {
                 sx={{
                   objectFit: "contain",
                   maxWidth: 60,
-                  width: "80%",
+                  width: ["60%", "80%"],
                   margin: "0 auto",
                 }}
               >
@@ -295,8 +302,9 @@ const Sections = {
                 backgroundColor: "#E900A1",
                 backgroundImage: `url(${images.monomeshRed2.url.default})`,
                 backgroundSize: "100%",
-                gridColumn: ["5 / span 4", "6 / span 3"],
-                gridRow: ["5 / span 3", "4 / span 2"],
+
+                gridRow: ["5 / span 3", "5 / span 2"],
+                gridColumn: ["6 / span 4", "7 / span 3"],
                 overflow: "hidden",
                 display: "flex",
                 flexDirection: "column",
@@ -319,9 +327,9 @@ const Sections = {
 
             <div
               sx={{
-                background: "#000",
-                gridColumn: ["1 / span 4", "1 / span 3"],
-                gridRow: ["3 / span 4", "1 / span 3"],
+                background: colors.beige,
+                gridRow: ["3 / span 4", "2 / span 3"],
+                gridColumn: ["2 / span 4", "2 / span 3"],
                 overflow: "hidden",
                 display: "flex",
                 flexDirection: "column",
@@ -339,10 +347,10 @@ const Sections = {
                 <Img imageData={images.raisonne} />
               </div>
               <Text
-                mt={[2, 3, 3, 3]}
                 sx={{
+                  mt: 7,
                   display: ["none", "block"],
-                  color: "#fff",
+                  color: colors.green,
                   textAlign: "center",
                   padding: "0 8px",
                 }}
@@ -353,8 +361,8 @@ const Sections = {
             <div
               sx={{
                 backgroundColor: "#003807",
-                gridColumn: ["2 / span 5", "3 / span 3"],
-                gridRow: ["7 / span 5", "4 / span 3"],
+                gridRow: ["7 / span 5", "5 / span 3"],
+                gridColumn: ["3 / span 5", "4 / span 3"],
                 overflow: "hidden",
                 display: "flex",
                 flexDirection: "column",
@@ -389,17 +397,130 @@ const Sections = {
               </div>
             </div>
           </GridParent>
-        </div>
-      </>
-    );
-  },
-};
-const Loupe = () => {
-  return Object.entries(Sections).map(([k, Section]) => (
-    <Box key={k}>
-      <Section />
-    </Box>
-  ));
+          <GridParent py={[9, 10]}>
+            <Box
+              sx={{
+                gridRow: ["11/span 1", "3/span 3"],
+                gridColumn: ["2/span 8", null, "5/span 3", "6/span 3"],
+                display: "flex",
+                flexDirection: "column",
+
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <div sx={{ paddingTop: [5], paddingBottom: [5] }}>
+                <Text variant="heading" my={[7, 5, 5, 7]}>
+                  Beyond static
+                </Text>
+                <Text>
+                  I used different displacement methods to bring the colourful
+                  assets into life. Also composited photography with animated
+                  skies.
+                </Text>
+              </div>
+            </Box>
+            <div
+              sx={{
+                background: colors.green,
+
+                gridRow: ["4/span 4", "3/span 3"],
+                gridColumn: ["1/span 6", null, "1/span 3", "2/span 3"],
+                display: "flex",
+                padding: ["16%"],
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                isolation: "isolate",
+              }}
+            >
+              <Video
+                sx={{
+                  mixBlendMode: "lighten",
+                  backgroundColor: colors.green,
+                  video: {
+                    borderRadius: "50%",
+                    overflow: "hidden",
+                  },
+                }}
+                videoData={videos.mesh1}
+              />
+            </div>
+            <Box
+              sx={{
+                background: "transparent",
+
+                gridRow: ["1 / span 3", "1 / span 2"],
+                gridColumn: ["3 / span 6", null, "4 / span 7", "5 / span 5"],
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Video videoData={videos.muziekclip} />
+            </Box>
+            <div
+              sx={{
+                background: colors.orange,
+
+                gridRow: ["7 / span 4", "6 / span 5"],
+                gridColumn: ["3 / span 6", null, "4 / span 5", "5 / span 5"],
+                display: "flex",
+                padding: ["16%"],
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                isolation: "isolate",
+              }}
+            >
+              <Video
+                sx={{
+                  mixBlendMode: "multiply",
+                  video: {
+                    borderRadius: "50%",
+                    overflow: "hidden",
+                  },
+                }}
+                videoData={videos.mesh}
+              />
+            </div>
+          </GridParent>
+        </>
+      );
+    },
+    Design: () => {
+      return (
+        <>
+          <GridParent>
+            <div
+              sx={{
+                overflow: "hidden",
+                gridRow: ["span 1", "span 1"],
+                gridColumn: ["1/span 10", "1/span 10"],
+                img: {
+                  transformOrigin: "top center",
+                  transform: ["scale(1.05)"],
+                },
+              }}
+            >
+              <Img imageData={images.execution} />
+            </div>
+          </GridParent>
+        </>
+      );
+    },
+  };
+  return (
+    <>
+      <GridParent>
+        <CaseMeta data={data} />
+      </GridParent>
+      {Object.entries(Sections).map(([k, Section]) => (
+        <Section key={k} />
+      ))}
+    </>
+  );
 };
 
 export default Loupe;

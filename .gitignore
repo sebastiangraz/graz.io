@@ -12,6 +12,13 @@
 /build
 
 # misc
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 .DS_Store
 .env.local
 .env.development.local

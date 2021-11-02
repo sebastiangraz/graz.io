@@ -1,7 +1,5 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
+/** @jsxImportSource theme-ui */
 
-import { jsx } from "theme-ui";
 import React from "react";
 import {
   m,
@@ -9,116 +7,284 @@ import {
   transform,
   useTransform,
   useViewportScroll,
-  useMotionValue,
 } from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
+import { Debugger, ScrollDown } from "../";
+
+const debug = false;
+
+const settings = {
+  nextScrollDistance: 80,
+  staggerPower: 0.5,
+  springOptions: {
+    damping: 12,
+    mass: 0.1,
+    // damping: 7,
+    // mass: 0.07,
+  },
+};
+
+const debugStyle = {
+  ...(debug && {
+    boxShadow: "0 0 0 8px inset #319c4eaa, 0 0 0 8px #ef9e47aa",
+    background: "linear-gradient(#ff000000, #ff000088) !important",
+  }),
+};
 
 const caseParent = {
-  top: `100vh`,
-  position: "fixed",
-  willChange: "transform",
-  right: 0,
-};
-const caseBg = {
-  borderBottom: "3px solid #000",
+  top: [0, `100vh`],
   width: "100%",
-  height: "100%",
+  mt: [-7, 0],
+  maxWidth: "2400px",
+  position: ["relative", "fixed"],
+  pointerEvents: "none",
+  // willChange: "transform", //willChange messes up antialiasing but at the cost of performance. (Performance gains negligible though)
+  display: "grid",
+  gridTemplateColumns: [
+    "repeat(10, 1fr)",
+    "repeat(10, 1fr)",
+    "repeat(12, 1fr)",
+    "repeat(12, 1fr)",
+  ],
+};
+
+const caseBg = {
+  ...debugStyle,
+  width: "100%",
   zIndex: -1,
   position: "absolute",
   bottom: 0,
   left: 0,
 };
 
-export const Case = React.forwardRef(({ index, data }, ref) => {
-  let { childHeight, childPosition } = useCaseWrapperContext();
-  const { scrollY } = useViewportScroll();
-  const responsiveOffset = useResponsiveValue([50, 75, 100, 150]);
-  const Render = data.component;
-  const height = (pos) => childHeight[pos ? index - pos : index] || [];
-  const position = (pos) => childPosition[pos ? index - pos : index] || [];
-  const homeCase = childHeight[0] || 0;
-  const offset = (responsiveOffset / index) * 1;
-  const staggeredOffset = -childPosition.length * offset + index * offset;
+const media_query = "screen and (min-width:640px)";
 
-  const updatePos = (v, pos) => {
-    const progress = v - position(pos) + height(pos) + homeCase;
+function ScrollToTopOnMount(props) {
+  const { position, height, stagger, datavar, index } = props;
+  React.useEffect(() => {
+    document.fonts.ready.then(function () {
+      if (window.location.hash === `#${datavar}`) {
+        window.scrollTo(
+          0,
+          position -
+            height -
+            (index !== 1 && settings.nextScrollDistance) +
+            stagger
+        );
+      }
+    });
+  }, [datavar, height, index, position, stagger]);
+  return null;
+}
+
+const MemoCase = React.forwardRef(({ index, data }, ref) => {
+  const { scrollY } = useViewportScroll();
+  let { childHeight, childPosition, windowHeight } = useCaseWrapperContext();
+
+  const responsiveOffset = useResponsiveValue([50, 75, 200, 240]);
+
+  const Render = data.component;
+  const height = React.useCallback(
+    (pos) => childHeight[pos ? index - pos : index] || [],
+    [childHeight, index]
+  );
+  const position = (pos) => childPosition[pos ? index - pos : index] || [];
+  const offset = (responsiveOffset / (index + 1)) * settings.staggerPower;
+  const staggeredOffset =
+    index !== 0 ? -childPosition.length * offset + index * offset : 0;
+
+  // -----POSITION-----
+  const updatePos = (v) => {
+    const progress = v - position(0) + height(0) + windowHeight;
+
+    return transform(progress, [0, height(0)], [0, -height(0)]);
+  };
+
+  const updatePosNext = (v) => {
+    const progress = v - position(1) + height(1);
     return transform(
       progress,
-      [0, height(pos)],
-      pos === 1 ? [staggeredOffset + 300, 0] : [0, -height(pos)]
+      [-windowHeight, height(1) - windowHeight],
+      [staggeredOffset, staggeredOffset - settings.nextScrollDistance]
     );
   };
 
   const y = useSpring(
-    useTransform(scrollY, (v) => updatePos(v, 0)),
-    { damping: 7, mass: 0.06 }
+    useTransform(scrollY, (v) => updatePos(v)),
+    settings.springOptions
   );
 
   const yNext = useSpring(
-    useTransform(scrollY, (v) => updatePos(v, 1)),
-    { damping: 7, mass: 0.06 }
+    useTransform(scrollY, (v) => updatePosNext(v)),
+    settings.springOptions
   );
 
+  const xStyle = useResponsiveValue([
+    { x: "0%" },
+    { x: "-50%" },
+    { x: "-50%" },
+    { x: "-50%" },
+  ]);
+
+  const yNextStyle = useResponsiveValue([
+    { y: 0 },
+    { y: yNext },
+    { y: yNext },
+    { y: yNext },
+  ]);
+
+  const yStyle = useResponsiveValue([{ y: 0 }, { y: y }, { y: y }, { y: y }]);
+
+  // -----CLICK TO SCROLLTO CASE-----
   const handleClick = () => {
-    window.scrollTo(0, position(0) - height(0) - 300);
+    if (index !== 0) {
+      window.history.replaceState(null, null, `#${data.slug}`);
+    } else {
+      window.history.replaceState(null, null, " ");
+    }
+    window.scrollTo(
+      0,
+      position(0) -
+        height(0) -
+        (index !== 1 && settings.nextScrollDistance) +
+        staggeredOffset
+    );
   };
+
+  const gridCount = (arr) => data?.grid && data.grid[arr].split("span ")[1];
+  const gridPosition = (arr) => data?.grid && data.grid[arr].split(" /")[0];
 
   return (
     <>
+      {debug && (
+        <Debugger
+          updatePos={updatePos}
+          scrollY={scrollY}
+          data={data}
+          index={index}
+          height={height}
+          position={position}
+          debug={debug}
+        />
+      )}
       {index === 0 ? (
-        <div
-          onClick={handleClick}
-          ref={ref}
-          sx={{
-            color: data?.color,
-            backgroundColor: data?.bg,
-            height: "100vh",
-            width: "100%",
-            position: "fixed",
-            left: 0,
-            top: 0,
-          }}
-        >
-          <Render />
-        </div>
-      ) : (
+        // -----HOME-----
         <m.div
           ref={ref}
-          onClick={handleClick}
-          // animate={{ opacity: isComplete ? 1 : 0.1 }}
-          transition={{ duration: 0 }}
           style={{
-            // opacity: inView,
-            y: y,
+            ...yStyle,
+            color: data?.color,
           }}
           sx={{
-            ...caseParent,
-            color: data?.color,
-            zIndex: index,
-            width: ["100%", `calc(min(100%, 1495px) - ${index * 2.5}%)`],
-            "&:nth-of-type(odd)": {
-              left: 0,
-            },
+            width: "100%",
+            top: "100%",
+            position: ["relative", "fixed"],
+            left: 0,
           }}
         >
-          {console.log("render child :(")}
-
-          <m.div
-            style={{ y: yNext, willChange: "transform" }}
+          <Render data={data} />
+        </m.div>
+      ) : (
+        // -----CASES-----
+        <m.div
+          className="caseWrapper"
+          id={data.slug}
+          ref={ref}
+          style={{
+            ...yStyle,
+            ...xStyle,
+          }}
+          sx={{
+            "--gridCount": [12, 12, `${gridCount(0)}`, `${gridCount(1)}`],
+            "--caseBg": data.bg,
+            "--caseColor": data.color,
+            ...caseParent,
+            // pt: [3, 0, null],
+            color: data?.color,
+            zIndex: index,
+            left: [0, "50%"],
+          }}
+        >
+          {index === 1 && (
+            <ScrollDown
+              gridPosition={gridPosition}
+              settings={settings}
+              staggeredOffset={staggeredOffset}
+              height={height}
+              position={position}
+            />
+          )}
+          <div
             sx={{
-              ...caseBg,
-              backgroundColor: data?.bg,
+              pointerEvents: "auto",
+              position: "relative",
+              gridColumn: ["span 12", null, data?.grid[0], data?.grid[1]],
             }}
           >
-            <CaseHero bg={data?.bg}>{data?.name}</CaseHero>
-          </m.div>
+            <m.div
+              onClick={handleClick}
+              style={{
+                ...yNextStyle,
+                height: 300,
+                willChange: "transform",
+              }}
+              sx={{
+                ...(index === 1 && {
+                  top: ["auto", settings.nextScrollDistance],
+                  position: "relative",
+                }),
+              }}
+            >
+              <CaseHero
+                debug={debug}
+                name={data?.name}
+                forceRender={childHeight}
+              />
+            </m.div>
+            <div
+              className="background-layer"
+              style={{
+                backgroundColor: data?.bg,
+              }}
+              sx={{
+                borderRadius: ["0 0 32px 32px", 0],
+                height: [
+                  "calc(100% - 298px)",
+                  `calc(100% - ${
+                    300 -
+                    2 -
+                    (index !== 1 ? settings.nextScrollDistance : 0) +
+                    staggeredOffset
+                  }px)`,
+                ],
+                ...caseBg,
+              }}
+            ></div>
 
-          <div sx={{ my: "100vh" }}>
-            <Render />
+            <div
+              sx={{
+                mb: ["20vh", "100vh"],
+                mt: "0",
+                transition: "opacity 0.2s ease",
+              }}
+            >
+              <Render data={data} />
+            </div>
           </div>
         </m.div>
+      )}
+      {!window.matchMedia(media_query).matches ? null : (
+        <ScrollToTopOnMount
+          position={position(0)}
+          height={height(0)}
+          stagger={staggeredOffset}
+          datavar={data.slug}
+          index={index}
+        />
       )}
     </>
   );
 });
+
+export const Case = React.memo(MemoCase);

@@ -1,12 +1,45 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "theme-ui";
-import styles from "./style.module.scss";
+/** @jsxImportSource theme-ui */
+import { Box } from "theme-ui";
 
-export const GridParent = ({ children, className, ...rest }) => {
+export const GridParent = ({ children, ...rest }) => {
   return (
-    <div {...rest} className={`${styles.gridParent} ${className}`}>
+    <Box
+      {...rest}
+      sx={{
+        width: "100%",
+        gridColumn: `1 / span 12`,
+        // 6px scrollbar width included in the calc
+        "--calcWrapper": [
+          `(var(--gridCount)) / 12 * min(calc(100vw - 5px), 2400px)`,
+          null,
+          `(var(--gridCount)) / 12 * min(calc(100vw - 5px), 2400px)`,
+        ],
+        "--gutter": "0px",
+        "--noOfColumns": "10",
+        "--noOfGutters": "calc(var(--noOfColumns) - 1)",
+        "--ratioA": "1",
+        "--ratioB": "1",
+        "--factor": "calc(var(--ratioB) / var(--ratioA))",
+        "--rh": `calc(
+        (
+            (var(--calcWrapper) - (var(--noOfGutters) * var(--gutter))) /
+              var(--noOfColumns)
+          ) * var(--factor)
+      )`,
+
+        maxWidth: "var(--calcWrapper)",
+        display: "grid",
+        gridTemplateColumns: "repeat(var(--noOfColumns), minmax(0, 1fr))",
+        gridAutoFlow: "dense",
+        gridAutoRows: "minmax(var(--rh), auto)",
+        gridGap: "var(--gutter)",
+        margin: "var(--gutter) auto",
+        // "& > *": {
+        //   gridColumnStart: "2",
+        // },
+      }}
+    >
       {children}
-    </div>
+    </Box>
   );
 };

@@ -1,13 +1,12 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
+/** @jsxImportSource theme-ui */
 
 import React from "react";
-import { jsx } from "theme-ui";
 import uuid from "react-uuid";
 
 const ignoreUpdatedProps = () => true;
 
-export const CaseHero = React.memo(({ bg, id = uuid(), children }) => {
+export const CaseHero = React.memo((props, { id = uuid() }) => {
+  const { name, debug } = props;
   const [loaded, setLoaded] = React.useState(false);
   React.useEffect(() => {
     document.fonts.ready.then(function () {
@@ -16,46 +15,55 @@ export const CaseHero = React.memo(({ bg, id = uuid(), children }) => {
   }, []);
   return (
     <svg
-      sx={{
+      style={{
         position: "absolute",
-        top: -300,
+        top: 0,
+        ...(debug && {
+          opacity: 0.4,
+        }),
         textTransform: "uppercase",
         fontWeight: 600,
-        width: "100%",
         height: 300,
         letterSpacing: "-0.075em",
-        fontSize: "min(12vw, 140px)",
-        color: bg,
+        fontSize: "min(12vw, 156px)",
+        borderRadius: "32px 32px 0 0",
+        color: `var(--caseBg)`,
       }}
       height="300"
       width="100%"
-      preserveAspectRatio="xMinYMin meet"
+      viewBox="0 0 2000 300"
+      preserveAspectRatio="xMinYMin slice"
     >
       <defs>
-        {console.log("render CaseHero :(")}
         <mask id={`${"sample-" + id}`}>
           <rect width="100%" height="100%" fill="white"></rect>
           <svg
-            width="32"
-            height="16"
+            width="8"
+            height="8"
             x="24"
             y="24"
-            viewBox="0 0 32 16"
+            viewBox="0 0 8 8"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <rect width="32" height="16" rx="8" fill="black" />
+            <rect width="8" height="8" rx="8" fill="black" />
           </svg>
-
-          <text
-            dominantBaseline="hanging"
-            transform={`translate(${100 - 4} ${100 - 7})`}
+          <g
+            sx={{
+              transform: [
+                `translate(min(172px, calc(12vw - 5px) ), min(100px, 12vw))`,
+                `translate(min(172px, calc(8vw - 5px) ), min(100px, 6vw))`,
+              ],
+            }}
           >
-            {/* hack: using zero-width space to render the correct font */}
-            {loaded ? children : "​"}
-          </text>
+            <text dominantBaseline="hanging">
+              {/* hack: using zero-width space to render the correct font */}
+              {loaded ? name : "​"}
+            </text>
+          </g>
         </mask>
       </defs>
+
       <rect
         fillRule="evenodd"
         mask={`url(#${"sample-" + id})`}

@@ -1,10 +1,9 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
+/** @jsxImportSource theme-ui */
 
 import React from "react";
-import { jsx, Box, Text, Heading } from "theme-ui";
+import { Box, Text, Heading } from "theme-ui";
 import { GridParent, Video, Img, List } from "../../components";
-import { icons, images, videos } from "./assets";
+import { images, videos, icons } from "./assets";
 
 const Sections = {
   Define: () => {
@@ -22,7 +21,7 @@ const Sections = {
           >
             <div sx={{ marginBottom: [5] }}>
               <Box mb={4} sx={{ width: 142, color: "accent" }}>
-                {/* {icons.problemStatement} */}
+                {icons.problemStatement}
               </Box>
               <Text variant="caps" mb={4}>
                 Problem Statement
@@ -39,7 +38,7 @@ const Sections = {
             </div>
             <div>
               <Box mb={4} sx={{ color: "accent" }}>
-                {/* {icons.fourChallenges} */}
+                {icons.fourChallenges}
               </Box>
               <Text mb={4} variant="caps">
                 4 Challenges
@@ -199,7 +198,7 @@ const Sections = {
           <Box
             sx={{ marginBottom: [3, 0], gridColumn: ["span 12", "5 / span 4"] }}
           >
-            {/* {icons.spaceScale} */}
+            {icons.spaceScale}
           </Box>
           <Box
             sx={{
@@ -227,7 +226,7 @@ const Sections = {
           <Box
             sx={{ marginBottom: [3, 0], gridColumn: ["span 12", "1 / span 4"] }}
           >
-            {/* {icons.typeScale} */}
+            {icons.typeScale}
           </Box>
           <Box
             sx={{
@@ -256,7 +255,7 @@ const Sections = {
           <Box
             sx={{ marginBottom: [3, 0], gridColumn: ["span 12", "5 / span 4"] }}
           >
-            {/* {icons.colorGen} */}
+            {icons.colorGen}
           </Box>
           <Box
             sx={{
@@ -296,7 +295,7 @@ const Sections = {
           }}
         >
           <Box sx={{ gridColumn: ["span 12", "5 / span 4"] }}>
-            {/* {icons.designSystem} */}
+            {icons.designSystem}
           </Box>
           <Box
             sx={{
@@ -331,7 +330,7 @@ const Sections = {
             <Text variant="caps" mb={[3, 5]}>
               Immutable = Consistent
             </Text>
-            {/* {icons.button} */}
+            {icons.button}
           </Box>
           <Box
             sx={{

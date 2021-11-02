@@ -1,7 +1,4 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "theme-ui";
-import React from "react";
+/** @jsxImportSource theme-ui */
 
 export const Img = ({ imageData, cover, plate, ...rest }) => {
   return (
@@ -12,7 +9,7 @@ export const Img = ({ imageData, cover, plate, ...rest }) => {
           imageData && imageData.width
         } * 100%)`,
         position: "relative",
-        backgroundColor: plate ? "accent" : "transparent",
+        backgroundColor: plate ? "currentColor" : "transparent",
       }}
     >
       <picture>

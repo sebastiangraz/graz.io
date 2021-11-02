@@ -5,22 +5,20 @@ export const Img = ({ imageData, cover, plate, ...rest }) => {
     <div
       {...rest}
       sx={{
-        paddingBottom: `calc(${imageData && imageData.height} / ${
-          imageData && imageData.width
-        } * 100%)`,
+        paddingBottom: `calc(${imageData?.height} / ${imageData?.width} * 100%)`,
         position: "relative",
         backgroundColor: plate ? "currentColor" : "transparent",
       }}
     >
       <picture>
-        {imageData && imageData.webP && (
+        {imageData?.webP && (
           <source
             loading="lazy"
-            width={imageData && imageData.width}
-            height={imageData && imageData.height}
-            srcSet={imageData && imageData.webP.default}
+            width={imageData?.width}
+            height={imageData?.height}
+            srcSet={imageData?.webP.default}
             type="image/webp"
-            alt={imageData.alt ? imageData.alt : "alt"}
+            alt={imageData?.alt ? imageData?.alt : "alt"}
           />
         )}
         <img
@@ -34,10 +32,10 @@ export const Img = ({ imageData, cover, plate, ...rest }) => {
             width: "100%",
             objectFit: cover ? "cover" : "contain",
           }}
-          width={imageData && imageData.width}
-          height={imageData && imageData.height}
-          alt={imageData && imageData.alt ? imageData.alt : "alt"}
-          src={imageData && imageData.url.default}
+          width={imageData?.width}
+          height={imageData?.height}
+          alt={imageData?.alt ? imageData?.alt : "alt"}
+          src={imageData?.url.default}
         />
       </picture>
     </div>

@@ -504,7 +504,6 @@ const Capchase = ({ data }) => {
                   alignItems: "center",
                   justifyContent: "space-between",
                   gridGap: [7, 8],
-
                   gridTemplateColumns: [
                     "auto",
                     "repeat(auto-fit, minmax(min(240px, 100%), auto))",

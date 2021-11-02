@@ -12,7 +12,7 @@ import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
 import { Debugger, ScrollDown } from "../";
 
-const debug = true;
+const debug = false;
 
 const settings = {
   nextScrollDistance: 80,

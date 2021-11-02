@@ -124,7 +124,7 @@ const Loupe = ({ data }) => {
             <div
               sx={{
                 overflow: "hidden",
-                gridRow: ["span 4", "span 32"],
+                gridRow: ["span 4", "span 15"],
                 gridColumn: ["1/span 10", "1/span 10"],
                 img: {
                   transform: "scale(1.05)",
@@ -147,6 +147,7 @@ const Loupe = ({ data }) => {
             <Box
               mb={10}
               sx={{
+                gridRow: ["2/span 5"],
                 gridColumn: ["2 / span 8", "2 / span 2"],
               }}
             >
@@ -160,6 +161,7 @@ const Loupe = ({ data }) => {
             <Box
               mb={10}
               sx={{
+                gridRow: ["2/span 5"],
                 gridColumn: ["2 / span 8", "5 / span 2"],
               }}
             >
@@ -198,6 +200,7 @@ const Loupe = ({ data }) => {
                 margin: "0 auto",
                 overflow: "hidden",
                 position: "relative",
+                gridRow: ["2/span 5"],
                 gridColumn: ["2 / span 8", "8 / span 2"],
               }}
             >

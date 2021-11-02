@@ -152,7 +152,7 @@ export const images = {
   brandbook2: {
     url: require("./assets/brandbook-2.png"),
     webP: require("./assets/brandbook-2.webp"),
-    width: 2662,
+    width: 3020,
     height: 2742,
     alt: "brandbook2",
   },

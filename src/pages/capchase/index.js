@@ -758,6 +758,7 @@ const Capchase = ({ data }) => {
               </ScrollReveal>
             </Box>
           </GridParent>
+
           <GridParent>
             <Box
               sx={{
@@ -933,6 +934,7 @@ const Capchase = ({ data }) => {
               <Img sx={{ width: "100%" }} imageData={images.artDirection9} />
             </Box>
           </GridParent>
+
           <GridParent>
             <Box
               sx={{

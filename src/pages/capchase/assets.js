@@ -201,26 +201,26 @@ export const images = {
   },
   artDirection2: {
     url: require("./assets/artDirection2.png"),
-    width: 1152,
-    height: 1152,
+    width: 828,
+    height: 828,
     alt: "Art Direction 2",
   },
   artDirection3: {
     url: require("./assets/artDirection3.png"),
-    width: 1152,
-    height: 1152,
+    width: 828,
+    height: 828,
     alt: "Art Direction 3",
   },
   artDirection4: {
     url: require("./assets/artDirection4.png"),
-    width: 1152,
-    height: 1152,
+    width: 836,
+    height: 557,
     alt: "Art Direction 4",
   },
   artDirection5: {
     url: require("./assets/artDirection5.png"),
-    width: 1152,
-    height: 1152,
+    width: 754,
+    height: 754,
     alt: "Art Direction 5",
   },
   artDirection6: {
@@ -237,8 +237,8 @@ export const images = {
   },
   artDirection8: {
     url: require("./assets/artDirection8.png"),
-    width: 1152,
-    height: 1152,
+    width: 768,
+    height: 768,
     alt: "Art Direction 8",
   },
   artDirection9: {

@@ -27,36 +27,36 @@ const radius = (small) => {
   return small ? radiusSmall : radiusLarge;
 };
 
-const phoneBorder = () => {
-  return {
-    // boxShadow: "capchase", too laggy
-    position: "relative",
-    zIndex: "0",
-    "&:after": {
-      borderRadius: radius().default,
-      content: "''",
-      position: "absolute",
-      left: 0,
-      top: 0,
-      width: "100%",
-      height: "100%",
-      zIndex: "1",
-      boxShadow:
-        "inset 0px 3px 1px -2px #FFF7E8, inset 0px -1px 1px -1px rgba(73, 46, 34, 0.5), inset 0px 0px 5px -1px #C66705, inset 0px 0px 1px 3px #E9D9C0",
-    },
-    "&:before": {
-      borderRadius: radius().default,
-      content: "''",
-      position: "absolute",
-      left: "1px",
-      top: "1px",
-      width: "calc(100% - 2px)",
-      height: "calc(100% - 2px)",
-      zIndex: "1",
-      boxShadow: ["0 0 0 5px #000 inset", "0 0 0 8px #000 inset"],
-    },
-  };
-};
+// const phoneBorder = () => {
+//   return {
+//     // boxShadow: "capchase", too laggy
+//     position: "relative",
+//     zIndex: "0",
+//     "&:after": {
+//       borderRadius: radius().default,
+//       content: "''",
+//       position: "absolute",
+//       left: 0,
+//       top: 0,
+//       width: "100%",
+//       height: "100%",
+//       zIndex: "1",
+//       boxShadow:
+//         "inset 0px 3px 1px -2px #FFF7E8, inset 0px -1px 1px -1px rgba(73, 46, 34, 0.5), inset 0px 0px 5px -1px #C66705, inset 0px 0px 1px 3px #E9D9C0",
+//     },
+//     "&:before": {
+//       borderRadius: radius().default,
+//       content: "''",
+//       position: "absolute",
+//       left: "1px",
+//       top: "1px",
+//       width: "calc(100% - 2px)",
+//       height: "calc(100% - 2px)",
+//       zIndex: "1",
+//       boxShadow: ["0 0 0 5px #000 inset", "0 0 0 8px #000 inset"],
+//     },
+//   };
+// };
 
 const Capchase = ({ data }) => {
   const Sections = {
@@ -346,206 +346,6 @@ const Capchase = ({ data }) => {
             </Box>
           </GridParent>
         </>
-        // <>
-        //   <GridParent>
-        //     <Box sx={{ gridColumn: ["2/span 8", " 2/span 5"] }}>
-        //       <ScrollReveal>
-        //         <Text variant="heading" mb={8} sx={{ maxWidth: 580 }}>
-        //           Capchase, one of the largest non-dilutive funding companies
-        //           needed a time sensitive visual refresh of all their digital &
-        //           print assets.
-        //         </Text>
-        //         <Text variant="lead" mb={10} sx={{ maxWidth: 580 }}>
-        //           Time was of the essence as they increased their momentum for
-        //           both brand awareness while establishing their slice of the
-        //           market. Big&nbsp;slices&nbsp;too.
-        //         </Text>
-        //       </ScrollReveal>
-        //     </Box>
-        //     <Box sx={{ gridColumn: ["2/span 8", "2/span 5"] }}>
-        //       <Text variant="caps" mb={7}>
-        //         Goals
-        //       </Text>
-        //       <NumberedList
-        //         labelColor={colors.white}
-        //         horizontal
-        //         labels={[
-        //           "Create brand and execute it for a very perceptive audience.",
-        //           "Position Capchase as a leader in non-dilutable financing.",
-        //           "Proofing Capchase’s brand for longevity & recognizability. ",
-        //           "To look & feel like a business partner not a business tool.",
-        //         ]}
-        //       />
-        //     </Box>
-        //   </GridParent>
-        //   <GridParent>
-        //     <div
-        //       sx={{
-        //         pr: [2, 9],
-        //         borderRadius: radius().right,
-        //         background: colors.purple,
-        //         gridRow: ["span 4", "span 2"],
-        //         gridColumn: ["span 3"],
-
-        //         display: "flex",
-        //         justifyContent: "center",
-        //         alignItems: "center",
-        //       }}
-        //     >
-        //       <ScrollReveal
-        //         effect={[{ translateY: 5 }, { translateY: 0 }]}
-        //         duration={1.5}
-        //         sx={{ width: "100%" }}
-        //       >
-        //         <Img sx={{ width: "100%" }} imageData={images.bottle} />
-        //       </ScrollReveal>
-        //     </div>
-        //     <div
-        //       sx={{
-        //         overflow: "hidden",
-        //         isolation: "isolate",
-        //         borderRadius: radius().default,
-
-        //         gridRow: ["span 4", "span 4"],
-        //         gridColumn: ["span 4", "span 4"],
-        //       }}
-        //     >
-        //       <Video videoData={videos.intro} />
-        //     </div>
-        //     <div
-        //       sx={{
-        //         position: "relative",
-        //         ...phoneBorder(),
-        //         boxShadow: "capchase",
-        //         overflow: "hidden",
-        //         borderRadius: radius().default,
-        //         gridRow: ["span 5", "span 4"],
-        //         gridColumn: ["span 3", "span 2"],
-        //       }}
-        //     >
-        //       <div
-        //         sx={{
-        //           display: ["none", "block"],
-        //           zIndex: 2,
-        //           top: "56px",
-        //           right: "-10px",
-        //           width: 16,
-        //           height: 40,
-        //           position: "absolute",
-        //         }}
-        //       >
-        //         <Img imageData={images.crown} />
-        //       </div>
-
-        //       <Img
-        //         sx={{
-        //           position: "absolute",
-        //           top: 0,
-        //           left: 0,
-        //           width: "100%",
-        //           height: "100%",
-        //           overflow: "hidden",
-        //           borderRadius: radius().default,
-        //         }}
-        //         imageData={images.mobileIntro}
-        //       />
-        //     </div>
-        //   </GridParent>
-        //   <GridParent sx={{ mb: [10, 11] }}>
-        //     <div
-        //       sx={{
-        //         borderRadius: radius().default,
-        //         background: colors.black,
-        //         gridRow: "span 2",
-        //         gridColumn: ["span 2", "2/span 2"],
-        //       }}
-        //     >
-        //       <Img imageData={images.forward} />
-        //     </div>
-        //     <div
-        //       sx={{
-        //         padding: [4, 8],
-        //         borderRadius: radius().default,
-        //         background: colors.purple,
-
-        //         gridRow: "3/span 2",
-        //         gridColumn: ["2/span 4", "4/span 2"],
-        //       }}
-        //     >
-        //       <ScrollReveal duration={2}>
-        //         {/* <Img imageData={images.loop} /> */}
-        //         <Img imageData={images.elements} />
-        //       </ScrollReveal>
-        //     </div>
-        //     <div
-        //       sx={{
-        //         display: "grid",
-        //         alignItems: "center",
-        //         justifyContent: "center",
-        //         borderRadius: radius(true).default,
-        //         background: colors.white,
-        //         color: colors.black,
-        //         gridRow: ["1/span 1", "2/span 1"],
-        //         gridColumn: ["6/span 1", "6/span 1"],
-
-        //         svg: {
-        //           margin: "0 auto",
-        //           width: "50%",
-        //           height: "auto",
-        //         },
-        //       }}
-        //     >
-        //       {vectors.logo}
-        //     </div>
-        //     <div
-        //       sx={{
-        //         borderRadius: radius().default,
-        //         gridRow: ["1/span 2", "3/span 2"],
-        //         gridColumn: ["2/span 2", "6/span 2"],
-        //       }}
-        //     >
-        //       <Img imageData={images.ramp} />
-        //     </div>
-        //     <div
-        //       sx={{
-        //         p: [2, 9],
-        //         pr: 0,
-        //         overflow: "hidden",
-        //         position: "relative",
-        //         borderRadius: radius().left,
-        //         background: colors.black,
-        //         gridRow: ["1/span 3", "2/span 3"],
-        //         gridColumn: ["8/span 3", "8/span 3"],
-        //         alignItems: "center",
-        //         display: "grid",
-        //         img: {
-        //           objectPosition: "center right",
-        //         },
-        //       }}
-        //     >
-        //       <Img
-        //         sx={{ position: "absolute", width: "100%" }}
-        //         imageData={images.stats}
-        //       />
-        //     </div>
-        //     <div
-        //       sx={{
-        //         overflow: "hidden",
-        //         borderRadius: radius().default,
-        //         background: colors.purple,
-        //         gridRow: ["3/span 2", "5/span 2"],
-        //         gridColumn: ["6/span 4", "8/span 2"],
-        //       }}
-        //     >
-        //       <ScrollReveal
-        //         delay={0.7}
-        //         effect={[{ rotate: -6 }, { rotate: 0 }]}
-        //       >
-        //         <Img imageData={images.totes} />
-        //       </ScrollReveal>
-        //     </div>
-        //   </GridParent>
-        // </>
       );
     },
     BrandBook: () => {

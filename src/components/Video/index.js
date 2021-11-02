@@ -1,8 +1,6 @@
 /** @jsxImportSource theme-ui */
 import { useEffect, useState, useRef } from "react";
 
-const PLAYING_DEBOUNCE_TIME = 50;
-
 export const Video = ({ videoData, ...props }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isWaiting, setIsWaiting] = useState(false);

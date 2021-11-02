@@ -78,7 +78,7 @@ const Capchase = ({ data }) => {
                 </Text>
               </ScrollReveal>
             </Box>
-            <Box sx={{ gridColumn: ["2/span 8", "2/span 5"] }}>
+            <Box sx={{ gridColumn: ["2/span 8", "2/span 8", "2/span 6"] }}>
               <Text variant="caps" mb={7}>
                 Goals
               </Text>
@@ -382,7 +382,7 @@ const Capchase = ({ data }) => {
                 my: 10,
                 borderRadius: ["12px", "48px"],
                 overflow: "hidden",
-                gridRow: "span 6",
+                gridRow: "span 4",
                 gridColumn: ["1/ span 10", "2/span 8"],
               }}
             >
@@ -392,7 +392,7 @@ const Capchase = ({ data }) => {
           <GridParent>
             <div
               sx={{
-                gridRow: "1/span 8",
+                gridRow: "3/span 4",
                 gridColumn: ["1/ span 10", "1/span 10"],
                 img: {
                   transformOrigin: "right",
@@ -404,7 +404,8 @@ const Capchase = ({ data }) => {
             </div>
             <div
               sx={{
-                gridRow: "9/span 11",
+                mt: [6, 0],
+                gridRow: "7/span 4",
                 gridColumn: ["1/ span 10", "1/span 10"],
                 img: {
                   transformOrigin: "right",
@@ -460,7 +461,7 @@ const Capchase = ({ data }) => {
             <div
               sx={{
                 overflow: "hidden",
-                gridRow: ["4/span 4", "3/span 19"],
+                gridRow: ["4/span 4", "3/span 4"],
                 gridColumn: ["1/ span 10", "1/span 10"],
                 img: {
                   transform: "scale(1.05)",

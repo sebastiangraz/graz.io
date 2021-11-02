@@ -199,6 +199,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
           sx={{
             "--gridCount": [12, 12, `${gridCount(0)}`, `${gridCount(1)}`],
             "--caseBg": data.bg,
+            "--caseColor": data.color,
             ...caseParent,
             // pt: [3, 0, null],
             color: data?.color,

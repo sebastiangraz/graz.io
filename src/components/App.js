@@ -1,5 +1,5 @@
 import React from "react";
-import { Loupe, Capchase } from "../pages";
+import { Loupe, Capchase, Canon } from "../pages";
 import { CaseWrapper, Case, Home } from "../components";
 import "../base.css";
 export let cases = new Map([

@@ -308,12 +308,11 @@ const Capchase = ({ data }) => {
           <GridParent>
             <div
               sx={{
-                overflow: "hidden",
                 gridRow: "3/span 4",
-                gridColumn: ["2/ span 9", "1/span 10"],
+                gridColumn: ["1/ span 10", "1/span 10"],
                 img: {
-                  transformOrigin: "center bottom",
-                  transform: "scale(1.05)",
+                  transformOrigin: "right",
+                  transform: "scale(1.021)",
                 },
               }}
             >
@@ -321,13 +320,11 @@ const Capchase = ({ data }) => {
             </div>
             <div
               sx={{
-                overflow: "hidden",
-                mt: [3, 8],
                 gridRow: "7/span 4",
-                gridColumn: ["2/ span 9", "1/span 10"],
+                gridColumn: ["1/ span 10", "1/span 10"],
                 img: {
-                  transformOrigin: "center bottom",
-                  transform: "scale(1.05)",
+                  transformOrigin: "right",
+                  transform: "scale(1.021)",
                 },
               }}
             >

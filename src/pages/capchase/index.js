@@ -523,7 +523,11 @@ const Capchase = ({ data }) => {
                 >
                   {vectors.forwardIcon}
                   <Text
-                    sx={{ ml: [5, 6], maxWidth: 170, width: "100%" }}
+                    sx={{
+                      ml: [5, 6],
+                      maxWidth: [170, null, null, 200],
+                      width: "100%",
+                    }}
                     variant="label"
                   >
                     Represents progression and moving forward.
@@ -539,7 +543,11 @@ const Capchase = ({ data }) => {
                 >
                   {vectors.growthIcon}
                   <Text
-                    sx={{ ml: [5, 6], maxWidth: 170, width: "100%" }}
+                    sx={{
+                      ml: [5, 6],
+                      maxWidth: [170, null, null, 200],
+                      width: "100%",
+                    }}
                     variant="label"
                   >
                     Displays a sense of growth & adaptability.
@@ -561,7 +569,11 @@ const Capchase = ({ data }) => {
                     {vectors.transparentIcon}
                   </ScrollReveal>
                   <Text
-                    sx={{ ml: [5, 6], maxWidth: 170, width: "100%" }}
+                    sx={{
+                      ml: [5, 6],
+                      maxWidth: [170, null, null, 200],
+                      width: "100%",
+                    }}
                     variant="label"
                   >
                     Display transparency and humbleness.

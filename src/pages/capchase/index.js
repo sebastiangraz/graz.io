@@ -382,7 +382,7 @@ const Capchase = ({ data }) => {
                 my: 10,
                 borderRadius: ["12px", "48px"],
                 overflow: "hidden",
-                gridRow: "span 4",
+                gridRow: "span 6",
                 gridColumn: ["1/ span 10", "2/span 8"],
               }}
             >
@@ -392,7 +392,7 @@ const Capchase = ({ data }) => {
           <GridParent>
             <div
               sx={{
-                gridRow: "3/span 4",
+                gridRow: "1/span 8",
                 gridColumn: ["1/ span 10", "1/span 10"],
                 img: {
                   transformOrigin: "right",
@@ -404,7 +404,7 @@ const Capchase = ({ data }) => {
             </div>
             <div
               sx={{
-                gridRow: "7/span 4",
+                gridRow: "9/span 11",
                 gridColumn: ["1/ span 10", "1/span 10"],
                 img: {
                   transformOrigin: "right",
@@ -460,7 +460,7 @@ const Capchase = ({ data }) => {
             <div
               sx={{
                 overflow: "hidden",
-                gridRow: ["4/span 4", "3/span 4"],
+                gridRow: ["4/span 4", "3/span 19"],
                 gridColumn: ["1/ span 10", "1/span 10"],
                 img: {
                   transform: "scale(1.05)",

@@ -124,7 +124,7 @@ const Loupe = ({ data }) => {
             <div
               sx={{
                 overflow: "hidden",
-                gridRow: ["span 4", "span 4"],
+                gridRow: ["span 4", "span 32"],
                 gridColumn: ["1/span 10", "1/span 10"],
                 img: {
                   transform: "scale(1.05)",
@@ -496,7 +496,7 @@ const Loupe = ({ data }) => {
             <div
               sx={{
                 overflow: "hidden",
-                gridRow: ["span 1", "span 1"],
+                gridRow: ["span 1", "span 32"],
                 gridColumn: ["1/span 10", "1/span 10"],
                 img: {
                   transformOrigin: "top center",

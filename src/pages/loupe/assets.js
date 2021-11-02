@@ -302,12 +302,14 @@ export const images = {
   },
   webdesign: {
     url: require("./assets/webdesign.png"),
+    webP: require("./assets/webdesign.webp"),
     width: 3020,
     height: 4492,
     alt: "Web Design",
   },
   execution: {
     url: require("./assets/execution.png"),
+    webP: require("./assets/execution.webp"),
     width: 3020,
     height: 9498,
     alt: "Web Design",

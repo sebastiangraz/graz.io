@@ -49,6 +49,7 @@ export const videos = {
 export const images = {
   bluecyan: {
     url: require("./assets/bluecyan.png"),
+    webP: require("./assets/bluecyan.webp"),
     width: 1000,
     height: 1000,
     alt: "blue cyan",
@@ -61,12 +62,14 @@ export const images = {
   },
   devices: {
     url: require("./assets/devices.png"),
+    webP: require("./assets/devices.webp"),
     width: 1080,
     height: 1080,
     alt: "devices",
   },
   phonehand: {
     url: require("./assets/phonehand.png"),
+    webP: require("./assets/phonehand.webp"),
     width: 1280,
     height: 1280,
     alt: "phonehand",
@@ -85,6 +88,7 @@ export const images = {
   },
   shirt: {
     url: require("./assets/shirt.png"),
+    webP: require("./assets/shirt.webp"),
     width: 1720,
     height: 1720,
     alt: "shirt",
@@ -140,18 +144,21 @@ export const images = {
 
   brandbook1: {
     url: require("./assets/brandbook-1.png"),
+    webP: require("./assets/brandbook-1.webp"),
     width: 3020,
     height: 2240,
     alt: "brandbook1",
   },
   brandbook2: {
     url: require("./assets/brandbook-2.png"),
+    webP: require("./assets/brandbook-2.webp"),
     width: 2662,
     height: 2742,
     alt: "brandbook2",
   },
   webdesign: {
     url: require("./assets/webdesign.png"),
+    webP: require("./assets/webdesign.webp"),
     width: 3020,
     height: 5504,
     alt: "webdesign",

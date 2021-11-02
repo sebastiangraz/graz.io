@@ -148,7 +148,7 @@ export const Home = ({ data }) => {
           display: ["none", "block"],
         }}
       >
-        <Link target="_blank" href={resume}>
+        <Link target="_blank" href={resume} rel="noopener">
           Résumé
         </Link>
       </Text>
@@ -199,12 +199,20 @@ export const Home = ({ data }) => {
                 <EmailLink string="hi@graz.io">Email</EmailLink>
               </m.div>
               <m.div variants={list} custom={2}>
-                <Link target="_blank" href="https://twitter.com/grazsebastian">
+                <Link
+                  target="_blank"
+                  href="https://twitter.com/grazsebastian"
+                  rel="noopener"
+                >
                   Twitter
                 </Link>
               </m.div>
               <m.div variants={list} custom={3}>
-                <Link target="_blank" href="https://vsco.co/sgraz/">
+                <Link
+                  target="_blank"
+                  href="https://vsco.co/sgraz/"
+                  rel="noopener"
+                >
                   VSCO
                 </Link>
               </m.div>

@@ -513,7 +513,7 @@ const Capchase = ({ data }) => {
                   padding: 0,
                 }}
               >
-                <li
+                <div
                   sx={{
                     display: "flex",
                     alignItems: "center",
@@ -528,8 +528,8 @@ const Capchase = ({ data }) => {
                   >
                     Represents progression and moving forward.
                   </Text>
-                </li>
-                <li
+                </div>
+                <div
                   sx={{
                     display: "flex",
                     alignItems: "center",
@@ -544,8 +544,8 @@ const Capchase = ({ data }) => {
                   >
                     Displays a sense of growth & adaptability.
                   </Text>
-                </li>
-                <li
+                </div>
+                <div
                   sx={{
                     overflow: "hidden",
                     display: "flex",
@@ -566,7 +566,7 @@ const Capchase = ({ data }) => {
                   >
                     Display transparency and humbleness.
                   </Text>
-                </li>
+                </div>
               </ScrollReveal>
             </Box>
           </GridParent>

@@ -78,7 +78,7 @@ const Capchase = ({ data }) => {
                 </Text>
               </ScrollReveal>
             </Box>
-            <Box sx={{ gridColumn: ["2/span 8", "2/span 5"] }}>
+            <Box sx={{ gridColumn: ["2/span 8", "2/span 8", "2/span 6"] }}>
               <Text variant="caps" mb={7}>
                 Goals
               </Text>
@@ -504,7 +504,6 @@ const Capchase = ({ data }) => {
                   alignItems: "center",
                   justifyContent: "space-between",
                   gridGap: [7, 8],
-
                   gridTemplateColumns: [
                     "auto",
                     "repeat(auto-fit, minmax(min(240px, 100%), auto))",
@@ -758,6 +757,7 @@ const Capchase = ({ data }) => {
               </ScrollReveal>
             </Box>
           </GridParent>
+
           <GridParent>
             <Box
               sx={{
@@ -933,6 +933,7 @@ const Capchase = ({ data }) => {
               <Img sx={{ width: "100%" }} imageData={images.artDirection9} />
             </Box>
           </GridParent>
+
           <GridParent>
             <Box
               sx={{

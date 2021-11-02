@@ -7,6 +7,7 @@ import {
   transform,
   useTransform,
   useViewportScroll,
+  useMotionValue,
 } from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";
@@ -171,6 +172,9 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
       {index === 0 ? (
         // -----HOME-----
         <m.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
           ref={ref}
           style={{
             ...yStyle,
@@ -188,6 +192,9 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
       ) : (
         // -----CASES-----
         <m.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.66 }}
           className="caseWrapper"
           id={data.slug}
           ref={ref}

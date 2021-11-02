@@ -9,26 +9,14 @@ import {
   ScrollReveal,
   Video,
 } from "../../components";
-import { images, vectors, videos } from "./assets";
+import { colors, images, vectors, videos } from "./assets";
 import { Text, Box } from "theme-ui";
-
-const colors = {
-  black: "#0F0F14",
-  white: "#FFFFFF",
-  purple: "#712FFF",
-  yellow: "#FFD99F",
-  green: "#E7FDE2",
-  cyan: "#ABF0FF",
-  blue: "#0A21F1",
-  orange: "#FF9574",
-  pink: "#FA7D93",
-};
 
 const radius = (small) => {
   const radiusLarge = {
-    default: ["3vmin", "4vmin"],
-    right: ["0 3vmin 3vmin 0", "0 4vmin 4vmin 0"],
-    left: ["3vmin 0 0 3vmin", "4vmin 0 0 4vmin"],
+    default: ["8vmin", "4vmin"],
+    right: ["0 8vmin 8vmin 0", "0 4vmin 4vmin 0"],
+    left: ["8vmin 0 0 8vmin", "4vmin 0 0 4vmin"],
   };
   const radiusSmall = {
     default: "2vmin",
@@ -95,7 +83,7 @@ const Capchase = ({ data }) => {
                 Goals
               </Text>
               <NumberedList
-                labelColor={colors.yellow}
+                labelColor={colors.white}
                 horizontal
                 labels={[
                   "Create brand and execute it for a very perceptive audience.",
@@ -320,17 +308,27 @@ const Capchase = ({ data }) => {
           <GridParent>
             <div
               sx={{
+                overflow: "hidden",
                 gridRow: "3/span 4",
-                gridColumn: ["2/ span 9", "2/span 9"],
+                gridColumn: ["2/ span 9", "1/span 10"],
+                img: {
+                  transformOrigin: "center bottom",
+                  transform: "scale(1.05)",
+                },
               }}
             >
               <Img imageData={images.brandbook1} />
             </div>
             <div
               sx={{
+                overflow: "hidden",
                 mt: [3, 8],
                 gridRow: "7/span 4",
-                gridColumn: ["2/ span 9", "2/span 9"],
+                gridColumn: ["2/ span 9", "1/span 10"],
+                img: {
+                  transformOrigin: "center bottom",
+                  transform: "scale(1.05)",
+                },
               }}
             >
               <Img imageData={images.brandbook2} />
@@ -380,8 +378,9 @@ const Capchase = ({ data }) => {
 
             <div
               sx={{
+                overflow: "hidden",
                 gridRow: ["4/span 4", "3/span 4"],
-                gridColumn: ["2/ span 8", "1/span 10"],
+                gridColumn: ["1/ span 10", "1/span 10"],
                 img: {
                   transform: "scale(1.05)",
                 },
@@ -459,7 +458,13 @@ const Capchase = ({ data }) => {
                     Displays a sense of growth & adaptability.
                   </Text>
                 </li>
-                <li sx={{ display: "flex", alignItems: "center" }}>
+                <li
+                  sx={{
+                    overflow: "hidden",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
                   <ScrollReveal
                     ignoreParentFade
                     sx={{ width: ["36px", "72px"] }}
@@ -480,8 +485,10 @@ const Capchase = ({ data }) => {
           </GridParent>
           <GridParent>
             <ScrollReveal
-              effect={[{ x: -25 }, { x: 0 }]}
-              parentEffect={[{ x: 50 }, { x: 0 }]}
+              effect={[{ x: -12 }, { x: 0 }]}
+              parentEffect={[{ x: 25 }, { x: 0 }]}
+              repeat
+              repeatParent
               sx={{
                 zIndex: 1,
                 position: "relative",
@@ -555,10 +562,18 @@ const Capchase = ({ data }) => {
                 gridColumn: ["2/span 4", "4/span 2"],
               }}
             >
-              <Img imageData={images.logoart} />
+              <ScrollReveal
+                duration={2}
+                repeat
+                repeatTypeLoop
+                effect={[{ rotate: 0 }, { rotate: 60 }]}
+              >
+                <Img imageData={images.logoart} />
+              </ScrollReveal>
             </div>
             <div
               sx={{
+                isolation: "isolate",
                 overflow: "hidden",
                 borderRadius: radius().default,
                 background: colors.white,
@@ -576,7 +591,7 @@ const Capchase = ({ data }) => {
                 background: colors.black,
                 gridRow: ["5/span 10", "1/span 5"],
                 gridColumn: ["2/span 8", "6/span 4"],
-                alignItems: "center",
+                alignItems: ["start"],
                 display: "grid",
                 zIndex: 2,
               }}
@@ -585,7 +600,7 @@ const Capchase = ({ data }) => {
                 sx={{
                   borderRadius: radius().default,
                   bottom: 0,
-                  p: [4, 7, 8],
+                  p: [7, 7, 8],
                   maxWidth: "560px",
                   margin: "0 auto",
                   zIndex: 2,
@@ -602,7 +617,7 @@ const Capchase = ({ data }) => {
                   releasing sectioned finance products.
                 </Text>
               </Box>
-              <Video sx={{ height: "80%" }} videoData={videos.reveal} />
+              <Video sx={{ height: ["80%"] }} videoData={videos.reveal} />
             </div>
             <div
               sx={{
@@ -874,7 +889,7 @@ const Capchase = ({ data }) => {
                 <Text
                   variant="lead"
                   mb={8}
-                  sx={{ maxWidth: "100%", mr: [0, 8] }}
+                  sx={{ maxWidth: ["100%", 620], mr: [0, 8] }}
                 >
                   We chose a geometric sans-serif named ES Build for it’s
                   inherent neutrality and simplicity. The rounded features go

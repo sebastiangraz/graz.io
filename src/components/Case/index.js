@@ -35,7 +35,7 @@ const debugStyle = {
 const caseParent = {
   top: [0, `100vh`],
   width: "100%",
-  mt: [3, 0],
+  mt: [-7, 0],
   maxWidth: "2400px",
   position: ["relative", "fixed"],
   pointerEvents: "none",

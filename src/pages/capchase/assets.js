@@ -1,5 +1,17 @@
 import * as React from "react";
 
+export const colors = {
+  black: "#0F0F14",
+  white: "#FFFFFF",
+  purple: "#712FFF",
+  yellow: "#FFD99F",
+  green: "#E7FDE2",
+  cyan: "#ABF0FF",
+  blue: "#0A21F1",
+  orange: "#FF9574",
+  pink: "#FA7D93",
+};
+
 export const videos = {
   intro: {
     url: require("./assets/intro.mp4"),
@@ -91,20 +103,20 @@ export const images = {
   },
   brandbook1: {
     url: require("./assets/brandbook-1.png"),
-    width: 2662,
+    width: 3020,
     height: 2240,
     alt: "brandbook1",
   },
   brandbook2: {
     url: require("./assets/brandbook-2.png"),
     width: 2662,
-    height: 2868,
+    height: 2742,
     alt: "brandbook2",
   },
   webdesign: {
     url: require("./assets/webdesign.png"),
-    width: 2760,
-    height: 5231,
+    width: 3020,
+    height: 5504,
     alt: "webdesign",
   },
   icons: {
@@ -362,7 +374,7 @@ export const vectors = {
           fillRule="evenodd"
           clipRule="evenodd"
           d="M18.2156 20.9999L36.4312 31.4999V21L54.6468 31.4999V21L36.4312 10.5V21L18.2156 10.5V20.9999ZM54.6468 31.5001L36.4312 42.0001V31.5001L18.2156 42.0001V52.5L36.4312 42.0001V52.5L54.6468 42.0001V31.5001Z"
-          fill="#FFD99F"
+          fill={colors.white}
         />
         <path
           d="M54.7156 41.9997L72.9311 31.4999L54.7156 21V31.4997V41.9997Z"

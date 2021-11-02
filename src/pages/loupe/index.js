@@ -10,31 +10,20 @@ import {
   NumberedList,
 } from "../../components";
 import { Logo } from "./Logo";
-import { videos, images } from "./assets";
-
-const colors = {
-  red: "#f60000",
-  cyan: "#3edbff",
-  orange: "#f47722",
-  green: "#003807",
-  beige: "#fcf6f5",
-  magenta: "#e900a1",
-  maroon: "#560000",
-  white: "#FCF6F5",
-};
+import { videos, images, colors } from "./assets";
 
 const Loupe = ({ data }) => {
   const Sections = {
     Define: () => {
       return (
-        <GridParent py={10}>
+        <GridParent py={[9, 10]}>
           <Flex
             mb={10}
             sx={{
               placeSelf: "center",
               width: "100%",
               gridRow: ["span 1", "span 1"],
-              gridColumn: ["span 8", "2/span 8"],
+              gridColumn: ["2 / span 8", "2/span 8"],
             }}
           >
             <Text variant="heading">
@@ -48,10 +37,11 @@ const Loupe = ({ data }) => {
           <div
             sx={{
               gridRow: ["span 4", "span 4"],
-              gridColumn: ["5 / span 4", "2/span 4"],
+              gridColumn: ["2 / span 8", "2/span 4"],
             }}
           >
             <NumberedList
+              sx={{ mr: [0, null, 9, 5], mt: [10, 0], mb: 9 }}
               bgColor={colors.green}
               labelColor={data.bg}
               labels={[
@@ -64,20 +54,22 @@ const Loupe = ({ data }) => {
 
           <Box
             sx={{
-              bg: colors.green,
-              gridRow: ["span 4", "span 4"],
-              gridColumn: ["5 / span 4", "6/span 4"],
+              gridRow: ["2 / span 8", "span 4"],
+              gridColumn: ["2 / span 8", "7/span 4", "6/span 4"],
             }}
           >
-            <Video videoData={videos.loupeMesh} />
+            <Video
+              sx={{ video: { objectFit: "cover" } }}
+              videoData={videos.loupeMesh}
+            />
           </Box>
           <div
             sx={{
               overflow: "hidden",
               borderRadius: "99em 0 99em 99em",
               background: "#F60000",
-              gridRow: ["span 4", "span 2"],
-              gridColumn: ["5 / span 4", "4/span 2"],
+              gridRow: ["10 / span 4", "span 2"],
+              gridColumn: ["6 / span 4", "5/span 2", "4/span 2"],
             }}
           >
             <Img imageData={images.monomeshMagenta}></Img>
@@ -87,8 +79,8 @@ const Loupe = ({ data }) => {
             sx={{
               overflow: "hidden",
               borderRadius: "pill",
-              gridRow: ["8 / span 2", "span 2"],
-              gridColumn: ["3 / span 2", "2/span 2"],
+              gridRow: ["10 / span 4", "span 2", "span 2"],
+              gridColumn: ["2 / span 4", "3 / span 2", "2/span 2"],
             }}
           >
             <Img
@@ -105,8 +97,8 @@ const Loupe = ({ data }) => {
     Branding: () => {
       return (
         <>
-          <GridParent py={10}>
-            <Box sx={{ mr: 7, gridColumn: ["span 8", "2/span 4"] }}>
+          <GridParent py={[9, 10]}>
+            <Box sx={{ mr: [0, 7], gridColumn: ["2 / span 8", "2/span 4"] }}>
               <Text variant="lead">
                 Loupe being a fairly young event, faced the challenge of
                 attracting new conference-goers as well as retaining previous
@@ -117,7 +109,7 @@ const Loupe = ({ data }) => {
                 brand trust that the conference had built up during the years.
               </Text>
             </Box>
-            <Box sx={{ ml: 7, gridColumn: ["span 8", "6/span 4"] }}>
+            <Box sx={{ ml: [0, 7], gridColumn: ["2/ span 8", "6/span 4"] }}>
               <Text variant="lead">
                 Previous identities were branched of Framers own brand. But this
                 year Loupe put on a new distinguished look.{" "}
@@ -131,8 +123,9 @@ const Loupe = ({ data }) => {
           <GridParent>
             <div
               sx={{
+                overflow: "hidden",
                 gridRow: ["span 4", "span 4"],
-                gridColumn: ["2/ span 8", "1/span 10"],
+                gridColumn: ["1/span 10", "1/span 10"],
                 img: {
                   transform: "scale(1.05)",
                 },
@@ -152,21 +145,25 @@ const Loupe = ({ data }) => {
               </Text>
             </Box>
             <Box
+              mb={10}
               sx={{
-                gridColumn: ["1 / span 8", "2 / span 2"],
+                gridColumn: ["2 / span 8", "2 / span 2"],
               }}
             >
-              <Text variant="label" mb={9}>
+              <Text mb={9}>
                 I created the logo to represent multiple meanings and values.
               </Text>
-              <Logo></Logo>
+              <Box sx={{ width: ["60%", "100%"], margin: "0 auto" }}>
+                <Logo></Logo>
+              </Box>
             </Box>
             <Box
+              mb={10}
               sx={{
-                gridColumn: ["1 / span 8", "5 / span 2"],
+                gridColumn: ["2 / span 8", "5 / span 2"],
               }}
             >
-              <Text variant="label" mb={9}>
+              <Text mb={9}>
                 Ultimately it is up to the observer to decide what meanings they
                 see.
               </Text>
@@ -174,13 +171,18 @@ const Loupe = ({ data }) => {
                 delay={0.2}
                 effect={[{ scale: 0.9 }, { scale: 1 }]}
                 duration={3}
+                repeat
                 sx={{
+                  width: ["60%", "100%"],
+                  margin: "0 auto",
+                  position: "relative",
+                  paddingBottom: ["60%", "100%"],
                   "& > *": {
                     width: "100%",
                     height: "100%",
                     top: 0,
                     left: 0,
-                    position: "absolute",
+                    position: ["absolute"],
                   },
                 }}
               >
@@ -191,20 +193,28 @@ const Loupe = ({ data }) => {
               </ScrollReveal>
             </Box>
             <Box
+              mb={10}
               sx={{
+                margin: "0 auto",
+                overflow: "hidden",
                 position: "relative",
-                gridColumn: ["1 / span 8", "8 / span 2"],
+                gridColumn: ["2 / span 8", "8 / span 2"],
               }}
             >
-              <Text variant="label" mb={9}>
+              <Text mb={9}>
                 The logo can extend its usage into additional patterns or
                 shapes.
               </Text>
               <ScrollReveal
-                delay={0.4}
-                effect={[{ scale: 0.9 }, { scale: 1 }]}
-                duration={3}
+                delay={0.2}
+                effect={[{ rotate: 45 }, { rotate: 0 }]}
+                duration={4}
+                repeat
                 sx={{
+                  width: ["60%", "100%"],
+                  margin: "0 auto",
+                  position: "relative",
+                  paddingBottom: ["60%", "100%"],
                   "& > *": {
                     width: "100%",
                     height: "100%",
@@ -220,18 +230,18 @@ const Loupe = ({ data }) => {
               </ScrollReveal>
             </Box>
           </GridParent>
-          <GridParent py={10}>
+          <GridParent py={[9, 10]}>
             <Flex
               sx={{
-                mr: 9,
+                mr: [0, 9],
                 flexDirection: "column",
                 gridRow: ["span 4", "1/span 4"],
-                gridColumn: ["1 / span 8", "2 / span 3"],
-                placeSelf: "center",
+                gridColumn: ["2 / span 8", "2 / span 4"],
+                justifyContent: "center",
               }}
             >
               <Text variant="heading">Icons</Text>
-              <Text variant="lead">
+              <Text variant="lead" sx={{ maxWidth: 640 }}>
                 The somewhat unremarkable shapes is what makes the icons unique.
                 And yet an important addition to the Loupe brand.
               </Text>
@@ -239,7 +249,7 @@ const Loupe = ({ data }) => {
             <div
               sx={{
                 gridRow: ["span 4", "1/span 4"],
-                gridColumn: ["1 / span 8", "6 / span 4"],
+                gridColumn: ["1/span 10", "6 / span 4"],
                 background: "#003807",
               }}
             >
@@ -247,34 +257,28 @@ const Loupe = ({ data }) => {
             </div>
           </GridParent>
           <GridParent py={10}>
-            <div
+            <Box
+              mb={8}
               sx={{
-                gridRow: ["1 / span 1", "1 / span 3"],
-                gridColumn: ["1 / span 8", "6 / span 4"],
+                gridRow: ["2/span 1", null, "1 / span 1", "2/span 3"],
+                gridColumn: ["2/span 8", null, "2/span 8", "6/span 4"],
               }}
             >
               <Text variant="heading">Typography</Text>
-            </div>
-            <div
-              sx={{
-                gridRow: ["1 / span 1", "2 / span 3"],
-                gridColumn: ["1 / span 8", "6 / span 4"],
-              }}
-            >
               <Text variant="lead">
                 Typography was put together to feel approachable and friendly.
                 Previous Loupe branding languages felt masculine and bold. With
                 the goal to attract a more diverse audience the typefaces had to
                 follow suit.
               </Text>
-            </div>
+            </Box>
 
             <div
               sx={{
                 background: colors.white,
 
                 gridRow: ["3 / span 2", "5 / span 1"],
-                gridColumn: ["5 / span 2", "6 / span 1"],
+                gridColumn: ["6 / span 2", "6 / span 1"],
                 overflow: "hidden",
                 display: "flex",
                 flexDirection: "column",
@@ -286,7 +290,7 @@ const Loupe = ({ data }) => {
                 sx={{
                   objectFit: "contain",
                   maxWidth: 60,
-                  width: "80%",
+                  width: ["60%", "80%"],
                   margin: "0 auto",
                 }}
               >
@@ -300,7 +304,7 @@ const Loupe = ({ data }) => {
                 backgroundSize: "100%",
 
                 gridRow: ["5 / span 3", "5 / span 2"],
-                gridColumn: ["5 / span 4", "7 / span 3"],
+                gridColumn: ["6 / span 4", "7 / span 3"],
                 overflow: "hidden",
                 display: "flex",
                 flexDirection: "column",
@@ -323,9 +327,9 @@ const Loupe = ({ data }) => {
 
             <div
               sx={{
-                background: colors.white,
+                background: colors.beige,
                 gridRow: ["3 / span 4", "2 / span 3"],
-                gridColumn: ["1 / span 4", "2 / span 3"],
+                gridColumn: ["2 / span 4", "2 / span 3"],
                 overflow: "hidden",
                 display: "flex",
                 flexDirection: "column",
@@ -358,7 +362,7 @@ const Loupe = ({ data }) => {
               sx={{
                 backgroundColor: "#003807",
                 gridRow: ["7 / span 5", "5 / span 3"],
-                gridColumn: ["2 / span 5", "4 / span 3"],
+                gridColumn: ["3 / span 5", "4 / span 3"],
                 overflow: "hidden",
                 display: "flex",
                 flexDirection: "column",
@@ -393,11 +397,11 @@ const Loupe = ({ data }) => {
               </div>
             </div>
           </GridParent>
-          <GridParent py={10}>
+          <GridParent py={[9, 10]}>
             <Box
               sx={{
-                gridRow: ["11 / span 1", "3/ span 3"],
-                gridColumn: ["3 / span 6", "6/ span 3"],
+                gridRow: ["11/span 1", "3/span 3"],
+                gridColumn: ["2/span 8", null, "5/span 3", "6/span 3"],
                 display: "flex",
                 flexDirection: "column",
 
@@ -406,7 +410,7 @@ const Loupe = ({ data }) => {
               }}
             >
               <div sx={{ paddingTop: [5], paddingBottom: [5] }}>
-                <Text variant="caps" my={[7, 5, 5, 7]}>
+                <Text variant="heading" my={[7, 5, 5, 7]}>
                   Beyond static
                 </Text>
                 <Text>
@@ -420,8 +424,8 @@ const Loupe = ({ data }) => {
               sx={{
                 background: colors.green,
 
-                gridRow: ["4 / span 4", "3 / span 3"],
-                gridColumn: ["1 / span 6", "2 / span 3"],
+                gridRow: ["4/span 4", "3/span 3"],
+                gridColumn: ["1/span 6", null, "1/span 3", "2/span 3"],
                 display: "flex",
                 padding: ["16%"],
                 flexDirection: "column",
@@ -447,7 +451,7 @@ const Loupe = ({ data }) => {
                 background: "transparent",
 
                 gridRow: ["1 / span 3", "1 / span 2"],
-                gridColumn: ["3 / span 6", "5 / span 5"],
+                gridColumn: ["3 / span 6", null, "4 / span 7", "5 / span 5"],
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
@@ -461,7 +465,7 @@ const Loupe = ({ data }) => {
                 background: colors.orange,
 
                 gridRow: ["7 / span 4", "6 / span 5"],
-                gridColumn: ["3 / span 6", "5 / span 5"],
+                gridColumn: ["3 / span 6", null, "4 / span 5", "5 / span 5"],
                 display: "flex",
                 padding: ["16%"],
                 flexDirection: "column",
@@ -488,14 +492,15 @@ const Loupe = ({ data }) => {
     Design: () => {
       return (
         <>
-          <GridParent sx={{ overflow: "hidden" }}>
+          <GridParent>
             <div
               sx={{
+                overflow: "hidden",
                 gridRow: ["span 1", "span 1"],
-                gridColumn: ["1/ span 10", "1/span 10"],
+                gridColumn: ["1/span 10", "1/span 10"],
                 img: {
                   transformOrigin: "top center",
-                  transform: "scale(1.05)",
+                  transform: ["scale(1.05)"],
                 },
               }}
             >

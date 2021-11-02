@@ -4,7 +4,6 @@ import React from "react";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { m, motion, useAnimation } from "framer-motion";
-
 export const ScrollReveal = ({
   children,
   delay,
@@ -12,6 +11,9 @@ export const ScrollReveal = ({
   parentEffect,
   duration,
   ignoreParentFade,
+  repeat,
+  repeatParent,
+  repeatTypeLoop,
   ...rest
 }) => {
   const delayVal = delay ? delay : 0.05;
@@ -29,6 +31,11 @@ export const ScrollReveal = ({
         ease: [0.83, 0, 0.17, 1],
         duration: durationVal,
         delay: delayVal,
+        ...(repeatParent && {
+          repeat: Infinity,
+          repeatDelay: 1,
+          repeatType: "reverse",
+        }),
       },
     },
   };
@@ -41,6 +48,11 @@ export const ScrollReveal = ({
         ease: [0.83, 0, 0.17, 1],
         duration: durationVal,
         delay: delayVal + custom * 0.1,
+        ...(repeat && {
+          repeat: Infinity,
+          repeatDelay: 1,
+          repeatType: repeatTypeLoop ? "loop" : "reverse",
+        }),
       },
     }),
   };

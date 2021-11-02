@@ -51,7 +51,7 @@ export const ScrollDown = ({
         top: ["-100px", "-140px", "-240px", "-280px"],
         width: 8,
         height: 8,
-        display: "flex",
+        display: ["none", "flex"],
         alignItems: "center",
         justifyContent: "center",
         borderRadius: "pill",

@@ -10,6 +10,7 @@ export const ScrollReveal = ({
   effect,
   parentEffect,
   duration,
+  parentDuration,
   ignoreParentFade,
   repeat,
   repeatParent,
@@ -29,7 +30,7 @@ export const ScrollReveal = ({
       ...parentEffectVal[1],
       transition: {
         ease: [0.83, 0, 0.17, 1],
-        duration: durationVal,
+        duration: parentDuration ? parentDuration : durationVal,
         delay: delayVal,
         ...(repeatParent && {
           repeat: Infinity,
@@ -59,7 +60,7 @@ export const ScrollReveal = ({
 
   const controls = useAnimation();
 
-  const [ref, inView] = useInView();
+  const [ref, inView] = useInView({ triggerOnce: true });
   useEffect(() => {
     if (inView) {
       controls.start("visible");

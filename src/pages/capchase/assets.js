@@ -47,16 +47,58 @@ export const videos = {
 };
 
 export const images = {
+  bluecyan: {
+    url: require("./assets/bluecyan.png"),
+    width: 1000,
+    height: 1000,
+    alt: "blue cyan",
+  },
   crown: {
     url: require("./assets/crown.png"),
     width: 32,
     height: 80,
     alt: "crown",
   },
+  devices: {
+    url: require("./assets/devices.png"),
+    width: 1080,
+    height: 1080,
+    alt: "devices",
+  },
+  phonehand: {
+    url: require("./assets/phonehand.png"),
+    width: 1280,
+    height: 1280,
+    alt: "phonehand",
+  },
+  pinkorb: {
+    url: require("./assets/pinkorb.png"),
+    width: 576,
+    height: 576,
+    alt: "pinkorb",
+  },
+  purplecyanorb: {
+    url: require("./assets/purplecyanorb.png"),
+    width: 576,
+    height: 576,
+    alt: "purplecyanorb",
+  },
+  shirt: {
+    url: require("./assets/shirt.png"),
+    width: 1720,
+    height: 1720,
+    alt: "shirt",
+  },
+  stats: {
+    url: require("./assets/stats.png"),
+    width: 864,
+    height: 864,
+    alt: "stats",
+  },
   bottle: {
     url: require("./assets/bottle.png"),
-    width: 766,
-    height: 432,
+    width: 574,
+    height: 960,
     alt: "bottle",
   },
   ramp: {
@@ -95,12 +137,7 @@ export const images = {
     height: 1132,
     alt: "mobile-intro",
   },
-  stats: {
-    url: require("./assets/stats.png"),
-    width: 1008,
-    height: 744,
-    alt: "stats",
-  },
+
   brandbook1: {
     url: require("./assets/brandbook-1.png"),
     width: 3020,

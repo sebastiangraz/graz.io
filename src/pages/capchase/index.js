@@ -14,9 +14,9 @@ import { Text, Box } from "theme-ui";
 
 const radius = (small) => {
   const radiusLarge = {
-    default: ["8vmin", "4vmin"],
-    right: ["0 8vmin 8vmin 0", "0 4vmin 4vmin 0"],
-    left: ["8vmin 0 0 8vmin", "4vmin 0 0 4vmin"],
+    default: ["6vmin", "4vmin"],
+    right: ["0 6vmin 6vmin 0", "0 4vmin 4vmin 0"],
+    left: ["6vmin 0 0 6vmin", "4vmin 0 0 4vmin"],
   };
   const radiusSmall = {
     default: "2vmin",
@@ -94,15 +94,135 @@ const Capchase = ({ data }) => {
               />
             </Box>
           </GridParent>
-          <GridParent>
-            <div
+          <GridParent sx={{ mb: [10, 11] }}>
+            <Box
               sx={{
-                pr: [2, 9],
-                borderRadius: radius().right,
-                background: colors.purple,
-                gridRow: ["span 4", "span 2"],
-                gridColumn: ["span 3"],
+                position: "relative",
 
+                borderRadius: radius().default,
+                background: colors.pink,
+                gridRow: ["3/span 2", "3/span 2"],
+                gridColumn: ["2/span 3"],
+                overflow: "hidden",
+              }}
+            >
+              <ScrollReveal
+                effect={[{ rotate: 360 }, { rotate: 0 }]}
+                repeat
+                repeatTypeLoop
+                parentDuration={1}
+                duration={10}
+                sx={{
+                  position: "absolute",
+                  top: "50%",
+                  width: `70%`,
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                }}
+              >
+                <Img sx={{ width: "100%" }} imageData={images.pinkorb} />
+              </ScrollReveal>
+            </Box>
+            <Box
+              sx={{
+                borderRadius: radius().default,
+                background: colors.blue,
+                gridRow: ["1/span 4", "1/span 4"],
+                gridColumn: ["5/span 4"],
+                position: "relative",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <ScrollReveal
+                repeatParent
+                repeat
+                parentEffect={[{ translateX: "-50%" }, { translateX: "-17%" }]}
+                effect={[{ rotate: -20 }, { rotate: 0 }]}
+                duration={3}
+                sx={{
+                  zIndex: 2,
+                  position: "absolute",
+                  overflow: "hidden",
+                  width: "30%",
+                  height: "30%",
+                  right: "20%",
+                  borderRadius: "pill",
+                }}
+              >
+                <Img
+                  sx={{
+                    transformOrigin: "25% 71%",
+                    transform: "scale(4) rotate(136deg)",
+                    width: "100%",
+                  }}
+                  imageData={images.bluecyan}
+                />
+              </ScrollReveal>
+              <ScrollReveal
+                repeatParent
+                repeat
+                parentEffect={[{ opacity: 1 }, { opacity: 0.6 }]}
+                effect={[{ scale: 0.95 }, { scale: 1 }]}
+                duration={3}
+                sx={{
+                  boxShadow: "capchase",
+                  zIndex: 1,
+                  position: "relative",
+                  mx: "25%",
+                  overflow: "hidden",
+                  width: "100%",
+                  height: "30%",
+                  borderRadius: "pill",
+                }}
+              >
+                <Img
+                  sx={{
+                    transformOrigin: "46% 36%",
+                    transform: "scale(1.5) ",
+                    width: "100%",
+                  }}
+                  imageData={images.bluecyan}
+                />
+              </ScrollReveal>
+            </Box>
+            <Box
+              sx={{
+                borderRadius: radius().right,
+                background: colors.orange,
+                gridRow: ["5/span 4"],
+                gridColumn: ["1/span 5"],
+                overflow: "hidden",
+                position: "relative",
+              }}
+            >
+              <ScrollReveal
+                effect={[{ translateY: 40 }, { translateY: 0 }]}
+                duration={1.5}
+                sx={{
+                  position: "absolute",
+                  top: "16%",
+                  left: "10%",
+
+                  width: "100%",
+                  img: {
+                    width: "100%",
+                    height: "80%",
+                  },
+                }}
+              >
+                <Img imageData={images.phonehand} />
+              </ScrollReveal>
+            </Box>
+            <Box
+              sx={{
+                isolation: "isolate",
+                borderRadius: radius().default,
+                background: colors.purple,
+                gridRow: ["5/span 3"],
+                gridColumn: ["5/span 3"],
+                overflow: "hidden",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -113,155 +233,319 @@ const Capchase = ({ data }) => {
                 duration={1.5}
                 sx={{ width: "100%" }}
               >
-                <Img sx={{ width: "100%" }} imageData={images.bottle} />
+                <Img sx={{ width: "100%" }} imageData={images.stats} />
               </ScrollReveal>
-            </div>
-            <div
+            </Box>
+            <Box
               sx={{
+                borderRadius: radius().default,
+                background: colors.black,
+                position: "relative",
+                gridRow: ["5/span 4"],
+                gridColumn: ["8/span 3"],
                 overflow: "hidden",
                 isolation: "isolate",
-                borderRadius: radius().default,
-
-                gridRow: ["span 4", "span 4"],
-                gridColumn: ["span 4", "span 4"],
-              }}
-            >
-              <Video videoData={videos.intro} />
-            </div>
-            <div
-              sx={{
-                position: "relative",
-                ...phoneBorder(),
-                boxShadow: "capchase",
-                overflow: "hidden",
-                borderRadius: radius().default,
-                gridRow: ["span 5", "span 4"],
-                gridColumn: ["span 3", "span 2"],
-              }}
-            >
-              <div
-                sx={{
-                  display: ["none", "block"],
-                  zIndex: 2,
-                  top: "56px",
-                  right: "-10px",
-                  width: 16,
-                  height: 40,
-                  position: "absolute",
-                }}
-              >
-                <Img imageData={images.crown} />
-              </div>
-
-              <Img
-                sx={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
-                  overflow: "hidden",
-                  borderRadius: radius().default,
-                }}
-                imageData={images.mobileIntro}
-              />
-            </div>
-          </GridParent>
-          <GridParent sx={{ mb: [10, 11] }}>
-            <div
-              sx={{
-                borderRadius: radius().default,
-                background: colors.black,
-                gridRow: "span 2",
-                gridColumn: ["span 2", "2/span 2"],
-              }}
-            >
-              <Img imageData={images.forward} />
-            </div>
-            <div
-              sx={{
-                padding: [4, 8],
-                borderRadius: radius().default,
-                background: colors.purple,
-
-                gridRow: "3/span 2",
-                gridColumn: ["2/span 4", "4/span 2"],
-              }}
-            >
-              <ScrollReveal duration={2}>
-                {/* <Img imageData={images.loop} /> */}
-                <Img imageData={images.elements} />
-              </ScrollReveal>
-            </div>
-            <div
-              sx={{
-                display: "grid",
-                alignItems: "center",
+                display: "flex",
                 justifyContent: "center",
-                borderRadius: radius(true).default,
-                background: colors.white,
-                color: colors.black,
-                gridRow: ["1/span 1", "2/span 1"],
-                gridColumn: ["6/span 1", "6/span 1"],
-
-                svg: {
-                  margin: "0 auto",
-                  width: "50%",
-                  height: "auto",
-                },
-              }}
-            >
-              {vectors.logo}
-            </div>
-            <div
-              sx={{
-                borderRadius: radius().default,
-                gridRow: ["1/span 2", "3/span 2"],
-                gridColumn: ["2/span 2", "6/span 2"],
-              }}
-            >
-              <Img imageData={images.ramp} />
-            </div>
-            <div
-              sx={{
-                p: [2, 9],
-                pr: 0,
-                overflow: "hidden",
-                position: "relative",
-                borderRadius: radius().left,
-                background: colors.black,
-                gridRow: ["1/span 3", "2/span 3"],
-                gridColumn: ["8/span 3", "8/span 3"],
                 alignItems: "center",
-                display: "grid",
-                img: {
-                  objectPosition: "center right",
-                },
-              }}
-            >
-              <Img
-                sx={{ position: "absolute", width: "100%" }}
-                imageData={images.stats}
-              />
-            </div>
-            <div
-              sx={{
-                overflow: "hidden",
-                borderRadius: radius().default,
-                background: colors.purple,
-                gridRow: ["3/span 2", "5/span 2"],
-                gridColumn: ["6/span 4", "8/span 2"],
               }}
             >
               <ScrollReveal
-                delay={0.7}
-                effect={[{ rotate: -6 }, { rotate: 0 }]}
+                effect={[{ translateY: -10 }, { translateY: 0 }]}
+                duration={1.5}
+                sx={{
+                  position: "absolute",
+                  top: "0%",
+                  transform: "translate(-50%, 0%)",
+                  left: "50%",
+                  width: ["100%", "70%"],
+                  img: {
+                    width: ["100%", "100%"],
+                  },
+                }}
               >
-                <Img imageData={images.totes} />
+                <Img imageData={images.bottle} />
               </ScrollReveal>
-            </div>
+            </Box>
+            <Box
+              sx={{
+                borderRadius: radius().default,
+                background: "#F0F0EE",
+                gridRow: ["9/span 4"],
+                gridColumn: ["2/span 4"],
+
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <ScrollReveal
+                effect={[{ translateY: 5 }, { translateY: 0 }]}
+                duration={1.5}
+                sx={{ width: "100%", height: "100%" }}
+              >
+                <Img cover sx={{ width: "100%" }} imageData={images.devices} />
+              </ScrollReveal>
+            </Box>
+            {/* <Box
+              sx={{
+                borderRadius: radius().default,
+                gridRow: ["13/span 3"],
+                gridColumn: ["3/span 3 "],
+                overflow: "hidden",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                isolation: "isolate",
+                video: {
+                  objectFit: "cover",
+                },
+              }}
+            >
+              <Video
+                sx={{
+                  transform: "scale(1.5)",
+                  overflow: "hidden",
+                }}
+                videoData={videos.intro}
+              />
+            </Box> */}
+            <Box
+              sx={{
+                borderRadius: radius().default,
+                background: colors.cyan,
+                gridRow: ["8/span 8"],
+                gridColumn: ["6/span 3"],
+                overflow: "hidden",
+                zIndex: -1,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <ScrollReveal
+                effect={[{ translateY: 20 }, { translateY: 0 }]}
+                duration={1.5}
+                sx={{ width: "100%" }}
+              >
+                <Img
+                  sx={{ width: "30%", margin: "20% auto" }}
+                  imageData={images.purplecyanorb}
+                />
+                <Img
+                  sx={{
+                    img: {
+                      transformOrigin: "center 40%",
+                      transform: "scale(2)",
+                    },
+                    width: "100%",
+                  }}
+                  imageData={images.shirt}
+                />
+              </ScrollReveal>
+            </Box>
           </GridParent>
         </>
+        // <>
+        //   <GridParent>
+        //     <Box sx={{ gridColumn: ["2/span 8", " 2/span 5"] }}>
+        //       <ScrollReveal>
+        //         <Text variant="heading" mb={8} sx={{ maxWidth: 580 }}>
+        //           Capchase, one of the largest non-dilutive funding companies
+        //           needed a time sensitive visual refresh of all their digital &
+        //           print assets.
+        //         </Text>
+        //         <Text variant="lead" mb={10} sx={{ maxWidth: 580 }}>
+        //           Time was of the essence as they increased their momentum for
+        //           both brand awareness while establishing their slice of the
+        //           market. Big&nbsp;slices&nbsp;too.
+        //         </Text>
+        //       </ScrollReveal>
+        //     </Box>
+        //     <Box sx={{ gridColumn: ["2/span 8", "2/span 5"] }}>
+        //       <Text variant="caps" mb={7}>
+        //         Goals
+        //       </Text>
+        //       <NumberedList
+        //         labelColor={colors.white}
+        //         horizontal
+        //         labels={[
+        //           "Create brand and execute it for a very perceptive audience.",
+        //           "Position Capchase as a leader in non-dilutable financing.",
+        //           "Proofing Capchase’s brand for longevity & recognizability. ",
+        //           "To look & feel like a business partner not a business tool.",
+        //         ]}
+        //       />
+        //     </Box>
+        //   </GridParent>
+        //   <GridParent>
+        //     <div
+        //       sx={{
+        //         pr: [2, 9],
+        //         borderRadius: radius().right,
+        //         background: colors.purple,
+        //         gridRow: ["span 4", "span 2"],
+        //         gridColumn: ["span 3"],
+
+        //         display: "flex",
+        //         justifyContent: "center",
+        //         alignItems: "center",
+        //       }}
+        //     >
+        //       <ScrollReveal
+        //         effect={[{ translateY: 5 }, { translateY: 0 }]}
+        //         duration={1.5}
+        //         sx={{ width: "100%" }}
+        //       >
+        //         <Img sx={{ width: "100%" }} imageData={images.bottle} />
+        //       </ScrollReveal>
+        //     </div>
+        //     <div
+        //       sx={{
+        //         overflow: "hidden",
+        //         isolation: "isolate",
+        //         borderRadius: radius().default,
+
+        //         gridRow: ["span 4", "span 4"],
+        //         gridColumn: ["span 4", "span 4"],
+        //       }}
+        //     >
+        //       <Video videoData={videos.intro} />
+        //     </div>
+        //     <div
+        //       sx={{
+        //         position: "relative",
+        //         ...phoneBorder(),
+        //         boxShadow: "capchase",
+        //         overflow: "hidden",
+        //         borderRadius: radius().default,
+        //         gridRow: ["span 5", "span 4"],
+        //         gridColumn: ["span 3", "span 2"],
+        //       }}
+        //     >
+        //       <div
+        //         sx={{
+        //           display: ["none", "block"],
+        //           zIndex: 2,
+        //           top: "56px",
+        //           right: "-10px",
+        //           width: 16,
+        //           height: 40,
+        //           position: "absolute",
+        //         }}
+        //       >
+        //         <Img imageData={images.crown} />
+        //       </div>
+
+        //       <Img
+        //         sx={{
+        //           position: "absolute",
+        //           top: 0,
+        //           left: 0,
+        //           width: "100%",
+        //           height: "100%",
+        //           overflow: "hidden",
+        //           borderRadius: radius().default,
+        //         }}
+        //         imageData={images.mobileIntro}
+        //       />
+        //     </div>
+        //   </GridParent>
+        //   <GridParent sx={{ mb: [10, 11] }}>
+        //     <div
+        //       sx={{
+        //         borderRadius: radius().default,
+        //         background: colors.black,
+        //         gridRow: "span 2",
+        //         gridColumn: ["span 2", "2/span 2"],
+        //       }}
+        //     >
+        //       <Img imageData={images.forward} />
+        //     </div>
+        //     <div
+        //       sx={{
+        //         padding: [4, 8],
+        //         borderRadius: radius().default,
+        //         background: colors.purple,
+
+        //         gridRow: "3/span 2",
+        //         gridColumn: ["2/span 4", "4/span 2"],
+        //       }}
+        //     >
+        //       <ScrollReveal duration={2}>
+        //         {/* <Img imageData={images.loop} /> */}
+        //         <Img imageData={images.elements} />
+        //       </ScrollReveal>
+        //     </div>
+        //     <div
+        //       sx={{
+        //         display: "grid",
+        //         alignItems: "center",
+        //         justifyContent: "center",
+        //         borderRadius: radius(true).default,
+        //         background: colors.white,
+        //         color: colors.black,
+        //         gridRow: ["1/span 1", "2/span 1"],
+        //         gridColumn: ["6/span 1", "6/span 1"],
+
+        //         svg: {
+        //           margin: "0 auto",
+        //           width: "50%",
+        //           height: "auto",
+        //         },
+        //       }}
+        //     >
+        //       {vectors.logo}
+        //     </div>
+        //     <div
+        //       sx={{
+        //         borderRadius: radius().default,
+        //         gridRow: ["1/span 2", "3/span 2"],
+        //         gridColumn: ["2/span 2", "6/span 2"],
+        //       }}
+        //     >
+        //       <Img imageData={images.ramp} />
+        //     </div>
+        //     <div
+        //       sx={{
+        //         p: [2, 9],
+        //         pr: 0,
+        //         overflow: "hidden",
+        //         position: "relative",
+        //         borderRadius: radius().left,
+        //         background: colors.black,
+        //         gridRow: ["1/span 3", "2/span 3"],
+        //         gridColumn: ["8/span 3", "8/span 3"],
+        //         alignItems: "center",
+        //         display: "grid",
+        //         img: {
+        //           objectPosition: "center right",
+        //         },
+        //       }}
+        //     >
+        //       <Img
+        //         sx={{ position: "absolute", width: "100%" }}
+        //         imageData={images.stats}
+        //       />
+        //     </div>
+        //     <div
+        //       sx={{
+        //         overflow: "hidden",
+        //         borderRadius: radius().default,
+        //         background: colors.purple,
+        //         gridRow: ["3/span 2", "5/span 2"],
+        //         gridColumn: ["6/span 4", "8/span 2"],
+        //       }}
+        //     >
+        //       <ScrollReveal
+        //         delay={0.7}
+        //         effect={[{ rotate: -6 }, { rotate: 0 }]}
+        //       >
+        //         <Img imageData={images.totes} />
+        //       </ScrollReveal>
+        //     </div>
+        //   </GridParent>
+        // </>
       );
     },
     BrandBook: () => {
@@ -360,13 +644,13 @@ const Capchase = ({ data }) => {
               <Text variant="heading">Design Execution</Text>
             </Box>
             <Box
-              mb={[10, 11]}
+              mb={[7, 8]}
               sx={{
                 gridRow: ["2/span 1", "1/span 1"],
                 gridColumn: ["2/span 8", "6/span 4"],
               }}
             >
-              <Text variant="lead">
+              <Text sx={{ maxWidth: 560 }} variant="lead">
                 The direction of the website was formed alongside the visual
                 language. Sometimes design discoveries in the final mocks would
                 inform the core brand principles, and vice versa.
@@ -396,7 +680,7 @@ const Capchase = ({ data }) => {
             <Box mt={11} sx={{ gridColumn: ["2/span 8"] }}>
               <ScrollReveal>
                 <Text variant="heading">Logotype</Text>
-                <Text variant="lead" mb={10} sx={{ maxWidth: 840 }}>
+                <Text variant="lead" mb={10} sx={{ maxWidth: 800 }}>
                   The logotype discovery phase went though a thorough process.
                   we designed a little over 100 logotype branches before finding
                   the right path to follow.
@@ -420,7 +704,11 @@ const Capchase = ({ data }) => {
                   alignItems: "center",
                   justifyContent: "space-between",
                   gridGap: [7, 8],
-                  gridTemplateColumns: ["auto", "auto auto auto"],
+
+                  gridTemplateColumns: [
+                    "auto",
+                    "repeat(auto-fit, minmax(min(240px, 100%), auto))",
+                  ],
                   width: "100%",
                   padding: 0,
                 }}
@@ -429,12 +717,13 @@ const Capchase = ({ data }) => {
                   sx={{
                     display: "flex",
                     alignItems: "center",
-                    svg: { width: ["36px", "72px"] },
+
+                    svg: { width: ["36px", "56px"] },
                   }}
                 >
                   {vectors.forwardIcon}
                   <Text
-                    sx={{ ml: [5, 7], maxWidth: [170, 200], width: "100%" }}
+                    sx={{ ml: [5, 6], maxWidth: 170, width: "100%" }}
                     variant="label"
                   >
                     Represents progression and moving forward.
@@ -444,12 +733,13 @@ const Capchase = ({ data }) => {
                   sx={{
                     display: "flex",
                     alignItems: "center",
-                    svg: { width: ["36px", "72px"] },
+
+                    svg: { width: ["36px", "56px"] },
                   }}
                 >
                   {vectors.growthIcon}
                   <Text
-                    sx={{ ml: [5, 7], maxWidth: [170, 200], width: "100%" }}
+                    sx={{ ml: [5, 6], maxWidth: 170, width: "100%" }}
                     variant="label"
                   >
                     Displays a sense of growth & adaptability.
@@ -464,14 +754,14 @@ const Capchase = ({ data }) => {
                 >
                   <ScrollReveal
                     ignoreParentFade
-                    sx={{ width: ["36px", "72px"] }}
+                    sx={{ svg: { width: ["36px", "56px"] } }}
                     duration={2}
                     effect={[{ rotate: -20 }, { rotate: 0 }]}
                   >
                     {vectors.transparentIcon}
                   </ScrollReveal>
                   <Text
-                    sx={{ ml: [5, 7], maxWidth: [170, 200], width: "100%" }}
+                    sx={{ ml: [5, 6], maxWidth: 170, width: "100%" }}
                     variant="label"
                   >
                     Display transparency and humbleness.
@@ -482,8 +772,8 @@ const Capchase = ({ data }) => {
           </GridParent>
           <GridParent>
             <ScrollReveal
-              effect={[{ x: -12 }, { x: 0 }]}
-              parentEffect={[{ x: 25 }, { x: 0 }]}
+              effect={[{ x: -6 }, { x: 0 }]}
+              parentEffect={[{ x: 12 }, { x: 0 }]}
               repeat
               repeatParent
               sx={{
@@ -512,9 +802,10 @@ const Capchase = ({ data }) => {
             <div
               sx={{
                 overflow: "hidden",
+                boxShadow: "capchase",
                 position: "relative",
                 borderRadius: radius().default,
-                background: colors.white,
+                background: colors.purple,
                 gridRow: ["1/span 4", "1/span 1"],
                 gridColumn: ["2/ span 8", "2/span 2"],
               }}
@@ -547,6 +838,9 @@ const Capchase = ({ data }) => {
               }}
             >
               <ScrollReveal duration={2} sx={{ width: "100%" }}>
+                <Text mb={6} variant="caps" color={colors.yellow}>
+                  Iconograpy
+                </Text>
                 <Img sx={{ width: "100%" }} imageData={images.icons} />
               </ScrollReveal>
             </div>
@@ -586,7 +880,7 @@ const Capchase = ({ data }) => {
                 position: "relative",
                 borderRadius: radius().default,
                 background: colors.black,
-                gridRow: ["5/span 10", "1/span 5"],
+                gridRow: ["5/span 14", "1/span 7", "1/span 5"],
                 gridColumn: ["2/span 8", "6/span 4"],
                 alignItems: ["start"],
                 display: "grid",
@@ -621,8 +915,8 @@ const Capchase = ({ data }) => {
                 padding: "10%",
                 borderRadius: radius().default,
                 background: [colors.white],
-                gridRow: ["span 4", "6/span 2"],
-                gridColumn: ["2/ span 4", "7/span 2"],
+                gridRow: ["span 4", "8/span 2", "6/span 2"],
+                gridColumn: ["2/ span 4", "6/span 2", "7/span 2"],
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -641,13 +935,13 @@ const Capchase = ({ data }) => {
       return (
         <>
           <GridParent>
-            <Box mt={[10, 11]} sx={{ gridColumn: ["2/ span 8", " 2/span 5"] }}>
+            <Box mt={[10, 11]} sx={{ gridColumn: ["2/ span 8", " 2/span 8"] }}>
               <ScrollReveal>
                 <Text variant="heading">Art Direction</Text>
-                <Text variant="lead" mb={[9, 10]}>
+                <Text sx={{ maxWidth: 720 }} variant="lead" mb={[9, 10]}>
                   We came up with a variety of wave patterns to represent flow
                   and movement. A concept that sits closely to the financial
-                  term liquidity.
+                  term; liquidity.
                 </Text>
               </ScrollReveal>
             </Box>
@@ -656,6 +950,7 @@ const Capchase = ({ data }) => {
             <Box
               sx={{
                 overflow: "hidden",
+                isolation: "isolate",
                 borderRadius: radius().default,
                 background: colors.black,
                 gridRow: ["span 4", "1/span 4"],
@@ -751,6 +1046,7 @@ const Capchase = ({ data }) => {
               sx={{
                 position: "relative",
                 overflow: "hidden",
+
                 borderRadius: radius().default,
                 background: colors.pink,
                 gridRow: ["span 3", "13/span 2"],
@@ -765,6 +1061,7 @@ const Capchase = ({ data }) => {
                 sx={{
                   position: "absolute",
                   bottom: 0,
+
                   left: 0,
                   width: ["50%", "100%"],
                   img: { width: ["100%", "70%"], objectPosition: "bottom" },
@@ -774,6 +1071,7 @@ const Capchase = ({ data }) => {
             </Box>
             <Box
               sx={{
+                isolation: "isolate",
                 overflow: "hidden",
                 borderRadius: radius().default,
                 background: colors.black,
@@ -809,6 +1107,7 @@ const Capchase = ({ data }) => {
 
             <Box
               sx={{
+                isolation: "isolate",
                 overflow: "hidden",
                 borderRadius: radius().default,
                 background: colors.white,

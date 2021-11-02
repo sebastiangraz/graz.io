@@ -10,9 +10,9 @@ export const GridParent = ({ children, ...rest }) => {
         gridColumn: `1 / span 12`,
         // 6px scrollbar width included in the calc
         "--calcWrapper": [
-          `calc(calc((var(--gridCount)) / 12 * min(100vw, 2400px)) - 0px)`,
+          `(var(--gridCount)) / 12 * min(calc(100vw - 5px), 2400px)`,
           null,
-          `calc(calc((var(--gridCount)) / 12 * min(100vw, 2406px)) - 5px)`,
+          `(var(--gridCount)) / 12 * min(calc(100vw - 5px), 2400px)`,
         ],
         "--gutter": "0px",
         "--noOfColumns": "10",

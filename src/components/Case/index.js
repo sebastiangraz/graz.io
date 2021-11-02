@@ -15,8 +15,8 @@ import { Debugger, ScrollDown } from "../";
 const debug = false;
 
 const settings = {
-  nextScrollDistance: 100,
-  staggerPower: 0.72,
+  nextScrollDistance: 80,
+  staggerPower: 0.5,
   springOptions: {
     damping: 12,
     mass: 0.1,
@@ -79,7 +79,6 @@ function ScrollToTopOnMount(props) {
 }
 
 const MemoCase = React.forwardRef(({ index, data }, ref) => {
-  console.log("caserender");
   const { scrollY } = useViewportScroll();
   let { childHeight, childPosition, windowHeight } = useCaseWrapperContext();
 

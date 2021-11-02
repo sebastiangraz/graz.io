@@ -92,6 +92,7 @@ export const Video = ({ videoData, ...props }) => {
       {!isPlaying && (
         <div
           sx={{
+            opacity: isWaiting ? 0 : 1,
             position: "absolute",
             zIndex: 1,
             left: "calc(50% - 28px)",

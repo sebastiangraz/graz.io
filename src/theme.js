@@ -32,7 +32,7 @@ export default {
   space: space,
   sizes: space,
   shadows: {
-    capchase: `0px 138px 114px rgba(61, 32, 12, 0.15), 0px 75.716px 53.8638px rgba(61, 32, 12, 0.11405), 0px 45.1107px 33.2312px rgba(61, 32, 12, 0.0977383), 0px 26.7192px 20.7632px rgba(61, 32, 12, 0.0856342), 0px 15.0125px 12.5357px rgba(61, 32, 12, 0.075), 0px 7.55637px 7.00841px rgba(61, 32, 12, 0.0643658), 0px 3.04666px 3.37883px rgba(61, 32, 12, 0.0522617), 0px 0.698188px 1.15603px rgba(61, 32, 12, 0.0359501)`,
+    capchase: `0px 109px 80px rgba(0, 0, 0, 0.07), 0px 50.394px 36.9864px rgba(0, 0, 0, 0.0519173), 0px 28.8343px 21.1628px rgba(0, 0, 0, 0.0438747), 0px 17.5022px 12.8457px rgba(0, 0, 0, 0.0377964), 0px 10.5459px 7.74008px rgba(0, 0, 0, 0.0322036), 0px 5.87261px 4.31018px rgba(0, 0, 0, 0.0261253), 0px 2.52577px 1.85378px rgba(0, 0, 0, 0.0180827)`,
   },
   radii: { ...space.slice(0, 5), pill: "99em" },
   fonts: {
@@ -50,7 +50,7 @@ export default {
     body: "-0.01em",
     lead: "-0.033em",
     heading: "-0.11em",
-    caps: "0.011em",
+    caps: "0.0025em",
   },
   fontSizes: space,
   colors: colors,

@@ -274,12 +274,15 @@ export const Home = ({ data }) => {
         <div
           sx={{
             maxWidth: ["100%", "initial", null],
-            width: ["100%", 420, 360, 360],
+            width: [380, null, 390, 450],
           }}
         >
           <Text variant="lead" mb={4}>
-            Sebastian Graz is a design studio for all things branding, digital
-            design, served with a technological edge.
+            <Text variant="heading" sx={{ display: "inline" }}>
+              Sebastian Graz
+            </Text>{" "}
+            is a design studio for all things branding, digital design, served
+            with a side of code & technology.
           </Text>
         </div>
       </div>

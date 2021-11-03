@@ -1037,6 +1037,28 @@ const Capchase = ({ data }) => {
               </ScrollReveal>
             </Box>
           </GridParent>
+          <GridParent pt={10}>
+            <Box sx={{ mr: [0, 7], gridColumn: ["2 / span 8", "2/span 4"] }}>
+              <Text variant="heading">Closing thoughts</Text>
+              <Text variant="lead" sx={{ maxWidth: 600 }}>
+                The amazing folks at Capchase inspired me to create one of my
+                best works yet. While I was responsible for most design aspects
+                of this project. It was a highly collaborate process with
+                intelligent feedback along the way that made the final outcome
+                so much better.
+              </Text>
+            </Box>
+            <Box sx={{ ml: [0, 7], gridColumn: ["2/ span 8", "6/span 4"] }}>
+              <Text variant="heading">​</Text>
+
+              <Text variant="lead" sx={{ maxWidth: 600 }}>
+                As always; branding is never “checked off” from a to-do list.
+                It’s something that continously grows together with the company
+                and it’s values. I’m very excited to see what Capchase will
+                build on top of this brand foundation.
+              </Text>
+            </Box>
+          </GridParent>
         </>
       );
     },

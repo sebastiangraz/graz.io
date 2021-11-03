@@ -534,6 +534,26 @@ const Loupe = ({ data }) => {
               <Img imageData={images.execution} />
             </div>
           </GridParent>
+          <GridParent pt={10}>
+            <Box sx={{ mr: [0, 7], gridColumn: ["2 / span 8", "2/span 4"] }}>
+              <Text variant="heading">Closing thoughts</Text>
+              <Text variant="lead" sx={{ maxWidth: 560 }}>
+                Sadly, Loupe 2020 didn’t happen. What you see is the preliminary
+                work for the overall branding and a somewhat finished website. A
+                lot of bits and pieces are still missing such as venue design
+                and printing work.
+              </Text>
+            </Box>
+            <Box sx={{ ml: [0, 7], gridColumn: ["2/ span 8", "6/span 4"] }}>
+              <Text variant="heading">​</Text>
+
+              <Text variant="lead" sx={{ maxWidth: 560 }}>
+                Unpredicable pandemics aside, I had the chance to work on a very
+                fulfilling project where I could wear many hats, and challenge
+                my creativity from conception to the finish line.
+              </Text>
+            </Box>
+          </GridParent>
         </>
       );
     },

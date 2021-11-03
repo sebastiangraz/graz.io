@@ -66,7 +66,7 @@ const Capchase = ({ data }) => {
           <GridParent>
             <Box sx={{ gridColumn: ["2/span 8", " 2/span 5"] }}>
               <ScrollReveal>
-                <Text variant="heading" mb={8} sx={{ maxWidth: 580 }}>
+                <Text variant="lead" mb={8} sx={{ maxWidth: 520 }}>
                   Capchase, one of the largest non-dilutive funding companies
                   needed a time sensitive visual refresh of all their digital &
                   print assets.

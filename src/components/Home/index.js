@@ -4,7 +4,7 @@ import React from "react";
 import { Text, Grid, Link } from "theme-ui";
 import { Logo, List, EmailLink } from "../";
 import { m, useViewportScroll, useTransform } from "framer-motion";
-import { shade } from "@theme-ui/color";
+import { lighten, shade } from "@theme-ui/color";
 import resume from "../../files/cv-sebastiangraz.pdf";
 const awards = [
   {
@@ -216,6 +216,27 @@ export const Home = ({ data }) => {
                   VSCO
                 </Link>
               </m.div>
+              <m.hr
+                variants={list}
+                custom={4}
+                sx={{
+                  height: "1px",
+                  maxWidth: "100%",
+
+                  border: "none",
+                  backgroundColor: (t) => shade(data.bg, 0.1)(t),
+                }}
+              />
+              <m.div variants={list} custom={5}>
+                <Text
+                  sx={{
+                    whiteSpace: "pre",
+                  }}
+                  variant="caps"
+                >
+                  Available Jan
+                </Text>
+              </m.div>
             </List>
           </Text>
         </m.div>
@@ -282,15 +303,15 @@ export const Home = ({ data }) => {
         <div
           sx={{
             maxWidth: ["100%", "initial", null],
-            width: [380, null, 390, 450],
+            width: [400, null, 400, 400],
           }}
         >
           <Text variant="lead" mb={4}>
             <Text variant="heading" sx={{ display: "inline" }}>
-              Sebastian Graz
+              Sebastian Graz,
             </Text>{" "}
-            is a design studio for all things branding, digital design, served
-            with a side of code & technology.
+            an independent design studio striving to collaborate designs that
+            are coherent, memorable & beautiful.
           </Text>
         </div>
       </div>

@@ -16,15 +16,16 @@ export let cases = new Map([
       bg: "hsl(244, 28%, 92%)",
     },
   ],
+
   [
-    "capchase",
+    "loupe",
     {
-      name: "Capchase",
-      slug: "capchase",
-      component: Capchase,
-      color: "#000",
-      bg: "#FCFBF8", //FFDAAF looks cool
-      grid: ["2 / span 10", "3 / span 10"],
+      name: "Loupe",
+      slug: "loupe",
+      component: Loupe,
+      color: "#184629",
+      bg: "#D2DAD3",
+      grid: ["2 / span 9", "2 / span 10"],
       scope: [
         "Visual identity",
         "Art direction",
@@ -41,14 +42,14 @@ export let cases = new Map([
     },
   ],
   [
-    "loupe",
+    "capchase",
     {
-      name: "Loupe",
-      slug: "loupe",
-      component: Loupe,
-      color: "#184629",
-      bg: "#D2DAD3",
-      grid: ["2 / span 9", "2 / span 10"],
+      name: "Capchase",
+      slug: "capchase",
+      component: Capchase,
+      color: "#000",
+      bg: "#FCFBF8", //FFDAAF looks cool
+      grid: ["2 / span 10", "3 / span 10"],
       scope: [
         "Visual identity",
         "Art direction",

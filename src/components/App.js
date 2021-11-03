@@ -4,7 +4,6 @@ import { CaseWrapper, Case, Home } from "../components";
 import "../base.css";
 
 import { Helmet } from "react-helmet";
-import { useThemeUI } from "theme-ui";
 
 export let cases = new Map([
   [

@@ -45,9 +45,9 @@ const Loupe = ({ data }) => {
               bgColor={colors.green}
               labelColor={data.bg}
               labels={[
-                "Create brand and execute it for a very perceptive audience.",
-                "Position Capchase as a leader in non-dilutable financing.",
-                "Proofing Capchase’s brand for longevity & recognizability. ",
+                "Create a highly creative page for sharability and social push.",
+                "Position Framer as a market leader in design & prototyping",
+                "Inspire designers around the world to attend Loupe.",
               ]}
             />
           </div>

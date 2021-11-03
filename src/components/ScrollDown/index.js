@@ -48,7 +48,7 @@ export const ScrollDown = ({
         position: "absolute",
         zIndex: 10,
         left: 0,
-        top: ["-100px", "-140px", "-240px", "-280px"],
+        top: ["-100px", "-120px", "-220px", "-260px"],
         width: 8,
         height: 8,
         display: ["none", "flex"],

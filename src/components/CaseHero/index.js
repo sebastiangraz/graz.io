@@ -64,6 +64,22 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
         </mask>
       </defs>
 
+      <g
+        fill="var(--caseColor)"
+        sx={{
+          display: ["block", null, "none"],
+          transform: [
+            `translate(min(172px, calc(12vw - 5px) ), min(100px, 12vw))`,
+            `translate(min(172px, calc(8vw - 5px) ), min(100px, 6vw))`,
+          ],
+        }}
+      >
+        <text dominantBaseline="hanging">
+          {/* hack: using zero-width space to render the correct font */}
+          {loaded ? name : "​"}
+        </text>
+      </g>
+
       <rect
         fillRule="evenodd"
         mask={`url(#${"sample-" + id})`}

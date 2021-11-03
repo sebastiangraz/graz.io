@@ -183,13 +183,13 @@ export const Home = ({ data }) => {
               "none",
               "none",
             ],
-            borderRadius: "1em",
+            borderRadius: ["1em", 0],
             cursor: "auto",
             position: "absolute",
             right: [0, null],
             left: [null, 0],
             top: "100%",
-            width: ["200px", "auto"],
+            width: ["200px", "120px"],
             minWidth: "100%",
           }}
         >
@@ -222,13 +222,13 @@ export const Home = ({ data }) => {
                 sx={{
                   height: "1px",
                   maxWidth: "100%",
-
                   border: "none",
                   backgroundColor: (t) => shade(data.bg, 0.1)(t),
                 }}
               />
               <m.div variants={list} custom={5}>
                 <Text
+                  mb={2}
                   sx={{
                     whiteSpace: "pre",
                   }}
@@ -252,22 +252,22 @@ export const Home = ({ data }) => {
       >
         <div>
           <Text variant="label" mb={5}>
-            <Text variant="label" mb={4}>
+            <Text variant="label" mb={6}>
               Expertise
             </Text>
             <List>
-              <>Empathic design</>
+              <>Empathic Design</>
               <>Design Systems</>
-              <>Art direction</>
+              <>Art Direction</>
               <>Prototyping</>
-              <>Front-End</>
+              <>Front-end</>
               <>Branding</>
             </List>
           </Text>
         </div>
         <div>
           <Text variant="label" mb={5}>
-            <Text variant="label" mb={4}>
+            <Text variant="label" mb={6}>
               Recognitions
             </Text>
             <List>
@@ -285,7 +285,7 @@ export const Home = ({ data }) => {
 
         <div sx={{ order: [-1, 0] }}>
           <Text variant="label" mb={5}>
-            <Text variant="label" mb={4}>
+            <Text variant="label" mb={6}>
               Associations
             </Text>
             <List>

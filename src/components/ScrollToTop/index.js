@@ -2,7 +2,6 @@
 
 import React from "react";
 import { cases } from "../App";
-import { darken } from "@theme-ui/color";
 import { useViewportScroll } from "framer-motion";
 import { Text } from "theme-ui";
 import { Logo } from "../";

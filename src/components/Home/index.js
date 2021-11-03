@@ -4,7 +4,7 @@ import React from "react";
 import { Text, Grid, Link } from "theme-ui";
 import { Logo, List, EmailLink } from "../";
 import { m, useViewportScroll, useTransform } from "framer-motion";
-import { lighten, shade } from "@theme-ui/color";
+import { shade } from "@theme-ui/color";
 import resume from "../../files/cv-sebastiangraz.pdf";
 const awards = [
   {

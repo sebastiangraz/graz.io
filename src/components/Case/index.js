@@ -7,7 +7,6 @@ import {
   transform,
   useTransform,
   useViewportScroll,
-  useMotionValue,
 } from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "../";
 import { useResponsiveValue } from "@theme-ui/match-media";

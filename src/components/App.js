@@ -25,7 +25,7 @@ export let cases = new Map([
       component: Loupe,
       color: "#184629",
       bg: "#D2DAD3",
-      grid: ["2 / span 9", "2 / span 10"],
+      grid: ["1 / span 10", "2 / span 10"],
       scope: [
         "Visual identity",
         "Art direction",

@@ -492,7 +492,26 @@ const Loupe = ({ data }) => {
     Design: () => {
       return (
         <>
-          <GridParent>
+          <GridParent pt={10}>
+            <Box sx={{ mr: [0, 7], gridColumn: ["2 / span 8", "2/span 4"] }}>
+              <Text variant="heading">Web design</Text>
+              <Text variant="lead" sx={{ maxWidth: 620 }}>
+                Creating the web page was a matter of using the branding
+                elements together. New ideas and changes to the site also
+                informed the overall branding look & feel.
+              </Text>
+            </Box>
+            <Box sx={{ ml: [0, 7], gridColumn: ["2/ span 8", "6/span 4"] }}>
+              <Text variant="heading">​</Text>
+
+              <Text variant="lead" sx={{ maxWidth: 540 }}>
+                It would be difficult put a dot on the branding and call it a
+                “done”. It will always evolve over time together with the rest
+                of the design.
+              </Text>
+            </Box>
+          </GridParent>
+          <GridParent py={10}>
             <div
               sx={{
                 overflow: "hidden",

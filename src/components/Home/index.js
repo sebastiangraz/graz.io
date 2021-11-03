@@ -132,7 +132,7 @@ export const Home = ({ data }) => {
     >
       <Logo
         sx={{
-          fontVariationSettings: `"wght" 43`,
+          fontVariationSettings: `"wght" 50`,
           gridArea: "logo",
           fontSize: 9,
           display: "flex",

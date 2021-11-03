@@ -1,6 +1,6 @@
 import React from "react";
 import { Loupe, Capchase } from "../pages";
-import { CaseWrapper, Case, Home } from "../components";
+import { CaseWrapper, Case, Home, ScrollToTop } from "../components";
 import "../base.css";
 
 import { Helmet } from "react-helmet";
@@ -68,17 +68,6 @@ export let cases = new Map([
 ]);
 
 const MemoApp = () => {
-  const setVH = function () {
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty("--vh", `${vh}px`);
-  };
-
-  React.useEffect(() => {
-    setVH();
-    window.addEventListener("resize", setVH, false);
-    window.addEventListener("orientationchange", setVH, false);
-  }, []);
-
   const myRefs = React.useRef([]);
   myRefs.current = [...cases].map(
     (i) => myRefs.current[i] ?? React.createRef()
@@ -89,6 +78,7 @@ const MemoApp = () => {
       <Helmet>
         <meta name="theme-color" content={cases.get("home")?.bg} />
       </Helmet>
+      <ScrollToTop />
       <CaseWrapper>
         {[...cases].map((v, i) => {
           return (

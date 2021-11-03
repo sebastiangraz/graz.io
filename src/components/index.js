@@ -12,4 +12,5 @@ export { EmailLink } from "./EmailLink";
 export { NumberedList } from "./NumberedList";
 export { ScrollReveal } from "./ScrollReveal";
 export { ScrollDown } from "./ScrollDown";
+export { ScrollToTop } from "./ScrollToTop";
 export { Debugger } from "./Debugger";

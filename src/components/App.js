@@ -2,6 +2,10 @@ import React from "react";
 import { Loupe, Capchase } from "../pages";
 import { CaseWrapper, Case, Home } from "../components";
 import "../base.css";
+
+import { Helmet } from "react-helmet";
+import { useThemeUI } from "theme-ui";
+
 export let cases = new Map([
   [
     "home",
@@ -82,6 +86,9 @@ const MemoApp = () => {
   console.info("No it's not a Webflow template.");
   return (
     <>
+      <Helmet>
+        <meta name="theme-color" content={cases.get("home")?.bg} />
+      </Helmet>
       <CaseWrapper>
         {[...cases].map((v, i) => {
           return (

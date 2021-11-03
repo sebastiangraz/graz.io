@@ -14,6 +14,7 @@
     "lodash": "^4.17.21",
     "react": "^18.0.0-alpha-386e8f2ea-20210624",
     "react-dom": "^18.0.0-alpha-386e8f2ea-20210624",
+    "react-helmet": "^6.1.0",
     "react-intersection-observer": "^8.31.0",
     "react-scripts": "4.0.3",
     "react-scroll-percentage": "^4.2.0",

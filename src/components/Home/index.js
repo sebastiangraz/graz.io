@@ -303,11 +303,14 @@ export const Home = ({ data }) => {
         <div
           sx={{
             maxWidth: ["100%", "initial", null],
-            width: [400, null, 400, 400],
+            width: [410, null, 440, 420],
           }}
         >
-          <Text variant="lead" mb={4}>
-            <Text variant="heading" sx={{ display: "inline" }}>
+          <Text variant="lead" sx={{ fontSize: [6, 6, 7, 7] }} mb={4}>
+            <Text
+              variant="heading"
+              sx={{ fontSize: [6, 6, 7, 7], display: "inline" }}
+            >
               Sebastian Graz,
             </Text>{" "}
             an independent design studio striving to collaborate designs that

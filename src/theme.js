@@ -48,7 +48,7 @@ export default {
   },
   letterSpacings: {
     body: "-0.01em",
-    lead: "-0.033em",
+    lead: ["-0.033em"],
     heading: "-0.11em",
     caps: "0.0025em",
   },
@@ -75,14 +75,15 @@ export default {
     },
     lead: {
       variant: "text.default",
-      fontSize: [6, 6, 7, 7],
-      letterSpacing: "lead",
-      lineHeight: "lead",
+      fontSize: [5, 5, 6, 7],
+      letterSpacing: ["body", null, "lead"],
+      lineHeight: ["body", null, "lead"],
       mb: ["1.5em"],
     },
     heading: {
       ...capsStyle,
       variant: "text.lead",
+      fontSize: [6, 6, 7, 7],
     },
   },
   styles: {

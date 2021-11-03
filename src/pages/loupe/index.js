@@ -26,10 +26,10 @@ const Loupe = ({ data }) => {
               gridColumn: ["2 / span 8", "2/span 8"],
             }}
           >
-            <Text variant="heading">
+            <Text variant="heading" sx={{ maxWidth: 890 }}>
               Loupe is a conference held by Framer each year. The 3rd edition of
               the conference was planned to be held in Amsterdam 2020, but was
-              cancelled due to COVID-19. Below you'll find the progress of that
+              cancelled due to COVID-19. Below you’ll find the progress of that
               work.
             </Text>
           </Flex>
@@ -99,22 +99,22 @@ const Loupe = ({ data }) => {
         <>
           <GridParent py={[9, 10]}>
             <Box sx={{ mr: [0, 7], gridColumn: ["2 / span 8", "2/span 4"] }}>
-              <Text variant="lead">
+              <Text variant="lead" sx={{ maxWidth: [440] }}>
                 Loupe being a fairly young event, faced the challenge of
                 attracting new conference-goers as well as retaining previous
                 attendees.
               </Text>
-              <Text variant="lead">
+              <Text variant="lead" sx={{ maxWidth: [440] }}>
                 It had to feel like a new and exciting event, while keeping the
                 brand trust that the conference had built up during the years.
               </Text>
             </Box>
             <Box sx={{ ml: [0, 7], gridColumn: ["2/ span 8", "6/span 4"] }}>
-              <Text variant="lead">
+              <Text variant="lead" sx={{ maxWidth: [360, 440] }}>
                 Previous identities were branched of Framers own brand. But this
                 year Loupe put on a new distinguished look.{" "}
               </Text>
-              <Text variant="lead">
+              <Text variant="lead" sx={{ maxWidth: [360, 440] }}>
                 The identity aimed to be extendable and work well both as pixels
                 and as printed media.
               </Text>
@@ -140,9 +140,7 @@ const Loupe = ({ data }) => {
                 gridColumn: ["2 / span 8", "2 / span 8"],
               }}
             >
-              <Text variant="heading" mb={9}>
-                Logotype
-              </Text>
+              <Text variant="heading">Logotype</Text>
             </Box>
             <Box
               mb={10}
@@ -150,7 +148,7 @@ const Loupe = ({ data }) => {
                 gridColumn: ["2 / span 8", "2 / span 2"],
               }}
             >
-              <Text mb={9}>
+              <Text mb={[9, 10]}>
                 I created the logo to represent multiple meanings and values.
               </Text>
               <Box sx={{ width: ["60%", "100%"], margin: "0 auto" }}>
@@ -163,7 +161,7 @@ const Loupe = ({ data }) => {
                 gridColumn: ["2 / span 8", "5 / span 2"],
               }}
             >
-              <Text mb={9}>
+              <Text mb={[9, 10]}>
                 Ultimately it is up to the observer to decide what meanings they
                 see.
               </Text>
@@ -193,7 +191,6 @@ const Loupe = ({ data }) => {
               </ScrollReveal>
             </Box>
             <Box
-              mb={10}
               sx={{
                 margin: "0 auto",
                 overflow: "hidden",
@@ -201,7 +198,7 @@ const Loupe = ({ data }) => {
                 gridColumn: ["2 / span 8", "8 / span 2"],
               }}
             >
-              <Text mb={9}>
+              <Text mb={[9, 10]}>
                 The logo can extend its usage into additional patterns or
                 shapes.
               </Text>
@@ -246,7 +243,8 @@ const Loupe = ({ data }) => {
                 And yet an important addition to the Loupe brand.
               </Text>
             </Flex>
-            <div
+            <Box
+              mt={[5, 0]}
               sx={{
                 gridRow: ["span 4", "1/span 4"],
                 gridColumn: ["1/span 10", "6 / span 4"],
@@ -254,14 +252,14 @@ const Loupe = ({ data }) => {
               }}
             >
               <Video videoData={videos.icons} />
-            </div>
+            </Box>
           </GridParent>
           <GridParent py={10}>
             <Box
               mb={8}
               sx={{
                 gridRow: ["2/span 1", null, "1 / span 1", "2/span 3"],
-                gridColumn: ["2/span 8", null, "2/span 8", "6/span 4"],
+                gridColumn: ["2/span 8", "6/span 4", null, "6/span 4"],
               }}
             >
               <Text variant="heading">Typography</Text>
@@ -401,7 +399,7 @@ const Loupe = ({ data }) => {
             <Box
               sx={{
                 gridRow: ["11/span 1", "3/span 3"],
-                gridColumn: ["2/span 8", null, "5/span 3", "6/span 3"],
+                gridColumn: ["2/span 8", "5/span 3", "5/span 3", "6/span 3"],
                 display: "flex",
                 flexDirection: "column",
 
@@ -425,7 +423,7 @@ const Loupe = ({ data }) => {
                 background: colors.green,
 
                 gridRow: ["4/span 4", "3/span 3"],
-                gridColumn: ["1/span 6", null, "1/span 3", "2/span 3"],
+                gridColumn: ["1/span 6", "1/span 3", "1/span 3", "2/span 3"],
                 display: "flex",
                 padding: ["16%"],
                 flexDirection: "column",
@@ -451,7 +449,12 @@ const Loupe = ({ data }) => {
                 background: "transparent",
 
                 gridRow: ["1 / span 3", "1 / span 2"],
-                gridColumn: ["3 / span 6", null, "4 / span 7", "5 / span 5"],
+                gridColumn: [
+                  "3 / span 6",
+                  "4 / span 7",
+                  "4 / span 7",
+                  "5 / span 5",
+                ],
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
@@ -465,7 +468,12 @@ const Loupe = ({ data }) => {
                 background: colors.orange,
 
                 gridRow: ["7 / span 4", "6 / span 5"],
-                gridColumn: ["3 / span 6", null, "4 / span 5", "5 / span 5"],
+                gridColumn: [
+                  "3 / span 6",
+                  "4 / span 5",
+                  "4 / span 5",
+                  "5 / span 5",
+                ],
                 display: "flex",
                 padding: ["16%"],
                 flexDirection: "column",

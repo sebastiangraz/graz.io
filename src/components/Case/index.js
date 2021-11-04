@@ -272,7 +272,6 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
               sx={{
                 mb: ["20vh", "100vh"],
                 mt: "0",
-                transition: "opacity 0.2s ease",
               }}
             >
               <Render data={data} />

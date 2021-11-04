@@ -1,8 +1,9 @@
 /** @jsxImportSource theme-ui */
 import { useEffect, useState, useRef } from "react";
+import React from "react";
 
-export const Video = ({ videoData, ...props }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
+const VideoComponent = ({ videoData, ...props }) => {
+  const [isPlaying, setIsPlaying] = useState(true);
   const [isWaiting, setIsWaiting] = useState(false);
 
   const isWaitingTimeout = useRef(null);
@@ -79,6 +80,7 @@ export const Video = ({ videoData, ...props }) => {
     <div
       {...props}
       sx={{
+        willChange: "transform",
         paddingBottom: `calc(${videoData.height} / ${videoData.width} * 100%)`,
         position: "relative",
         width: "100%",
@@ -128,7 +130,6 @@ export const Video = ({ videoData, ...props }) => {
           position: "absolute",
           top: 0,
           left: 0,
-          transition: "opacity .4s ease",
           opacity: isPlaying ? 1 : 0.88,
           height: "100%",
           width: "100%",
@@ -144,3 +145,5 @@ export const Video = ({ videoData, ...props }) => {
     </div>
   );
 };
+
+export const Video = React.memo(VideoComponent);

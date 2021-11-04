@@ -314,4 +314,32 @@ export const images = {
     height: 9498,
     alt: "Web Design",
   },
+  exe1: {
+    url: require("./assets/exe1.png"),
+    webP: require("./assets/exe1.webp"),
+    width: 2265,
+    height: 2393,
+    alt: "Execution",
+  },
+  exe2: {
+    url: require("./assets/exe2.png"),
+    webP: require("./assets/exe2.webp"),
+    width: 2265,
+    height: 1929,
+    alt: "Execution",
+  },
+  exe3: {
+    url: require("./assets/exe3.png"),
+    webP: require("./assets/exe3.webp"),
+    width: 2265,
+    height: 2000,
+    alt: "Execution",
+  },
+  exe4: {
+    url: require("./assets/exe4.png"),
+    webP: require("./assets/exe4.webp"),
+    width: 2265,
+    height: 1954,
+    alt: "Execution",
+  },
 };

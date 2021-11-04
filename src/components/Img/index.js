@@ -1,10 +1,12 @@
 /** @jsxImportSource theme-ui */
+import React from "react";
 
-export const Img = ({ imageData, cover, plate, ...rest }) => {
+const ImgComponent = ({ imageData, cover, plate, ...rest }) => {
   return (
     <div
       {...rest}
       sx={{
+        willChange: "transform",
         paddingBottom: `calc(${imageData?.height} / ${imageData?.width} * 100%)`,
         position: "relative",
         backgroundColor: plate ? "currentColor" : "transparent",
@@ -41,3 +43,5 @@ export const Img = ({ imageData, cover, plate, ...rest }) => {
     </div>
   );
 };
+
+export const Img = React.memo(ImgComponent);

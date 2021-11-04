@@ -1,6 +1,5 @@
 /** @jsxImportSource theme-ui */
 
-import React from "react";
 import {
   GridParent,
   Img,
@@ -477,7 +476,7 @@ const Capchase = ({ data }) => {
       return (
         <>
           <GridParent>
-            <Box mt={11} sx={{ gridColumn: ["2/span 8"] }}>
+            <Box sx={{ gridColumn: ["2/span 8"] }}>
               <ScrollReveal>
                 <Text variant="heading">Logotype</Text>
                 <Text variant="lead" mb={10} sx={{ maxWidth: 800 }}>

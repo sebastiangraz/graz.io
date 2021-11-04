@@ -398,20 +398,19 @@ const Loupe = ({ data }) => {
           <GridParent py={[9, 10]}>
             <Box
               sx={{
-                gridRow: ["11/span 1", "3/span 3"],
-                gridColumn: ["2/span 8", "5/span 3", "5/span 3", "6/span 3"],
+                gridRow: ["11/span 1", "4/span 3", "3/span 3", "3/span 2"],
+                gridColumn: ["2/span 8", "6/span 4", "5/span 5", "4/span 5"],
                 display: "flex",
                 flexDirection: "column",
-
                 justifyContent: "center",
                 alignItems: "center",
               }}
             >
               <div sx={{ paddingTop: [5], paddingBottom: [5] }}>
-                <Text variant="heading" my={[7, 5, 5, 7]}>
+                <Text variant="caps" mt={[7, 0]} mb={[null, 5, 5, 6]}>
                   Beyond static
                 </Text>
-                <Text>
+                <Text sx={{ maxWidth: ["100%", null, null, 460] }}>
                   I used different displacement methods to bring the colourful
                   assets into life. Also composited photography with animated
                   skies.
@@ -421,9 +420,8 @@ const Loupe = ({ data }) => {
             <div
               sx={{
                 background: colors.green,
-
-                gridRow: ["4/span 4", "3/span 3"],
-                gridColumn: ["1/span 6", "1/span 3", "1/span 3", "2/span 3"],
+                gridRow: ["4/span 4", "4/span 3", "3/span 3", "3/span 2"],
+                gridColumn: ["1/span 6", "1/span 4", "1/span 3", "2/span 2"],
                 display: "flex",
                 padding: ["16%"],
                 flexDirection: "column",
@@ -434,7 +432,6 @@ const Loupe = ({ data }) => {
             >
               <Video
                 sx={{
-                  mixBlendMode: "lighten",
                   backgroundColor: colors.green,
                   video: {
                     borderRadius: "50%",
@@ -448,12 +445,12 @@ const Loupe = ({ data }) => {
               sx={{
                 background: "transparent",
 
-                gridRow: ["1 / span 3", "1 / span 2"],
+                gridRow: ["1 / span 3", null, "1 / span 2"],
                 gridColumn: [
-                  "3 / span 6",
+                  "3 / span 8",
+                  "5 / span 6",
                   "4 / span 7",
-                  "4 / span 7",
-                  "5 / span 5",
+                  "4 / span 5",
                 ],
                 display: "flex",
                 flexDirection: "column",
@@ -466,13 +463,12 @@ const Loupe = ({ data }) => {
             <div
               sx={{
                 background: colors.orange,
-
-                gridRow: ["7 / span 4", "6 / span 5"],
+                gridRow: ["7 / span 4", null, "6 / span 5", "5 / span 4"],
                 gridColumn: [
                   "3 / span 6",
-                  "4 / span 5",
-                  "4 / span 5",
                   "5 / span 5",
+                  "4 / span 5",
+                  "4 / span 5",
                 ],
                 display: "flex",
                 padding: ["16%"],
@@ -484,7 +480,6 @@ const Loupe = ({ data }) => {
             >
               <Video
                 sx={{
-                  mixBlendMode: "multiply",
                   video: {
                     borderRadius: "50%",
                     overflow: "hidden",
@@ -519,10 +514,9 @@ const Loupe = ({ data }) => {
               </Text>
             </Box>
           </GridParent>
-          <GridParent py={10}>
+          <GridParent py={10} sx={{ overflow: "hidden" }}>
             <div
               sx={{
-                overflow: "hidden",
                 gridRow: ["span 1", "span 1"],
                 gridColumn: ["1/span 10", "1/span 10"],
                 img: {
@@ -531,7 +525,11 @@ const Loupe = ({ data }) => {
                 },
               }}
             >
-              <Img imageData={images.execution} />
+              <Img imageData={images.exe1} />
+              <Img imageData={images.exe2} />
+              <Img imageData={images.exe3} />
+              <Img imageData={images.exe4} />
+              {/* <Img imageData={images.execution} /> */}
             </div>
           </GridParent>
           <GridParent pt={10}>

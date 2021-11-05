@@ -42,7 +42,7 @@ export default {
   },
   breakpoints: ["40em", "64em", "98em", "120em"],
   lineHeights: {
-    body: 1.6,
+    body: 1.66,
     lead: 1.4,
     heading: 1.1,
   },
@@ -77,12 +77,13 @@ export default {
       variant: "text.default",
       fontSize: [5, 5, 6, 7],
       letterSpacing: ["body", null, "lead"],
-      lineHeight: ["body", null, "lead"],
+      lineHeight: ["body", null, null, "lead"],
       mb: ["1.5em"],
     },
     heading: {
       ...capsStyle,
       variant: "text.lead",
+      lineHeight: ["body", null, "lead"],
       fontSize: [6, 6, 7, 7],
     },
   },

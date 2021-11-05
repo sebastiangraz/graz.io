@@ -306,7 +306,11 @@ export const Home = ({ data }) => {
             width: [410, null, 440, 420],
           }}
         >
-          <Text variant="lead" sx={{ fontSize: [6, 6, 7, 7] }} mb={4}>
+          <Text
+            variant="lead"
+            sx={{ lineHeight: ["body", null, "lead"], fontSize: [6, 6, 7, 7] }}
+            mb={4}
+          >
             <Text
               variant="heading"
               sx={{ fontSize: [6, 6, 7, 7], display: "inline" }}

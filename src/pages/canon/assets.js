@@ -3,8 +3,8 @@ import * as React from "react";
 export const videos = {
   intro: {
     url: require("./assets/intro.mp4"),
-    width: 776,
-    height: 1080,
+    width: 720,
+    height: 1001,
   },
 };
 
@@ -78,7 +78,7 @@ export const images = {
   },
 };
 
-export const icons = {
+export const vectors = {
   desiredOutcomes: (
     <svg
       xmlns="http://www.w3.org/2000/svg"

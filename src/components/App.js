@@ -1,5 +1,5 @@
 import React from "react";
-import { Loupe, Capchase } from "../pages";
+import { Loupe, Capchase, Canon } from "../pages";
 import { CaseWrapper, Case, Home, ScrollToTop } from "../components";
 import "../base.css";
 
@@ -25,7 +25,7 @@ export let cases = new Map([
       component: Loupe,
       color: "#184629",
       bg: "#D2DAD3",
-      grid: ["1 / span 10", "2 / span 10"],
+      grid: ["2 / span 10", "2 / span 10"],
       scope: [
         "Visual identity",
         "Art direction",
@@ -49,7 +49,31 @@ export let cases = new Map([
       component: Capchase,
       color: "#000",
       bg: "#FCFBF8", //FFDAAF looks cool
-      grid: ["2 / span 10", "3 / span 10"],
+      grid: ["1 / span 10", "1 / span 10"],
+      scope: [
+        "Visual identity",
+        "Art direction",
+        "Merchandise",
+        "Logotype",
+        "Social assets",
+        "Web design",
+        "Animation",
+        "Print",
+      ],
+      role: "Design Consultant",
+      timeframe: "3 months",
+      year: "2021",
+    },
+  ],
+  [
+    "canon",
+    {
+      name: "Canon",
+      slug: "canon",
+      component: Canon,
+      color: "#310606",
+      bg: "#DBC1C1",
+      grid: ["3 / span 10", "3 / span 10"],
       scope: [
         "Visual identity",
         "Art direction",

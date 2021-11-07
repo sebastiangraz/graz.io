@@ -18,6 +18,7 @@ export const ScrollToTop = () => {
 
   const handleClick = () => {
     window.scrollTo(0, 0);
+    window.history.replaceState(null, null, " ");
   };
 
   return (

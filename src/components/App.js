@@ -71,8 +71,8 @@ export let cases = new Map([
       name: "Canon",
       slug: "canon",
       component: Canon,
-      color: "#310606",
-      bg: "#DBC1C1",
+      color: "#FFCDCA",
+      bg: "#171717",
       grid: ["3 / span 10", "3 / span 10"],
       scope: [
         "Visual identity",

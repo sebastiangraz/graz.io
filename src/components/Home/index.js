@@ -189,7 +189,7 @@ export const Home = ({ data }) => {
             right: [0, null],
             left: [null, 0],
             top: "100%",
-            width: ["200px", "120px"],
+            width: ["136px", "120px"],
             minWidth: "100%",
           }}
         >

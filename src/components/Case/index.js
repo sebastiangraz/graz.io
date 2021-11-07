@@ -15,11 +15,11 @@ import { Debugger, ScrollDown } from "../";
 const debug = false;
 
 const settings = {
-  nextScrollDistance: 80,
-  staggerPower: 0.5,
+  nextScrollDistance: 72,
+  staggerPower: 0.72,
   springOptions: {
     damping: 12,
-    mass: 0.1,
+    mass: 0.02,
     // damping: 7,
     // mass: 0.07,
   },

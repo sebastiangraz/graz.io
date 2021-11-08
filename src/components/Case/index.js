@@ -138,6 +138,16 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
 
   // -----CLICK TO SCROLLTO CASE-----
   const handleClick = () => {
+    [...document.querySelectorAll(".caseContent")].map((e) => {
+      return Object.assign(e.style, {
+        contentVisibility: "hidden",
+      });
+    });
+
+    Object.assign(ref.current.querySelector(".caseContent").style, {
+      contentVisibility: "auto",
+    });
+
     if (index !== 0) {
       window.history.replaceState(null, null, `#${data.slug}`);
     } else {
@@ -269,7 +279,10 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
             ></div>
 
             <div
+              className="caseContent"
               sx={{
+                // opacity: 0,
+                containIntrinsicSize: childHeight,
                 mb: ["20vh", "100vh"],
                 mt: "0",
               }}

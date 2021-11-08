@@ -1,12 +1,11 @@
 /** @jsxImportSource theme-ui */
 import * as React from "react";
-import { Flex, Text, Box, Link } from "theme-ui";
+import { Text, Box, Link } from "theme-ui";
 import {
   Video,
   Img,
   GridParent,
   CaseMeta,
-  ScrollReveal,
   List,
   NumberedList,
 } from "../../components";

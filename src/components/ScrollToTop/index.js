@@ -19,6 +19,7 @@ export const ScrollToTop = () => {
   const handleClick = () => {
     [...document.querySelectorAll(".caseContent")].map((e) => {
       return Object.assign(e.style, {
+        transition: "none",
         opacity: 0,
       });
     });

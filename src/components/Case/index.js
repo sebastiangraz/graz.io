@@ -19,7 +19,7 @@ const settings = {
   staggerPower: 0.72,
   springOptions: {
     damping: 12,
-    mass: 0.02,
+    mass: 0.1,
     // damping: 7,
     // mass: 0.07,
   },
@@ -147,10 +147,11 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
         timer = setTimeout(function () {
           [...document.querySelectorAll(".caseContent")].map((e) => {
             return Object.assign(e.style, {
+              transition: "opacity 0.1s linear",
               opacity: 1,
             });
           });
-        }, 1200);
+        }, 1000);
       },
       false
     );
@@ -160,11 +161,13 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
   const handleClick = () => {
     [...document.querySelectorAll(".caseContent")].map((e) => {
       return Object.assign(e.style, {
+        transition: "none",
         opacity: 0,
       });
     });
 
     Object.assign(ref.current.querySelector(".caseContent").style, {
+      transition: "none",
       opacity: 1,
     });
 
@@ -302,8 +305,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
             <div
               className="caseContent"
               sx={{
-                transition: "opacity 0.1s linear",
-                opacity: 0,
+                // opacity: 0,
                 mb: ["20vh", "100vh"],
                 mt: "0",
               }}

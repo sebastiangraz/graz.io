@@ -136,16 +136,36 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
 
   const yStyle = useResponsiveValue([{ y: 0 }, { y: y }, { y: y }, { y: y }]);
 
+  React.useEffect(() => {
+    var timer = null;
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (timer !== null) {
+          clearTimeout(timer);
+        }
+        timer = setTimeout(function () {
+          [...document.querySelectorAll(".caseContent")].map((e) => {
+            return Object.assign(e.style, {
+              opacity: 1,
+            });
+          });
+        }, 1200);
+      },
+      false
+    );
+  }, []);
+
   // -----CLICK TO SCROLLTO CASE-----
   const handleClick = () => {
     [...document.querySelectorAll(".caseContent")].map((e) => {
       return Object.assign(e.style, {
-        contentVisibility: "hidden",
+        opacity: 0,
       });
     });
 
     Object.assign(ref.current.querySelector(".caseContent").style, {
-      contentVisibility: "auto",
+      opacity: 1,
     });
 
     if (index !== 0) {
@@ -222,6 +242,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
             left: [0, "50%"],
           }}
         >
+          {console.log("render from Case")}
           {index === 1 && (
             <ScrollDown
               gridPosition={gridPosition}
@@ -281,8 +302,8 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
             <div
               className="caseContent"
               sx={{
-                // opacity: 0,
-                containIntrinsicSize: childHeight,
+                transition: "opacity 0.1s linear",
+                opacity: 0,
                 mb: ["20vh", "100vh"],
                 mt: "0",
               }}

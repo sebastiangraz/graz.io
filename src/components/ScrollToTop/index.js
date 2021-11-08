@@ -17,6 +17,12 @@ export const ScrollToTop = () => {
   }, [scrollY]);
 
   const handleClick = () => {
+    [...document.querySelectorAll(".caseContent")].map((e) => {
+      return Object.assign(e.style, {
+        opacity: 0,
+      });
+    });
+
     window.scrollTo(0, 0);
     window.history.replaceState(null, null, " ");
   };

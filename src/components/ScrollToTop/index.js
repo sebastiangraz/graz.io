@@ -5,10 +5,20 @@ import { cases } from "../App";
 import { useViewportScroll } from "framer-motion";
 import { Text } from "theme-ui";
 import { Logo } from "../";
+import debounce from "lodash.debounce";
 
 export const ScrollToTop = () => {
   const { scrollY } = useViewportScroll();
   const [show, setShow] = React.useState(false);
+
+  const fadeIn = debounce(() => {
+    [...document.querySelectorAll(".caseContent")].map((e) => {
+      return Object.assign(e.style, {
+        transition: "opacity 0.1s linear",
+        opacity: 1,
+      });
+    });
+  }, 1600);
 
   React.useEffect(() => {
     scrollY.onChange((e) => {
@@ -26,6 +36,7 @@ export const ScrollToTop = () => {
 
     window.scrollTo(0, 0);
     window.history.replaceState(null, null, " ");
+    fadeIn();
   };
 
   return (

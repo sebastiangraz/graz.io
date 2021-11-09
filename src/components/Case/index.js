@@ -1,6 +1,7 @@
 /** @jsxImportSource theme-ui */
 
 import React from "react";
+import debounce from "lodash.debounce";
 import {
   m,
   useSpring,
@@ -136,28 +137,15 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
 
   const yStyle = useResponsiveValue([{ y: 0 }, { y: y }, { y: y }, { y: y }]);
 
-  React.useEffect(() => {
-    var timer = null;
-    window.addEventListener(
-      "scroll",
-      function () {
-        if (timer !== null) {
-          clearTimeout(timer);
-        }
-        timer = setTimeout(function () {
-          [...document.querySelectorAll(".caseContent")].map((e) => {
-            return Object.assign(e.style, {
-              transition: "opacity 0.1s linear",
-              opacity: 1,
-            });
-          });
-        }, 1000);
-      },
-      false
-    );
-  }, []);
+  const fadeIn = debounce(() => {
+    [...document.querySelectorAll(".caseContent")].map((e) => {
+      return Object.assign(e.style, {
+        transition: "opacity 0.1s linear",
+        opacity: 1,
+      });
+    });
+  }, 1600);
 
-  // -----CLICK TO SCROLLTO CASE-----
   const handleClick = () => {
     [...document.querySelectorAll(".caseContent")].map((e) => {
       return Object.assign(e.style, {
@@ -170,6 +158,8 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
       transition: "none",
       opacity: 1,
     });
+
+    fadeIn();
 
     if (index !== 0) {
       window.history.replaceState(null, null, `#${data.slug}`);
@@ -184,6 +174,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
         staggeredOffset
     );
   };
+  // -----CLICK TO SCROLLTO CASE-----
 
   const gridCount = (arr) => data?.grid && data.grid[arr].split("span ")[1];
   const gridPosition = (arr) => data?.grid && data.grid[arr].split(" /")[0];
@@ -226,7 +217,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
         <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.66 }}
+          transition={{ delay: 2 }}
           className="caseWrapper"
           id={data.slug}
           ref={ref}
@@ -245,7 +236,6 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
             left: [0, "50%"],
           }}
         >
-          {console.log("render from Case")}
           {index === 1 && (
             <ScrollDown
               gridPosition={gridPosition}

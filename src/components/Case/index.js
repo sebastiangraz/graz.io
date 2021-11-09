@@ -140,11 +140,11 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
   const fadeIn = debounce(() => {
     [...document.querySelectorAll(".caseContent")].map((e) => {
       return Object.assign(e.style, {
-        transition: "opacity 0.1s linear",
+        transition: "opacity 0.1s linear 1s",
         opacity: 1,
       });
     });
-  }, 1600);
+  }, 1000);
 
   const handleClick = () => {
     [...document.querySelectorAll(".caseContent")].map((e) => {

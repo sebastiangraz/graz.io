@@ -8,6 +8,7 @@ import {
   CaseMeta,
   List,
   NumberedList,
+  TypographyBlock,
 } from "../../components";
 import { videos, images, vectors } from "./assets";
 
@@ -37,15 +38,15 @@ const Canon = ({ data }) => {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
-                gridColumn: ["span 8", "2/ span 3"],
-                gridRow: "span 1",
+                gridColumn: ["2/span 8", "2/ span 3"],
+                gridRow: "span 3",
               }}
             >
               <div>
                 <Box mb={8} sx={{ width: 142, color: "accent" }}>
                   {vectors.problemStatement}
                 </Box>
-                <Text variant="caps" mb={8}>
+                <Text variant="caps" mb={6}>
                   Problem Statement
                 </Text>
                 <Box sx={{ maxWidth: 340 }}>
@@ -60,7 +61,7 @@ const Canon = ({ data }) => {
                 <Box mb={8} sx={{ color: "accent" }}>
                   {vectors.fourChallenges}
                 </Box>
-                <Text mb={8} variant="caps">
+                <Text mb={6} variant="caps">
                   4 Challenges
                 </Text>
 
@@ -93,7 +94,7 @@ const Canon = ({ data }) => {
               sx={{
                 marginBottom: [5, 0],
                 marginRight: 5,
-                gridColumn: ["span 12", "2 / span 4"],
+                gridColumn: ["2/span 12", "2 / span 3"],
               }}
             >
               <span sx={{ color: "accent" }}> {vectors.desiredOutcomes}</span>
@@ -101,7 +102,7 @@ const Canon = ({ data }) => {
               <Text sx={{ marginBottom: 8, marginTop: 8 }} variant="caps">
                 Desired outcomes
               </Text>
-              <Box sx={{ maxWidth: 320 }}>
+              <Box sx={{ maxWidth: 300 }}>
                 <List>
                   <Text>
                     Premium-feel design proposals, featuring revenue sensitive
@@ -117,12 +118,14 @@ const Canon = ({ data }) => {
                 </List>
               </Box>
             </div>
-            <div sx={{ marginRight: 5, gridColumn: ["span 12", "6 / span 4"] }}>
+            <div
+              sx={{ marginRight: 5, gridColumn: ["2/span 12", "7 / span 3"] }}
+            >
               <span sx={{ color: "accent" }}>{vectors.whatWasDone}</span>
               <Text sx={{ marginBottom: 8, marginTop: 8 }} variant="caps">
                 What was done
               </Text>
-              <Box sx={{ maxWidth: 320 }}>
+              <Box sx={{ maxWidth: 300 }}>
                 <List>
                   <Text>Proposal for fixing front-end inconsistencies.</Text>
                   <Text>
@@ -152,28 +155,28 @@ const Canon = ({ data }) => {
           >
             <Box
               sx={{
-                gridColumn: ["span 12", "6 / span 4"],
+                gridColumn: ["2/span 8", "6 / span 4"],
               }}
             >
               {vectors.spaceScale}
             </Box>
             <Box
               sx={{
-                gridColumn: ["span 12", "2 /span 3"],
+                gridColumn: ["2/span 8", "2 /span 3"],
               }}
             >
               <Text variant="heading" mb={8}>
                 Space
               </Text>
-              <Text mb={6} sx={{ maxWidth: 440 }} variant="lead">
+              <Text sx={{ maxWidth: 440 }} variant="lead">
                 The first things we tackled was how designers and developers
                 looked at space.
               </Text>
-              <Text mb={6} sx={{ maxWidth: 600 }} variant="lead">
+              <Text sx={{ maxWidth: 600 }} variant="lead">
                 Oftentimes margins and paddings between UI elements were
-                guessed.{" "}
+                guessed.
               </Text>
-              <Text mb={6} sx={{ maxWidth: 500 }} variant="lead">
+              <Text sx={{ maxWidth: 500 }} variant="lead">
                 Failing to standardize spacing leads to visual inconsistencies,
                 but also developers will have to work harder to line things up.
               </Text>
@@ -184,27 +187,27 @@ const Canon = ({ data }) => {
             <Box
               sx={{
                 marginBottom: [3, 0],
-                gridColumn: ["span 12", "2 / span 4"],
+                gridColumn: ["2/span 8", "2 / span 4"],
               }}
             >
               {vectors.typeScale}
             </Box>
             <Box
               sx={{
-                gridColumn: ["span 12", "7 / span 3"],
+                gridColumn: ["2/span 8", "7 / span 3"],
               }}
             >
               <Text variant="heading" mb={8}>
-                Typography Scale
+                Typography
               </Text>
-              <Text mb={6} variant="lead">
+              <Text variant="lead">
                 Closely related to spacing is typographical hierarchy.
               </Text>
-              <Text mb={6} variant="lead">
+              <Text variant="lead">
                 Much like spacing, font sizes can be a big contributor to
                 inconsistency if left unchecked.
               </Text>
-              <Text mb={6} variant="lead">
+              <Text variant="lead">
                 We developed a type scale that would live alongside our spacing
                 system, that was also divisible by 4 & 2.
               </Text>
@@ -215,23 +218,23 @@ const Canon = ({ data }) => {
             <Box
               sx={{
                 marginBottom: [3, 0],
-                gridColumn: ["span 12", "6 / span 4"],
+                gridColumn: ["2/span 8", "6 / span 4"],
               }}
             >
               {vectors.colorGen}
             </Box>
             <Box
               sx={{
-                gridColumn: ["12 span", "2/ span 3"],
+                gridColumn: ["2/span 8", "2/ span 3"],
               }}
             >
               <Text variant="heading" mb={8}>
                 Color
               </Text>
-              <Text mb={6} variant="lead">
+              <Text variant="lead">
                 Hex codes are notoriously hard to keep track of.
               </Text>
-              <Text mb={6} variant="lead">
+              <Text variant="lead">
                 We made it easier by developing a{" "}
                 <Link
                   href="https://colorgen.netlify.app/"
@@ -243,7 +246,7 @@ const Canon = ({ data }) => {
                 that would generate non-linear color palettes from Canon’s
                 existing colors.
               </Text>
-              <Text mb={6} variant="lead">
+              <Text variant="lead">
                 The goal with this was to standardize picking colors with
                 certain parameters that Canon would own.
               </Text>
@@ -256,22 +259,20 @@ const Canon = ({ data }) => {
               alignItems: "center",
             }}
           >
-            <Box sx={{ gridColumn: ["span 12", "6/span 4"] }}>
+            <Box sx={{ gridColumn: ["2/span 8", "6/span 4"] }}>
               {vectors.designSystem}
             </Box>
             <Box
               sx={{
-                gridColumn: ["span 12", "2/span 3"],
+                gridColumn: ["2/span 8", "2/span 3"],
               }}
             >
-              <Text variant="heading" mb={8}>
-                Atoms
-              </Text>
-              <Text mb={6} variant="lead">
+              <Text variant="heading">Atoms</Text>
+              <Text variant="lead">
                 With the foundations in place, we implemented the same modular
                 way of thinking throughout the whole system.
               </Text>
-              <Text mb={6} variant="lead">
+              <Text variant="lead">
                 They were dubbed Atoms, and they became the building blocks of
                 Canons design system.
               </Text>
@@ -294,7 +295,7 @@ const Canon = ({ data }) => {
             </Box>
             <Box
               sx={{
-                gridColumn: ["span 12", "2/span 3"],
+                gridColumn: ["2/span 8", "2/span 3"],
                 gridRow: "span 1",
               }}
             >
@@ -306,7 +307,7 @@ const Canon = ({ data }) => {
             </Box>
             <Box
               sx={{
-                gridColumn: ["span 12", "7 / span 3"],
+                gridColumn: ["2/span 8", "7 / span 3"],
                 gridRow: "span 1",
               }}
             >
@@ -353,72 +354,37 @@ const Canon = ({ data }) => {
     Homepage: () => {
       return (
         <React.Fragment>
-          <Box my={11}>
-            <GridParent>
-              <Text
-                variant="heading"
-                sx={{
-                  marginTop: 0,
-                  marginBottom: [0],
-                  gridColumn: ["span 8", "2 / span 2"],
-                  gridRow: "span 1",
-                }}
-              >
-                Web design
-              </Text>
-              <Text
-                variant="lead"
-                sx={{
-                  marginBottom: 10,
-                  gridColumn: ["1 / span 8", "4 / span 5", "6 / span 4"],
-                  gridRow: "span 1",
-                }}
-              >
-                We put our design system to the test by creating a few concept
-                designs to present to Canon. What you see below is my rendition
-                of it. We had other designers in our team create their own
-                visions.
-              </Text>
-
-              <div sx={{ marginBottom: 5, gridColumn: "2 / span 8" }}>
-                <Img plate imageData={images.homepage1} />
-              </div>
-            </GridParent>
-          </Box>
+          <TypographyBlock>
+            <Text variant="heading">Web design</Text>
+            <Text variant="lead">
+              We put our design system to the test by creating a few concept
+              designs to present to Canon. What you see below is my rendition of
+              it. We had other designers in our team create their own visions.
+            </Text>
+          </TypographyBlock>
+          <GridParent>
+            <div sx={{ marginBottom: 5, gridColumn: "2 / span 8" }}>
+              <Img plate imageData={images.homepage1} />
+            </div>
+          </GridParent>
           <Box
             sx={{
               marginBottom: [5, 6, 7],
             }}
           >
             <GridParent>
-              <Text
-                variant="heading"
-                sx={{
-                  marginTop: 0,
-                  marginBottom: [0],
-                  gridColumn: ["span 8", "2 / span 2"],
-                  gridRow: "span 1",
-                }}
-              >
-                Homepage Layout Two
-              </Text>
-              <Text
-                variant="lead"
-                sx={{
-                  marginBottom: 10,
-                  gridColumn: ["1 / span 8", "4 / span 5", "6 / span 4"],
-                  gridRow: "span 1",
-                }}
-              >
-                We wanted to set the expectations that design systems don’t
-                equal rigid or boring layouts. More so explaining how
-                consistency between Canon’s digital products can increase brand
-                trust.
-              </Text>
-
-              <div sx={{ marginBottom: 5, gridColumn: "2 / span 8" }}>
+              <TypographyBlock>
+                <Text variant="heading">Alternative Layout</Text>
+                <Text variant="lead">
+                  We wanted to set the expectations that design systems don’t
+                  equal rigid or boring layouts. More so explaining how
+                  consistency between Canon’s digital products can increase
+                  brand trust.
+                </Text>
+              </TypographyBlock>
+              <Box sx={{ marginBottom: 5, gridColumn: "2 / span 8" }}>
                 <Img plate imageData={images.homepage2} />
-              </div>
+              </Box>
             </GridParent>
           </Box>
         </React.Fragment>
@@ -427,27 +393,22 @@ const Canon = ({ data }) => {
     Deduction: () => {
       return (
         <>
-          <GridParent pt={11}>
-            <Box sx={{ mr: [0, 7], gridColumn: ["2 / span 8", "2/span 4"] }}>
-              <Text variant="heading">Closing thoughts</Text>
-              <Text variant="lead" sx={{ maxWidth: 600 }}>
-                It’s time-consuming to incorporate a design system into a vast
-                organization like Canon. And as contract consultants; we lacked
-                time. This is why we opted to present a vision rather than a
-                fully fledged deliverable.
-              </Text>
-            </Box>
-            <Box sx={{ ml: [0, 7], gridColumn: ["2/ span 8", "6/span 4"] }}>
-              <Text variant="heading">​</Text>
+          <TypographyBlock mt={10}>
+            <Text variant="heading">Closing thoughts</Text>
+            <Text variant="lead">
+              It’s time-consuming to incorporate a design system into a vast
+              organization like Canon. And as contract consultants; we lacked
+              time. This is why we opted to present a vision rather than a fully
+              fledged deliverable.
+            </Text>
+            <Text variant="lead">
+              The mock design system became a core persuasion point when
+              presenting the final designs to Canon. And hopefully a learning
+              experience on how to take their first steps towards a more
+              consistent digital brand.
+            </Text>
+          </TypographyBlock>
 
-              <Text variant="lead" sx={{ maxWidth: 600 }}>
-                The mock design system became a core persuasion point when
-                presenting the final designs to Canon. And hopefully a learning
-                experience on how to take their first steps towards a more
-                consistent digital brand.
-              </Text>
-            </Box>
-          </GridParent>
           {/* <GridParent>
             <Text
               sx={{

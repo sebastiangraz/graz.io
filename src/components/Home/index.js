@@ -305,7 +305,7 @@ export const Home = ({ data }) => {
         <div
           sx={{
             maxWidth: ["100%", "initial", null],
-            width: [410, null, 440, 420],
+            width: [410, null, 380, 420],
           }}
         >
           <Text
@@ -319,8 +319,14 @@ export const Home = ({ data }) => {
             >
               Sebastian Graz,
             </Text>{" "}
-            an independent design studio striving to collaborate designs that
-            are coherent, memorable & beautiful.
+            <span sx={{ display: ["none", "none", "inline", "none"] }}>
+              an independent design studio creating designs that are coherent,
+              memorable & beautiful.
+            </span>
+            <span sx={{ display: ["inline", "inline", "none", "inline"] }}>
+              an independent design studio striving to collaborate designs that
+              are coherent, memorable & beautiful.
+            </span>
           </Text>
         </div>
       </div>

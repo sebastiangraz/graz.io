@@ -36,7 +36,7 @@ const debugStyle = {
 const caseParent = {
   top: [0, `100vh`],
   width: "100%",
-  mt: [-7, 0],
+  mt: [0, 0],
   maxWidth: "2400px",
   position: ["relative", "fixed"],
   pointerEvents: "none",
@@ -64,15 +64,21 @@ const media_query = "screen and (min-width:640px)";
 function ScrollToTopOnMount(props) {
   const { position, height, stagger, datavar, index } = props;
   React.useEffect(() => {
+    // wait for fonts to load
     document.fonts.ready.then(function () {
+      // find the current hash in url
       if (window.location.hash === `#${datavar}`) {
-        window.scrollTo(
-          0,
-          position -
-            height -
-            (index !== 1 && settings.nextScrollDistance) +
-            stagger
-        );
+        // desktop
+        window.matchMedia(media_query).matches
+          ? window.scrollTo(
+              0,
+              position -
+                height -
+                (index !== 1 && settings.nextScrollDistance) +
+                stagger
+            )
+          : // mobile doesnt need to calc stagger and nextScroll
+            window.scrollTo(0, position - height);
       }
     });
   }, [datavar, height, index, position, stagger]);
@@ -166,13 +172,16 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
     } else {
       window.history.replaceState(null, null, " ");
     }
-    window.scrollTo(
-      0,
-      position(0) -
-        height(0) -
-        (index !== 1 && settings.nextScrollDistance) +
-        staggeredOffset
-    );
+    window.matchMedia(media_query).matches
+      ? window.scrollTo(
+          0,
+          position(0) -
+            height(0) -
+            (index !== 1 && settings.nextScrollDistance) +
+            staggeredOffset
+        )
+      : // mobile doesnt need to calc stagger and nextScroll
+        window.scrollTo(0, position(0) - height(0));
   };
   // -----CLICK TO SCROLLTO CASE-----
 
@@ -305,15 +314,14 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
           </div>
         </m.div>
       )}
-      {!window.matchMedia(media_query).matches ? null : (
-        <ScrollToTopOnMount
-          position={position(0)}
-          height={height(0)}
-          stagger={staggeredOffset}
-          datavar={data.slug}
-          index={index}
-        />
-      )}
+
+      <ScrollToTopOnMount
+        position={position(0)}
+        height={height(0)}
+        stagger={staggeredOffset}
+        datavar={data.slug}
+        index={index}
+      />
     </>
   );
 });

@@ -22,7 +22,6 @@ export const TypographyBlock = ({ children, ...rest }) => {
         }}
       >
         {React.Children.map(children || null, (child, i) => {
-          console.log(i);
           return (
             <Box
               sx={{

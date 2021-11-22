@@ -79,7 +79,7 @@ const Canon = ({ data }) => {
                 </Text>
 
                 <NumberedList
-                  sx={{ mr: [0, null, 9, 5], mt: [8, 0], mb: 0 }}
+                  sx={{ mt: [8, 0], mb: 0 }}
                   bgColor={data?.color}
                   labelColor={data?.bg}
                   labels={[

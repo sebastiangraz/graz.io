@@ -9,23 +9,23 @@ export const videos = {
 };
 
 export const images = {
-  slider1: {
-    url: require("./assets/slider-1.png"),
-    width: 1600,
-    height: 1600,
-    alt: "slider image",
+  canon1: {
+    url: require("./assets/canon-1.png"),
+    width: 2266,
+    height: 2748,
+    alt: "canon",
   },
-  slider2: {
-    url: require("./assets/slider-2.png"),
-    width: 1600,
-    height: 1600,
-    alt: "slider image",
+  canon2: {
+    url: require("./assets/canon-2.png"),
+    width: 2266,
+    height: 2787,
+    alt: "canon",
   },
-  slider3: {
-    url: require("./assets/slider-3.png"),
-    width: 1600,
-    height: 1600,
-    alt: "slider image",
+  canon3: {
+    url: require("./assets/canon-3.png"),
+    width: 2266,
+    height: 3912,
+    alt: "canon",
   },
   layout: {
     url: require("./assets/layout.jpg"),

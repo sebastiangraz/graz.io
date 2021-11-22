@@ -50,6 +50,7 @@ export const ScrollToTop = () => {
         zIndex: 11,
         width: "100%",
         height: "200px",
+        mixBlendMode: ["difference", null, "unset"],
         gridTemplateColumns: [
           "repeat(10, 1fr)",
           "repeat(10, 1fr)",
@@ -65,7 +66,7 @@ export const ScrollToTop = () => {
           pointerEvents: show ? "all" : "none",
           gridColumn: ["1 / span 1", "1 / span 1"],
           transition: "all 0.9s ease",
-          color: cases.get("home").color,
+          color: ["#fff", null, cases.get("home").color],
           position: "absolute",
           left: ["8px", "calc(50% - 24px)"],
           bottom: "calc(2.5vw)",

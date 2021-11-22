@@ -32,14 +32,30 @@ const Canon = ({ data }) => {
     Define: () => {
       return (
         <div sx={{ position: "relative" }}>
-          <GridParent sx={{ marginBottom: [6, 7, 8] }}>
+          <GridParent>
+            <Box
+              mb={10}
+              sx={{
+                gridRow: ["1/span 1", "1/span 1"],
+                gridColumn: ["2 / span 8", "2/span 8"],
+              }}
+            >
+              <Text variant="heading" sx={{ maxWidth: 840 }}>
+                Canon wanted us to help them improve the UI & UX of their Canon
+                Store Website. We identified low-level improvements related to
+                how agencies & Canon worked together. As a result; we presented
+                Canon with a proof-of-concept design system.
+              </Text>
+            </Box>
+          </GridParent>
+          <GridParent mb={[6, 7, 8]}>
             <div
               sx={{
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
                 gridColumn: ["2/span 8", "2/ span 3"],
-                gridRow: "span 3",
+                gridRow: ["span 3", null, null, "span 1"],
               }}
             >
               <div>
@@ -50,7 +66,7 @@ const Canon = ({ data }) => {
                   Problem Statement
                 </Text>
                 <Box sx={{ maxWidth: 340 }}>
-                  <Text mb={2} variant="lead">
+                  <Text mb={10} variant="lead">
                     Digital presence inconsistent across their brand. Potential
                     loss of revenue due to users not finding the site
                     trustworthy.
@@ -58,15 +74,12 @@ const Canon = ({ data }) => {
                 </Box>
               </div>
               <div>
-                <Box mb={8} sx={{ color: "accent" }}>
-                  {vectors.fourChallenges}
-                </Box>
                 <Text mb={6} variant="caps">
                   4 Challenges
                 </Text>
 
                 <NumberedList
-                  sx={{ mr: [0, null, 9, 5], mt: [10, 0], mb: 0 }}
+                  sx={{ mr: [0, null, 9, 5], mt: [8, 0], mb: 0 }}
                   bgColor={data?.color}
                   labelColor={data?.bg}
                   labels={[
@@ -80,26 +93,33 @@ const Canon = ({ data }) => {
             </div>
             <div
               sx={{
-                borderRadius: radius().left,
+                mt: [9, 0],
+                mb: [9, 0],
+                borderRadius: ["6vmin", "4vmin 0 0 4vmin"],
                 overflow: "hidden",
                 right: 0,
-                gridColumn: ["6/span 5"],
+                gridRow: ["1/span 1"],
+                gridColumn: ["2/span 8", "6/span 5"],
               }}
             >
-              <Video videoData={videos.intro} />
+              <Video
+                sx={{ video: { objectPosition: "left" } }}
+                fit
+                videoData={videos.intro}
+              />
             </div>
           </GridParent>
           <GridParent py={[10, 11]}>
             <div
               sx={{
-                marginBottom: [5, 0],
+                marginBottom: [10, 0],
                 marginRight: 5,
                 gridColumn: ["2/span 12", "2 / span 3"],
               }}
             >
               <span sx={{ color: "accent" }}> {vectors.desiredOutcomes}</span>
 
-              <Text sx={{ marginBottom: 8, marginTop: 8 }} variant="caps">
+              <Text sx={{ marginBottom: 8, marginTop: [8] }} variant="caps">
                 Desired outcomes
               </Text>
               <Box sx={{ maxWidth: 300 }}>
@@ -122,7 +142,7 @@ const Canon = ({ data }) => {
               sx={{ marginRight: 5, gridColumn: ["2/span 12", "7 / span 3"] }}
             >
               <span sx={{ color: "accent" }}>{vectors.whatWasDone}</span>
-              <Text sx={{ marginBottom: 8, marginTop: 8 }} variant="caps">
+              <Text sx={{ marginBottom: 8, marginTop: [8] }} variant="caps">
                 What was done
               </Text>
               <Box sx={{ maxWidth: 300 }}>
@@ -149,12 +169,13 @@ const Canon = ({ data }) => {
         <React.Fragment>
           <GridParent
             sx={{
-              py: 11,
+              py: [10, 11],
               alignItems: "center",
             }}
           >
             <Box
               sx={{
+                marginBottom: [6, 0],
                 gridColumn: ["2/span 8", "6 / span 4"],
               }}
             >
@@ -165,9 +186,7 @@ const Canon = ({ data }) => {
                 gridColumn: ["2/span 8", "2 /span 3"],
               }}
             >
-              <Text variant="heading" mb={8}>
-                Space
-              </Text>
+              <Text variant="heading">Space</Text>
               <Text sx={{ maxWidth: 440 }} variant="lead">
                 The first things we tackled was how designers and developers
                 looked at space.
@@ -183,10 +202,10 @@ const Canon = ({ data }) => {
             </Box>
           </GridParent>
 
-          <GridParent sx={{ py: 11, alignItems: "center" }}>
+          <GridParent sx={{ py: [10, 11], alignItems: "center" }}>
             <Box
               sx={{
-                marginBottom: [3, 0],
+                marginBottom: [6, 0],
                 gridColumn: ["2/span 8", "2 / span 4"],
               }}
             >
@@ -197,9 +216,7 @@ const Canon = ({ data }) => {
                 gridColumn: ["2/span 8", "7 / span 3"],
               }}
             >
-              <Text variant="heading" mb={8}>
-                Typography
-              </Text>
+              <Text variant="heading">Typography</Text>
               <Text variant="lead">
                 Closely related to spacing is typographical hierarchy.
               </Text>
@@ -214,10 +231,10 @@ const Canon = ({ data }) => {
             </Box>
           </GridParent>
 
-          <GridParent sx={{ py: 11, alignItems: "center" }}>
+          <GridParent sx={{ py: [10, 11], alignItems: "center" }}>
             <Box
               sx={{
-                marginBottom: [3, 0],
+                marginBottom: [6, 0],
                 gridColumn: ["2/span 8", "6 / span 4"],
               }}
             >
@@ -228,9 +245,7 @@ const Canon = ({ data }) => {
                 gridColumn: ["2/span 8", "2/ span 3"],
               }}
             >
-              <Text variant="heading" mb={8}>
-                Color
-              </Text>
+              <Text variant="heading">Color</Text>
               <Text variant="lead">
                 Hex codes are notoriously hard to keep track of.
               </Text>
@@ -255,11 +270,16 @@ const Canon = ({ data }) => {
 
           <GridParent
             sx={{
-              py: 11,
+              py: [10, 11],
               alignItems: "center",
             }}
           >
-            <Box sx={{ gridColumn: ["2/span 8", "6/span 4"] }}>
+            <Box
+              sx={{
+                marginBottom: [6, 0],
+                gridColumn: ["2/span 8", "6/span 4"],
+              }}
+            >
               {vectors.designSystem}
             </Box>
             <Box
@@ -280,7 +300,7 @@ const Canon = ({ data }) => {
           </GridParent>
           <GridParent
             sx={{
-              py: 11,
+              py: [10, 11],
             }}
           >
             <Box
@@ -299,7 +319,7 @@ const Canon = ({ data }) => {
                 gridRow: "span 1",
               }}
             >
-              <Text mt={8} mb={[1, 2]}>
+              <Text mt={[6, 8]} mb={[1, 2]}>
                 We took inspiration from immutable CSS frameworks such as
                 Tachyons, Tailwind etc. To build up an extensive collection of
                 CSS classes that would be the base of the design system.
@@ -322,35 +342,6 @@ const Canon = ({ data }) => {
       );
     },
 
-    System: () => {
-      return (
-        <React.Fragment>
-          {/* <Slideshow>
-        <Img
-          sx={{ backgroundColor: "accent" }}
-          imageData={images.layout}
-        ></Img>
-        <Img
-          sx={{ backgroundColor: "accent" }}
-          imageData={images.width}
-        ></Img>
-        <Img
-          sx={{ backgroundColor: "accent" }}
-          imageData={images.motion}
-        ></Img>
-        <Img
-          sx={{ backgroundColor: "accent" }}
-          imageData={images.accordions}
-        ></Img>
-        <Img
-          sx={{ backgroundColor: "accent" }}
-          imageData={images.producttiles}
-        ></Img>
-      </Slideshow> */}
-        </React.Fragment>
-      );
-    },
-
     Homepage: () => {
       return (
         <React.Fragment>
@@ -363,8 +354,23 @@ const Canon = ({ data }) => {
             </Text>
           </TypographyBlock>
           <GridParent>
-            <div sx={{ marginBottom: 5, gridColumn: "2 / span 8" }}>
-              <Img plate imageData={images.homepage1} />
+            <div
+              sx={{
+                overflow: "hidden",
+                gridRow: ["span 4", "span 4"],
+                gridColumn: ["3/span 8", "3/span 8"],
+              }}
+            >
+              <Img imageData={images.canon1} />
+            </div>
+            <div
+              sx={{
+                overflow: "hidden",
+                gridRow: ["span 4", "span 4"],
+                gridColumn: ["1/span 8", "1/span 8"],
+              }}
+            >
+              <Img imageData={images.canon2} />
             </div>
           </GridParent>
           <Box
@@ -373,7 +379,7 @@ const Canon = ({ data }) => {
             }}
           >
             <GridParent>
-              <TypographyBlock>
+              <TypographyBlock mt={[10, 11]}>
                 <Text variant="heading">Alternative Layout</Text>
                 <Text variant="lead">
                   We wanted to set the expectations that design systems don’t
@@ -382,9 +388,18 @@ const Canon = ({ data }) => {
                   brand trust.
                 </Text>
               </TypographyBlock>
-              <Box sx={{ marginBottom: 5, gridColumn: "2 / span 8" }}>
-                <Img plate imageData={images.homepage2} />
-              </Box>
+              <div
+                sx={{
+                  overflow: "hidden",
+                  gridRow: ["span 4", "span 4"],
+                  gridColumn: ["1/span 10", "1/span 10"],
+                  img: {
+                    transform: "scale(1.05)",
+                  },
+                }}
+              >
+                <Img imageData={images.canon3} />
+              </div>
             </GridParent>
           </Box>
         </React.Fragment>

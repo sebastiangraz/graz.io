@@ -11,7 +11,7 @@ export const TypographyBlock = ({ children, ...rest }) => {
       <Box
         sx={{
           justifyContent: "space-between",
-          display: "grid",
+          display: ["block", "grid"],
           gridTemplateColumns: "repeat(8, 1fr)",
           gridAutoFlow: "column",
           gridTemplateRows: "auto auto",

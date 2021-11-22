@@ -17,11 +17,9 @@ const Loupe = ({ data }) => {
     Define: () => {
       return (
         <GridParent py={[9, 10]}>
-          <Flex
+          <Box
             mb={10}
             sx={{
-              placeSelf: "center",
-              width: "100%",
               gridRow: ["span 1", "span 1"],
               gridColumn: ["2 / span 8", "2/span 8"],
             }}
@@ -32,7 +30,7 @@ const Loupe = ({ data }) => {
               cancelled due to COVID-19. Below you’ll find the progress of that
               work.
             </Text>
-          </Flex>
+          </Box>
 
           <div
             sx={{

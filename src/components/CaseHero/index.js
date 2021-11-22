@@ -58,27 +58,11 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
           >
             <text dominantBaseline="hanging">
               {/* hack: using zero-width space to render the correct font */}
-              {loaded ? name : "​"}
+              {loaded ? props.index + " " : "​"}
             </text>
           </g>
         </mask>
       </defs>
-
-      <g
-        fill="var(--caseColor)"
-        sx={{
-          display: ["block", null, "none"],
-          transform: [
-            `translate(min(172px, calc(12vw - 5px) ), min(100px, 12vw))`,
-            `translate(min(172px, calc(8vw - 5px) ), min(100px, 6vw))`,
-          ],
-        }}
-      >
-        <text dominantBaseline="hanging">
-          {/* hack: using zero-width space to render the correct font */}
-          {loaded ? name : "​"}
-        </text>
-      </g>
 
       <rect
         fillRule="evenodd"
@@ -87,6 +71,19 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
         height="100%"
         fill="currentColor"
       ></rect>
+      <g
+        sx={{
+          transform: [
+            `translate(min(172px, calc(12vw - 5px) ), min(100px, 12vw))`,
+            `translate(min(172px, calc(8vw - 5px) ), min(100px, 6vw))`,
+          ],
+        }}
+      >
+        <text fill="var(--caseColor)" dominantBaseline="hanging">
+          <tspan visibility="hidden">{props.index + " "}</tspan>
+          {loaded ? name : "​"}
+        </text>
+      </g>
     </svg>
   );
 }, ignoreUpdatedProps);

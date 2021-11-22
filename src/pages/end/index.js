@@ -6,18 +6,27 @@ import { handleClick } from "../../components/ScrollToTop";
 
 import resume from "../../files/cv-sebastiangraz.pdf";
 
-const End = () => {
+const End = ({ data }) => {
   const Sections = {
     Define: () => {
       return (
         <TypographyBlock m={0}>
-          <Text
-            variant="heading"
+          <Box
             mb={[8, 0]}
-            sx={{ color: ["#000", "inherit"], maxWidth: [200, 200, 300] }}
+            sx={{ color: ["#000", "inherit"], maxWidth: [172, 172, 300] }}
           >
-            This is the end. Not a whole lot you can do here.
-          </Text>
+            <Text sx={{ display: "inline" }} variant="lead">
+              <Text
+                variant="caps"
+                sx={{
+                  display: "inline",
+                }}
+              >
+                This is the end.{" "}
+              </Text>
+              Not a whole lot you can do down here.
+            </Text>
+          </Box>
           <Box>
             <Text sx={{ color: ["#000", "inherit"] }} variant="caps" mb={6}>
               You can nevertheless
@@ -26,7 +35,8 @@ const End = () => {
               sx={{ m: 0, color: ["#000", "inherit"] }}
               horizontal
               small
-              labelColor={["#fff", "inherit"]}
+              bgColor={["#000", data?.color]}
+              labelColor={["#fff", "#000"]}
             >
               <>
                 Send me an <EmailLink string="hi@graz.io">email</EmailLink>

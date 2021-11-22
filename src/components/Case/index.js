@@ -259,7 +259,8 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
             }}
           >
             <m.div
-              onClick={handleClick}
+              // last item not clickable
+              onClick={index !== childPosition.length - 1 ? handleClick : null}
               style={{
                 ...yNextStyle,
                 height: 300,

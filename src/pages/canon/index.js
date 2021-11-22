@@ -12,20 +12,20 @@ import {
 } from "../../components";
 import { videos, images, vectors } from "./assets";
 
-const radius = (small) => {
-  const radiusLarge = {
-    default: ["6vmin", "4vmin"],
-    right: ["0 6vmin 6vmin 0", "0 4vmin 4vmin 0"],
-    left: ["6vmin 0 0 6vmin", "4vmin 0 0 4vmin"],
-  };
-  const radiusSmall = {
-    default: "2vmin",
-    right: "0 2vmin 2vmin 0",
-    left: "2vmin 0 0 2vmin",
-  };
+// const radius = (small) => {
+//   const radiusLarge = {
+//     default: ["6vmin", "4vmin"],
+//     right: ["0 6vmin 6vmin 0", "0 4vmin 4vmin 0"],
+//     left: ["6vmin 0 0 6vmin", "4vmin 0 0 4vmin"],
+//   };
+//   const radiusSmall = {
+//     default: "2vmin",
+//     right: "0 2vmin 2vmin 0",
+//     left: "2vmin 0 0 2vmin",
+//   };
 
-  return small ? radiusSmall : radiusLarge;
-};
+//   return small ? radiusSmall : radiusLarge;
+// };
 
 const Canon = ({ data }) => {
   const Sections = {

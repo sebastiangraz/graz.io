@@ -11,18 +11,21 @@ export const videos = {
 export const images = {
   canon1: {
     url: require("./assets/canon-1.png"),
+    webP: require("./assets/canon-1.webp"),
     width: 2266,
     height: 2748,
     alt: "canon",
   },
   canon2: {
     url: require("./assets/canon-2.png"),
+    webP: require("./assets/canon-2.webp"),
     width: 2266,
     height: 2787,
     alt: "canon",
   },
   canon3: {
     url: require("./assets/canon-3.png"),
+    webP: require("./assets/canon-3.webp"),
     width: 2266,
     height: 3912,
     alt: "canon",

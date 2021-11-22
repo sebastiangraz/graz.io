@@ -47,7 +47,7 @@ export default {
     heading: 1.1,
   },
   letterSpacings: {
-    body: "-0.01em",
+    body: "-0.012em",
     lead: ["-0.033em"],
     heading: "-0.11em",
     caps: "0.0025em",

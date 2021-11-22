@@ -17,7 +17,23 @@ export const ScrollToTop = () => {
   }, [scrollY]);
 
   const handleClick = () => {
+    [...document.querySelectorAll(".caseContent")].map((e) => {
+      return Object.assign(e.style, {
+        transition: "none",
+        opacity: 0,
+      });
+    });
+
     window.scrollTo(0, 0);
+    window.history.replaceState(null, null, " ");
+    setTimeout(() => {
+      [...document.querySelectorAll(".caseContent")].map((e) => {
+        return Object.assign(e.style, {
+          transition: "opacity 0.1s linear",
+          opacity: 1,
+        });
+      });
+    }, 1000);
   };
 
   return (
@@ -34,6 +50,7 @@ export const ScrollToTop = () => {
         zIndex: 11,
         width: "100%",
         height: "200px",
+        mixBlendMode: ["difference", null, "unset"],
         gridTemplateColumns: [
           "repeat(10, 1fr)",
           "repeat(10, 1fr)",
@@ -49,7 +66,7 @@ export const ScrollToTop = () => {
           pointerEvents: show ? "all" : "none",
           gridColumn: ["1 / span 1", "1 / span 1"],
           transition: "all 0.9s ease",
-          color: cases.get("home").color,
+          color: ["#fff", null, cases.get("home").color],
           position: "absolute",
           left: ["8px", "calc(50% - 24px)"],
           bottom: "calc(2.5vw)",

@@ -3,29 +3,29 @@ import * as React from "react";
 export const videos = {
   intro: {
     url: require("./assets/intro.mp4"),
-    width: 776,
-    height: 1080,
+    width: 720,
+    height: 1001,
   },
 };
 
 export const images = {
-  slider1: {
-    url: require("./assets/slider-1.png"),
-    width: 1600,
-    height: 1600,
-    alt: "slider image",
+  canon1: {
+    url: require("./assets/canon-1.png"),
+    width: 2266,
+    height: 2748,
+    alt: "canon",
   },
-  slider2: {
-    url: require("./assets/slider-2.png"),
-    width: 1600,
-    height: 1600,
-    alt: "slider image",
+  canon2: {
+    url: require("./assets/canon-2.png"),
+    width: 2266,
+    height: 2787,
+    alt: "canon",
   },
-  slider3: {
-    url: require("./assets/slider-3.png"),
-    width: 1600,
-    height: 1600,
-    alt: "slider image",
+  canon3: {
+    url: require("./assets/canon-3.png"),
+    width: 2266,
+    height: 3912,
+    alt: "canon",
   },
   layout: {
     url: require("./assets/layout.jpg"),
@@ -78,7 +78,7 @@ export const images = {
   },
 };
 
-export const icons = {
+export const vectors = {
   desiredOutcomes: (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -1479,12 +1479,12 @@ export const icons = {
         width={173}
         height={46}
         rx={10}
-        fill="#c00"
+        fill="currentColor"
         transform="translate(862 156)"
       />
       <path
         d="M918.236 186h7.664c2.368 0 3.936-1.184 3.936-3.2 0-1.408-.88-2.4-2.08-2.784.8-.32 1.712-1.056 1.712-2.48 0-1.952-1.392-3.024-3.856-3.024h-7.376V186zm1.968-6.736v-3.024h5.216c1.312 0 2.112.496 2.112 1.504s-.8 1.52-2.112 1.52h-5.216zm0 1.728h5.584c1.296 0 2.08.672 2.08 1.632 0 .976-.784 1.648-2.08 1.648h-5.584v-3.28zm19.616-3.392h-1.92v4.288c0 1.552-.864 2.544-2.48 2.544-1.536 0-2.272-.88-2.272-2.368V177.6h-1.92v4.672c0 2.352 1.36 3.904 3.648 3.904 1.44 0 2.432-.576 3.024-1.264V186h1.92v-8.4zm3.231 5.52c0 2.256 1.616 2.976 3.408 2.976.848 0 1.872-.208 2.496-.448l-.32-1.632c-.56.176-1.136.352-1.84.352-1.264 0-1.856-.336-1.856-1.424v-3.712h3.696V177.6h-3.696v-2.464h-1.888v2.464h-2.112v1.632h2.112v3.888zm8.481 0c0 2.256 1.616 2.976 3.408 2.976.848 0 1.872-.208 2.496-.448l-.32-1.632c-.56.176-1.136.352-1.84.352-1.264 0-1.856-.336-1.856-1.424v-3.712h3.696V177.6h-3.696v-2.464h-1.888v2.464h-2.112v1.632h2.112v3.888zm11.445-5.68c-2.672 0-4.8 1.76-4.8 4.368 0 2.608 2.128 4.368 4.8 4.368 2.656 0 4.784-1.76 4.784-4.368 0-2.608-2.128-4.368-4.784-4.368zm0 7.088c-1.648 0-2.96-1.008-2.96-2.72 0-1.712 1.312-2.72 2.96-2.72 1.632 0 2.944 1.008 2.944 2.72 0 1.712-1.312 2.72-2.944 2.72zm6.334 1.472h1.92v-4.224c0-1.552.88-2.576 2.512-2.576 1.552 0 2.32 1.056 2.32 2.544V186h1.92v-4.576c0-2.352-1.312-3.984-3.648-3.984-1.456 0-2.512.576-3.104 1.264V177.6h-1.92v8.4z"
-        fill="white"
+        fill={"#171717"}
       />
       <circle fill="currentColor" transform="translate(26 27)" r={6} />
       <path

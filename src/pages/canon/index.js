@@ -1,527 +1,488 @@
 /** @jsxImportSource theme-ui */
+import * as React from "react";
+import { Text, Box, Link } from "theme-ui";
+import {
+  Video,
+  Img,
+  GridParent,
+  CaseMeta,
+  List,
+  NumberedList,
+  TypographyBlock,
+} from "../../components";
+import { videos, images, vectors } from "./assets";
 
-import React from "react";
-import { Box, Text, Heading } from "theme-ui";
-import { GridParent, Video, Img, List } from "../../components";
-import { images, videos, icons } from "./assets";
+// const radius = (small) => {
+//   const radiusLarge = {
+//     default: ["6vmin", "4vmin"],
+//     right: ["0 6vmin 6vmin 0", "0 4vmin 4vmin 0"],
+//     left: ["6vmin 0 0 6vmin", "4vmin 0 0 4vmin"],
+//   };
+//   const radiusSmall = {
+//     default: "2vmin",
+//     right: "0 2vmin 2vmin 0",
+//     left: "2vmin 0 0 2vmin",
+//   };
 
-const Sections = {
-  Define: () => {
-    return (
-      <div sx={{ position: "relative" }}>
-        <GridParent sx={{ marginBottom: [6, 7, 8] }}>
-          <div
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              gridColumn: ["span 8", "span 3"],
-              gridRow: "span 1",
-            }}
-          >
-            <div sx={{ marginBottom: [5] }}>
-              <Box mb={4} sx={{ width: 142, color: "accent" }}>
-                {icons.problemStatement}
-              </Box>
-              <Text variant="caps" mb={4}>
-                Problem Statement
+//   return small ? radiusSmall : radiusLarge;
+// };
+
+const Canon = ({ data }) => {
+  const Sections = {
+    Define: () => {
+      return (
+        <div sx={{ position: "relative" }}>
+          <GridParent>
+            <Box
+              mb={10}
+              sx={{
+                gridRow: ["1/span 1", "1/span 1"],
+                gridColumn: ["2 / span 8", "2/span 8"],
+              }}
+            >
+              <Text variant="heading" sx={{ maxWidth: 840 }}>
+                Canon wanted us to help them improve the UI & UX of their Canon
+                Store Website. We identified low-level improvements related to
+                how agencies & Canon worked together. As a result; we presented
+                Canon with a proof-of-concept design system.
               </Text>
-              <Box sx={{ maxWidth: 340 }}>
-                <Text mb={2}>
-                  <List>
+            </Box>
+          </GridParent>
+          <GridParent mb={[6, 7, 8]}>
+            <div
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                gridColumn: ["2/span 8", "2/ span 3"],
+                gridRow: ["span 3", null, null, "span 1"],
+              }}
+            >
+              <div>
+                <Box mb={8} sx={{ width: 142, color: "accent" }}>
+                  {vectors.problemStatement}
+                </Box>
+                <Text variant="caps" mb={6}>
+                  Problem Statement
+                </Text>
+                <Box sx={{ maxWidth: 340 }}>
+                  <Text mb={10} variant="lead">
                     Digital presence inconsistent across their brand. Potential
                     loss of revenue due to users not finding the site
                     trustworthy.
-                  </List>
+                  </Text>
+                </Box>
+              </div>
+              <div>
+                <Text mb={6} variant="caps">
+                  4 Challenges
                 </Text>
-              </Box>
+
+                <NumberedList
+                  sx={{ mt: [8, 0], mb: 0 }}
+                  bgColor={data?.color}
+                  labelColor={data?.bg}
+                  labels={[
+                    "Developers relying on static imagery instead of live components.",
+                    "Designers lack a point of reference during the design process.",
+                    "Isolated work effort between teams, handoff non-existent.",
+                    "Multiple contradicting brand styleguides and systems.",
+                  ]}
+                />
+              </div>
             </div>
-            <div>
-              <Box mb={4} sx={{ color: "accent" }}>
-                {icons.fourChallenges}
-              </Box>
-              <Text mb={4} variant="caps">
-                4 Challenges
+            <div
+              sx={{
+                mt: [9, 0],
+                mb: [9, 0],
+                borderRadius: ["6vmin", "4vmin 0 0 4vmin"],
+                overflow: "hidden",
+                right: 0,
+                gridRow: ["1/span 1"],
+                gridColumn: ["2/span 8", "6/span 5"],
+              }}
+            >
+              <Video
+                sx={{ video: { objectPosition: "left" } }}
+                fit
+                videoData={videos.intro}
+              />
+            </div>
+          </GridParent>
+          <GridParent py={[10, 11]}>
+            <div
+              sx={{
+                marginBottom: [10, 0],
+                marginRight: 5,
+                gridColumn: ["2/span 12", "2 / span 3"],
+              }}
+            >
+              <span sx={{ color: "accent" }}> {vectors.desiredOutcomes}</span>
+
+              <Text sx={{ marginBottom: 8, marginTop: [8] }} variant="caps">
+                Desired outcomes
               </Text>
-              <Box sx={{ maxWidth: 280 }}>
+              <Box sx={{ maxWidth: 300 }}>
                 <List>
                   <Text>
-                    Developers relying on static imagery instead of live
-                    components.
+                    Premium-feel design proposals, featuring revenue sensitive
+                    pages.
                   </Text>
                   <Text>
-                    Designers lack a point of reference during the design
-                    process.
+                    Develop a strategy for designers working within the brand.
                   </Text>
                   <Text>
-                    Isolated work effort between teams, handoff non-existent.
-                  </Text>
-                  <Text>
-                    Multiple contradicting brand styleguides and systems.
+                    Attempt to fix broken handoff process between the
+                    design&nbsp;→&nbsp;development phases.
                   </Text>
                 </List>
               </Box>
             </div>
-          </div>
-          <div
-            sx={{
-              position: ["relative", "absolute"],
-              right: 0,
-              width: ["100%", "50%"],
-              maxWidth: 800,
-              gridColumn: ["span 8"],
-              marginTop: [100, 120],
-              "&:before": {
-                content: `""`,
-                position: "absolute",
-                zIndex: -1,
-                bottom: 1,
-                right: [15, 0],
-                width: ["calc(100% - 30px)", "calc(100% - 60px)"],
-                height: ["calc(100% + 20px)", "calc(100% + 60px)"],
-                background: "#F17E7E",
-              },
-              "&:after": {
-                content: `""`,
-                position: "absolute",
-                bottom: 1,
-                right: [30, 0],
-                width: ["calc(100% - 60px)", "calc(100% - 120px)"],
-                height: ["calc(100% + 40px)", "calc(100% + 120px)"],
-                zIndex: -2,
-                background: "#a00",
-              },
-            }}
-          >
-            <Video videoData={videos.intro} />
-          </div>
-
-          <div
-            sx={{
-              gridColumn: ["4 / 5 span"],
-              gridRow: "span 1",
-              display: ["none", "flex"],
-              justifyContent: "flex-end",
-            }}
-          >
             <div
-              sx={{
-                height: 0,
-                width: "100%",
-                overflow: "hidden",
-                paddingTop: "calc((139 / 100) * 100%)",
-                position: "relative",
-              }}
+              sx={{ marginRight: 5, gridColumn: ["2/span 12", "7 / span 3"] }}
             >
-              <div
-                sx={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
-                }}
-              ></div>
+              <span sx={{ color: "accent" }}>{vectors.whatWasDone}</span>
+              <Text sx={{ marginBottom: 8, marginTop: [8] }} variant="caps">
+                What was done
+              </Text>
+              <Box sx={{ maxWidth: 300 }}>
+                <List>
+                  <Text>Proposal for fixing front-end inconsistencies.</Text>
+                  <Text>
+                    First pass at a design system to inspire and educate
+                    stakeholders.
+                  </Text>
+                  <Text>
+                    Developed design tools to help automate tasks, such as
+                    picking correct brand colors.
+                  </Text>
+                </List>
+              </Box>
             </div>
-          </div>
-        </GridParent>
-        <GridParent>
-          <div
-            sx={{
-              marginBottom: [5, 0],
-              marginRight: 5,
-              gridColumn: ["span 12", "1 / span 4"],
-            }}
-          >
-            {/* <span sx={{ color: "accent" }}> {icons.desiredOutcomes}</span> */}
+          </GridParent>
+        </div>
+      );
+    },
 
-            <Text sx={{ marginBottom: 4, marginTop: 4 }} variant="caps">
-              Desired outcomes
-            </Text>
-            <Box sx={{ maxWidth: 320 }}>
-              <List>
-                <Text>
-                  Premium-feel design proposals, featuring revenue sensitive
-                  pages.
-                </Text>
-                <Text>
-                  Develop a strategy for designers working within the brand.
-                </Text>
-                <Text>
-                  Attempt to fix broken handoff process between the
-                  design&nbsp;→&nbsp;development phases.
-                </Text>
-              </List>
-            </Box>
-          </div>
-          <div sx={{ marginRight: 5, gridColumn: ["span 12", "5 / span 4"] }}>
-            {/* <span sx={{ color: "accent" }}>{icons.whatWasDone}</span> */}
-            <Text sx={{ marginBottom: 4, marginTop: 4 }} variant="caps">
-              What was done
-            </Text>
-            <Box sx={{ maxWidth: 320 }}>
-              <List>
-                <Text>Proposal for fixing front-end inconsistencies.</Text>
-                <Text>
-                  First pass at a design system to inspire and educate
-                  stakeholders.
-                </Text>
-                <Text>
-                  Developed design tools to help automate tasks, such as picking
-                  correct brand colors.
-                </Text>
-              </List>
-            </Box>
-          </div>
-        </GridParent>
-      </div>
-    );
-  },
-
-  Design: () => {
-    return (
-      <React.Fragment>
-        <GridParent
-          sx={{
-            marginBottom: [5, 6, 7],
-            alignItems: "center",
-          }}
-        >
-          <div
+    Design: () => {
+      return (
+        <React.Fragment>
+          <GridParent
             sx={{
-              gridColumn: "span 8",
-              gridRow: "span 1",
+              py: [10, 11],
+              alignItems: "center",
             }}
           >
-            <Heading>Design</Heading>
-          </div>
-          <Box
-            sx={{ marginBottom: [3, 0], gridColumn: ["span 12", "5 / span 4"] }}
-          >
-            {icons.spaceScale}
-          </Box>
-          <Box
-            sx={{
-              gridColumn: ["span 12", "span 3"],
-            }}
-          >
-            <Text variant="caps" mb={3}>
-              Space
-            </Text>
-            <Text mb={2}>
-              The first things we tackled was how designers and developers
-              looked at space.
-            </Text>
-            <Text mb={2}>
-              Oftentimes margins and paddings between UI elements were guessed.{" "}
-            </Text>
-            <Text mb={2}>
-              Failing to standardize spacing leads to visual inconsistencies,
-              but also developers will have to work harder to line things up.
-            </Text>
-          </Box>
-        </GridParent>
-
-        <GridParent sx={{ marginBottom: [5, 6, 7], alignItems: "center" }}>
-          <Box
-            sx={{ marginBottom: [3, 0], gridColumn: ["span 12", "1 / span 4"] }}
-          >
-            {icons.typeScale}
-          </Box>
-          <Box
-            sx={{
-              gridColumn: ["span 12", "6 / span 3"],
-            }}
-          >
-            <Text variant="caps" mb={3}>
-              Typography Scale
-            </Text>
-            <Text mb={2}>
-              One thing that is closely related to spacing is typographical
-              hierarchy.
-            </Text>
-            <Text mb={2}>
-              Much like spacing, font sizes can be a big contributor to
-              inconsistency if left unchecked.
-            </Text>
-            <Text mb={2}>
-              We developed a type scale that would live alongside our spacing
-              system, that was also divisible by 4 & 2.
-            </Text>
-          </Box>
-        </GridParent>
-
-        <GridParent sx={{ marginBottom: [5, 6, 7], alignItems: "center" }}>
-          <Box
-            sx={{ marginBottom: [3, 0], gridColumn: ["span 12", "5 / span 4"] }}
-          >
-            {icons.colorGen}
-          </Box>
-          <Box
-            sx={{
-              gridColumn: ["12 span", "span 3"],
-            }}
-          >
-            <Text variant="caps" mb={3}>
-              Color
-            </Text>
-            <Text mb={2}>
-              It makes sense that color concludes the big 3 of inconsistencies.
-              Hex codes are notoriously hard to keep track of.
-            </Text>
-            <Text mb={2}>
-              We made it easier by developing a{" "}
-              <a
-                href="https://colorgen.netlify.app/"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                tool
-              </a>{" "}
-              that would generate non-linear color palettes from Canons existing
-              colors.
-            </Text>
-            <Text mb={2}>
-              The goal with this was to standardize picking colors with certain
-              parameters that Canon would own.
-            </Text>
-          </Box>
-        </GridParent>
-
-        <GridParent
-          sx={{
-            marginBottom: [5, 6, 7],
-            alignItems: "center",
-          }}
-        >
-          <Box sx={{ gridColumn: ["span 12", "5 / span 4"] }}>
-            {icons.designSystem}
-          </Box>
-          <Box
-            sx={{
-              gridColumn: ["span 12", "span 3"],
-            }}
-          >
-            <Text variant="caps" mb={3}>
-              Atoms
-            </Text>
-            <Text mb={2}>
-              With the foundations in place, we implemented the same modular way
-              of thinking throughout the whole system.
-            </Text>
-            <Text mb={2}>
-              They were dubbed Atoms, and they became the building blocks of
-              Canons design system.
-            </Text>
-          </Box>
-        </GridParent>
-        <GridParent
-          sx={{
-            marginBottom: [5, 6, 7],
-          }}
-        >
-          <Box
-            sx={{
-              gridColumn: "1 / span 8",
-              gridRow: "span 1",
-              marginBottom: 5,
-            }}
-          >
-            <Text variant="caps" mb={[3, 5]}>
-              Immutable = Consistent
-            </Text>
-            {icons.button}
-          </Box>
-          <Box
-            sx={{
-              gridColumn: ["span 12", "span 3"],
-              gridRow: "span 1",
-            }}
-          >
-            <Text mb={[1, 2]}>
-              We took inspiration from immutable CSS frameworks such as
-              Tachyons, Tailwind etc. To build up an extensive collection of CSS
-              classes that would be the base of the design system.
-            </Text>
-          </Box>
-          <Box
-            sx={{
-              gridColumn: ["span 12", "6 / span 3"],
-              gridRow: "span 1",
-            }}
-          >
-            <Text mb={2}>
-              We didn’t invent anything new by doing this, but it worked really
-              well to build a strong foundation for Canon. Starting with the
-              button, of course.
-            </Text>
-          </Box>
-        </GridParent>
-      </React.Fragment>
-    );
-  },
-
-  System: () => {
-    return (
-      <React.Fragment>
-        {/* <Slideshow>
-          <Img
-            sx={{ backgroundColor: "accent" }}
-            imageData={images.layout}
-          ></Img>
-          <Img
-            sx={{ backgroundColor: "accent" }}
-            imageData={images.width}
-          ></Img>
-          <Img
-            sx={{ backgroundColor: "accent" }}
-            imageData={images.motion}
-          ></Img>
-          <Img
-            sx={{ backgroundColor: "accent" }}
-            imageData={images.accordions}
-          ></Img>
-          <Img
-            sx={{ backgroundColor: "accent" }}
-            imageData={images.producttiles}
-          ></Img>
-        </Slideshow> */}
-      </React.Fragment>
-    );
-  },
-
-  Homepage: () => {
-    return (
-      <React.Fragment>
-        <Box
-          sx={{
-            marginBottom: [5, 6, 7],
-          }}
-        >
-          <GridParent>
-            <Text
-              variant="caps"
+            <Box
               sx={{
-                marginTop: 0,
-                marginBottom: [0],
-                gridColumn: ["span 8", "1 / span 2"],
+                marginBottom: [6, 0],
+                gridColumn: ["2/span 8", "6 / span 4"],
+              }}
+            >
+              {vectors.spaceScale}
+            </Box>
+            <Box
+              sx={{
+                gridColumn: ["2/span 8", "2 /span 3"],
+              }}
+            >
+              <Text variant="heading">Space</Text>
+              <Text sx={{ maxWidth: 440 }} variant="lead">
+                The first things we tackled was how designers and developers
+                looked at space.
+              </Text>
+              <Text sx={{ maxWidth: 600 }} variant="lead">
+                Oftentimes margins and paddings between UI elements were
+                guessed.
+              </Text>
+              <Text sx={{ maxWidth: 500 }} variant="lead">
+                Failing to standardize spacing leads to visual inconsistencies,
+                but also developers will have to work harder to line things up.
+              </Text>
+            </Box>
+          </GridParent>
+
+          <GridParent sx={{ py: [10, 11], alignItems: "center" }}>
+            <Box
+              sx={{
+                marginBottom: [6, 0],
+                gridColumn: ["2/span 8", "2 / span 4"],
+              }}
+            >
+              {vectors.typeScale}
+            </Box>
+            <Box
+              sx={{
+                gridColumn: ["2/span 8", "7 / span 3"],
+              }}
+            >
+              <Text variant="heading">Typography</Text>
+              <Text variant="lead">
+                Closely related to spacing is typographical hierarchy.
+              </Text>
+              <Text variant="lead">
+                Much like spacing, font sizes can be a big contributor to
+                inconsistency if left unchecked.
+              </Text>
+              <Text variant="lead">
+                We developed a type scale that would live alongside our spacing
+                system, that was also divisible by 4 & 2.
+              </Text>
+            </Box>
+          </GridParent>
+
+          <GridParent sx={{ py: [10, 11], alignItems: "center" }}>
+            <Box
+              sx={{
+                marginBottom: [6, 0],
+                gridColumn: ["2/span 8", "6 / span 4"],
+              }}
+            >
+              {vectors.colorGen}
+            </Box>
+            <Box
+              sx={{
+                gridColumn: ["2/span 8", "2/ span 3"],
+              }}
+            >
+              <Text variant="heading">Color</Text>
+              <Text variant="lead">
+                Hex codes are notoriously hard to keep track of.
+              </Text>
+              <Text variant="lead">
+                We made it easier by developing a{" "}
+                <Link
+                  href="https://colorgen.netlify.app/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  tool
+                </Link>{" "}
+                that would generate non-linear color palettes from Canon’s
+                existing colors.
+              </Text>
+              <Text variant="lead">
+                The goal with this was to standardize picking colors with
+                certain parameters that Canon would own.
+              </Text>
+            </Box>
+          </GridParent>
+
+          <GridParent
+            sx={{
+              py: [10, 11],
+              alignItems: "center",
+            }}
+          >
+            <Box
+              sx={{
+                marginBottom: [6, 0],
+                gridColumn: ["2/span 8", "6/span 4"],
+              }}
+            >
+              {vectors.designSystem}
+            </Box>
+            <Box
+              sx={{
+                gridColumn: ["2/span 8", "2/span 3"],
+              }}
+            >
+              <Text variant="heading">Atoms</Text>
+              <Text variant="lead">
+                With the foundations in place, we implemented the same modular
+                way of thinking throughout the whole system.
+              </Text>
+              <Text variant="lead">
+                They were dubbed Atoms, and they became the building blocks of
+                Canons design system.
+              </Text>
+            </Box>
+          </GridParent>
+          <GridParent
+            sx={{
+              py: [10, 11],
+            }}
+          >
+            <Box
+              sx={{
+                gridColumn: "2 / span 8",
+                gridRow: "span 1",
+                marginBottom: 5,
+              }}
+            >
+              <Text variant="heading">Immutable = Consistent</Text>
+              {vectors.button}
+            </Box>
+            <Box
+              sx={{
+                gridColumn: ["2/span 8", "2/span 3"],
                 gridRow: "span 1",
               }}
             >
-              Homepage Layout One
-            </Text>
-            <Text
+              <Text mt={[6, 8]} mb={[1, 2]}>
+                We took inspiration from immutable CSS frameworks such as
+                Tachyons, Tailwind etc. To build up an extensive collection of
+                CSS classes that would be the base of the design system.
+              </Text>
+            </Box>
+            <Box
               sx={{
-                marginBottom: [4, 5, 5, 6],
-                gridColumn: ["1 / span 8", "4 / span 5", "4 / span 4"],
+                gridColumn: ["2/span 8", "7 / span 3"],
                 gridRow: "span 1",
               }}
             >
+              <Text mt={8} mb={2}>
+                We didn’t invent anything new by doing this, but it worked
+                really well to build a strong foundation for Canon. Starting
+                with the button, of course.
+              </Text>
+            </Box>
+          </GridParent>
+        </React.Fragment>
+      );
+    },
+
+    Homepage: () => {
+      return (
+        <React.Fragment>
+          <TypographyBlock>
+            <Text variant="heading">Web design</Text>
+            <Text variant="lead">
               We put our design system to the test by creating a few concept
               designs to present to Canon. What you see below is my rendition of
               it. We had other designers in our team create their own visions.
             </Text>
-
-            <div sx={{ marginBottom: 5, gridColumn: "1 / span 8" }}>
-              <Img plate imageData={images.homepage1} />
-            </div>
-          </GridParent>
-        </Box>
-        <Box
-          sx={{
-            marginBottom: [5, 6, 7],
-          }}
-        >
+          </TypographyBlock>
           <GridParent>
-            <Text
-              variant="caps"
+            <div
               sx={{
-                marginTop: 0,
-                marginBottom: [0],
-                gridColumn: ["span 8", "1 / span 2"],
-                gridRow: "span 1",
+                overflow: "hidden",
+                gridRow: ["span 4", "span 4"],
+                gridColumn: ["3/span 8", "3/span 8"],
               }}
             >
-              Homepage Layout Two
-            </Text>
-            <Text
+              <Img imageData={images.canon1} />
+            </div>
+            <div
               sx={{
-                marginBottom: [4, 5, 5, 6],
-                gridColumn: ["1 / span 8", "4 / span 5", "4 / span 4"],
-                gridRow: "span 1",
+                overflow: "hidden",
+                gridRow: ["span 4", "span 4"],
+                gridColumn: ["1/span 8", "1/span 8"],
               }}
             >
-              We wanted to set the expectations that design systems don’t equal
-              rigid or boring layouts. More so explaining how consistency
-              between Canon’s digital products can increase brand trust.
-            </Text>
-
-            <div sx={{ marginBottom: 5, gridColumn: "1 / span 8" }}>
-              <Img plate imageData={images.homepage2} />
+              <Img imageData={images.canon2} />
             </div>
           </GridParent>
-        </Box>
-      </React.Fragment>
-    );
-  },
-  Deduction: () => {
-    return (
-      <React.Fragment>
-        <GridParent>
-          <Heading
+          <Box
             sx={{
-              gridColumn: "span 8",
-              gridRow: "span 1",
+              marginBottom: [5, 6, 7],
             }}
           >
-            Deduction
-          </Heading>
-          <div
-            sx={{
-              gridColumn: ["span 8", "span 4", "span 4", "span 4"],
-              paddingRight: [0, 4, 4, 4],
-              paddingTop: [3, 0, 0, 0],
-              gridRow: "span 1",
-            }}
-          >
-            <Text variant="lead" mb={3}>
-              The design system as a deliverable lacked interactivity. But our
-              goal was to educate Canon about what it solved on an
-              organizational level.
-            </Text>
-          </div>
-          <div
-            sx={{
-              gridColumn: ["span 8", "span 4", "span 4", "span 4"],
-              paddingLeft: [0, 4, 4, 4],
-              paddingTop: [3, 0, 0, 0],
-              gridRow: "span 1",
-            }}
-          >
-            <Text mb={3}>
+            <GridParent>
+              <TypographyBlock mt={[10, 11]}>
+                <Text variant="heading">Alternative Layout</Text>
+                <Text variant="lead">
+                  We wanted to set the expectations that design systems don’t
+                  equal rigid or boring layouts. More so explaining how
+                  consistency between Canon’s digital products can increase
+                  brand trust.
+                </Text>
+              </TypographyBlock>
+              <div
+                sx={{
+                  overflow: "hidden",
+                  gridRow: ["span 4", "span 4"],
+                  gridColumn: ["1/span 10", "1/span 10"],
+                  img: {
+                    transform: "scale(1.05)",
+                  },
+                }}
+              >
+                <Img imageData={images.canon3} />
+              </div>
+            </GridParent>
+          </Box>
+        </React.Fragment>
+      );
+    },
+    Deduction: () => {
+      return (
+        <>
+          <TypographyBlock mt={10}>
+            <Text variant="heading">Closing thoughts</Text>
+            <Text variant="lead">
               It’s time-consuming to incorporate a design system into a vast
               organization like Canon. And as contract consultants; we lacked
               time. This is why we opted to present a vision rather than a fully
-              fledged product.
+              fledged deliverable.
             </Text>
-            <Text mb={3}>
-              The design system became an important talking point when
-              presenting the designs to Canon.
+            <Text variant="lead">
+              The mock design system became a core persuasion point when
+              presenting the final designs to Canon. And hopefully a learning
+              experience on how to take their first steps towards a more
+              consistent digital brand.
             </Text>
-            <Text></Text>
-          </div>
-        </GridParent>
-      </React.Fragment>
-    );
-  },
-};
+          </TypographyBlock>
 
-const Canon = () => {
-  return Object.entries(Sections).map(([k, Section]) => (
-    <Box key={k}>
-      <Section />
-    </Box>
-  ));
+          {/* <GridParent>
+            <Text
+              sx={{
+                gridRow: "span 1",
+                gridColumn: "2/span 8",
+              }}
+              variant="heading"
+            >
+              Deduction
+            </Text>
+            <div
+              sx={{
+                gridRow: "span 1",
+                gridColumn: ["span 8", "span 4", "span 4", "2/ span 4"],
+                paddingRight: [0, 4, 4, 4],
+                paddingTop: [3, 0, 0, 0],
+              }}
+            >
+              <Text variant="lead" mb={3}>
+                The design system as a deliverable lacked interactivity. But our
+                goal was to educate Canon about what it solved on an
+                organizational level.
+              </Text>
+            </div>
+            <div
+              sx={{
+                gridRow: "span 1",
+                gridColumn: ["span 8", "span 4", "span 4", "span 4"],
+                paddingLeft: [0, 4, 4, 4],
+                paddingTop: [3, 0, 0, 0],
+              }}
+            >
+              <Text mb={3}>
+                It’s time-consuming to incorporate a design system into a vast
+                organization like Canon. And as contract consultants; we lacked
+                time. This is why we opted to present a vision rather than a
+                fully fledged product.
+              </Text>
+              <Text mb={3}>
+                The design system became an important talking point when
+                presenting the designs to Canon.
+              </Text>
+              <Text></Text>
+            </div>
+          </GridParent> */}
+        </>
+      );
+    },
+  };
+  return (
+    <>
+      <GridParent>
+        <CaseMeta data={data} />
+      </GridParent>
+      {Object.entries(Sections).map(([k, Section]) => (
+        <Section key={k} />
+      ))}
+    </>
+  );
 };
 
 export default Canon;

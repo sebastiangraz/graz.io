@@ -388,7 +388,7 @@ const Capchase = ({ data }) => {
               <Video videoData={videos.brandbook} />
             </div>
           </GridParent>
-          <GridParent>
+          <GridParent sx={{ mb: [10, 11] }}>
             <div
               sx={{
                 gridRow: "3/span 4",

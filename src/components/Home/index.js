@@ -57,6 +57,7 @@ export const Home = ({ data }) => {
 
   const list = {
     rest: (custom) => ({
+      pointerEvents: "none",
       opacity: 0,
       transition: {
         duration: 2,
@@ -66,6 +67,7 @@ export const Home = ({ data }) => {
     }),
 
     hover: (custom) => ({
+      pointerEvents: "all",
       opacity: 1,
       transition: {
         duration: 0.8,
@@ -189,7 +191,7 @@ export const Home = ({ data }) => {
             right: [0, null],
             left: [null, 0],
             top: "100%",
-            width: ["200px", "120px"],
+            width: ["136px", "120px"],
             minWidth: "100%",
           }}
         >

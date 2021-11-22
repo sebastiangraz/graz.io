@@ -1,6 +1,7 @@
 /** @jsxImportSource theme-ui */
 
 import React from "react";
+import debounce from "lodash.debounce";
 import {
   m,
   useSpring,
@@ -15,8 +16,8 @@ import { Debugger, ScrollDown } from "../";
 const debug = false;
 
 const settings = {
-  nextScrollDistance: 80,
-  staggerPower: 0.5,
+  nextScrollDistance: 72,
+  staggerPower: 0.72,
   springOptions: {
     damping: 12,
     mass: 0.1,
@@ -35,7 +36,7 @@ const debugStyle = {
 const caseParent = {
   top: [0, `100vh`],
   width: "100%",
-  mt: [-7, 0],
+  mt: [0, 0],
   maxWidth: "2400px",
   position: ["relative", "fixed"],
   pointerEvents: "none",
@@ -63,15 +64,21 @@ const media_query = "screen and (min-width:640px)";
 function ScrollToTopOnMount(props) {
   const { position, height, stagger, datavar, index } = props;
   React.useEffect(() => {
+    // wait for fonts to load
     document.fonts.ready.then(function () {
+      // find the current hash in url
       if (window.location.hash === `#${datavar}`) {
-        window.scrollTo(
-          0,
-          position -
-            height -
-            (index !== 1 && settings.nextScrollDistance) +
-            stagger
-        );
+        // desktop
+        window.matchMedia(media_query).matches
+          ? window.scrollTo(
+              0,
+              position -
+                height -
+                (index !== 1 && settings.nextScrollDistance) +
+                stagger
+            )
+          : // mobile doesnt need to calc stagger and nextScroll
+            window.scrollTo(0, position - height);
       }
     });
   }, [datavar, height, index, position, stagger]);
@@ -122,7 +129,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
 
   const xStyle = useResponsiveValue([
     { x: "0%" },
-    { x: "-50%" },
+    { x: "0%" },
     { x: "-50%" },
     { x: "-50%" },
   ]);
@@ -136,21 +143,47 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
 
   const yStyle = useResponsiveValue([{ y: 0 }, { y: y }, { y: y }, { y: y }]);
 
-  // -----CLICK TO SCROLLTO CASE-----
+  const fadeIn = debounce(() => {
+    [...document.querySelectorAll(".caseContent")].map((e) => {
+      return Object.assign(e.style, {
+        transition: "opacity 0.1s linear 1s",
+        opacity: 1,
+      });
+    });
+  }, 1000);
+
   const handleClick = () => {
+    [...document.querySelectorAll(".caseContent")].map((e) => {
+      return Object.assign(e.style, {
+        transition: "none",
+        opacity: 0,
+      });
+    });
+
+    Object.assign(ref.current.querySelector(".caseContent").style, {
+      transition: "none",
+      opacity: 1,
+    });
+
+    fadeIn();
+
     if (index !== 0) {
       window.history.replaceState(null, null, `#${data.slug}`);
     } else {
       window.history.replaceState(null, null, " ");
     }
-    window.scrollTo(
-      0,
-      position(0) -
-        height(0) -
-        (index !== 1 && settings.nextScrollDistance) +
-        staggeredOffset
-    );
+    window.matchMedia(media_query).matches
+      ? window.scrollTo(
+          0,
+          position(0) -
+            height(0) -
+            (index !== 1 && settings.nextScrollDistance) +
+            staggeredOffset
+        )
+      : // mobile doesnt need to calc stagger and nextScroll
+        window.scrollTo(0, position(0) - height(0));
   };
+  // -----CLICK TO SCROLLTO CASE-----
 
   const gridCount = (arr) => data?.grid && data.grid[arr].split("span ")[1];
   const gridPosition = (arr) => data?.grid && data.grid[arr].split(" /")[0];
@@ -193,7 +226,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
         <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.66 }}
+          transition={{ delay: 2 }}
           className="caseWrapper"
           id={data.slug}
           ref={ref}
@@ -209,7 +242,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
             // pt: [3, 0, null],
             color: data?.color,
             zIndex: index,
-            left: [0, "50%"],
+            left: [0, 0, "50%"],
           }}
         >
           {index === 1 && (
@@ -269,7 +302,9 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
             ></div>
 
             <div
+              className="caseContent"
               sx={{
+                // opacity: 0,
                 mb: ["20vh", "100vh"],
                 mt: "0",
               }}
@@ -279,15 +314,14 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
           </div>
         </m.div>
       )}
-      {!window.matchMedia(media_query).matches ? null : (
-        <ScrollToTopOnMount
-          position={position(0)}
-          height={height(0)}
-          stagger={staggeredOffset}
-          datavar={data.slug}
-          index={index}
-        />
-      )}
+
+      <ScrollToTopOnMount
+        position={position(0)}
+        height={height(0)}
+        stagger={staggeredOffset}
+        datavar={data.slug}
+        index={index}
+      />
     </>
   );
 });

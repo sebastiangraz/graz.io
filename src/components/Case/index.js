@@ -17,7 +17,7 @@ const debug = false;
 
 const settings = {
   nextScrollDistance: 72,
-  staggerPower: 0.5,
+  staggerPower: 0.48,
   springOptions: {
     damping: 12,
     mass: 0.1,

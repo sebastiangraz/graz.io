@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 
-import React, { Children } from "react";
+import React from "react";
 import { jsx, Link } from "theme-ui";
 import { m, AnimatePresence } from "framer-motion";
 

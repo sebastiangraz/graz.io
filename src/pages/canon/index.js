@@ -94,7 +94,7 @@ const Canon = ({ data }) => {
             >
               <Video
                 sx={{ video: { objectPosition: "left" } }}
-                fit
+                fit="cover"
                 videoData={videos.intro}
               />
             </div>

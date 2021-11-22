@@ -44,7 +44,8 @@ export const ScrollDown = ({
         ],
         transition: "all 0.9s ease",
         color: cases.get("home").color,
-        backgroundColor: darken(cases.get("home").bg, 0.05),
+        border: "1px solid",
+        // backgroundColor: darken(cases.get("home").bg, 0.05),
         position: "absolute",
         zIndex: 10,
         left: 0,
@@ -57,8 +58,9 @@ export const ScrollDown = ({
         borderRadius: "pill",
         pointerEvents: "all",
         "&:hover": {
+          color: darken(cases.get("home").bg, 0.3),
           cursor: "pointer",
-          background: darken(cases.get("home").bg, 0.1),
+          // background: darken(cases.get("home").bg, 0.1),
         },
         svg: {
           position: "absolute",
@@ -77,7 +79,7 @@ export const ScrollDown = ({
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path d="M1 4L5 8L9 4" stroke="currentColor" strokeWidth="2" />
+        <path d="M1 4L5 8L9 4" stroke="currentColor" strokeWidth="1.2" />
       </svg>
       <svg
         width="10"
@@ -87,7 +89,7 @@ export const ScrollDown = ({
         xmlns="http://www.w3.org/2000/svg"
         sx={{ animationDelay: "2s" }}
       >
-        <path d="M1 4L5 8L9 4" stroke="currentColor" strokeWidth="2" />
+        <path d="M1 4L5 8L9 4" stroke="currentColor" strokeWidth="1.2" />
       </svg>
     </div>
   );

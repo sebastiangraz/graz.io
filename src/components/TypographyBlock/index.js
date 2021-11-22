@@ -27,7 +27,7 @@ export const TypographyBlock = ({ children, ...rest }) => {
               sx={{
                 gridColumnEnd: "span 4",
                 gridColumnStart: "5",
-                "&:nth-child(odd)": {
+                "&:nth-of-type(odd)": {
                   gridColumnEnd:
                     childCount === 1
                       ? "span 8"

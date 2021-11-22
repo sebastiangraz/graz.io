@@ -71,7 +71,18 @@ const Loupe = ({ data }) => {
               gridColumn: ["6 / span 4", "5/span 2", "4/span 2"],
             }}
           >
-            <Img imageData={images.monomeshMagenta}></Img>
+            <ScrollReveal
+              repeat
+              ignoreParentFade
+              repeatTypeLoop
+              duration={10}
+              effect={[{ rotate: 0 }, { rotate: -360 }]}
+            >
+              <Img
+                sx={{ transform: "scale(1.5)" }}
+                imageData={images.monomeshMagenta}
+              ></Img>
+            </ScrollReveal>
           </div>
 
           <div
@@ -82,13 +93,16 @@ const Loupe = ({ data }) => {
               gridColumn: ["2 / span 4", "3 / span 2", "2/span 2"],
             }}
           >
-            <Img
-              sx={{
-                transform: "rotate(120deg) scale(2)",
-                transformOrigin: "40% 60%",
-              }}
-              imageData={images.monomeshOrange}
-            />
+            <ScrollReveal
+              repeat
+              duration={4}
+              effect={[{ rotate: 0 }, { rotate: 90 }]}
+            >
+              <Img
+                sx={{ transform: "scale(1.5)" }}
+                imageData={images.monomeshOrange}
+              ></Img>
+            </ScrollReveal>
           </div>
         </GridParent>
       );
@@ -130,7 +144,9 @@ const Loupe = ({ data }) => {
                 },
               }}
             >
-              <Img imageData={images.webdesign} />
+              <ScrollReveal effect={[{ translateY: 10 }, { translateY: 0 }]}>
+                <Img imageData={images.webdesign} />
+              </ScrollReveal>
             </div>
           </GridParent>
           <GridParent py={10}>
@@ -250,7 +266,9 @@ const Loupe = ({ data }) => {
                 background: "#003807",
               }}
             >
-              <Video videoData={videos.icons} />
+              <ScrollReveal>
+                <Video videoData={videos.icons} />
+              </ScrollReveal>
             </Box>
           </GridParent>
           <GridParent py={10}>
@@ -318,7 +336,12 @@ const Loupe = ({ data }) => {
                   width: "100%",
                 }}
               >
-                <Img imageData={images.styrenebold} />
+                <ScrollReveal
+                  delay={0.2}
+                  effect={[{ translateY: 10 }, { translateY: 0 }]}
+                >
+                  <Img imageData={images.styrenebold} />
+                </ScrollReveal>
               </div>
             </div>
 
@@ -341,7 +364,9 @@ const Loupe = ({ data }) => {
                   height: "auto",
                 }}
               >
-                <Img imageData={images.raisonne} />
+                <ScrollReveal effect={[{ translateY: 10 }, { translateY: 0 }]}>
+                  <Img imageData={images.raisonne} />
+                </ScrollReveal>
               </div>
               <Text
                 sx={{
@@ -379,7 +404,12 @@ const Loupe = ({ data }) => {
                   zIndex: 2,
                 }}
               >
-                <Img imageData={images.styrene} />
+                <ScrollReveal
+                  delay={0.1}
+                  effect={[{ translateY: 10 }, { translateY: 0 }]}
+                >
+                  <Img imageData={images.styrene} />
+                </ScrollReveal>
               </div>
               <div
                 sx={{
@@ -429,16 +459,18 @@ const Loupe = ({ data }) => {
                 isolation: "isolate",
               }}
             >
-              <Video
-                sx={{
-                  backgroundColor: colors.green,
-                  video: {
-                    borderRadius: "50%",
-                    overflow: "hidden",
-                  },
-                }}
-                videoData={videos.mesh1}
-              />
+              <ScrollReveal sx={{ width: "100%" }}>
+                <Video
+                  sx={{
+                    backgroundColor: colors.green,
+                    video: {
+                      borderRadius: "50%",
+                      overflow: "hidden",
+                    },
+                  }}
+                  videoData={videos.mesh1}
+                />
+              </ScrollReveal>
             </div>
             <Box
               sx={{
@@ -477,15 +509,17 @@ const Loupe = ({ data }) => {
                 isolation: "isolate",
               }}
             >
-              <Video
-                sx={{
-                  video: {
-                    borderRadius: "50%",
-                    overflow: "hidden",
-                  },
-                }}
-                videoData={videos.mesh}
-              />
+              <ScrollReveal delay={0.2} sx={{ width: "100%" }}>
+                <Video
+                  sx={{
+                    video: {
+                      borderRadius: "50%",
+                      overflow: "hidden",
+                    },
+                  }}
+                  videoData={videos.mesh}
+                />
+              </ScrollReveal>
             </div>
           </GridParent>
         </>
@@ -524,10 +558,18 @@ const Loupe = ({ data }) => {
                 },
               }}
             >
-              <Img imageData={images.exe1} />
-              <Img imageData={images.exe2} />
-              <Img imageData={images.exe3} />
-              <Img imageData={images.exe4} />
+              <ScrollReveal effect={[{ translateY: 10 }, { translateY: 0 }]}>
+                <Img imageData={images.exe1} />
+              </ScrollReveal>
+              <ScrollReveal>
+                <Img imageData={images.exe2} />
+              </ScrollReveal>
+              <ScrollReveal>
+                <Img imageData={images.exe3} />
+              </ScrollReveal>
+              <ScrollReveal>
+                <Img imageData={images.exe4} />
+              </ScrollReveal>
               {/* <Img imageData={images.execution} /> */}
             </div>
           </GridParent>

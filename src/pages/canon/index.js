@@ -9,6 +9,7 @@ import {
   List,
   NumberedList,
   TypographyBlock,
+  ScrollReveal,
 } from "../../components";
 import { videos, images, vectors } from "./assets";
 
@@ -169,7 +170,9 @@ const Canon = ({ data }) => {
                 gridColumn: ["2/span 8", "6 / span 4"],
               }}
             >
-              {vectors.spaceScale}
+              <ScrollReveal effect={[{ translateY: 10 }, { translateY: 0 }]}>
+                {vectors.spaceScale}
+              </ScrollReveal>
             </Box>
             <Box
               sx={{
@@ -199,7 +202,9 @@ const Canon = ({ data }) => {
                 gridColumn: ["2/span 8", "2 / span 4"],
               }}
             >
-              {vectors.typeScale}
+              <ScrollReveal effect={[{ translateY: 10 }, { translateY: 0 }]}>
+                {vectors.typeScale}
+              </ScrollReveal>
             </Box>
             <Box
               sx={{
@@ -228,7 +233,9 @@ const Canon = ({ data }) => {
                 gridColumn: ["2/span 8", "6 / span 4"],
               }}
             >
-              {vectors.colorGen}
+              <ScrollReveal effect={[{ translateY: 10 }, { translateY: 0 }]}>
+                {vectors.colorGen}
+              </ScrollReveal>
             </Box>
             <Box
               sx={{
@@ -301,7 +308,9 @@ const Canon = ({ data }) => {
               }}
             >
               <Text variant="heading">Immutable = Consistent</Text>
-              {vectors.button}
+              <ScrollReveal effect={[{ translateY: 10 }, { translateY: 0 }]}>
+                {vectors.button}
+              </ScrollReveal>
             </Box>
             <Box
               sx={{
@@ -351,7 +360,9 @@ const Canon = ({ data }) => {
                 gridColumn: ["3/span 8", "3/span 8"],
               }}
             >
-              <Img imageData={images.canon1} />
+              <ScrollReveal effect={[{ translateY: 10 }, { translateY: 0 }]}>
+                <Img imageData={images.canon1} />
+              </ScrollReveal>
             </div>
             <div
               sx={{
@@ -360,7 +371,9 @@ const Canon = ({ data }) => {
                 gridColumn: ["1/span 8", "1/span 8"],
               }}
             >
-              <Img imageData={images.canon2} />
+              <ScrollReveal effect={[{ translateY: 10 }, { translateY: 0 }]}>
+                <Img imageData={images.canon2} />
+              </ScrollReveal>
             </div>
           </GridParent>
           <Box
@@ -388,7 +401,9 @@ const Canon = ({ data }) => {
                   },
                 }}
               >
-                <Img imageData={images.canon3} />
+                <ScrollReveal effect={[{ translateY: 10 }, { translateY: 0 }]}>
+                  <Img imageData={images.canon3} />
+                </ScrollReveal>
               </div>
             </GridParent>
           </Box>

@@ -42,9 +42,6 @@ export const GridParent = ({ children, ...rest }) => {
         gridAutoRows: "minmax(var(--rh), auto)",
         gridGap: "var(--gutter)",
         margin: "var(--gutter) auto",
-        // "& > *": {
-        //   gridColumnStart: "2",
-        // },
       }}
     >
       {children}

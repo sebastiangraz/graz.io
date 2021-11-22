@@ -81,16 +81,12 @@ const Capchase = ({ data }) => {
               <Text variant="caps" mb={7}>
                 Goals
               </Text>
-              <NumberedList
-                labelColor={colors.white}
-                horizontal
-                labels={[
-                  "Create brand and execute it for a very perceptive audience.",
-                  "Position Capchase as a leader in non-dilutable financing.",
-                  "Proofing Capchase’s brand for longevity & recognizability. ",
-                  "To look & feel like a business partner not a business tool.",
-                ]}
-              />
+              <NumberedList labelColor={colors.white} horizontal>
+                <>Create brand and execute it for a very perceptive audience.</>
+                <>Position Capchase as a leader in non-dilutable financing.</>
+                <>Proofing Capchase’s brand for longevity & recognizability. </>
+                <>To look & feel like a business partner not a business tool.</>
+              </NumberedList>
             </Box>
           </GridParent>
           <GridParent sx={{ mb: [10, 11] }}>
@@ -1036,7 +1032,7 @@ const Capchase = ({ data }) => {
               </ScrollReveal>
             </Box>
           </GridParent>
-          <GridParent pt={10}>
+          <GridParent pt={10} pb={"100vh"}>
             <Box sx={{ mr: [0, 7], gridColumn: ["2 / span 8", "2/span 4"] }}>
               <Text variant="heading">Closing thoughts</Text>
               <Text variant="lead" sx={{ maxWidth: 600 }}>

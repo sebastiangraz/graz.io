@@ -18,12 +18,6 @@ body {
 }
 
 @font-face {
-  font-family: "norse";
-  font-display: swap;
-  src: url("../src/fonts/NorseGX.ttf");
-}
-
-@font-face {
   font-family: "Styrene";
   font-weight: normal;
   font-style: normal;

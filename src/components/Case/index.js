@@ -17,12 +17,10 @@ const debug = false;
 
 const settings = {
   nextScrollDistance: 72,
-  staggerPower: 0.72,
+  staggerPower: 0.5,
   springOptions: {
     damping: 12,
     mass: 0.1,
-    // damping: 7,
-    // mass: 0.07,
   },
 };
 
@@ -239,7 +237,6 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
             "--caseBg": data.bg,
             "--caseColor": data.color,
             ...caseParent,
-            // pt: [3, 0, null],
             color: data?.color,
             zIndex: index,
             left: [0, 0, "50%"],
@@ -304,8 +301,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
             <div
               className="caseContent"
               sx={{
-                // opacity: 0,
-                mb: ["20vh", "100vh"],
+                mb: "5vh",
                 mt: "0",
               }}
             >

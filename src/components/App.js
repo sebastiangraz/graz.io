@@ -1,5 +1,5 @@
 import React from "react";
-import { Loupe, Capchase, Canon } from "../pages";
+import { Loupe, Capchase, Canon, End } from "../pages";
 import { CaseWrapper, Case, Home, ScrollToTop } from "../components";
 import "../base.css";
 
@@ -48,7 +48,7 @@ export let cases = new Map([
       slug: "capchase",
       component: Capchase,
       color: "#000",
-      bg: "#FCFBF8", //FFDAAF looks cool
+      bg: "#FCFBF8",
       grid: ["1 / span 10", "1 / span 10"],
       scope: [
         "Visual identity",
@@ -87,6 +87,17 @@ export let cases = new Map([
       role: "Design Consultant",
       timeframe: "3 months",
       year: "2021",
+    },
+  ],
+  [
+    "end",
+    {
+      name: "the end",
+      slug: "end",
+      component: End,
+      color: "#FFCDCA",
+      bg: "transparent",
+      grid: ["3 / span 10", "3 / span 10"],
     },
   ],
 ]);

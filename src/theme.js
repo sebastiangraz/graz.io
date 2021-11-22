@@ -4,7 +4,6 @@ import { cases } from "./components/App";
 const colors = {
   text: "#111",
 };
-// const space = [0, 4, 8, 12, 16, 20, 28, 36, 48, 72, 128];
 const space = [0, 2, 6, 12, 14, 16, 20, 32, 48, 72, 144, 256];
 const capsStyle = {
   textTransform: "uppercase",

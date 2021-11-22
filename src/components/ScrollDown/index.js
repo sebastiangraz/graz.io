@@ -49,7 +49,6 @@ export const ScrollDown = ({
         zIndex: 10,
         left: 0,
         top: staggeredOffset - 120,
-        // top: ["-100px", "-120px", "-220px", "-260px"],
         width: 8,
         height: 8,
         display: ["none", "flex"],

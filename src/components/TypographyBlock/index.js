@@ -14,7 +14,7 @@ export const TypographyBlock = ({ children, ...rest }) => {
           display: ["block", "grid"],
           gridTemplateColumns: "repeat(8, 1fr)",
           gridAutoFlow: "column",
-          gridTemplateRows: "auto auto",
+          gridTemplateRows: ["auto auto"],
           mb: 9,
           rowGap: childCount >= 4 ? 7 : 0,
           columnGap: 9,

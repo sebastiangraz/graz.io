@@ -1,12 +1,14 @@
 /** @jsxImportSource theme-ui */
 
 import { Text } from "theme-ui";
+import * as React from "react";
 
 export const NumberedList = ({
+  small,
   labelColor,
   bgColor,
   horizontal,
-  labels,
+  children,
   ...rest
 }) => {
   return (
@@ -14,33 +16,38 @@ export const NumberedList = ({
       {...rest}
       sx={{
         ...(horizontal && {
-          gridTemplateColumns: ["1fr", "1fr 1fr"],
+          gridTemplateColumns: [
+            "1fr",
+            "repeat(auto-fit, minmax(min(240px, 100%), auto))",
+          ],
           columnGap: 8,
         }),
         p: 0,
         display: "grid",
-        rowGap: 7,
+        rowGap: small ? 5 : 7,
         mb: 10,
       }}
     >
-      {labels.map((label, i) => {
+      {React.Children.map(children || null, (child, i) => {
         return (
           <li
             key={i}
             sx={{
+              fontWeight: small ? "bold" : "initial",
+              fontSize: small ? 4 : "initial",
               display: "grid",
               gridTemplateColumns: "auto 1fr",
               alignItems: "center",
               maxWidth: 340,
-              columnGap: 7,
+              columnGap: small ? 4 : 7,
               mt: 2,
               listStyle: "none",
             }}
           >
             <span
               sx={{
-                width: "3.2em",
-                height: "3.2em",
+                width: small ? "2.4em" : "3.2em",
+                height: small ? "2.4em" : "3.2em",
                 borderRadius: "pill",
                 display: "inline-grid",
                 alignItems: "center",
@@ -52,7 +59,7 @@ export const NumberedList = ({
               {i + 1}
             </span>
             <Text variant="label" m={0}>
-              {label}
+              {child}
             </Text>
           </li>
         );

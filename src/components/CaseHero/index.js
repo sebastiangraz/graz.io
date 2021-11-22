@@ -28,6 +28,12 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
         fontSize: "min(12vw, 156px)",
         borderRadius: "32px 32px 0 0",
         color: `var(--caseBg)`,
+        // ...(name === "g" && {
+        //   fontVariationSettings: `"wght" 64`,
+        //   fontWeight: "normal",
+        //   fontFamily: "g",
+        //   fontSize: "min(36vw, 400px)",
+        // }),
       }}
       height="300"
       width="100%"
@@ -68,6 +74,9 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
         fill="var(--caseColor)"
         sx={{
           display: ["block", null, "none"],
+          ...(name === "the end" && {
+            display: ["none"],
+          }),
           transform: [
             `translate(min(172px, calc(12vw - 5px) ), min(100px, 12vw))`,
             `translate(min(172px, calc(8vw - 5px) ), min(100px, 6vw))`,

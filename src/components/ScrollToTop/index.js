@@ -6,6 +6,26 @@ import { useViewportScroll } from "framer-motion";
 import { Text } from "theme-ui";
 import { Logo } from "../";
 
+export const handleClick = () => {
+  [...document.querySelectorAll(".caseContent")].map((e) => {
+    return Object.assign(e.style, {
+      transition: "none",
+      opacity: 0,
+    });
+  });
+
+  window.scrollTo(0, 0);
+  window.history.replaceState(null, null, " ");
+  setTimeout(() => {
+    [...document.querySelectorAll(".caseContent")].map((e) => {
+      return Object.assign(e.style, {
+        transition: "opacity 0.1s linear",
+        opacity: 1,
+      });
+    });
+  }, 1000);
+};
+
 export const ScrollToTop = () => {
   const { scrollY } = useViewportScroll();
   const [show, setShow] = React.useState(false);
@@ -15,26 +35,6 @@ export const ScrollToTop = () => {
       e > window.innerHeight ? setShow(true) : setShow(false);
     });
   }, [scrollY]);
-
-  const handleClick = () => {
-    [...document.querySelectorAll(".caseContent")].map((e) => {
-      return Object.assign(e.style, {
-        transition: "none",
-        opacity: 0,
-      });
-    });
-
-    window.scrollTo(0, 0);
-    window.history.replaceState(null, null, " ");
-    setTimeout(() => {
-      [...document.querySelectorAll(".caseContent")].map((e) => {
-        return Object.assign(e.style, {
-          transition: "opacity 0.1s linear",
-          opacity: 1,
-        });
-      });
-    }, 1000);
-  };
 
   return (
     <div

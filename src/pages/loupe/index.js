@@ -42,12 +42,13 @@ const Loupe = ({ data }) => {
               sx={{ mr: [0, null, 9, 5], mt: [10, 0], mb: 9 }}
               bgColor={colors.green}
               labelColor={data.bg}
-              labels={[
-                "Create a highly creative page for sharability and social push.",
-                "Position Framer as a market leader in design & prototyping",
-                "Inspire designers around the world to attend Loupe.",
-              ]}
-            />
+            >
+              <>
+                Create a highly creative page for sharability and social push.
+              </>
+              <>Position Framer as a market leader in design & prototyping</>
+              <>Inspire designers around the world to attend Loupe.</>
+            </NumberedList>
           </div>
 
           <Box
@@ -530,7 +531,7 @@ const Loupe = ({ data }) => {
               {/* <Img imageData={images.execution} /> */}
             </div>
           </GridParent>
-          <GridParent pt={10}>
+          <GridParent pt={10} pb={"100vh"}>
             <Box sx={{ mr: [0, 7], gridColumn: ["2 / span 8", "2/span 4"] }}>
               <Text variant="heading">Closing thoughts</Text>
               <Text variant="lead" sx={{ maxWidth: 560 }}>

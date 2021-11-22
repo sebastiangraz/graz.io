@@ -1,18 +1,19 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 
-import React from "react";
+import React, { Children } from "react";
 import { jsx, Link } from "theme-ui";
 import { m, AnimatePresence } from "framer-motion";
 
-export const EmailLink = ({ string }) => {
+export const EmailLink = ({ string, children }) => {
   const [copy, setCopy] = React.useState(false);
   const [count, setCount] = React.useState(0);
   return (
     <Link
+      href="#0"
       sx={{ whiteSpace: "pre" }}
-      href="#"
       onClick={(e) => {
+        e.preventDefault();
         setCount(count + 1);
         return navigator.clipboard
           .writeText(string)
@@ -26,7 +27,7 @@ export const EmailLink = ({ string }) => {
           );
       }}
     >
-      Email{" "}
+      {children}
       <AnimatePresence>
         {copy && (
           <m.span
@@ -34,7 +35,7 @@ export const EmailLink = ({ string }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            {count > 10 ? "very copied" : "copied"}
+            {count > 10 ? " very copied" : " copied"}
           </m.span>
         )}
       </AnimatePresence>

@@ -12,21 +12,6 @@ import {
 } from "../../components";
 import { videos, images, vectors } from "./assets";
 
-// const radius = (small) => {
-//   const radiusLarge = {
-//     default: ["6vmin", "4vmin"],
-//     right: ["0 6vmin 6vmin 0", "0 4vmin 4vmin 0"],
-//     left: ["6vmin 0 0 6vmin", "4vmin 0 0 4vmin"],
-//   };
-//   const radiusSmall = {
-//     default: "2vmin",
-//     right: "0 2vmin 2vmin 0",
-//     left: "2vmin 0 0 2vmin",
-//   };
-
-//   return small ? radiusSmall : radiusLarge;
-// };
-
 const Canon = ({ data }) => {
   const Sections = {
     Define: () => {
@@ -82,13 +67,18 @@ const Canon = ({ data }) => {
                   sx={{ mt: [8, 0], mb: 0 }}
                   bgColor={data?.color}
                   labelColor={data?.bg}
-                  labels={[
-                    "Developers relying on static imagery instead of live components.",
-                    "Designers lack a point of reference during the design process.",
-                    "Isolated work effort between teams, handoff non-existent.",
-                    "Multiple contradicting brand styleguides and systems.",
-                  ]}
-                />
+                >
+                  <>
+                    Developers relying on static imagery instead of live
+                    components.
+                  </>
+                  <>
+                    Designers lack a point of reference during the design
+                    process.
+                  </>
+                  <>Isolated work effort between teams, handoff non-existent.</>
+                  <>Multiple contradicting brand styleguides and systems.</>
+                </NumberedList>
               </div>
             </div>
             <div
@@ -408,7 +398,7 @@ const Canon = ({ data }) => {
     Deduction: () => {
       return (
         <>
-          <TypographyBlock mt={10}>
+          <TypographyBlock mt={10} pb={"100vh"}>
             <Text variant="heading">Closing thoughts</Text>
             <Text variant="lead">
               It’s time-consuming to incorporate a design system into a vast
@@ -423,52 +413,6 @@ const Canon = ({ data }) => {
               consistent digital brand.
             </Text>
           </TypographyBlock>
-
-          {/* <GridParent>
-            <Text
-              sx={{
-                gridRow: "span 1",
-                gridColumn: "2/span 8",
-              }}
-              variant="heading"
-            >
-              Deduction
-            </Text>
-            <div
-              sx={{
-                gridRow: "span 1",
-                gridColumn: ["span 8", "span 4", "span 4", "2/ span 4"],
-                paddingRight: [0, 4, 4, 4],
-                paddingTop: [3, 0, 0, 0],
-              }}
-            >
-              <Text variant="lead" mb={3}>
-                The design system as a deliverable lacked interactivity. But our
-                goal was to educate Canon about what it solved on an
-                organizational level.
-              </Text>
-            </div>
-            <div
-              sx={{
-                gridRow: "span 1",
-                gridColumn: ["span 8", "span 4", "span 4", "span 4"],
-                paddingLeft: [0, 4, 4, 4],
-                paddingTop: [3, 0, 0, 0],
-              }}
-            >
-              <Text mb={3}>
-                It’s time-consuming to incorporate a design system into a vast
-                organization like Canon. And as contract consultants; we lacked
-                time. This is why we opted to present a vision rather than a
-                fully fledged product.
-              </Text>
-              <Text mb={3}>
-                The design system became an important talking point when
-                presenting the designs to Canon.
-              </Text>
-              <Text></Text>
-            </div>
-          </GridParent> */}
         </>
       );
     },

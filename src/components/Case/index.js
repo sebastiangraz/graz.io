@@ -129,7 +129,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
 
   const xStyle = useResponsiveValue([
     { x: "0%" },
-    { x: "-50%" },
+    { x: "0%" },
     { x: "-50%" },
     { x: "-50%" },
   ]);
@@ -242,7 +242,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
             // pt: [3, 0, null],
             color: data?.color,
             zIndex: index,
-            left: [0, "50%"],
+            left: [0, 0, "50%"],
           }}
         >
           {index === 1 && (

@@ -60,7 +60,8 @@ export const ScrollReveal = ({
 
   const controls = useAnimation();
 
-  const [ref, inView] = useInView({ triggerOnce: true });
+  // delay helps to prevent lag when clicking between cases
+  const [ref, inView] = useInView({ triggerOnce: true, delay: 200 });
   useEffect(() => {
     if (inView) {
       controls.start("visible");

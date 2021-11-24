@@ -65,6 +65,7 @@ const Loupe = ({ data }) => {
           <div
             sx={{
               overflow: "hidden",
+              isolation: "isolate",
               borderRadius: "99em 0 99em 99em",
               background: "#F60000",
               gridRow: ["10 / span 4", "span 2"],
@@ -88,6 +89,7 @@ const Loupe = ({ data }) => {
           <div
             sx={{
               overflow: "hidden",
+              isolation: "isolate",
               borderRadius: "pill",
               gridRow: ["10 / span 4", "span 2", "span 2"],
               gridColumn: ["2 / span 4", "3 / span 2", "2/span 2"],

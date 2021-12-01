@@ -57,6 +57,9 @@ export const ScrollDown = ({
         justifyContent: "center",
         borderRadius: "pill",
         pointerEvents: "all",
+        "@media only screen and (max-height: 840px)": {
+          display: "none",
+        },
         "&:hover": {
           color: darken(cases.get("home").bg, 0.3),
           cursor: "pointer",

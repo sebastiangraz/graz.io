@@ -236,7 +236,7 @@ export const Home = ({ data }) => {
                   }}
                   variant="caps"
                 >
-                  Available Jan
+                  Available Feb
                 </Text>
               </m.div>
             </List>

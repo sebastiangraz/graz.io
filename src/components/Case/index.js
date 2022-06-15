@@ -263,10 +263,11 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
               onClick={index !== childPosition.length - 1 ? handleClick : null}
               style={{
                 ...yNextStyle,
-                height: 300,
+
                 willChange: "transform",
               }}
               sx={{
+                height: [180, 300],
                 ...(index === 1 && {
                   top: ["auto", settings.nextScrollDistance],
                   position: "relative",
@@ -287,7 +288,7 @@ const MemoCase = React.forwardRef(({ index, data }, ref) => {
               sx={{
                 borderRadius: ["0 0 32px 32px"],
                 height: [
-                  "calc(100% - 298px)",
+                  `calc(100% - ${180 - 2}px)`,
                   `calc(100% - ${
                     300 -
                     2 -

@@ -2,20 +2,23 @@
 
 import React from "react";
 import uuid from "react-uuid";
-
+import { useResponsiveValue } from "@theme-ui/match-media";
 const ignoreUpdatedProps = () => true;
 
 export const CaseHero = React.memo((props, { id = uuid() }) => {
+  const caseHeroHeight = useResponsiveValue([180, 300]);
   const { name, debug } = props;
   const [loaded, setLoaded] = React.useState(false);
+
   React.useEffect(() => {
     document.fonts.ready.then(function () {
       setLoaded(true);
     });
   }, []);
+
   return (
     <svg
-      style={{
+      sx={{
         position: "absolute",
         top: 0,
         ...(debug && {
@@ -23,7 +26,7 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
         }),
         textTransform: "uppercase",
         fontWeight: 600,
-        height: 300,
+        height: caseHeroHeight,
         letterSpacing: "-0.075em",
         fontSize: "min(12vw, 156px)",
         borderRadius: "32px 32px 0 0",
@@ -35,9 +38,9 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
         //   fontSize: "min(36vw, 400px)",
         // }),
       }}
-      height="300"
+      height={caseHeroHeight}
       width="100%"
-      viewBox="0 0 2000 300"
+      viewBox={`0 0 2000 ${caseHeroHeight}`}
       preserveAspectRatio="xMinYMin slice"
     >
       <defs>

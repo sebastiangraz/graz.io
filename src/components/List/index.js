@@ -10,7 +10,7 @@ export const List = ({ children, noBullets, variant, ...rest }) => {
           <li
             key={i}
             sx={{
-              mb: 3,
+              mb: [3],
               "&:last-child": {
                 mb: 0,
               },

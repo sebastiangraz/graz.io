@@ -146,8 +146,14 @@ const MemoCase = React.forwardRef(
     {
       index,
       slug,
+      propmap,
       children,
-    }: { index: number; slug?: string; children: React.ReactNode },
+    }: {
+      index: number;
+      slug?: string;
+      propmap?: any;
+      children: React.ReactNode;
+    },
     ref
   ) => {
     const responsiveOffset = useResponsiveValue([50, 75, 200, 240]);
@@ -228,11 +234,13 @@ const MemoCase = React.forwardRef(
 
     // TODO: fix gridCount and gridPosition
 
-    const gridCount = (arr) => useResponsiveValue([12, 12, 12, 12]);
-    const gridPosition = (arr) => useResponsiveValue([1, 1, 1, 1]);
+    // const gridCount = (arr) => useResponsiveValue([12, 12, 12, 12]);
+    // const gridPosition = (arr) => useResponsiveValue([1, 1, 1, 1]);
 
-    // const gridCount = (arr) => data?.grid && data.grid[arr].split("span ")[1];
-    //const gridPosition = (arr) => data?.grid && data.grid[arr].split(" /")[0];
+    const gridCount = (arr) =>
+      propmap.grid && propmap.grid[arr].split("span ")[1];
+    const gridPosition = (arr) =>
+      propmap.grid && propmap.grid[arr].split(" /")[0];
 
     return (
       <>
@@ -292,9 +300,13 @@ const MemoCase = React.forwardRef(
               sx={{
                 pointerEvents: "auto",
                 position: "relative",
-                //TODO: fix grid
-                gridColumn: ["span 12", null, "span 12", "span 10"],
-                // gridColumn: ["span 12", null, data?.grid[0], data?.grid[1]],
+
+                gridColumn: [
+                  "span 12",
+                  null,
+                  propmap.grid && propmap?.grid[0],
+                  propmap.grid && propmap?.grid[1],
+                ],
               }}
             >
               <m.div

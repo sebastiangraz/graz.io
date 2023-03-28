@@ -11,7 +11,7 @@ import {
 import { colors, images, vectors, videos } from "./assets";
 import { Text, Box } from "theme-ui";
 
-const radius = (small) => {
+const radius = (small: { small?: boolean }) => {
   const radiusLarge = {
     default: ["6vmin", "4vmin"],
     right: ["0 6vmin 6vmin 0", "0 4vmin 4vmin 0"],
@@ -26,38 +26,7 @@ const radius = (small) => {
   return small ? radiusSmall : radiusLarge;
 };
 
-// const phoneBorder = () => {
-//   return {
-//     // boxShadow: "capchase", too laggy
-//     position: "relative",
-//     zIndex: "0",
-//     "&:after": {
-//       borderRadius: radius().default,
-//       content: "''",
-//       position: "absolute",
-//       left: 0,
-//       top: 0,
-//       width: "100%",
-//       height: "100%",
-//       zIndex: "1",
-//       boxShadow:
-//         "inset 0px 3px 1px -2px #FFF7E8, inset 0px -1px 1px -1px rgba(73, 46, 34, 0.5), inset 0px 0px 5px -1px #C66705, inset 0px 0px 1px 3px #E9D9C0",
-//     },
-//     "&:before": {
-//       borderRadius: radius().default,
-//       content: "''",
-//       position: "absolute",
-//       left: "1px",
-//       top: "1px",
-//       width: "calc(100% - 2px)",
-//       height: "calc(100% - 2px)",
-//       zIndex: "1",
-//       boxShadow: ["0 0 0 5px #000 inset", "0 0 0 8px #000 inset"],
-//     },
-//   };
-// };
-
-const Capchase = ({ data }) => {
+const Capchase = () => {
   const Sections = {
     Intro: () => {
       return (
@@ -115,7 +84,11 @@ const Capchase = ({ data }) => {
                   transform: "translateX(-50%)",
                 }}
               >
-                <Img sx={{ width: "100%" }} imageData={images.pinkorb} />
+                <Img
+                  sx={{ width: "100%" }}
+                  fromFolder="capchase"
+                  src={images.pinkorb}
+                />
               </ScrollReveal>
             </Box>
             <Box
@@ -152,7 +125,8 @@ const Capchase = ({ data }) => {
                     transform: "scale(4) rotate(136deg)",
                     width: "100%",
                   }}
-                  imageData={images.bluecyan}
+                  fromFolder="capchase"
+                  src={images.bluecyan}
                 />
               </ScrollReveal>
               <ScrollReveal
@@ -178,7 +152,8 @@ const Capchase = ({ data }) => {
                     transform: "scale(1.5) ",
                     width: "100%",
                   }}
-                  imageData={images.bluecyan}
+                  fromFolder="capchase"
+                  src={images.bluecyan}
                 />
               </ScrollReveal>
             </Box>
@@ -207,7 +182,7 @@ const Capchase = ({ data }) => {
                   },
                 }}
               >
-                <Img imageData={images.phonehand} />
+                <Img fromFolder="capchase" src={images.phonehand} />
               </ScrollReveal>
             </Box>
             <Box
@@ -228,7 +203,11 @@ const Capchase = ({ data }) => {
                 duration={1.5}
                 sx={{ width: "100%" }}
               >
-                <Img sx={{ width: "100%" }} imageData={images.stats} />
+                <Img
+                  sx={{ width: "100%" }}
+                  fromFolder="capchase"
+                  src={images.stats}
+                />
               </ScrollReveal>
             </Box>
             <Box
@@ -259,7 +238,7 @@ const Capchase = ({ data }) => {
                   },
                 }}
               >
-                <Img imageData={images.bottle} />
+                <Img fromFolder="capchase" src={images.bottle} />
               </ScrollReveal>
             </Box>
             <Box
@@ -279,7 +258,11 @@ const Capchase = ({ data }) => {
                 duration={1.5}
                 sx={{ width: "100%", height: "100%" }}
               >
-                <Img cover sx={{ width: "100%" }} imageData={images.devices} />
+                <Img
+                  sx={{ width: "100%" }}
+                  fromFolder="capchase"
+                  src={images.devices}
+                />
               </ScrollReveal>
             </Box>
             {/* <Box
@@ -325,7 +308,8 @@ const Capchase = ({ data }) => {
               >
                 <Img
                   sx={{ width: "30%", margin: "20% auto" }}
-                  imageData={images.purplecyanorb}
+                  fromFolder="capchase"
+                  src={images.purplecyanorb}
                 />
                 <Img
                   sx={{
@@ -335,7 +319,8 @@ const Capchase = ({ data }) => {
                     },
                     width: "100%",
                   }}
-                  imageData={images.shirt}
+                  fromFolder="capchase"
+                  src={images.shirt}
                 />
               </ScrollReveal>
             </Box>
@@ -395,7 +380,7 @@ const Capchase = ({ data }) => {
                 },
               }}
             >
-              <Img imageData={images.brandbook1} />
+              <Img fromFolder="capchase" src={images.brandbook1} />
             </div>
             <div
               sx={{
@@ -407,7 +392,7 @@ const Capchase = ({ data }) => {
                 },
               }}
             >
-              <Img imageData={images.brandbook2} />
+              <Img fromFolder="capchase" src={images.brandbook2} />
             </div>
             <div
               sx={{
@@ -462,7 +447,7 @@ const Capchase = ({ data }) => {
                 },
               }}
             >
-              <Img imageData={images.webdesign} />
+              <Img fromFolder="capchase" src={images.webdesign} />
             </div>
           </GridParent>
         </>
@@ -627,7 +612,7 @@ const Capchase = ({ data }) => {
                 }}
                 duration={2}
               >
-                <Img imageData={images.logoart2} />
+                <Img fromFolder="capchase" src={images.logoart2} />
               </ScrollReveal>
             </div>
             <div
@@ -647,7 +632,11 @@ const Capchase = ({ data }) => {
                 <Text mb={6} variant="caps" color={colors.yellow}>
                   Iconograpy
                 </Text>
-                <Img sx={{ width: "100%" }} imageData={images.icons} />
+                <Img
+                  sx={{ width: "100%" }}
+                  fromFolder="capchase"
+                  src={images.icons}
+                />
               </ScrollReveal>
             </div>
             <div
@@ -665,7 +654,7 @@ const Capchase = ({ data }) => {
                 repeatTypeLoop
                 effect={[{ rotate: 0 }, { rotate: 60 }]}
               >
-                <Img imageData={images.logoart} />
+                <Img fromFolder="capchase" src={images.logoart} />
               </ScrollReveal>
             </div>
             <div
@@ -678,7 +667,7 @@ const Capchase = ({ data }) => {
                 gridColumn: ["span 4", "5/span 1"],
               }}
             >
-              <Img imageData={images.logoart3} />
+              <Img fromFolder="capchase" src={images.logoart3} />
             </div>
             <div
               sx={{
@@ -731,7 +720,11 @@ const Capchase = ({ data }) => {
                 // },
               }}
             >
-              <Img sx={{ width: "70%" }} imageData={images.logoart1} />
+              <Img
+                sx={{ width: "70%" }}
+                fromFolder="capchase"
+                src={images.logoart1}
+              />
             </div>
           </GridParent>
         </>
@@ -775,7 +768,8 @@ const Capchase = ({ data }) => {
                     objectPosition: "bottom",
                   },
                 }}
-                imageData={images.artDirection1}
+                fromFolder="capchase"
+                src={images.artDirection1}
               />
             </Box>
             <Box
@@ -808,7 +802,11 @@ const Capchase = ({ data }) => {
                 alignItems: "center",
               }}
             >
-              <Img sx={{ width: "70%" }} imageData={images.artDirection2} />
+              <Img
+                sx={{ width: "70%" }}
+                fromFolder="capchase"
+                src={images.artDirection2}
+              />
             </Box>
             <Box
               sx={{
@@ -822,7 +820,11 @@ const Capchase = ({ data }) => {
                 alignItems: "center",
               }}
             >
-              <Img sx={{ width: "70%" }} imageData={images.artDirection3} />
+              <Img
+                sx={{ width: "70%" }}
+                fromFolder="capchase"
+                src={images.artDirection3}
+              />
             </Box>
             <Box
               sx={{
@@ -833,7 +835,11 @@ const Capchase = ({ data }) => {
                 alignItems: "center",
               }}
             >
-              <Img sx={{ width: "70%" }} imageData={images.artDirection4} />
+              <Img
+                sx={{ width: "70%" }}
+                fromFolder="capchase"
+                src={images.artDirection4}
+              />
             </Box>
             <Box
               sx={{
@@ -847,7 +853,11 @@ const Capchase = ({ data }) => {
                 alignItems: "center",
               }}
             >
-              <Img sx={{ width: "70%" }} imageData={images.artDirection5} />
+              <Img
+                sx={{ width: "70%" }}
+                fromFolder="capchase"
+                src={images.artDirection5}
+              />
             </Box>
             <Box
               sx={{
@@ -873,7 +883,8 @@ const Capchase = ({ data }) => {
                   width: ["50%", "100%"],
                   img: { width: ["100%", "70%"], objectPosition: "bottom" },
                 }}
-                imageData={images.artDirection6}
+                fromFolder="capchase"
+                src={images.artDirection6}
               />
             </Box>
             <Box
@@ -894,7 +905,8 @@ const Capchase = ({ data }) => {
                   width: "100%",
                   img: { width: "70%", objectPosition: "bottom" },
                 }}
-                imageData={images.artDirection7}
+                fromFolder="capchase"
+                src={images.artDirection7}
               />
             </Box>
             <Box
@@ -909,7 +921,11 @@ const Capchase = ({ data }) => {
                 alignItems: "center",
               }}
             >
-              <Img sx={{ width: "70%" }} imageData={images.artDirection8} />
+              <Img
+                sx={{ width: "70%" }}
+                fromFolder="capchase"
+                src={images.artDirection8}
+              />
             </Box>
 
             <Box
@@ -925,7 +941,11 @@ const Capchase = ({ data }) => {
                 alignItems: "center",
               }}
             >
-              <Img sx={{ width: "100%" }} imageData={images.artDirection9} />
+              <Img
+                sx={{ width: "100%" }}
+                fromFolder="capchase"
+                src={images.artDirection9}
+              />
             </Box>
           </GridParent>
 
@@ -953,7 +973,7 @@ const Capchase = ({ data }) => {
                   width: ["100%"],
                 }}
               >
-                <Img imageData={images.grow} />
+                <Img fromFolder="capchase" src={images.grow} />
               </ScrollReveal>
             </Box>
             <Box
@@ -978,7 +998,7 @@ const Capchase = ({ data }) => {
                   width: "100%",
                 }}
               >
-                <Img imageData={images.flow} />
+                <Img fromFolder="capchase" src={images.flow} />
               </ScrollReveal>
             </Box>
             <Box
@@ -1028,7 +1048,7 @@ const Capchase = ({ data }) => {
                   width: "100%",
                 }}
               >
-                <Img imageData={images.esbuildcss} />
+                <Img fromFolder="capchase" src={images.esbuildcss} />
               </ScrollReveal>
             </Box>
           </GridParent>
@@ -1061,9 +1081,7 @@ const Capchase = ({ data }) => {
 
   return (
     <>
-      <GridParent>
-        <CaseMeta data={data} />
-      </GridParent>
+      <GridParent>{/* <CaseMeta data={data} /> */}</GridParent>
       {Object.entries(Sections).map(([k, Section]) => (
         <Section key={k} />
       ))}

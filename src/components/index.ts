@@ -5,6 +5,7 @@ export { CaseWrapper, useCaseWrapperContext } from "./CaseWrapper";
 export { CaseMeta } from "./CaseMeta";
 export { GridParent } from "./GridParent";
 export { Video } from "./Video";
+// export { ImgLegacy } from "./ImgLegacy";
 export { Img } from "./Img";
 export { List } from "./List";
 export { EmailLink } from "./EmailLink";

@@ -2,14 +2,14 @@
 import { useEffect, useState, useRef } from "react";
 import React from "react";
 
-const VideoComponent = ({ videoData, ...props }) => {
+const VideoComponent = ({ videoData, ...props }: { videoData: any }) => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isWaiting, setIsWaiting] = useState(false);
 
-  const isWaitingTimeout = useRef(null);
-  const isPlayingTimeout = useRef(null);
+  const isWaitingTimeout = useRef(null) as any;
+  const isPlayingTimeout = useRef(null) as any;
 
-  const videoElementRef = useRef();
+  const videoElementRef = useRef() as any;
 
   const PLAYING_DEBOUNCE_TIME = 50;
   const WAITING_DEBOUNCE_TIME = 200;
@@ -47,7 +47,7 @@ const VideoComponent = ({ videoData, ...props }) => {
       }, PLAYING_DEBOUNCE_TIME);
     };
 
-    const element = videoElementRef.current;
+    const element = videoElementRef.current as HTMLVideoElement;
 
     element.addEventListener("waiting", waitingHandler);
     element.addEventListener("play", playHandler);

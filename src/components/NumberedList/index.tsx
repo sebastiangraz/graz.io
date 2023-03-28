@@ -55,8 +55,8 @@ export const NumberedList = ({
                 display: "inline-grid",
                 alignItems: "center",
                 justifyContent: "center",
-                bg: "var(--caseBackground)",
-                color: "var(--caseForeground)",
+                bg: "var(--caseForeground)",
+                color: "var(--caseBackground)",
               }}
             >
               {i + 1}

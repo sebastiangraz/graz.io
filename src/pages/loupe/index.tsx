@@ -12,7 +12,7 @@ import {
 import { Logo } from "./Logo";
 import { videos, images, colors } from "./assets";
 
-const Loupe = ({ data }: { data: any }) => {
+const Loupe = () => {
   const Sections = {
     Define: () => {
       return (
@@ -75,10 +75,11 @@ const Loupe = ({ data }: { data: any }) => {
               duration={10}
               effect={[{ rotate: 0 }, { rotate: -360 }]}
             >
-              <Img
+              {/* <Img
                 sx={{ transform: "scale(1.5)" }}
                 imageData={images.monomeshMagenta}
-              ></Img>
+              ></Img> */}
+              <Img src={images.monomeshMagenta} fromFolder="loupe"></Img>
             </ScrollReveal>
           </div>
 
@@ -98,7 +99,8 @@ const Loupe = ({ data }: { data: any }) => {
             >
               <Img
                 sx={{ transform: "scale(1.5)" }}
-                imageData={images.monomeshOrange}
+                src={images.monomeshOrange}
+                fromFolder="loupe"
               ></Img>
             </ScrollReveal>
           </div>
@@ -143,7 +145,7 @@ const Loupe = ({ data }: { data: any }) => {
               }}
             >
               <ScrollReveal effect={[{ translateY: 10 }, { translateY: 0 }]}>
-                <Img imageData={images.webdesign} />
+                <Img fromFolder="loupe" src={images.webdesign} />
               </ScrollReveal>
             </div>
           </GridParent>
@@ -197,10 +199,10 @@ const Loupe = ({ data }: { data: any }) => {
                   },
                 }}
               >
-                <Img imageData={images.logopart1} />
-                <Img imageData={images.logopart2} />
-                <Img imageData={images.logopart3} />
-                <Img imageData={images.logopart4} />
+                <Img fromFolder="loupe" src={images.logopart1} />
+                <Img fromFolder="loupe" src={images.logopart2} />
+                <Img fromFolder="loupe" src={images.logopart3} />
+                <Img fromFolder="loupe" src={images.logopart4} />
               </ScrollReveal>
             </Box>
             <Box
@@ -234,9 +236,9 @@ const Loupe = ({ data }: { data: any }) => {
                   },
                 }}
               >
-                <Img imageData={images.logoassemble1} />
-                <Img imageData={images.logoassemble2} />
-                <Img imageData={images.logoassemble3} />
+                <Img fromFolder="loupe" src={images.logoassemble1} />
+                <Img fromFolder="loupe" src={images.logoassemble2} />
+                <Img fromFolder="loupe" src={images.logoassemble3} />
               </ScrollReveal>
             </Box>
           </GridParent>
@@ -307,13 +309,13 @@ const Loupe = ({ data }: { data: any }) => {
                   margin: "0 auto",
                 }}
               >
-                <Img imageData={images.twentytwenty} />
+                <Img fromFolder="loupe" src={images.twentytwenty} />
               </div>
             </div>
             <div
               sx={{
                 backgroundColor: "#E900A1",
-                backgroundImage: `url(${images.monomeshRed2.url.default})`,
+                // backgroundImage: `url(${images.monomeshRed2.url.default})`,
                 backgroundSize: "100%",
 
                 gridRow: ["5 / span 3", "5 / span 2"],
@@ -338,7 +340,7 @@ const Loupe = ({ data }: { data: any }) => {
                   delay={0.2}
                   effect={[{ translateY: 10 }, { translateY: 0 }]}
                 >
-                  <Img imageData={images.styrenebold} />
+                  <Img fromFolder="loupe" src={images.styrenebold} />
                 </ScrollReveal>
               </div>
             </div>
@@ -363,7 +365,7 @@ const Loupe = ({ data }: { data: any }) => {
                 }}
               >
                 <ScrollReveal effect={[{ translateY: 10 }, { translateY: 0 }]}>
-                  <Img imageData={images.raisonne} />
+                  <Img fromFolder="loupe" src={images.raisonne} />
                 </ScrollReveal>
               </div>
               <Text
@@ -406,7 +408,7 @@ const Loupe = ({ data }: { data: any }) => {
                   delay={0.1}
                   effect={[{ translateY: 10 }, { translateY: 0 }]}
                 >
-                  <Img imageData={images.styrene} />
+                  <Img fromFolder="loupe" src={images.styrene} />
                 </ScrollReveal>
               </div>
               <div
@@ -418,7 +420,7 @@ const Loupe = ({ data }: { data: any }) => {
                   height: "100%",
                 }}
               >
-                <Img imageData={images.monomeshCyan1}></Img>
+                <Img fromFolder="loupe" src={images.monomeshCyan1}></Img>
               </div>
             </div>
           </GridParent>
@@ -557,18 +559,18 @@ const Loupe = ({ data }: { data: any }) => {
               }}
             >
               <ScrollReveal effect={[{ translateY: 10 }, { translateY: 0 }]}>
-                <Img imageData={images.exe1} />
+                <Img fromFolder="loupe" src={images.exe1} />
               </ScrollReveal>
               <ScrollReveal>
-                <Img imageData={images.exe2} />
+                <Img fromFolder="loupe" src={images.exe2} />
               </ScrollReveal>
               <ScrollReveal>
-                <Img imageData={images.exe3} />
+                <Img fromFolder="loupe" src={images.exe3} />
               </ScrollReveal>
               <ScrollReveal>
-                <Img imageData={images.exe4} />
+                <Img fromFolder="loupe" src={images.exe4} />
               </ScrollReveal>
-              {/* <Img imageData={images.execution} /> */}
+              {/* <Img fromFolder="loupe" src={images.execution} /> */}
             </div>
           </GridParent>
           <GridParent pt={10} pb={"100vh"}>
@@ -597,9 +599,7 @@ const Loupe = ({ data }: { data: any }) => {
   };
   return (
     <>
-      <GridParent>
-        <CaseMeta data={data} />
-      </GridParent>
+      <GridParent>{/* <CaseMeta data={data} /> */}</GridParent>
       {Object.entries(Sections).map(([k, Section]) => (
         <Section key={k} />
       ))}

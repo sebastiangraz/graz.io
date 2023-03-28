@@ -100,7 +100,7 @@ export default () => {
           color: "inherit",
           "&:hover": { textDecoration: "underline" },
         },
-        background: "#eee",
+        background: "transparent",
         willChange: "color",
         margin: "0 auto",
         minHeight: ["auto", "100vh"],

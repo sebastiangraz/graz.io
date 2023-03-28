@@ -4223,6 +4223,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-plugin-react-refresh@npm:^0.3.4":
+  version: 0.3.4
+  resolution: "eslint-plugin-react-refresh@npm:0.3.4"
+  peerDependencies:
+    eslint: ">=7"
+  checksum: cfed1cc698da5e2c58d3c1e5868eb579e985418f10bbf5da84d6c4923499ce544c4d152c6fa6fa02ffcc02c248a1da77190741ab923075ee6cab181268ad6652
+  languageName: node
+  linkType: hard
+
 "esprima@npm:^4.0.0":
   version: 4.0.1
   resolution: "esprima@npm:4.0.1"
@@ -7864,6 +7873,7 @@ fsevents@~2.3.2:
     "@types/react": ^18.0.29
     "@types/react-dom": ^18.0.11
     "@vitejs/plugin-react": ^3.1.0
+    eslint-plugin-react-refresh: ^0.3.4
     framer-motion: ^4.1.17
     intersection-observer: ^0.12.0
     jest-performance-testing: ^1.0.0

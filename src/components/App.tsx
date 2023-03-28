@@ -5,13 +5,10 @@ import "../base.css";
 
 import { Helmet } from "react-helmet-async";
 
-const propMap = (slug: string | string[]) => {
+const propMap = (slug: string) => {
   const styleMap = {
-    home: {
-      grid: ["2 / span 10", "2 / span 10"],
-    },
     canon: {
-      grid: ["1 / span 10", "1 / span 10"],
+      grid: ["3 / span 10", "3 / span 10"],
     },
     capchase: {
       grid: ["1 / span 10", "1 / span 10"],
@@ -19,10 +16,12 @@ const propMap = (slug: string | string[]) => {
     end: {
       grid: ["3 / span 10", "3 / span 10"],
     },
-    // Add more slug-specific styles here
-  };
+    loupe: {
+      grid: ["2 / span 10", "2 / span 10"],
+    },
+  } as Record<string, any>;
 
-  return styleMap[slug] || {}; // Return an empty object if there's no style for the given slug
+  return styleMap[slug]; // Return an empty object if there's no style for the given slug
 };
 
 const routes = Object.entries(

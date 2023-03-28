@@ -4,7 +4,12 @@ import * as React from "react";
 import { Box } from "theme-ui";
 import { GridParent } from "..";
 
-export const TypographyBlock = ({ children, ...rest }) => {
+export const TypographyBlock = ({
+  children,
+  ...rest
+}: {
+  children: React.ReactNode;
+}) => {
   const childCount = React.Children.toArray(children).length;
   return (
     <GridParent sx={rest}>

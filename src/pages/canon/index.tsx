@@ -1,16 +1,8 @@
 /** @jsxImportSource theme-ui */
 
 import * as React from "react";
-import {
-  Text,
-  Box,
-  Link,
-  useThemeUI,
-  Theme,
-  ThemeUIContextValue,
-  ThemeUIStyleObject,
-  ThemeUICSSObject,
-} from "theme-ui";
+
+import { Text, Box, Link } from "theme-ui";
 import {
   Video,
   Img,
@@ -24,6 +16,11 @@ import {
 import { videos, images, vectors } from "./assets";
 
 export default () => {
+  // function getImgUrl(file: string) {
+  //   const url = new URL(`./assets/${file}`, import.meta.url).href;
+  //   return url;
+  // }
+
   const Sections = {
     Define: () => {
       return (
@@ -369,7 +366,7 @@ export default () => {
               }}
             >
               <ScrollReveal effect={[{ translateY: 10 }, { translateY: 0 }]}>
-                <Img imageData={images.canon1} />
+                <Img src={images.canon1} fromFolder="canon" />
               </ScrollReveal>
             </div>
             <div
@@ -380,7 +377,7 @@ export default () => {
               }}
             >
               <ScrollReveal effect={[{ translateY: 10 }, { translateY: 0 }]}>
-                <Img imageData={images.canon2} />
+                <Img src={images.canon2} fromFolder="canon" />
               </ScrollReveal>
             </div>
           </GridParent>
@@ -410,7 +407,7 @@ export default () => {
                 }}
               >
                 <ScrollReveal effect={[{ translateY: 10 }, { translateY: 0 }]}>
-                  <Img imageData={images.canon3} />
+                  <Img src={images.canon3} fromFolder="canon" />
                 </ScrollReveal>
               </div>
             </GridParent>
@@ -440,12 +437,14 @@ export default () => {
       );
     },
   };
-  return (
-    <>
-      <GridParent>{/* <CaseMeta data={data} /> */}</GridParent>
-      {Object.entries(Sections).map(([k, Section]) => (
-        <Section key={k} />
-      ))}
-    </>
-  );
+  {
+    return (
+      <>
+        <GridParent>{/* <CaseMeta data={data} /> */}</GridParent>
+        {Object.entries(Sections).map(([k, Section]) => (
+          <Section key={k} />
+        ))}
+      </>
+    );
+  }
 };

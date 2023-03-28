@@ -39,7 +39,13 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "plugins": [
+      "react-refresh"
+    ],
+    "rules": {
+      "react-refresh/only-export-components": "warn"
+    }
   },
   "browserslist": {
     "production": [
@@ -56,6 +62,7 @@
   "devDependencies": {
     "@types/lodash.debounce": "^4.0.7",
     "@vitejs/plugin-react": "^3.1.0",
+    "eslint-plugin-react-refresh": "^0.3.4",
     "intersection-observer": "^0.12.0",
     "jest-performance-testing": "^1.0.0",
     "react-performance-testing": "^1.2.3",

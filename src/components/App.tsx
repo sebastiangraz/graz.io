@@ -6,22 +6,29 @@ import "../base.css";
 import { Helmet } from "react-helmet-async";
 
 const propMap = (slug: string) => {
-  const styleMap = {
+  const props = {
+    home: {
+      order: 0,
+    },
     canon: {
+      order: 1,
       grid: ["3 / span 10", "3 / span 10"],
     },
     capchase: {
+      order: 2,
       grid: ["1 / span 10", "1 / span 10"],
     },
-    end: {
-      grid: ["3 / span 10", "3 / span 10"],
-    },
     loupe: {
+      order: 3,
       grid: ["2 / span 10", "2 / span 10"],
+    },
+    end: {
+      order: 4,
+      grid: ["3 / span 10", "3 / span 10"],
     },
   } as Record<string, any>;
 
-  return styleMap[slug]; // Return an empty object if there's no style for the given slug
+  return props[slug]; // Return an empty object if there's no style for the given slug
 };
 
 const routes = Object.entries(
@@ -32,7 +39,7 @@ const routes = Object.entries(
     }
   )
 )
-  .map(([relativePath, module], index) => {
+  .map(([relativePath, module]) => {
     const Page = module.default;
     const path = relativePath.replace("./pages", "").replace("/index.tsx", "");
     const slug = path.replace("./", "");
@@ -40,12 +47,17 @@ const routes = Object.entries(
     return {
       slug,
       path,
-      index,
       Page,
     };
   })
-  .sort((a, b) => (a.slug === "home" ? -1 : b.slug === "home" ? 1 : 0))
-  .map(({ path, index, slug, Page }, i) => {
+  // .sort((a, b) => (a.slug === "home" ? -1 : b.slug === "home" ? 1 : 0))
+  .sort((a, b) => {
+    const orderA = propMap(a.slug)?.order;
+    const orderB = propMap(b.slug)?.order;
+
+    return orderA - orderB;
+  })
+  .map(({ path, slug, Page }, i) => {
     const propmap = propMap(slug);
     return (
       <Case key={path} index={i} slug={slug} propmap={propmap}>
@@ -54,128 +66,14 @@ const routes = Object.entries(
     );
   });
 
-export let cases = new Map([
-  [
-    "home",
-    {
-      name: "Home",
-      slug: "home",
-      // component: Home,
-      color: "hsl(310, 9%, 13%)",
-      bg: "hsl(244, 28%, 92%)",
-    },
-  ],
-
-  [
-    "loupe",
-    {
-      name: "Loupe",
-      slug: "loupe",
-      component: Loupe,
-      color: "#184629",
-      bg: "#D2DAD3",
-      grid: ["2 / span 10", "2 / span 10"],
-      scope: [
-        "Visual identity",
-        "Front-end",
-        "Logotype",
-        "Social assets",
-        "Web design",
-        "Merchandise",
-        "Animation",
-        "Print",
-      ],
-      role: "Inhouse Designer",
-      timeframe: "3 months",
-      year: "2020",
-    },
-  ],
-  [
-    "capchase",
-    {
-      name: "Capchase",
-      slug: "capchase",
-      component: Capchase,
-      color: "#000",
-      bg: "#FCFBF8",
-      grid: ["1 / span 10", "1 / span 10"],
-      scope: [
-        "Brand Strategy",
-        "Logotype",
-        "Web Design",
-        "Merchandise",
-        "Prototyping",
-        "Social assets",
-        "Animation",
-        "Print",
-      ],
-      role: "Independent Consultant",
-      timeframe: "3 months",
-      year: "2021",
-    },
-  ],
-  [
-    "canon",
-    {
-      name: "Canon",
-      slug: "canon",
-      component: Canon,
-      color: "#FFCDCA",
-      bg: "#171717",
-      grid: ["3 / span 10", "3 / span 10"],
-      scope: [
-        "Design",
-        "Development",
-        "Prototyping",
-        "Design Systems",
-        "Workshops",
-        "Art Direction",
-      ],
-      role: "Design Consultant",
-      timeframe: "5 months",
-      year: "2018",
-    },
-  ],
-  [
-    "end",
-    {
-      name: "the end",
-      slug: "end",
-      component: End,
-      color: "#FFCDCA",
-      bg: "transparent",
-      grid: ["3 / span 10", "3 / span 10"],
-    },
-  ],
-]);
-
 const MemoApp = () => {
-  // const myRefs = React.useRef([]);
-  // myRefs.current = [...cases].map(
-  //   (i) => myRefs.current[i] ?? React.createRef()
-  // );
-
   return (
     <>
       <Helmet>
-        <meta name="theme-color" content={cases.get("home")?.bg} />
+        <meta name="theme-color" content={"#000000"} />
       </Helmet>
       <ScrollToTop />
-
       <CaseWrapper>{routes}</CaseWrapper>
-
-      {/* <CaseWrapper>
-        {[...cases].map((v, i) => {
-          return (
-            <Case
-              key={v[1].slug}
-              data={v[1]}
-              ref={myRefs.current[i]}
-              index={i}
-            ></Case>
-          );
-        })}
-      </CaseWrapper> */}
     </>
   );
 };

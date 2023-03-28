@@ -1,7 +1,6 @@
 /** @jsxImportSource theme-ui */
 
 import React from "react";
-import { cases } from "../App";
 import { useViewportScroll } from "framer-motion";
 import { Text } from "theme-ui";
 import { Logo } from "..";
@@ -66,7 +65,7 @@ export const ScrollToTop = () => {
           pointerEvents: show ? "all" : "none",
           gridColumn: ["1 / span 1", "1 / span 1"],
           transition: "all 0.9s ease",
-          color: ["#fff", null, cases.get("home").color],
+          color: ["#fff", null, "text"],
           position: "absolute",
           left: ["8px", "calc(50% - 24px)"],
           bottom: "calc(2.5vw)",

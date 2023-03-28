@@ -3,7 +3,7 @@
 import React from "react";
 import { Text, Grid, Link } from "theme-ui";
 import { Logo, List, EmailLink } from "../../components";
-import { m, useViewportScroll, useTransform } from "framer-motion";
+import { m, useViewportScroll, useTransform, useSpring } from "framer-motion";
 import { shade } from "@theme-ui/color";
 import resume from "../../files/cv-sebastiangraz.pdf";
 const awards = [
@@ -52,7 +52,11 @@ const awards = [
 // const dateOneMonthLater = AddNMonth(1);
 
 export default () => {
-  const scrollProgress = [0, window.innerHeight / 1.2, window.innerHeight];
+  const scrollProgress = [
+    0,
+    window.innerHeight * 0.7,
+    window.innerHeight * 0.8,
+  ];
   // const colorOutput = [data.color, "hsl(186, 0%, 63%)", data.bg];
   const transformOutput = [0, -11, -32];
   const { scrollY } = useViewportScroll();
@@ -62,10 +66,18 @@ export default () => {
   //   mass: 0.1,
   // });
 
-  const y = useTransform(scrollY, scrollProgress, transformOutput, {
+  const y = useSpring(useTransform(scrollY, scrollProgress, transformOutput), {
     damping: 12,
     mass: 0.1,
   });
+
+  const opacity = useSpring(
+    useTransform(scrollY, scrollProgress, [1, 0.5, 0]),
+    {
+      damping: 10,
+      mass: 0.1,
+    }
+  );
 
   const list = {
     rest: (custom) => ({
@@ -93,7 +105,7 @@ export default () => {
   return (
     <m.div
       as={Grid}
-      style={{ y }}
+      style={{ y, opacity }}
       sx={{
         a: {
           textDecoration: "none",

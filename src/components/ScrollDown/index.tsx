@@ -1,7 +1,6 @@
 /** @jsxImportSource theme-ui */
 
 import React from "react";
-import { cases } from "../App";
 import { darken } from "@theme-ui/color";
 import { keyframes } from "@emotion/react";
 
@@ -43,7 +42,7 @@ export const ScrollDown = ({
           `${gridPosition(1) === "1" ? "2" : gridPosition(1)} / span 1`,
         ],
         transition: "all 0.9s ease",
-        color: cases.get("home").color,
+        color: "text",
         border: "1px solid",
         // backgroundColor: darken(cases.get("home").bg, 0.05),
         position: "absolute",
@@ -61,7 +60,7 @@ export const ScrollDown = ({
           display: "none",
         },
         "&:hover": {
-          color: darken(cases.get("home").bg, 0.3),
+          opacity: 0.8,
           cursor: "pointer",
           // background: darken(cases.get("home").bg, 0.1),
         },

@@ -89,7 +89,10 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
           ],
         }}
       >
-        <text dominantBaseline="hanging">
+        <text
+          dominantBaseline="hanging"
+          style={{ fill: "var(--caseForeground)" }}
+        >
           {/* hack: using zero-width space to render the correct font */}
           {loaded ? name : "​"}
         </text>

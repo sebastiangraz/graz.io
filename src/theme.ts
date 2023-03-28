@@ -1,8 +1,8 @@
 import { transparentize } from "@theme-ui/color";
-import { cases } from "./components/App";
 
 const colors = {
-  text: "#111",
+  text: "#05010c",
+  background: "#f7f2ec",
   canon: {
     foreground: "#FFCDCA",
     background: "#171717",
@@ -13,7 +13,7 @@ const colors = {
   },
   end: {
     foreground: "#000",
-    background: "#f00",
+    background: "#f7f2ec",
   },
   capchase: {
     foreground: "#000",
@@ -107,7 +107,7 @@ export default {
       ...scroll,
       overflowY: "auto",
       overflowX: "hidden",
-      background: cases.get("home").bg,
+      background: "background",
       webkitFontSmoothing: "antialiased",
       MozOsxFontSmoothing: "grayscale",
       variant: "text.default",

@@ -1,6 +1,6 @@
 /** @jsxImportSource theme-ui */
 
-import React, { useCallback } from "react";
+import React, { useCallback, useRef } from "react";
 import debounce from "lodash.debounce";
 import {
   m,
@@ -26,12 +26,12 @@ const settings = {
   },
 };
 
-const debugStyle = {
-  ...(debug && {
-    boxShadow: "0 0 0 8px inset #319c4eaa, 0 0 0 8px #ef9e47aa",
-    background: "linear-gradient(#ff000000, #ff000088) !important",
-  }),
-};
+// const debugStyle = {
+//   ...(debug && {
+//     boxShadow: "0 0 0 8px inset #319c4eaa, 0 0 0 8px #ef9e47aa",
+//     background: "linear-gradient(#ff000000, #ff000088) !important",
+//   }),
+// };
 
 const caseParent = {
   top: [0, `100vh`],
@@ -51,7 +51,7 @@ const caseParent = {
 };
 
 const caseBg = {
-  ...debugStyle,
+  // ...debugStyle,
   width: "100%",
   zIndex: -1,
   position: "absolute",
@@ -141,25 +141,23 @@ const useStaggeredPosition = (
   return { y, yNext, staggeredOffset };
 };
 
-const MemoCase = React.forwardRef(
-  (
-    {
-      index,
-      slug,
-      propmap,
-      children,
-    }: {
-      index: number;
-      slug?: string;
-      propmap?: any;
-      children: React.ReactNode;
-    },
-    ref
-  ) => {
+export const Case = React.memo(
+  ({
+    index,
+    slug,
+    propmap,
+    children,
+  }: {
+    index: number;
+    slug?: string;
+    propmap?: any;
+    children: React.ReactNode;
+  }) => {
     const responsiveOffset = useResponsiveValue([50, 75, 200, 240]);
     const theme = useThemeUI() as any;
-    const bg = theme.theme?.rawColors?.[slug || "home"]?.background;
-    const fg = theme.theme?.rawColors?.[slug || "home"]?.foreground;
+    const ref = useRef(null) as any;
+    const bg = theme.theme?.rawColors?.[slug || ""]?.background;
+    const fg = theme.theme?.rawColors?.[slug || ""]?.foreground;
     const isHome = slug === "home";
 
     const { scrollY } = useViewportScroll();
@@ -213,29 +211,24 @@ const MemoCase = React.forwardRef(
 
       fadeIn();
 
-      // if (index !== 0) {
-      //   window.history.replaceState(null, null, `#${data.slug}`);
-      // } else {
-      //   window.history.replaceState(null, null, " ");
-      // }
+      if (index !== 0) {
+        window.history.replaceState(null, null, `#${slug}`);
+      } else {
+        window.history.replaceState(null, null, " ");
+      }
 
-      // window.matchMedia(media_query).matches
-      //   ? window.scrollTo(
-      //       0,
-      //       position(0) -
-      //         height(0) -
-      //         (index !== 1 && settings.nextScrollDistance) +
-      //         staggeredOffset
-      //     )
-      //   : // mobile doesnt need to calc stagger and nextScroll
-      //     window.scrollTo(0, position(0) - height(0));
+      // scroll to top of case
+      window.matchMedia(media_query).matches
+        ? window.scrollTo(
+            0,
+            childPosition[index + 1] -
+              childHeight[index] -
+              (index !== 1 ? settings.nextScrollDistance : 0) +
+              staggeredOffset
+          )
+        : window.scrollTo(0, childPosition[index]);
     };
     // -----CLICK TO SCROLLTO CASE-----
-
-    // TODO: fix gridCount and gridPosition
-
-    // const gridCount = (arr) => useResponsiveValue([12, 12, 12, 12]);
-    // const gridPosition = (arr) => useResponsiveValue([1, 1, 1, 1]);
 
     const gridCount = (arr) =>
       propmap.grid && propmap.grid[arr].split("span ")[1];
@@ -287,15 +280,15 @@ const MemoCase = React.forwardRef(
               // height: "4000px",
             }}
           >
-            {/* {index === 1 && (
+            {index === 1 && (
               <ScrollDown
                 gridPosition={gridPosition}
                 settings={settings}
                 staggeredOffset={staggeredOffset}
-                height={height}
-                position={position}
+                // height={height(1)}
+                // position={position(1)}
               />
-            )} */}
+            )}
             <div
               sx={{
                 pointerEvents: "auto",
@@ -375,5 +368,3 @@ const MemoCase = React.forwardRef(
     );
   }
 );
-
-export const Case = React.memo(MemoCase);

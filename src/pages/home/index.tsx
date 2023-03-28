@@ -187,7 +187,6 @@ export default () => {
         <m.div
           variants={list}
           sx={{
-            background: "#eee",
             pt: 2,
             p: 3,
             pl: [3, 0],

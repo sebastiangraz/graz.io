@@ -10,7 +10,7 @@ const End = ({}) => {
   const Sections = {
     Define: () => {
       return (
-        <TypographyBlock m={0}>
+        <TypographyBlock sx={{ m: 0 }}>
           <Box
             mb={[8, 0]}
             sx={{ color: ["#000", "inherit"], maxWidth: [172, 172, 300] }}

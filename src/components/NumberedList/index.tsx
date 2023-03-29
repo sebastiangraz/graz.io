@@ -1,22 +1,22 @@
 /** @jsxImportSource theme-ui */
 
-import { Text } from "theme-ui";
+import { Text, ThemeUICSSObject } from "theme-ui";
 import * as React from "react";
 
 export const NumberedList = ({
   small,
   horizontal,
   children,
-  ...rest
+  sx,
 }: {
   small?: boolean;
   horizontal?: boolean;
   children: React.ReactNode;
-  rest?: any;
+  sx?: ThemeUICSSObject | undefined;
 }) => {
   return (
     <ul
-      {...rest}
+      {...(sx as any)}
       sx={{
         ...(horizontal && {
           gridTemplateColumns: [

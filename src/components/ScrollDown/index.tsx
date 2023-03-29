@@ -1,7 +1,6 @@
 /** @jsxImportSource theme-ui */
 
 import React from "react";
-import { darken } from "@theme-ui/color";
 import { keyframes } from "@emotion/react";
 
 const arrow = keyframes`
@@ -16,6 +15,12 @@ export const ScrollDown = ({
   height,
   gridPosition,
   position,
+}: {
+  staggeredOffset: number;
+  settings: any;
+  height: any;
+  gridPosition: any;
+  position: any;
 }) => {
   const [clicked, setClicked] = React.useState(false);
 
@@ -23,10 +28,7 @@ export const ScrollDown = ({
     setClicked(true);
     window.scrollTo(
       0,
-      position(0) -
-        height(0) -
-        (0 && settings.nextScrollDistance) +
-        staggeredOffset
+      position - height - (0 && settings.nextScrollDistance) + staggeredOffset
     );
   };
 
@@ -41,10 +43,9 @@ export const ScrollDown = ({
           `${gridPosition(0) === "1" ? "2" : gridPosition(0)} / span 1`,
           `${gridPosition(1) === "1" ? "2" : gridPosition(1)} / span 1`,
         ],
-        transition: "all 0.9s ease",
+        transition: "all 0.2s ease",
         color: "text",
         border: "1px solid",
-        // backgroundColor: darken(cases.get("home").bg, 0.05),
         position: "absolute",
         zIndex: 10,
         left: 0,
@@ -60,9 +61,8 @@ export const ScrollDown = ({
           display: "none",
         },
         "&:hover": {
-          opacity: 0.8,
+          filter: "opacity(0.5)",
           cursor: "pointer",
-          // background: darken(cases.get("home").bg, 0.1),
         },
         svg: {
           position: "absolute",

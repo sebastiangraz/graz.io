@@ -1,18 +1,15 @@
 /** @jsxImportSource theme-ui */
 
-import React, { useRef, useState, useReducer, useEffect } from "react";
+import React, { useRef, useReducer, useEffect } from "react";
 import debounce from "lodash.debounce";
 import { LazyMotion, domMax } from "framer-motion";
-import { Debugger } from "../Debugger";
 
 export const useCaseWrapperContext = () =>
-  React.useContext(CaseWrapperContext) as State;
+  React.useContext(CaseWrapperContext) as CaseWrapperState;
 
-const CaseWrapperContext = React.createContext<State | null>(null);
+const CaseWrapperContext = React.createContext<CaseWrapperState | null>(null);
 
-const media_query = "screen and (min-width:640px)";
-
-type State = {
+export type CaseWrapperState = {
   childHeight: number[];
   childPosition: number[];
   childSum: number;
@@ -21,10 +18,10 @@ type State = {
 
 type Action = {
   type: "update";
-  payload: Partial<State>;
+  payload: Partial<CaseWrapperState>;
 };
 
-const reducer = (state: State, action: Action): State => {
+const reducer = (state: CaseWrapperState, action: Action): CaseWrapperState => {
   switch (action.type) {
     case "update":
       return { ...state, ...action.payload };
@@ -91,60 +88,8 @@ const MemoCaseWrapper = ({ children }: { children: React.ReactNode }) => {
     }
   }, []);
 
-  // React.useEffect(() => {
-  //   const onResize = debounce(() => {
-  //     const childHeightVar = children?.props.children.map((child) => {
-  //       //get the height of the child
-  //       return 1000;
-
-  //       // return (
-  //       //   child.ref.current && child.ref.current.getBoundingClientRect().height
-  //       // );
-  //     });
-
-  //     console.log(childHeightVar);
-
-  //     const childPosition = [];
-  //     const childSum = childHeightVar.reduce((acc, child) => {
-  //       childPosition.push(acc + child);
-  //       return acc + child;
-  //     }, 0);
-
-  //     setCase({
-  //       childHeight: childHeightVar,
-  //       childPosition: childPosition,
-  //       childSum: childSum,
-  //       windowHeight: window.innerHeight,
-  //     });
-  //   }, 300);
-
-  //   document.fonts.ready.then(function () {
-  //     onResize();
-  //   });
-
-  //   window.addEventListener(
-  //     "resize",
-  //     debounce(() => {
-  //       var matched = window.matchMedia(media_query).matches;
-  //       if (matched) {
-  //         onResize();
-  //       }
-  //     }, 300),
-  //     { passive: true }
-  //   );
-
-  //   return () => {
-  //     window.removeEventListener("resize", onResize, { passive: true });
-  //   };
-  // }, [children]);
-
   return (
     <LazyMotion features={domMax}>
-      {/* <Debugger
-        height={state.childHeight}
-        position={state.childPosition}
-        slug={"slug"}
-      /> */}
       <div
         ref={parentRef}
         sx={{

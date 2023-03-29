@@ -5,11 +5,11 @@ import uuid from "react-uuid";
 import { useResponsiveValue } from "@theme-ui/match-media";
 const ignoreUpdatedProps = () => true;
 
-export const CaseHero = React.memo((props, { id = uuid() }) => {
-  const caseHeroHeight = useResponsiveValue([180, 300]);
-  let { name } = props;
-
+export const CaseHero = React.memo(({ name }: { name: string }) => {
   name ||= "case";
+
+  const id = uuid();
+  const caseHeroHeight = useResponsiveValue([180, 300]);
 
   const [loaded, setLoaded] = React.useState(false);
 
@@ -24,9 +24,6 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
       sx={{
         position: "absolute",
         top: 0,
-        // ...(debug && {
-        //   opacity: 0.4,
-        // }),
         textTransform: "uppercase",
         fontWeight: 600,
         height: caseHeroHeight,
@@ -34,12 +31,6 @@ export const CaseHero = React.memo((props, { id = uuid() }) => {
         fontSize: "min(12vw, 156px)",
         borderRadius: "32px 32px 0 0",
         color: `var(--caseBackground)`,
-        // ...(name === "g" && {
-        //   fontVariationSettings: `"wght" 64`,
-        //   fontWeight: "normal",
-        //   fontFamily: "g",
-        //   fontSize: "min(36vw, 400px)",
-        // }),
       }}
       height={caseHeroHeight}
       width="100%"

@@ -11,27 +11,10 @@ import {
 } from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "..";
 import { useResponsiveValue } from "@theme-ui/match-media";
-import { Debugger, ScrollDown } from "..";
-import { useThemeUI } from "theme-ui";
-import Home from "../../pages/home";
-
-const debug = false;
-
-const settings = {
-  nextScrollDistance: 72,
-  staggerPower: 0.48,
-  springOptions: {
-    damping: 12,
-    mass: 0.1,
-  },
-};
-
-// const debugStyle = {
-//   ...(debug && {
-//     boxShadow: "0 0 0 8px inset #319c4eaa, 0 0 0 8px #ef9e47aa",
-//     background: "linear-gradient(#ff000000, #ff000088) !important",
-//   }),
-// };
+import { ScrollDown } from "..";
+import { ThemeUICSSObject, useThemeUI } from "theme-ui";
+import { CaseWrapperState } from "../CaseWrapper";
+import { PropMap } from "../App";
 
 const caseParent = {
   top: [0, `100vh`],
@@ -40,7 +23,7 @@ const caseParent = {
   maxWidth: "2400px",
   position: ["relative", "fixed"],
   pointerEvents: "none",
-  // willChange: "transform", //willChange messes up antialiasing but at the cost of performance. (Performance gains negligible though)
+  willChange: "transform", //willChange messes up antialiasing but at the cost of performance. (Performance gains negligible though)
   display: "grid",
   gridTemplateColumns: [
     "repeat(10, 1fr)",
@@ -85,41 +68,48 @@ const media_query = "screen and (min-width:640px)";
 //   return null;
 // }
 
-const useStaggeredPosition = (
+const settings = {
+  nextScrollDistance: 72,
+  staggerPower: 0.48,
+  springOptions: {
+    damping: 12,
+    mass: 0.1,
+  },
+};
+
+interface useStaggeredPositionProps {
+  index: number;
+  childHeight: number[];
+  childPosition: number[];
+  windowHeight: number;
+}
+
+const useStaggeredPosition = ({
   index,
   childHeight,
   childPosition,
   windowHeight,
-  settings
-) => {
+}: useStaggeredPositionProps) => {
   const { scrollY } = useViewportScroll();
   const responsiveOffset = useResponsiveValue([50, 75, 200, 240]);
 
   const height = useCallback(
-    (pos) => childHeight[pos ? index - pos : index] || 0,
+    (pos: number) => childHeight[pos ? index - pos : index] || 0,
     [childHeight, index]
   );
-  const position = (pos) => childPosition[pos ? index - pos : index] || 0;
+  const position = (pos: number) =>
+    childPosition[pos ? index - pos : index] || 0;
 
   const offset = (responsiveOffset / (index + 1)) * settings.staggerPower;
   const staggeredOffset =
     index !== 0 ? -childPosition.length * offset + index * offset : 0;
 
-  const updatePos = (v) => {
+  const updatePos = (v: number) => {
     const progress = v - position(0) + windowHeight;
     return transform(progress, [0, height(0)], [0, -height(0)]);
   };
 
-  // const updatePosNext = (v) => {
-  //   const progress = v - position(1) + height(1);
-  //   return transform(
-  //     progress,
-  //     [-windowHeight, height(1) - windowHeight],
-  //     [staggeredOffset, staggeredOffset - settings.nextScrollDistance]
-  //   );
-  // };
-
-  const updatePosNext = (v) => {
+  const updatePosNext = (v: number) => {
     const progress = v - position(0) + height(1);
     return transform(
       progress,
@@ -150,26 +140,24 @@ export const Case = React.memo(
   }: {
     index: number;
     slug?: string;
-    propmap?: any;
+    propmap?: PropMap;
     children: React.ReactNode;
   }) => {
-    const responsiveOffset = useResponsiveValue([50, 75, 200, 240]);
     const theme = useThemeUI() as any;
     const ref = useRef(null) as any;
     const bg = theme.theme?.rawColors?.[slug || ""]?.background;
     const fg = theme.theme?.rawColors?.[slug || ""]?.foreground;
     const isHome = slug === "home";
 
-    const { scrollY } = useViewportScroll();
-    let { childHeight, childPosition, windowHeight } = useCaseWrapperContext();
+    let { childHeight, childPosition, windowHeight } =
+      useCaseWrapperContext() as CaseWrapperState;
 
-    const { y, yNext, staggeredOffset } = useStaggeredPosition(
+    const { y, yNext, staggeredOffset } = useStaggeredPosition({
       index,
       childHeight,
       childPosition,
       windowHeight,
-      settings
-    );
+    });
 
     const xStyle = useResponsiveValue([
       { x: "0%" },
@@ -188,7 +176,7 @@ export const Case = React.memo(
     const yStyle = useResponsiveValue([{ y: 0 }, { y: y }, { y: y }, { y: y }]);
 
     const fadeIn = debounce(() => {
-      [...document.querySelectorAll(".caseContent")].map((e) => {
+      [...document.querySelectorAll<HTMLElement>(".caseContent")].map((e) => {
         return Object.assign(e.style, {
           transition: "opacity 0.1s linear 1s",
           opacity: 1,
@@ -197,7 +185,7 @@ export const Case = React.memo(
     }, 1000);
 
     const handleClick = () => {
-      [...document.querySelectorAll(".caseContent")].map((e) => {
+      [...document.querySelectorAll<HTMLElement>(".caseContent")].map((e) => {
         return Object.assign(e.style, {
           transition: "none",
           opacity: 0,
@@ -212,9 +200,9 @@ export const Case = React.memo(
       fadeIn();
 
       if (index !== 0) {
-        window.history.replaceState(null, null, `#${slug}`);
+        window.history.replaceState(null, "", `#${slug}`);
       } else {
-        window.history.replaceState(null, null, " ");
+        window.history.replaceState(null, "", " ");
       }
 
       // scroll to top of case
@@ -230,10 +218,10 @@ export const Case = React.memo(
     };
     // -----CLICK TO SCROLLTO CASE-----
 
-    const gridCount = (arr) =>
-      propmap.grid && propmap.grid[arr].split("span ")[1];
-    const gridPosition = (arr) =>
-      propmap.grid && propmap.grid[arr].split(" /")[0];
+    const gridCount = (arr: number) =>
+      propmap?.grid && propmap?.grid[arr].split("span ")[1];
+    const gridPosition = (arr: number) =>
+      propmap?.grid && propmap?.grid[arr].split(" /")[0];
 
     return (
       <>
@@ -269,24 +257,26 @@ export const Case = React.memo(
               ...yStyle,
               ...xStyle,
             }}
-            sx={{
-              "--gridCount": [12, 12, `${gridCount(0)}`, `${gridCount(1)}`],
-              "--caseBackground": bg,
-              "--caseForeground": fg,
-              ...caseParent,
-              color: fg,
-              zIndex: index,
-              left: [0, 0, "50%"],
-              // height: "4000px",
-            }}
+            sx={
+              {
+                "--gridCount": [12, 12, `${gridCount(0)}`, `${gridCount(1)}`],
+                "--caseBackground": bg,
+                "--caseForeground": fg,
+                ...caseParent,
+                color: fg,
+                zIndex: index,
+                left: [0, 0, "50%"],
+                // height: "4000px",
+              } as ThemeUICSSObject
+            }
           >
             {index === 1 && (
               <ScrollDown
                 gridPosition={gridPosition}
                 settings={settings}
                 staggeredOffset={staggeredOffset}
-                // height={height(1)}
-                // position={position(1)}
+                height={childHeight[index]}
+                position={childPosition[index + 1]}
               />
             )}
             <div
@@ -297,16 +287,15 @@ export const Case = React.memo(
                 gridColumn: [
                   "span 12",
                   null,
-                  propmap.grid && propmap?.grid[0],
-                  propmap.grid && propmap?.grid[1],
+                  propmap?.grid && propmap.grid[0],
+                  propmap?.grid && propmap.grid[1],
                 ],
               }}
             >
               <m.div
-                // last item not clickable
-                onClick={
-                  index !== childPosition.length - 1 ? handleClick : null
-                }
+                onClick={() => {
+                  handleClick();
+                }}
                 style={{
                   ...yNextStyle,
 
@@ -320,28 +309,30 @@ export const Case = React.memo(
                   }),
                 }}
               >
-                <CaseHero name={slug} forceRender={childHeight} />
+                <CaseHero name={slug || ""} />
               </m.div>
               <div
                 className="background-layer"
                 style={{
                   backgroundColor: bg,
                 }}
-                sx={{
-                  borderRadius: ["0 0 32px 32px"],
-                  // height: "100%",
-                  // height: "1000px",
-                  height: [
-                    `calc(100% - ${180 - 2}px)`,
-                    `calc(100% - ${
-                      300 -
-                      2 -
-                      (index !== 1 ? settings.nextScrollDistance : 0) +
-                      staggeredOffset
-                    }px)`,
-                  ],
-                  ...caseBg,
-                }}
+                sx={
+                  {
+                    borderRadius: ["0 0 32px 32px"],
+                    // height: "100%",
+                    // height: "1000px",
+                    height: [
+                      `calc(100% - ${180 - 2}px)`,
+                      `calc(100% - ${
+                        300 -
+                        2 -
+                        (index !== 1 ? settings.nextScrollDistance : 0) +
+                        staggeredOffset
+                      }px)`,
+                    ],
+                    ...caseBg,
+                  } as ThemeUICSSObject
+                }
               ></div>
 
               <div

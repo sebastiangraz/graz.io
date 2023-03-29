@@ -1,18 +1,19 @@
 /** @jsxImportSource theme-ui */
 
 import * as React from "react";
-import { Box } from "theme-ui";
+import { Box, ThemeUICSSObject } from "theme-ui";
 import { GridParent } from "..";
 
 export const TypographyBlock = ({
   children,
-  ...rest
+  sx,
 }: {
   children: React.ReactNode;
+  sx?: ThemeUICSSObject;
 }) => {
   const childCount = React.Children.toArray(children).length;
   return (
-    <GridParent sx={rest}>
+    <GridParent {...sx}>
       <Box
         sx={{
           justifyContent: "space-between",

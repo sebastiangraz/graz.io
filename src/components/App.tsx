@@ -5,31 +5,32 @@ import "../base.css";
 
 import { Helmet } from "react-helmet-async";
 
-const propMap = (slug: string) => {
+export interface PropMap {
+  grid?: string[];
+}
+const propMap = () => {
   const props = {
-    home: {
-      order: 0,
-    },
-    canon: {
-      order: 1,
-      grid: ["3 / span 10", "3 / span 10"],
-    },
+    home: {},
     capchase: {
-      order: 2,
-      grid: ["1 / span 10", "1 / span 10"],
+      grid: ["1 / span 10", "1 / span 12"],
     },
     loupe: {
-      order: 3,
       grid: ["2 / span 10", "2 / span 10"],
     },
-    end: {
-      order: 4,
+    canon: {
       grid: ["3 / span 10", "3 / span 10"],
     },
-  } as Record<string, any>;
+    end: {
+      grid: ["3 / span 10", "3 / span 10"],
+    },
+    pad: {},
+  } as { [key: string]: PropMap };
 
-  return props[slug]; // Return an empty object if there's no style for the given slug
+  return props; // Return an empty object if there's no style for the given slug
 };
+
+const slugKeys = Object.keys(propMap());
+const slugValues = Object.values(propMap());
 
 const routes = Object.entries(
   import.meta.glob<string | string[] | any>(
@@ -50,17 +51,15 @@ const routes = Object.entries(
       Page,
     };
   })
-  // .sort((a, b) => (a.slug === "home" ? -1 : b.slug === "home" ? 1 : 0))
   .sort((a, b) => {
-    const orderA = propMap(a.slug)?.order;
-    const orderB = propMap(b.slug)?.order;
+    const indexA = slugKeys.indexOf(a.slug);
+    const indexB = slugKeys.indexOf(b.slug);
 
-    return orderA - orderB;
+    return indexA - indexB;
   })
   .map(({ path, slug, Page }, i) => {
-    const propmap = propMap(slug);
     return (
-      <Case key={path} index={i} slug={slug} propmap={propmap}>
+      <Case key={path} index={i} slug={slug} propmap={slugValues[i]}>
         <Page />
       </Case>
     );

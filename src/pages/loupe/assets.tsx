@@ -11,34 +11,34 @@ export const colors = {
 
 export const videos = {
   loupeMesh: {
-    url: "./assets/loupeMesh.mp4",
+    url: "loupeMesh.mp4",
     width: 1080,
     height: 1080,
   },
   mesh: {
-    url: "./assets/mesh.mp4",
+    url: "mesh.mp4",
     width: 1080,
     height: 1080,
   },
   mesh1: {
-    url: "./assets/mesh1.mp4",
+    url: "mesh1.mp4",
     width: 1152,
     height: 1152,
   },
   muziekclip: {
     fit: "cover",
-    url: "./assets/muziekclip.mp4",
+    url: "muziekclip.mp4",
     width: 2646,
     height: 1080,
   },
   icons: {
-    url: "./assets/icons.mp4",
+    url: "icons.mp4",
     width: 1080,
     height: 1080,
     fit: "cover",
   },
   overview: {
-    url: "./assets/overview.mp4",
+    url: "overview.mp4",
     width: 1168,
     height: 620,
   },

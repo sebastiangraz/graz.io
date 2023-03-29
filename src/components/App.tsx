@@ -12,16 +12,16 @@ const propMap = () => {
   const props = {
     home: {},
     capchase: {
-      grid: ["1 / span 10", "1 / span 12"],
+      grid: ["1 / span 10", "2 / span 10"],
     },
     loupe: {
-      grid: ["2 / span 10", "2 / span 10"],
+      grid: ["2 / span 10", "1 / span 10"],
     },
     canon: {
       grid: ["3 / span 10", "3 / span 10"],
     },
     end: {
-      grid: ["3 / span 10", "3 / span 10"],
+      grid: ["3 / span 10", "2 / span 10"],
     },
     pad: {},
   } as { [key: string]: PropMap };

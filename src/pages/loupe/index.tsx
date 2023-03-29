@@ -55,7 +55,8 @@ const Loupe = () => {
           >
             <Video
               sx={{ video: { objectFit: "cover" } }}
-              videoData={videos.loupeMesh}
+              src={videos.loupeMesh}
+              fromFolder="loupe"
             />
           </Box>
           <div
@@ -267,7 +268,7 @@ const Loupe = () => {
               }}
             >
               <ScrollReveal>
-                <Video videoData={videos.icons} />
+                <Video src={videos.icons} fromFolder="loupe" />
               </ScrollReveal>
             </Box>
           </GridParent>
@@ -468,7 +469,8 @@ const Loupe = () => {
                       overflow: "hidden",
                     },
                   }}
-                  videoData={videos.mesh1}
+                  src={videos.mesh1}
+                  fromFolder="loupe"
                 />
               </ScrollReveal>
             </div>
@@ -489,7 +491,7 @@ const Loupe = () => {
                 alignItems: "center",
               }}
             >
-              <Video videoData={videos.muziekclip} />
+              <Video src={videos.muziekclip} fromFolder="loupe" />
             </Box>
             <div
               sx={{
@@ -517,7 +519,8 @@ const Loupe = () => {
                       overflow: "hidden",
                     },
                   }}
-                  videoData={videos.mesh}
+                  src={videos.mesh}
+                  fromFolder="loupe"
                 />
               </ScrollReveal>
             </div>

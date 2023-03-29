@@ -2,7 +2,7 @@ import * as React from "react";
 
 export const videos = {
   intro: {
-    url: "./assets/intro.mp4",
+    url: "intro.mp4",
     width: 720,
     height: 1001,
   },

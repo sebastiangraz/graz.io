@@ -1,4 +1,5 @@
 import { transparentize } from "@theme-ui/color";
+import { Theme } from "theme-ui";
 
 const colors = {
   text: "#05010c",
@@ -35,11 +36,11 @@ export const scroll = {
     backgroundColor: "transparent",
   },
   "&::-webkit-scrollbar-thumb": {
-    backgroundColor: (t) => `${transparentize("text", 0)(t)}`,
+    backgroundColor: (t: Theme) => `${transparentize("text", 0)(t)}`,
   },
   "&::-webkit-scrollbar-thumb:hover": {
     cursor: "pointer",
-    backgroundColor: (t) => `${transparentize("text", 0.1)(t)}`,
+    backgroundColor: (t: Theme) => `${transparentize("text", 0.1)(t)}`,
   },
 };
 // eslint-disable-next-line import/no-anonymous-default-export

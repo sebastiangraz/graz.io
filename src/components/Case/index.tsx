@@ -23,7 +23,7 @@ const caseParent = {
   maxWidth: "2400px",
   position: ["relative", "fixed"],
   pointerEvents: "none",
-  willChange: "transform", //willChange messes up antialiasing but at the cost of performance. (Performance gains negligible though)
+  // willChange: "transform", //willChange messes up antialiasing but at the cost of performance. (Performance gains negligible though)
   display: "grid",
   gridTemplateColumns: [
     "repeat(10, 1fr)",

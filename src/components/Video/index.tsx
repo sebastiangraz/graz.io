@@ -1,8 +1,34 @@
 /** @jsxImportSource theme-ui */
 import { useEffect, useState, useRef } from "react";
 import React from "react";
+import { ThemeUICSSObject } from "theme-ui";
 
-const VideoComponent = ({ videoData, ...props }: { videoData: any }) => {
+interface VideoComponentProps {
+  src: {
+    url: string;
+    width: number;
+    height: number;
+  };
+  fromFolder: string;
+  sx?: ThemeUICSSObject;
+}
+
+const getVideoUrl = (file: string) => {
+  const url = new URL(file, import.meta.url).href;
+  return url;
+};
+
+const VideoComponent = ({ ...props }: VideoComponentProps) => {
+  if (!props.src) return null;
+  const { src, fromFolder, ...sx } = props;
+
+  const path = `../../pages/${fromFolder}/assets`;
+  const url = getVideoUrl(`${path}/${src.url}`);
+
+  console.log(url);
+
+  // console.log("src", getVideoUrl(src.url));
+
   const [isPlaying, setIsPlaying] = useState(true);
   const [isWaiting, setIsWaiting] = useState(false);
 
@@ -77,23 +103,13 @@ const VideoComponent = ({ videoData, ...props }: { videoData: any }) => {
   };
 
   return (
-    <div
-      {...props}
-      sx={{
-        willChange: "transform",
-        paddingBottom: `calc(${videoData.height} / ${videoData.width} * 100%)`,
-        position: "relative",
-        width: "100%",
-        height: "100%",
-        zIndex: 1,
-      }}
-      onClick={handlePlayPauseClick}
-    >
+    <div {...sx} sx={{ display: "grid" }} onClick={handlePlayPauseClick}>
       {!isPlaying && (
         <div
           sx={{
             opacity: isWaiting ? 0 : 1,
-            position: "absolute",
+            position: "relative",
+            gridArea: "1/1",
             zIndex: 1,
             left: "calc(50% - 28px)",
             top: "calc(50% - 28px)",
@@ -112,7 +128,7 @@ const VideoComponent = ({ videoData, ...props }: { videoData: any }) => {
 
             "&:hover": {
               cursor: "pointer",
-              background: "var(--caseBg)",
+              background: "var(--caseBackground)",
               "svg path": {
                 fill: "currentColor",
               },
@@ -121,26 +137,28 @@ const VideoComponent = ({ videoData, ...props }: { videoData: any }) => {
           className="play"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11">
-            <path d="M 0 0 L 0 11 L 11 5.5 Z" fill="var(--caseBg)"></path>
+            <path
+              d="M 0 0 L 0 11 L 11 5.5 Z"
+              fill="var(--caseBackground)"
+            ></path>
           </svg>
         </div>
       )}
       <video
         sx={{
-          position: "absolute",
-          top: 0,
-          left: 0,
+          gridArea: "1/1",
+          aspectRatio: `${src.width}/${src.height}`,
           opacity: isPlaying ? 1 : 0.88,
           height: "100%",
           width: "100%",
-          objectFit: videoData.fit ? videoData.fit : "contain",
+          objectFit: "cover",
         }}
         loop
         playsInline
         autoPlay={true}
         muted
         ref={videoElementRef}
-        src={`${videoData.url.default}#t=0.001`}
+        src={`${url}`}
       />
     </div>
   );

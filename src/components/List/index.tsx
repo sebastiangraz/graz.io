@@ -1,20 +1,21 @@
 /** @jsxImportSource theme-ui */
 
 import * as React from "react";
+import { ThemeUICSSObject } from "theme-ui";
 
 export const List = ({
   children,
   noBullets,
   variant,
-  ...rest
+  ...sx
 }: {
   children: React.ReactNode;
   noBullets?: boolean;
   variant?: string;
-  rest?: any;
+  sx?: ThemeUICSSObject;
 }) => {
   return (
-    <ul {...rest} sx={{ p: 0 }}>
+    <ul {...sx} sx={{ p: 0 }}>
       {React.Children.map(children || null, (child, i) => {
         return (
           <li

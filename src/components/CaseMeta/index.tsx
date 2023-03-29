@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 import { Box, Text } from "theme-ui";
 import { List } from "..";
-export const CaseMeta = ({ data }) => {
+export const CaseMeta = () => {
   return (
     <Box
       mb={10}
@@ -13,7 +13,7 @@ export const CaseMeta = ({ data }) => {
         gridTemplateColumns: "repeat(8, 1fr)",
       }}
     >
-      {data?.scope && (
+      {/* {data?.scope && (
         <Box sx={{ gridColumn: "1 / span 2" }}>
           <Text variant="caps">Scope</Text>
           <List
@@ -54,7 +54,7 @@ export const CaseMeta = ({ data }) => {
 
           <Text variant="label">{data.year}</Text>
         </Box>
-      )}
+      )} */}
     </Box>
   );
 };

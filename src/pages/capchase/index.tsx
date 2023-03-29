@@ -11,7 +11,7 @@ import {
 import { colors, images, vectors, videos } from "./assets";
 import { Text, Box } from "theme-ui";
 
-const radius = (small: { small?: boolean }) => {
+const radius = (small?: boolean) => {
   const radiusLarge = {
     default: ["6vmin", "4vmin"],
     right: ["0 6vmin 6vmin 0", "0 4vmin 4vmin 0"],
@@ -265,29 +265,7 @@ const Capchase = () => {
                 />
               </ScrollReveal>
             </Box>
-            {/* <Box
-              sx={{
-                borderRadius: radius().default,
-                gridRow: ["13/span 3"],
-                gridColumn: ["3/span 3 "],
-                overflow: "hidden",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                isolation: "isolate",
-                video: {
-                  objectFit: "cover",
-                },
-              }}
-            >
-              <Video
-                sx={{
-                  transform: "scale(1.5)",
-                  overflow: "hidden",
-                }}
-                videoData={videos.intro}
-              />
-            </Box> */}
+
             <Box
               sx={{
                 borderRadius: radius().default,
@@ -366,7 +344,7 @@ const Capchase = () => {
                 gridColumn: ["1/ span 10", "2/span 8"],
               }}
             >
-              <Video videoData={videos.brandbook} />
+              <Video src={videos.brandbook} fromFolder="capchase" />
             </div>
           </GridParent>
           <GridParent sx={{ mb: [10, 11] }}>
@@ -703,7 +681,11 @@ const Capchase = () => {
                   releasing sectioned finance products.
                 </Text>
               </Box>
-              <Video sx={{ height: ["80%"] }} videoData={videos.reveal} />
+              <Video
+                fromFolder="capchase"
+                sx={{ height: ["80%"] }}
+                src={videos.reveal}
+              />
             </div>
             <div
               sx={{
@@ -788,7 +770,7 @@ const Capchase = () => {
                 },
               }}
             >
-              <Video videoData={videos.yellowPurple} />
+              <Video src={videos.yellowPurple} fromFolder="capchase" />
             </Box>
             <Box
               sx={{

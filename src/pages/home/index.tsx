@@ -1,11 +1,30 @@
 /** @jsxImportSource theme-ui */
 
 import React from "react";
-import { Text, Grid, Link } from "theme-ui";
+import { Text, Grid, Link, Theme } from "theme-ui";
 import { Logo, List, EmailLink } from "../../components";
 import { m, useViewportScroll, useTransform, useSpring } from "framer-motion";
-import { shade } from "@theme-ui/color";
+import { shade, transparentize } from "@theme-ui/color";
 import resume from "../../files/cv-sebastiangraz.pdf";
+
+const NearestQuarter = (overRideMonth?: number) => {
+  const getCurrentQuarter = (month: number) => {
+    const paddedMonth = (month + 1) % 12; // Add one month as padding
+
+    // Calculate the nearest quarter based on the padded month
+    const quarter = Math.ceil((paddedMonth + 1) / 3);
+    return `Q${quarter}`;
+  };
+
+  return (
+    <span>
+      {overRideMonth !== undefined
+        ? getCurrentQuarter(overRideMonth as number)
+        : getCurrentQuarter(new Date().getMonth())}
+    </span>
+  );
+};
+
 const awards = [
   {
     title: "Creative Bloq",
@@ -80,31 +99,32 @@ export default () => {
   );
 
   const list = {
-    rest: (custom) => ({
-      pointerEvents: "none",
-      opacity: 0,
-      transition: {
-        duration: 2,
-        type: "tween",
-        ease: "easeInOut",
-      },
-    }),
+    rest: (custom: number) =>
+      ({
+        pointerEvents: "none",
+        opacity: 0,
+        transition: {
+          duration: 0.4,
+          type: "tween",
+          ease: "easeInOut",
+        },
+      } as const),
 
-    hover: (custom) => ({
-      pointerEvents: "all",
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        type: "tween",
-        ease: "easeInOut",
-        delay: custom * 0.12,
-      },
-    }),
+    hover: (custom: number) =>
+      ({
+        pointerEvents: "all",
+        opacity: 1,
+        transition: {
+          duration: 0.3,
+          type: "tween",
+          ease: "easeInOut",
+          delay: custom * 0.035,
+        },
+      } as const),
   };
 
   return (
     <m.div
-      as={Grid}
       style={{ y, opacity }}
       sx={{
         a: {
@@ -179,7 +199,7 @@ export default () => {
         </Link>
       </Text>
       <m.div
-        tabIndex="0"
+        tabIndex={0}
         initial="rest"
         whileFocus="hover"
         whileHover="hover"
@@ -199,27 +219,36 @@ export default () => {
         <m.div
           variants={list}
           sx={{
-            pt: 2,
-            p: 3,
-            pl: [3, 0],
-            boxShadow: [
-              (t) => `0 0 0 1px  ${shade("#eee", 0.1)(t)}`,
-              "none",
-              "none",
-              "none",
-            ],
-            borderRadius: ["1em", 0],
+            m: [4, 0],
             cursor: "auto",
             position: "absolute",
             right: [0, null],
             left: [null, 0],
             top: "100%",
-            width: ["136px", "120px"],
+            width: ["148px", "120px"],
             minWidth: "100%",
+            display: "grid",
+            zIndex: 1,
+            "&:before": {
+              background: "background",
+              p: 4,
+              isolation: "isolate",
+              display: ["grid", "none"],
+              position: "absolute",
+              gridArea: "1/1",
+              content: '""',
+              borderRadius: ["1em", 0],
+              left: "-16px",
+              top: "-16px",
+              width: "100%",
+              height: "100%",
+              boxShadow: (t: Theme) =>
+                `0 0 0 1px ${transparentize("text", 0.92)(t)}`,
+            },
           }}
         >
           <Text variant="label">
-            <List noBullets>
+            <List noBullets sx={{ zIndex: 1, position: "relative" }}>
               <m.div variants={list} custom={1}>
                 <EmailLink string="hi@graz.io">Email</EmailLink>
               </m.div>
@@ -259,7 +288,7 @@ export default () => {
                   }}
                   variant="caps"
                 >
-                  Available Q3
+                  Available {NearestQuarter()}
                 </Text>
               </m.div>
             </List>

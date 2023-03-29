@@ -100,8 +100,8 @@ export default () => {
             >
               <Video
                 sx={{ video: { objectPosition: "left" } }}
-                fit="cover"
-                videoData={videos.intro}
+                src={videos.intro}
+                fromFolder="canon"
               />
             </div>
           </GridParent>
@@ -387,7 +387,7 @@ export default () => {
             }}
           >
             <GridParent>
-              <TypographyBlock mt={[10, 11]}>
+              <TypographyBlock sx={{ mt: [10, 11] }}>
                 <Text variant="heading">Alternative Layout</Text>
                 <Text variant="lead">
                   We wanted to set the expectations that design systems don’t
@@ -418,7 +418,12 @@ export default () => {
     Deduction: () => {
       return (
         <>
-          <TypographyBlock mt={10} pb={"100vh"}>
+          <TypographyBlock
+            sx={{
+              mt: 10,
+              pb: "100vh",
+            }}
+          >
             <Text variant="heading">Closing thoughts</Text>
             <Text variant="lead">
               It’s time-consuming to incorporate a design system into a vast

@@ -4,6 +4,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { m, motion, useAnimation } from "framer-motion";
+import { ThemeUICSSObject } from "theme-ui";
 
 export const ScrollReveal = ({
   children,
@@ -16,6 +17,7 @@ export const ScrollReveal = ({
   repeat,
   repeatParent,
   repeatTypeLoop,
+  sx,
   ...rest
 }: {
   children: React.ReactNode;
@@ -28,6 +30,7 @@ export const ScrollReveal = ({
   repeat?: boolean;
   repeatParent?: boolean;
   repeatTypeLoop?: boolean;
+  sx?: ThemeUICSSObject;
 }) => {
   const delayVal = delay ? delay : 0.05;
   const effectVal = effect ? effect : [{ opacity: 0 }, { opacity: 1 }];
@@ -82,6 +85,7 @@ export const ScrollReveal = ({
 
   return (
     <motion.div
+      {...(sx && { sx })}
       {...rest}
       sx={{ willChange: "transform" }}
       ref={ref}

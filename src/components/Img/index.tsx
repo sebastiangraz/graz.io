@@ -15,23 +15,15 @@ interface ImgProps {
   sx?: ThemeUICSSObject;
 }
 
-function getImgUrl(file: string) {
-  const url = new URL(file, import.meta.url).href;
-  return url;
-}
-
 export const Img = ({ src, fromFolder, ...sx }: ImgProps) => {
   if (!src || !fromFolder) return null;
-
-  const path = `../../pages/${fromFolder}/assets`;
-  const url = getImgUrl(`${path}/${src.name}`);
 
   return (
     <>
       <img
         {...sx}
         loading="lazy"
-        src={url}
+        src={`./${fromFolder}/${src.name}`}
         sx={{
           display: "flex",
           width: "100%",

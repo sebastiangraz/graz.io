@@ -22,13 +22,6 @@ const VideoComponent = ({ ...props }: VideoComponentProps) => {
   if (!props.src) return null;
   const { src, fromFolder, ...sx } = props;
 
-  const path = `../../pages/${fromFolder}/assets`;
-  const url = getVideoUrl(`${path}/${src.url}`);
-
-  console.log(url);
-
-  // console.log("src", getVideoUrl(src.url));
-
   const [isPlaying, setIsPlaying] = useState(true);
   const [isWaiting, setIsWaiting] = useState(false);
 
@@ -158,7 +151,7 @@ const VideoComponent = ({ ...props }: VideoComponentProps) => {
         autoPlay={true}
         muted
         ref={videoElementRef}
-        src={`${url}`}
+        src={`./${fromFolder}/${src.url}`}
       />
     </div>
   );

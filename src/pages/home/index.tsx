@@ -59,31 +59,14 @@ const awards = [
   },
 ];
 
-// function AddNMonth() {
-//   const currentDate = new Date();
-//   const nextMonthDate = new Date(currentDate);
-
-//   nextMonthDate.setMonth(currentDate.getMonth() + 1);
-
-//   return nextMonthDate;
-// }
-
-// const dateOneMonthLater = AddNMonth(1);
-
 export default () => {
   const scrollProgress = [
     0,
     window.innerHeight * 0.7,
     window.innerHeight * 0.8,
   ];
-  // const colorOutput = [data.color, "hsl(186, 0%, 63%)", data.bg];
   const transformOutput = [0, -11, -32];
   const { scrollY } = useViewportScroll();
-
-  // const colorVal = useTransform(scrollY, scrollProgress, colorOutput, {
-  //   damping: 12,
-  //   mass: 0.1,
-  // });
 
   const y = useSpring(useTransform(scrollY, scrollProgress, transformOutput), {
     damping: 12,

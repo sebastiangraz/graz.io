@@ -240,7 +240,6 @@ export const Case = React.memo(
               top: "100%",
               position: ["relative", "fixed"],
               left: 0,
-              height: "100vh",
             }}
           >
             {children}

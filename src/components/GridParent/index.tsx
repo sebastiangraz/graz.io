@@ -1,7 +1,12 @@
 /** @jsxImportSource theme-ui */
 import { Box } from "theme-ui";
 
-export const GridParent = ({ children, ...rest }) => {
+export const GridParent = ({
+  children,
+  ...rest
+}: {
+  children: React.ReactNode;
+} & React.ComponentProps<typeof Box>) => {
   return (
     <Box
       {...rest}

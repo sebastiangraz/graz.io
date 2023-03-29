@@ -47,7 +47,7 @@ export function Logo() {
       viewBox="0 0 280 280"
       variants={list}
       sx={{ height: "auto", width: "100%" }}
-      animate={entry < 0.4 ? "hidden" : "visible"}
+      animate={entry ? "hidden" : "visible"}
     >
       <m.path
         variants={item}

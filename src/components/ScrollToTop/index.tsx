@@ -6,7 +6,7 @@ import { Text } from "theme-ui";
 import { Logo } from "..";
 
 export const handleClick = () => {
-  [...document.querySelectorAll(".caseContent")].map((e) => {
+  [...document.querySelectorAll<HTMLElement>(".caseContent")].map((e) => {
     return Object.assign(e.style, {
       transition: "none",
       opacity: 0,
@@ -14,9 +14,9 @@ export const handleClick = () => {
   });
 
   window.scrollTo(0, 0);
-  window.history.replaceState(null, null, " ");
+  window.history.replaceState(null, "", " ");
   setTimeout(() => {
-    [...document.querySelectorAll(".caseContent")].map((e) => {
+    [...document.querySelectorAll<HTMLElement>(".caseContent")].map((e) => {
       return Object.assign(e.style, {
         transition: "opacity 0.1s linear",
         opacity: 1,

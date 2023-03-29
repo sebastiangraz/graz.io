@@ -6,7 +6,7 @@ import { GridParent } from "..";
 
 export const TypographyBlock = ({
   children,
-  sx,
+  ...sx
 }: {
   children: React.ReactNode;
   sx?: ThemeUICSSObject;

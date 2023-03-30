@@ -28,7 +28,7 @@ export const NumberedList = ({
         p: 0,
         display: "grid",
         rowGap: small ? 5 : 7,
-        mb: 10,
+        mb: 4,
       }}
     >
       {React.Children.map(children || null, (child, i) => {

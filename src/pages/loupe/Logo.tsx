@@ -4,19 +4,16 @@ import { m } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 export function Logo() {
-  const [ref, entry] = useInView();
+  const [ref, inView] = useInView();
   const list = {
     visible: {
       transition: {
         type: "tween",
-        when: "beforeChildren",
-        staggerChildren: 0.1,
       },
     },
     hidden: {
       transition: {
         type: "tween",
-        when: "afterChildren",
       },
     },
   };
@@ -47,7 +44,7 @@ export function Logo() {
       viewBox="0 0 280 280"
       variants={list}
       sx={{ height: "auto", width: "100%" }}
-      animate={entry ? "hidden" : "visible"}
+      animate={inView ? "visible" : "hidden"}
     >
       <m.path
         variants={item}

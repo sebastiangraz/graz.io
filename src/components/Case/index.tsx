@@ -1,6 +1,6 @@
 /** @jsxImportSource theme-ui */
 
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import debounce from "lodash.debounce";
 import {
   m,
@@ -15,6 +15,7 @@ import { ScrollDown } from "..";
 import { ThemeUICSSObject, useThemeUI } from "theme-ui";
 import { CaseWrapperState } from "../CaseWrapper";
 import { PropMap } from "../App";
+import { useUpdateURL } from "../hooks/useUpdateURL";
 
 const caseParent = {
   top: [0, `100vh`],
@@ -44,13 +45,21 @@ const caseBg = {
 
 const media_query = "screen and (min-width:640px)";
 
-function ScrollToTopOnMount(props: any) {
-  const { position, height, stagger, datavar, index } = props;
-  React.useEffect(() => {
+interface ScrollToTopOnMountProps {
+  position: number;
+  stagger: number;
+  datavar: string | undefined;
+  index: number;
+}
+
+function ScrollToTopOnMount(props: ScrollToTopOnMountProps) {
+  const { position, stagger, datavar, index } = props;
+
+  useEffect(() => {
     // wait for fonts to load
     document.fonts.ready.then(function () {
-      // find the current hash in url
-      if (window.location.hash === `#${datavar}`) {
+      // find the current path in url
+      if (window.location.pathname === `/${datavar}`) {
         // desktop
         window.matchMedia(media_query).matches
           ? window.scrollTo(
@@ -59,11 +68,11 @@ function ScrollToTopOnMount(props: any) {
                 (index !== 1 ? settings.nextScrollDistance : 0) +
                 stagger
             )
-          : // mobile doesnt need to calc stagger and nextScroll
+          : // mobile doesn't need to calc stagger and nextScroll
             window.scrollTo(0, position);
       }
     });
-  }, [datavar, height, index, position, stagger]);
+  }, [datavar, index, position, stagger]);
   return null;
 }
 
@@ -186,6 +195,7 @@ export const Case = React.memo(
       });
     }, 1000);
 
+    useUpdateURL(slug, index);
     const handleClick = () => {
       [...document.querySelectorAll<HTMLElement>(".caseContent")].map((e) => {
         return Object.assign(e.style, {
@@ -202,9 +212,9 @@ export const Case = React.memo(
       fadeIn();
 
       if (index !== 0) {
-        window.history.replaceState(null, "", `#${slug}`);
+        window.history.pushState(null, "", `/${slug}`);
       } else {
-        window.history.replaceState(null, "", " ");
+        window.history.pushState(null, "", "/");
       }
 
       // scroll to top of case

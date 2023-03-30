@@ -14,7 +14,7 @@ export const handleClick = () => {
   });
 
   window.scrollTo(0, 0);
-  window.history.replaceState(null, "", " ");
+  window.history.pushState("", "", "/");
   setTimeout(() => {
     [...document.querySelectorAll<HTMLElement>(".caseContent")].map((e) => {
       return Object.assign(e.style, {

@@ -29,7 +29,7 @@ export const CaseHero = React.memo(({ name }: { name: string }) => {
         height: caseHeroHeight,
         letterSpacing: "-0.075em",
         fontSize: "min(12vw, 156px)",
-        borderRadius: "32px 32px 0 0",
+        // borderRadius: "32px 32px 0 0",
         color: `var(--caseBackground)`,
       }}
       height={caseHeroHeight}
@@ -59,10 +59,7 @@ export const CaseHero = React.memo(({ name }: { name: string }) => {
               ],
             }}
           >
-            <text dominantBaseline="hanging">
-              {/* hack: using zero-width space to render the correct font */}
-              {loaded ? name : "​"}
-            </text>
+            <text dominantBaseline="hanging">{name}</text>
           </g>
         </mask>
       </defs>

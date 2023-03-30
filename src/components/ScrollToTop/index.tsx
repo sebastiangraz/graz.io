@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 
 import React from "react";
-import { useViewportScroll } from "framer-motion";
+import { useScroll } from "framer-motion";
 import { Text } from "theme-ui";
 import { Logo } from "..";
 
@@ -26,7 +26,7 @@ export const handleClick = () => {
 };
 
 export const ScrollToTop = () => {
-  const { scrollY } = useViewportScroll();
+  const { scrollY } = useScroll();
   const [show, setShow] = React.useState(false);
 
   React.useEffect(() => {

@@ -3,7 +3,7 @@
 import React from "react";
 import { Text, Grid, Link, Theme } from "theme-ui";
 import { Logo, List, EmailLink } from "../../components";
-import { m, useViewportScroll, useTransform, useSpring } from "framer-motion";
+import { m, useScroll, useTransform, useSpring } from "framer-motion";
 import { shade, transparentize } from "@theme-ui/color";
 import resume from "../../files/cv-sebastiangraz.pdf";
 
@@ -48,9 +48,9 @@ const awards = [
     year: "2014-2020",
   },
   {
-    title: "The FWA",
-    count: 1,
-    year: "2013",
+    title: "Landbook",
+    count: 2,
+    year: "2023",
   },
   {
     title: "Webflow",
@@ -66,7 +66,7 @@ export default () => {
     window.innerHeight * 0.8,
   ];
   const transformOutput = [0, -11, -32];
-  const { scrollY } = useViewportScroll();
+  const { scrollY } = useScroll();
 
   const y = useSpring(useTransform(scrollY, scrollProgress, transformOutput), {
     damping: 12,
@@ -293,12 +293,12 @@ export default () => {
               Expertise
             </Text>
             <List>
-              <>Empathic Design</>
               <>Design Systems</>
+              <>Brand Design</>
               <>Art Direction</>
               <>Prototyping</>
               <>Front-end</>
-              <>Branding</>
+              <>Motion</>
             </List>
           </Text>
         </div>

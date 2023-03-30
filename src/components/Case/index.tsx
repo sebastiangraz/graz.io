@@ -7,7 +7,7 @@ import {
   useSpring,
   transform,
   useTransform,
-  useViewportScroll,
+  useScroll,
 } from "framer-motion";
 import { useCaseWrapperContext, CaseHero } from "..";
 import { useResponsiveValue } from "@theme-ui/match-media";
@@ -44,35 +44,36 @@ const caseBg = {
 
 const media_query = "screen and (min-width:640px)";
 
-// function ScrollToTopOnMount(props) {
-//   const { position, height, stagger, datavar, index } = props;
-//   React.useEffect(() => {
-//     // wait for fonts to load
-//     document.fonts.ready.then(function () {
-//       // find the current hash in url
-//       if (window.location.hash === `#${datavar}`) {
-//         // desktop
-//         window.matchMedia(media_query).matches
-//           ? window.scrollTo(
-//               0,
-//               position -
-//                 height -
-//                 (index !== 1 && settings.nextScrollDistance) +
-//                 stagger
-//             )
-//           : // mobile doesnt need to calc stagger and nextScroll
-//             window.scrollTo(0, position - height);
-//       }
-//     });
-//   }, [datavar, height, index, position, stagger]);
-//   return null;
-// }
+function ScrollToTopOnMount(props: any) {
+  const { position, height, stagger, datavar, index } = props;
+  React.useEffect(() => {
+    // wait for fonts to load
+    document.fonts.ready.then(function () {
+      // find the current hash in url
+      if (window.location.hash === `#${datavar}`) {
+        // desktop
+        window.matchMedia(media_query).matches
+          ? window.scrollTo(
+              0,
+              position -
+                height -
+                (index !== 1 ? settings.nextScrollDistance : 0) +
+                stagger
+            )
+          : // mobile doesnt need to calc stagger and nextScroll
+            window.scrollTo(0, position - height);
+      }
+    });
+  }, [datavar, height, index, position, stagger]);
+  return null;
+}
 
 const settings = {
   nextScrollDistance: 72,
   staggerPower: 0.48,
   springOptions: {
-    damping: 12,
+    damping: 60,
+    stiffness: 1000,
     mass: 0.1,
   },
 };
@@ -90,7 +91,7 @@ const useStaggeredPosition = ({
   childPosition,
   windowHeight,
 }: useStaggeredPositionProps) => {
-  const { scrollY } = useViewportScroll();
+  const { scrollY } = useScroll();
   const responsiveOffset = useResponsiveValue([50, 75, 200, 240]);
 
   const height = useCallback(
@@ -230,7 +231,7 @@ export const Case = React.memo(
           <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
+            transition={{ delay: 0 }}
             ref={ref}
             style={{
               ...yStyle,
@@ -248,7 +249,7 @@ export const Case = React.memo(
           <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 2 }}
+            transition={{ delay: 0.2 }}
             className="caseWrapper"
             id={`${slug}-${index}`}
             ref={ref}
@@ -347,13 +348,13 @@ export const Case = React.memo(
             </div>
           </m.div>
         )}
-        {/* <ScrollToTopOnMount
-          position={position(0)}
-          height={height(0)}
+        <ScrollToTopOnMount
+          position={childPosition[index + 1]}
+          height={childHeight[index]}
           stagger={staggeredOffset}
           datavar={slug}
           index={index}
-        /> */}
+        />
       </>
     );
   }

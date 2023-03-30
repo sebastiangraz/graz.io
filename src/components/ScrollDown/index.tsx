@@ -12,13 +12,11 @@ const arrow = keyframes`
 export const ScrollDown = ({
   staggeredOffset,
   settings,
-  height,
   gridPosition,
   position,
 }: {
   staggeredOffset: number;
   settings: any;
-  height: any;
   gridPosition: any;
   position: any;
 }) => {
@@ -28,7 +26,7 @@ export const ScrollDown = ({
     setClicked(true);
     window.scrollTo(
       0,
-      position - height - (0 && settings.nextScrollDistance) + staggeredOffset
+      position - (0 && settings.nextScrollDistance) + staggeredOffset
     );
   };
 

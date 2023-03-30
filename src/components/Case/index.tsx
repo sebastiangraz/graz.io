@@ -56,12 +56,11 @@ function ScrollToTopOnMount(props: any) {
           ? window.scrollTo(
               0,
               position -
-                height -
                 (index !== 1 ? settings.nextScrollDistance : 0) +
                 stagger
             )
           : // mobile doesnt need to calc stagger and nextScroll
-            window.scrollTo(0, position - height);
+            window.scrollTo(0, position);
       }
     });
   }, [datavar, height, index, position, stagger]);
@@ -92,12 +91,14 @@ const useStaggeredPosition = ({
   windowHeight,
 }: useStaggeredPositionProps) => {
   const { scrollY } = useScroll();
+
   const responsiveOffset = useResponsiveValue([50, 75, 200, 240]);
 
   const height = useCallback(
     (pos: number) => childHeight[pos ? index - pos : index] || 0,
     [childHeight, index]
   );
+
   const position = (pos: number) =>
     childPosition[pos ? index - pos : index] || 0;
 
@@ -210,8 +211,7 @@ export const Case = React.memo(
       window.matchMedia(media_query).matches
         ? window.scrollTo(
             0,
-            childPosition[index + 1] -
-              childHeight[index] -
+            childPosition[index] -
               (index !== 1 ? settings.nextScrollDistance : 0) +
               staggeredOffset
           )
@@ -275,8 +275,7 @@ export const Case = React.memo(
                 gridPosition={gridPosition}
                 settings={settings}
                 staggeredOffset={staggeredOffset}
-                height={childHeight[index]}
-                position={childPosition[index + 1]}
+                position={childPosition[index]}
               />
             )}
             <div
@@ -318,7 +317,7 @@ export const Case = React.memo(
                 }}
                 sx={
                   {
-                    borderRadius: ["0 0 32px 32px"],
+                    // borderRadius: ["0 0 32px 32px"],
                     // height: "100%",
                     // height: "1000px",
                     height: [
@@ -349,8 +348,7 @@ export const Case = React.memo(
           </m.div>
         )}
         <ScrollToTopOnMount
-          position={childPosition[index + 1]}
-          height={childHeight[index]}
+          position={childPosition[index]}
           stagger={staggeredOffset}
           datavar={slug}
           index={index}

@@ -30,7 +30,7 @@ export const ScrollToTop = () => {
   const [show, setShow] = React.useState(false);
 
   React.useEffect(() => {
-    scrollY.onChange((e) => {
+    scrollY.on("change", (e) => {
       e > window.innerHeight ? setShow(true) : setShow(false);
     });
   }, [scrollY]);

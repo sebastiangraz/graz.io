@@ -1063,7 +1063,6 @@ const Capchase = () => {
 
   return (
     <>
-      <GridParent>{/* <CaseMeta data={data} /> */}</GridParent>
       {Object.entries(Sections).map(([k, Section]) => (
         <Section key={k} />
       ))}

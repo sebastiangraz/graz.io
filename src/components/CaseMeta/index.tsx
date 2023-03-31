@@ -1,7 +1,13 @@
 /** @jsxImportSource theme-ui */
 import { Box, Text } from "theme-ui";
-import { List } from "..";
-export const CaseMeta = () => {
+import { PropMap } from "../App";
+import { List } from "../List";
+
+export const CaseMeta = ({ ...props }: PropMap) => {
+  const { grid, scope, role, timeframe, year } = props;
+
+  console.log(props.scope);
+
   return (
     <Box
       mb={10}
@@ -9,11 +15,11 @@ export const CaseMeta = () => {
         flexDirection: "column",
         display: ["flex", null, "grid"],
         gridColumn: "2 / span 8",
-        gap: [8, null, 2],
+        gap: [8, null, 6],
         gridTemplateColumns: "repeat(8, 1fr)",
       }}
     >
-      {/* {data?.scope && (
+      {scope && (
         <Box sx={{ gridColumn: "1 / span 2" }}>
           <Text variant="caps">Scope</Text>
           <List
@@ -25,7 +31,7 @@ export const CaseMeta = () => {
               columnGap: "32px",
             }}
           >
-            {data.scope?.map((e) => {
+            {scope?.map((e) => {
               return (
                 <Text key={e} sx={{ whiteSpace: "pre" }} m={0} variant="label">
                   {e}
@@ -35,26 +41,26 @@ export const CaseMeta = () => {
           </List>
         </Box>
       )}
-      {data?.role && (
+      {role && (
         <Box sx={{ gridColumn: "4 / span 2" }}>
           <Text variant="caps">Role</Text>
 
-          <Text variant="label">{data.role}</Text>
+          <Text variant="label">{role}</Text>
         </Box>
       )}
-      {data?.timeframe && (
+      {timeframe && (
         <Box sx={{ gridColumn: "6 / span 2" }}>
           <Text variant="caps">Time frame</Text>
-          <Text variant="label">{data.timeframe}</Text>
+          <Text variant="label">{timeframe}</Text>
         </Box>
       )}
-      {data?.year && (
+      {year && (
         <Box sx={{ gridColumn: "8 / span 2" }}>
           <Text variant="caps">Year</Text>
 
-          <Text variant="label">{data.year}</Text>
+          <Text variant="label">{year}</Text>
         </Box>
-      )} */}
+      )}
     </Box>
   );
 };

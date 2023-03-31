@@ -4,9 +4,7 @@ import { PropMap } from "../App";
 import { List } from "../List";
 
 export const CaseMeta = ({ ...props }: PropMap) => {
-  const { grid, scope, role, timeframe, year } = props;
-
-  console.log(props.scope);
+  const { scope, role, timeframe, year } = props;
 
   return (
     <Box

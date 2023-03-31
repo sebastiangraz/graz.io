@@ -13,8 +13,8 @@ const colors = {
     background: "#D2DAD3",
   },
   end: {
-    foreground: "#000",
-    background: "#f7f2ec",
+    foreground: "#fff",
+    background: "transparent",
   },
   capchase: {
     foreground: "#000",
@@ -58,7 +58,7 @@ export default {
   },
   breakpoints: ["40em", "64em", "98em", "120em"],
   lineHeights: {
-    body: 1.66,
+    body: 1.6,
     lead: 1.4,
     heading: 1.1,
   },
@@ -93,7 +93,7 @@ export default {
       variant: "text.default",
       fontSize: [5, 5, 6, 7],
       letterSpacing: ["body", null, "lead"],
-      lineHeight: ["lead"],
+      lineHeight: ["body", null, null, "lead"],
       mb: ["1.5em"],
     },
     heading: {

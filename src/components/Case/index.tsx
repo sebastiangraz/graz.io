@@ -196,6 +196,7 @@ export const Case = React.memo(
     }, 1000);
 
     useUpdateURL(slug, index);
+
     const handleClick = () => {
       [...document.querySelectorAll<HTMLElement>(".caseContent")].map((e) => {
         return Object.assign(e.style, {
@@ -233,6 +234,8 @@ export const Case = React.memo(
       propmap?.grid && propmap?.grid[arr].split("span ")[1];
     const gridPosition = (arr: number) =>
       propmap?.grid && propmap?.grid[arr].split(" /")[0];
+
+    const islastCase = index === childHeight.length - 1;
 
     return (
       <>
@@ -303,7 +306,7 @@ export const Case = React.memo(
             >
               <m.div
                 onClick={() => {
-                  handleClick();
+                  islastCase ? null : handleClick();
                 }}
                 style={{
                   ...yNextStyle,

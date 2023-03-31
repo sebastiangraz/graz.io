@@ -343,7 +343,14 @@ export default () => {
             width: [410, null, 380, 420],
           }}
         >
-          <Text variant="lead" sx={{ fontSize: [6, 6, 7, 7] }} mb={4}>
+          <Text
+            sx={{
+              fontSize: [6, 6, 7, 7],
+              letterSpacing: ["body", null, "lead"],
+              lineHeight: ["lead"],
+            }}
+            mb={4}
+          >
             <Text
               variant="heading"
               sx={{ fontSize: [6, 6, 7, 7], display: "inline" }}

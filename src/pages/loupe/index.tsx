@@ -1,6 +1,6 @@
 /** @jsxImportSource theme-ui */
 
-import { Flex, Text, Box } from "theme-ui";
+import { Flex, Text, Box, ThemeUICSSObject } from "theme-ui";
 import {
   Video,
   Img,
@@ -38,7 +38,13 @@ const Loupe = () => {
               gridColumn: ["2 / span 8", "2/span 4"],
             }}
           >
-            <NumberedList sx={{ mr: [0, null, 9, 5], mt: [10, 0], mb: 9 }}>
+            <NumberedList
+              sx={{
+                mb: 0,
+                mt: [10, 0],
+                mr: [0, 9],
+              }}
+            >
               <>
                 Create a highly creative page for sharability and social push.
               </>

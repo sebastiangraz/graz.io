@@ -7,16 +7,15 @@ export const NumberedList = ({
   small,
   horizontal,
   children,
-  sx,
+  ...sx
 }: {
   small?: boolean;
   horizontal?: boolean;
   children: React.ReactNode;
-  sx?: ThemeUICSSObject | undefined;
+  sx?: ThemeUICSSObject;
 }) => {
   return (
     <ul
-      {...(sx as any)}
       sx={{
         ...(horizontal && {
           gridTemplateColumns: [
@@ -30,6 +29,7 @@ export const NumberedList = ({
         rowGap: small ? 5 : 7,
         mb: 4,
       }}
+      {...sx}
     >
       {React.Children.map(children || null, (child, i) => {
         return (

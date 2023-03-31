@@ -46,7 +46,9 @@ const Capchase = () => {
                 </Text>
               </ScrollReveal>
             </Box>
-            <Box sx={{ gridColumn: ["2/span 8", "2/span 8", "2/span 6"] }}>
+            <Box
+              sx={{ gridColumn: ["2/span 8", "2/span 8", "2/span 6"], mb: 10 }}
+            >
               <Text variant="caps" mb={7}>
                 Goals
               </Text>
@@ -744,11 +746,8 @@ const Capchase = () => {
             >
               <Img
                 sx={{
-                  width: "100%",
-                  img: {
-                    width: "70%",
-                    objectPosition: "bottom",
-                  },
+                  width: "70%",
+                  objectPosition: "bottom",
                 }}
                 fromFolder="capchase"
                 src={images.artDirection1}
@@ -862,8 +861,9 @@ const Capchase = () => {
                   bottom: 0,
 
                   left: 0,
-                  width: ["50%", "100%"],
-                  img: { width: ["100%", "70%"], objectPosition: "bottom" },
+                  // width: ["50%", "100%"],
+                  width: ["100%", "70%"],
+                  objectPosition: "bottom",
                 }}
                 fromFolder="capchase"
                 src={images.artDirection6}
@@ -884,8 +884,8 @@ const Capchase = () => {
             >
               <Img
                 sx={{
-                  width: "100%",
-                  img: { width: "70%", objectPosition: "bottom" },
+                  width: "70%",
+                  objectPosition: "bottom",
                 }}
                 fromFolder="capchase"
                 src={images.artDirection7}
@@ -1040,9 +1040,9 @@ const Capchase = () => {
               <Text variant="lead" sx={{ maxWidth: 600 }}>
                 The amazing folks at Capchase inspired me to create one of my
                 best works yet. While I was responsible for most design aspects
-                of this project. It was a highly collaborate process with
-                intelligent feedback along the way that made the final outcome
-                so much better.
+                of this project. It was a highly collaborate process with great
+                feedback from start to finish that made the final outcome so
+                much better.
               </Text>
             </Box>
             <Box sx={{ ml: [0, 7], gridColumn: ["2/ span 8", "6/span 4"] }}>

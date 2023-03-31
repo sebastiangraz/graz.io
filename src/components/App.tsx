@@ -1,5 +1,4 @@
 import React from "react";
-import { Loupe, Capchase, Canon, End } from "../pages";
 import { CaseWrapper, Case, ScrollToTop, CaseMeta, GridParent } from ".";
 import "../base.css";
 
@@ -65,7 +64,7 @@ const propMap = () => {
     },
     end: {
       hideCaseMeta: true,
-      grid: ["3 / span 10", "2 / span 10"],
+      grid: ["3 / span 10", "3 / span 10"],
     },
   } as { [key: string]: PropMap };
 
@@ -74,9 +73,6 @@ const propMap = () => {
 
 const slugKeys = Object.keys(propMap());
 const slugValues = Object.values(propMap());
-
-console.log(slugKeys);
-console.log(slugValues);
 
 const routes = Object.entries(
   import.meta.glob<string | string[] | any>(

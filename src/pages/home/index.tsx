@@ -5,7 +5,7 @@ import { Text, Grid, Link, Theme } from "theme-ui";
 import { Logo, List, EmailLink } from "../../components";
 import { m, useScroll, useTransform, useSpring } from "framer-motion";
 import { shade, transparentize } from "@theme-ui/color";
-import resume from "../../files/cv-sebastiangraz.pdf";
+import resume from "/cv-sebastiangraz.pdf";
 
 const NearestQuarter = (overRideMonth?: number) => {
   const getCurrentQuarter = (month: number) => {

@@ -4,7 +4,7 @@ import { Text, Box, Link } from "theme-ui";
 import { NumberedList, TypographyBlock, EmailLink } from "../../components";
 import { handleClick } from "../../components/ScrollToTop";
 
-import resume from "../../files/cv-sebastiangraz.pdf";
+import resume from "/cv-sebastiangraz.pdf";
 
 const End = ({}) => {
   const Sections = {

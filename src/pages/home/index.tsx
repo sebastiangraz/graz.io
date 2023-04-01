@@ -1,6 +1,6 @@
 /** @jsxImportSource theme-ui */
 
-import React from "react";
+import React, { useState } from "react";
 import { Text, Grid, Link, Theme } from "theme-ui";
 import { Logo, List, EmailLink } from "../../components";
 import { m, useScroll, useTransform, useSpring } from "framer-motion";
@@ -81,30 +81,85 @@ export default () => {
     }
   );
 
-  const list = {
-    rest: (custom: number) =>
-      ({
-        pointerEvents: "none",
-        opacity: 0,
-        transition: {
-          duration: 0.4,
-          type: "tween",
-          ease: "easeInOut",
-        },
-      } as const),
+  const [isHover, setIsHover] = useState<boolean>(false);
 
-    hover: (custom: number) =>
-      ({
-        pointerEvents: "all",
-        opacity: 1,
-        transition: {
-          duration: 0.3,
-          type: "tween",
-          ease: "easeInOut",
-          delay: custom * 0.035,
-        },
-      } as const),
+  const handleMouseEnter = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setIsHover(true);
   };
+
+  const handleMouseLeave = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setIsHover(false);
+  };
+
+  // const list = {
+  //   rest: (custom: number) =>
+  //     ({
+  //       pointerEvents: "none",
+  //       opacity: 0,
+  //       transition: {
+  //         duration: 0.4,
+  //         type: "tween",
+  //         ease: "easeInOut",
+  //       },
+  //     } as const),
+
+  //   hover: (custom: number) =>
+  //     ({
+  //       pointerEvents: "all",
+  //       opacity: 1,
+  //       transition: {
+  //         duration: 0.3,
+  //         type: "tween",
+  //         ease: "easeInOut",
+  //         delay: custom * 0.035,
+  //       },
+  //     } as const),
+  // };
+
+  const list = {
+    hidden: {
+      opacity: 0,
+
+      // when: "afterChildren",
+      transition: {
+        duration: 0.3,
+      },
+      // transitionEnd: {
+      //   display: "none",
+      // },
+    },
+    visible: {
+      opacity: 1,
+
+      // display: "flex",
+      when: "afterChildren",
+      transition: {
+        duration: 0.3,
+        staggerChildren: 0.035,
+      },
+    },
+  };
+
+  // const listItem = {
+  //   hidden: {
+  //     opacity: 0,
+  //     pointerEvents: "none",
+  //     transition: {
+  //       duration: 0.1,
+  //     },
+  //   },
+  //   visible: {
+  //     opacity: 1,
+  //     pointerEvents: "auto",
+  //     transition: {
+  //       duration: 0.2,
+  //     },
+  //   },
+  // };
 
   return (
     <m.div
@@ -181,12 +236,10 @@ export default () => {
           Résumé
         </Link>
       </Text>
-      <m.div
+      <div
         tabIndex={0}
-        initial="rest"
-        whileFocus="hover"
-        whileHover="hover"
-        animate="rest"
+        onMouseOver={(e) => handleMouseEnter(e)}
+        onMouseOut={(e) => handleMouseLeave(e)}
         sx={{
           outline: "none",
           userSelect: "none",
@@ -199,8 +252,11 @@ export default () => {
         <Text sx={{ pt: 2, p: 3, ml: -3 }} variant="label">
           Contact
         </Text>
+
         <m.div
           variants={list}
+          initial="hidden"
+          animate={isHover ? "visible" : "hidden"}
           sx={{
             m: [4, 0],
             cursor: "auto",
@@ -232,10 +288,14 @@ export default () => {
         >
           <Text variant="label">
             <List noBullets sx={{ zIndex: 1, position: "relative" }}>
-              <m.div variants={list} custom={1}>
+              <m.div
+                variants={list}
+                key={1}
+                animate={isHover ? "show" : "rest"}
+              >
                 <EmailLink string="hi@graz.io">Email</EmailLink>
               </m.div>
-              <m.div variants={list} custom={2}>
+              <m.div variants={list} key={2}>
                 <Link
                   target="_blank"
                   href="https://twitter.com/grazsebastian"
@@ -244,7 +304,7 @@ export default () => {
                   Twitter
                 </Link>
               </m.div>
-              <m.div variants={list} custom={3}>
+              <m.div variants={list} key={3}>
                 <Link
                   target="_blank"
                   href="https://vsco.co/sgraz/"
@@ -255,7 +315,7 @@ export default () => {
               </m.div>
               <m.hr
                 variants={list}
-                custom={4}
+                key={4}
                 sx={{
                   height: "1px",
                   maxWidth: "100%",
@@ -263,7 +323,7 @@ export default () => {
                   backgroundColor: (t) => shade("#eee", 0.1)(t),
                 }}
               />
-              <m.div variants={list} custom={5}>
+              <m.div variants={list} key={5}>
                 <Text
                   mb={2}
                   sx={{
@@ -277,7 +337,7 @@ export default () => {
             </List>
           </Text>
         </m.div>
-      </m.div>
+      </div>
       <div
         sx={{
           gridArea: "meta",

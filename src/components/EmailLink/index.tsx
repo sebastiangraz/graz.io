@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 
-import React from "react";
-import { m } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { AnimatePresence, m } from "framer-motion";
 
 declare module "framer-motion" {
   export interface AnimatePresenceProps {
@@ -16,9 +16,9 @@ export const EmailLink = ({
   string: string;
   children: React.ReactNode;
 }) => {
-  const [copy, setCopy] = React.useState(false);
+  // const [copy, setCopy] = React.useState(false);
   const [count, setCount] = React.useState(0);
-
+  const [copy, setCopyWithTimeout] = useCopyState(false, 2000);
   const handleClick = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -45,13 +45,9 @@ export const EmailLink = ({
           throw new Error("Fallback copy method failed");
         }
       }
-      setCopy(true);
+      setCopyWithTimeout(true);
     } catch (err) {
       console.error("Async: Could not copy text: ", err);
-    } finally {
-      setTimeout(() => {
-        setCopy(false);
-      }, 2000);
     }
   };
   return (
@@ -67,16 +63,45 @@ export const EmailLink = ({
       onClick={(e) => handleClick(e)}
     >
       {children}
-
-      {copy && (
-        <span
-        // initial={{ opacity: 0 }}
-        // animate={{ opacity: 1 }}
-        // exit={{ opacity: 0 }}
-        >
-          {count > 10 ? " very copied" : " copied"}
-        </span>
-      )}
+      <AnimatePresence>
+        {copy && (
+          <m.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {count > 10 ? " very copied" : " copied"}
+          </m.span>
+        )}{" "}
+      </AnimatePresence>
     </span>
   );
+};
+
+const useCopyState = (initialState: boolean, delay: number) => {
+  const [copy, setCopy] = useState(initialState);
+  const [timer, setTimer] = useState<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timer !== null) {
+        clearTimeout(timer);
+      }
+    };
+  }, [timer]);
+
+  const setCopyWithTimeout = (value: boolean) => {
+    if (timer !== null) {
+      clearTimeout(timer);
+    }
+    setCopy(value);
+    if (value) {
+      const newTimer = setTimeout(() => {
+        setCopy(false);
+      }, delay);
+      setTimer(newTimer);
+    }
+  };
+
+  return [copy, setCopyWithTimeout] as const;
 };

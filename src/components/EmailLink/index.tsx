@@ -26,8 +26,8 @@ export const EmailLink = ({
 
     const copyTextToClipboard = (text: string) => {
       const textarea = document.createElement("textarea");
-      textarea.style.position = "fixed";
       textarea.style.opacity = "0";
+      textarea.style.position = "fixed";
       textarea.value = text;
       document.body.appendChild(textarea);
       textarea.select();

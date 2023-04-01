@@ -39,8 +39,8 @@ export const videos = {
     width: 1920,
     height: 1080,
   },
-  yellowPurple: {
-    url: "yellowpurple.mp4",
+  swirl: {
+    url: "swirl.mp4",
     width: 1500,
     height: 1500,
   },

@@ -764,12 +764,12 @@ const Capchase = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 video: {
-                  transform: "scale(1.65)",
-                  transformOrigin: "100% 55%",
+                  transform: "scale(1)",
+                  transformOrigin: "50% 50%",
                 },
               }}
             >
-              <Video src={videos.yellowPurple} fromFolder="capchase" />
+              <Video src={videos.swirl} fromFolder="capchase" />
             </Box>
             <Box
               sx={{

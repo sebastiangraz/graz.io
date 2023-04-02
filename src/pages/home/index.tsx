@@ -95,71 +95,24 @@ export default () => {
     setIsHover(false);
   };
 
-  // const list = {
-  //   rest: (custom: number) =>
-  //     ({
-  //       pointerEvents: "none",
-  //       opacity: 0,
-  //       transition: {
-  //         duration: 0.4,
-  //         type: "tween",
-  //         ease: "easeInOut",
-  //       },
-  //     } as const),
-
-  //   hover: (custom: number) =>
-  //     ({
-  //       pointerEvents: "all",
-  //       opacity: 1,
-  //       transition: {
-  //         duration: 0.3,
-  //         type: "tween",
-  //         ease: "easeInOut",
-  //         delay: custom * 0.035,
-  //       },
-  //     } as const),
-  // };
-
   const list = {
     hidden: {
       opacity: 0,
-
-      // when: "afterChildren",
+      pointerEvents: "none",
       transition: {
         duration: 0.3,
       },
-      // transitionEnd: {
-      //   display: "none",
-      // },
     },
     visible: {
       opacity: 1,
-
-      // display: "flex",
+      pointerEvents: "auto",
       when: "afterChildren",
       transition: {
         duration: 0.3,
         staggerChildren: 0.035,
       },
     },
-  };
-
-  // const listItem = {
-  //   hidden: {
-  //     opacity: 0,
-  //     pointerEvents: "none",
-  //     transition: {
-  //       duration: 0.1,
-  //     },
-  //   },
-  //   visible: {
-  //     opacity: 1,
-  //     pointerEvents: "auto",
-  //     transition: {
-  //       duration: 0.2,
-  //     },
-  //   },
-  // };
+  } as const;
 
   return (
     <m.div

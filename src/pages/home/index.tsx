@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 
 import React, { useState } from "react";
-import { Text, Grid, Link, Theme } from "theme-ui";
+import { Text, Link, Theme } from "theme-ui";
 import { Logo, List, EmailLink } from "../../components";
 import { m, useScroll, useTransform, useSpring } from "framer-motion";
 import { shade, transparentize } from "@theme-ui/color";

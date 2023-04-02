@@ -1,5 +1,3 @@
-import * as React from "react";
-
 export const colors = {
   black: "#0F0F14",
   white: "#FFFFFF",

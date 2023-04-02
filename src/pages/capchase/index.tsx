@@ -3,7 +3,6 @@
 import {
   GridParent,
   Img,
-  CaseMeta,
   NumberedList,
   ScrollReveal,
   Video,

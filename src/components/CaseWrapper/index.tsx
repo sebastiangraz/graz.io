@@ -40,19 +40,6 @@ const MemoCaseWrapper = ({ children }: { children: React.ReactNode }) => {
     windowHeight: 0,
   });
 
-  const updateChildHeight = (newChildHeight: number[]) => {
-    dispatch({ type: "update", payload: { childHeight: newChildHeight } });
-  };
-  const updateChildPosition = (newChildPosition: number[]) => {
-    dispatch({ type: "update", payload: { childPosition: newChildPosition } });
-  };
-  const updateChildSum = (newChildSum: number) => {
-    dispatch({ type: "update", payload: { childSum: newChildSum } });
-  };
-  const updateWindowHeight = (newWindowHeight: number) => {
-    dispatch({ type: "update", payload: { windowHeight: newWindowHeight } });
-  };
-
   useEffect(() => {
     if (parentRef.current) {
       const onResize = debounce(() => {
@@ -68,17 +55,13 @@ const MemoCaseWrapper = ({ children }: { children: React.ReactNode }) => {
           heightSum += node.offsetHeight;
         });
 
-        updateChildHeight(childHeights);
-        updateChildPosition(offsetYs);
-        updateChildSum(heightSum);
-        updateWindowHeight(window.innerHeight);
-
-        // setCase({
-        //   childHeight: childHeights,
-        //   childPosition: offsetYs,
-        //   childSum: heightSum,
-        //   windowHeight: window.innerHeight,
-        // });
+        dispatch({ type: "update", payload: { childHeight: childHeights } });
+        dispatch({ type: "update", payload: { childPosition: offsetYs } });
+        dispatch({ type: "update", payload: { childSum: heightSum } });
+        dispatch({
+          type: "update",
+          payload: { windowHeight: window.innerHeight },
+        });
       }, 300);
       document.fonts.ready.then(function () {
         onResize();

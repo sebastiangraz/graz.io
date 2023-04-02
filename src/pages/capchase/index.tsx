@@ -292,10 +292,8 @@ const Capchase = () => {
                 />
                 <Img
                   sx={{
-                    img: {
-                      transformOrigin: "center 40%",
-                      transform: "scale(2)",
-                    },
+                    transformOrigin: "center 10%",
+                    transform: "scale(2)",
                     width: "100%",
                   }}
                   fromFolder="capchase"

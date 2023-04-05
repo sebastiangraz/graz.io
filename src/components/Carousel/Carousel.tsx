@@ -1,17 +1,36 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ThemeUICSSObject } from "theme-ui";
+import { Box } from "theme-ui";
 
 interface CarouselProps {
   children: React.ReactNode[];
 }
 
+const variants = (custom: number) => ({
+  enter: {
+    y: custom > 0 ? 100 : -100,
+    opacity: 0,
+  },
+  center: {
+    y: 0,
+    opacity: 1,
+  },
+  exit: {
+    y: custom < 0 ? 100 : -100,
+    opacity: 0,
+  },
+});
+
+const wrap = (min: number, max: number, v: number) => {
+  const rangeSize = max - min;
+  return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
+};
+
 export const Carousel: React.FC<CarouselProps> = ({ children }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
-
   const carouselRef = useRef<HTMLDivElement>(null);
-  let StyledCarousel = motion("div") as any;
+
+  let StyledCarousel = motion(Box) as any;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,13 +39,14 @@ export const Carousel: React.FC<CarouselProps> = ({ children }) => {
       const { top, height } = carouselRef.current.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
 
-      if (top + height <= viewportHeight) {
-        setCurrentIndex(0);
-      } else if (top >= 0) {
-        setCurrentIndex(children.length - 1);
-      } else {
+      // Check if the height is greater than 0 to prevent division by 0
+      if (height > 0) {
         const percentageScrolled = (viewportHeight - top) / height;
+
+        console.log(percentageScrolled);
+
         const newIndex = Math.round(percentageScrolled * (children.length - 1));
+
         setCurrentIndex(newIndex);
       }
     };
@@ -38,57 +58,68 @@ export const Carousel: React.FC<CarouselProps> = ({ children }) => {
     };
   }, [carouselRef, children.length]);
 
-  const paginate = (newDirection: number) => {
-    setCurrentIndex((prevIndex) => {
-      const newIndex = prevIndex + newDirection;
-      setDirection(newDirection);
-      return newIndex >= 0 && newIndex < children.length ? newIndex : prevIndex;
-    });
+  const handlePaginationDotClick = (index: number) => {
+    setCurrentIndex(index);
   };
 
+  const renderPaginationDots = () => {
+    return children.map((_, index) => (
+      <motion.span
+        key={index}
+        onClick={() => handlePaginationDotClick(index)}
+        style={{
+          display: "inline-block",
+          margin: "0 5px",
+          width: "8px",
+          height: "8px",
+          borderRadius: "50%",
+          backgroundColor: currentIndex === index ? "black" : "gray",
+          cursor: "pointer",
+        }}
+      />
+    ));
+  };
   return (
     <StyledCarousel
       ref={carouselRef}
       sx={{
         position: "relative",
         width: "100%",
+        background: "#eee",
+        minHeight: "720px",
         display: "grid",
         overflow: "hidden",
       }}
     >
-      <AnimatePresence initial={false} custom={direction}>
+      <AnimatePresence initial={false}>
         <CarouselItem
           key={currentIndex}
-          custom={direction}
+          custom={0}
           element={children[currentIndex]}
-          paginate={paginate}
         />
       </AnimatePresence>
+      <div
+        style={{
+          position: "absolute",
+          bottom: "10px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {renderPaginationDots()}
+      </div>
     </StyledCarousel>
   );
 };
 
 const CarouselItem: React.FC<{
   custom: number;
-  paginate: (direction: number) => void;
   element: React.ReactNode;
-}> = ({ custom, paginate, element }) => {
+}> = ({ custom, element }) => {
   let StyledCarouselItem = motion("div") as any;
-
-  const variants = {
-    enter: {
-      y: custom > 0 ? 100 : -100,
-      opacity: 0,
-    },
-    center: {
-      y: 0,
-      opacity: 1,
-    },
-    exit: {
-      y: custom < 0 ? 100 : -100,
-      opacity: 0,
-    },
-  };
 
   return (
     <StyledCarouselItem

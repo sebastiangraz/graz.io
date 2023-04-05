@@ -1,16 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
+import { Text } from "theme-ui";
 interface Props {
   children: React.ReactNode[];
   threshold?: number;
   onChangeIndex?: (index: number) => void;
+  ratio?: [number, number];
 }
 
 export const Carousel = ({
   children,
   threshold = 0.5,
   onChangeIndex,
+  ratio = [16, 9],
 }: Props) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
@@ -80,63 +82,74 @@ export const Carousel = ({
   };
 
   return (
-    <div
-      ref={parentRef}
-      style={{
-        minHeight: "720px",
-        background: "#eee",
-        width: "100%",
-        position: "relative",
-        display: "grid",
-      }}
-    >
-      <AnimatePresence>
-        {children.map((child, i) => {
-          const isCardVisible = i === activeIndex;
-          return (
-            <motion.div
-              key={i}
-              data-index={i}
-              initial={fadeAnimation}
-              animate={{ opacity: isCardVisible ? 1 : 0 }}
-              exit={fadeAnimation}
-              style={{
-                width: "100%",
-                gridArea: "1/1",
-                scrollSnapAlign: "start",
-                position: "absolute",
-                top: 0,
-                left: 0,
-              }}
-            >
-              {child}
-            </motion.div>
-          );
-        })}
-      </AnimatePresence>
+    <>
+      {children.map((child, i) => {
+        const alt = (child as any).props.src.alt;
+        const isCardVisible = i === activeIndex;
+        return (
+          <React.Fragment key={i}>
+            {isCardVisible && <ImageCaption caption={alt} />}
+          </React.Fragment>
+        );
+      })}
       <div
+        ref={parentRef}
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          position: "absolute",
-          bottom: "10px",
-          left: 0,
-          right: 0,
+          aspectRatio: `${ratio[0]}/${ratio[1]}`,
+          width: "100%",
+          position: "relative",
+          display: "grid",
         }}
       >
-        {children.map((_, i) => (
-          <IndexIndicator
-            key={i}
-            active={i === activeIndex}
-            onClick={() => {
-              setActiveIndex(i);
-              setDisableScrollUpdates(true);
-            }}
-          />
-        ))}
+        <AnimatePresence>
+          {children.map((child, i) => {
+            const isCardVisible = i === activeIndex;
+            return (
+              <React.Fragment key={i}>
+                <motion.div
+                  data-index={i}
+                  initial={fadeAnimation}
+                  animate={{ opacity: isCardVisible ? 1 : 0 }}
+                  exit={fadeAnimation}
+                  style={{
+                    width: "100%",
+                    gridArea: "1/1",
+                    scrollSnapAlign: "start",
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                  }}
+                >
+                  {child}
+                </motion.div>
+              </React.Fragment>
+            );
+          })}
+        </AnimatePresence>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "absolute",
+            bottom: "10px",
+            left: 0,
+            right: 0,
+          }}
+        >
+          {children.map((_, i) => (
+            <IndexIndicator
+              key={i}
+              active={i === activeIndex}
+              onClick={() => {
+                setActiveIndex(i);
+                setDisableScrollUpdates(true);
+              }}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -157,4 +170,12 @@ const IndexIndicator: React.FC<IndexIndicatorProps> = ({ active, onClick }) => (
       cursor: "pointer",
     }}
   />
+);
+
+interface ImageCaptionProps {
+  caption: string;
+}
+
+const ImageCaption: React.FC<ImageCaptionProps> = ({ caption }) => (
+  <Text variant="label">{caption}</Text>
 );

@@ -32,23 +32,16 @@ const Capchase = () => {
       return (
         <>
           <GridParent>
-            <Box sx={{ gridColumn: ["2/span 8", " 2/span 5"] }}>
+            <Box sx={{ gridColumn: ["2/span 8", "2 / span 8"] }}>
               <Carousel
+                ratio={[1200, 648]}
                 threshold={0.5}
                 onChangeIndex={(index) => console.log("Active index:", index)}
               >
-                <Text>Slide 1</Text>
-                <Text>Slide 2</Text>
-                <Text>Slide 3</Text>
-                {/* <Text>Slide 4</Text>
-                <Text>Slide 5</Text>
-                <Text>Slide 6</Text>
-                <Text>Slide 7</Text>
-                <Text>Slide 8</Text>
-                <Text>Slide 9</Text>
-                <Text>Slide 10</Text> */}
-
-                {/* <Img fromFolder="capchase" src={images.pinkorb} /> */}
+                <Img fromFolder="capchase" src={images.capchaseBB0} />
+                <Img fromFolder="capchase" src={images.capchaseBB1} />
+                <Img fromFolder="capchase" src={images.capchaseBB2} />
+                <Img fromFolder="capchase" src={images.capchaseBB3} />
               </Carousel>
 
               {/* <ScrollReveal>

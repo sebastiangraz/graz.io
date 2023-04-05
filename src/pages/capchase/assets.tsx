@@ -45,6 +45,36 @@ export const videos = {
 };
 
 export const images = {
+  capchaseBB0: {
+    name: "capchase-bb-0.png",
+    width: 1200,
+    height: 648,
+    alt: "Capchase Brandbook Slide 0",
+  },
+  capchaseBB1: {
+    name: "capchase-bb-1.png",
+    width: 1200,
+    height: 648,
+    alt: "Capchase Brandbook Slide 1",
+  },
+  capchaseBB2: {
+    name: "capchase-bb-2.png",
+    width: 1200,
+    height: 648,
+    alt: "Capchase Brandbook Slide 2",
+  },
+  capchaseBB3: {
+    name: "capchase-bb-3.png",
+    width: 1200,
+    height: 648,
+    alt: "Capchase Brandbook Slide 3",
+  },
+  capchaseBB4: {
+    name: "capchase-bb-4.png",
+    width: 1200,
+    height: 648,
+    alt: "Capchase Brandbook Slide 4",
+  },
   bluecyan: {
     name: "bluecyan.png",
     width: 1000,

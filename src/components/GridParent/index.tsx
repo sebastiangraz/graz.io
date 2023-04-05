@@ -15,16 +15,16 @@ export const GridParent = ({
         gridColumn: `1 / span 12`,
         // 5px scrollbar width included in the calc
         "--calcWrapper": [
-          `calc(var(--gridCount) / 12 * min(calc(100vw - 5px), 2400px))`,
+          `calc(var(--gridCount) / 12 * min(calc(100vw - 5px), 1800px))`,
           null,
-          `calc(var(--gridCount) / 12 * min(calc(100vw - 5px), 2400px))`,
+          `calc(var(--gridCount) / 12 * min(calc(100vw - 5px), 1800px))`,
         ],
         // 5px scrollbar width EXCLUDED in the calc for mobile and touch devices
         "@media (hover: none) and (pointer: coarse)": {
           "--calcWrapper": [
-            `calc(var(--gridCount) / 12 * min(100vw, 2400px))`,
+            `calc(var(--gridCount) / 12 * min(100vw, 1800px))`,
             null,
-            `calc(var(--gridCount) / 12 * min(100vw, 2400px))`,
+            `calc(var(--gridCount) / 12 * min(100vw, 1800px))`,
           ],
         },
         "--gutter": "0px",

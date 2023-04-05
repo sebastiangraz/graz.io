@@ -21,7 +21,7 @@ const caseParent = {
   top: [0, `100vh`],
   width: "100%",
   mt: [0, 0],
-  maxWidth: "2400px",
+  maxWidth: "1800px",
   position: ["relative", "fixed"],
   pointerEvents: "none",
   // willChange: "transform", //willChange messes up antialiasing but at the cost of performance. (Performance gains negligible though)

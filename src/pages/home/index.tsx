@@ -134,7 +134,7 @@ export default () => {
         columnGap: 0,
         display: "grid",
         alignItems: ["center", "start"],
-        maxWidth: "2400px",
+        maxWidth: "1800px",
         gridTemplateRows: "auto auto auto",
         gridTemplateColumns: [
           "repeat(10, 1fr)",

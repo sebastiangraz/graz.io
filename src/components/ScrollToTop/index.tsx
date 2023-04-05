@@ -39,7 +39,7 @@ export const ScrollToTop = () => {
     <div
       sx={{
         pointerEvents: "none",
-        maxWidth: "2400px",
+        maxWidth: "1800px",
         margin: "0 auto",
         display: "grid",
         position: "fixed",

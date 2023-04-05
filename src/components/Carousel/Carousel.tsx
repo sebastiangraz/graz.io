@@ -1,142 +1,114 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Box } from "theme-ui";
 
-interface CarouselProps {
+interface Props {
   children: React.ReactNode[];
+  threshold?: number;
+  onChangeIndex?: (index: number) => void;
 }
 
-const variants = (custom: number) => ({
-  enter: {
-    y: custom > 0 ? 100 : -100,
-    opacity: 0,
-  },
-  center: {
-    y: 0,
-    opacity: 1,
-  },
-  exit: {
-    y: custom < 0 ? 100 : -100,
-    opacity: 0,
-  },
-});
+export const Carousel = ({
+  children,
+  threshold = 0.5,
+  onChangeIndex,
+}: Props) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const parentRef = useRef<HTMLDivElement>(null);
 
-const wrap = (min: number, max: number, v: number) => {
-  const rangeSize = max - min;
-  return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
-};
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: `-${100 - threshold * 100}% 0px -${threshold * 100}% 0px`,
+      threshold: [0, 1],
+    };
+    const observer = new IntersectionObserver(handleIntersect, options);
+    observerRef.current = observer;
+    return () => {
+      if (observer) {
+        observer.disconnect();
+      }
+    };
+  }, [threshold]);
 
-export const Carousel: React.FC<CarouselProps> = ({ children }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const carouselRef = useRef<HTMLDivElement>(null);
-
-  let StyledCarousel = motion(Box) as any;
+  useEffect(() => {
+    if (!isFirstLoad && onChangeIndex) {
+      onChangeIndex(activeIndex);
+    }
+    setIsFirstLoad(false);
+  }, [activeIndex, onChangeIndex, isFirstLoad]);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!carouselRef.current) return;
-
-      const { top, height } = carouselRef.current.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-
-      // Check if the height is greater than 0 to prevent division by 0
-      if (height > 0) {
-        const percentageScrolled = (viewportHeight - top) / height;
-
-        console.log(percentageScrolled);
-
-        const newIndex = Math.round(percentageScrolled * (children.length - 1));
-
-        setCurrentIndex(newIndex);
+      if (parentRef.current && observerRef.current) {
+        const { top, height } = parentRef.current.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        const visiblePercent = Math.max(
+          0,
+          Math.min(1, (viewportHeight - Math.max(0, top)) / height)
+        );
+        const index = Math.floor(visiblePercent * children.length);
+        setActiveIndex(Math.min(index, children.length - 1));
       }
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [carouselRef, children.length]);
+  }, [observerRef, parentRef, children]);
 
-  const handlePaginationDotClick = (index: number) => {
-    setCurrentIndex(index);
+  const handleIntersect = (entries: IntersectionObserverEntry[]) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        setActiveIndex(parseInt(entry.target.getAttribute("data-index")!));
+      }
+    });
   };
 
-  const renderPaginationDots = () => {
-    return children.map((_, index) => (
-      <motion.span
-        key={index}
-        onClick={() => handlePaginationDotClick(index)}
-        style={{
-          display: "inline-block",
-          margin: "0 5px",
-          width: "8px",
-          height: "8px",
-          borderRadius: "50%",
-          backgroundColor: currentIndex === index ? "black" : "gray",
-          cursor: "pointer",
-        }}
-      />
-    ));
+  const fadeAnimation = {
+    opacity: 0,
+    transition: {
+      duration: 0.2,
+    },
   };
+
   return (
-    <StyledCarousel
-      ref={carouselRef}
-      sx={{
-        position: "relative",
-        width: "100%",
-        background: "#eee",
+    <div
+      ref={parentRef}
+      style={{
         minHeight: "720px",
+        background: "#eee",
+        width: "100%",
+        position: "relative",
         display: "grid",
-        overflow: "hidden",
       }}
     >
-      <AnimatePresence initial={false}>
-        <CarouselItem
-          key={currentIndex}
-          custom={0}
-          element={children[currentIndex]}
-        />
+      <AnimatePresence>
+        {children.map((child, i) => {
+          const isCardVisible = i === activeIndex;
+          return (
+            <motion.div
+              key={i}
+              data-index={i}
+              initial={fadeAnimation}
+              animate={{ opacity: isCardVisible ? 1 : 0 }}
+              exit={fadeAnimation}
+              style={{
+                width: "100%",
+                gridArea: "1/1",
+                scrollSnapAlign: "start",
+                position: "absolute",
+                top: 0,
+                left: 0,
+              }}
+            >
+              {child}
+            </motion.div>
+          );
+        })}
       </AnimatePresence>
-      <div
-        style={{
-          position: "absolute",
-          bottom: "10px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        {renderPaginationDots()}
-      </div>
-    </StyledCarousel>
-  );
-};
-
-const CarouselItem: React.FC<{
-  custom: number;
-  element: React.ReactNode;
-}> = ({ custom, element }) => {
-  let StyledCarouselItem = motion("div") as any;
-
-  return (
-    <StyledCarouselItem
-      sx={{
-        gridArea: "1/1",
-      }}
-      custom={custom}
-      variants={variants}
-      initial="enter"
-      animate="center"
-      exit="exit"
-      transition={{
-        y: { type: "spring", stiffness: 300, damping: 30 },
-        opacity: { duration: 0.2 },
-      }}
-    >
-      {element}
-    </StyledCarouselItem>
+    </div>
   );
 };

@@ -33,9 +33,14 @@ const Capchase = () => {
         <>
           <GridParent>
             <Box sx={{ gridColumn: ["2/span 8", " 2/span 5"] }}>
-              <Carousel>
+              <Carousel
+                threshold={0.5}
+                onChangeIndex={(index) => console.log("Active index:", index)}
+              >
                 <Text>Slide 1</Text>
                 <Text>Slide 2</Text>
+                <Text>Slide 3</Text>
+                <Text>Slide 4</Text>
                 <Img fromFolder="capchase" src={images.pinkorb} />
               </Carousel>
 

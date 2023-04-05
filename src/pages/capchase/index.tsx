@@ -9,6 +9,7 @@ import {
 } from "../../components";
 import { colors, images, vectors, videos } from "./assets";
 import { Text, Box } from "theme-ui";
+import { Carousel } from "../../components/Carousel";
 
 const radius = (small?: boolean) => {
   const radiusLarge = {
@@ -32,7 +33,13 @@ const Capchase = () => {
         <>
           <GridParent>
             <Box sx={{ gridColumn: ["2/span 8", " 2/span 5"] }}>
-              <ScrollReveal>
+              <Carousel>
+                <Text>Slide 1</Text>
+                <Text>Slide 2</Text>
+                <Img fromFolder="capchase" src={images.pinkorb} />
+              </Carousel>
+
+              {/* <ScrollReveal>
                 <Text variant="lead" mb={8} sx={{ maxWidth: 520 }}>
                   Capchase, one of the largest non-dilutive funding companies
                   needed a time sensitive visual refresh of all their digital &
@@ -43,7 +50,7 @@ const Capchase = () => {
                   both brand awareness while establishing their slice of the
                   market. Big&nbsp;slices&nbsp;too.
                 </Text>
-              </ScrollReveal>
+              </ScrollReveal> */}
             </Box>
             <Box
               sx={{ gridColumn: ["2/span 8", "2/span 8", "2/span 6"], mb: 10 }}

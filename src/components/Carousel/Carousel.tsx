@@ -16,7 +16,7 @@ export const Carousel = ({
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const parentRef = useRef<HTMLDivElement>(null);
-
+  const [disableScrollUpdates, setDisableScrollUpdates] = useState(false);
   useEffect(() => {
     const options = {
       root: null,
@@ -41,15 +41,20 @@ export const Carousel = ({
 
   useEffect(() => {
     const handleScroll = () => {
-      if (parentRef.current && observerRef.current) {
-        const { top, height } = parentRef.current.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
-        const visiblePercent = Math.max(
-          0,
-          Math.min(1, (viewportHeight - Math.max(0, top)) / height)
-        );
-        const index = Math.floor(visiblePercent * children.length);
-        setActiveIndex(Math.min(index, children.length - 1));
+      if (parentRef.current && !disableScrollUpdates) {
+        if (parentRef.current) {
+          const { top, height } = parentRef.current.getBoundingClientRect();
+          const viewportHeight = window.innerHeight;
+
+          if (top >= 0 && top + height <= viewportHeight) {
+            // Calculate the percentage of the component that has scrolled through the viewport
+            const scrollPercentage = 1 - top / (viewportHeight - height);
+
+            // Set the active index based on the scroll percentage
+            const index = Math.floor(scrollPercentage * children.length);
+            setActiveIndex(Math.min(index, children.length - 1));
+          }
+        }
       }
     };
 
@@ -57,7 +62,7 @@ export const Carousel = ({
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [observerRef, parentRef, children]);
+  }, [observerRef, parentRef, children, disableScrollUpdates]);
 
   const handleIntersect = (entries: IntersectionObserverEntry[]) => {
     entries.forEach((entry) => {
@@ -109,6 +114,47 @@ export const Carousel = ({
           );
         })}
       </AnimatePresence>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          position: "absolute",
+          bottom: "10px",
+          left: 0,
+          right: 0,
+        }}
+      >
+        {children.map((_, i) => (
+          <IndexIndicator
+            key={i}
+            active={i === activeIndex}
+            onClick={() => {
+              setActiveIndex(i);
+              setDisableScrollUpdates(true);
+            }}
+          />
+        ))}
+      </div>
     </div>
   );
 };
+
+interface IndexIndicatorProps {
+  active: boolean;
+  onClick: () => void;
+}
+
+const IndexIndicator: React.FC<IndexIndicatorProps> = ({ active, onClick }) => (
+  <div
+    onClick={onClick}
+    style={{
+      width: "10px",
+      height: "10px",
+      borderRadius: "50%",
+      backgroundColor: active ? "#333" : "#ccc",
+      margin: "5px",
+      cursor: "pointer",
+    }}
+  />
+);

@@ -40,8 +40,15 @@ const Capchase = () => {
                 <Text>Slide 1</Text>
                 <Text>Slide 2</Text>
                 <Text>Slide 3</Text>
-                <Text>Slide 4</Text>
-                <Img fromFolder="capchase" src={images.pinkorb} />
+                {/* <Text>Slide 4</Text>
+                <Text>Slide 5</Text>
+                <Text>Slide 6</Text>
+                <Text>Slide 7</Text>
+                <Text>Slide 8</Text>
+                <Text>Slide 9</Text>
+                <Text>Slide 10</Text> */}
+
+                {/* <Img fromFolder="capchase" src={images.pinkorb} /> */}
               </Carousel>
 
               {/* <ScrollReveal>

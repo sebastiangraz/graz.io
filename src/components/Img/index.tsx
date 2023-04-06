@@ -27,7 +27,8 @@ export const Img = ({ src, fromFolder, ...sx }: ImgProps) => {
         sx={{
           display: "flex",
           width: "100%",
-          objectFit: "contain",
+          height: "100%",
+          objectFit: "cover",
           aspectRatio: `${src.width}/${src.height}`,
         }}
       />

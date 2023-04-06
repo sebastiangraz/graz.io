@@ -12,7 +12,6 @@ const Capchase = () => {
       <Box
         sx={{
           gridColumn: ["2/span 8", "2 / span 8"],
-          // mb: "clamp(6rem, 10vw, 12rem)",
         }}
       >
         <Carousel
@@ -26,8 +25,6 @@ const Capchase = () => {
               open to changes.
             </>
           }
-          threshold={0.5}
-          onChangeIndex={(index) => null}
         >
           <Img fromFolder="capchase" src={images.capchaseBB0} />
           <Img fromFolder="capchase" src={images.capchaseBB1} />
@@ -52,8 +49,8 @@ const Capchase = () => {
               with a more subdued aesthetic.
             </>
           }
-          threshold={0.5}
-          onChangeIndex={(index) => null}
+
+          // onChangeIndex={(index) => console.log("Active index:", index)}
         >
           <Img fromFolder="capchase" src={images.capchaseWeb0} />
           <Img fromFolder="capchase" src={images.capchaseWeb1} />

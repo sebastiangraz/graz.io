@@ -21,9 +21,9 @@ const colors = {
     background: "transparent",
   },
   capchase: {
-    foreground: "#000",
-    foregroundDim: "#0007",
-    background: "#fff",
+    foreground: "#0F0F14",
+    foregroundDim: "#0F0F147A",
+    background: "#FCFBF8",
   },
 };
 const space = [0, 2, 6, 12, 14, 16, 20, 32, 48, 72, 144, 256];

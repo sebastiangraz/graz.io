@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Box, Text } from "theme-ui";
 import Balancer from "react-wrap-balancer";
+import { throttle } from "lodash";
 
 interface Props {
   children: React.ReactNode[];
-  threshold?: number;
   onChangeIndex?: (index: number) => void;
   ratio?: [number, number];
   heading: React.ReactNode;
@@ -13,34 +13,18 @@ interface Props {
 
 export const Carousel = ({
   children,
-  threshold = 0.5,
   onChangeIndex,
   ratio = [16, 9],
   heading = null,
 }: Props) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const observerRef = useRef<IntersectionObserver | null>(null);
   const parentRef = useRef<HTMLDivElement>(null);
   const [disableScrollUpdates, setDisableScrollUpdates] = useState(false);
 
   useEffect(() => {
-    const options = {
-      root: null,
-      rootMargin: `-${100 - threshold * 100}% 0px -${threshold * 100}% 0px`,
-      threshold: [0, 1],
-    };
-    const observer = new IntersectionObserver(handleIntersect, options);
-    observerRef.current = observer;
+    //throttle handleScroll
 
-    return () => {
-      if (observer) {
-        observer.disconnect();
-      }
-    };
-  }, [threshold, activeIndex, onChangeIndex]);
-
-  useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = throttle(() => {
       if (parentRef.current && !disableScrollUpdates) {
         requestAnimationFrame(() => {
           if (parentRef.current) {
@@ -49,16 +33,34 @@ export const Carousel = ({
 
             if (top >= 0 && top + height <= viewportHeight) {
               // Calculate the percentage of the component that has scrolled through the viewport
-              const scrollPercentage = 1 - top / (viewportHeight - height);
+              const scrollPercentage = Math.min(
+                1 - top / (viewportHeight - height),
+                1
+              );
+              const index = Math.min(
+                Math.floor(scrollPercentage * children.length),
+                children.length - 1
+              );
+              setActiveIndex(index);
+              onChangeIndex && onChangeIndex(index);
+            } else if (height > viewportHeight && top <= 0) {
+              // Calculate the percentage of the component that has scrolled through the viewport
+              const scrollPercentage = Math.min(
+                -top / (height - viewportHeight),
+                1
+              );
 
-              // Set the active index based on the scroll percentage
-              const index = Math.floor(scrollPercentage * children.length);
-              setActiveIndex(Math.min(index, children.length - 1));
+              const index = Math.min(
+                Math.floor(scrollPercentage * children.length),
+                children.length - 1
+              );
+              setActiveIndex(index);
+              onChangeIndex && onChangeIndex(index);
             }
           }
         });
       }
-    };
+    }, 30);
 
     window.addEventListener("scroll", handleScroll, { passive: true } as any);
 
@@ -67,19 +69,7 @@ export const Carousel = ({
         passive: true,
       } as any);
     };
-  }, [observerRef, parentRef, children, disableScrollUpdates]);
-
-  const handleIntersect = (entries: IntersectionObserverEntry[]) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        setActiveIndex(parseInt(entry.target.getAttribute("data-index")!));
-      }
-    });
-  };
-
-  const fadeAnimation = {
-    opacity: 0,
-  };
+  }, [children.length, disableScrollUpdates, onChangeIndex]);
 
   return (
     <>
@@ -132,7 +122,8 @@ export const Carousel = ({
           position: "relative",
           display: "grid",
           overflow: "hidden",
-          boxShadow: "capchase",
+          filter:
+            "drop-shadow(0px 38px 56px rgba(61, 27, 9, 0.02)) drop-shadow(0px 17.5686px 25.8905px rgba(61, 27, 9, 0.0148335)) drop-shadow(0px 10.0523px 14.814px rgba(61, 27, 9, 0.0125356)) drop-shadow(0px 6.10169px 8.99196px rgba(61, 27, 9, 0.010799)) drop-shadow(0px 3.67654px 5.41805px rgba(61, 27, 9, 0.00920104)) drop-shadow(0px 2.04733px 3.01712px rgba(61, 27, 9, 0.00746438)) drop-shadow(0px 0.880544px 1.29764px rgba(61, 27, 9, 0.00516649))",
         }}
       >
         <AnimatePresence>
@@ -142,7 +133,7 @@ export const Carousel = ({
               <React.Fragment key={i}>
                 <motion.div
                   data-index={i}
-                  initial={fadeAnimation}
+                  initial={{ opacity: 0 }}
                   animate={{
                     opacity: isCardVisible ? 1 : 0,
                     transition: {
@@ -150,9 +141,10 @@ export const Carousel = ({
                       ease: [0.4, 0.1, 0.01, 0.99],
                     },
                   }}
-                  exit={fadeAnimation}
+                  exit={{ opacity: 0 }}
                   style={{
                     width: "100%",
+                    height: "100%",
                     gridArea: "1/1",
                     scrollSnapAlign: "start",
                     position: "absolute",

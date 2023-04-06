@@ -27,7 +27,7 @@ export const Carousel = ({
   const [activeIndex, setActiveIndex] = useState(0);
   const parentRef = useRef<HTMLDivElement>(null);
   const [disableScrollUpdates, setDisableScrollUpdates] = useState(false);
-  const [disableAutoplay, setDisableAutoplay] = useState(!autoplay);
+  const [disableAutoplay, setDisableAutoplay] = useState(true);
 
   useEffect(() => {
     if (!disableAutoplay) {
@@ -41,10 +41,16 @@ export const Carousel = ({
         clearInterval(autoplayInterval);
       };
     }
-  }, [children.length, disableScrollUpdates, disableAutoplay]);
+  }, [children.length, disableAutoplay]);
 
   const handleScroll = throttle(() => {
-    if (parentRef.current && !disableScrollUpdates && !autoplay) {
+    if (parentRef.current && autoplay) {
+      const { top, height } = parentRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const inView = top + height > 0 && top < viewportHeight;
+      setDisableAutoplay(!inView);
+    }
+    if (!disableScrollUpdates && !autoplay) {
       if (parentRef.current) {
         const { top, height } = parentRef.current.getBoundingClientRect();
         const viewportHeight = window.innerHeight;
@@ -80,15 +86,13 @@ export const Carousel = ({
   }, 30);
 
   useEffect(() => {
-    if (!autoplay) {
-      window.addEventListener("scroll", handleScroll, { passive: true } as any);
-      return () => {
-        window.removeEventListener("scroll", handleScroll, {
-          passive: true,
-        } as any);
-      };
-    }
-  }, [handleScroll, autoplay]);
+    window.addEventListener("scroll", handleScroll, { passive: true } as any);
+    return () => {
+      window.removeEventListener("scroll", handleScroll, {
+        passive: true,
+      } as any);
+    };
+  }, [handleScroll]);
 
   return (
     <>

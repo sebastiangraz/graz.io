@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Text } from "theme-ui";
+import { Box, Flex, Text } from "theme-ui";
+import Balancer from "react-wrap-balancer";
+
 interface Props {
   children: React.ReactNode[];
   threshold?: number;
   onChangeIndex?: (index: number) => void;
   ratio?: [number, number];
+  heading: React.ReactNode;
 }
 
 export const Carousel = ({
@@ -13,6 +16,7 @@ export const Carousel = ({
   threshold = 0.5,
   onChangeIndex,
   ratio = [16, 9],
+  heading = null,
 }: Props) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
@@ -76,22 +80,51 @@ export const Carousel = ({
 
   const fadeAnimation = {
     opacity: 0,
-    transition: {
-      duration: 0.2,
-    },
   };
 
   return (
     <>
-      {children.map((child, i) => {
-        const alt = (child as any).props.src.alt;
-        const isCardVisible = i === activeIndex;
-        return (
-          <React.Fragment key={i}>
-            {isCardVisible && <ImageCaption caption={alt} />}
-          </React.Fragment>
-        );
-      })}
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "minmax(min-content, 50%) auto",
+          justifyContent: "space-between",
+          alignItems: "end",
+        }}
+      >
+        <Text variant="lead" sx={{ m: 0, color: "var(--caseForegroundDim)" }}>
+          <Balancer>{heading}</Balancer>
+        </Text>
+        {children.map((child, i) => {
+          const alt = (child as any).props.src.alt;
+          const isCardVisible = i === activeIndex;
+          return (
+            <React.Fragment key={i}>
+              {isCardVisible && <ImageCaption caption={alt} />}
+            </React.Fragment>
+          );
+        })}
+      </Box>
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "8px",
+        }}
+      >
+        {children.map((_, i) => (
+          <IndexIndicator
+            key={i}
+            active={i === activeIndex}
+            onClick={() => {
+              setActiveIndex(i);
+              setDisableScrollUpdates(true);
+            }}
+          />
+        ))}
+      </Box>
       <div
         ref={parentRef}
         style={{
@@ -99,6 +132,7 @@ export const Carousel = ({
           width: "100%",
           position: "relative",
           display: "grid",
+          overflow: "hidden",
         }}
       >
         <AnimatePresence>
@@ -109,7 +143,13 @@ export const Carousel = ({
                 <motion.div
                   data-index={i}
                   initial={fadeAnimation}
-                  animate={{ opacity: isCardVisible ? 1 : 0 }}
+                  animate={{
+                    opacity: isCardVisible ? 1 : 0,
+                    transition: {
+                      duration: 0.4,
+                      ease: [0.4, 0.1, 0.01, 0.99],
+                    },
+                  }}
                   exit={fadeAnimation}
                   style={{
                     width: "100%",
@@ -126,28 +166,6 @@ export const Carousel = ({
             );
           })}
         </AnimatePresence>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            position: "absolute",
-            bottom: "10px",
-            left: 0,
-            right: 0,
-          }}
-        >
-          {children.map((_, i) => (
-            <IndexIndicator
-              key={i}
-              active={i === activeIndex}
-              onClick={() => {
-                setActiveIndex(i);
-                setDisableScrollUpdates(true);
-              }}
-            />
-          ))}
-        </div>
       </div>
     </>
   );
@@ -159,15 +177,31 @@ interface IndexIndicatorProps {
 }
 
 const IndexIndicator: React.FC<IndexIndicatorProps> = ({ active, onClick }) => (
-  <div
+  <Box
     onClick={onClick}
-    style={{
-      width: "10px",
-      height: "10px",
-      borderRadius: "50%",
-      backgroundColor: active ? "#333" : "#ccc",
-      margin: "5px",
+    sx={{
+      flex: 1,
+      pt: 7,
+      pb: 8,
       cursor: "pointer",
+      display: "grid",
+      ...(!active && {
+        "&:hover": {
+          "&:after": {
+            opacity: 0.4,
+          },
+        },
+      }),
+
+      "&:after": {
+        content: "''",
+        gridArea: "1/1",
+        width: "100%",
+        height: "2px",
+        borderRadius: "2px",
+        opacity: active ? 1 : 0.12,
+        backgroundColor: "var(--caseForegroundDim)",
+      },
     }}
   />
 );
@@ -177,5 +211,13 @@ interface ImageCaptionProps {
 }
 
 const ImageCaption: React.FC<ImageCaptionProps> = ({ caption }) => (
-  <Text variant="label">{caption}</Text>
+  <Text
+    variant="caps"
+    sx={{
+      m: 0,
+      color: "var(--caseForegroundDim)",
+    }}
+  >
+    {caption}
+  </Text>
 );

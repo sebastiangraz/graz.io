@@ -35,6 +35,15 @@ const Capchase = () => {
             <Box sx={{ gridColumn: ["2/span 8", "2 / span 8"] }}>
               <Carousel
                 ratio={[1200, 648]}
+                heading={
+                  <>
+                    <span sx={{ color: "var(--caseForeground)" }}>
+                      The brand book
+                    </span>{" "}
+                    was deliberately leaning towards aspirational to keep the
+                    brand open to changes.
+                  </>
+                }
                 threshold={0.5}
                 onChangeIndex={(index) => console.log("Active index:", index)}
               >

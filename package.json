@@ -25,6 +25,7 @@
     "react-intersection-observer": "^9.4.3",
     "react-scroll-percentage": "^4.3.0",
     "react-uuid": "^2.0.0",
+    "react-wrap-balancer": "^0.4.0",
     "sass": "^1.60.0",
     "scroll-data-hook": "^1.0.4",
     "theme-ui": "^0.15.5",

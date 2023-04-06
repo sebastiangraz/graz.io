@@ -3,21 +3,26 @@ import { Theme } from "theme-ui";
 
 const colors = {
   text: "#05010c",
+  textDim: "#05010c7d",
   background: "#f7f2ec",
   canon: {
     foreground: "#FFCDCA",
+    foregroundDim: "#FFCDCA7D",
     background: "#171717",
   },
   loupe: {
     foreground: "#184629",
+    foregroundDim: "#1846297D",
     background: "#D2DAD3",
   },
   end: {
     foreground: "#fff",
+    foregroundDim: "#fff7",
     background: "transparent",
   },
   capchase: {
     foreground: "#000",
+    foregroundDim: "#0007",
     background: "#fff",
   },
 };

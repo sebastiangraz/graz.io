@@ -158,6 +158,7 @@ export const Case = React.memo(
     const ref = useRef(null) as any;
     const bg = theme.theme?.rawColors?.[slug || ""]?.background;
     const fg = theme.theme?.rawColors?.[slug || ""]?.foreground;
+    const fd = theme.theme?.rawColors?.[slug || ""]?.foregroundDim;
     const isHome = slug === "home";
 
     let { childHeight, childPosition, windowHeight } =
@@ -275,6 +276,7 @@ export const Case = React.memo(
                 "--gridCount": [12, 12, `${gridCount(0)}`, `${gridCount(1)}`],
                 "--caseBackground": bg,
                 "--caseForeground": fg,
+                "--caseForegroundDim": fd,
                 ...caseParent,
                 color: fg,
                 zIndex: index,

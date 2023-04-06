@@ -48,19 +48,21 @@ export const Carousel = ({
   useEffect(() => {
     const handleScroll = () => {
       if (parentRef.current && !disableScrollUpdates) {
-        if (parentRef.current) {
-          const { top, height } = parentRef.current.getBoundingClientRect();
-          const viewportHeight = window.innerHeight;
+        requestAnimationFrame(() => {
+          if (parentRef.current) {
+            const { top, height } = parentRef.current.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
 
-          if (top >= 0 && top + height <= viewportHeight) {
-            // Calculate the percentage of the component that has scrolled through the viewport
-            const scrollPercentage = 1 - top / (viewportHeight - height);
+            if (top >= 0 && top + height <= viewportHeight) {
+              // Calculate the percentage of the component that has scrolled through the viewport
+              const scrollPercentage = 1 - top / (viewportHeight - height);
 
-            // Set the active index based on the scroll percentage
-            const index = Math.floor(scrollPercentage * children.length);
-            setActiveIndex(Math.min(index, children.length - 1));
+              // Set the active index based on the scroll percentage
+              const index = Math.floor(scrollPercentage * children.length);
+              setActiveIndex(Math.min(index, children.length - 1));
+            }
           }
-        }
+        });
       }
     };
 
@@ -125,14 +127,15 @@ export const Carousel = ({
           />
         ))}
       </Box>
-      <div
+      <Box
         ref={parentRef}
-        style={{
+        sx={{
           aspectRatio: `${ratio[0]}/${ratio[1]}`,
           width: "100%",
           position: "relative",
           display: "grid",
           overflow: "hidden",
+          boxShadow: "capchase",
         }}
       >
         <AnimatePresence>
@@ -166,7 +169,7 @@ export const Carousel = ({
             );
           })}
         </AnimatePresence>
-      </div>
+      </Box>
     </>
   );
 };
@@ -198,6 +201,7 @@ const IndexIndicator: React.FC<IndexIndicatorProps> = React.memo(
           gridArea: "1/1",
           width: "100%",
           height: "2px",
+          transition: "0.2s ease opacity",
           borderRadius: "2px",
           opacity: active ? 1 : 0.12,
           backgroundColor: "var(--caseForegroundDim)",

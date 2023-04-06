@@ -354,6 +354,10 @@ export const Case = React.memo(
                 sx={{
                   mb: "5vh",
                   mt: "0",
+                  pb: "100vh",
+                  "& > * + *": {
+                    mb: "clamp(7rem, 10vw, 12rem)",
+                  },
                 }}
               >
                 {children}

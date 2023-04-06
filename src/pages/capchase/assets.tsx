@@ -45,6 +45,18 @@ export const videos = {
 };
 
 export const images = {
+  capchaseWeb0: {
+    name: "capchase-web-0.png",
+    width: 1200,
+    height: 720,
+    alt: "Analytics",
+  },
+  capchaseWeb1: {
+    name: "capchase-web-1.png",
+    width: 1200,
+    height: 720,
+    alt: "Mobile + Careers",
+  },
   capchaseBB0: {
     name: "capchase-bb-0.png",
     width: 1200,

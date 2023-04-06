@@ -32,19 +32,18 @@ export const Carousel = ({
     };
     const observer = new IntersectionObserver(handleIntersect, options);
     observerRef.current = observer;
+
+    if (!isFirstLoad && onChangeIndex) {
+      onChangeIndex(activeIndex);
+    }
+    setIsFirstLoad(false);
+
     return () => {
       if (observer) {
         observer.disconnect();
       }
     };
-  }, [threshold]);
-
-  useEffect(() => {
-    if (!isFirstLoad && onChangeIndex) {
-      onChangeIndex(activeIndex);
-    }
-    setIsFirstLoad(false);
-  }, [activeIndex, onChangeIndex, isFirstLoad]);
+  }, [threshold, activeIndex, onChangeIndex, isFirstLoad]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -67,9 +66,12 @@ export const Carousel = ({
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true } as any);
+
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScroll, {
+        passive: true,
+      } as any);
     };
   }, [observerRef, parentRef, children, disableScrollUpdates]);
 

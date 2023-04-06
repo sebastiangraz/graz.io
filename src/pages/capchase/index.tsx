@@ -4,21 +4,7 @@ import { GridParent, Img } from "../../components";
 import { images } from "./assets";
 import { Box } from "theme-ui";
 import { Carousel } from "../../components/Carousel";
-
-const radius = (small?: boolean) => {
-  const radiusLarge = {
-    default: ["6vmin", "4vmin"],
-    right: ["0 6vmin 6vmin 0", "0 4vmin 4vmin 0"],
-    left: ["6vmin 0 0 6vmin", "4vmin 0 0 4vmin"],
-  };
-  const radiusSmall = {
-    default: "2vmin",
-    right: "0 2vmin 2vmin 0",
-    left: "2vmin 0 0 2vmin",
-  };
-
-  return small ? radiusSmall : radiusLarge;
-};
+import React from "react";
 
 const Capchase = () => {
   return (
@@ -41,7 +27,7 @@ const Capchase = () => {
             </>
           }
           threshold={0.5}
-          onChangeIndex={(index) => console.log("Active index:", index)}
+          onChangeIndex={(index) => null}
         >
           <Img fromFolder="capchase" src={images.capchaseBB0} />
           <Img fromFolder="capchase" src={images.capchaseBB1} />
@@ -67,7 +53,7 @@ const Capchase = () => {
             </>
           }
           threshold={0.5}
-          onChangeIndex={(index) => console.log("Active index:", index)}
+          onChangeIndex={(index) => null}
         >
           <Img fromFolder="capchase" src={images.capchaseWeb0} />
           <Img fromFolder="capchase" src={images.capchaseWeb1} />

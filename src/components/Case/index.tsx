@@ -161,7 +161,7 @@ export const Case = React.memo(
     const fd = theme.theme?.rawColors?.[slug || ""]?.foregroundDim;
     const isHome = slug === "home";
 
-    let { childHeight, childPosition, windowHeight } =
+    const { childHeight, childPosition, windowHeight } =
       useCaseWrapperContext() as CaseWrapperState;
 
     const { y, yNext, staggeredOffset } = useStaggeredPosition({

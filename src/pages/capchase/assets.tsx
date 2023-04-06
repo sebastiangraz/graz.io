@@ -49,7 +49,7 @@ export const images = {
     name: "capchase-bb-0.png",
     width: 1200,
     height: 648,
-    alt: "Capchase Illustrations",
+    alt: "Illustrations",
   },
   capchaseBB1: {
     name: "capchase-bb-1.png",
@@ -73,7 +73,31 @@ export const images = {
     name: "capchase-bb-4.png",
     width: 1200,
     height: 648,
-    alt: "Capchase Brandbook Slide 4",
+    alt: "Logotype",
+  },
+  capchaseBB5: {
+    name: "capchase-bb-5.png",
+    width: 1200,
+    height: 648,
+    alt: "Colors",
+  },
+  capchaseBB6: {
+    name: "capchase-bb-6.png",
+    width: 1200,
+    height: 648,
+    alt: "Billboard",
+  },
+  capchaseBB7: {
+    name: "capchase-bb-7.png",
+    width: 1200,
+    height: 648,
+    alt: "Background example",
+  },
+  capchaseBB8: {
+    name: "capchase-bb-8.png",
+    width: 1200,
+    height: 648,
+    alt: "Background example",
   },
   bluecyan: {
     name: "bluecyan.png",

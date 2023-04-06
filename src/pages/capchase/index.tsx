@@ -51,6 +51,11 @@ const Capchase = () => {
                 <Img fromFolder="capchase" src={images.capchaseBB1} />
                 <Img fromFolder="capchase" src={images.capchaseBB2} />
                 <Img fromFolder="capchase" src={images.capchaseBB3} />
+                <Img fromFolder="capchase" src={images.capchaseBB4} />
+                <Img fromFolder="capchase" src={images.capchaseBB5} />
+                <Img fromFolder="capchase" src={images.capchaseBB6} />
+                <Img fromFolder="capchase" src={images.capchaseBB7} />
+                <Img fromFolder="capchase" src={images.capchaseBB8} />
               </Carousel>
 
               {/* <ScrollReveal>

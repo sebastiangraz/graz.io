@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Box, Flex, Text } from "theme-ui";
+import { Box, Text } from "theme-ui";
 import Balancer from "react-wrap-balancer";
 
 interface Props {
@@ -175,42 +175,43 @@ interface IndexIndicatorProps {
   active: boolean;
   onClick: () => void;
 }
-
-const IndexIndicator: React.FC<IndexIndicatorProps> = ({ active, onClick }) => (
-  <Box
-    onClick={onClick}
-    sx={{
-      flex: 1,
-      pt: 7,
-      pb: 8,
-      cursor: "pointer",
-      display: "grid",
-      ...(!active && {
-        "&:hover": {
-          "&:after": {
-            opacity: 0.4,
+const IndexIndicator: React.FC<IndexIndicatorProps> = React.memo(
+  ({ active, onClick }) => (
+    <Box
+      onClick={onClick}
+      sx={{
+        flex: 1,
+        pt: 7,
+        pb: 8,
+        cursor: "pointer",
+        display: "grid",
+        ...(!active && {
+          "&:hover": {
+            "&:after": {
+              opacity: 0.4,
+            },
           },
-        },
-      }),
+        }),
 
-      "&:after": {
-        content: "''",
-        gridArea: "1/1",
-        width: "100%",
-        height: "2px",
-        borderRadius: "2px",
-        opacity: active ? 1 : 0.12,
-        backgroundColor: "var(--caseForegroundDim)",
-      },
-    }}
-  />
+        "&:after": {
+          content: "''",
+          gridArea: "1/1",
+          width: "100%",
+          height: "2px",
+          borderRadius: "2px",
+          opacity: active ? 1 : 0.12,
+          backgroundColor: "var(--caseForegroundDim)",
+        },
+      }}
+    />
+  )
 );
 
 interface ImageCaptionProps {
   caption: string;
 }
 
-const ImageCaption: React.FC<ImageCaptionProps> = ({ caption }) => (
+const ImageCaption: React.FC<ImageCaptionProps> = React.memo(({ caption }) => (
   <Text
     variant="caps"
     sx={{
@@ -220,4 +221,4 @@ const ImageCaption: React.FC<ImageCaptionProps> = ({ caption }) => (
   >
     {caption}
   </Text>
-);
+));

@@ -19,7 +19,6 @@ export const Carousel = ({
   heading = null,
 }: Props) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isFirstLoad, setIsFirstLoad] = useState(true);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const parentRef = useRef<HTMLDivElement>(null);
   const [disableScrollUpdates, setDisableScrollUpdates] = useState(false);
@@ -33,17 +32,12 @@ export const Carousel = ({
     const observer = new IntersectionObserver(handleIntersect, options);
     observerRef.current = observer;
 
-    if (!isFirstLoad && onChangeIndex) {
-      onChangeIndex(activeIndex);
-    }
-    setIsFirstLoad(false);
-
     return () => {
       if (observer) {
         observer.disconnect();
       }
     };
-  }, [threshold, activeIndex, onChangeIndex, isFirstLoad]);
+  }, [threshold, activeIndex, onChangeIndex]);
 
   useEffect(() => {
     const handleScroll = () => {

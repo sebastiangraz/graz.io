@@ -23,6 +23,7 @@ export const Carousel = ({
   const observerRef = useRef<IntersectionObserver | null>(null);
   const parentRef = useRef<HTMLDivElement>(null);
   const [disableScrollUpdates, setDisableScrollUpdates] = useState(false);
+
   useEffect(() => {
     const options = {
       root: null,

@@ -9,67 +9,86 @@ interface Props {
   onChangeIndex?: (index: number) => void;
   ratio?: [number, number];
   heading: React.ReactNode;
+  autoplay?: boolean;
 }
+
+const wrap = (min: number, max: number, v: number) => {
+  const rangeSize = max - min;
+  return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
+};
 
 export const Carousel = ({
   children,
   onChangeIndex,
   ratio = [16, 9],
   heading = null,
+  autoplay = false,
 }: Props) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const parentRef = useRef<HTMLDivElement>(null);
   const [disableScrollUpdates, setDisableScrollUpdates] = useState(false);
+  const [disableAutoplay, setDisableAutoplay] = useState(!autoplay);
 
   useEffect(() => {
-    //throttle handleScroll
+    if (!disableAutoplay) {
+      const autoplayInterval = setInterval(() => {
+        setActiveIndex((currentIndex) =>
+          wrap(0, children.length, currentIndex + 1)
+        );
+        setDisableScrollUpdates(true);
+      }, 600);
+      return () => {
+        clearInterval(autoplayInterval);
+      };
+    }
+  }, [children.length, disableScrollUpdates, disableAutoplay]);
 
-    const handleScroll = throttle(() => {
-      if (parentRef.current && !disableScrollUpdates) {
-        requestAnimationFrame(() => {
-          if (parentRef.current) {
-            const { top, height } = parentRef.current.getBoundingClientRect();
-            const viewportHeight = window.innerHeight;
+  const handleScroll = throttle(() => {
+    if (parentRef.current && !disableScrollUpdates && !autoplay) {
+      if (parentRef.current) {
+        const { top, height } = parentRef.current.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
 
-            if (top >= 0 && top + height <= viewportHeight) {
-              // Calculate the percentage of the component that has scrolled through the viewport
-              const scrollPercentage = Math.min(
-                1 - top / (viewportHeight - height),
-                1
-              );
-              const index = Math.min(
-                Math.floor(scrollPercentage * children.length),
-                children.length - 1
-              );
-              setActiveIndex(index);
-              onChangeIndex && onChangeIndex(index);
-            } else if (height > viewportHeight && top <= 0) {
-              // Calculate the percentage of the component that has scrolled through the viewport
-              const scrollPercentage = Math.min(
-                -top / (height - viewportHeight),
-                1
-              );
+        if (top >= 0 && top + height <= viewportHeight) {
+          // Calculate the percentage of the component that has scrolled through the viewport
+          const scrollPercentage = Math.min(
+            1 - top / (viewportHeight - height),
+            1
+          );
+          const index = Math.min(
+            Math.floor(scrollPercentage * children.length),
+            children.length - 1
+          );
+          setActiveIndex(index);
+          onChangeIndex && onChangeIndex(index);
+        } else if (height > viewportHeight && top <= 0) {
+          // Calculate the percentage of the component that has scrolled through the viewport
+          const scrollPercentage = Math.min(
+            -top / (height - viewportHeight),
+            1
+          );
 
-              const index = Math.min(
-                Math.floor(scrollPercentage * children.length),
-                children.length - 1
-              );
-              setActiveIndex(index);
-              onChangeIndex && onChangeIndex(index);
-            }
-          }
-        });
+          const index = Math.min(
+            Math.floor(scrollPercentage * children.length),
+            children.length - 1
+          );
+          setActiveIndex(index);
+          onChangeIndex && onChangeIndex(index);
+        }
       }
-    }, 30);
+    }
+  }, 30);
 
-    window.addEventListener("scroll", handleScroll, { passive: true } as any);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll, {
-        passive: true,
-      } as any);
-    };
-  }, [children.length, disableScrollUpdates, onChangeIndex]);
+  useEffect(() => {
+    if (!autoplay) {
+      window.addEventListener("scroll", handleScroll, { passive: true } as any);
+      return () => {
+        window.removeEventListener("scroll", handleScroll, {
+          passive: true,
+        } as any);
+      };
+    }
+  }, [handleScroll, autoplay]);
 
   return (
     <>
@@ -110,6 +129,7 @@ export const Carousel = ({
             onClick={() => {
               setActiveIndex(i);
               setDisableScrollUpdates(true);
+              setDisableAutoplay(true);
             }}
           />
         ))}
@@ -122,8 +142,6 @@ export const Carousel = ({
           position: "relative",
           display: "grid",
           overflow: "hidden",
-          filter:
-            "drop-shadow(0px 38px 56px rgba(61, 27, 9, 0.02)) drop-shadow(0px 17.5686px 25.8905px rgba(61, 27, 9, 0.0148335)) drop-shadow(0px 10.0523px 14.814px rgba(61, 27, 9, 0.0125356)) drop-shadow(0px 6.10169px 8.99196px rgba(61, 27, 9, 0.010799)) drop-shadow(0px 3.67654px 5.41805px rgba(61, 27, 9, 0.00920104)) drop-shadow(0px 2.04733px 3.01712px rgba(61, 27, 9, 0.00746438)) drop-shadow(0px 0.880544px 1.29764px rgba(61, 27, 9, 0.00516649))",
         }}
       >
         <AnimatePresence>

@@ -16,6 +16,7 @@ const Capchase = () => {
       >
         <Carousel
           ratio={[1200, 648]}
+          autoplay={true}
           heading={
             <>
               <span sx={{ color: "var(--caseForeground)" }}>

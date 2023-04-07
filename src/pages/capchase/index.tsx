@@ -1,21 +1,16 @@
 /** @jsxImportSource theme-ui */
 
-import { GridParent, Img, Video } from "../../components";
+import {
+  GridParent,
+  Img,
+  Video,
+  CaseHero,
+  CaseHeroChild,
+  Carousel,
+} from "../../components";
 import { images, videos } from "./assets";
 import { Box } from "theme-ui";
-import { Carousel } from "../../components/Carousel";
-import React, { useState } from "react";
-import { motion, motionValue, useMotionValue } from "framer-motion";
-
-const staggeredAnimation = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.05,
-    },
-  },
-};
+import { motion } from "framer-motion";
 
 const childAnimation = {
   hidden: { opacity: 0, y: 20 },
@@ -24,69 +19,6 @@ const childAnimation = {
     y: 0,
     transition: { duration: 1, ease: [0.83, 0, 0.17, 1] },
   },
-};
-
-const HeroChild = ({ src, childStyle }: { src: any; childStyle?: {} }) => {
-  const { width, height } = src;
-  const [naturalDimensions, setNaturalDimensions] = useState({
-    width: 0,
-    height: 0,
-  });
-  const MotionBox = motion(Box);
-  return (
-    <MotionBox
-      variants={childAnimation}
-      sx={{
-        ...childStyle,
-        gridArea: "1 / 1",
-        width: `calc(100% * ${width} / 1200)`,
-        aspectRatio: `${width}/${height}`,
-        height: "auto",
-        position: "relative",
-      }}
-    >
-      <Img
-        src={src}
-        fromFolder="capchase"
-        sx={{
-          height: "auto",
-          overflow: "visible",
-          //prettier-ignore
-          objectViewBox: `inset(
-            ${naturalDimensions.height / 2 - height}px 
-            0 
-            ${naturalDimensions.height / 2 - height}px 
-            0)`,
-        }}
-        onLoad={(e) => {
-          if (naturalDimensions.width) return;
-          const img = e.target as HTMLImageElement;
-          const { naturalWidth, naturalHeight } = img;
-          setNaturalDimensions({ width: naturalWidth, height: naturalHeight });
-        }}
-      />
-    </MotionBox>
-  );
-};
-
-const Hero = ({ children }: { children: React.ReactNode }) => {
-  const MotionBox = motion(Box);
-  return (
-    <MotionBox
-      variants={staggeredAnimation}
-      initial="hidden"
-      whileInView="visible"
-      sx={{
-        display: "grid",
-        position: "relative",
-        gridColumn: ["2/span 8", "2 / span 8"],
-        width: "100%",
-        aspectRatio: "1200 / 1214",
-      }}
-    >
-      {children}
-    </MotionBox>
-  );
 };
 
 const Icons = () => {
@@ -133,10 +65,10 @@ const Capchase = () => {
   return (
     <>
       <GridParent sx={{ rowGap: "clamp(8rem, 16vw, 16rem)" }}>
-        <Hero>
+        <CaseHero>
           <Icons />
 
-          <HeroChild
+          <CaseHeroChild
             src={images.bottle}
             childStyle={{
               marginLeft: "auto",
@@ -145,56 +77,56 @@ const Capchase = () => {
             }}
           />
 
-          <HeroChild src={images.tablet} />
+          <CaseHeroChild src={images.tablet} />
 
-          <HeroChild
+          <CaseHeroChild
             src={images.heroTypo}
             childStyle={{
               zIndex: -1,
               marginLeft: "auto",
             }}
           />
-          <HeroChild
+          <CaseHeroChild
             src={images.heroWatch}
             childStyle={{
               marginLeft: "70%",
               marginTop: "28%",
             }}
           />
-          <HeroChild
+          <CaseHeroChild
             src={images.heroLogo}
             childStyle={{
               marginTop: "50%",
             }}
           />
-          <HeroChild
+          <CaseHeroChild
             src={images.heroUI}
             childStyle={{
               marginTop: "50%",
               marginLeft: "auto",
             }}
           />
-          <HeroChild
+          <CaseHeroChild
             src={images.flow}
             childStyle={{
               marginTop: "auto",
             }}
           />
-          <HeroChild
+          <CaseHeroChild
             src={images.switch}
             childStyle={{
               marginTop: "auto",
               marginLeft: "28.75%",
             }}
           />
-          <HeroChild
+          <CaseHeroChild
             src={images.heroEmbed}
             childStyle={{
               marginTop: "auto",
               marginLeft: "auto",
             }}
           />
-        </Hero>
+        </CaseHero>
         <Box
           sx={{
             gridColumn: ["2/span 8", "2 / span 8"],

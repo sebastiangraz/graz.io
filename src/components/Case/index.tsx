@@ -9,7 +9,7 @@ import {
   useTransform,
   useScroll,
 } from "framer-motion";
-import { useCaseWrapperContext, CaseHero } from "..";
+import { useCaseWrapperContext, CaseTitle } from "..";
 import { useResponsiveValue } from "@theme-ui/match-media";
 import { ScrollDown } from "..";
 import { ThemeUICSSObject, useThemeUI } from "theme-ui";
@@ -323,7 +323,7 @@ export const Case = React.memo(
                   }),
                 }}
               >
-                <CaseHero name={slug || ""} />
+                <CaseTitle name={slug || ""} />
               </m.div>
               <div
                 className="background-layer"

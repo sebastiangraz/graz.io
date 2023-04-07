@@ -1,11 +1,10 @@
 /** @jsxImportSource theme-ui */
 
-import { Flex, Text, Box, ThemeUICSSObject } from "theme-ui";
+import { Flex, Text, Box } from "theme-ui";
 import {
   Video,
   Img,
   GridParent,
-  CaseMeta,
   ScrollReveal,
   NumberedList,
 } from "../../components";
@@ -608,7 +607,6 @@ const Loupe = () => {
   };
   return (
     <>
-      <GridParent>{/* <CaseMeta data={data} /> */}</GridParent>
       {Object.entries(Sections).map(([k, Section]) => (
         <Section key={k} />
       ))}

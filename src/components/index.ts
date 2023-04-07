@@ -1,6 +1,8 @@
 export { Logo } from "./Logo";
 export { Case } from "./Case";
-export { CaseHero } from "./CaseHero";
+export { CaseTitle } from "./CaseTitle";
+export { Carousel } from "./Carousel";
+export { CaseHero, CaseHeroChild } from "./CaseHero";
 export { CaseWrapper, useCaseWrapperContext } from "./CaseWrapper";
 export { CaseMeta } from "./CaseMeta";
 export { GridParent } from "./GridParent";

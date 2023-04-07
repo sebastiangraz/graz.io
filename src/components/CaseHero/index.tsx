@@ -1,97 +1,94 @@
 /** @jsxImportSource theme-ui */
 
-import React from "react";
-import uuid from "react-uuid";
-import { useResponsiveValue } from "@theme-ui/match-media";
-const ignoreUpdatedProps = () => true;
+import { Img } from "../../components";
+import { Box } from "theme-ui";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 
-export const CaseHero = React.memo(({ name }: { name: string }) => {
-  name ||= "case";
-
-  const id = uuid();
-  const caseHeroHeight = useResponsiveValue([180, 300]);
-
-  const [loaded, setLoaded] = React.useState(false);
-
-  React.useEffect(() => {
-    document.fonts.ready.then(function () {
-      setLoaded(true);
-    });
-  }, []);
-
+export const CaseHero = ({ children }: { children: React.ReactNode }) => {
+  const MotionBox = motion(Box);
   return (
-    <svg
+    <MotionBox
+      variants={staggeredAnimation}
+      initial="hidden"
+      whileInView="visible"
       sx={{
-        position: "absolute",
-        top: 0,
-        textTransform: "uppercase",
-        fontWeight: 600,
-        height: caseHeroHeight,
-        letterSpacing: "-0.075em",
-        fontSize: "min(12vw, 156px)",
-        // borderRadius: "32px 32px 0 0",
-        color: `var(--caseBackground)`,
+        display: "grid",
+        position: "relative",
+        gridColumn: ["2/span 8", "2 / span 8"],
+        width: "100%",
+        aspectRatio: "1200 / 1214",
       }}
-      height={caseHeroHeight}
-      width="100%"
-      viewBox={`0 0 2000 ${caseHeroHeight}`}
-      preserveAspectRatio="xMinYMin slice"
     >
-      <defs>
-        <mask id={`${"sample-" + id}`}>
-          <rect width="100%" height="100%" fill="white"></rect>
-          <svg
-            width="8"
-            height="8"
-            x="20"
-            y="20"
-            viewBox="0 0 8 8"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect width="8" height="8" rx="8" fill="black" />
-          </svg>
-          <g
-            sx={{
-              transform: [
-                `translate(min(172px, calc(12vw - 5px) ), min(100px, 12vw))`,
-                `translate(min(172px, calc(8vw - 5px) ), min(100px, 6vw))`,
-              ],
-            }}
-          >
-            <text dominantBaseline="hanging">{name}</text>
-          </g>
-        </mask>
-      </defs>
-
-      <g
-        fill="var(--caseBackground)"
-        sx={{
-          display: ["block", null, "none"],
-          ...(name === "the end" && {
-            display: ["none"],
-          }),
-          transform: [
-            `translate(min(172px, calc(12vw - 5px) ), min(100px, 12vw))`,
-            `translate(min(172px, calc(8vw - 5px) ), min(100px, 6vw))`,
-          ],
-        }}
-      >
-        <text
-          dominantBaseline="hanging"
-          style={{ fill: "var(--caseForeground)" }}
-        >
-          {name}
-        </text>
-      </g>
-
-      <rect
-        fillRule="evenodd"
-        mask={`url(#${"sample-" + id})`}
-        width="100%"
-        height="100%"
-        fill="currentColor"
-      ></rect>
-    </svg>
+      {children}
+    </MotionBox>
   );
-}, ignoreUpdatedProps);
+};
+
+export const CaseHeroChild = ({
+  src,
+  childStyle,
+}: {
+  src: any;
+  childStyle?: {};
+}) => {
+  const { width, height } = src;
+  const [naturalDimensions, setNaturalDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
+  const MotionBox = motion(Box);
+  return (
+    <MotionBox
+      variants={childAnimation}
+      sx={{
+        ...childStyle,
+        gridArea: "1 / 1",
+        width: `calc(100% * ${width} / 1200)`,
+        aspectRatio: `${width}/${height}`,
+        height: "auto",
+        position: "relative",
+      }}
+    >
+      <Img
+        src={src}
+        fromFolder="capchase"
+        sx={{
+          height: "auto",
+          overflow: "visible",
+          //prettier-ignore
+          objectViewBox: `inset(
+              ${naturalDimensions.height / 2 - height}px 
+              0 
+              ${naturalDimensions.height / 2 - height}px 
+              0)`,
+        }}
+        onLoad={(e) => {
+          if (naturalDimensions.width) return;
+          const img = e.target as HTMLImageElement;
+          const { naturalWidth, naturalHeight } = img;
+          setNaturalDimensions({ width: naturalWidth, height: naturalHeight });
+        }}
+      />
+    </MotionBox>
+  );
+};
+
+const staggeredAnimation = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05,
+    },
+  },
+};
+
+const childAnimation = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 1, ease: [0.83, 0, 0.17, 1] },
+  },
+};

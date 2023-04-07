@@ -13,6 +13,7 @@ interface ImgProps {
   src: ImageData;
   fromFolder: string;
   sx?: ThemeUICSSObject;
+  onLoad?: (e: React.SyntheticEvent<HTMLImageElement, Event>) => void;
 }
 
 export const Img = ({ src, fromFolder, ...sx }: ImgProps) => {
@@ -24,6 +25,7 @@ export const Img = ({ src, fromFolder, ...sx }: ImgProps) => {
         {...sx}
         loading="lazy"
         src={`./${fromFolder}/${src.name}`}
+        alt={src.alt}
         sx={{
           display: "flex",
           width: "100%",

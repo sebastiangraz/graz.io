@@ -108,7 +108,7 @@ export const Carousel = ({
           <Balancer>{heading}</Balancer>
         </Text>
         {children.map((child, i) => {
-          const alt = (child as any).props.src.alt;
+          const alt = (child as any).props?.src?.alt;
           const isCardVisible = i === activeIndex;
           return (
             <React.Fragment key={i}>
@@ -146,6 +146,7 @@ export const Carousel = ({
           position: "relative",
           display: "grid",
           overflow: "hidden",
+          isolation: "isolate",
         }}
       >
         <AnimatePresence>
@@ -159,12 +160,13 @@ export const Carousel = ({
                   animate={{
                     opacity: isCardVisible ? 1 : 0,
                     transition: {
-                      duration: 0.4,
+                      duration: 0.28,
                       ease: [0.4, 0.1, 0.01, 0.99],
                     },
                   }}
                   exit={{ opacity: 0 }}
                   style={{
+                    mixBlendMode: "plus-lighter",
                     width: "100%",
                     height: "100%",
                     gridArea: "1/1",

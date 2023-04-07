@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 
-import { GridParent, Img } from "../../components";
-import { images } from "./assets";
+import { GridParent, Img, Video } from "../../components";
+import { images, videos } from "./assets";
 import { Box } from "theme-ui";
 import { Carousel } from "../../components/Carousel";
 import React, { useState } from "react";
@@ -260,8 +260,8 @@ const Capchase = () => {
 
             // onChangeIndex={(index) => console.log("Active index:", index)}
           >
+            <Video fromFolder="capchase" src={videos.reveal} />
             <Img fromFolder="capchase" src={images.capchaseLogo0} />
-            <Img fromFolder="capchase" src={images.capchaseLogo1} />
             <Img fromFolder="capchase" src={images.capchaseLogo2} />
           </Carousel>
         </Box>

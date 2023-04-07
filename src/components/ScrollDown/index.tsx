@@ -42,7 +42,7 @@ export const ScrollDown = ({
           `${gridPosition(1) === "1" ? "2" : gridPosition(1)} / span 1`,
         ],
         transition: "all 0.2s ease",
-        color: "text",
+        color: "textDim",
         border: "1px solid",
         position: "absolute",
         zIndex: 10,

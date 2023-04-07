@@ -57,6 +57,37 @@ export const images = {
     height: 720,
     alt: "Mobile + Careers",
   },
+  capchaseWeb2: {
+    name: "capchase-web-2.png",
+    width: 1200,
+    height: 720,
+    alt: "Mobile + Careers",
+  },
+  capchaseWeb3: {
+    name: "capchase-web-3.png",
+    width: 1200,
+    height: 720,
+    alt: "Mobile + Careers",
+  },
+  capchaseLogo0: {
+    name: "capchase-logo-0.png",
+    width: 1200,
+    height: 720,
+    alt: "Logo",
+  },
+  capchaseLogo1: {
+    name: "capchase-logo-1.png",
+    width: 1200,
+    height: 720,
+    alt: "Logo",
+  },
+  capchaseLogo2: {
+    name: "capchase-logo-2.png",
+    width: 1200,
+    height: 720,
+    alt: "Logo",
+  },
+
   capchaseBB0: {
     name: "capchase-bb-0.png",
     width: 1200,

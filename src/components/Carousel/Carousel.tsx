@@ -99,7 +99,7 @@ export const Carousel = ({
       <Box
         sx={{
           display: "grid",
-          gridTemplateColumns: "minmax(min-content, 50%) auto",
+          gridTemplateColumns: "minmax(44ch, 50%) auto",
           justifyContent: "space-between",
           alignItems: "end",
         }}

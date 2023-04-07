@@ -101,17 +101,30 @@ const Icons = () => {
         height: "45%",
         marginLeft: "57.5%",
         zIndex: 1,
-        "& > img": {
+        "& > *": {
           width: `calc(100% * ${200} / 1200)`,
           objectFit: "contain",
         },
       }}
     >
-      <Img fromFolder="capchase" src={images.heroIcon1} />
-      <Img fromFolder="capchase" src={images.heroIcon2} />
-      <Img fromFolder="capchase" src={images.heroIcon3} />
-      <Img fromFolder="capchase" src={images.heroIcon4} />
-      <Img fromFolder="capchase" src={images.heroIcon5} />
+      <motion.div
+        variants={childAnimation}
+        transition={{ duration: 0.5, repeat: Infinity }}
+      >
+        <Img fromFolder="capchase" src={images.heroIcon1} />
+      </motion.div>
+      <motion.div variants={childAnimation}>
+        <Img fromFolder="capchase" src={images.heroIcon2} />
+      </motion.div>
+      <motion.div variants={childAnimation}>
+        <Img fromFolder="capchase" src={images.heroIcon3} />
+      </motion.div>
+      <motion.div variants={childAnimation}>
+        <Img fromFolder="capchase" src={images.heroIcon4} />
+      </motion.div>
+      <motion.div variants={childAnimation}>
+        <Img fromFolder="capchase" src={images.heroIcon5} />
+      </motion.div>
     </Box>
   );
 };
@@ -119,7 +132,7 @@ const Icons = () => {
 const Capchase = () => {
   return (
     <>
-      <GridParent sx={{ rowGap: "clamp(6rem, 10vw, 12rem)" }}>
+      <GridParent sx={{ rowGap: "clamp(8rem, 16vw, 16rem)" }}>
         <Hero>
           <Icons />
 
@@ -228,6 +241,28 @@ const Capchase = () => {
           >
             <Img fromFolder="capchase" src={images.capchaseWeb0} />
             <Img fromFolder="capchase" src={images.capchaseWeb1} />
+            <Img fromFolder="capchase" src={images.capchaseWeb2} />
+            <Img fromFolder="capchase" src={images.capchaseWeb3} />
+          </Carousel>
+        </Box>
+        <Box sx={{ gridColumn: ["2/span 8", "2 / span 8"] }}>
+          <Carousel
+            ratio={[1200, 720]}
+            heading={
+              <>
+                <span sx={{ color: "var(--caseForeground)" }}>
+                  The logotype
+                </span>{" "}
+                had an important mission of being able to extend itself, yet
+                remain unmistakably on brand in it’s transformed state.
+              </>
+            }
+
+            // onChangeIndex={(index) => console.log("Active index:", index)}
+          >
+            <Img fromFolder="capchase" src={images.capchaseLogo0} />
+            <Img fromFolder="capchase" src={images.capchaseLogo1} />
+            <Img fromFolder="capchase" src={images.capchaseLogo2} />
           </Carousel>
         </Box>
       </GridParent>

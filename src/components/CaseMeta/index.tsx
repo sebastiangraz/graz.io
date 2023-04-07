@@ -8,7 +8,7 @@ export const CaseMeta = ({ ...props }: PropMap) => {
 
   return (
     <Box
-      mb={10}
+      mb={12}
       sx={{
         flexDirection: "column",
         display: ["flex", null, "grid"],

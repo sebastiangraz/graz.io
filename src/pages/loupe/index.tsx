@@ -582,7 +582,7 @@ const Loupe = () => {
               {/* <Img fromFolder="loupe" src={images.execution} /> */}
             </div>
           </GridParent>
-          <GridParent pt={10} pb={"100vh"}>
+          <GridParent pt={10}>
             <Box sx={{ mr: [0, 7], gridColumn: ["2 / span 8", "2/span 4"] }}>
               <Text variant="heading">Closing thoughts</Text>
               <Text variant="lead" sx={{ maxWidth: 560 }}>

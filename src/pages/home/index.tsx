@@ -171,7 +171,7 @@ export default () => {
         sx={{
           fontVariationSettings: `"wght" 50`,
           gridArea: "logo",
-          fontSize: 9,
+          fontSize: 10,
           display: "flex",
         }}
       />
@@ -353,12 +353,12 @@ export default () => {
         <div
           sx={{
             maxWidth: ["100%", "initial", null],
-            width: [410, null, 380, 420],
+            width: [410, null, 380, 460],
           }}
         >
           <Text
             sx={{
-              fontSize: [6, 6, 7, 7],
+              fontSize: [7, 7, 7, 8],
               letterSpacing: ["body", null, "lead"],
               lineHeight: ["lead"],
             }}
@@ -366,7 +366,7 @@ export default () => {
           >
             <Text
               variant="heading"
-              sx={{ fontSize: [6, 6, 7, 7], display: "inline" }}
+              sx={{ fontSize: [7, 7, 7, 8], display: "inline" }}
             >
               Sebastian Graz,
             </Text>{" "}

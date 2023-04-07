@@ -254,7 +254,7 @@ const Capchase = () => {
                   The logotype
                 </span>{" "}
                 had an important mission of being able to extend itself, yet
-                remain unmistakably on brand in it’s transformed state.
+                remain unmistakably on brand.
               </>
             }
 

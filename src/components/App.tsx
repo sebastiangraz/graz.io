@@ -48,23 +48,9 @@ const propMap = () => {
       timeframe: "3 months",
       year: "2020",
     },
-    canon: {
-      grid: ["3 / span 10", "3 / span 10"],
-      scope: [
-        "Design",
-        "Development",
-        "Prototyping",
-        "Design Systems",
-        "Workshops",
-        "Art Direction",
-      ],
-      role: "Design Consultant",
-      timeframe: "5 months",
-      year: "2018",
-    },
     end: {
       hideCaseMeta: true,
-      grid: ["3 / span 10", "3 / span 10"],
+      grid: ["3 / span 10", "5 / span 8"],
     },
   } as { [key: string]: PropMap };
 
@@ -100,7 +86,7 @@ const routes = Object.entries(
     return indexA - indexB;
   })
   .map(({ path, slug, Page }, i) => {
-    const hideCaseMeta = slugValues[i].hideCaseMeta || false;
+    const hideCaseMeta = slugValues[i]?.hideCaseMeta || false;
 
     return (
       <Case key={path} index={i} slug={slug} propmap={slugValues[i]}>

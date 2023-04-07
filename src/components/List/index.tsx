@@ -21,7 +21,7 @@ export const List = ({
           <li
             key={i}
             sx={{
-              mb: [3],
+              mb: [2],
               "&:last-child": {
                 mb: 0,
               },

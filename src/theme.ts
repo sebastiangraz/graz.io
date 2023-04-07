@@ -26,7 +26,7 @@ const colors = {
     background: "#FCFBF8",
   },
 };
-const space = [0, 2, 6, 12, 14, 16, 20, 24, 36, 56, 72, 112, 156];
+const space = [0, 4, 6, 12, 14, 16, 20, 24, 36, 56, 72, 112, 156];
 const capsStyle = {
   textTransform: "uppercase",
   fontFeatureSettings: `"c2sc"`,
@@ -65,7 +65,7 @@ export default {
   breakpoints: ["40em", "64em", "98em", "120em"],
   lineHeights: {
     body: 1.6,
-    lead: 1.4,
+    lead: 1.45,
     heading: 1.1,
   },
   letterSpacings: {
@@ -94,6 +94,7 @@ export default {
       display: "block",
       ...capsStyle,
       mb: [3],
+      fontSize: [5],
     },
     lead: {
       variant: "text.default",

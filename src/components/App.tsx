@@ -7,8 +7,8 @@ import { Helmet } from "react-helmet-async";
 export interface PropMap {
   grid?: string[];
   scope?: string[];
-  role?: string;
-  timeframe?: string;
+  challenge?: string;
+  duration?: string;
   year?: string;
   hideCaseMeta?: boolean;
 }
@@ -18,33 +18,16 @@ const propMap = () => {
     home: { hideCaseMeta: true },
     capchase: {
       grid: ["1 / span 10", "2 / span 10"],
-      scope: [
-        "Brand Strategy",
-        "Logotype",
-        "Web Design",
-        "Merchandise",
-        "Prototyping",
-        "Social assets",
-        "Animation",
-        "Print",
-      ],
-      role: "Independent Consultant",
-      timeframe: "3 months",
+      challenge:
+        "Position Capchase as a leader in non-dilutable financing. Look & feel like a business partner not a business tool.",
+      scope: ["Brand strategy", "Production output", "Developer handoff"],
+      duration: "3 months",
       year: "2021",
     },
     loupe: {
       grid: ["2 / span 10", "1 / span 10"],
-      scope: [
-        "Visual identity",
-        "Front-end",
-        "Logotype",
-        "Social assets",
-        "Web design",
-        "Merchandise",
-        "Animation",
-        "Print",
-      ],
-      role: "Inhouse Designer",
+      challenge: "Create a brand that is both playful and professional.",
+      scope: ["Visual identity", "Front-end", "Logotype"],
       timeframe: "3 months",
       year: "2020",
     },

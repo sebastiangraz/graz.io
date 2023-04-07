@@ -302,10 +302,17 @@ export default () => {
       >
         <div>
           <Text variant="label" mb={5}>
-            <Text variant="label" mb={6}>
+            <Text variant="caps" mb={6}>
               Expertise
             </Text>
-            <List>
+            <List
+              sx={{
+                color: "textDim",
+                "&& > *": {
+                  mb: 4,
+                },
+              }}
+            >
               <>Design Systems</>
               <>Brand Design</>
               <>Art Direction</>
@@ -317,10 +324,17 @@ export default () => {
         </div>
         <div>
           <Text variant="label" mb={5}>
-            <Text variant="label" mb={6}>
+            <Text variant="caps" mb={6}>
               Recognitions
             </Text>
-            <List>
+            <List
+              sx={{
+                color: "textDim",
+                "&& > *": {
+                  mb: 4,
+                },
+              }}
+            >
               {awards.map((char) => (
                 <React.Fragment key={char.title}>
                   {char.title} ·{" "}
@@ -335,10 +349,17 @@ export default () => {
 
         <div sx={{ order: [-1, 0] }}>
           <Text variant="label" mb={5}>
-            <Text variant="label" mb={6}>
+            <Text variant="caps" mb={6}>
               Associations
             </Text>
-            <List>
+            <List
+              sx={{
+                color: "textDim",
+                "&& > *": {
+                  mb: 4,
+                },
+              }}
+            >
               <>Husqvarna</>
               <>M. Saatchi</>
               <>Capchase</>
@@ -353,12 +374,12 @@ export default () => {
         <div
           sx={{
             maxWidth: ["100%", "initial", null],
-            width: [410, null, 380, 460],
+            width: [410, null, 430, 440],
           }}
         >
           <Text
             sx={{
-              fontSize: [7, 7, 7, 8],
+              fontSize: [7, 7, 8, 8],
               letterSpacing: ["body", null, "lead"],
               lineHeight: ["lead"],
             }}
@@ -366,7 +387,7 @@ export default () => {
           >
             <Text
               variant="heading"
-              sx={{ fontSize: [7, 7, 7, 8], display: "inline" }}
+              sx={{ fontSize: [7, 7, 8, 8], display: "inline" }}
             >
               Sebastian Graz,
             </Text>{" "}

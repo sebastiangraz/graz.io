@@ -2,9 +2,10 @@
 import { Box, Text } from "theme-ui";
 import { PropMap } from "../App";
 import { List } from "../List";
+import Balancer from "react-wrap-balancer";
 
 export const CaseMeta = ({ ...props }: PropMap) => {
-  const { scope, role, timeframe, year } = props;
+  const { challenge, scope, duration, year } = props;
 
   return (
     <Box
@@ -17,12 +18,27 @@ export const CaseMeta = ({ ...props }: PropMap) => {
         gridTemplateColumns: "repeat(8, 1fr)",
       }}
     >
-      {scope && (
+      {challenge && (
         <Box sx={{ gridColumn: "1 / span 2" }}>
+          <Text variant="caps">Role</Text>
+
+          <Text
+            variant="label"
+            sx={{
+              color: "var(--caseForegroundDim)",
+            }}
+          >
+            <Balancer>{challenge}</Balancer>
+          </Text>
+        </Box>
+      )}
+      {scope && (
+        <Box sx={{ gridColumn: "4 / span 1" }}>
           <Text variant="caps">Scope</Text>
           <List
             noBullets
             sx={{
+              color: "var(--caseForegroundDim)",
               display: "grid",
               gridTemplateColumns:
                 "repeat(auto-fit, minmax(min(112px, 100%), 1fr))",
@@ -39,24 +55,31 @@ export const CaseMeta = ({ ...props }: PropMap) => {
           </List>
         </Box>
       )}
-      {role && (
-        <Box sx={{ gridColumn: "4 / span 2" }}>
-          <Text variant="caps">Role</Text>
-
-          <Text variant="label">{role}</Text>
-        </Box>
-      )}
-      {timeframe && (
-        <Box sx={{ gridColumn: "6 / span 2" }}>
-          <Text variant="caps">Time frame</Text>
-          <Text variant="label">{timeframe}</Text>
+      {duration && (
+        <Box sx={{ gridColumn: "6 / span 1" }}>
+          <Text variant="caps">Duration</Text>
+          <Text
+            variant="label"
+            sx={{
+              color: "var(--caseForegroundDim)",
+            }}
+          >
+            {duration}
+          </Text>
         </Box>
       )}
       {year && (
         <Box sx={{ gridColumn: "8 / span 2" }}>
           <Text variant="caps">Year</Text>
 
-          <Text variant="label">{year}</Text>
+          <Text
+            variant="label"
+            sx={{
+              color: "var(--caseForegroundDim)",
+            }}
+          >
+            {year}
+          </Text>
         </Box>
       )}
     </Box>

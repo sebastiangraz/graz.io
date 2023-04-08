@@ -1,11 +1,19 @@
 /** @jsxImportSource theme-ui */
 
 import { Img } from "../../components";
-import { Box } from "theme-ui";
-import React, { useState } from "react";
+import { Box, ImageProps } from "theme-ui";
+import React, { ReactElement, useState } from "react";
 import { motion } from "framer-motion";
 
-export const CaseHero = ({ children }: { children: React.ReactNode }) => {
+export const CaseHero = ({
+  heroHeight,
+  children,
+}: {
+  heroHeight: number;
+  children: React.ReactNode;
+}) => {
+  const registerHeroHeight = () => heroHeight;
+
   const MotionBox = motion(Box);
   return (
     <MotionBox
@@ -17,27 +25,70 @@ export const CaseHero = ({ children }: { children: React.ReactNode }) => {
         position: "relative",
         gridColumn: ["2/span 8", "2 / span 8"],
         width: "100%",
-        aspectRatio: "1200 / 1214",
+        aspectRatio: `1200 / ${heroHeight}`,
       }}
     >
-      {children}
+      {React.Children.map(children, (child) => {
+        if (React.isValidElement(child)) {
+          return React.cloneElement(child, {
+            registerHeroHeight,
+          } as { registerHeroHeight: () => number });
+        }
+        return child;
+      })}
     </MotionBox>
   );
 };
 
-export const CaseHeroChild = ({
-  src,
-  childStyle,
-}: {
-  src: any;
+interface CaseHeroChildProps {
   childStyle?: {};
-}) => {
-  const { width, height } = src;
+  children: ReactElement;
+  registerHeroHeight?: () => number;
+}
+
+export const CaseHeroChild = ({
+  childStyle,
+  children,
+  registerHeroHeight = () => 0,
+}: CaseHeroChildProps) => {
+  const child = React.Children.only(children);
+
   const [naturalDimensions, setNaturalDimensions] = useState({
     width: 0,
     height: 0,
   });
+
+  const heroHeight = registerHeroHeight();
+
+  const isImage = children.props?.src ? true : false;
+
+  let width = 0;
+  let height = 0;
+
+  if (isImage) {
+    width = children.props.src.width || 0;
+    height = children.props.src.height || 0;
+  }
+
   const MotionBox = motion(Box);
+
+  const updateDimensions = (width: number, height: number) => {
+    if (naturalDimensions.width) return;
+    setNaturalDimensions({ width, height });
+  };
+
+  const onLoad = async (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.target as HTMLImageElement;
+    const { naturalWidth, naturalHeight } = img;
+    await new Promise(requestAnimationFrame);
+    updateDimensions(naturalWidth, naturalHeight);
+  };
+
+  const childWithOnLoad = React.cloneElement(child, {
+    ...child.props,
+    onLoad,
+  });
+
   return (
     <MotionBox
       variants={childAnimation}
@@ -46,30 +97,27 @@ export const CaseHeroChild = ({
         gridArea: "1 / 1",
         width: `calc(100% * ${width} / 1200)`,
         aspectRatio: `${width}/${height}`,
-        height: "auto",
+        height: `calc(100% * ${height} / ${heroHeight})`,
         position: "relative",
+        "& > img": {
+          // objectViewBox: `inset(
+          //   ${naturalDimensions.height / 2 - height}px
+          //   0
+          //   ${naturalDimensions.height / 2 - height}px
+          //   0)`,
+          position: "relative",
+          width: `calc(100% * ${naturalDimensions.width} / ${width * 2})`,
+          height: `calc(100% * ${naturalDimensions.height} / ${height * 2})`,
+          left: `calc(50% - 100% * ${naturalDimensions.width} / ${
+            width * 2
+          } / 2)`,
+          top: `calc(50% - 100% * ${naturalDimensions.height} / ${
+            height * 2
+          } / 2)`,
+        },
       }}
     >
-      <Img
-        src={src}
-        fromFolder="capchase"
-        sx={{
-          height: "auto",
-          overflow: "visible",
-          //prettier-ignore
-          objectViewBox: `inset(
-              ${naturalDimensions.height / 2 - height}px 
-              0 
-              ${naturalDimensions.height / 2 - height}px 
-              0)`,
-        }}
-        onLoad={(e) => {
-          if (naturalDimensions.width) return;
-          const img = e.target as HTMLImageElement;
-          const { naturalWidth, naturalHeight } = img;
-          setNaturalDimensions({ width: naturalWidth, height: naturalHeight });
-        }}
-      />
+      {childWithOnLoad}
     </MotionBox>
   );
 };

@@ -65,67 +65,77 @@ const Capchase = () => {
   return (
     <>
       <GridParent sx={{ rowGap: "clamp(8rem, 16vw, 16rem)" }}>
-        <CaseHero>
+        <CaseHero heroHeight={1300}>
           <Icons />
 
           <CaseHeroChild
-            src={images.bottle}
             childStyle={{
               marginLeft: "auto",
               marginTop: "14.5%",
               marginRight: "-2.85%",
             }}
-          />
+          >
+            <Img src={images.bottle} fromFolder="capchase" />
+          </CaseHeroChild>
 
-          <CaseHeroChild src={images.tablet} />
+          <CaseHeroChild>
+            <Img fromFolder="capchase" src={images.tablet} />
+          </CaseHeroChild>
 
           <CaseHeroChild
-            src={images.heroTypo}
             childStyle={{
               zIndex: -1,
               marginLeft: "auto",
             }}
-          />
+          >
+            <Img fromFolder="capchase" src={images.heroTypo} />
+          </CaseHeroChild>
           <CaseHeroChild
-            src={images.heroWatch}
             childStyle={{
               marginLeft: "70%",
               marginTop: "28%",
             }}
-          />
+          >
+            <Img fromFolder="capchase" src={images.heroWatch} />
+          </CaseHeroChild>
           <CaseHeroChild
-            src={images.heroLogo}
             childStyle={{
               marginTop: "50%",
             }}
-          />
+          >
+            <Img fromFolder="capchase" src={images.heroLogo} />
+          </CaseHeroChild>
           <CaseHeroChild
-            src={images.heroUI}
             childStyle={{
               marginTop: "50%",
               marginLeft: "auto",
             }}
-          />
+          >
+            <Img fromFolder="capchase" src={images.heroUI} />
+          </CaseHeroChild>
           <CaseHeroChild
-            src={images.flow}
             childStyle={{
               marginTop: "auto",
             }}
-          />
+          >
+            <Img fromFolder="capchase" src={images.flow} />
+          </CaseHeroChild>
           <CaseHeroChild
-            src={images.switch}
             childStyle={{
               marginTop: "auto",
               marginLeft: "28.75%",
             }}
-          />
+          >
+            <Img fromFolder="capchase" src={images.switch} />
+          </CaseHeroChild>
           <CaseHeroChild
-            src={images.heroEmbed}
             childStyle={{
               marginTop: "auto",
               marginLeft: "auto",
             }}
-          />
+          >
+            <Img fromFolder="capchase" src={images.heroEmbed} />
+          </CaseHeroChild>
         </CaseHero>
         <Box
           sx={{

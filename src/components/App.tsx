@@ -21,14 +21,14 @@ const propMap = () => {
       challenge:
         "Position Capchase as a leader in non-dilutable financing. Look & feel like a business partner not a business tool.",
       scope: ["Brand strategy", "Production output", "Developer handoff"],
-      duration: "3 months",
+      duration: "4 months",
       year: "2021",
     },
     loupe: {
       grid: ["2 / span 10", "1 / span 10"],
       challenge: "Create a brand that is both playful and professional.",
-      scope: ["Visual identity", "Front-end", "Logotype"],
-      timeframe: "3 months",
+      scope: ["Visual identity", "Front-end"],
+      duration: "3 months",
       year: "2020",
     },
     end: {

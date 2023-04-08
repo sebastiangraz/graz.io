@@ -13,15 +13,7 @@ const End = ({}) => {
         <TypographyBlock sx={{ m: 0 }}>
           <Box mb={[8, 0]} sx={{ maxWidth: [172, 172, 300] }}>
             <Text sx={{ display: "inline" }} variant="lead">
-              <Text
-                variant="caps"
-                sx={{
-                  display: "inline",
-                }}
-              >
-                This is the end.{" "}
-              </Text>
-              Not a whole lot you can do down here.
+              This is the end. Not a whole lot you can do down here.
             </Text>
           </Box>
           <Box>

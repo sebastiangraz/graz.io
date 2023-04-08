@@ -109,26 +109,9 @@ const Loupe = () => {
             <Img fromFolder="loupe" src={images.loupeWeb4} ignoreShadow />
           </Carousel>
         </Box>
-        {/* <Box sx={{ gridColumn: ["2/span 8", "2 / span 8"] }}>
-          <Carousel
-            ratio={[1200, 720]}
-            heading={
-              <>
-                <span sx={{ color: "var(--caseForeground)" }}>
-                  The logotype
-                </span>{" "}
-                had an important mission of being able to extend itself, yet
-                remain unmistakably on brand.
-              </>
-            }
-
-            // onChangeIndex={(index) => console.log("Active index:", index)}
-          >
-            <Video fromFolder="capchase" src={videos.reveal} />
-            <Img fromFolder="capchase" src={images.capchaseLogo0} />
-            <Img fromFolder="capchase" src={images.capchaseLogo2} />
-          </Carousel>
-        </Box> */}
+        <Box sx={{ gridColumn: ["2/span 8", "2 / span 8"], height: "50vh" }}>
+          {/* spacer */}
+        </Box>
       </GridParent>
     </>
   );

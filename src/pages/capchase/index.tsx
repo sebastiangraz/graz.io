@@ -207,6 +207,9 @@ const Capchase = () => {
             <Img fromFolder="capchase" src={images.capchaseLogo2} />
           </Carousel>
         </Box>
+        <Box sx={{ gridColumn: ["2/span 8", "2 / span 8"], height: "50vh" }}>
+          {/* spacer */}
+        </Box>
       </GridParent>
     </>
   );

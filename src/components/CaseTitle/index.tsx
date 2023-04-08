@@ -1,23 +1,48 @@
 /** @jsxImportSource theme-ui */
 
-import React from "react";
+import React, { useEffect } from "react";
 import uuid from "react-uuid";
 import { useResponsiveValue } from "@theme-ui/match-media";
+import { PropMap, propMap } from "../App";
 const ignoreUpdatedProps = () => true;
 
+const findLongestName = (cases: string[]) => {
+  let longestName = "";
+  cases.forEach((caseName) => {
+    if (caseName.length > longestName.length) {
+      longestName = caseName;
+    }
+  });
+  return longestName;
+};
+
 export const CaseTitle = React.memo(({ name }: { name: string }) => {
+  const allCaseNames = Object.keys(propMap());
+
   name ||= "case";
 
   const id = uuid();
+  const [fontsize, setFontsize] = React.useState(0);
   const caseHeroHeight = useResponsiveValue([180, 300]);
+  const svgRef = React.useRef<SVGSVGElement>(null);
 
-  const [loaded, setLoaded] = React.useState(false);
+  useEffect(() => {
+    const resizeHandler = () => {
+      const svgParentWidth = svgRef.current?.getBBox().width || 0;
+      const fontSize = Math.min(
+        svgParentWidth / (findLongestName(allCaseNames).length * 0.835)
+      );
+      setFontsize(fontSize);
+    };
 
-  React.useEffect(() => {
-    document.fonts.ready.then(function () {
-      setLoaded(true);
-    });
-  }, []);
+    resizeHandler();
+
+    window.addEventListener("resize", resizeHandler, false);
+
+    return () => {
+      window.removeEventListener("resize", resizeHandler, false);
+    };
+  }, [name]);
 
   return (
     <svg
@@ -28,14 +53,13 @@ export const CaseTitle = React.memo(({ name }: { name: string }) => {
         fontWeight: 600,
         height: caseHeroHeight,
         letterSpacing: "-0.075em",
-        fontSize: "min(12vw, 156px)",
-        // borderRadius: "32px 32px 0 0",
+        fontSize: `${fontsize}px`,
         color: `var(--caseBackground)`,
       }}
       height={caseHeroHeight}
       width="100%"
-      viewBox={`0 0 2000 ${caseHeroHeight}`}
       preserveAspectRatio="xMinYMin slice"
+      ref={svgRef}
     >
       <defs>
         <mask id={`${"sample-" + id}`}>
@@ -51,16 +75,10 @@ export const CaseTitle = React.memo(({ name }: { name: string }) => {
           >
             <rect width="8" height="8" rx="8" fill="black" />
           </svg>
-          <g
-            sx={{
-              transform: [
-                `translate(min(172px, calc(12vw - 5px) ), min(100px, 12vw))`,
-                `translate(min(172px, calc(8vw - 5px) ), min(100px, 6vw))`,
-              ],
-            }}
-          >
-            <text dominantBaseline="hanging">{name}</text>
-          </g>
+
+          <text x="8.8%" y="35%" textAnchor="start" dominantBaseline="hanging">
+            {name}
+          </text>
         </mask>
       </defs>
 
@@ -68,16 +86,11 @@ export const CaseTitle = React.memo(({ name }: { name: string }) => {
         fill="var(--caseBackground)"
         sx={{
           display: ["block", null, "none"],
-          ...(name === "the end" && {
-            display: ["none"],
-          }),
-          transform: [
-            `translate(min(172px, calc(12vw - 5px) ), min(100px, 12vw))`,
-            `translate(min(172px, calc(8vw - 5px) ), min(100px, 6vw))`,
-          ],
         }}
       >
         <text
+          x="8.8%"
+          y="35%"
           dominantBaseline="hanging"
           style={{ fill: "var(--caseForeground)" }}
         >

@@ -13,7 +13,7 @@ export interface PropMap {
   hideCaseMeta?: boolean;
 }
 
-const propMap = () => {
+export const propMap = () => {
   const props = {
     home: { hideCaseMeta: true },
     capchase: {

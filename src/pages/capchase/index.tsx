@@ -65,7 +65,7 @@ const Capchase = () => {
   return (
     <>
       <GridParent sx={{ rowGap: "clamp(8rem, 16vw, 16rem)" }}>
-        <CaseHero heroHeight={1300}>
+        <CaseHero heroHeight={1214}>
           <Icons />
 
           <CaseHeroChild

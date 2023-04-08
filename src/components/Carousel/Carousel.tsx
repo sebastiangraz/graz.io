@@ -98,13 +98,17 @@ export const Carousel = ({
     <>
       <Box
         sx={{
-          display: "grid",
-          gridTemplateColumns: "minmax(44ch, 50%) auto",
+          display: "flex",
+          flexDirection: ["column", null, "row"],
+          rowGap: 3,
+          position: "relative",
           justifyContent: "space-between",
-          alignItems: "end",
         }}
       >
-        <Text variant="lead" sx={{ m: 0, color: "var(--caseForegroundDim)" }}>
+        <Text
+          variant="lead"
+          sx={{ m: 0, color: "var(--caseForegroundDim)", maxWidth: "40ch" }}
+        >
           <Balancer>{heading}</Balancer>
         </Text>
         {children.map((child, i) => {
@@ -231,10 +235,13 @@ const ImageCaption: React.FC<ImageCaptionProps> = React.memo(({ caption }) => (
   <Text
     variant="caps"
     sx={{
+      alignSelf: [null, null, "flex-end"],
+      position: ["relative", null, "absolute"],
+      right: 0,
       m: 0,
       color: "var(--caseForegroundDim)",
     }}
   >
-    {caption}
+    {caption ? caption : "\u200B"}
   </Text>
 ));

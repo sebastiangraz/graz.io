@@ -355,6 +355,7 @@ export const Case = React.memo(
                   mb: "5vh",
                   mt: "0",
                   pb: "100vh",
+                  overflow: "hidden",
                 }}
               >
                 {children}

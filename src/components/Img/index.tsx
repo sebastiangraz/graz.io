@@ -48,6 +48,7 @@ export const Img = ({
 
   const resizeModeStyle = ignoreShadow
     ? ({
+        pointerEvents: "none",
         position: "relative",
         width: `calc(100% * ${naturalDimensions.width} / ${src?.width! * 2})`,
         height: `calc(100% * ${naturalDimensions.height} / ${
@@ -61,6 +62,13 @@ export const Img = ({
         } / 2)`,
       } as ThemeUICSSObject)
     : {};
+
+  //warn if naturalDimensions is the same as src dimensions
+  if (naturalDimensions.width === src.width! * 2) {
+    console.warn(
+      `Image ${src.name} has the same dimensions as the original asset. Consider removing the ignoreShadow prop`
+    );
+  }
 
   return (
     <>

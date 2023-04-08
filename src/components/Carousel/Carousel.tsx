@@ -145,7 +145,7 @@ export const Carousel = ({
           width: "100%",
           position: "relative",
           display: "grid",
-          overflow: "hidden",
+          // overflow: "hidden",
           isolation: "isolate",
         }}
       >

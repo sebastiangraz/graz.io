@@ -18,66 +18,64 @@ const Loupe = () => {
   return (
     <>
       <GridParent sx={{ rowGap: "clamp(8rem, 16vw, 16rem)" }}>
-        <CaseHero heroHeight={1214}>
+        <CaseHero heroHeight={936}>
+          <CaseHeroChild>
+            <Img fromFolder="loupe" src={images.heroOrbs} />
+          </CaseHeroChild>
           <CaseHeroChild
             childStyle={{
+              marginBottom: "auto",
               marginLeft: "auto",
-              marginTop: "14.5%",
-              marginRight: "-2.85%",
+            }}
+          >
+            <Img fromFolder="loupe" src={images.hero2020} />
+          </CaseHeroChild>
+          <CaseHeroChild
+            childStyle={{
+              marginTop: "20%",
+            }}
+          >
+            <Img fromFolder="loupe" src={images.heroLogo} />
+          </CaseHeroChild>
+          <CaseHeroChild
+            childStyle={{
+              marginTop: "20%",
+              marginLeft: "18%",
+            }}
+          >
+            <Img fromFolder="loupe" src={images.heroDoublecap} />
+          </CaseHeroChild>
+          <CaseHeroChild
+            childStyle={{
+              marginTop: "28%",
+              marginLeft: "37%",
+            }}
+          >
+            <Img fromFolder="loupe" src={images.heroWatch} ignoreShadow />
+          </CaseHeroChild>
+          <CaseHeroChild
+            childStyle={{
+              marginTop: "auto",
+              marginRight: "auto",
             }}
           >
             <Img src={images.heroTicket} fromFolder="loupe" ignoreShadow />
           </CaseHeroChild>
-
-          <CaseHeroChild>
-            <Img fromFolder="loupe" src={images.heroTicket} ignoreShadow />
-          </CaseHeroChild>
-
           <CaseHeroChild
             childStyle={{
-              zIndex: -1,
-              marginLeft: "auto",
+              marginTop: "43%",
+              marginLeft: "38%",
             }}
           >
-            <Img fromFolder="loupe" src={images.heroTicket} />
-          </CaseHeroChild>
-          <CaseHeroChild
-            childStyle={{
-              marginLeft: "70%",
-              marginTop: "28%",
-            }}
-          >
-            <Img fromFolder="loupe" src={images.heroTicket} ignoreShadow />
-          </CaseHeroChild>
-          <CaseHeroChild
-            childStyle={{
-              marginTop: "50%",
-            }}
-          >
-            <Img fromFolder="loupe" src={images.heroTicket} ignoreShadow />
-          </CaseHeroChild>
-          <CaseHeroChild
-            childStyle={{
-              marginTop: "50%",
-              marginLeft: "auto",
-            }}
-          >
-            <Img fromFolder="loupe" src={images.heroTicket} ignoreShadow />
+            <Img fromFolder="loupe" src={images.heroSwitch} />
           </CaseHeroChild>
           <CaseHeroChild
             childStyle={{
               marginTop: "auto",
+              marginLeft: "36.5%",
             }}
           >
-            <Img fromFolder="loupe" src={images.heroTicket} />
-          </CaseHeroChild>
-          <CaseHeroChild
-            childStyle={{
-              marginTop: "auto",
-              marginLeft: "28.75%",
-            }}
-          >
-            <Img fromFolder="loupe" src={images.heroTicket} />
+            <Img fromFolder="loupe" src={images.heroIcons} />
           </CaseHeroChild>
           <CaseHeroChild
             childStyle={{
@@ -85,7 +83,7 @@ const Loupe = () => {
               marginLeft: "auto",
             }}
           >
-            <Img fromFolder="loupe" src={images.heroTicket} ignoreShadow />
+            <Img fromFolder="loupe" src={images.heroTablet} ignoreShadow />
           </CaseHeroChild>
         </CaseHero>
         <Box
@@ -95,7 +93,6 @@ const Loupe = () => {
         >
           <Carousel
             ratio={[1200, 720]}
-            autoplay={true}
             heading={
               <>
                 <span sx={{ color: "var(--caseForeground)" }}>

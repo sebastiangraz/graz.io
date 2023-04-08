@@ -45,10 +45,58 @@ export const videos = {
 };
 
 export const images = {
+  hero2020: {
+    name: "hero-2020.png",
+    width: 464,
+    height: 219,
+    alt: "2020",
+  },
+  heroDoublecap: {
+    name: "hero-doublecap.png",
+    width: 140,
+    height: 140,
+    alt: "doublecap",
+  },
+  heroIcons: {
+    name: "hero-icons.png",
+    width: 244,
+    height: 244,
+    alt: "icons",
+  },
+  heroLogo: {
+    name: "hero-logo.png",
+    width: 140,
+    height: 140,
+    alt: "logo",
+  },
+  heroOrbs: {
+    name: "hero-orbs.png",
+    width: 680,
+    height: 128,
+    alt: "orbs",
+  },
+  heroSwitch: {
+    name: "hero-switch.png",
+    width: 228,
+    height: 86,
+    alt: "switch",
+  },
+  heroTablet: {
+    name: "hero-tablet.png",
+    width: 375,
+    height: 661,
+    alt: "tablet",
+  },
   heroTicket: {
     name: "hero-ticket.png",
     width: 287,
     height: 453,
+  },
+  heroWatch: {
+    name: "hero-watch.png",
+    width: 192,
+    height: 222,
+    alt: "watch",
   },
   loupeWeb1: {
     name: "loupe-web-1.png",
@@ -157,13 +205,6 @@ export const images = {
     width: 2336,
     height: 1600,
     alt: "cyan",
-  },
-  orbs: {
-    name: "orbs.png",
-    webP: "orbs.webp",
-    width: 2340,
-    height: 1200,
-    alt: "orbs",
   },
   multiMesh1: {
     name: "multiMesh1.png",

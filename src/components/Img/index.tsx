@@ -49,7 +49,7 @@ export const Img = ({
   const resizeModeStyle = ignoreShadow
     ? ({
         pointerEvents: "none",
-        position: "relative",
+        position: "absolute",
         width: `calc(100% * ${naturalDimensions.width} / ${src?.width! * 2})`,
         height: `calc(100% * ${naturalDimensions.height} / ${
           src?.height! * 2

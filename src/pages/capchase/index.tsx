@@ -94,6 +94,7 @@ const Capchase = () => {
             childStyle={{
               marginLeft: "70%",
               marginTop: "28%",
+              zIndex: 1,
             }}
           >
             <Img fromFolder="capchase" src={images.heroWatch} ignoreShadow />
@@ -124,6 +125,9 @@ const Capchase = () => {
             childStyle={{
               marginTop: "auto",
               marginLeft: "28.75%",
+              img: {
+                objectFit: "contain",
+              },
             }}
           >
             <Img fromFolder="capchase" src={images.switch} />

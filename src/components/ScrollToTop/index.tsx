@@ -67,10 +67,10 @@ export const ScrollToTop = () => {
           transition: "all 0.9s ease",
           color: ["#fff", null, "text"],
           position: "absolute",
-          left: ["8px", "calc(50% - 24px)"],
+          left: ["8px", "calc(50% - 28px)"],
           bottom: "calc(2.5vw)",
-          width: 8,
-          height: 8,
+          width: 9,
+          height: 9,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -108,7 +108,7 @@ export const ScrollToTop = () => {
           sx={{
             fontVariationSettings: `"wght" 50`,
             gridArea: "logo",
-            fontSize: 9,
+            fontSize: 10,
             display: "grid",
             "& > .logo": { transition: "all 0.6s ease", minWidth: 0 },
           }}

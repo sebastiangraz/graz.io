@@ -1,18 +1,15 @@
 /** @jsxImportSource theme-ui */
 
-import { Flex, Text, Box } from "theme-ui";
+import { Box } from "theme-ui";
 import {
   Video,
   Img,
   GridParent,
-  ScrollReveal,
-  NumberedList,
   CaseHero,
   CaseHeroChild,
   Carousel,
 } from "../../components";
-import { Logo } from "./Logo";
-import { videos, images, colors } from "./assets";
+import { images } from "./assets";
 
 const Loupe = () => {
   return (
@@ -95,16 +92,15 @@ const Loupe = () => {
             ratio={[1200, 720]}
             heading={
               <>
-                <span sx={{ color: "var(--caseForeground)" }}>
-                  The brand book
-                </span>{" "}
-                was deliberately leaning towards aspirational to keep the brand
-                open to changes.
+                <span sx={{ color: "var(--caseForeground)" }}>The website</span>{" "}
+                was developed in parallell with the brand identity work, and
+                helped inform bidirectional design decisions.
               </>
             }
           >
-            <Img fromFolder="loupe" src={images.loupeWeb1} ignoreShadow />
             <Img fromFolder="loupe" src={images.loupeWeb2} ignoreShadow />
+            <Img fromFolder="loupe" src={images.loupeWeb1} ignoreShadow />
+
             <Img fromFolder="loupe" src={images.loupeWeb3} ignoreShadow />
             <Img fromFolder="loupe" src={images.loupeWeb4} ignoreShadow />
           </Carousel>

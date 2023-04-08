@@ -16,9 +16,9 @@ const colors = {
     background: "#D2DAD3",
   },
   end: {
-    foreground: "#fff",
+    foreground: "#000",
     foregroundDim: "#fff7",
-    background: "#666",
+    background: "transparent",
   },
   capchase: {
     foreground: "#0F0F14",
@@ -26,7 +26,7 @@ const colors = {
     background: "#FCFBF8",
   },
 };
-const space = [0, 4, 6, 12, 14, 16, 20, 24, 36, 56, 72, 112, 156];
+const space = [0, 4, 6, 12, 14, 16, 20, 24, 32, 56, 72, 112, 156];
 const capsStyle = {
   textTransform: "uppercase",
   fontFeatureSettings: `"c2sc"`,
@@ -87,8 +87,8 @@ export default {
     },
     label: {
       variant: "text.default",
-      lineHeight: "lead",
-      fontSize: 5,
+      lineHeight: ["body"],
+      fontSize: [4, 5, 5, 5],
     },
     caps: {
       display: "block",

@@ -26,6 +26,7 @@ export const videos = {
     url: "reveal.mp4",
     width: 1920,
     height: 1080,
+    alt: "Logo reveal",
   },
   generic: {
     url: "generic-outro-portfolio.mp4",
@@ -61,19 +62,19 @@ export const images = {
     name: "capchase-web-2.png",
     width: 1200,
     height: 720,
-    alt: "Mobile + Careers",
+    alt: "Landing pages",
   },
   capchaseWeb3: {
     name: "capchase-web-3.png",
     width: 1200,
     height: 720,
-    alt: "Mobile + Careers",
+    alt: "Grow page",
   },
   capchaseLogo0: {
     name: "capchase-logo-0.png",
     width: 1200,
     height: 720,
-    alt: "Logo",
+    alt: "Graphical variation",
   },
   capchaseLogo1: {
     name: "capchase-logo-1.png",
@@ -85,7 +86,7 @@ export const images = {
     name: "capchase-logo-2.png",
     width: 1200,
     height: 720,
-    alt: "Logo",
+    alt: "Logo extensions",
   },
 
   capchaseBB0: {

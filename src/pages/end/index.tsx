@@ -12,8 +12,9 @@ const End = ({}) => {
       return (
         <TypographyBlock sx={{ m: 0 }}>
           <Box mb={[8, 0]} sx={{ maxWidth: [172, 172, 300] }}>
-            <Text sx={{ display: "inline" }} variant="lead">
-              This is the end. Not a whole lot you can do down here.
+            <Text variant="caps">This is the end for you my friend.</Text>
+            <Text sx={{ display: "flex", maxWidth: "13ch" }} variant="lead">
+              Not a whole lot you can do down here.
             </Text>
           </Box>
           <Box>
@@ -23,8 +24,7 @@ const End = ({}) => {
             <NumberedList
               sx={{
                 m: 0,
-                "--caseBackground": "#000",
-                "--caseForeground": "inherit",
+                "--caseBackground": "#fff",
               }}
               horizontal
               small

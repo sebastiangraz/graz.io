@@ -26,14 +26,15 @@ const propMap = () => {
     },
     loupe: {
       grid: ["2 / span 10", "1 / span 10"],
-      challenge: "Create a brand that is both playful and professional.",
+      challenge:
+        "Design an inclusive, memorable identity that could co-exist with Framer’s own brand.",
       scope: ["Visual identity", "Front-end"],
       duration: "3 months",
       year: "2020",
     },
     end: {
       hideCaseMeta: true,
-      grid: ["3 / span 10", "5 / span 8"],
+      grid: ["3 / span 10", "1 / span 10"],
     },
   } as { [key: string]: PropMap };
 

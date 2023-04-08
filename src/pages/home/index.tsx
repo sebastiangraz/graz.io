@@ -296,6 +296,7 @@ export default () => {
           gridArea: "meta",
           display: "grid",
           rowGap: [7, null],
+          columnGap: [7, null],
           gridTemplateColumns: ["repeat(2, 1fr)", "repeat(3, 1fr)"],
           width: "100%",
         }}
@@ -309,7 +310,7 @@ export default () => {
               sx={{
                 color: "textDim",
                 "&& > *": {
-                  mb: 4,
+                  mb: 3,
                 },
               }}
             >
@@ -331,7 +332,8 @@ export default () => {
               sx={{
                 color: "textDim",
                 "&& > *": {
-                  mb: 4,
+                  mb: 3,
+                  whiteSpace: "pre",
                 },
               }}
             >
@@ -356,7 +358,7 @@ export default () => {
               sx={{
                 color: "textDim",
                 "&& > *": {
-                  mb: 4,
+                  mb: 3,
                 },
               }}
             >
@@ -374,12 +376,12 @@ export default () => {
         <div
           sx={{
             maxWidth: ["100%", "initial", null],
-            width: [410, null, 430, 440],
+            width: [410, null, 380, 440],
           }}
         >
           <Text
             sx={{
-              fontSize: [7, 7, 8, 8],
+              fontSize: [6, 7, 8, 8],
               letterSpacing: ["body", null, "lead"],
               lineHeight: ["lead"],
             }}
@@ -387,7 +389,7 @@ export default () => {
           >
             <Text
               variant="heading"
-              sx={{ fontSize: [7, 7, 8, 8], display: "inline" }}
+              sx={{ fontSize: [6, 7, 8, 8], display: "inline" }}
             >
               Sebastian Graz,
             </Text>{" "}

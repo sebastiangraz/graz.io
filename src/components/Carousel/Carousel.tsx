@@ -107,7 +107,7 @@ export const Carousel = ({
       >
         <Text
           variant="lead"
-          sx={{ m: 0, color: "var(--caseForegroundDim)", maxWidth: "40ch" }}
+          sx={{ m: 0, color: "var(--caseForegroundDim)", maxWidth: "38ch" }}
         >
           <Balancer>{heading}</Balancer>
         </Text>
@@ -200,6 +200,7 @@ const IndexIndicator: React.FC<IndexIndicatorProps> = React.memo(
       onClick={onClick}
       sx={{
         flex: 1,
+        my: 3,
         pt: 7,
         pb: 8,
         cursor: "pointer",

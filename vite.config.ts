@@ -11,7 +11,7 @@ export default defineConfig({
     svgrPlugin(),
     ViteImageOptimizer({
       png: {
-        quality: 80,
+        quality: 88,
       },
     }),
   ],

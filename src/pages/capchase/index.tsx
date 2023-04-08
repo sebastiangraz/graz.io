@@ -162,8 +162,8 @@ const Capchase = () => {
             <Img fromFolder="capchase" src={images.capchaseBB4} />
             <Img fromFolder="capchase" src={images.capchaseBB5} />
             <Img fromFolder="capchase" src={images.capchaseBB6} />
-            <Img fromFolder="capchase" src={images.capchaseBB7} />
             <Img fromFolder="capchase" src={images.capchaseBB8} />
+            <Img fromFolder="capchase" src={images.capchaseBB7} />
           </Carousel>
         </Box>
         <Box sx={{ gridColumn: ["2/span 8", "2 / span 8"] }}>

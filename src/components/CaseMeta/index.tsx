@@ -14,13 +14,17 @@ export const CaseMeta = ({ ...props }: PropMap) => {
         flexDirection: "column",
         display: ["flex", null, "grid"],
         gridColumn: "2 / span 8",
-        gap: [8, null, 6],
+        columnGap: [8, null, 7],
+        rowGap: [8, 9],
         gridTemplateColumns: "repeat(8, 1fr)",
+        gridTemplateRows: "auto",
       }}
     >
       {challenge && (
-        <Box sx={{ gridColumn: "1 / span 2" }}>
-          <Text variant="caps">Role</Text>
+        <Box sx={{ gridColumn: ["1 / span 3", null, null, "1 / span 3"] }}>
+          <Text variant="caps" sx={{ mb: 6 }}>
+            Challenge
+          </Text>
 
           <Text
             variant="label"
@@ -33,16 +37,19 @@ export const CaseMeta = ({ ...props }: PropMap) => {
         </Box>
       )}
       {scope && (
-        <Box sx={{ gridColumn: "4 / span 1" }}>
-          <Text variant="caps">Scope</Text>
+        <Box
+          sx={{
+            gridColumn: ["1 / span 2", null, null, "4 / span 2"],
+            gridRow: ["2", null, null, "1"],
+          }}
+        >
+          <Text variant="caps" sx={{ mb: 6 }}>
+            Scope
+          </Text>
           <List
             noBullets
             sx={{
               color: "var(--caseForegroundDim)",
-              display: "grid",
-              gridTemplateColumns:
-                "repeat(auto-fit, minmax(min(112px, 100%), 1fr))",
-              columnGap: "32px",
             }}
           >
             {scope?.map((e) => {
@@ -56,12 +63,20 @@ export const CaseMeta = ({ ...props }: PropMap) => {
         </Box>
       )}
       {duration && (
-        <Box sx={{ gridColumn: "6 / span 1" }}>
-          <Text variant="caps">Duration</Text>
+        <Box
+          sx={{
+            gridColumn: ["5 / span 2", null, null, "6 / span 1"],
+            gridRow: ["2", null, null, "1"],
+          }}
+        >
+          <Text variant="caps" sx={{ mb: 6 }}>
+            Duration
+          </Text>
           <Text
             variant="label"
             sx={{
               color: "var(--caseForegroundDim)",
+              whiteSpace: "pre",
             }}
           >
             {duration}
@@ -69,8 +84,14 @@ export const CaseMeta = ({ ...props }: PropMap) => {
         </Box>
       )}
       {year && (
-        <Box sx={{ gridColumn: "8 / span 2" }}>
-          <Text variant="caps">Year</Text>
+        <Box
+          sx={{
+            gridColumn: ["5 / span 3", null, null, "8 / span 2"],
+          }}
+        >
+          <Text variant="caps" sx={{ mb: 6 }}>
+            Year
+          </Text>
 
           <Text
             variant="label"

@@ -170,7 +170,6 @@ export const Carousel = ({
                     width: "100%",
                     height: "100%",
                     gridArea: "1/1",
-                    scrollSnapAlign: "start",
                     position: "absolute",
                     top: 0,
                     left: 0,

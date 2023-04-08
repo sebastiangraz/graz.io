@@ -45,6 +45,35 @@ export const videos = {
 };
 
 export const images = {
+  heroTicket: {
+    name: "hero-ticket.png",
+    width: 287,
+    height: 453,
+  },
+  loupeWeb1: {
+    name: "loupe-web-1.png",
+    width: 1200,
+    height: 720,
+    alt: "Tickets",
+  },
+  loupeWeb2: {
+    name: "loupe-web-2.png",
+    width: 1200,
+    height: 720,
+    alt: "Homepage",
+  },
+  loupeWeb3: {
+    name: "loupe-web-3.png",
+    width: 1200,
+    height: 720,
+    alt: "FAQ",
+  },
+  loupeWeb4: {
+    name: "loupe-web-4.png",
+    width: 1200,
+    height: 720,
+    alt: "Venue",
+  },
   logopart1: {
     name: "logopart1.png",
     width: 1,

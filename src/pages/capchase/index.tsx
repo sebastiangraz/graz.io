@@ -75,11 +75,11 @@ const Capchase = () => {
               marginRight: "-2.85%",
             }}
           >
-            <Img src={images.bottle} fromFolder="capchase" />
+            <Img src={images.bottle} fromFolder="capchase" ignoreShadow />
           </CaseHeroChild>
 
           <CaseHeroChild>
-            <Img fromFolder="capchase" src={images.tablet} />
+            <Img fromFolder="capchase" src={images.tablet} ignoreShadow />
           </CaseHeroChild>
 
           <CaseHeroChild
@@ -96,14 +96,14 @@ const Capchase = () => {
               marginTop: "28%",
             }}
           >
-            <Img fromFolder="capchase" src={images.heroWatch} />
+            <Img fromFolder="capchase" src={images.heroWatch} ignoreShadow />
           </CaseHeroChild>
           <CaseHeroChild
             childStyle={{
               marginTop: "50%",
             }}
           >
-            <Img fromFolder="capchase" src={images.heroLogo} />
+            <Img fromFolder="capchase" src={images.heroLogo} ignoreShadow />
           </CaseHeroChild>
           <CaseHeroChild
             childStyle={{
@@ -111,7 +111,7 @@ const Capchase = () => {
               marginLeft: "auto",
             }}
           >
-            <Img fromFolder="capchase" src={images.heroUI} />
+            <Img fromFolder="capchase" src={images.heroUI} ignoreShadow />
           </CaseHeroChild>
           <CaseHeroChild
             childStyle={{
@@ -134,7 +134,7 @@ const Capchase = () => {
               marginLeft: "auto",
             }}
           >
-            <Img fromFolder="capchase" src={images.heroEmbed} />
+            <Img fromFolder="capchase" src={images.heroEmbed} ignoreShadow />
           </CaseHeroChild>
         </CaseHero>
         <Box

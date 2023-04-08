@@ -1,8 +1,7 @@
 /** @jsxImportSource theme-ui */
 
-import { Img } from "../../components";
-import { Box, ImageProps } from "theme-ui";
-import React, { ReactElement, useState } from "react";
+import { Box } from "theme-ui";
+import React, { ReactElement } from "react";
 import { motion } from "framer-motion";
 
 export const CaseHero = ({
@@ -51,13 +50,6 @@ export const CaseHeroChild = ({
   children,
   registerHeroHeight = () => 0,
 }: CaseHeroChildProps) => {
-  const child = React.Children.only(children);
-
-  const [naturalDimensions, setNaturalDimensions] = useState({
-    width: 0,
-    height: 0,
-  });
-
   const heroHeight = registerHeroHeight();
 
   const isImage = children.props?.src ? true : false;
@@ -72,23 +64,6 @@ export const CaseHeroChild = ({
 
   const MotionBox = motion(Box);
 
-  const updateDimensions = (width: number, height: number) => {
-    if (naturalDimensions.width) return;
-    setNaturalDimensions({ width, height });
-  };
-
-  const onLoad = async (e: React.SyntheticEvent<HTMLImageElement>) => {
-    const img = e.target as HTMLImageElement;
-    const { naturalWidth, naturalHeight } = img;
-    await new Promise(requestAnimationFrame);
-    updateDimensions(naturalWidth, naturalHeight);
-  };
-
-  const childWithOnLoad = React.cloneElement(child, {
-    ...child.props,
-    onLoad,
-  });
-
   return (
     <MotionBox
       variants={childAnimation}
@@ -98,26 +73,9 @@ export const CaseHeroChild = ({
         width: `calc(100% * ${width} / 1200)`,
         aspectRatio: `${width}/${height}`,
         height: `calc(100% * ${height} / ${heroHeight})`,
-        position: "relative",
-        "& > img": {
-          // objectViewBox: `inset(
-          //   ${naturalDimensions.height / 2 - height}px
-          //   0
-          //   ${naturalDimensions.height / 2 - height}px
-          //   0)`,
-          position: "relative",
-          width: `calc(100% * ${naturalDimensions.width} / ${width * 2})`,
-          height: `calc(100% * ${naturalDimensions.height} / ${height * 2})`,
-          left: `calc(50% - 100% * ${naturalDimensions.width} / ${
-            width * 2
-          } / 2)`,
-          top: `calc(50% - 100% * ${naturalDimensions.height} / ${
-            height * 2
-          } / 2)`,
-        },
       }}
     >
-      {childWithOnLoad}
+      {children}
     </MotionBox>
   );
 };

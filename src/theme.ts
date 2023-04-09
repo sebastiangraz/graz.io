@@ -8,7 +8,7 @@ const colors = {
   metaview: {
     foreground: "#01051b",
     foregroundDim: "#01051b71",
-    background: "#E4E9E5",
+    background: "#E7EFE8",
   },
   loupe: {
     foreground: "#184629",

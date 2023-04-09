@@ -30,7 +30,7 @@ export const CaseTitle = React.memo(({ name }: { name: string }) => {
     const resizeHandler = () => {
       const svgParentWidth = svgRef.current?.getBBox().width || 0;
       const fontSize = Math.min(
-        svgParentWidth / (findLongestName(allCaseNames).length * 0.835)
+        svgParentWidth / (findLongestName(allCaseNames).length * 0.88)
       );
       setFontsize(fontSize);
     };
@@ -76,7 +76,7 @@ export const CaseTitle = React.memo(({ name }: { name: string }) => {
             <rect width="8" height="8" rx="8" fill="black" />
           </svg>
 
-          <text x="8.8%" y="35%" textAnchor="start" dominantBaseline="hanging">
+          <text x="8.8%" y="30%" textAnchor="start" dominantBaseline="hanging">
             {name}
           </text>
         </mask>
@@ -90,13 +90,26 @@ export const CaseTitle = React.memo(({ name }: { name: string }) => {
       >
         <text
           x="8.8%"
-          y="35%"
+          y="30%"
           dominantBaseline="hanging"
           style={{ fill: "var(--caseForeground)" }}
         >
           {name}
         </text>
       </g>
+      <foreignObject width="100%" height="90%">
+        <div
+          //@ts-ignore
+          xmlns={"http://www.w3.org/1999/xhtml"}
+          sx={{
+            contain: "strict",
+            width: "100%",
+            height: "100%",
+            backdropFilter: "blur(10px)",
+            display: ["none", null, "block"],
+          }}
+        ></div>
+      </foreignObject>
 
       <rect
         fillRule="evenodd"

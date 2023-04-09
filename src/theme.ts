@@ -4,11 +4,11 @@ import { Theme } from "theme-ui";
 const colors = {
   text: "#05010c",
   textDim: "#05010c7d",
-  background: "#f7f2ec",
-  canon: {
-    foreground: "#FFCDCA",
-    foregroundDim: "#FFCDCA7D",
-    background: "#171717",
+  background: "#F7F1E8",
+  metaview: {
+    foreground: "#01051b",
+    foregroundDim: "#01051b71",
+    background: "#E4E9E5",
   },
   loupe: {
     foreground: "#184629",

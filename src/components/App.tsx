@@ -24,6 +24,14 @@ export const propMap = () => {
       duration: "4 months",
       year: "2021",
     },
+    metaview: {
+      grid: ["1 / span 10", "2 / span 10"],
+      challenge:
+        "Design a product that would help people understand their own data and make better decisions.",
+      scope: ["Product design", "Front-end"],
+      duration: "3 months",
+      year: "2023",
+    },
     loupe: {
       grid: ["2 / span 10", "1 / span 10"],
       challenge:

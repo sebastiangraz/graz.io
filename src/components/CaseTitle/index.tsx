@@ -105,7 +105,7 @@ export const CaseTitle = React.memo(({ name }: { name: string }) => {
             contain: "strict",
             width: "100%",
             height: "100%",
-            backdropFilter: "blur(10px)",
+            backdropFilter: "blur(12px)",
             display: ["none", null, "block"],
           }}
         ></div>

@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import uuid from "react-uuid";
 import { useResponsiveValue } from "@theme-ui/match-media";
-import { PropMap, propMap } from "../App";
+import { propMap } from "../App";
 const ignoreUpdatedProps = () => true;
 
 const findLongestName = (cases: string[]) => {

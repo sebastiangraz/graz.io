@@ -74,7 +74,7 @@ export const Img = ({
     <>
       <img
         {...sx}
-        loading="lazy"
+        loading="eager" // lazy usually
         src={`./${fromFolder}/${src.name}`}
         alt={src.alt}
         onLoad={ignoreShadow ? onLoad : undefined}

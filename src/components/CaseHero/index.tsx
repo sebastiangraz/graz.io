@@ -68,12 +68,12 @@ export const CaseHeroChild = ({
     <MotionBox
       variants={staggerChildren}
       sx={{
-        ...childStyle,
         gridArea: "1 / 1",
         width: `calc(100% * ${width} / 1200)`,
         aspectRatio: `${width}/${height}`,
         height: `calc(100% * ${height} / ${heroHeight})`,
         position: "relative",
+        ...childStyle,
       }}
     >
       {children}

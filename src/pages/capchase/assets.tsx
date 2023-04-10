@@ -145,7 +145,7 @@ export const images = {
   },
   tablet: {
     name: "hero-tablet.png",
-    width: 586,
+    width: 600,
     height: 544,
     alt: "Tablet",
   },

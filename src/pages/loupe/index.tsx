@@ -9,6 +9,7 @@ import {
   Carousel,
 } from "../../components";
 import { images } from "./assets";
+import { Logo } from "./Logo";
 
 const Loupe = () => {
   return (
@@ -29,9 +30,10 @@ const Loupe = () => {
           <CaseHeroChild
             childStyle={{
               marginTop: "20%",
+              width: "calc(100% * 140 / 1200 )",
             }}
           >
-            <Img fromFolder="loupe" src={images.heroLogo} />
+            <Logo />
           </CaseHeroChild>
           <CaseHeroChild
             childStyle={{

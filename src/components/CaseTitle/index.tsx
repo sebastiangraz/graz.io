@@ -92,22 +92,7 @@ export const CaseTitle = React.memo(({ name }: { name: string }) => {
         </mask>
       </defs>
 
-      <g
-        fill="var(--caseBackground)"
-        sx={{
-          display: ["block", null, "none"],
-        }}
-      >
-        <text
-          x="8.8%"
-          y="30%"
-          dominantBaseline="hanging"
-          style={{ fill: "var(--caseForeground)" }}
-        >
-          {name}
-        </text>
-      </g>
-      <foreignObject width="100%" height="90%">
+      <foreignObject width="100%" height="90%" y="1px">
         <div
           //@ts-ignore
           xmlns={"http://www.w3.org/1999/xhtml"}
@@ -115,8 +100,9 @@ export const CaseTitle = React.memo(({ name }: { name: string }) => {
             contain: "strict",
             width: "100%",
             height: "100%",
-            backdropFilter: "blur(14px)",
-            display: ["none", null, !isLastCase ? "block" : "none"],
+            backdropFilter: ["none", "blur(14px)"],
+            display: !isLastCase ? "block" : "none",
+            background: ["var(--caseForeground)", "transparent"],
           }}
         ></div>
       </foreignObject>

@@ -14,4 +14,3 @@ export { NumberedList } from "./NumberedList";
 export { ScrollReveal } from "./ScrollReveal";
 export { ScrollDown } from "./ScrollDown";
 export { ScrollToTop } from "./ScrollToTop";
-export { TypographyBlock } from "./TypographyBlock";

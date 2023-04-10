@@ -98,6 +98,8 @@ export const CaseTitle = React.memo(({ name }: { name: string }) => {
           xmlns={"http://www.w3.org/1999/xhtml"}
           sx={{
             contain: "strict",
+            zIndex: -1,
+            position: "relative",
             width: "100%",
             height: "100%",
             backdropFilter: ["none", "blur(14px)"],

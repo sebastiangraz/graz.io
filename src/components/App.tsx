@@ -3,6 +3,7 @@ import { CaseWrapper, Case, ScrollToTop, CaseMeta, GridParent } from ".";
 import "../base.css";
 
 import { Helmet } from "react-helmet-async";
+import { Box } from "theme-ui";
 
 export interface PropMap {
   grid?: string[];

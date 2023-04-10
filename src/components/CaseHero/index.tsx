@@ -16,7 +16,7 @@ export const CaseHero = ({
   const MotionBox = motion(Box);
   return (
     <MotionBox
-      variants={staggeredAnimation}
+      variants={staggerParent}
       initial="hidden"
       whileInView="visible"
       sx={{
@@ -66,7 +66,7 @@ export const CaseHeroChild = ({
 
   return (
     <MotionBox
-      variants={childAnimation}
+      variants={staggerChildren}
       sx={{
         ...childStyle,
         gridArea: "1 / 1",
@@ -81,7 +81,7 @@ export const CaseHeroChild = ({
   );
 };
 
-const staggeredAnimation = {
+const staggerParent = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -91,7 +91,7 @@ const staggeredAnimation = {
   },
 };
 
-const childAnimation = {
+const staggerChildren = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,

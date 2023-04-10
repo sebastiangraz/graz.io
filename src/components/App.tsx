@@ -42,7 +42,7 @@ export const propMap = () => {
     },
     end: {
       hideCaseMeta: true,
-      grid: ["3 / span 10", "1 / span 10"],
+      grid: ["2 / span 12", "1 / span 10"],
     },
   } as { [key: string]: PropMap };
 
@@ -52,59 +52,47 @@ export const propMap = () => {
 const slugKeys = Object.keys(propMap());
 const slugValues = Object.values(propMap());
 
-const MemoApp = () => {
-  const [routes, setRoutes] = React.useState<JSX.Element[]>([]);
+const routes = Object.entries(
+  import.meta.glob<string | string[] | any>(
+    ["../pages/**/index.tsx"], // ignore components
+    {
+      eager: true,
+    }
+  )
+)
+  .map(([relativePath, module]) => {
+    const Page = module.default;
+    const path = relativePath.replace("./pages", "").replace("/index.tsx", "");
+    const slug = path.replace("./", "");
 
-  React.useEffect(() => {
-    const fetchRoutes = async () => {
-      const fetchedRoutes = await Promise.all(
-        Object.entries(import.meta.glob("../pages/**/index.tsx")).map(
-          async ([relativePath]) => {
-            const path = relativePath
-              .replace("./pages", "")
-              .replace("/index.tsx", "");
-            const slug = path.replace("./", "");
-
-            const module = await import(relativePath);
-            const Page = module.default;
-
-            return {
-              slug,
-              path,
-              Page,
-            };
-          }
-        )
-      );
-
-      const sortedRoutes = fetchedRoutes
-        .sort((a, b) => {
-          const indexA = slugKeys.indexOf(a.slug);
-          const indexB = slugKeys.indexOf(b.slug);
-
-          return indexA - indexB;
-        })
-        .map(({ path, slug, Page }, i) => {
-          const hideCaseMeta = slugValues[i]?.hideCaseMeta || false;
-
-          return (
-            <Case key={path} index={i} slug={slug} propmap={slugValues[i]}>
-              {!hideCaseMeta && (
-                <GridParent>
-                  <CaseMeta {...slugValues[i]} />
-                </GridParent>
-              )}
-              <Page></Page>
-            </Case>
-          );
-        });
-
-      setRoutes(sortedRoutes);
+    return {
+      slug,
+      path,
+      Page,
     };
+  })
+  .sort((a, b) => {
+    const indexA = slugKeys.indexOf(a.slug);
+    const indexB = slugKeys.indexOf(b.slug);
 
-    fetchRoutes();
-  }, []);
+    return indexA - indexB;
+  })
+  .map(({ path, slug, Page }, i) => {
+    const hideCaseMeta = slugValues[i]?.hideCaseMeta || false;
 
+    return (
+      <Case key={path} index={i} slug={slug} propmap={slugValues[i]}>
+        {!hideCaseMeta && (
+          <GridParent>
+            <CaseMeta {...slugValues[i]} />
+          </GridParent>
+        )}
+        <Page></Page>
+      </Case>
+    );
+  });
+
+const MemoApp = () => {
   return (
     <>
       <Helmet>

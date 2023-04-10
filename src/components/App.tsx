@@ -17,7 +17,7 @@ export const propMap = () => {
   const props = {
     home: { hideCaseMeta: true },
     capchase: {
-      grid: ["1 / span 10", "2 / span 10"],
+      grid: ["2 / span 10", "2 / span 10"],
       challenge:
         "Position the brand as a frontrunner in non-dilutable financing, while bringing to light the business-partner vibe.",
       scope: ["Brand strategy", "Production output", "Developer handoff"],
@@ -25,7 +25,7 @@ export const propMap = () => {
       year: "2022",
     },
     metaview: {
-      grid: ["1 / span 10", "3 / span 10"],
+      grid: ["3 / span 10", "3 / span 10"],
       challenge:
         "Rebrand Metaview to surface their dedication for fairer hiring solutions, no matter the scale.",
       scope: ["Rebrand & Strategy", "Production output"],
@@ -33,7 +33,7 @@ export const propMap = () => {
       year: "2023",
     },
     loupe: {
-      grid: ["2 / span 10", "1 / span 10"],
+      grid: ["1 / span 10", "1 / span 10"],
       challenge:
         "Design a highly shareable & inclusive conference identity, that could co-exist together with Framer’s own brand.",
       scope: ["Visual identity", "Front-end"],

@@ -170,6 +170,7 @@ export const Carousel = ({
                   }}
                   exit={{ opacity: 0 }}
                   style={{
+                    zIndex: isCardVisible ? 1 : 0,
                     mixBlendMode: "plus-lighter",
                     width: "100%",
                     height: "100%",

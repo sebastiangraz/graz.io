@@ -84,12 +84,42 @@ const Capchase = () => {
 
           <CaseHeroChild
             childStyle={{
-              zIndex: -1,
+              width: "calc(100% * 336 / 1200)",
+              height: "calc(100% * 269 / 1200)",
+              display: "grid",
+              overflow: "hidden",
+              borderRadius: "32px",
               marginLeft: "auto",
+              marginBottom: "auto",
+              isolation: "isolate",
+              zIndex: -1,
             }}
           >
-            <Img fromFolder="capchase" src={images.heroTypo} />
+            <>
+              <Img
+                sx={{
+                  zIndex: 2,
+                  gridArea: "1 / 1",
+                  width: "100%",
+                  height: "auto",
+                }}
+                fromFolder="capchase"
+                src={images.heroTypo}
+              />
+              <Video
+                fromFolder="capchase"
+                src={videos.swirl}
+                sx={{
+                  zIndex: 1,
+                  gridArea: "1 / 1",
+                  width: "calc(100% + 1px)",
+                  height: "calc(100% + 1px)",
+                  objectFit: "cover",
+                }}
+              />
+            </>
           </CaseHeroChild>
+
           <CaseHeroChild
             childStyle={{
               marginLeft: "70%",

@@ -11,7 +11,7 @@ export const CaseHero = ({
   heroHeight: number;
   children: React.ReactNode;
 }) => {
-  const registerHeroHeight = () => heroHeight;
+  const registerHeroHeight = () => heroHeight || 0;
 
   const MotionBox = motion(Box);
   return (

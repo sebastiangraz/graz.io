@@ -28,8 +28,8 @@ export const videos = {
   },
   swirl: {
     url: "swirl.mp4",
-    width: 1500,
-    height: 1500,
+    width: 336,
+    height: 269,
   },
 };
 

@@ -2,7 +2,6 @@
 
 import { Box } from "theme-ui";
 import {
-  Video,
   Img,
   GridParent,
   CaseHero,

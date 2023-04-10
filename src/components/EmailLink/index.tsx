@@ -4,12 +4,6 @@ import React, { useEffect, useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
 import { ThemeUICSSObject } from "theme-ui";
 
-declare module "framer-motion" {
-  export interface AnimatePresenceProps {
-    children?: React.ReactNode;
-  }
-}
-
 export const EmailLink = ({
   string,
   children,

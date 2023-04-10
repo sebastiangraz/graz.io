@@ -1,14 +1,3 @@
-export const colors = {
-  red: "#f60000",
-  cyan: "#3edbff",
-  orange: "#f47722",
-  green: "#003807",
-  beige: "#fcf6f5",
-  magenta: "#e900a1",
-  maroon: "#560000",
-  white: "#fff",
-};
-
 export const videos = {
   loupeMesh: {
     url: "loupeMesh.mp4",

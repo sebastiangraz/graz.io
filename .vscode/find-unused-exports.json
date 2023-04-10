@@ -1,7 +1,9 @@
 {
   "ignore": {
     "files": [
-      "c:/Users/Sebastian/development/graz.io/src/components/index.ts"
+      "c:/Users/Sebastian/development/graz.io/src/components/index.ts",
+      "c:/Users/Sebastian/development/graz.io/src/components/hooks/index.ts",
+      "c:/Users/Sebastian/development/graz.io/src/pages/loupe/Logo.tsx"
     ]
   }
 }

@@ -225,7 +225,8 @@ export default () => {
               background: "background",
               p: 4,
               isolation: "isolate",
-              display: ["grid", "none"],
+              // display: ["grid", "none"],
+              display: "grid",
               position: "absolute",
               gridArea: "1/1",
               content: '""',
@@ -234,8 +235,10 @@ export default () => {
               top: "-16px",
               width: "100%",
               height: "100%",
-              boxShadow: (t: Theme) =>
+              boxShadow: (t: Theme) => [
                 `0 0 0 1px ${transparentize("text", 0.92)(t)}`,
+                "none",
+              ],
             },
           }}
         >

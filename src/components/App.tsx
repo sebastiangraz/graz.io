@@ -19,23 +19,23 @@ export const propMap = () => {
     capchase: {
       grid: ["1 / span 10", "2 / span 10"],
       challenge:
-        "Position Capchase as a leader in non-dilutable financing. Look & feel like a business partner not a business tool.",
+        "Position the brand as a frontrunner in non-dilutable financing, while bringing to light the business-partner vibe.",
       scope: ["Brand strategy", "Production output", "Developer handoff"],
-      duration: "4 months",
-      year: "2021",
+      duration: "3 months + retainer",
+      year: "2022",
     },
     metaview: {
       grid: ["1 / span 10", "3 / span 10"],
       challenge:
-        "Design a product that would help people understand their own data and make better decisions.",
-      scope: ["Product design", "Front-end"],
-      duration: "3 months",
+        "Rebrand Metaview to surface their dedication for fairer hiring solutions, no matter the scale.",
+      scope: ["Rebrand & Strategy", "Production output"],
+      duration: "4 months + retainer",
       year: "2023",
     },
     loupe: {
       grid: ["2 / span 10", "1 / span 10"],
       challenge:
-        "Design an inclusive & memorable identity for a conference that could co-exist with Framer’s own brand.",
+        "Design a highly shareable & inclusive conference identity, that could co-exist together with Framer’s own brand.",
       scope: ["Visual identity", "Front-end"],
       duration: "3 months",
       year: "2020",

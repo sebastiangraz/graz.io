@@ -175,9 +175,7 @@ const Capchase = () => {
             ratio={[1200, 720]}
             heading={
               <>
-                <span sx={{ color: "var(--caseForeground)" }}>
-                  The website’s design
-                </span>{" "}
+                <span sx={{ color: "var(--caseForeground)" }}>The website</span>{" "}
                 was carefully crafted to prioritize legibility and ease-of-use,
                 with a more subdued aesthetic.
               </>

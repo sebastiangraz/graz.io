@@ -92,8 +92,8 @@ const Loupe = () => {
             heading={
               <>
                 <span sx={{ color: "var(--caseForeground)" }}>The website</span>{" "}
-                was developed in parallell with the brand identity work, and
-                helped inform bidirectional design decisions.
+                was developed in parallell with the brand, mutually influencing
+                design choices in both directions.
               </>
             }
           >

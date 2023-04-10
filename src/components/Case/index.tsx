@@ -77,10 +77,10 @@ function ScrollToTopOnMount(props: ScrollToTopOnMountProps) {
 }
 
 const settings = {
-  nextScrollDistance: 72,
-  staggerPower: 0.48,
+  nextScrollDistance: 64,
+  staggerPower: 0.4,
   springOptions: {
-    damping: 60,
+    damping: 50,
     stiffness: 1000,
     mass: 0.1,
   },

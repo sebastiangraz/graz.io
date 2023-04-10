@@ -44,6 +44,16 @@ export const CaseTitle = React.memo(({ name }: { name: string }) => {
     };
   }, [name]);
 
+  const isLastCase =
+    name === "end" && name === allCaseNames[allCaseNames.length - 1];
+
+  //if is last case but not named "end" throw error
+  if (isLastCase && name !== "end") {
+    throw new Error(
+      `The last case, (${name}) in the propMap must be named "end". Please rename the last case to "end".`
+    );
+  }
+
   return (
     <svg
       sx={{
@@ -105,8 +115,8 @@ export const CaseTitle = React.memo(({ name }: { name: string }) => {
             contain: "strict",
             width: "100%",
             height: "100%",
-            backdropFilter: "blur(12px)",
-            display: ["none", null, "block"],
+            backdropFilter: "blur(14px)",
+            display: ["none", null, !isLastCase ? "block" : "none"],
           }}
         ></div>
       </foreignObject>

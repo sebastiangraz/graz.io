@@ -35,7 +35,7 @@ export const propMap = () => {
     loupe: {
       grid: ["2 / span 10", "1 / span 10"],
       challenge:
-        "Design an inclusive, memorable identity that could co-exist with Framer’s own brand.",
+        "Design an inclusive & memorable identity for a conference that could co-exist with Framer’s own brand.",
       scope: ["Visual identity", "Front-end"],
       duration: "3 months",
       year: "2020",

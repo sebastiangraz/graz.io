@@ -8,26 +8,39 @@ export const List = ({
   noBullets,
   variant,
   animate,
+  delay = 0,
   ...sx
 }: {
   children: React.ReactNode;
   noBullets?: boolean;
   variant?: string;
   animate?: boolean;
+  delay?: number;
   sx?: ThemeUICSSObject;
 }) => {
-  return (
+  const staggerParent = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.019,
+        delayChildren: delay,
+      },
+    },
+  };
+
+  return animate ? (
     <motion.ul
       {...sx}
       sx={{ p: 0 }}
-      variants={animate ? staggerParent : {}}
+      variants={staggerParent}
       initial="hidden"
       whileInView="visible"
     >
       {React.Children.map(children || null, (child, i) => {
         return (
           <motion.li
-            variants={animate ? staggerChildren : {}}
+            variants={staggerChildren}
             key={i}
             sx={{
               mb: [2],
@@ -48,17 +61,32 @@ export const List = ({
         );
       })}
     </motion.ul>
+  ) : (
+    <ul {...sx} sx={{ p: 0 }}>
+      {React.Children.map(children || null, (child, i) => {
+        return (
+          <li
+            key={i}
+            sx={{
+              mb: [2],
+              "&:last-child": {
+                mb: 0,
+              },
+              listStyle: "none",
+              ...(!noBullets && {
+                "&::marker": {
+                  content: `"·  "`,
+                  textRendering: "geometricPrecision",
+                },
+              }),
+            }}
+          >
+            {child}
+          </li>
+        );
+      })}
+    </ul>
   );
-};
-
-const staggerParent = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.019,
-    },
-  },
 };
 
 const staggerChildren = {

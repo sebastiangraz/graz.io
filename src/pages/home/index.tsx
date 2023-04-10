@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Text, Link, Theme } from "theme-ui";
 import { Logo, List, EmailLink } from "../../components";
 import { m, useScroll, useTransform, useSpring } from "framer-motion";
-import { shade, transparentize } from "@theme-ui/color";
+import { transparentize } from "@theme-ui/color";
 import resume from "/cv-sebastiangraz.pdf";
 
 const NearestQuarter = (overRideMonth?: number) => {
@@ -246,7 +246,15 @@ export default () => {
                 key={1}
                 animate={isHover ? "show" : "rest"}
               >
-                <EmailLink string="hi@graz.io">Email</EmailLink>
+                <EmailLink
+                  string="hi@graz.io"
+                  sx={{
+                    textDecoration: "none",
+                    "&:hover": { textDecoration: "underline" },
+                  }}
+                >
+                  Email
+                </EmailLink>
               </m.div>
               <m.div variants={list} key={2}>
                 <Link
@@ -273,7 +281,7 @@ export default () => {
                   height: "1px",
                   maxWidth: "100%",
                   border: "none",
-                  backgroundColor: (t) => shade("#eee", 0.1)(t),
+                  backgroundColor: (t) => transparentize("text", 0.92)(t),
                 }}
               />
               <m.div variants={list} key={5}>
@@ -281,6 +289,7 @@ export default () => {
                   mb={2}
                   sx={{
                     whiteSpace: "pre",
+                    color: "textDim",
                   }}
                   variant="caps"
                 >
@@ -295,8 +304,8 @@ export default () => {
         sx={{
           gridArea: "meta",
           display: "grid",
-          rowGap: [7, null],
-          columnGap: [7, null],
+          rowGap: 7,
+          columnGap: [7, 0],
           gridTemplateColumns: ["repeat(2, 1fr)", "repeat(3, 1fr)"],
           width: "100%",
         }}
@@ -307,6 +316,7 @@ export default () => {
               Expertise
             </Text>
             <List
+              animate
               sx={{
                 color: "textDim",
                 "&& > *": {
@@ -329,6 +339,8 @@ export default () => {
               Recognitions
             </Text>
             <List
+              animate
+              delay={0.1}
               sx={{
                 color: "textDim",
                 "&& > *": {
@@ -355,6 +367,8 @@ export default () => {
               Associations
             </Text>
             <List
+              animate
+              delay={0.2}
               sx={{
                 color: "textDim",
                 "&& > *": {

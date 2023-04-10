@@ -6,8 +6,8 @@ const colors = {
   textDim: "#05010c7d",
   background: "#F7F1E8",
   metaview: {
-    foreground: "#01051b",
-    foregroundDim: "#01051b71",
+    foreground: "#0f1922",
+    foregroundDim: "#0f19227d",
     background: "#E7EFE8",
   },
   loupe: {

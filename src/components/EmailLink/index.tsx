@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
+import { ThemeUICSSObject } from "theme-ui";
 
 declare module "framer-motion" {
   export interface AnimatePresenceProps {
@@ -12,9 +13,11 @@ declare module "framer-motion" {
 export const EmailLink = ({
   string,
   children,
+  ...sx
 }: {
   string: string;
   children: React.ReactNode;
+  sx?: ThemeUICSSObject;
 }) => {
   // const [copy, setCopy] = React.useState(false);
   const [count, setCount] = React.useState(0);
@@ -52,13 +55,14 @@ export const EmailLink = ({
   };
   return (
     <span
+      {...sx}
       sx={{
         touchAction: "manipulation",
         cursor: "pointer",
         whiteSpace: "pre",
-        textDecoration: "none",
+        textDecoration: "underline",
         color: "inherit",
-        "&:hover": { textDecoration: "underline" },
+        "&:hover": { textDecoration: "none" },
       }}
       onClick={(e) => handleClick(e)}
     >

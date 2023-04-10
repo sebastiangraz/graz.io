@@ -37,7 +37,7 @@
   },
   "scripts": {
     "start": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build && tsc --esModuleInterop optimize-images.ts && node optimize-images.js",
     "serve": "vite preview"
   },
   "eslintConfig": {

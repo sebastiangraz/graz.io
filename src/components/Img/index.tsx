@@ -70,23 +70,39 @@ export const Img = ({
     );
   }
 
+  //trim the extension '.png' or '.jpg' from src.name
+  const srcName = src.name.split(".")[0];
+
+  const isDevelopment = import.meta.env.MODE === "development";
+
   return (
     <>
-      <img
-        {...sx}
-        loading="eager" // lazy usually
-        src={`./${fromFolder}/${src.name}`}
-        alt={src.alt}
-        onLoad={ignoreShadow ? onLoad : undefined}
-        sx={{
-          display: "flex",
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          aspectRatio: `${src.width}/${src.height}`,
-          ...resizeModeStyle,
-        }}
-      />
+      <picture>
+        {!isDevelopment && (
+          <source
+            srcSet={`./${fromFolder}/${srcName}.avif`}
+            type="image/avif"
+          />
+        )}
+        <img
+          {...sx}
+          loading="eager" // lazy usually
+          src={`./${fromFolder}/${src.name}`}
+          alt={src.alt}
+          decoding="async"
+          width={src.width}
+          height={src.height}
+          onLoad={ignoreShadow ? onLoad : undefined}
+          sx={{
+            display: "flex",
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            aspectRatio: `${src.width}/${src.height}`,
+            ...resizeModeStyle,
+          }}
+        />
+      </picture>
     </>
   );
 };

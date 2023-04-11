@@ -54,8 +54,8 @@ export const EmailLink = ({
         touchAction: "manipulation",
         cursor: "pointer",
         whiteSpace: "pre",
-        textDecoration: "underline",
         color: "inherit",
+        textDecoration: "underline",
         "&:hover": { textDecoration: "none" },
       }}
       onClick={(e) => handleClick(e)}

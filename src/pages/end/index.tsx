@@ -71,15 +71,19 @@ const End = ({}) => {
                 </>
                 <>
                   Scroll up{" "}
-                  <Link
-                    href=""
+                  <span
+                    sx={{
+                      textDecoration: "underline",
+                      cursor: "pointer",
+                      "&:hover": { textDecoration: "none" },
+                    }}
                     onClick={(e) => {
                       e.preventDefault();
                       handleClick();
                     }}
                   >
                     home
-                  </Link>
+                  </span>
                 </>
               </NumberedList>
             </Box>

@@ -9,6 +9,7 @@ interface Props {
   onChangeIndex?: (index: number) => void;
   ratio?: [number, number];
   heading: React.ReactNode;
+  mobileBleed?: boolean;
   autoplay?: boolean;
 }
 
@@ -22,6 +23,7 @@ export const Carousel = ({
   onChangeIndex,
   ratio = [16, 9],
   heading = null,
+  mobileBleed = false,
   autoplay = false,
 }: Props) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -100,7 +102,7 @@ export const Carousel = ({
         sx={{
           display: "flex",
           flexDirection: ["column", null, "row"],
-          rowGap: 3,
+          rowGap: [8, 3],
           position: "relative",
           justifyContent: "space-between",
         }}
@@ -146,7 +148,7 @@ export const Carousel = ({
         ref={parentRef}
         sx={{
           aspectRatio: `${ratio[0]}/${ratio[1]}`,
-          width: "100%",
+          width: mobileBleed ? ["130%", "100%"] : "100%",
           position: "relative",
           display: "grid",
           // overflow: "hidden",
@@ -202,8 +204,8 @@ const IndexIndicator: React.FC<IndexIndicatorProps> = React.memo(
       sx={{
         flex: 1,
         my: 3,
-        pt: 7,
-        pb: 8,
+        pt: [3, 7],
+        pb: [6, 8],
         cursor: "pointer",
         display: "grid",
         ...(!active && {

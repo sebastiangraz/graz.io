@@ -23,7 +23,8 @@ export const CaseHero = ({
         display: "grid",
         position: "relative",
         gridColumn: ["2/span 8", "2 / span 8"],
-        width: "100%",
+        width: ["130%", "100%"],
+        left: ["-15%", "0"],
         aspectRatio: `1200 / ${heroHeight}`,
       }}
     >

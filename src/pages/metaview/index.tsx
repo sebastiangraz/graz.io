@@ -80,6 +80,7 @@ const Metaview = () => {
         <Box sx={{ gridColumn: ["2/span 8", "2 / span 8"] }}>
           <Carousel
             ratio={[1200, 720]}
+            mobileBleed
             heading={
               <>
                 <span sx={{ color: "var(--caseForeground)" }}>The website</span>{" "}

@@ -52,6 +52,9 @@ export const scroll = {
 export default {
   space: space,
   sizes: space,
+  config: {
+    useColorSchemeMediaQuery: "system",
+  },
   shadows: {
     capchase: `0px 38px 56px rgba(61, 27, 9, 0.02), 0px 17.5686px 25.8905px rgba(61, 27, 9, 0.0148335), 0px 10.0523px 14.814px rgba(61, 27, 9, 0.0125356), 0px 6.10169px 8.99196px rgba(61, 27, 9, 0.010799), 0px 3.67654px 5.41805px rgba(61, 27, 9, 0.00920104), 0px 2.04733px 3.01712px rgba(61, 27, 9, 0.00746438), 0px 0.880544px 1.29764px rgba(61, 27, 9, 0.00516649)`,
     // capchase: `0px 109px 80px rgba(0, 0, 0, 0.07), 0px 50.394px 36.9864px rgba(0, 0, 0, 0.0519173), 0px 28.8343px 21.1628px rgba(0, 0, 0, 0.0438747), 0px 17.5022px 12.8457px rgba(0, 0, 0, 0.0377964), 0px 10.5459px 7.74008px rgba(0, 0, 0, 0.0322036), 0px 5.87261px 4.31018px rgba(0, 0, 0, 0.0261253), 0px 2.52577px 1.85378px rgba(0, 0, 0, 0.0180827)`,

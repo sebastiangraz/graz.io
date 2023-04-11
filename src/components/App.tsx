@@ -3,7 +3,8 @@ import { CaseWrapper, Case, ScrollToTop, CaseMeta, GridParent } from ".";
 import "../base.css";
 
 import { Helmet } from "react-helmet-async";
-import { Box } from "theme-ui";
+import { useThemeUI } from "theme-ui";
+import { getColor } from "@theme-ui/color";
 
 export interface PropMap {
   grid?: string[];
@@ -94,10 +95,21 @@ const routes = Object.entries(
   });
 
 const MemoApp = () => {
+  const theme = useThemeUI().theme;
+
   return (
     <>
       <Helmet>
-        <meta name="theme-color" content={"#000000"} />
+        <meta
+          name="theme-color"
+          content={getColor(theme, "background")}
+          media="(prefers-color-scheme: light)"
+        />
+        <meta
+          name="theme-color"
+          content={getColor(theme, "background")} //hack to default safari theme
+          media="(prefers-color-scheme: dark)"
+        />
       </Helmet>
       <ScrollToTop />
       <CaseWrapper>{routes}</CaseWrapper>

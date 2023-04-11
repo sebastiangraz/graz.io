@@ -30,6 +30,7 @@ const Loupe = () => {
           <CaseHeroChild
             childStyle={{
               marginTop: "20%",
+              marginLeft: "19%",
               width: "calc(100% * 140 / 1200 )",
             }}
           >
@@ -38,7 +39,6 @@ const Loupe = () => {
           <CaseHeroChild
             childStyle={{
               marginTop: "20%",
-              marginLeft: "18%",
             }}
           >
             <Img fromFolder="loupe" src={images.heroDoublecap} />
@@ -91,6 +91,7 @@ const Loupe = () => {
         >
           <Carousel
             ratio={[1200, 720]}
+            mobileBleed
             heading={
               <>
                 <span sx={{ color: "var(--caseForeground)" }}>The website</span>{" "}

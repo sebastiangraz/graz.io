@@ -207,6 +207,7 @@ const Capchase = () => {
                 with a more subdued aesthetic.
               </>
             }
+            mobileBleed
 
             // onChangeIndex={(index) => console.log("Active index:", index)}
           >

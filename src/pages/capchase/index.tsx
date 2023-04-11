@@ -88,7 +88,7 @@ const Capchase = () => {
               height: "calc(100% * 269 / 1200)",
               display: "grid",
               overflow: "hidden",
-              borderRadius: "32px",
+              borderRadius: "calc(100% * 64 / 1200)",
               marginLeft: "auto",
               marginBottom: "auto",
               isolation: "isolate",

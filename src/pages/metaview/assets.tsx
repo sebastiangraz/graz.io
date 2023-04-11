@@ -1,3 +1,7 @@
+import { Video } from "../../components";
+import { VideoComponentProps } from "../../components/Video";
+import { ImageData } from "../../components/Img";
+
 export const images = {
   web0: {
     name: "web-0.png",
@@ -113,4 +117,13 @@ export const images = {
     height: 281,
     alt: "Hero Spag",
   },
-};
+} as { [key: string]: ImageData };
+
+export const videos = {
+  metabot: {
+    url: "metabot.mp4",
+    width: 480,
+    height: 480,
+    alt: "Metabot",
+  },
+} as { [key: string]: VideoComponentProps["src"] };

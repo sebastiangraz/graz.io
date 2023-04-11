@@ -8,7 +8,8 @@ import {
   CaseHeroChild,
   Carousel,
 } from "../../components";
-import { images } from "./assets";
+
+import { images, videos } from "./assets";
 import { Box } from "theme-ui";
 
 const Metaview = () => {
@@ -40,9 +41,34 @@ const Metaview = () => {
             childStyle={{
               marginLeft: "55.5%",
               marginTop: "32%",
+              display: "grid",
+              width: "calc(100% * 170 / 1200)",
+              height: "calc(100% * 448 / 1200)",
+              "&>picture": {
+                zIndex: 1,
+                gridArea: "1 / 1",
+                width: "100%",
+                height: "auto",
+              },
             }}
           >
-            <Img src={images.heroIcons} fromFolder="metaview" />
+            <>
+              <Img src={images.heroIcons} fromFolder="metaview" />
+              <Video
+                src={videos.metabot}
+                fromFolder="metaview"
+                sx={{
+                  display: "flex",
+                  borderRadius: "99em",
+                  overflow: "hidden",
+                  gridArea: "1/1",
+                  width: "50%",
+                  height: "auto",
+                  zIndex: 2,
+                  position: "absolute",
+                }}
+              />
+            </>
           </CaseHeroChild>
           <CaseHeroChild
             childStyle={{

@@ -321,6 +321,7 @@ export default () => {
             <List
               animate
               sx={{
+                fontSize: [4, 5, 4, 5],
                 color: "textDim",
                 "&& > *": {
                   mb: 3,
@@ -345,6 +346,7 @@ export default () => {
               animate
               delay={0.1}
               sx={{
+                fontSize: [4, 5, 4, 5],
                 color: "textDim",
                 "&& > *": {
                   mb: 3,
@@ -355,7 +357,10 @@ export default () => {
               {awards.map((char) => (
                 <React.Fragment key={char.title}>
                   {char.title} ·{" "}
-                  <Text sx={{ display: "inline" }} variant="caps">
+                  <Text
+                    sx={{ display: "inline", fontSize: [4, 5, 4, 5] }}
+                    variant="caps"
+                  >
                     {char.count}×
                   </Text>
                 </React.Fragment>
@@ -373,6 +378,7 @@ export default () => {
               animate
               delay={0.2}
               sx={{
+                fontSize: [4, 5, 4, 5],
                 color: "textDim",
                 "&& > *": {
                   mb: 3,
@@ -392,8 +398,9 @@ export default () => {
       <div sx={{ gridArea: "intro" }}>
         <div
           sx={{
-            maxWidth: ["100%", "initial", null],
-            width: [410, null, 380, 440],
+            width: ["26ch", "31ch", "38ch", "32ch"],
+            // width: "100%",
+            // width: [410, null, 380, 440],
           }}
         >
           <Text
@@ -410,11 +417,7 @@ export default () => {
             >
               Sebastian Graz,
             </Text>{" "}
-            <span sx={{ display: ["none", "none", "inline", "none"] }}>
-              an independent design studio creating designs that are coherent,
-              memorable & beautiful.
-            </span>
-            <span sx={{ display: ["inline", "inline", "none", "inline"] }}>
+            <span>
               an independent design studio striving to collaborate designs that
               are coherent, memorable & beautiful.
             </span>

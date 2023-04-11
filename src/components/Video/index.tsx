@@ -3,20 +3,16 @@ import { useEffect, useState, useRef } from "react";
 import React from "react";
 import { ThemeUICSSObject } from "theme-ui";
 
-interface VideoComponentProps {
+export interface VideoComponentProps {
   src: {
     url: string;
     width: number;
     height: number;
+    alt: string;
   };
   fromFolder: string;
   sx?: ThemeUICSSObject;
 }
-
-const getVideoUrl = (file: string) => {
-  const url = new URL(file, import.meta.url).href;
-  return url;
-};
 
 const VideoComponent = ({ ...props }: VideoComponentProps) => {
   if (!props.src) return null;

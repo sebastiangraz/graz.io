@@ -3,11 +3,11 @@
 import { useState } from "react";
 import { ThemeUICSSObject } from "theme-ui";
 
-interface ImageData {
+export interface ImageData {
   name: string;
   width?: number;
   height?: number;
-  alt?: string;
+  alt: string;
 }
 
 interface ImgProps {

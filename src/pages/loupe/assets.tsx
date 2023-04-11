@@ -80,6 +80,7 @@ export const images = {
     name: "hero-ticket.png",
     width: 287,
     height: 453,
+    alt: "ticket",
   },
   heroWatch: {
     name: "hero-watch.png",

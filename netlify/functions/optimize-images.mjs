@@ -32,7 +32,10 @@ const copyFile = async (src, dest) => {
 
   await Promise.all(
     pngFiles.map((file) => {
-      const relativePath = file.replace(/^public\//, "");
+      // Remove the "public" prefix from the file path
+
+      const relativePath = file.replace(/^public/, "");
+
       const outputPath = join(outputDirectory, relativePath);
       const outputDirectoryPath = dirname(outputPath);
 

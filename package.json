@@ -39,7 +39,7 @@
   },
   "scripts": {
     "start": "vite",
-    "build": "vite build && node optimize-images.mjs",
+    "build": "vite build && node netlify/functions/optimize-images.mjs",
     "serve": "vite preview"
   },
   "eslintConfig": {

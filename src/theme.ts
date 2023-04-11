@@ -3,7 +3,7 @@ import { Theme } from "theme-ui";
 
 const colors = {
   text: "#05010c",
-  textDim: "#05010c7d",
+  textDim: "#05010c99",
   background: "#F7F1E8",
   metaview: {
     foreground: "#0f1922",

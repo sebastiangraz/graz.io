@@ -73,17 +73,13 @@ export const Img = ({
   //trim the extension '.png' or '.jpg' from src.name
   const srcName = src.name.split(".")[0];
 
-  const isDevelopment = import.meta.env.MODE === "development";
+  // const isDevelopment = import.meta.env.MODE === "development";
 
   return (
     <>
       <picture>
-        {!isDevelopment && (
-          <source
-            srcSet={`./${fromFolder}/${srcName}.avif`}
-            type="image/avif"
-          />
-        )}
+        <source srcSet={`./${fromFolder}/${srcName}.avif`} type="image/avif" />
+
         <img
           {...sx}
           loading="eager" // lazy usually

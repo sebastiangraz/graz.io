@@ -93,19 +93,16 @@ const Capchase = () => {
               marginBottom: "auto",
               isolation: "isolate",
               zIndex: -1,
+              "&>picture": {
+                zIndex: 2,
+                gridArea: "1 / 1",
+                width: "100%",
+                height: "auto",
+              },
             }}
           >
             <>
-              <Img
-                sx={{
-                  zIndex: 2,
-                  gridArea: "1 / 1",
-                  width: "100%",
-                  height: "auto",
-                }}
-                fromFolder="capchase"
-                src={images.heroTypo}
-              />
+              <Img fromFolder="capchase" src={images.heroTypo} />
               <Video
                 fromFolder="capchase"
                 src={videos.swirl}

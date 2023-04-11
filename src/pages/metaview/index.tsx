@@ -135,7 +135,9 @@ const Metaview = () => {
           </Carousel>
         </Box>
 
-        <Box sx={{ gridColumn: ["2/span 8", "2 / span 8"], height: "50vh" }}>
+        <Box
+          sx={{ gridColumn: ["2/span 8", "2 / span 8"], height: ["0", "50vh"] }}
+        >
           {/* spacer */}
         </Box>
       </GridParent>

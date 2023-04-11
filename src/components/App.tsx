@@ -44,7 +44,7 @@ export const propMap = () => {
     },
     end: {
       hideCaseMeta: true,
-      grid: ["2 / span 12", "1 / span 10"],
+      grid: ["1 / span 12", "1 / span 10"],
     },
   } as { [key: string]: PropMap };
 

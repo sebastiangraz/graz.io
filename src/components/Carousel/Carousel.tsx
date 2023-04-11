@@ -149,6 +149,10 @@ export const Carousel = ({
         sx={{
           aspectRatio: `${ratio[0]}/${ratio[1]}`,
           width: mobileBleed ? ["130%", "100%"] : "100%",
+          maskImage: mobileBleed && [
+            "linear-gradient(96deg, rgba(0,0,0,1) 50%, rgba(0,0,0,0.1) 80%, rgba(0,0,0,0) 85%)",
+            "none",
+          ],
           position: "relative",
           display: "grid",
           // overflow: "hidden",

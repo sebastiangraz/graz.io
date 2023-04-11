@@ -3,9 +3,9 @@ html {
   /* scroll-behavior: smooth; */
   overscroll-behavior-y: none;
 }
-body {
+/* body {
   overflow-y: scroll;
-}
+} */
 * {
   margin: 0;
   box-sizing: border-box;

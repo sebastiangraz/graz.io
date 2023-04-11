@@ -82,7 +82,7 @@ export const Img = ({
 
         <img
           {...sx}
-          loading="eager" // lazy usually
+          loading="lazy" // lazy usually
           src={`./${fromFolder}/${src.name}`}
           alt={src.alt}
           decoding="async"

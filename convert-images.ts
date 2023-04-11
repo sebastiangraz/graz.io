@@ -2,46 +2,43 @@ import fs from "fs";
 import path from "path";
 import sharp from "sharp";
 
-const publicDir = "public";
+const publicPath = path.join(__dirname, "public");
 
-function walk(dir: string): string[] {
-  let results: string[] = [];
-  const list = fs.readdirSync(dir);
+async function convertImage(filePath: string): Promise<void> {
+  try {
+    const outputPath = filePath.replace(/\.png$/, ".avif");
 
-  list.forEach((file) => {
-    file = path.join(dir, file);
-    const stat = fs.statSync(file);
-    if (stat && stat.isDirectory()) {
-      results = results.concat(walk(file));
-    } else {
-      results.push(file);
+    if (fs.existsSync(outputPath)) {
+      console.log(`Skipping ${filePath}, AVIF file already exists.`);
+      return;
     }
-  });
 
-  return results;
+    await sharp(filePath).avif({ quality: 80 }).toFile(outputPath);
+    console.log(`Converted ${filePath} to ${outputPath}`);
+  } catch (error) {
+    console.error(`Error converting ${filePath}:`, error);
+  }
 }
 
-function convertToAvif(filePath: string): void {
-  if (path.extname(filePath) !== ".png") return;
+async function processDirectory(dirPath: string): Promise<void[]> {
+  const items = fs.readdirSync(dirPath);
+  const convertPromises: Promise<void>[] = [];
 
-  const outputPath = `${path.dirname(filePath)}/${path.basename(
-    filePath,
-    ".png"
-  )}.avif`;
+  for (const item of items) {
+    const itemPath = path.join(dirPath, item);
+    const stat = fs.statSync(itemPath);
 
-  sharp(filePath)
-    .avif({ quality: 80 })
-    .toFile(outputPath)
-    .then(() => {
-      console.log(`AVIF image saved: ${outputPath}`);
-    })
-    .catch((err) => {
-      console.error("Error converting image:", err);
-    });
+    if (stat.isDirectory()) {
+      await processDirectory(itemPath);
+    } else if (stat.isFile() && itemPath.endsWith(".png")) {
+      convertPromises.push(convertImage(itemPath));
+    }
+  }
+
+  return Promise.all(convertPromises);
 }
 
-const files = walk(publicDir);
-
-files.forEach((file) => {
-  convertToAvif(file);
+processDirectory(publicPath).catch((error) => {
+  console.error("Error processing directory:", error);
+  process.exit(1);
 });

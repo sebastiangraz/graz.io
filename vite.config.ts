@@ -10,6 +10,12 @@ export default defineConfig({
     viteTsconfigPaths(),
     svgrPlugin(),
     ViteImageOptimizer({
+      //exclude avif files as regex
+      exclude: /.*\.avif$/,
+      avif: {
+        // https://sharp.pixelplumbing.com/api-output#avif
+        lossless: true,
+      },
       png: {
         quality: 88,
       },

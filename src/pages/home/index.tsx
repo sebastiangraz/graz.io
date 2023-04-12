@@ -324,7 +324,7 @@ export default () => {
                 fontSize: [4, 5, 4, 5],
                 color: "textDim",
                 "&& > *": {
-                  mb: 3,
+                  mb: "0.68em",
                 },
               }}
             >
@@ -349,7 +349,7 @@ export default () => {
                 fontSize: [4, 5, 4, 5],
                 color: "textDim",
                 "&& > *": {
-                  mb: 3,
+                  mb: "0.68em",
                   whiteSpace: "pre",
                 },
               }}
@@ -381,7 +381,7 @@ export default () => {
                 fontSize: [4, 5, 4, 5],
                 color: "textDim",
                 "&& > *": {
-                  mb: 3,
+                  mb: "0.68em",
                 },
               }}
             >
@@ -409,7 +409,7 @@ export default () => {
               letterSpacing: ["body", null, "lead"],
               lineHeight: ["lead"],
             }}
-            mb={4}
+            mt={"2.4rem"}
           >
             <Text
               variant="heading"
@@ -418,8 +418,8 @@ export default () => {
               Sebastian Graz,
             </Text>{" "}
             <span>
-              an independent design studio striving to collaborate designs that
-              are coherent, memorable & beautiful.
+              a reactive one-man brand studio with particular focus on lasting
+              identities & digital design.
             </span>
           </Text>
         </div>

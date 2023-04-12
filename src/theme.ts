@@ -65,7 +65,7 @@ export default {
     heading: "inherit",
     monospace: "Menlo, monospace",
   },
-  breakpoints: ["38em", "64em", "90em", "112em"],
+  breakpoints: ["38em", "68em", "90em", "112em"],
   lineHeights: {
     body: 1.6,
     lead: 1.45,

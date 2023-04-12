@@ -22,7 +22,7 @@ export const propMap = () => {
       grid: ["2 / span 10", "2 / span 10"],
       challenge:
         "Position the brand as a frontrunner in non-dilutable financing, while bringing to light the business-partner vibe.",
-      scope: ["Brand strategy", "Production output", "Developer handoff"],
+      scope: ["Complete rebrand", "Production output", "Developer handoff"],
       duration: "3 months + retainer",
       year: "2022",
     },
@@ -30,7 +30,7 @@ export const propMap = () => {
       grid: ["3 / span 10", "3 / span 10"],
       challenge:
         "Rebrand Metaview to surface their dedication for fairer hiring solutions, no matter the scale.",
-      scope: ["Rebrand & Strategy", "Production output"],
+      scope: ["Rebrand & strategy", "Production output"],
       duration: "4 months + retainer",
       year: "2023",
     },

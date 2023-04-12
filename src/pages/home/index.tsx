@@ -408,8 +408,9 @@ export default () => {
               fontSize: [6, 7, 8, 8],
               letterSpacing: ["body", null, "lead"],
               lineHeight: ["lead"],
+              mt: [0, "2.4rem"],
+              mb: ["2.4rem", 0],
             }}
-            mt={"2.4rem"}
           >
             <Text
               variant="heading"

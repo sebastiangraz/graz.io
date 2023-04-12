@@ -75,9 +75,9 @@ const MemoCaseWrapper = ({ children }: { children: React.ReactNode }) => {
     <LazyMotion features={domMax}>
       <div
         ref={parentRef}
-        sx={{
-          height: ["auto", state.childSum],
-        }}
+        // sx={{
+        //   height: ["auto", state.childSum],
+        // }}
       >
         <CaseWrapperContext.Provider value={state}>
           {children}

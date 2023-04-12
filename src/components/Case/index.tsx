@@ -18,11 +18,11 @@ import { PropMap } from "../App";
 import { useUpdateURL } from "../hooks/useUpdateURL";
 
 const caseParent = {
-  top: [0, `100vh`],
+  // top: [0, `100vh`],
   width: "100%",
   mt: [0, 0],
   maxWidth: "1800px",
-  position: ["relative", "fixed"],
+  position: ["relative"],
   pointerEvents: "none",
   // willChange: "transform", //willChange messes up antialiasing but at the cost of performance. (Performance gains negligible though)
   display: "grid",
@@ -247,13 +247,13 @@ export const Case = React.memo(
             animate={{ opacity: 1 }}
             transition={{ delay: 0 }}
             ref={ref}
-            style={{
-              ...yStyle,
-            }}
+            // style={{
+            //   ...yStyle,
+            // }}
             sx={{
               width: "100%",
-              top: "100%",
-              position: ["relative", "fixed"],
+              // top: "100%",
+              position: ["relative"],
               left: 0,
             }}
           >
@@ -267,10 +267,10 @@ export const Case = React.memo(
             className="caseWrapper"
             id={`${slug}-${index}`}
             ref={ref}
-            style={{
-              ...yStyle,
-              ...xStyle,
-            }}
+            // style={{
+            //   ...yStyle,
+            //   ...xStyle,
+            // }}
             sx={
               {
                 "--gridCount": [12, 12, `${gridCount(0)}`, `${gridCount(1)}`],
@@ -280,7 +280,7 @@ export const Case = React.memo(
                 ...caseParent,
                 color: fg,
                 zIndex: index,
-                left: [0, 0, "50%"],
+                left: [0],
                 // height: "4000px",
               } as ThemeUICSSObject
             }

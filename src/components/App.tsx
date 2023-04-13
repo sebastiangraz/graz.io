@@ -5,6 +5,7 @@ import "../base.css";
 import { Helmet } from "react-helmet-async";
 import { useThemeUI } from "theme-ui";
 import { getColor } from "@theme-ui/color";
+import { GTMProvider } from "@elgorditosalsero/react-gtm-hook";
 
 export interface PropMap {
   grid?: string[];
@@ -96,23 +97,25 @@ const routes = Object.entries(
 
 const MemoApp = () => {
   const theme = useThemeUI().theme;
-
+  const gtmParams = { id: "GT-W6XLFS5" };
   return (
     <>
-      <Helmet>
-        <meta
-          name="theme-color"
-          content={getColor(theme, "background")}
-          media="(prefers-color-scheme: light)"
-        />
-        <meta
-          name="theme-color"
-          content={getColor(theme, "background")} //hack to default safari theme
-          media="(prefers-color-scheme: dark)"
-        />
-      </Helmet>
-      <ScrollToTop />
-      <CaseWrapper>{routes}</CaseWrapper>
+      <GTMProvider state={gtmParams}>
+        <Helmet>
+          <meta
+            name="theme-color"
+            content={getColor(theme, "background")}
+            media="(prefers-color-scheme: light)"
+          />
+          <meta
+            name="theme-color"
+            content={getColor(theme, "background")} //hack to default safari theme
+            media="(prefers-color-scheme: dark)"
+          />
+        </Helmet>
+        <ScrollToTop />
+        <CaseWrapper>{routes}</CaseWrapper>
+      </GTMProvider>
     </>
   );
 };

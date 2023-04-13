@@ -62,12 +62,14 @@ function ScrollToTopOnMount(props: ScrollToTopOnMountProps) {
       if (window.location.pathname === `/${datavar}`) {
         // desktop
         window.matchMedia(media_query).matches
-          ? window.scrollTo(
-              0,
-              position -
+          ? window.scrollTo({
+              top:
+                position -
                 (index !== 1 ? settings.nextScrollDistance : 0) +
-                stagger
-            )
+                stagger,
+              left: 0,
+              behavior: "auto",
+            })
           : // mobile doesn't need to calc stagger and nextScroll
             window.scrollTo(0, position);
       }
@@ -212,12 +214,14 @@ export const Case = React.memo(
 
       // scroll to top of case
       window.matchMedia(media_query).matches
-        ? window.scrollTo(
-            0,
-            childPosition[index] -
+        ? window.scrollTo({
+            top:
+              childPosition[index] -
               (index !== 1 ? settings.nextScrollDistance : 0) +
-              staggeredOffset
-          )
+              staggeredOffset,
+            left: 0,
+            behavior: "smooth",
+          })
         : window.scrollTo(0, childPosition[index]);
     };
     // -----CLICK TO SCROLLTO CASE-----
@@ -341,8 +345,9 @@ export const Case = React.memo(
                   mb: "5vh",
                   mt: "0",
                   opacity: activeCase ? 1 : 0,
-                  willChange: "opacity",
-                  transition: "opacity linear 0.2s",
+                  transitionProperty: "opacity",
+                  transitionDuration: "0.2s",
+                  // transitionDelay: activeCase ? "0.2s" : "0s",
                   overflow: "hidden",
                 }}
               >

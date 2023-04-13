@@ -1,6 +1,6 @@
 /** @jsxImportSource theme-ui */
 
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import debounce from "lodash.debounce";
 import {
   m,
@@ -100,7 +100,7 @@ const useStaggeredPosition = ({
   windowHeight,
 }: useStaggeredPositionProps) => {
   const { scrollY } = useScroll();
-
+  const [activeCaseIndex, setActiveCaseIndex] = useState(0);
   const responsiveOffset = useResponsiveValue([50, 75, 200, 240]);
 
   const height = useCallback(
@@ -114,6 +114,26 @@ const useStaggeredPosition = ({
   const offset = (responsiveOffset / (index + 1)) * settings.staggerPower;
   const staggeredOffset =
     index !== 0 ? -childPosition.length * offset + index * offset : 0;
+
+  useEffect(() => {
+    const handleScroll = debounce(() => {
+      const scrollYPos = scrollY.get() + 200;
+      const activeIndex = childPosition.findIndex((pos, index) => {
+        const isLastPosition = index === childPosition.length - 1;
+        const isWithinNextPosition =
+          !isLastPosition && scrollYPos < childPosition[index + 1];
+
+        return scrollYPos >= pos && (isLastPosition || isWithinNextPosition);
+      });
+
+      if (activeIndex !== -1) {
+        setActiveCaseIndex(activeIndex);
+      }
+    }, 50);
+
+    const unsubscribe = scrollY.on("change", handleScroll);
+    return () => unsubscribe();
+  }, [childPosition, scrollY]);
 
   const updatePos = (v: number) => {
     const progress = v - position(0) + windowHeight;
@@ -139,7 +159,7 @@ const useStaggeredPosition = ({
     settings.springOptions
   );
 
-  return { y, yNext, staggeredOffset };
+  return { y, yNext, staggeredOffset, activeCaseIndex };
 };
 
 export const Case = React.memo(
@@ -164,12 +184,16 @@ export const Case = React.memo(
     const { childHeight, childPosition, windowHeight } =
       useCaseWrapperContext() as CaseWrapperState;
 
-    const { y, yNext, staggeredOffset } = useStaggeredPosition({
-      index,
-      childHeight,
-      childPosition,
-      windowHeight,
-    });
+    const { y, yNext, staggeredOffset, activeCaseIndex } = useStaggeredPosition(
+      {
+        index,
+        childHeight,
+        childPosition,
+        windowHeight,
+      }
+    );
+
+    console.log(activeCaseIndex);
 
     const xStyle = useResponsiveValue([
       { x: "0%" },

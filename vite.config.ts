@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 import viteTsconfigPaths from "vite-tsconfig-paths";
 import svgrPlugin from "vite-plugin-svgr";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
-import { VitePluginRadar } from "vite-plugin-radar";
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -19,12 +19,6 @@ export default defineConfig({
       },
       png: {
         quality: 88,
-      },
-    }),
-    VitePluginRadar({
-      // Google Analytics tag injection
-      analytics: {
-        id: "G-05P5BDXMSS",
       },
     }),
   ],

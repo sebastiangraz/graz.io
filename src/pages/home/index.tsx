@@ -44,7 +44,7 @@ const awards = [
   },
   {
     title: "SiteInspire",
-    count: 6,
+    count: 7,
     year: "2014-2020",
   },
   {

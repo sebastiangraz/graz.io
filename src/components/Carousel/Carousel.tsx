@@ -159,7 +159,7 @@ export const Carousel = ({
           isolation: "isolate",
         }}
       >
-        <AnimatePresence>
+        <AnimatePresence initial={false}>
           {children.map((child, i) => {
             const isCardVisible = i === activeIndex;
             return (

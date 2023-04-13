@@ -100,13 +100,14 @@ const useStaggeredPosition = ({
   windowHeight,
 }: useStaggeredPositionProps) => {
   const { scrollY } = useScroll();
-  const [activeCaseIndex, setActiveCaseIndex] = useState(0);
+
   const responsiveOffset = useResponsiveValue([50, 75, 200, 240]);
 
   const height = useCallback(
     (pos: number) => childHeight[pos ? index - pos : index] || 0,
     [childHeight, index]
   );
+  const [activeCase, setIsActiveState] = React.useState(false);
 
   const position = (pos: number) =>
     childPosition[pos ? index - pos : index] || 0;
@@ -114,26 +115,6 @@ const useStaggeredPosition = ({
   const offset = (responsiveOffset / (index + 1)) * settings.staggerPower;
   const staggeredOffset =
     index !== 0 ? -childPosition.length * offset + index * offset : 0;
-
-  useEffect(() => {
-    const handleScroll = debounce(() => {
-      const scrollYPos = scrollY.get() + 200;
-      const activeIndex = childPosition.findIndex((pos, index) => {
-        const isLastPosition = index === childPosition.length - 1;
-        const isWithinNextPosition =
-          !isLastPosition && scrollYPos < childPosition[index + 1];
-
-        return scrollYPos >= pos && (isLastPosition || isWithinNextPosition);
-      });
-
-      if (activeIndex !== -1) {
-        setActiveCaseIndex(activeIndex);
-      }
-    }, 50);
-
-    const unsubscribe = scrollY.on("change", handleScroll);
-    return () => unsubscribe();
-  }, [childPosition, scrollY]);
 
   const updatePos = (v: number) => {
     const progress = v - position(0) + windowHeight;
@@ -159,7 +140,18 @@ const useStaggeredPosition = ({
     settings.springOptions
   );
 
-  return { y, yNext, staggeredOffset, activeCaseIndex };
+  const isActive = useTransform(scrollY, (v) => updatePos(v));
+
+  useEffect(() => {
+    isActive.on("change", (e) => {
+      const isLastItem = index === childHeight.length - 1;
+      const lastItemThreshold = isLastItem ? 5 : 0;
+
+      setIsActiveState(e > -height(0) - lastItemThreshold && e < 0);
+    });
+  }, [childHeight, height, index, isActive]);
+
+  return { y, yNext, staggeredOffset, activeCase };
 };
 
 export const Case = React.memo(
@@ -176,24 +168,22 @@ export const Case = React.memo(
   }) => {
     const theme = useThemeUI() as any;
     const ref = useRef(null) as any;
-    const bg = theme.theme?.rawColors?.[slug || ""]?.background;
-    const fg = theme.theme?.rawColors?.[slug || ""]?.foreground;
-    const fd = theme.theme?.rawColors?.[slug || ""]?.foregroundDim;
-    const isHome = slug === "home";
 
     const { childHeight, childPosition, windowHeight } =
       useCaseWrapperContext() as CaseWrapperState;
 
-    const { y, yNext, staggeredOffset, activeCaseIndex } = useStaggeredPosition(
-      {
-        index,
-        childHeight,
-        childPosition,
-        windowHeight,
-      }
-    );
+    const bg = theme.theme?.rawColors?.[slug || ""]?.background;
+    const fg = theme.theme?.rawColors?.[slug || ""]?.foreground;
+    const fd = theme.theme?.rawColors?.[slug || ""]?.foregroundDim;
+    const isHome = slug === "home";
+    const islastCase = index === childHeight.length - 1;
 
-    console.log(activeCaseIndex);
+    const { y, yNext, staggeredOffset, activeCase } = useStaggeredPosition({
+      index,
+      childHeight,
+      childPosition,
+      windowHeight,
+    });
 
     const xStyle = useResponsiveValue([
       { x: "0%" },
@@ -211,32 +201,9 @@ export const Case = React.memo(
 
     const yStyle = useResponsiveValue([{ y: 0 }, { y: y }, { y: y }, { y: y }]);
 
-    const fadeIn = debounce(() => {
-      [...document.querySelectorAll<HTMLElement>(".caseContent")].map((e) => {
-        return Object.assign(e.style, {
-          transition: "opacity 0.1s linear 1s",
-          opacity: 1,
-        });
-      });
-    }, 1000);
-
     useUpdateURL(slug, index);
 
     const handleClick = () => {
-      [...document.querySelectorAll<HTMLElement>(".caseContent")].map((e) => {
-        return Object.assign(e.style, {
-          transition: "none",
-          opacity: 0,
-        });
-      });
-
-      Object.assign(ref.current.querySelector(".caseContent").style, {
-        transition: "none",
-        opacity: 1,
-      });
-
-      fadeIn();
-
       if (index !== 0) {
         window.history.pushState(null, "", `/${slug}`);
       } else {
@@ -259,8 +226,6 @@ export const Case = React.memo(
       propmap?.grid && propmap?.grid[arr].split("span ")[1];
     const gridPosition = (arr: number) =>
       propmap?.grid && propmap?.grid[arr].split(" /")[0];
-
-    const islastCase = index === childHeight.length - 1;
 
     return (
       <>
@@ -356,9 +321,6 @@ export const Case = React.memo(
                 }}
                 sx={
                   {
-                    // borderRadius: ["0 0 32px 32px"],
-                    // height: "100%",
-                    // height: "1000px",
                     height: [
                       `calc(100% - ${180 - 2}px)`,
                       `calc(100% - ${
@@ -378,12 +340,13 @@ export const Case = React.memo(
                 sx={{
                   mb: "5vh",
                   mt: "0",
-                  // pb: "100vh",
+                  opacity: activeCase ? 1 : 0,
+                  willChange: "opacity",
+                  transition: "opacity linear 0.2s",
                   overflow: "hidden",
                 }}
               >
                 {children}
-                {/* <Render data={data} /> */}
               </div>
             </div>
           </m.div>

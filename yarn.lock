@@ -970,15 +970,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@elgorditosalsero/react-gtm-hook@npm:^2.6.0":
-  version: 2.6.0
-  resolution: "@elgorditosalsero/react-gtm-hook@npm:2.6.0"
-  peerDependencies:
-    react: ^16.13.1 || ^17.0.0 || 18
-  checksum: 609bd24c42f8e9e3b2b4e83c6291d5df3ec4b71e1260bec80a083b057825c67881f69c729afcf8885d962af14b1ba5b107e82a9261a4fd4dcfc11ee9a15d5da4
-  languageName: node
-  linkType: hard
-
 "@emotion/babel-plugin@npm:^11.10.6":
   version: 11.10.6
   resolution: "@emotion/babel-plugin@npm:11.10.6"
@@ -9260,7 +9251,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "scroll@workspace:."
   dependencies:
-    "@elgorditosalsero/react-gtm-hook": ^2.6.0
     "@emotion/react": ^11.10.6
     "@sanity/uuid": ^3.0.1
     "@testing-library/jest-dom": ^5.16.5

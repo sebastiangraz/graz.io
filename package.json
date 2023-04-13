@@ -6,7 +6,6 @@
     "node": "^18.15.0"
   },
   "dependencies": {
-    "@elgorditosalsero/react-gtm-hook": "^2.6.0",
     "@emotion/react": "^11.10.6",
     "@sanity/uuid": "^3.0.1",
     "@testing-library/jest-dom": "^5.16.5",

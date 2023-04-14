@@ -40,9 +40,9 @@ export const Img = ({
   };
 
   const onLoad = async (e: React.SyntheticEvent<HTMLImageElement>) => {
+    if (!ignoreShadow) return;
     const img = e.target as HTMLImageElement;
     const { naturalWidth, naturalHeight } = img;
-    await new Promise(requestAnimationFrame);
     updateDimensions(naturalWidth, naturalHeight);
   };
 
@@ -88,7 +88,7 @@ export const Img = ({
           decoding="async"
           width={src.width}
           height={src.height}
-          onLoad={ignoreShadow ? onLoad : undefined}
+          onLoad={onLoad}
           sx={{
             display: "flex",
             width: "100%",

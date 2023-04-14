@@ -170,7 +170,7 @@ export const Carousel = ({
                   animate={{
                     opacity: isCardVisible ? 1 : 0,
                     transition: {
-                      duration: 0.28,
+                      duration: 0.2,
                       ease: [0.4, 0.1, 0.01, 0.99],
                     },
                   }}

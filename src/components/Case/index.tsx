@@ -187,13 +187,6 @@ export const Case = React.memo(
       windowHeight,
     });
 
-    const xStyle = useResponsiveValue([
-      { x: "0%" },
-      { x: "0%" },
-      { x: "-50%" },
-      { x: "-50%" },
-    ]);
-
     const yNextStyle = useResponsiveValue([
       { y: 0 },
       { y: yNext },
@@ -201,7 +194,12 @@ export const Case = React.memo(
       { y: yNext },
     ]);
 
-    const yStyle = useResponsiveValue([{ y: 0 }, { y: y }, { y: y }, { y: y }]);
+    const yStyle = useResponsiveValue([
+      { y: 0, x: "0%" },
+      { y: y, x: "0%" },
+      { y: y, x: "-50%" },
+      { y: y, x: "-50%" },
+    ]);
 
     useUpdateURL(slug, index);
 
@@ -233,7 +231,6 @@ export const Case = React.memo(
 
     return (
       <>
-        {" "}
         {isHome ? (
           <m.div
             initial={{ opacity: 0 }}
@@ -247,7 +244,7 @@ export const Case = React.memo(
               width: "100%",
               top: "100%",
               position: ["relative", "fixed"],
-              left: 0,
+              left: [0, 0, "50%"],
             }}
           >
             {children}
@@ -262,7 +259,6 @@ export const Case = React.memo(
             ref={ref}
             style={{
               ...yStyle,
-              ...xStyle,
             }}
             sx={
               {

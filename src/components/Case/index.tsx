@@ -8,6 +8,7 @@ import {
   transform,
   useTransform,
   useScroll,
+  MotionValue,
 } from "framer-motion";
 import { useCaseWrapperContext, CaseTitle } from "..";
 import { useResponsiveValue } from "@theme-ui/match-media";
@@ -17,25 +18,7 @@ import { CaseWrapperState } from "../CaseWrapper";
 import { PropMap } from "../App";
 import { useUpdateURL } from "../hooks/useUpdateURL";
 
-const caseParent = {
-  top: [0, `100vh`],
-  width: "100%",
-  mt: [0, 0],
-  maxWidth: "1800px",
-  position: ["relative", "fixed"],
-  pointerEvents: "none",
-  // willChange: "transform", //willChange messes up antialiasing but at the cost of performance. (Performance gains negligible though)
-  display: "grid",
-  gridTemplateColumns: [
-    "repeat(10, 1fr)",
-    "repeat(10, 1fr)",
-    "repeat(12, 1fr)",
-    "repeat(12, 1fr)",
-  ],
-};
-
 const caseBg = {
-  // ...debugStyle,
   width: "100%",
   zIndex: -1,
   position: "absolute",
@@ -93,6 +76,13 @@ interface useStaggeredPositionProps {
   childHeight: number[];
   childPosition: number[];
   windowHeight: number;
+}
+
+interface useStaggeredPositionReturn {
+  y: MotionValue<number>;
+  yNext: MotionValue<number>;
+  staggeredOffset: number;
+  activeCase: boolean;
 }
 
 const useStaggeredPosition = ({
@@ -174,6 +164,8 @@ export const Case = React.memo(
     const { childHeight, childPosition, windowHeight } =
       useCaseWrapperContext() as CaseWrapperState;
 
+    const isMobile = useResponsiveValue([true, false]);
+
     const bg = theme.theme?.rawColors?.[slug || ""]?.background;
     const fg = theme.theme?.rawColors?.[slug || ""]?.foreground;
     const fd = theme.theme?.rawColors?.[slug || ""]?.foregroundDim;
@@ -185,21 +177,7 @@ export const Case = React.memo(
       childHeight,
       childPosition,
       windowHeight,
-    });
-
-    const yNextStyle = useResponsiveValue([
-      { y: 0 },
-      { y: yNext },
-      { y: yNext },
-      { y: yNext },
-    ]);
-
-    const yStyle = useResponsiveValue([
-      { y: 0, x: "0%" },
-      { y: y, x: "0%" },
-      { y: y, x: "-50%" },
-      { y: y, x: "-50%" },
-    ]);
+    }) as useStaggeredPositionReturn;
 
     useUpdateURL(slug, index);
 
@@ -237,14 +215,11 @@ export const Case = React.memo(
             animate={{ opacity: 1 }}
             transition={{ delay: 0 }}
             ref={ref}
-            style={{
-              ...yStyle,
-            }}
+            style={isMobile ? { y: 0 } : { y }}
             sx={{
               width: "100%",
-              top: "100%",
+              top: [0, "100%"],
               position: ["relative", "fixed"],
-              left: [0, 0, "50%"],
             }}
           >
             {children}
@@ -257,20 +232,29 @@ export const Case = React.memo(
             className="caseWrapper"
             id={`${slug}-${index}`}
             ref={ref}
-            style={{
-              ...yStyle,
-            }}
+            style={isMobile ? { y: 0 } : { y }}
             sx={
               {
                 "--gridCount": [12, 12, `${gridCount(0)}`, `${gridCount(1)}`],
                 "--caseBackground": bg,
                 "--caseForeground": fg,
                 "--caseForegroundDim": fd,
-                ...caseParent,
+                top: [0, `100vh`],
+                width: "100%",
+                mt: 0,
+                maxWidth: "1800px",
+                position: ["relative", "fixed"],
+                pointerEvents: "none",
+                // willChange: "transform", //willChange messes up antialiasing but at the cost of performance. (Performance gains negligible though)
+                display: "grid",
+                gridTemplateColumns: [
+                  "repeat(10, 1fr)",
+                  "repeat(10, 1fr)",
+                  "repeat(12, 1fr)",
+                  "repeat(12, 1fr)",
+                ],
                 color: fg,
                 zIndex: index,
-                left: [0, 0, "50%"],
-                // height: "4000px",
               } as ThemeUICSSObject
             }
           >
@@ -299,11 +283,7 @@ export const Case = React.memo(
                 onClick={() => {
                   islastCase ? null : handleClick();
                 }}
-                style={{
-                  ...yNextStyle,
-
-                  willChange: "transform",
-                }}
+                style={isMobile ? { y: 0 } : { y: yNext }}
                 sx={{
                   height: [180, 300],
                   ...(index === 1 && {

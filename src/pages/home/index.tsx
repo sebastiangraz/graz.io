@@ -7,22 +7,25 @@ import { m, useScroll, useTransform, useSpring } from "framer-motion";
 import { transparentize } from "@theme-ui/color";
 import resume from "/cv-sebastiangraz.pdf";
 
-const NearestQuarter = (overRideMonth?: number) => {
-  const getCurrentQuarter = (month: number) => {
-    const paddedMonth = (month + 1) % 16; // Add one month and a half as padding
+const NearestQuarter = () => {
+  const amountOfMonthsPadding = 1.5; // Months of padding, decimal values are allowed.
 
-    // Calculate the nearest quarter based on the padded month
-    const quarter = Math.ceil((paddedMonth + 1) / 3);
-    return `Q${quarter}`;
-  };
+  // Create a new date object based on the current date
+  const date = new Date();
 
-  return (
-    <span>
-      {overRideMonth !== undefined
-        ? getCurrentQuarter(overRideMonth as number)
-        : getCurrentQuarter(new Date().getMonth())}
-    </span>
-  );
+  // Calculate total days padding
+  const totalDaysPadding = Math.round(amountOfMonthsPadding * 30.436875); // Using the average number of days in a month
+
+  // Add the padding to the date
+  date.setDate(date.getDate() + totalDaysPadding);
+
+  // Get the "true" month (i.e., not zero indexed) from the new date
+  const trueMonth = date.getMonth() + 1;
+
+  // Calculate the nearest quarter based on the new date's month
+  const quarter = Math.ceil(trueMonth / 3);
+
+  return <span>{`Q${quarter}`}</span>;
 };
 
 const awards = [

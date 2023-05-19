@@ -9,7 +9,7 @@ import resume from "/cv-sebastiangraz.pdf";
 
 const NearestQuarter = (overRideMonth?: number) => {
   const getCurrentQuarter = (month: number) => {
-    const paddedMonth = (month + 1) % 12; // Add one month as padding
+    const paddedMonth = (month + 1) % 16; // Add one month and a half as padding
 
     // Calculate the nearest quarter based on the padded month
     const quarter = Math.ceil((paddedMonth + 1) / 3);

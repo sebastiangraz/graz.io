@@ -52,7 +52,7 @@ const awards = [
   },
   {
     title: "Landbook",
-    count: 3,
+    count: 4,
     year: "2023",
   },
   {

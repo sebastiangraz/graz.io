@@ -1,6 +1,6 @@
 /** @jsxImportSource theme-ui */
 
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import debounce from "lodash.debounce";
 import {
   m,
@@ -8,6 +8,7 @@ import {
   transform,
   useTransform,
   useScroll,
+  MotionValue,
 } from "framer-motion";
 import { useCaseWrapperContext, CaseTitle } from "..";
 import { useResponsiveValue } from "@theme-ui/match-media";
@@ -17,25 +18,7 @@ import { CaseWrapperState } from "../CaseWrapper";
 import { PropMap } from "../App";
 import { useUpdateURL } from "../hooks/useUpdateURL";
 
-const caseParent = {
-  top: [0, `100vh`],
-  width: "100%",
-  mt: [0, 0],
-  maxWidth: "1800px",
-  position: ["relative", "fixed"],
-  pointerEvents: "none",
-  // willChange: "transform", //willChange messes up antialiasing but at the cost of performance. (Performance gains negligible though)
-  display: "grid",
-  gridTemplateColumns: [
-    "repeat(10, 1fr)",
-    "repeat(10, 1fr)",
-    "repeat(12, 1fr)",
-    "repeat(12, 1fr)",
-  ],
-};
-
 const caseBg = {
-  // ...debugStyle,
   width: "100%",
   zIndex: -1,
   position: "absolute",
@@ -62,12 +45,14 @@ function ScrollToTopOnMount(props: ScrollToTopOnMountProps) {
       if (window.location.pathname === `/${datavar}`) {
         // desktop
         window.matchMedia(media_query).matches
-          ? window.scrollTo(
-              0,
-              position -
+          ? window.scrollTo({
+              top:
+                position -
                 (index !== 1 ? settings.nextScrollDistance : 0) +
-                stagger
-            )
+                stagger,
+              left: 0,
+              behavior: "auto",
+            })
           : // mobile doesn't need to calc stagger and nextScroll
             window.scrollTo(0, position);
       }
@@ -93,6 +78,13 @@ interface useStaggeredPositionProps {
   windowHeight: number;
 }
 
+interface useStaggeredPositionReturn {
+  y: MotionValue<number>;
+  yNext: MotionValue<number>;
+  staggeredOffset: number;
+  activeCase: boolean;
+}
+
 const useStaggeredPosition = ({
   index,
   childHeight,
@@ -107,6 +99,7 @@ const useStaggeredPosition = ({
     (pos: number) => childHeight[pos ? index - pos : index] || 0,
     [childHeight, index]
   );
+  const [activeCase, setIsActiveState] = React.useState(false);
 
   const position = (pos: number) =>
     childPosition[pos ? index - pos : index] || 0;
@@ -139,7 +132,18 @@ const useStaggeredPosition = ({
     settings.springOptions
   );
 
-  return { y, yNext, staggeredOffset };
+  const isActive = useTransform(scrollY, (v) => updatePos(v));
+
+  useEffect(() => {
+    isActive.on("change", (e) => {
+      const isLastItem = index === childHeight.length - 1;
+      const lastItemThreshold = isLastItem ? 5 : 0;
+
+      setIsActiveState(e > -height(0) - lastItemThreshold && e < 0);
+    });
+  }, [childHeight, height, index, isActive]);
+
+  return { y, yNext, staggeredOffset, activeCase };
 };
 
 export const Case = React.memo(
@@ -156,63 +160,28 @@ export const Case = React.memo(
   }) => {
     const theme = useThemeUI() as any;
     const ref = useRef(null) as any;
-    const bg = theme.theme?.rawColors?.[slug || ""]?.background;
-    const fg = theme.theme?.rawColors?.[slug || ""]?.foreground;
-    const fd = theme.theme?.rawColors?.[slug || ""]?.foregroundDim;
-    const isHome = slug === "home";
 
     const { childHeight, childPosition, windowHeight } =
       useCaseWrapperContext() as CaseWrapperState;
 
-    const { y, yNext, staggeredOffset } = useStaggeredPosition({
+    const isMobile = useResponsiveValue([true, false]);
+
+    const bg = theme.theme?.rawColors?.[slug || ""]?.background;
+    const fg = theme.theme?.rawColors?.[slug || ""]?.foreground;
+    const fd = theme.theme?.rawColors?.[slug || ""]?.foregroundDim;
+    const isHome = slug === "home";
+    const islastCase = index === childHeight.length - 1;
+
+    const { y, yNext, staggeredOffset, activeCase } = useStaggeredPosition({
       index,
       childHeight,
       childPosition,
       windowHeight,
-    });
-
-    const xStyle = useResponsiveValue([
-      { x: "0%" },
-      { x: "0%" },
-      { x: "-50%" },
-      { x: "-50%" },
-    ]);
-
-    const yNextStyle = useResponsiveValue([
-      { y: 0 },
-      { y: yNext },
-      { y: yNext },
-      { y: yNext },
-    ]);
-
-    const yStyle = useResponsiveValue([{ y: 0 }, { y: y }, { y: y }, { y: y }]);
-
-    const fadeIn = debounce(() => {
-      [...document.querySelectorAll<HTMLElement>(".caseContent")].map((e) => {
-        return Object.assign(e.style, {
-          transition: "opacity 0.1s linear 1s",
-          opacity: 1,
-        });
-      });
-    }, 1000);
+    }) as useStaggeredPositionReturn;
 
     useUpdateURL(slug, index);
 
     const handleClick = () => {
-      [...document.querySelectorAll<HTMLElement>(".caseContent")].map((e) => {
-        return Object.assign(e.style, {
-          transition: "none",
-          opacity: 0,
-        });
-      });
-
-      Object.assign(ref.current.querySelector(".caseContent").style, {
-        transition: "none",
-        opacity: 1,
-      });
-
-      fadeIn();
-
       if (index !== 0) {
         window.history.pushState(null, "", `/${slug}`);
       } else {
@@ -221,12 +190,14 @@ export const Case = React.memo(
 
       // scroll to top of case
       window.matchMedia(media_query).matches
-        ? window.scrollTo(
-            0,
-            childPosition[index] -
+        ? window.scrollTo({
+            top:
+              childPosition[index] -
               (index !== 1 ? settings.nextScrollDistance : 0) +
-              staggeredOffset
-          )
+              staggeredOffset,
+            left: 0,
+            behavior: "smooth",
+          })
         : window.scrollTo(0, childPosition[index]);
     };
     // -----CLICK TO SCROLLTO CASE-----
@@ -236,25 +207,19 @@ export const Case = React.memo(
     const gridPosition = (arr: number) =>
       propmap?.grid && propmap?.grid[arr].split(" /")[0];
 
-    const islastCase = index === childHeight.length - 1;
-
     return (
       <>
-        {" "}
         {isHome ? (
           <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0 }}
             ref={ref}
-            style={{
-              ...yStyle,
-            }}
+            style={isMobile ? { y: 0 } : { y }}
             sx={{
               width: "100%",
-              top: "100%",
+              top: [0, "100%"],
               position: ["relative", "fixed"],
-              left: 0,
             }}
           >
             {children}
@@ -267,21 +232,29 @@ export const Case = React.memo(
             className="caseWrapper"
             id={`${slug}-${index}`}
             ref={ref}
-            style={{
-              ...yStyle,
-              ...xStyle,
-            }}
+            style={isMobile ? { y: 0 } : { y }}
             sx={
               {
                 "--gridCount": [12, 12, `${gridCount(0)}`, `${gridCount(1)}`],
                 "--caseBackground": bg,
                 "--caseForeground": fg,
                 "--caseForegroundDim": fd,
-                ...caseParent,
+                top: [0, `100vh`],
+                width: "100%",
+                mt: 0,
+                maxWidth: "1800px",
+                position: ["relative", "fixed"],
+                pointerEvents: "none",
+                // willChange: "transform", //willChange messes up antialiasing but at the cost of performance. (Performance gains negligible though)
+                display: "grid",
+                gridTemplateColumns: [
+                  "repeat(10, 1fr)",
+                  "repeat(10, 1fr)",
+                  "repeat(12, 1fr)",
+                  "repeat(12, 1fr)",
+                ],
                 color: fg,
                 zIndex: index,
-                left: [0, 0, "50%"],
-                // height: "4000px",
               } as ThemeUICSSObject
             }
           >
@@ -310,11 +283,7 @@ export const Case = React.memo(
                 onClick={() => {
                   islastCase ? null : handleClick();
                 }}
-                style={{
-                  ...yNextStyle,
-
-                  willChange: "transform",
-                }}
+                style={isMobile ? { y: 0 } : { y: yNext }}
                 sx={{
                   height: [180, 300],
                   ...(index === 1 && {
@@ -332,9 +301,6 @@ export const Case = React.memo(
                 }}
                 sx={
                   {
-                    // borderRadius: ["0 0 32px 32px"],
-                    // height: "100%",
-                    // height: "1000px",
                     height: [
                       `calc(100% - ${180 - 2}px)`,
                       `calc(100% - ${
@@ -354,12 +320,14 @@ export const Case = React.memo(
                 sx={{
                   mb: "5vh",
                   mt: "0",
-                  // pb: "100vh",
+                  opacity: activeCase ? 1 : 0,
+                  transitionProperty: "opacity",
+                  transitionDuration: "0.2s",
+                  // transitionDelay: activeCase ? "0.2s" : "0s",
                   overflow: "hidden",
                 }}
               >
                 {children}
-                {/* <Render data={data} /> */}
               </div>
             </div>
           </m.div>

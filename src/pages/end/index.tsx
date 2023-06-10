@@ -46,6 +46,7 @@ const End = ({}) => {
                 sx={{
                   m: 0,
                   "--caseBackground": "#fff",
+                  color: "textDim",
                 }}
                 horizontal
                 small

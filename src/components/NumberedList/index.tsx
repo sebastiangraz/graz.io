@@ -36,7 +36,7 @@ export const NumberedList = ({
           <li
             key={i}
             sx={{
-              fontWeight: small ? "bold" : "initial",
+              // fontWeight: small ? "bold" : "initial",
               fontSize: small ? 4 : "initial",
               display: "grid",
               gridTemplateColumns: "auto 1fr",
@@ -55,8 +55,9 @@ export const NumberedList = ({
                 display: "inline-grid",
                 alignItems: "center",
                 justifyContent: "center",
-                bg: "var(--caseForeground)",
-                color: "var(--caseBackground)",
+                // bg: "var(--caseForeground)",
+                color: "var(--caseForegroundDim)",
+                boxShadow: "0 0 0 1px var(--caseForegroundDim)",
               }}
             >
               {i + 1}

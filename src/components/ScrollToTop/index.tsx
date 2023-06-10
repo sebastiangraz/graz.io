@@ -6,23 +6,8 @@ import { Text } from "theme-ui";
 import { Logo } from "..";
 
 export const handleClick = () => {
-  [...document.querySelectorAll<HTMLElement>(".caseContent")].map((e) => {
-    return Object.assign(e.style, {
-      transition: "none",
-      opacity: 0,
-    });
-  });
-
   window.scrollTo(0, 0);
   window.history.pushState("", "", "/");
-  setTimeout(() => {
-    [...document.querySelectorAll<HTMLElement>(".caseContent")].map((e) => {
-      return Object.assign(e.style, {
-        transition: "opacity 0.1s linear",
-        opacity: 1,
-      });
-    });
-  }, 1000);
 };
 
 export const ScrollToTop = () => {

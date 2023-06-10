@@ -17,7 +17,7 @@ const colors = {
   },
   end: {
     foreground: "#000",
-    foregroundDim: "#fff7",
+    foregroundDim: "#0004",
     background: "transparent",
   },
   capchase: {

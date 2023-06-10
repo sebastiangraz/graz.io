@@ -76,6 +76,8 @@ const MemoCaseWrapper = ({ children }: { children: React.ReactNode }) => {
       <div
         ref={parentRef}
         sx={{
+          display: "grid",
+          justifyItems: "center",
           height: ["auto", state.childSum],
         }}
       >

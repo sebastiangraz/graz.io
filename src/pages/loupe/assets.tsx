@@ -99,13 +99,13 @@ export const images = {
     name: "loupe-web-1.png",
     width: 1200,
     height: 720,
-    alt: "Tickets",
+    alt: "Homepage",
   },
   loupeWeb2: {
     name: "loupe-web-2.png",
     width: 1200,
     height: 720,
-    alt: "Homepage",
+    alt: "Tickets",
   },
   loupeWeb3: {
     name: "loupe-web-3.png",

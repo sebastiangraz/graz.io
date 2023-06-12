@@ -84,10 +84,12 @@ export const Img = ({
           ...(deviceBorder && {
             "&:before": {
               borderImage: `url('/device-slice-shadow.png')`,
-              borderImageWidth: `336px calc(128px * ${
-                src.width! / src.height!
-              }) 336px calc(128px * ${src.width! / src.height!})`,
-              borderImageOutset: "287px 163px 287px 163px",
+              borderImageWidth: [
+                `166px calc(66px * ${src.width! / src.height!})`,
+                null,
+                `336px calc(128px * ${src.width! / src.height!})`,
+              ],
+              borderImageOutset: ["142px 85px", null, "287px 163px"],
               borderImageSlice: "49.999%", //`49.9% fill`,
               zIndex: 10,
               content: `""`,

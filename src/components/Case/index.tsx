@@ -320,7 +320,7 @@ export const Case = React.memo(
                 sx={{
                   mb: "5vh",
                   mt: "0",
-                  opacity: activeCase ? 1 : 0,
+                  opacity: ["1", activeCase ? 1 : 0],
                   transitionProperty: "opacity",
                   transitionDuration: "0.2s",
                   // transitionDelay: activeCase ? "0.2s" : "0s",

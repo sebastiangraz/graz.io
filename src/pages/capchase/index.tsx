@@ -211,10 +211,10 @@ const Capchase = () => {
 
             // onChangeIndex={(index) => console.log("Active index:", index)}
           >
-            <Img fromFolder="capchase" src={images.capchaseWeb0} ignoreShadow />
+            <Img fromFolder="capchase" src={images.capchaseWeb0} deviceBorder />
             <Img fromFolder="capchase" src={images.capchaseWeb1} />
             <Img fromFolder="capchase" src={images.capchaseWeb2} ignoreShadow />
-            <Img fromFolder="capchase" src={images.capchaseWeb3} ignoreShadow />
+            <Img fromFolder="capchase" src={images.capchaseWeb3} deviceBorder />
           </Carousel>
         </Box>
         <Box sx={{ gridColumn: ["2/span 8", "2 / span 8"] }}>

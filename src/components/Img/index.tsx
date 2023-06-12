@@ -19,12 +19,14 @@ interface ImgProps {
    * @description requires the top asset whitespace to match the shadow height. If the bottom shadow is 32px, the top asset whitespace should be 32px too.
    */
   ignoreShadow?: boolean;
+  deviceBorder?: boolean;
 }
 
 export const Img = ({
   src,
   fromFolder,
   ignoreShadow = false,
+  deviceBorder = false,
   ...sx
 }: ImgProps) => {
   if (!src || !fromFolder) return null;
@@ -77,7 +79,29 @@ export const Img = ({
 
   return (
     <>
-      <picture>
+      <picture
+        sx={{
+          ...(deviceBorder && {
+            "&:before": {
+              borderImage: `url('/device-slice-shadow.png')`,
+              borderImageWidth: [
+                `166px calc(66px * ${src.width! / src.height!})`,
+                null,
+                `336px calc(128px * ${src.width! / src.height!})`,
+              ],
+              borderImageOutset: ["142px 85px", null, "287.5px 163px"],
+              borderImageSlice: "49.999%", //`49.9% fill`,
+              zIndex: 10,
+              content: `""`,
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+            },
+          }),
+        }}
+      >
         <source srcSet={`./${fromFolder}/${srcName}.avif`} type="image/avif" />
 
         <img
@@ -94,6 +118,7 @@ export const Img = ({
             width: "100%",
             height: "100%",
             objectFit: "cover",
+            borderRadius: deviceBorder ? `1.5rem` : "0px",
             aspectRatio: `${src.width}/${src.height}`,
             ...resizeModeStyle,
           }}

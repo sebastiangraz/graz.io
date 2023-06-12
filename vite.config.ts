@@ -12,7 +12,7 @@ export default defineConfig({
     svgrPlugin(),
     ViteImageOptimizer({
       //exclude avif files as regex
-      exclude: /.*\.avif$/,
+      // exclude: /.*\.avif$/,
       avif: {
         // https://sharp.pixelplumbing.com/api-output#avif
         // lossless: true,

@@ -100,11 +100,10 @@ const Loupe = () => {
               </>
             }
           >
-            <Img fromFolder="loupe" src={images.loupeWeb2} ignoreShadow />
-            <Img fromFolder="loupe" src={images.loupeWeb1} ignoreShadow />
-
-            <Img fromFolder="loupe" src={images.loupeWeb3} ignoreShadow />
-            <Img fromFolder="loupe" src={images.loupeWeb4} ignoreShadow />
+            <Img fromFolder="loupe" src={images.loupeWeb1} deviceBorder />
+            <Img fromFolder="loupe" src={images.loupeWeb2} deviceBorder />
+            <Img fromFolder="loupe" src={images.loupeWeb3} deviceBorder />
+            <Img fromFolder="loupe" src={images.loupeWeb4} deviceBorder />
           </Carousel>
         </Box>
         <Box

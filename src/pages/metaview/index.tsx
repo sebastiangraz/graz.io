@@ -129,11 +129,11 @@ const Metaview = () => {
 
             // onChangeIndex={(index) => console.log("Active index:", index)}
           >
-            <Img fromFolder="metaview" src={images.web0} ignoreShadow />
+            <Img fromFolder="metaview" src={images.web0} deviceBorder />
+            <Img fromFolder="metaview" src={images.web1} deviceBorder />
+            <Img fromFolder="metaview" src={images.web2} deviceBorder />
+            <Img fromFolder="metaview" src={images.web3} deviceBorder />
             <Img fromFolder="metaview" src={images.web4} />
-            <Img fromFolder="metaview" src={images.web1} ignoreShadow />
-            <Img fromFolder="metaview" src={images.web2} ignoreShadow />
-            <Img fromFolder="metaview" src={images.web3} />
           </Carousel>
         </Box>
         <Box sx={{ gridColumn: ["2/span 8", "2 / span 8"] }}>

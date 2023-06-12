@@ -13,25 +13,26 @@ export const images = {
     name: "web-1.png",
     width: 1200,
     height: 720,
-    alt: "Value Proposition",
+
+    alt: "AI notes parallax",
   },
   web2: {
     name: "web-2.png",
     width: 1200,
     height: 720,
-    alt: "Landing pages",
+    alt: "Value Proposition",
   },
   web3: {
     name: "web-3.png",
     width: 1200,
     height: 720,
-    alt: "Custom mobile designs",
+    alt: "Landing pages",
   },
   web4: {
     name: "web-4.png",
     width: 1200,
     height: 720,
-    alt: "AI notes parallax",
+    alt: "Mobile designs",
   },
   bb0: {
     name: "bb-0.png",

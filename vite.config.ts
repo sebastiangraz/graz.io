@@ -15,10 +15,12 @@ export default defineConfig({
       exclude: /.*\.avif$/,
       avif: {
         // https://sharp.pixelplumbing.com/api-output#avif
-        lossless: true,
+        // lossless: true,
+        quality: 80,
+        effort: 5,
       },
       png: {
-        quality: 88,
+        quality: 96,
       },
     }),
   ],

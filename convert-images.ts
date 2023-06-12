@@ -13,7 +13,7 @@ async function convertImage(filePath: string): Promise<void> {
       return;
     }
 
-    await sharp(filePath).avif({ quality: 80 }).toFile(outputPath);
+    await sharp(filePath).avif().toFile(outputPath);
     console.log(`Converted ${filePath} to ${outputPath}`);
   } catch (error) {
     console.error(`Error converting ${filePath}:`, error);

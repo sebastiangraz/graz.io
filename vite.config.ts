@@ -12,13 +12,12 @@ export default defineConfig({
     svgrPlugin(),
     ViteImageOptimizer({
       //exclude avif files as regex
-      // exclude: /.*\.avif$/,
-      avif: {
-        // https://sharp.pixelplumbing.com/api-output#avif
-        // lossless: true,
-        quality: 80,
-        effort: 5,
-      },
+      exclude: /.*\.avif$/,
+      // avif: {
+      //   // https://sharp.pixelplumbing.com/api-output#avif
+      //   lossless: true,
+      //   quality: 80,
+      // },
       png: {
         quality: 96,
       },

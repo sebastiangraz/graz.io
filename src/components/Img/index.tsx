@@ -90,7 +90,7 @@ export const Img = ({
                 `336px calc(128px * ${src.width! / src.height!})`,
               ],
               borderImageOutset: ["142px 85px", null, "287.5px 163px"],
-              borderImageSlice: "49.999%", //`49.9% fill`,
+              borderImageSlice: "49.97%", //`49.9% fill`,
               zIndex: 10,
               content: `""`,
               position: "absolute",

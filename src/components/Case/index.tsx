@@ -1,7 +1,6 @@
 /** @jsxImportSource theme-ui */
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import debounce from "lodash.debounce";
 import {
   m,
   useSpring,
@@ -17,6 +16,7 @@ import { ThemeUICSSObject, useThemeUI } from "theme-ui";
 import { CaseWrapperState } from "../CaseWrapper";
 import { PropMapProps } from "../App";
 import { useUpdateURL } from "../hooks/useUpdateURL";
+import { useScrollToCaseOnMount } from "../hooks/useScrollToCaseOnMount";
 
 const caseBg = {
   width: "100%",
@@ -27,39 +27,6 @@ const caseBg = {
 };
 
 const media_query = "screen and (min-width:640px)";
-
-interface ScrollToTopOnMountProps {
-  position: number;
-  stagger: number;
-  datavar: string | undefined;
-  index: number;
-}
-
-function ScrollToTopOnMount(props: ScrollToTopOnMountProps) {
-  const { position, stagger, datavar, index } = props;
-
-  useEffect(() => {
-    // wait for fonts to load
-    document.fonts.ready.then(function () {
-      // find the current path in url
-      if (window.location.pathname === `/${datavar}`) {
-        // desktop
-        window.matchMedia(media_query).matches
-          ? window.scrollTo({
-              top:
-                position -
-                (index !== 1 ? settings.nextScrollDistance : 0) +
-                stagger,
-              left: 0,
-              behavior: "auto",
-            })
-          : // mobile doesn't need to calc stagger and nextScroll
-            window.scrollTo(0, position);
-      }
-    });
-  }, [datavar, index, position, stagger]);
-  return null;
-}
 
 const settings = {
   nextScrollDistance: 64,
@@ -332,12 +299,15 @@ export const Case = React.memo(
             </div>
           </m.div>
         )}
-        <ScrollToTopOnMount
-          position={childPosition[index]}
-          stagger={staggeredOffset}
-          datavar={slug}
-          index={index}
-        />
+
+        {useScrollToCaseOnMount({
+          slug,
+          scrollToVal: window.matchMedia(media_query).matches
+            ? childPosition[index] -
+              (index !== 1 ? settings.nextScrollDistance : 0) +
+              staggeredOffset
+            : childPosition[index],
+        })}
       </>
     );
   }

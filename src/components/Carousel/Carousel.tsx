@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Box, Text } from "theme-ui";
 import Balancer from "react-wrap-balancer";
-import { throttle } from "lodash";
+import throttle from "lodash.throttle";
 
 interface Props {
   children: React.ReactNode[];

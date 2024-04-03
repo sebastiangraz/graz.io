@@ -1,6 +1,5 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import viteTsconfigPaths from "vite-tsconfig-paths";
 import svgrPlugin from "vite-plugin-svgr";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 
@@ -8,7 +7,6 @@ import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 export default defineConfig({
   plugins: [
     react(),
-    viteTsconfigPaths(),
     svgrPlugin(),
     ViteImageOptimizer({
       //exclude avif files and `public/device-slice-shadow.png`

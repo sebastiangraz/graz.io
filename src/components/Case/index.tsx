@@ -15,7 +15,7 @@ import { useResponsiveValue } from "@theme-ui/match-media";
 import { ScrollDown } from "..";
 import { ThemeUICSSObject, useThemeUI } from "theme-ui";
 import { CaseWrapperState } from "../CaseWrapper";
-import { PropMap } from "../App";
+import { PropMapProps } from "../App";
 import { useUpdateURL } from "../hooks/useUpdateURL";
 
 const caseBg = {
@@ -155,7 +155,7 @@ export const Case = React.memo(
   }: {
     index: number;
     slug?: string;
-    propmap?: PropMap;
+    propmap?: PropMapProps;
     children: React.ReactNode;
   }) => {
     const theme = useThemeUI() as any;

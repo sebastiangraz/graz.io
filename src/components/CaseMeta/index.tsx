@@ -1,10 +1,10 @@
 /** @jsxImportSource theme-ui */
 import { Box, Text } from "theme-ui";
-import { PropMap } from "../App";
+import { PropMapProps } from "../App";
 import { List } from "../List";
 import Balancer from "react-wrap-balancer";
 
-export const CaseMeta = ({ ...props }: PropMap) => {
+export const CaseMeta = ({ ...props }: PropMapProps) => {
   const { challenge, scope, duration, year } = props;
 
   return (

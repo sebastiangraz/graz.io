@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import uuid from "react-uuid";
 import { useResponsiveValue } from "@theme-ui/match-media";
-import { propMap } from "../App";
+import { PropMap } from "../App";
 const ignoreUpdatedProps = () => true;
 
 const findLongestName = (cases: string[]) => {
@@ -17,7 +17,7 @@ const findLongestName = (cases: string[]) => {
 };
 
 export const CaseTitle = React.memo(({ name }: { name: string }) => {
-  const allCaseNames = Object.keys(propMap());
+  const allCaseNames = Object.keys(PropMap());
 
   name ||= "case";
 

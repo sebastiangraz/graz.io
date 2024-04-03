@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet-async";
 import { useThemeUI } from "theme-ui";
 import { getColor } from "@theme-ui/color";
 
-export interface PropMap {
+export interface PropMapProps {
   grid?: string[];
   scope?: string[];
   challenge?: string;
@@ -15,9 +15,17 @@ export interface PropMap {
   hideCaseMeta?: boolean;
 }
 
-export const propMap = () => {
+export const PropMap = () => {
   const props = {
     home: { hideCaseMeta: true },
+    loctax: {
+      grid: ["3 / span 10", "3 / span 10"],
+      challenge:
+        "Rebrand Loctax to surface their dedication for fairer hiring solutions, no matter the scale.",
+      scope: ["Rebrand & strategy", "Production output"],
+      duration: "4 months + retainer",
+      year: "2023",
+    },
     capchase: {
       grid: ["2 / span 10", "2 / span 10"],
       challenge:
@@ -26,6 +34,7 @@ export const propMap = () => {
       duration: "3 months + retainer",
       year: "2022",
     },
+
     metaview: {
       grid: ["3 / span 10", "3 / span 10"],
       challenge:
@@ -46,13 +55,13 @@ export const propMap = () => {
       hideCaseMeta: true,
       grid: ["1 / span 12", "1 / span 10"],
     },
-  } as { [key: string]: PropMap };
+  } as { [key: string]: PropMapProps };
 
   return props; // Return an empty object if there's no style for the given slug
 };
 
-const slugKeys = Object.keys(propMap());
-const slugValues = Object.values(propMap());
+const slugKeys = Object.keys(PropMap());
+const slugValues = Object.values(PropMap());
 
 const routes = Object.entries(
   import.meta.glob<string | string[] | any>(

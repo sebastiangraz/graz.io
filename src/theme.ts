@@ -25,6 +25,11 @@ const colors = {
     foregroundDim: "#0F0F147A",
     background: "#FCFBF8",
   },
+  loctax: {
+    foreground: "#F8A672",
+    foregroundDim: "#F8A672a3",
+    background: "#2A172B",
+  },
 };
 const space = [0, 4, 6, 12, 14, 16, 20, 24, 32, 56, 72, 112, 156];
 const capsStyle = {

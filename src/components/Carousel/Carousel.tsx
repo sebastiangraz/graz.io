@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Box, Text } from "theme-ui";
-import Balancer from "react-wrap-balancer";
 import throttle from "lodash.throttle";
 
 interface Props {
@@ -109,9 +108,14 @@ export const Carousel = ({
       >
         <Text
           variant="lead"
-          sx={{ m: 0, color: "var(--caseForegroundDim)", maxWidth: "38ch" }}
+          sx={{
+            m: 0,
+            textWrap: "balance",
+            color: "var(--caseForegroundDim)",
+            maxWidth: "38ch",
+          }}
         >
-          <Balancer>{heading}</Balancer>
+          {heading}
         </Text>
         {children.map((child, i) => {
           const alt = (child as any).props?.src?.alt;

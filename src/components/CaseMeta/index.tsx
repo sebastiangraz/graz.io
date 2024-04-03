@@ -2,7 +2,6 @@
 import { Box, Text } from "theme-ui";
 import { PropMapProps } from "../App";
 import { List } from "../List";
-import Balancer from "react-wrap-balancer";
 
 export const CaseMeta = ({ ...props }: PropMapProps) => {
   const { challenge, scope, duration, year } = props;
@@ -30,9 +29,10 @@ export const CaseMeta = ({ ...props }: PropMapProps) => {
             variant="label"
             sx={{
               color: "var(--caseForegroundDim)",
+              textWrap: "balance",
             }}
           >
-            <Balancer>{challenge}</Balancer>
+            {challenge}
           </Text>
         </Box>
       )}

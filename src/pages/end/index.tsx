@@ -5,7 +5,6 @@ import { NumberedList, EmailLink, GridParent } from "../../components";
 import { handleClick } from "../../components/ScrollToTop";
 
 import resume from "/cv-sebastiangraz.pdf";
-import Balancer from "react-wrap-balancer";
 
 const End = ({}) => {
   const Sections = {
@@ -33,8 +32,8 @@ const End = ({}) => {
                 gridColumn: "span 4",
               }}
             >
-              <Text variant="heading">
-                <Balancer>This is the end, for you my friend.</Balancer>
+              <Text variant="heading" sx={{ textWrap: "balance" }}>
+                This is the end, for you my friend.
               </Text>
             </Box>
             <Box

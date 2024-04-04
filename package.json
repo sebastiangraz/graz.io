@@ -56,6 +56,7 @@
     "eslint-plugin-react-refresh": "^0.3.4",
     "intersection-observer": "^0.12.2",
     "sharp": "^0.32.0",
+    "svgo": "^3.2.0",
     "ts-node": "^10.9.1",
     "vite": "^5.2.7",
     "vite-plugin-image-optimizer": "^1.1.7",

@@ -123,13 +123,14 @@ export default () => {
         willChange: "color",
         margin: "0 auto",
         minHeight: ["auto", "100vh"],
-        pt: [8, 9, 10],
-        pb: 12,
+        pt: [8, 9, "min(7vh, 5rem)"],
+        pb: [12, "16rem", "clamp(10rem, 24vh, 13rem)"],
         px: [0],
-        rowGap: [8, 9, "16vh"],
+        rowGap: ["4rem", null, "5rem"],
         columnGap: 0,
         display: "grid",
-        alignItems: ["center", "start"],
+        alignItems: ["center", "stretch"],
+        alignContent: "space-between",
         maxWidth: "1800px",
         gridTemplateRows: "auto auto auto",
         gridTemplateColumns: ["repeat(10, 1fr)", "repeat(10, 1fr)", "repeat(12, 1fr)"],
@@ -143,18 +144,18 @@ export default () => {
           //tablet
           `
           '. logo logo . . . years .  contact .'
-          '. intro intro intro . . . . . .'
+          '. intro intro intro intro intro intro . . .'
           '. meta meta meta meta meta meta meta meta meta '
           `,
           //desktop
           `
           '. logo logo . . . years years  . .  contact .'
-          '. intro intro intro .  . meta meta meta meta meta meta'
+          '. intro intro intro intro intro meta meta meta meta meta meta'
           `,
           //wide
           `
           '. logo logo . . . years years  . .  contact .'
-          '. intro intro intro .  . meta meta meta meta meta meta'
+          '. intro intro intro intro . meta meta meta meta meta meta'
           `,
         ],
       }}
@@ -171,7 +172,7 @@ export default () => {
       <Text
         variant="label"
         sx={{
-          p: 3,
+          p: [2, 3],
           ml: -3,
           gridArea: "years",
           display: ["none", "block"],
@@ -194,7 +195,7 @@ export default () => {
           justifySelf: ["flex-end", "flex-start"],
         }}
       >
-        <Text sx={{ pt: 2, p: 3, ml: -3 }} variant="label">
+        <Text sx={{ pt: 2, p: [2, 3], ml: -3 }} variant="label">
           Contact
         </Text>
 
@@ -372,7 +373,7 @@ export default () => {
       <div sx={{ gridArea: "intro" }}>
         <div
           sx={{
-            width: ["26ch", "31ch", "38ch", "32ch"],
+            maxWidth: ["40ch", "42ch", "38ch", "32ch"],
             // width: "100%",
             // width: [410, null, 380, 440],
           }}
@@ -380,10 +381,11 @@ export default () => {
           <Text
             sx={{
               fontSize: [6, 7, 8, 8],
+              textWrap: "balance",
               letterSpacing: ["body", null, "lead"],
               lineHeight: ["lead"],
-              mt: [0, "2.4rem"],
-              mb: ["2.4rem", 0],
+              mt: [0, 0, "2.4rem"],
+              mb: [4, 0],
             }}
           >
             <Text variant="heading" sx={{ fontSize: [6, 7, 8, 8], display: "inline" }}>

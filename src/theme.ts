@@ -25,7 +25,7 @@ const colors = {
     foregroundDim: "#0F0F147A",
     background: "#FCFBF8",
   },
-  loctaxtitlelong: {
+  loctax: {
     foreground: "#F8A672",
     foregroundDim: "#F8A672a3",
     background: "#2A172B",

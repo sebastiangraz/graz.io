@@ -23,7 +23,7 @@ const media_query = "screen and (min-width:640px)";
 
 const settings = {
   nextScrollDistance: 64,
-  staggerPower: 0.4,
+  staggerPower: 0.36,
   springOptions: {
     damping: 50,
     stiffness: 1000,
@@ -249,7 +249,8 @@ export const Case = React.memo(
                 className="caseContent"
                 sx={{
                   mb: "5vh",
-                  mt: "0",
+                  mt: islastCase ? "50vh" : "0",
+                  pb: islastCase ? "0" : "50vh",
                   opacity: ["1", activeCase ? 1 : 0],
                   transitionProperty: "opacity",
                   transitionDuration: "0.2s",

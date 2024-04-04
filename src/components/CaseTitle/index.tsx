@@ -82,13 +82,15 @@ export const CaseTitle = React.memo(({ name }: { name: string }) => {
 
       <foreignObject width="100%" height="100%" y="1px">
         <div
+          //@ts-ignore
+          xmlns={"http://www.w3.org/1999/xhtml"}
           sx={{
             position: "relative",
             width: "100%",
             height: "100%",
             display: "block",
             overflow: "hidden",
-            zIndex: -10,
+            zIndex: -1,
           }}
         >
           <span
@@ -98,10 +100,9 @@ export const CaseTitle = React.memo(({ name }: { name: string }) => {
               left: "8.8%",
               color: "transparent",
               paddingRight: "0.1em",
-              paddingBottom: "0.1em",
-              backdropFilter: ["none", "blur(24px)"],
+              backdropFilter: ["none", "blur(20px)"],
               display: !isLastCase ? "inline-flex" : "none",
-              transform: "translate(0px, -34%)",
+              transform: "translate(0px, -37.5%)",
               background: ["var(--caseForeground)", "transparent"],
               lineHeight: "1",
             }}

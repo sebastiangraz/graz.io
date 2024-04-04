@@ -1,13 +1,6 @@
 /** @jsxImportSource theme-ui */
 
-import {
-  GridParent,
-  Img,
-  Video,
-  CaseHero,
-  CaseHeroChild,
-  Carousel,
-} from "../../components";
+import { GridParent, Img, Video, CaseHero, CaseHeroChild, Carousel } from "../../components";
 import { images, videos } from "./assets";
 import { Box } from "theme-ui";
 import { motion } from "framer-motion";
@@ -39,10 +32,7 @@ const Icons = () => {
         },
       }}
     >
-      <motion.div
-        variants={childAnimation}
-        transition={{ duration: 0.5, repeat: Infinity }}
-      >
+      <motion.div variants={childAnimation} transition={{ duration: 0.5, repeat: Infinity }}>
         <Img fromFolder="capchase" src={images.heroIcon1} />
       </motion.div>
       <motion.div variants={childAnimation}>
@@ -178,11 +168,8 @@ const Capchase = () => {
             autoplay={true}
             heading={
               <>
-                <span sx={{ color: "var(--caseForeground)" }}>
-                  The brand book
-                </span>{" "}
-                was deliberately leaning towards aspirational to keep the brand
-                open to changes.
+                <span sx={{ color: "var(--caseForeground)" }}>The brand book</span> was deliberately leaning towards
+                aspirational to keep the brand open to changes.
               </>
             }
           >
@@ -202,9 +189,8 @@ const Capchase = () => {
             ratio={[1200, 720]}
             heading={
               <>
-                <span sx={{ color: "var(--caseForeground)" }}>The website</span>{" "}
-                was carefully crafted to prioritize legibility and ease-of-use,
-                with a more subdued aesthetic.
+                <span sx={{ color: "var(--caseForeground)" }}>The website</span> was carefully crafted to prioritize
+                legibility and ease-of-use, with a more subdued aesthetic.
               </>
             }
             mobileBleed
@@ -222,11 +208,8 @@ const Capchase = () => {
             ratio={[1200, 720]}
             heading={
               <>
-                <span sx={{ color: "var(--caseForeground)" }}>
-                  The logotype
-                </span>{" "}
-                had an important mission of being able to extend itself, yet
-                remain unmistakably on brand.
+                <span sx={{ color: "var(--caseForeground)" }}>The logotype</span> had an important mission of being able
+                to extend itself, yet remain unmistakably on brand.
               </>
             }
 
@@ -236,11 +219,6 @@ const Capchase = () => {
             <Img fromFolder="capchase" src={images.capchaseLogo0} />
             <Img fromFolder="capchase" src={images.capchaseLogo2} />
           </Carousel>
-        </Box>
-        <Box
-          sx={{ gridColumn: ["2/span 8", "2 / span 8"], height: ["0", "50vh"] }}
-        >
-          {/* spacer */}
         </Box>
       </GridParent>
     </>

@@ -83,7 +83,7 @@ const routes = Object.entries(
   )
 )
   .map(([relativePath, module]) => {
-    const Page = module.default;
+    const Page = module.default as JSX.Element["type"];
     const path = relativePath.replace("./pages", "").replace("/index.tsx", "");
     const slug = path.replace("./", "");
 
@@ -109,6 +109,7 @@ const routes = Object.entries(
             <CaseMeta {...slugValues[i]} />
           </GridParent>
         )}
+
         <Page></Page>
       </Case>
     );

@@ -1,13 +1,7 @@
 /** @jsxImportSource theme-ui */
 
 import { Box } from "theme-ui";
-import {
-  Img,
-  GridParent,
-  CaseHero,
-  CaseHeroChild,
-  Carousel,
-} from "../../components";
+import { Img, GridParent, CaseHero, CaseHeroChild, Carousel } from "../../components";
 import { images } from "./assets";
 import { Logo } from "./Logo";
 
@@ -94,9 +88,8 @@ const Loupe = () => {
             mobileBleed
             heading={
               <>
-                <span sx={{ color: "var(--caseForeground)" }}>The website</span>{" "}
-                was developed in parallell with the brand, mutually influencing
-                design choices in both directions.
+                <span sx={{ color: "var(--caseForeground)" }}>The website</span> was developed in parallell with the
+                brand, mutually influencing design choices in both directions.
               </>
             }
           >
@@ -105,11 +98,6 @@ const Loupe = () => {
             <Img fromFolder="loupe" src={images.loupeWeb3} deviceBorder />
             <Img fromFolder="loupe" src={images.loupeWeb4} deviceBorder />
           </Carousel>
-        </Box>
-        <Box
-          sx={{ gridColumn: ["2/span 8", "2 / span 8"], height: ["0", "50vh"] }}
-        >
-          {/* spacer */}
         </Box>
       </GridParent>
     </>

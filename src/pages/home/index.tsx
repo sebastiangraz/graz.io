@@ -5,7 +5,7 @@ import { Text, Link, Theme } from "theme-ui";
 import { Logo, List, EmailLink } from "../../components";
 import { m, useScroll, useTransform, useSpring } from "framer-motion";
 import { transparentize } from "@theme-ui/color";
-import resume from "/cv-sebastiangraz.pdf";
+import resume from "@/assets/cv-sebastiangraz.pdf";
 
 const NearestQuarter = () => {
   const amountOfMonthsPadding = 1.5; // Months of padding, decimal values are allowed.

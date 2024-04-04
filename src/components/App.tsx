@@ -18,19 +18,26 @@ export interface PropMapProps {
 export const PropMap = () => {
   const props = {
     home: { hideCaseMeta: true },
+    loctax: {
+      grid: ["2 / span 10", "3 / span 10"],
+      challenge: "Rebrand Loctax to surface their dedication for fairer hiring solutions, no matter the scale.",
+      scope: ["Rebrand & strategy", "Production output"],
+      duration: "4 months + retainer",
+      year: "2023",
+    },
+    gitbook: {
+      grid: ["3 / span 10", "3 / span 10"],
+      challenge: "Rebrand Gitbook to surface their dedication for fairer hiring solutions, no matter the scale.",
+      scope: ["Rebrand & strategy", "Production output"],
+      duration: "2 months + retainer",
+      year: "2024",
+    },
     stacks: {
       grid: ["3 / span 10", "3 / span 10"],
       challenge: "Rebrand Stacks to surface their dedication for fairer hiring solutions, no matter the scale.",
       scope: ["Rebrand & strategy", "Production output"],
       duration: "2 months + retainer",
       year: "2024",
-    },
-    loctax: {
-      grid: ["3 / span 10", "3 / span 10"],
-      challenge: "Rebrand Loctax to surface their dedication for fairer hiring solutions, no matter the scale.",
-      scope: ["Rebrand & strategy", "Production output"],
-      duration: "4 months + retainer",
-      year: "2023",
     },
     capchase: {
       grid: ["2 / span 10", "2 / span 10"],
@@ -40,7 +47,6 @@ export const PropMap = () => {
       duration: "3 months + retainer",
       year: "2022",
     },
-
     metaview: {
       grid: ["3 / span 10", "3 / span 10"],
       challenge: "Rebrand Metaview to surface their dedication for fairer hiring solutions, no matter the scale.",

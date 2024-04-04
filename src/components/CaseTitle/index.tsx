@@ -29,9 +29,7 @@ export const CaseTitle = React.memo(({ name }: { name: string }) => {
   useEffect(() => {
     const resizeHandler = () => {
       const svgParentWidth = svgRef.current?.getBBox().width || 0;
-      const fontSize = Math.min(
-        svgParentWidth / (findLongestName(allCaseNames).length * 0.88)
-      );
+      const fontSize = Math.min(svgParentWidth / (findLongestName(allCaseNames).length * 0.86));
       setFontsize(fontSize);
     };
 
@@ -44,14 +42,12 @@ export const CaseTitle = React.memo(({ name }: { name: string }) => {
     };
   }, [name]);
 
-  const isLastCase =
-    name === "end" && name === allCaseNames[allCaseNames.length - 1];
+  const lastCase = allCaseNames[allCaseNames.length - 1];
+  const isLastCase = lastCase && name === "end";
 
   //if is last case but not named "end" throw error
-  if (isLastCase && name !== "end") {
-    throw new Error(
-      `The last case, (${name}) in the propMap must be named "end". Please rename the last case to "end".`
-    );
+  if (lastCase !== "end") {
+    throw new Error(`The last case, (${name}) in the propMap must be "end"`);
   }
 
   return (
@@ -74,15 +70,7 @@ export const CaseTitle = React.memo(({ name }: { name: string }) => {
       <defs>
         <mask id={`${"sample-" + id}`}>
           <rect width="100%" height="100%" fill="white"></rect>
-          <svg
-            width="8"
-            height="8"
-            x="20"
-            y="20"
-            viewBox="0 0 8 8"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg width="8" height="8" x="20" y="20" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="8" height="8" rx="8" fill="black" />
           </svg>
 
@@ -102,7 +90,7 @@ export const CaseTitle = React.memo(({ name }: { name: string }) => {
             position: "relative",
             width: "100%",
             height: "100%",
-            backdropFilter: ["none", "blur(14px)"],
+            backdropFilter: ["none", "blur(24px)"],
             display: !isLastCase ? "block" : "none",
             background: ["var(--caseForeground)", "transparent"],
           }}
@@ -115,6 +103,7 @@ export const CaseTitle = React.memo(({ name }: { name: string }) => {
         width="100%"
         height="100%"
         fill="currentColor"
+        /*         shapeRendering="crispEdges" */
       ></rect>
     </svg>
   );

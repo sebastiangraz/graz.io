@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import svgrPlugin from "vite-plugin-svgr";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
+import { fileURLToPath, URL } from "url";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -21,4 +22,10 @@ export default defineConfig({
       },
     }),
   ],
+  resolve: {
+    alias: [
+      /* '@': '/src' */
+      { find: "@", replacement: fileURLToPath(new URL("./src", import.meta.url)) },
+    ],
+  },
 });

@@ -4,7 +4,7 @@ import { Text, Box, Link } from "theme-ui";
 import { NumberedList, EmailLink, GridParent } from "../../components";
 import { handleClick } from "../../components/ScrollToTop";
 
-import resume from "/cv-sebastiangraz.pdf";
+import resume from "@/assets/cv-sebastiangraz.pdf";
 
 const End = ({}) => {
   const Sections = {
@@ -61,11 +61,7 @@ const End = ({}) => {
                 </>
                 <>
                   Follow me on{" "}
-                  <Link
-                    target="_blank"
-                    href="https://twitter.com/grazsebastian"
-                    rel="noopener"
-                  >
+                  <Link target="_blank" href="https://twitter.com/grazsebastian" rel="noopener">
                     Twitter
                   </Link>
                 </>

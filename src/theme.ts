@@ -25,10 +25,15 @@ const colors = {
     foregroundDim: "#0F0F147A",
     background: "#FCFBF8",
   },
-  loctax: {
+  loctaxtitlelong: {
     foreground: "#F8A672",
     foregroundDim: "#F8A672a3",
     background: "#2A172B",
+  },
+  gitbook: {
+    foreground: "#181D1F",
+    foregroundDim: "#181D1Fa3",
+    background: "#d8dfdf",
   },
 };
 const space = [0, 4, 6, 12, 14, 16, 20, 24, 32, 56, 72, 112, 156];

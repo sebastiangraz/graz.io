@@ -11,7 +11,6 @@
     "@theme-ui/color": "^0.15.5",
     "@theme-ui/css": "^0.15.5",
     "@theme-ui/match-media": "^0.15.5",
-    "@types/lodash.throttle": "^4.1.9",
     "@types/node": "^18.15.11",
     "@types/react-dom": "^18.0.11",
     "eslint-config-prettier": "^8.8.0",
@@ -46,6 +45,7 @@
   },
   "devDependencies": {
     "@types/lodash.debounce": "^4.0.7",
+    "@types/lodash.throttle": "^4.1.9",
     "@types/react": "^18.0.34",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",

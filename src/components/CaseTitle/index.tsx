@@ -80,21 +80,35 @@ export const CaseTitle = React.memo(({ name }: { name: string }) => {
         </mask>
       </defs>
 
-      <foreignObject width="100%" height="90%" y="1px">
+      <foreignObject width="100%" height="100%" y="1px">
         <div
-          //@ts-ignore
-          xmlns={"http://www.w3.org/1999/xhtml"}
           sx={{
-            contain: "strict",
-            zIndex: -1,
             position: "relative",
             width: "100%",
             height: "100%",
-            backdropFilter: ["none", "blur(24px)"],
-            display: !isLastCase ? "block" : "none",
-            background: ["var(--caseForeground)", "transparent"],
+            display: "block",
+            overflow: "hidden",
+            zIndex: -10,
           }}
-        ></div>
+        >
+          <span
+            sx={{
+              position: "relative",
+              top: "30%",
+              left: "8.8%",
+              color: "transparent",
+              paddingRight: "0.1em",
+              paddingBottom: "0.1em",
+              backdropFilter: ["none", "blur(24px)"],
+              display: !isLastCase ? "inline-flex" : "none",
+              transform: "translate(0px, -34%)",
+              background: ["var(--caseForeground)", "transparent"],
+              lineHeight: "1",
+            }}
+          >
+            {name}
+          </span>
+        </div>
       </foreignObject>
 
       <rect
@@ -103,7 +117,7 @@ export const CaseTitle = React.memo(({ name }: { name: string }) => {
         width="100%"
         height="100%"
         fill="currentColor"
-        /*         shapeRendering="crispEdges" */
+        shapeRendering="crispEdges"
       ></rect>
     </svg>
   );

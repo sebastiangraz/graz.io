@@ -18,10 +18,16 @@ export interface PropMapProps {
 export const PropMap = () => {
   const props = {
     home: { hideCaseMeta: true },
+    stacks: {
+      grid: ["3 / span 10", "3 / span 10"],
+      challenge: "Rebrand Stacks to surface their dedication for fairer hiring solutions, no matter the scale.",
+      scope: ["Rebrand & strategy", "Production output"],
+      duration: "2 months + retainer",
+      year: "2024",
+    },
     loctax: {
       grid: ["3 / span 10", "3 / span 10"],
-      challenge:
-        "Rebrand Loctax to surface their dedication for fairer hiring solutions, no matter the scale.",
+      challenge: "Rebrand Loctax to surface their dedication for fairer hiring solutions, no matter the scale.",
       scope: ["Rebrand & strategy", "Production output"],
       duration: "4 months + retainer",
       year: "2023",
@@ -37,8 +43,7 @@ export const PropMap = () => {
 
     metaview: {
       grid: ["3 / span 10", "3 / span 10"],
-      challenge:
-        "Rebrand Metaview to surface their dedication for fairer hiring solutions, no matter the scale.",
+      challenge: "Rebrand Metaview to surface their dedication for fairer hiring solutions, no matter the scale.",
       scope: ["Rebrand & strategy", "Production output"],
       duration: "4 months + retainer",
       year: "2023",
@@ -108,11 +113,7 @@ const MemoApp = () => {
   return (
     <>
       <Helmet>
-        <meta
-          name="theme-color"
-          content={getColor(theme, "background")}
-          media="(prefers-color-scheme: light)"
-        />
+        <meta name="theme-color" content={getColor(theme, "background")} media="(prefers-color-scheme: light)" />
         <meta
           name="theme-color"
           content={getColor(theme, "background")} //hack to default safari theme

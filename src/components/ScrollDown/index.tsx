@@ -24,10 +24,7 @@ export const ScrollDown = ({
 
   const handleClick = () => {
     setClicked(true);
-    window.scrollTo(
-      0,
-      position - (0 && settings.nextScrollDistance) + staggeredOffset
-    );
+    window.scrollTo(0, position - (0 && settings.nextScrollDistance) + staggeredOffset);
   };
 
   return (
@@ -72,13 +69,7 @@ export const ScrollDown = ({
         },
       }}
     >
-      <svg
-        width="10"
-        height="10"
-        viewBox="0 0 10 10"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M1 4L5 8L9 4" stroke="currentColor" strokeWidth="1.2" />
       </svg>
       <svg

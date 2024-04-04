@@ -1,14 +1,7 @@
 /** @jsxImportSource theme-ui */
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import {
-  m,
-  useSpring,
-  transform,
-  useTransform,
-  useScroll,
-  MotionValue,
-} from "framer-motion";
+import { m, useSpring, transform, useTransform, useScroll, MotionValue } from "framer-motion";
 import { useCaseWrapperContext, CaseTitle } from "..";
 import { useResponsiveValue } from "@theme-ui/match-media";
 import { ScrollDown } from "..";
@@ -52,28 +45,18 @@ interface useStaggeredPositionReturn {
   activeCase: boolean;
 }
 
-const useStaggeredPosition = ({
-  index,
-  childHeight,
-  childPosition,
-  windowHeight,
-}: useStaggeredPositionProps) => {
+const useStaggeredPosition = ({ index, childHeight, childPosition, windowHeight }: useStaggeredPositionProps) => {
   const { scrollY } = useScroll();
 
   const responsiveOffset = useResponsiveValue([50, 75, 200, 240]);
 
-  const height = useCallback(
-    (pos: number) => childHeight[pos ? index - pos : index] || 0,
-    [childHeight, index]
-  );
+  const height = useCallback((pos: number) => childHeight[pos ? index - pos : index] || 0, [childHeight, index]);
   const [activeCase, setIsActiveState] = React.useState(false);
 
-  const position = (pos: number) =>
-    childPosition[pos ? index - pos : index] || 0;
+  const position = (pos: number) => childPosition[pos ? index - pos : index] || 0;
 
   const offset = (responsiveOffset / (index + 1)) * settings.staggerPower;
-  const staggeredOffset =
-    index !== 0 ? -childPosition.length * offset + index * offset : 0;
+  const staggeredOffset = index !== 0 ? -childPosition.length * offset + index * offset : 0;
 
   const updatePos = (v: number) => {
     const progress = v - position(0) + windowHeight;
@@ -128,14 +111,14 @@ export const Case = React.memo(
     const theme = useThemeUI() as any;
     const ref = useRef(null) as any;
 
-    const { childHeight, childPosition, windowHeight } =
-      useCaseWrapperContext() as CaseWrapperState;
+    const { childHeight, childPosition, windowHeight } = useCaseWrapperContext() as CaseWrapperState;
 
     const isMobile = useResponsiveValue([true, false]);
 
-    const bg = theme.theme?.rawColors?.[slug || ""]?.background;
-    const fg = theme.theme?.rawColors?.[slug || ""]?.foreground;
-    const fd = theme.theme?.rawColors?.[slug || ""]?.foregroundDim;
+    const bg = theme.theme?.rawColors?.[slug || ""]?.background || "#ffffff";
+    const fg = theme.theme?.rawColors?.[slug || ""]?.foreground || "#05010c";
+    const fd = theme.theme?.rawColors?.[slug || ""]?.foregroundDim || "#05010c99";
+
     const isHome = slug === "home";
     const islastCase = index === childHeight.length - 1;
 
@@ -158,10 +141,7 @@ export const Case = React.memo(
       // scroll to top of case
       window.matchMedia(media_query).matches
         ? window.scrollTo({
-            top:
-              childPosition[index] -
-              (index !== 1 ? settings.nextScrollDistance : 0) +
-              staggeredOffset,
+            top: childPosition[index] - (index !== 1 ? settings.nextScrollDistance : 0) + staggeredOffset,
             left: 0,
             behavior: "smooth",
           })
@@ -169,10 +149,8 @@ export const Case = React.memo(
     };
     // -----CLICK TO SCROLLTO CASE-----
 
-    const gridCount = (arr: number) =>
-      propmap?.grid && propmap?.grid[arr].split("span ")[1];
-    const gridPosition = (arr: number) =>
-      propmap?.grid && propmap?.grid[arr].split(" /")[0];
+    const gridCount = (arr: number) => propmap?.grid && propmap?.grid[arr].split("span ")[1];
+    const gridPosition = (arr: number) => propmap?.grid && propmap?.grid[arr].split(" /")[0];
 
     return (
       <>
@@ -214,12 +192,7 @@ export const Case = React.memo(
                 pointerEvents: "none",
                 // willChange: "transform", //willChange messes up antialiasing but at the cost of performance. (Performance gains negligible though)
                 display: "grid",
-                gridTemplateColumns: [
-                  "repeat(10, 1fr)",
-                  "repeat(10, 1fr)",
-                  "repeat(12, 1fr)",
-                  "repeat(12, 1fr)",
-                ],
+                gridTemplateColumns: ["repeat(10, 1fr)", "repeat(10, 1fr)", "repeat(12, 1fr)", "repeat(12, 1fr)"],
                 color: fg,
                 zIndex: index,
               } as ThemeUICSSObject
@@ -238,12 +211,7 @@ export const Case = React.memo(
                 pointerEvents: "auto",
                 position: "relative",
 
-                gridColumn: [
-                  "span 12",
-                  null,
-                  propmap?.grid && propmap.grid[0],
-                  propmap?.grid && propmap.grid[1],
-                ],
+                gridColumn: ["span 12", null, propmap?.grid && propmap.grid[0], propmap?.grid && propmap.grid[1]],
               }}
             >
               <m.div
@@ -270,12 +238,7 @@ export const Case = React.memo(
                   {
                     height: [
                       `calc(100% - ${180 - 2}px)`,
-                      `calc(100% - ${
-                        300 -
-                        2 -
-                        (index !== 1 ? settings.nextScrollDistance : 0) +
-                        staggeredOffset
-                      }px)`,
+                      `calc(100% - ${300 - 2 - (index !== 1 ? settings.nextScrollDistance : 0) + staggeredOffset}px)`,
                     ],
                     ...caseBg,
                   } as ThemeUICSSObject
@@ -303,9 +266,7 @@ export const Case = React.memo(
         {useScrollToCaseOnMount({
           slug,
           scrollToVal: window.matchMedia(media_query).matches
-            ? childPosition[index] -
-              (index !== 1 ? settings.nextScrollDistance : 0) +
-              staggeredOffset
+            ? childPosition[index] - (index !== 1 ? settings.nextScrollDistance : 0) + staggeredOffset
             : childPosition[index],
         })}
       </>

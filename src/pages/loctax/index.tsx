@@ -1,13 +1,6 @@
 /** @jsxImportSource theme-ui */
 
-import {
-  GridParent,
-  Img,
-  Video,
-  CaseHero,
-  CaseHeroChild,
-  Carousel,
-} from "../../components";
+import { GridParent, Img, Video, CaseHero, CaseHeroChild, Carousel } from "../../components";
 
 import { images, videos } from "./assets";
 import { Box } from "theme-ui";
@@ -109,14 +102,12 @@ const Loctax = () => {
             mobileBleed
             heading={
               <>
-                <span sx={{ color: "var(--caseForeground)" }}>The website</span>{" "}
-                utilized the brand’s vibrancy to the fullest extent, with bold
-                colors, paired with tangled-ribbonny-
+                <span sx={{ color: "var(--caseForeground)" }}>The website</span> utilized the brand’s vibrancy to the
+                fullest extent, with bold colors, paired with tangled-ribbonny-
                 <span
                   sx={{
                     // text gradient
-                    backgroundImage:
-                      "linear-gradient(to right, #1552e1 0%, #5aa598 100%)",
+                    backgroundImage: "linear-gradient(to right, #1552e1 0%, #5aa598 100%)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                   }}
@@ -141,12 +132,8 @@ const Loctax = () => {
             ratio={[1200, 675]}
             heading={
               <>
-                <span sx={{ color: "var(--caseForeground)" }}>
-                  The visual language
-                </span>{" "}
-                was developed in accordance with the company values, which were
-                collaboratively refined during the early stages of brand
-                discovery.
+                <span sx={{ color: "var(--caseForeground)" }}>The visual language</span> was developed in accordance
+                with the company values, which were collaboratively refined during the early stages of brand discovery.
               </>
             }
 
@@ -161,11 +148,7 @@ const Loctax = () => {
           </Carousel>
         </Box>
 
-        <Box
-          sx={{ gridColumn: ["2/span 8", "2 / span 8"], height: ["0", "50vh"] }}
-        >
-          {/* spacer */}
-        </Box>
+        <Box sx={{ gridColumn: ["2/span 8", "2 / span 8"], height: ["0", "50vh"] }}>{/* spacer */}</Box>
       </GridParent>
     </>
   );

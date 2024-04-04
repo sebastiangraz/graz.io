@@ -4,13 +4,7 @@ import { Box } from "theme-ui";
 import React, { ReactElement } from "react";
 import { motion } from "framer-motion";
 
-export const CaseHero = ({
-  heroHeight,
-  children,
-}: {
-  heroHeight: number;
-  children: React.ReactNode;
-}) => {
+export const CaseHero = ({ heroHeight, children }: { heroHeight: number; children: React.ReactNode }) => {
   const registerHeroHeight = () => heroHeight || 0;
 
   const MotionBox = motion(Box);
@@ -46,11 +40,7 @@ interface CaseHeroChildProps {
   registerHeroHeight?: () => number;
 }
 
-export const CaseHeroChild = ({
-  childStyle,
-  children,
-  registerHeroHeight = () => 0,
-}: CaseHeroChildProps) => {
+export const CaseHeroChild = ({ childStyle, children, registerHeroHeight = () => 0 }: CaseHeroChildProps) => {
   const heroHeight = registerHeroHeight();
 
   const isImage = children.props?.src ? true : false;

@@ -46,7 +46,7 @@ interface useStaggeredPositionReturn {
 }
 
 export const generateScaledArray = (length: number, max: number, bias: number): number[] => {
-  if (bias < -1 || bias > 1) throw new Error("bias must be between -1 and 1");
+  if (bias < -2 || bias > 2) throw new Error("bias must be between -2 and 2");
 
   const adjustBias = (t: number, bias: number): number => {
     if (bias === 0) return t; // No bias
@@ -57,7 +57,7 @@ export const generateScaledArray = (length: number, max: number, bias: number): 
     const t = i / (length - 1);
     const adjustedT = adjustBias(t, bias);
     const value = max - adjustedT * max;
-    return Number(value.toFixed(0)); // Round to integer for simplicity
+    return Number(value.toFixed(1)); // Round to integer for simplicity
   });
 };
 
@@ -71,12 +71,8 @@ const useStaggeredPosition = ({ index, childHeight, childPosition, windowHeight 
   const height = (pos: number) => childHeight[pos ? index - pos : index] || 0;
   const position = (pos: number) => childPosition[pos ? index - pos : index] || 0;
 
-  const offset = responsiveOffset / index;
-  /*   const staggeredOffset = index !== 0 ? -childPosition.length * offset + index * offset : 0; */
-
-  const staggeredOffset = index !== 0 ? -generateScaledArray(childHeight.length, 400, -1)[index] || 0 : 0;
-
-  /*   console.log(-generateScaledArray(10, 100, 0.5)[index]); */
+  const staggeredOffset =
+    index !== 0 ? -generateScaledArray(childHeight.length, responsiveOffset, -1)[index - 1] || 0 : 0;
 
   const updatePos = (v: number) => {
     const progress = v - position(0) + windowHeight;

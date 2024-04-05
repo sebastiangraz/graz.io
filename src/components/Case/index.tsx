@@ -46,13 +46,13 @@ interface useStaggeredPositionReturn {
 }
 
 const useStaggeredPosition = ({ index, childHeight, childPosition, windowHeight }: useStaggeredPositionProps) => {
+  const [activeCase, setIsActiveState] = React.useState(false);
+
   const { scrollY } = useScroll();
 
   const responsiveOffset = useResponsiveValue([50, 75, 200, 240]);
 
-  const height = useCallback((pos: number) => childHeight[pos ? index - pos : index] || 0, [childHeight, index]);
-  const [activeCase, setIsActiveState] = React.useState(false);
-
+  const height = (pos: number) => childHeight[pos ? index - pos : index] || 0;
   const position = (pos: number) => childPosition[pos ? index - pos : index] || 0;
 
   const offset = (responsiveOffset / (index + 1)) * settings.staggerPower;

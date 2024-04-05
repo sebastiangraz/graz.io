@@ -23,7 +23,7 @@ const media_query = "screen and (min-width:640px)";
 
 const settings = {
   nextScrollDistance: 64,
-  staggerPower: 0.36,
+  staggerPower: 0.5,
   springOptions: {
     damping: 50,
     stiffness: 1000,
@@ -45,6 +45,22 @@ interface useStaggeredPositionReturn {
   activeCase: boolean;
 }
 
+export const generateScaledArray = (length: number, max: number, bias: number): number[] => {
+  if (bias < -1 || bias > 1) throw new Error("bias must be between -1 and 1");
+
+  const adjustBias = (t: number, bias: number): number => {
+    if (bias === 0) return t; // No bias
+    return bias > 0 ? Math.pow(t, 1 + bias) : 1 - Math.pow(1 - t, 1 - bias);
+  };
+
+  return Array.from({ length }, (_, i) => {
+    const t = i / (length - 1);
+    const adjustedT = adjustBias(t, bias);
+    const value = max - adjustedT * max;
+    return Number(value.toFixed(0)); // Round to integer for simplicity
+  });
+};
+
 const useStaggeredPosition = ({ index, childHeight, childPosition, windowHeight }: useStaggeredPositionProps) => {
   const [activeCase, setIsActiveState] = React.useState(false);
 
@@ -55,8 +71,12 @@ const useStaggeredPosition = ({ index, childHeight, childPosition, windowHeight 
   const height = (pos: number) => childHeight[pos ? index - pos : index] || 0;
   const position = (pos: number) => childPosition[pos ? index - pos : index] || 0;
 
-  const offset = (responsiveOffset / (index + 1)) * settings.staggerPower;
-  const staggeredOffset = index !== 0 ? -childPosition.length * offset + index * offset : 0;
+  const offset = responsiveOffset / index;
+  /*   const staggeredOffset = index !== 0 ? -childPosition.length * offset + index * offset : 0; */
+
+  const staggeredOffset = index !== 0 ? -generateScaledArray(childHeight.length, 400, -1)[index] || 0 : 0;
+
+  /*   console.log(-generateScaledArray(10, 100, 0.5)[index]); */
 
   const updatePos = (v: number) => {
     const progress = v - position(0) + windowHeight;

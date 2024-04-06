@@ -70,7 +70,7 @@ const useStaggeredPosition = ({ index, childHeight, childPosition, windowHeight 
   const height = (pos: number) => childHeight[pos ? index - pos : index] || 0;
   const position = (pos: number) => childPosition[pos ? index - pos : index] || 0;
 
-  const staggeredOffset = -generateScaledArray(childHeight.length, responsiveOffset, -1)[index - 1] || 0;
+  const staggeredOffset = -generateScaledArray(childHeight.length, responsiveOffset, 0)[index - 1] || 0;
 
   const updatePos = (v: number) => {
     const progress = v - position(0) + windowHeight;
@@ -81,7 +81,7 @@ const useStaggeredPosition = ({ index, childHeight, childPosition, windowHeight 
     const progress = v - position(0) + height(1);
     return transform(
       progress,
-      [-height(1) * 3, -windowHeight, height(1) - windowHeight],
+      [-position(0), -position(1), height(1) - windowHeight],
       [0, staggeredOffset, staggeredOffset - settings.nextScrollDistance]
     );
   };

@@ -90,6 +90,7 @@ export const CaseTitle = React.memo(({ name }: { name: string }) => {
             height: "100%",
             display: "block",
             overflow: "hidden",
+            userSelect: "none",
             zIndex: -1,
           }}
         >

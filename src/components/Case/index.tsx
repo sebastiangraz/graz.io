@@ -1,6 +1,6 @@
 /** @jsxImportSource theme-ui */
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { m, useSpring, transform, useTransform, useScroll, MotionValue } from "framer-motion";
 import { useCaseWrapperContext, CaseTitle } from "..";
 import { useResponsiveValue } from "@theme-ui/match-media";
@@ -129,9 +129,14 @@ export const Case = React.memo(
 
     const isMobile = useResponsiveValue([true, false]);
 
-    const bg = theme.theme?.rawColors?.[slug || ""]?.background || "#ffffff";
-    const fg = theme.theme?.rawColors?.[slug || ""]?.foreground || "#05010c";
-    const fd = theme.theme?.rawColors?.[slug || ""]?.foregroundDim || "#05010c99";
+    const { bg, fg, fd } = useMemo(() => {
+      const colors = theme.theme?.rawColors?.[slug || ""] || {
+        background: "#ffffff",
+        foreground: "#05010c",
+        foregroundDim: "#05010c99",
+      };
+      return { bg: colors.background, fg: colors.foreground, fd: colors.foregroundDim };
+    }, [theme.theme?.rawColors, slug]);
 
     const isHome = slug === "home";
     const islastCase = index === childHeight.length - 1;

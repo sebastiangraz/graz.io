@@ -39,14 +39,6 @@ export const PropMap = () => {
       duration: "2 months + retainer",
       year: "2024",
     },
-    capchase: {
-      grid: ["2 / span 10", "2 / span 10"],
-      challenge:
-        "Position the brand as a frontrunner in non-dilutable financing, while bringing to light the business-partner vibe.",
-      scope: ["Complete rebrand", "Production output", "Developer handoff"],
-      duration: "3 months + retainer",
-      year: "2022",
-    },
     metaview: {
       grid: ["3 / span 10", "3 / span 10"],
       challenge: "Rebrand Metaview to surface their dedication for fairer hiring solutions, no matter the scale.",
@@ -61,6 +53,14 @@ export const PropMap = () => {
       scope: ["Visual identity", "Front-end"],
       duration: "3 months",
       year: "2020",
+    },
+    capchase: {
+      grid: ["2 / span 10", "2 / span 10"],
+      challenge:
+        "Position the brand as a frontrunner in non-dilutable financing, while bringing to light the business-partner vibe.",
+      scope: ["Complete rebrand", "Production output", "Developer handoff"],
+      duration: "3 months + retainer",
+      year: "2022",
     },
     end: {
       hideCaseMeta: true,

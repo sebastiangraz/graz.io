@@ -23,6 +23,7 @@ const media_query = "screen and (min-width:640px)";
 
 const settings = {
   nextScrollDistance: 64,
+  staggerBias: 0, // -3 to 3
   springOptions: {
     damping: 50,
     stiffness: 1000,
@@ -70,7 +71,8 @@ const useStaggeredPosition = ({ index, childHeight, childPosition, windowHeight 
   const height = (pos: number) => childHeight[pos ? index - pos : index] || 0;
   const position = (pos: number) => childPosition[pos ? index - pos : index] || 0;
 
-  const staggeredOffset = -generateScaledArray(childHeight.length, responsiveOffset, 0)[index - 1] || 0;
+  const staggeredOffset =
+    -generateScaledArray(childHeight.length, responsiveOffset, settings.staggerBias)[index - 1] || 0;
 
   const updatePos = (v: number) => {
     const progress = v - position(0) + windowHeight;

@@ -40,8 +40,8 @@ export function Logo() {
       fill="none"
       viewBox="0 0 280 280"
       variants={list}
-      sx={{ height: "auto", width: "100%" }}
       whileInView="visible"
+      sx={{ height: "auto", width: "100%" }}
     >
       <m.path
         variants={item}

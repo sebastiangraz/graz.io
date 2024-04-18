@@ -11,9 +11,9 @@ const colors = {
     background: "#E7EFE8",
   },
   loupe: {
-    foreground: "#184629",
-    foregroundDim: "#1846297D",
-    background: "#D2DAD3",
+    foreground: "#1A0319",
+    foregroundDim: "#1A0319a3",
+    background: "#E6CFE5",
   },
   end: {
     foreground: "#000",

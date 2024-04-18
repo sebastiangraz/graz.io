@@ -22,13 +22,7 @@ interface ImgProps {
   deviceBorder?: boolean;
 }
 
-export const Img = ({
-  src,
-  fromFolder,
-  ignoreShadow = false,
-  deviceBorder = false,
-  ...sx
-}: ImgProps) => {
+export const Img = ({ src, fromFolder, ignoreShadow = false, deviceBorder = false, ...sx }: ImgProps) => {
   if (!src || !fromFolder) return null;
 
   const [naturalDimensions, setNaturalDimensions] = useState({
@@ -53,15 +47,9 @@ export const Img = ({
         pointerEvents: "none",
         position: "absolute",
         width: `calc(100% * ${naturalDimensions.width} / ${src?.width! * 2})`,
-        height: `calc(100% * ${naturalDimensions.height} / ${
-          src?.height! * 2
-        })`,
-        left: `calc(50% - 100% * ${naturalDimensions.width} / ${
-          src?.width! * 2
-        } / 2)`,
-        top: `calc(50% - 100% * ${naturalDimensions.height} / ${
-          src?.height! * 2
-        } / 2)`,
+        height: `calc(100% * ${naturalDimensions.height} / ${src?.height! * 2})`,
+        left: `calc(50% - 100% * ${naturalDimensions.width} / ${src?.width! * 2} / 2)`,
+        top: `calc(50% - 100% * ${naturalDimensions.height} / ${src?.height! * 2} / 2)`,
       } as ThemeUICSSObject)
     : {};
 

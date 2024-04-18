@@ -1,17 +1,65 @@
 /** @jsxImportSource theme-ui */
 
 import { GridParent, Img, Video, CaseHero, CaseHeroChild, Carousel } from "../../components";
-
 import { images, videos } from "./assets";
 import { Box } from "theme-ui";
+import { m } from "framer-motion";
 
 const Loctax = () => {
+  const list = {
+    visible: {
+      transition: {
+        type: "tween",
+      },
+    },
+    hidden: {
+      transition: {
+        type: "tween",
+      },
+    },
+  };
+
+  const item = {
+    visible: {
+      pathLength: 0.158,
+      opacity: 1,
+      transition: { duration: 4, ease: [0.5, 0, 0.2, 1], delay: 0.4 },
+    },
+    hidden: { pathLength: 0, opacity: 0 },
+  };
+
   return (
     <>
       <GridParent sx={{ rowGap: "clamp(8rem, 16vw, 16rem)" }}>
-        <CaseHero heroHeight={1214}>
+        <CaseHero heroHeight={1200}>
           <CaseHeroChild>
-            <Img src={images.heroMobile} fromFolder="metaview" />
+            <Img src={images.heroPhone} fromFolder="loctax" ignoreShadow />
+          </CaseHeroChild>
+
+          <CaseHeroChild
+            childStyle={{
+              marginLeft: "30%",
+              marginTop: "0%",
+            }}
+          >
+            {/* <Img src={images.heroIllu1} fromFolder="loctax" /> */}
+            <m.svg
+              variants={list}
+              whileInView="visible"
+              width="240"
+              height="240"
+              viewBox="0 0 240 240"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <m.path
+                variants={item}
+                initial={{ opacity: 0, pathLength: 0 }}
+                d="M200 30C194.477 30 190 34.4772 190 40C190 45.5228 185.523 50 180 50C174.477 50 170 45.5228 170 40V20C170 14.4772 174.477 10 180 10M40 210C45.5228 210 50 214.477 50 220M20 50C25.5228 50 30 45.5228 30 40M210 40C210 45.5228 214.477 50 220 50M210 60C210 54.4772 205.523 50 200 50C194.477 50 190 54.4772 190 60C190 65.5228 185.523 70 180 70C174.477 70 170 74.4772 170 80C170 85.5228 165.523 90 160 90C154.477 90 150 94.4772 150 100C150 105.523 154.477 110 160 110C165.523 110 170 105.523 170 100C170 94.4772 174.477 90 180 90H220C225.523 90 230 94.4772 230 100C230 105.523 234.477 110 240 110M20 190C25.5228 190 30 194.477 30 200M240 170C234.477 170 230 174.477 230 180C230 185.523 225.523 190 220 190M240 70C234.477 70 230 65.5228 230 60M1.90735e-06 170C5.52285 170 10 165.523 10 160C10 154.477 14.4772 150 20 150H40C45.5228 150 50 145.523 50 140C50 134.477 45.5228 130 40 130C34.4772 130 30 125.523 30 120C30 114.477 25.5228 110 20 110C14.4772 110 10 105.523 10 100C10 94.4772 5.52285 90 1.90735e-06 90M1.90735e-06 70C5.52285 70 10 65.5228 10 60M180 230C174.477 230 170 225.523 170 220V200C170 194.477 165.523 190 160 190C154.477 190 150 185.523 150 180C150 174.477 154.477 170 160 170C165.523 170 170 174.477 170 180C170 185.523 174.477 190 180 190C185.523 190 190 185.523 190 180C190 174.477 185.523 170 180 170C174.477 170 170 165.523 170 160V140C170 134.477 174.477 130 180 130H240M60 230C65.5228 230 70 234.477 70 240M90 240V220C90 214.477 94.4772 210 100 210C105.523 210 110 205.523 110 200V180C110 174.477 105.523 170 100 170C94.4772 170 90 165.523 90 160C90 154.477 85.5228 150 80 150C74.4772 150 70 145.523 70 140C70 134.477 65.5228 130 60 130C54.4772 130 50 125.523 50 120C50 114.477 54.4772 110 60 110C65.5228 110 70 105.523 70 100V80C70 74.4772 74.4772 70 80 70H100C105.523 70 110 65.5228 110 60V40C110 34.4772 105.523 30 100 30C94.4772 30 90 25.5228 90 20C90 14.4772 94.4772 10 100 10C105.523 10 110 5.52285 110 0M40 30C45.5228 30 50 25.5228 50 20M60 10C65.5228 10 70 5.52285 70 0M240 150C234.477 150 230 154.477 230 160M160 210C154.477 210 150 205.523 150 200C150 205.523 145.523 210 140 210C134.477 210 130 205.523 130 200C130 205.523 125.523 210 120 210M160 230C154.477 230 150 225.523 150 220C150 225.523 145.523 230 140 230C134.477 230 130 225.523 130 220C130 225.523 125.523 230 120 230C114.477 230 110 225.523 110 220C110 225.523 105.523 230 100 230M160 30C154.477 30 150 25.5228 150 20C150 25.5228 145.523 30 140 30C134.477 30 130 25.5228 130 20C130 25.5228 125.523 30 120 30M160 10C154.477 10 150 5.52285 150 0C150 5.52285 145.523 10 140 10C134.477 10 130 5.52285 130 0C130 5.52285 125.523 10 120 10M230 120C230 114.477 225.523 110 220 110C214.477 110 210 105.523 210 100C210 105.523 205.523 110 200 110C194.477 110 190 105.523 190 100C190 105.523 185.523 110 180 110M20 130C14.4772 130 10 125.523 10 120C10 125.523 5.52285 130 0 130M160 130C154.477 130 150 125.523 150 120C150 125.523 145.523 130 140 130C134.477 130 130 125.523 130 120C130 125.523 125.523 130 120 130C114.477 130 110 125.523 110 120C110 125.523 105.523 130 100 130C94.4772 130 90 125.523 90 120C90 125.523 85.5228 130 80 130M80 110C85.5228 110 90 105.523 90 100C90 105.523 94.4772 110 100 110C105.523 110 110 105.523 110 100C110 105.523 114.477 110 120 110C125.523 110 130 105.523 130 100C130 105.523 134.477 110 140 110M160 50C154.477 50 150 45.5228 150 40C150 45.5228 145.523 50 140 50C134.477 50 130 45.5228 130 40C130 45.5228 125.523 50 120 50M160 70C154.477 70 150 65.5228 150 60C150 65.5228 145.523 70 140 70C134.477 70 130 65.5228 130 60C130 65.5228 125.523 70 120 70M140 190C134.477 190 130 185.523 130 180C130 185.523 125.523 190 120 190M140 90C134.477 90 130 85.5228 130 80C130 85.5228 125.523 90 120 90C114.477 90 110 85.5228 110 80C110 85.5228 105.523 90 100 90C94.4772 90 90 85.5228 90 80C90 85.5228 85.5228 90 80 90M100 150C105.523 150 110 145.523 110 140C110 145.523 114.477 150 120 150C125.523 150 130 145.523 130 140C130 145.523 134.477 150 140 150C145.523 150 150 145.523 150 140C150 145.523 154.477 150 160 150M140 170C134.477 170 130 165.523 130 160C130 165.523 125.523 170 120 170"
+                stroke="currentColor"
+                strokeWidth="2"
+              />
+            </m.svg>
           </CaseHeroChild>
 
           <CaseHeroChild
@@ -20,80 +68,61 @@ const Loctax = () => {
               marginTop: "0%",
             }}
           >
-            <Img src={images.heroCard} fromFolder="metaview" ignoreShadow />
+            <Img src={images.heroIcons} fromFolder="loctax" />
           </CaseHeroChild>
+
           <CaseHeroChild
             childStyle={{
-              marginLeft: "0%",
-              marginTop: "41%",
+              marginLeft: "12%",
+              marginTop: "46%",
             }}
           >
-            <Img src={images.heroChart} fromFolder="metaview" ignoreShadow />
+            <Img src={images.heroIllu2} fromFolder="loctax" />
           </CaseHeroChild>
+
           <CaseHeroChild
             childStyle={{
-              marginLeft: "55.5%",
-              marginTop: "32%",
-              display: "grid",
-              width: "calc(100% * 170 / 1200)",
-              height: "calc(100% * 448 / 1200)",
-              "&>picture": {
-                zIndex: 1,
-                gridArea: "1 / 1",
-                width: "100%",
-                height: "auto",
-              },
+              marginLeft: "43%",
+              marginTop: "22.5%",
             }}
           >
-            <>
-              <Img src={images.heroIcons} fromFolder="metaview" />
-              <Video
-                src={videos.metabot}
-                fromFolder="metaview"
-                sx={{
-                  display: "flex",
-                  borderRadius: "99em",
-                  overflow: "hidden",
-                  gridArea: "1/1",
-                  width: "50%",
-                  height: "auto",
-                  zIndex: 2,
-                  position: "absolute",
-                }}
-              />
-            </>
+            <Img src={images.heroIllu3} fromFolder="loctax" />
           </CaseHeroChild>
+
           <CaseHeroChild
             childStyle={{
               marginLeft: "auto",
-              marginTop: "31.4%",
+              marginTop: "18%",
             }}
           >
-            <Img src={images.heroGreenRibbon} fromFolder="metaview" />
+            <Img src={images.heroIconography} fromFolder="loctax" />
           </CaseHeroChild>
+
           <CaseHeroChild
             childStyle={{
               marginLeft: "0%",
               marginTop: "auto",
             }}
           >
-            <Img src={images.heroBubble} fromFolder="metaview" />
+            <Img src={images.heroColorchart} fromFolder="loctax" />
           </CaseHeroChild>
+
           <CaseHeroChild
             childStyle={{
-              marginLeft: "35%",
-              marginTop: "auto",
+              marginLeft: "37.5%",
+              marginTop: "37.33%",
             }}
           >
-            <Img src={images.heroSpag} fromFolder="metaview" ignoreShadow />
+            <Img src={images.heroAppicon} fromFolder="loctax" />
           </CaseHeroChild>
+
           <CaseHeroChild
             childStyle={{
               marginLeft: "auto",
               marginTop: "auto",
             }}
           >
-            <Img src={images.heroCTA} fromFolder="metaview" />
+            <Img src={images.heroConnect} fromFolder="loctax" />
           </CaseHeroChild>
         </CaseHero>
         <Box sx={{ gridColumn: ["2/span 8", "2 / span 8"] }}>
@@ -120,11 +149,11 @@ const Loctax = () => {
 
             // onChangeIndex={(index) => console.log("Active index:", index)}
           >
-            <Img fromFolder="metaview" src={images.web0} deviceBorder />
-            <Img fromFolder="metaview" src={images.web1} deviceBorder />
-            <Img fromFolder="metaview" src={images.web2} deviceBorder />
-            <Img fromFolder="metaview" src={images.web3} deviceBorder />
-            <Img fromFolder="metaview" src={images.web4} />
+            <Img fromFolder="loctax" src={images.web0} deviceBorder />
+            <Img fromFolder="loctax" src={images.web1} deviceBorder />
+            <Img fromFolder="loctax" src={images.web2} deviceBorder />
+            <Img fromFolder="loctax" src={images.web3} deviceBorder />
+            <Img fromFolder="loctax" src={images.web4} />
           </Carousel>
         </Box>
         <Box sx={{ gridColumn: ["2/span 8", "2 / span 8"] }}>
@@ -139,12 +168,12 @@ const Loctax = () => {
 
             // onChangeIndex={(index) => console.log("Active index:", index)}
           >
-            <Img fromFolder="metaview" src={images.bb0} />
-            <Img fromFolder="metaview" src={images.bb1} />
-            <Img fromFolder="metaview" src={images.bb2} />
-            <Img fromFolder="metaview" src={images.bb3} />
-            <Img fromFolder="metaview" src={images.bb4} />
-            <Img fromFolder="metaview" src={images.bb5} />
+            <Img fromFolder="loctax" src={images.bb0} />
+            <Img fromFolder="loctax" src={images.bb1} />
+            <Img fromFolder="loctax" src={images.bb2} />
+            <Img fromFolder="loctax" src={images.bb3} />
+            <Img fromFolder="loctax" src={images.bb4} />
+            <Img fromFolder="loctax" src={images.bb5} />
           </Carousel>
         </Box>
       </GridParent>

@@ -10,6 +10,7 @@ import { CaseWrapperState } from "../CaseWrapper";
 import { PropMapProps } from "../App";
 import { useUpdateURL } from "../hooks/useUpdateURL";
 import { useScrollToCaseOnMount } from "../hooks/useScrollToCaseOnMount";
+import { useStaggeredPosition } from "../hooks/useStaggeredPosition";
 
 const caseBg = {
   width: "100%",
@@ -21,7 +22,7 @@ const caseBg = {
 
 const media_query = "screen and (min-width:640px)";
 
-const settings = {
+export const settings = {
   nextScrollDistance: 64,
   staggerBias: -1, // -3 to 3
   springOptions: {
@@ -30,13 +31,6 @@ const settings = {
     mass: 0.1,
   },
 };
-
-interface useStaggeredPositionProps {
-  index: number;
-  childHeight: number[];
-  childPosition: number[];
-  windowHeight: number;
-}
 
 interface useStaggeredPositionReturn {
   y: MotionValue<number>;
@@ -59,60 +53,6 @@ export const generateScaledArray = (length: number = 0, max: number = 100, bias:
     const value = max - adjustedT * max;
     return Number(value.toFixed(1)); // Round to integer for simplicity
   });
-};
-
-const useStaggeredPosition = ({ index, childHeight, childPosition, windowHeight }: useStaggeredPositionProps) => {
-  const [activeCase, setIsActiveCase] = React.useState(false);
-
-  const { scrollY } = useScroll();
-
-  const responsiveOffset = useResponsiveValue([50, 75, 200, 240]);
-
-  const height = (pos: number) => childHeight[pos ? index - pos : index] || 0;
-  const position = (pos: number) => childPosition[pos ? index - pos : index] || 0;
-
-  const staggeredOffset =
-    -generateScaledArray(childHeight.length, responsiveOffset, settings.staggerBias)[index - 1] || 0;
-
-  const updatePos = (v: number) => {
-    const progress = v - position(0) + windowHeight;
-    return transform(progress, [0, height(0)], [0, -height(0)]);
-  };
-
-  const updatePosNext = (v: number) => {
-    const progress = v - position(0) + height(1);
-
-    console.log(v, progress, position(0), height(1));
-
-    return transform(
-      progress,
-      [-position(0), -position(1), height(1) - windowHeight],
-      [0, staggeredOffset, staggeredOffset - settings.nextScrollDistance]
-    );
-  };
-
-  const y = useSpring(
-    useTransform(scrollY, (v) => updatePos(v)),
-    settings.springOptions
-  );
-
-  const yNext = useSpring(
-    useTransform(scrollY, (v) => updatePosNext(v)),
-    settings.springOptions
-  );
-
-  const isActive = useTransform(scrollY, (v) => updatePos(v));
-
-  useEffect(() => {
-    isActive.on("change", (e) => {
-      const isLastItem = index === childHeight.length - 1;
-      const lastItemThreshold = isLastItem ? 5 : 0;
-
-      setIsActiveCase(e > -height(0) - lastItemThreshold && e < 0);
-    });
-  }, [childHeight, height, index, isActive]);
-
-  return { y, yNext, staggeredOffset, activeCase };
 };
 
 export const Case = React.memo(

@@ -62,7 +62,7 @@ export const generateScaledArray = (length: number = 0, max: number = 100, bias:
 };
 
 const useStaggeredPosition = ({ index, childHeight, childPosition, windowHeight }: useStaggeredPositionProps) => {
-  const [activeCase, setIsActiveState] = React.useState(false);
+  const [activeCase, setIsActiveCase] = React.useState(false);
 
   const { scrollY } = useScroll();
 
@@ -105,7 +105,7 @@ const useStaggeredPosition = ({ index, childHeight, childPosition, windowHeight 
       const isLastItem = index === childHeight.length - 1;
       const lastItemThreshold = isLastItem ? 5 : 0;
 
-      setIsActiveState(e > -height(0) - lastItemThreshold && e < 0);
+      setIsActiveCase(e > -height(0) - lastItemThreshold && e < 0);
     });
   }, [childHeight, height, index, isActive]);
 

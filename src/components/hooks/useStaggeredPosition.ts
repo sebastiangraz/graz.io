@@ -23,32 +23,26 @@ export const useStaggeredPosition = ({
 
   const responsiveOffset = useResponsiveValue([50, 75, 200, 240]);
 
-  const height = useCallback((pos: number) => childHeight[pos ? index - pos : index] || 0, [childHeight, index]);
-  const position = useCallback((pos: number) => childPosition[pos ? index - pos : index] || 0, [childPosition, index]);
+  const height = (pos: number) => childHeight[pos ? index - pos : index] || 0;
+  const position = (pos: number) => childPosition[pos ? index - pos : index] || 0;
 
   const staggeredOffset =
     -generateScaledArray(childHeight.length, responsiveOffset, settings.staggerBias)[index - 1] || 0;
 
-  const updatePos = useCallback(
-    (v: number) => {
-      const progress = v - childPosition[index] + windowHeight;
-      return transform(progress, [0, height(0)], [0, -height(0)]);
-    },
-    [childPosition, windowHeight, height, index]
-  );
+  const updatePos = (v: number) => {
+    const progress = v - position(0) + windowHeight;
+    return transform(progress, [0, height(0)], [0, -height(0)]);
+  };
 
-  const updatePosNext = useCallback(
-    (v: number) => {
-      const progress = v - position(0) + height(1);
+  const updatePosNext = (v: number) => {
+    const progress = v - position(0) + height(1);
 
-      return transform(
-        progress,
-        [-position(0), -position(1), height(1) - windowHeight],
-        [0, staggeredOffset, staggeredOffset - settings.nextScrollDistance]
-      );
-    },
-    [position, height, staggeredOffset, windowHeight]
-  );
+    return transform(
+      progress,
+      [-position(0), -position(1), height(1) - windowHeight],
+      [0, staggeredOffset, staggeredOffset - settings.nextScrollDistance]
+    );
+  };
 
   const y = useSpring(useTransform(scrollY, updatePos), settings.springOptions);
   const yNext = useSpring(useTransform(scrollY, updatePosNext), settings.springOptions);
@@ -68,7 +62,7 @@ export const useStaggeredPosition = ({
     });
 
     return () => unsubscribe();
-  }, [isActive, index, childHeight, windowHeight]);
+  }, [isActive, index, childHeight]);
 
   return { y, yNext, staggeredOffset, activeCase };
 };

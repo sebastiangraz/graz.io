@@ -4,8 +4,7 @@ import React, { useRef, useReducer, useEffect } from "react";
 import debounce from "lodash.debounce";
 import { LazyMotion, domMax } from "framer-motion";
 
-export const useCaseWrapperContext = () =>
-  React.useContext(CaseWrapperContext) as CaseWrapperState;
+export const useCaseWrapperContext = () => React.useContext(CaseWrapperContext) as CaseWrapperState;
 
 const CaseWrapperContext = React.createContext<CaseWrapperState | null>(null);
 
@@ -69,7 +68,7 @@ const MemoCaseWrapper = ({ children }: { children: React.ReactNode }) => {
       window.addEventListener("resize", onResize);
       return () => window.removeEventListener("resize", onResize);
     }
-  }, []);
+  }, [state.windowHeight]);
 
   return (
     <LazyMotion features={domMax}>
@@ -81,9 +80,7 @@ const MemoCaseWrapper = ({ children }: { children: React.ReactNode }) => {
           height: ["auto", state.childSum],
         }}
       >
-        <CaseWrapperContext.Provider value={state}>
-          {children}
-        </CaseWrapperContext.Provider>
+        <CaseWrapperContext.Provider value={state}>{children}</CaseWrapperContext.Provider>
       </div>
     </LazyMotion>
   );

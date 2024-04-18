@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { m, useSpring, transform, useTransform, useScroll, MotionValue } from "framer-motion";
+import React, { useMemo, useRef } from "react";
+import { m, MotionValue } from "framer-motion";
 import { useCaseWrapperContext, CaseTitle } from "..";
 import { useResponsiveValue } from "@theme-ui/match-media";
 import { ScrollDown } from "..";

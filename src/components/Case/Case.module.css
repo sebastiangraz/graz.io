@@ -1,0 +1,47 @@
+.caseHome {
+  width: 100%;
+  top: 0;
+  position: relative;
+  @media (--1) {
+    width: 100%;
+    top: 100%;
+    position: fixed;
+  }
+}
+
+.caseWrapper {
+  top: 0;
+  width: 100%;
+  margin-top: 0;
+  max-width: 1800px;
+  position: relative;
+  pointer-events: none;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  color: var(--caseForeground);
+  z-index: var(--caseIndex);
+
+  @media (--1) {
+    top: 100vh;
+    position: fixed;
+  }
+
+  @media (--2) {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}
+
+.caseTitleWrapper {
+  pointer-events: auto;
+  position: relative;
+  grid-column: span 12;
+  @media (--1) {
+    grid-column: span 10;
+  }
+  @media (--2) {
+    grid-column: var(--gridColumnPosition_2);
+  }
+  @media (--3) {
+    grid-column: var(--gridColumnPosition_3);
+  }
+}

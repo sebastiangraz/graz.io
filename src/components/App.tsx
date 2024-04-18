@@ -18,26 +18,13 @@ export interface PropMapProps {
 export const PropMap = () => {
   const props = {
     home: { hideCaseMeta: true },
-    gitbook: {
-      grid: ["3 / span 10", "3 / span 10"],
-      challenge: "Rebrand Gitbook to surface their dedication for fairer hiring solutions, no matter the scale.",
-      scope: ["Rebrand & strategy", "Production output"],
-      duration: "2 months + retainer",
-      year: "2024",
-    },
-    loctax: {
-      grid: ["2 / span 10", "3 / span 10"],
-      challenge: "Rebrand Loctax to surface their dedication for fairer hiring solutions, no matter the scale.",
-      scope: ["Rebrand & strategy", "Production output"],
-      duration: "4 months + retainer",
-      year: "2023",
-    },
-    stacks: {
-      grid: ["3 / span 10", "3 / span 10"],
-      challenge: "Rebrand Stacks to surface their dedication for fairer hiring solutions, no matter the scale.",
-      scope: ["Rebrand & strategy", "Production output"],
-      duration: "2 months + retainer",
-      year: "2024",
+    capchase: {
+      grid: ["2 / span 10", "2 / span 10"],
+      challenge:
+        "Position the brand as a frontrunner in non-dilutable financing, while bringing to light the business-partner vibe.",
+      scope: ["Complete rebrand", "Production output", "Developer handoff"],
+      duration: "3 months + retainer",
+      year: "2022",
     },
     metaview: {
       grid: ["3 / span 10", "3 / span 10"],
@@ -54,14 +41,50 @@ export const PropMap = () => {
       duration: "3 months",
       year: "2020",
     },
-    capchase: {
-      grid: ["2 / span 10", "2 / span 10"],
-      challenge:
-        "Position the brand as a frontrunner in non-dilutable financing, while bringing to light the business-partner vibe.",
-      scope: ["Complete rebrand", "Production output", "Developer handoff"],
-      duration: "3 months + retainer",
-      year: "2022",
-    },
+    // gitbook: {
+    //   grid: ["3 / span 10", "3 / span 10"],
+    //   challenge: "Rebrand Gitbook to surface their dedication for fairer hiring solutions, no matter the scale.",
+    //   scope: ["Rebrand & strategy", "Production output"],
+    //   duration: "2 months + retainer",
+    //   year: "2024",
+    // },
+    // loctax: {
+    //   grid: ["2 / span 10", "3 / span 10"],
+    //   challenge: "Rebrand Loctax to surface their dedication for fairer hiring solutions, no matter the scale.",
+    //   scope: ["Rebrand & strategy", "Production output"],
+    //   duration: "4 months + retainer",
+    //   year: "2023",
+    // },
+    // stacks: {
+    //   grid: ["3 / span 10", "3 / span 10"],
+    //   challenge: "Rebrand Stacks to surface their dedication for fairer hiring solutions, no matter the scale.",
+    //   scope: ["Rebrand & strategy", "Production output"],
+    //   duration: "2 months + retainer",
+    //   year: "2024",
+    // },
+    // metaview: {
+    //   grid: ["3 / span 10", "3 / span 10"],
+    //   challenge: "Rebrand Metaview to surface their dedication for fairer hiring solutions, no matter the scale.",
+    //   scope: ["Rebrand & strategy", "Production output"],
+    //   duration: "4 months + retainer",
+    //   year: "2023",
+    // },
+    // loupe: {
+    //   grid: ["1 / span 10", "1 / span 10"],
+    //   challenge:
+    //     "Design a highly shareable & inclusive conference identity, that could co-exist together with Framer’s own brand.",
+    //   scope: ["Visual identity", "Front-end"],
+    //   duration: "3 months",
+    //   year: "2020",
+    // },
+    // capchase: {
+    //   grid: ["2 / span 10", "2 / span 10"],
+    //   challenge:
+    //     "Position the brand as a frontrunner in non-dilutable financing, while bringing to light the business-partner vibe.",
+    //   scope: ["Complete rebrand", "Production output", "Developer handoff"],
+    //   duration: "3 months + retainer",
+    //   year: "2022",
+    // },
     end: {
       hideCaseMeta: true,
       grid: ["1 / span 12", "1 / span 10"],
@@ -86,13 +109,13 @@ const routes = Object.entries(
     const Page = module.default as JSX.Element["type"];
     const path = relativePath.replace("./pages", "").replace("/index.tsx", "");
     const slug = path.replace("./", "");
-
     return {
       slug,
       path,
       Page,
     };
   })
+  .filter(({ slug }) => slugKeys.includes(slug))
   .sort((a, b) => {
     const indexA = slugKeys.indexOf(a.slug);
     const indexB = slugKeys.indexOf(b.slug);

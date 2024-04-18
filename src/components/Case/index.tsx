@@ -1,5 +1,6 @@
 /** @jsxImportSource theme-ui */
 
+import style from "./Case.module.css";
 import React, { useMemo, useRef } from "react";
 import { m, MotionValue } from "framer-motion";
 import { useCaseWrapperContext, CaseTitle } from "..";
@@ -125,11 +126,7 @@ export const Case = React.memo(
             transition={{ delay: 0 }}
             ref={ref}
             style={isMobile ? { y: 0 } : { y }}
-            sx={{
-              width: "100%",
-              top: [0, "100%"],
-              position: ["relative", "fixed"],
-            }}
+            className={`${style.caseHome}`}
           >
             {children}
           </m.div>
@@ -138,29 +135,13 @@ export const Case = React.memo(
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="caseWrapper"
+            className={`caseWrapper ${style.caseWrapper}`}
             id={`${slug}-${index}`}
             ref={ref}
-            style={isMobile ? { y: 0 } : { y }}
-            sx={
-              {
-                "--gridCount": [12, 12, `${gridCount(0)}`, `${gridCount(1)}`],
-                "--caseBackground": bg,
-                "--caseForeground": fg,
-                "--caseForegroundDim": fd,
-                top: [0, `100vh`],
-                width: "100%",
-                mt: 0,
-                maxWidth: "1800px",
-                position: ["relative", "fixed"],
-                pointerEvents: "none",
-                // willChange: "transform", //willChange messes up antialiasing but at the cost of performance. (Performance gains negligible though)
-                display: "grid",
-                gridTemplateColumns: ["repeat(10, 1fr)", "repeat(10, 1fr)", "repeat(12, 1fr)", "repeat(12, 1fr)"],
-                color: fg,
-                zIndex: index,
-              } as ThemeUICSSObject
-            }
+            style={{
+              ...(isMobile ? { y: 0 } : { y }),
+              ...{ "--caseBackground": bg, "--caseForeground": fg, "--caseForegroundDim": fd, "--caseIndex": index },
+            }}
           >
             {index === 1 && (
               <ScrollDown
@@ -171,12 +152,13 @@ export const Case = React.memo(
               />
             )}
             <div
-              sx={{
-                pointerEvents: "auto",
-                position: "relative",
-
-                gridColumn: ["span 12", null, propmap?.grid && propmap.grid[0], propmap?.grid && propmap.grid[1]],
-              }}
+              className={`${style.caseTitleWrapper}`}
+              style={
+                {
+                  "--gridColumnPosition_2": propmap?.grid && propmap.grid[0],
+                  "--gridColumnPosition_3": propmap?.grid && propmap.grid[1],
+                } as React.CSSProperties
+              }
             >
               <m.div
                 onClick={() => {
@@ -196,7 +178,7 @@ export const Case = React.memo(
               <div
                 className="background-layer"
                 style={{
-                  backgroundColor: bg,
+                  backgroundColor: "var(--caseBackground)",
                 }}
                 sx={
                   {

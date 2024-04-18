@@ -23,7 +23,7 @@ const media_query = "screen and (min-width:640px)";
 
 const settings = {
   nextScrollDistance: 64,
-  staggerBias: 0, // -3 to 3
+  staggerBias: -1, // -3 to 3
   springOptions: {
     damping: 50,
     stiffness: 1000,
@@ -81,6 +81,9 @@ const useStaggeredPosition = ({ index, childHeight, childPosition, windowHeight 
 
   const updatePosNext = (v: number) => {
     const progress = v - position(0) + height(1);
+
+    console.log(v, progress, position(0), height(1));
+
     return transform(
       progress,
       [-position(0), -position(1), height(1) - windowHeight],

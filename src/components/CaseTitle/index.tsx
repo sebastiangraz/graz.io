@@ -2,7 +2,6 @@
 
 import React, { useEffect } from "react";
 import uuid from "react-uuid";
-import { useResponsiveValue } from "@theme-ui/match-media";
 import { PropMap } from "../App";
 const ignoreUpdatedProps = () => true;
 
@@ -23,7 +22,6 @@ export const CaseTitle = React.memo(({ name }: { name: string }) => {
 
   const id = uuid();
   const [fontsize, setFontsize] = React.useState(0);
-  const caseHeroHeight = useResponsiveValue([180, 300]);
   const svgRef = React.useRef<SVGSVGElement>(null);
 
   useEffect(() => {
@@ -57,12 +55,12 @@ export const CaseTitle = React.memo(({ name }: { name: string }) => {
         top: 0,
         textTransform: "uppercase",
         fontWeight: 600,
-        height: caseHeroHeight,
+        height: [180, 300],
         letterSpacing: "-0.075em",
         fontSize: `${fontsize}px`,
         color: `var(--caseBackground)`,
       }}
-      height={caseHeroHeight}
+      /*       height={300} */
       width="100%"
       preserveAspectRatio="xMinYMin slice"
       ref={svgRef}

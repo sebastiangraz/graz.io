@@ -1,25 +1,15 @@
-/** @jsxImportSource theme-ui */
-
 import style from "./Case.module.css";
 import React, { useMemo, useRef } from "react";
 import { m, MotionValue } from "framer-motion";
 import { useCaseWrapperContext, CaseTitle } from "..";
 import { useResponsiveValue } from "@theme-ui/match-media";
 import { ScrollDown } from "..";
-import { ThemeUICSSObject, useThemeUI } from "theme-ui";
+import { useThemeUI } from "theme-ui";
 import { CaseWrapperState } from "../CaseWrapper";
 import { PropMapProps } from "../App";
 import { useUpdateURL } from "../hooks/useUpdateURL";
 import { useScrollToCaseOnMount } from "../hooks/useScrollToCaseOnMount";
 import { useStaggeredPosition } from "../hooks/useStaggeredPosition";
-
-const caseBg = {
-  width: "100%",
-  zIndex: -1,
-  position: "absolute",
-  bottom: 0,
-  left: 0,
-};
 
 const media_query = "screen and (min-width:640px)";
 
@@ -81,6 +71,7 @@ export const Case = React.memo(
         foreground: "#05010c",
         foregroundDim: "#05010c99",
       };
+
       return { bg: colors.background, fg: colors.foreground, fd: colors.foregroundDim };
     }, [theme.theme?.rawColors, slug]);
 
@@ -116,6 +107,8 @@ export const Case = React.memo(
 
     const gridCount = (arr: number) => propmap?.grid && propmap?.grid[arr].split("span ")[1];
     const gridPosition = (arr: number) => propmap?.grid && propmap?.grid[arr].split(" /")[0];
+
+    const caseBackgroundHeightOffset = 300 - 2 - (index !== 1 ? settings.nextScrollDistance : 0) + staggeredOffset;
 
     return (
       <>
@@ -164,45 +157,32 @@ export const Case = React.memo(
                 onClick={() => {
                   islastCase ? null : handleClick();
                 }}
-                style={isMobile ? { y: 0 } : { y: yNext }}
-                sx={{
-                  height: [180, 300],
-                  ...(index === 1 && {
-                    top: ["auto", settings.nextScrollDistance],
-                    position: "relative",
-                  }),
+                className={`${style.caseTitle}`}
+                style={{
+                  ...(isMobile ? { y: 0 } : { y: yNext }),
+                  ...(index === 1 && { "--caseTitleTop_2": settings.nextScrollDistance, position: "relative" }),
                 }}
               >
                 <CaseTitle name={slug || ""} />
               </m.div>
               <div
-                className="background-layer"
-                style={{
-                  backgroundColor: "var(--caseBackground)",
-                }}
-                sx={
+                style={
                   {
-                    height: [
-                      `calc(100% - ${180 - 2}px)`,
-                      `calc(100% - ${300 - 2 - (index !== 1 ? settings.nextScrollDistance : 0) + staggeredOffset}px)`,
-                    ],
-                    ...caseBg,
-                  } as ThemeUICSSObject
+                    "--caseBackgroundHeight_2": `calc(100% - ${caseBackgroundHeightOffset}px)`,
+                  } as React.CSSProperties
                 }
+                className={`background-layer ${style.caseBackground}`}
               ></div>
 
               <div
-                className="caseContent"
-                sx={{
-                  mb: "5vh",
-                  mt: islastCase ? "50vh" : "0",
-                  pb: islastCase ? "0" : "50vh",
-                  opacity: ["1", activeCase ? 1 : 0],
-                  transitionProperty: "opacity",
-                  transitionDuration: "0.2s",
-                  // transitionDelay: activeCase ? "0.2s" : "0s",
-                  overflow: "hidden",
-                }}
+                style={
+                  {
+                    marginTop: islastCase ? "50vh" : "0",
+                    paddingBottom: islastCase ? "0" : "50vh",
+                    "--caseContentOpacity_2": activeCase ? 1 : 0,
+                  } as React.CSSProperties
+                }
+                className={`caseContent ${style.caseContent}`}
               >
                 {children}
               </div>

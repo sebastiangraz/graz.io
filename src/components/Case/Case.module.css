@@ -45,3 +45,37 @@
     grid-column: var(--gridColumnPosition_3);
   }
 }
+
+.caseTitle {
+  height: 180px;
+  top: auto;
+  @media (--2) {
+    height: 300px;
+    top: calc(var(--caseTitleTop_2) * 1px);
+  }
+}
+
+.caseBackground {
+  height: calc(100% - (180px - 2px));
+  background-color: var(--caseBackground);
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  @media (--2) {
+    height: var(--caseBackgroundHeight_2);
+  }
+}
+
+.caseContent {
+  opacity: 1;
+  margin-bottom: 5vh;
+  transition-property: opacity;
+  transition-duration: 0.2s;
+  overflow: hidden;
+
+  @media (--2) {
+    opacity: var(--caseContentOpacity_2);
+  }
+}

@@ -71,7 +71,7 @@ export const Img = ({ src, fromFolder, ignoreShadow = false, deviceBorder = fals
         sx={{
           ...(deviceBorder && {
             "&:before": {
-              borderImage: `url('/device-slice-shadow.png')`,
+              borderImage: `url('/device-slice-shadow.avif')`,
               borderImageWidth: [
                 `166px calc(66px * ${src.width! / src.height!})`,
                 null,

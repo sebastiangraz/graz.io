@@ -18,10 +18,7 @@ export const NumberedList = ({
     <ul
       sx={{
         ...(horizontal && {
-          gridTemplateColumns: [
-            "1fr",
-            "repeat(auto-fit, minmax(min(240px, 100%), auto))",
-          ],
+          gridTemplateColumns: ["1fr", "repeat(auto-fit, minmax(min(240px, 100%), auto))"],
           columnGap: 8,
         }),
         p: 0,

@@ -30,13 +30,7 @@ export const List = ({
   };
 
   return animate ? (
-    <motion.ul
-      {...sx}
-      sx={{ p: 0 }}
-      variants={staggerParent}
-      initial="hidden"
-      whileInView="visible"
-    >
+    <motion.ul {...sx} sx={{ p: 0 }} variants={staggerParent} initial="hidden" whileInView="visible">
       {React.Children.map(children || null, (child, i) => {
         return (
           <motion.li

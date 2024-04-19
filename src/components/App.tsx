@@ -83,7 +83,7 @@ const routes = Object.entries(
 
 const cases = routes
   .map(([relativePath, module]) => {
-    const Page = module.default as JSX.Element["type"];
+    const Page = module.default;
     const path = relativePath.replace("./pages", "").replace("/index.tsx", "");
     const slug = path.replace("./", "");
     return {

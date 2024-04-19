@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { m, useSpring, transform, useTransform, useScroll, MotionValue } from "framer-motion";
+import React, { useCallback, useEffect } from "react";
+import { useSpring, transform, useTransform, useScroll } from "framer-motion";
 import { useResponsiveValue } from "@theme-ui/match-media";
 import { generateScaledArray, settings } from "@/components/Case";
 
@@ -23,8 +23,8 @@ export const useStaggeredPosition = ({
 
   const responsiveOffset = useResponsiveValue([50, 75, 200, 240]);
 
-  const height = (pos: number) => childHeight[pos ? index - pos : index] || 0;
-  const position = (pos: number) => childPosition[pos ? index - pos : index] || 0;
+  const height = useCallback((pos: number) => childHeight[pos ? index - pos : index] || 0, [childHeight, index]);
+  const position = useCallback((pos: number) => childPosition[pos ? index - pos : index] || 0, [childPosition, index]);
 
   const staggeredOffset =
     -generateScaledArray(childHeight.length, responsiveOffset, settings.staggerBias)[index - 1] || 0;
@@ -63,7 +63,7 @@ export const useStaggeredPosition = ({
     });
 
     return () => unsubscribe();
-  }, [isActive, index, childHeight]);
+  }, [isActive, index, childHeight, height]);
 
   return { y, yNext, staggeredOffset, activeCase };
 };

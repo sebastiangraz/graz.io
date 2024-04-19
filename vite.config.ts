@@ -7,7 +7,9 @@ import { fileURLToPath, URL } from "url";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    react(),
+    react({
+      include: "**/*.tsx",
+    }),
     svgrPlugin(),
     ViteImageOptimizer({
       //exclude avif files and `public/device-slice-shadow.png`

@@ -72,7 +72,7 @@ export const Case = React.memo(
     };
     // -----CLICK TO SCROLLTO CASE-----
 
-    const gridCount = (arr: number) => propmap?.grid && propmap?.grid[arr].split("span ")[1];
+    // const gridCount = (arr: number) => propmap?.grid && propmap?.grid[arr].split("span ")[1];
     const gridPosition = (arr: number) => propmap?.grid && propmap?.grid[arr].split(" /")[0];
 
     const caseBackgroundHeightOffset = 300 - 2 - (index !== 1 ? settings.nextScrollDistance : 0) + staggeredOffset;

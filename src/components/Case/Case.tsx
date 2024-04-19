@@ -5,46 +5,13 @@ import { useCaseWrapperContext, CaseTitle } from "..";
 import { useResponsiveValue } from "@theme-ui/match-media";
 import { ScrollDown } from "..";
 import { useThemeUI } from "theme-ui";
-import { CaseWrapperState } from "../CaseWrapper";
-import { PropMapProps } from "../App";
-import { useUpdateURL } from "../hooks/useUpdateURL";
-import { useScrollToCaseOnMount } from "../hooks/useScrollToCaseOnMount";
-import { useStaggeredPosition } from "../hooks/useStaggeredPosition";
+import { CaseWrapperState } from "@/components/CaseWrapper";
+import { PropMapProps } from "@/components/App";
+import { useUpdateURL } from "@/hooks/useUpdateURL";
+import { useScrollToCaseOnMount } from "@/hooks/useScrollToCaseOnMount";
+import { useStaggeredPosition } from "@/hooks/useStaggeredPosition";
 
 const media_query = "screen and (min-width:640px)";
-
-export const settings = {
-  nextScrollDistance: 64,
-  staggerBias: -1.75, // -3 to 3
-  springOptions: {
-    damping: 50,
-    stiffness: 1000,
-    mass: 0.1,
-  },
-};
-
-interface useStaggeredPositionReturn {
-  y: MotionValue<number>;
-  yNext: MotionValue<number>;
-  staggeredOffset: number;
-  activeCase: boolean;
-}
-
-export const generateScaledArray = (length: number = 0, max: number = 100, bias: number = 0): number[] => {
-  if (bias < -3 || bias > 3) throw new Error("bias must be between -3 and 3");
-
-  const adjustBias = (t: number = 0, bias: number = 0): number => {
-    if (bias === 0) return t; // No bias
-    return bias > 0 ? Math.pow(t, 1 + bias) : 1 - Math.pow(1 - t, 1 - bias);
-  };
-
-  return Array.from({ length }, (_, i) => {
-    const t = i / (length - 1);
-    const adjustedT = adjustBias(t, bias);
-    const value = max - adjustedT * max;
-    return Number(value.toFixed(1)); // Round to integer for simplicity
-  });
-};
 
 export const Case = React.memo(
   ({
@@ -200,3 +167,36 @@ export const Case = React.memo(
     );
   }
 );
+
+interface useStaggeredPositionReturn {
+  y: MotionValue<number>;
+  yNext: MotionValue<number>;
+  staggeredOffset: number;
+  activeCase: boolean;
+}
+
+export const generateScaledArray = (length: number = 0, max: number = 100, bias: number = 0): number[] => {
+  if (bias < -3 || bias > 3) throw new Error("bias must be between -3 and 3");
+
+  const adjustBias = (t: number = 0, bias: number = 0): number => {
+    if (bias === 0) return t; // No bias
+    return bias > 0 ? Math.pow(t, 1 + bias) : 1 - Math.pow(1 - t, 1 - bias);
+  };
+
+  return Array.from({ length }, (_, i) => {
+    const t = i / (length - 1);
+    const adjustedT = adjustBias(t, bias);
+    const value = max - adjustedT * max;
+    return Number(value.toFixed(1)); // Round to integer for simplicity
+  });
+};
+
+export const settings = {
+  nextScrollDistance: 64,
+  staggerBias: -1.75, // -3 to 3
+  springOptions: {
+    damping: 50,
+    stiffness: 1000,
+    mass: 0.1,
+  },
+};

@@ -3650,6 +3650,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-plugin-sort-exports@npm:^0.9.1":
+  version: 0.9.1
+  resolution: "eslint-plugin-sort-exports@npm:0.9.1"
+  dependencies:
+    minimatch: ^9.0.3
+  peerDependencies:
+    eslint: ">=5.0.0"
+  checksum: 1801ec3a95191632ce80f4623f619e11f2418784199b6cfecc0922f01cdc7a16452e3141a7b0e66511a28e01939140565cf75923aa2150370e13783b4db605da
+  languageName: node
+  linkType: hard
+
 "eslint-scope@npm:^5.1.1":
   version: 5.1.1
   resolution: "eslint-scope@npm:5.1.1"
@@ -4858,6 +4869,15 @@ __metadata:
   dependencies:
     brace-expansion: ^2.0.1
   checksum: 7564208ef81d7065a370f788d337cd80a689e981042cb9a1d0e6580b6c6a8c9279eba80010516e258835a988363f99f54a6f711a315089b8b42694f5da9d0d77
+  languageName: node
+  linkType: hard
+
+"minimatch@npm:^9.0.3":
+  version: 9.0.4
+  resolution: "minimatch@npm:9.0.4"
+  dependencies:
+    brace-expansion: ^2.0.1
+  checksum: cf717f597ec3eed7dabc33153482a2e8d49f4fd3c26e58fd9c71a94c5029a0838728841b93f46bf1263b65a8010e2ee800d0dc9b004ab8ba8b6d1ec07cc115b5
   languageName: node
   linkType: hard
 
@@ -6118,6 +6138,7 @@ __metadata:
     eslint-plugin-react: latest
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-react-refresh: ^0.3.4
+    eslint-plugin-sort-exports: ^0.9.1
     framer-motion: ^10.9.2
     intersection-observer: ^0.12.2
     lodash.debounce: ^4.0.8

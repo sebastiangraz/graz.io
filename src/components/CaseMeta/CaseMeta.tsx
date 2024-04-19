@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 import { Box, Text } from "theme-ui";
-import { PropMapProps } from "../App";
-import { List } from "../List";
+import { PropMapProps } from "@/components/App";
+import { List } from "@/components";
 
 export const CaseMeta = ({ ...props }: PropMapProps) => {
   const { challenge, scope, duration, year } = props;

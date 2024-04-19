@@ -1,19 +1,30 @@
 import React from "react";
 import { CaseWrapper, Case, ScrollToTop, CaseMeta, GridParent } from ".";
-import "../base.css";
+import "@/base.css";
 
 import { Helmet } from "react-helmet-async";
 import { useThemeUI } from "theme-ui";
 import { getColor } from "@theme-ui/color";
 
-export interface PropMapProps {
-  grid?: string[];
-  scope?: string[];
-  challenge?: string;
-  duration?: string;
-  year?: string;
-  hideCaseMeta?: boolean;
-}
+const MemoApp = () => {
+  const theme = useThemeUI().theme;
+  return (
+    <>
+      <Helmet>
+        <meta name="theme-color" content={getColor(theme, "background")} media="(prefers-color-scheme: light)" />
+        <meta
+          name="theme-color"
+          content={getColor(theme, "background")} //hack to default safari theme
+          media="(prefers-color-scheme: dark)"
+        />
+      </Helmet>
+      <ScrollToTop />
+      <CaseWrapper>{cases}</CaseWrapper>
+    </>
+  );
+};
+
+export const App = React.memo(MemoApp);
 
 export const PropMap = () => {
   const props = {
@@ -68,7 +79,9 @@ const routes = Object.entries(
       eager: true,
     }
   )
-)
+);
+
+const cases = routes
   .map(([relativePath, module]) => {
     const Page = module.default as JSX.Element["type"];
     const path = relativePath.replace("./pages", "").replace("/index.tsx", "");
@@ -102,22 +115,11 @@ const routes = Object.entries(
     );
   });
 
-const MemoApp = () => {
-  const theme = useThemeUI().theme;
-  return (
-    <>
-      <Helmet>
-        <meta name="theme-color" content={getColor(theme, "background")} media="(prefers-color-scheme: light)" />
-        <meta
-          name="theme-color"
-          content={getColor(theme, "background")} //hack to default safari theme
-          media="(prefers-color-scheme: dark)"
-        />
-      </Helmet>
-      <ScrollToTop />
-      <CaseWrapper>{routes}</CaseWrapper>
-    </>
-  );
-};
-
-export const App = React.memo(MemoApp);
+export interface PropMapProps {
+  grid?: string[];
+  scope?: string[];
+  challenge?: string;
+  duration?: string;
+  year?: string;
+  hideCaseMeta?: boolean;
+}

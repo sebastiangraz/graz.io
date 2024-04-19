@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Text, Link, Theme } from "theme-ui";
-import { Logo, List, EmailLink } from "../../components";
+import { Logo, List, EmailLink } from "@/components";
 import { m, useScroll, useTransform, useSpring } from "framer-motion";
 import { transparentize } from "@theme-ui/color";
 import resume from "@/assets/cv-sebastiangraz.pdf";

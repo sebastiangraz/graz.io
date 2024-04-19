@@ -5,11 +5,6 @@ import { useScroll } from "framer-motion";
 import { Text } from "theme-ui";
 import { Logo } from "..";
 
-export const handleClick = () => {
-  window.scrollTo(0, 0);
-  window.history.pushState("", "", "/");
-};
-
 export const ScrollToTop = () => {
   const { scrollY } = useScroll();
   const [show, setShow] = React.useState(false);
@@ -35,12 +30,7 @@ export const ScrollToTop = () => {
         width: "100%",
         height: "200px",
         mixBlendMode: ["difference", null, "unset"],
-        gridTemplateColumns: [
-          "repeat(10, 1fr)",
-          "repeat(10, 1fr)",
-          "repeat(12, 1fr)",
-          "repeat(12, 1fr)",
-        ],
+        gridTemplateColumns: ["repeat(10, 1fr)", "repeat(10, 1fr)", "repeat(12, 1fr)", "repeat(12, 1fr)"],
       }}
     >
       <div
@@ -101,4 +91,9 @@ export const ScrollToTop = () => {
       </div>
     </div>
   );
+};
+
+export const handleClick = () => {
+  window.scrollTo(0, 0);
+  window.history.pushState("", "", "/");
 };

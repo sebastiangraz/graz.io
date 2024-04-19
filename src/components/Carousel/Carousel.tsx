@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Box, Text } from "theme-ui";
 import throttle from "lodash.throttle";
-import { MouseTracker } from "../MouseTracker";
+import { MouseTracker } from "@/components";
 
 interface Props {
   children: React.ReactNode[];

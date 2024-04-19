@@ -1,21 +1,10 @@
 /** @jsxImportSource theme-ui */
+
 import { useEffect, useState, useRef } from "react";
 import React from "react";
 import { ThemeUICSSObject } from "theme-ui";
 
-export interface VideoComponentProps {
-  src: {
-    url: string;
-    width: number;
-    height: number;
-    alt: string;
-  };
-  fromFolder: string;
-  sx?: ThemeUICSSObject;
-}
-
 const VideoComponent = ({ ...props }: VideoComponentProps) => {
-  if (!props.src) return null;
   const { src, fromFolder, ...sx } = props;
 
   const [isPlaying, setIsPlaying] = useState(true);
@@ -91,6 +80,8 @@ const VideoComponent = ({ ...props }: VideoComponentProps) => {
     }
   };
 
+  if (!props.src) return null;
+
   return (
     <div {...sx} sx={{ display: "grid" }} onClick={handlePlayPauseClick}>
       {!isPlaying && (
@@ -126,10 +117,7 @@ const VideoComponent = ({ ...props }: VideoComponentProps) => {
           className="play"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11">
-            <path
-              d="M 0 0 L 0 11 L 11 5.5 Z"
-              fill="var(--caseBackground)"
-            ></path>
+            <path d="M 0 0 L 0 11 L 11 5.5 Z" fill="var(--caseBackground)"></path>
           </svg>
         </div>
       )}
@@ -155,3 +143,14 @@ const VideoComponent = ({ ...props }: VideoComponentProps) => {
 };
 
 export const Video = React.memo(VideoComponent);
+
+export interface VideoComponentProps {
+  src: {
+    url: string;
+    width: number;
+    height: number;
+    alt: string;
+  };
+  fromFolder: string;
+  sx?: ThemeUICSSObject;
+}

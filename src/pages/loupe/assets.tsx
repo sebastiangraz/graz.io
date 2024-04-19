@@ -1,5 +1,5 @@
-import { VideoComponentProps } from "../../components/Video";
-import { ImageData } from "../../components/Img";
+import { VideoComponentProps } from "@/components/Video";
+import { ImageData } from "@/components/Img";
 
 export const videos = {
   loupeMesh: {

@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 
 import { Box } from "theme-ui";
-import { Img, GridParent, CaseHero, CaseHeroChild, Carousel } from "../../components";
+import { Img, GridParent, CaseHero, CaseHeroChild, Carousel } from "@/components";
 import { images } from "./assets";
 
 const Loupe = () => {

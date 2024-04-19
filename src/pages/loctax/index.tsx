@@ -1,6 +1,6 @@
 /** @jsxImportSource theme-ui */
 
-import { GridParent, Img, Video, CaseHero, CaseHeroChild, Carousel } from "../../components";
+import { GridParent, Img, Video, CaseHero, CaseHeroChild, Carousel } from "@/components";
 import { images, videos } from "./assets";
 import { Box } from "theme-ui";
 import { m } from "framer-motion";

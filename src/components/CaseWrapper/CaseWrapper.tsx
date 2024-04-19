@@ -4,16 +4,7 @@ import React, { useRef, useReducer, useEffect } from "react";
 import debounce from "lodash.debounce";
 import { LazyMotion, domMax } from "framer-motion";
 
-export const useCaseWrapperContext = () => React.useContext(CaseWrapperContext) as CaseWrapperState;
-
 const CaseWrapperContext = React.createContext<CaseWrapperState | null>(null);
-
-export type CaseWrapperState = {
-  childHeight: number[];
-  childPosition: number[];
-  childSum: number;
-  windowHeight: number;
-};
 
 type Action = {
   type: "update";
@@ -87,3 +78,12 @@ const MemoCaseWrapper = ({ children }: { children: React.ReactNode }) => {
 };
 
 export const CaseWrapper = React.memo(MemoCaseWrapper);
+
+export type CaseWrapperState = {
+  childHeight: number[];
+  childPosition: number[];
+  childSum: number;
+  windowHeight: number;
+};
+
+export const useCaseWrapperContext = () => React.useContext(CaseWrapperContext) as CaseWrapperState;

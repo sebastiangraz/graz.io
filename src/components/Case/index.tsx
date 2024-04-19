@@ -163,7 +163,7 @@ export const Case = React.memo(
                   ...(index === 1 && { "--caseTitleTop_2": settings.nextScrollDistance, position: "relative" }),
                 }}
               >
-                <CaseTitle name={slug || ""} />
+                <CaseTitle name={slug || ""} activeCase={activeCase} />
               </m.div>
               <div
                 style={

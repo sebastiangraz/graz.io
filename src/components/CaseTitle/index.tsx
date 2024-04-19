@@ -3,8 +3,9 @@
 import React, { useEffect } from "react";
 import uuid from "react-uuid";
 import { PropMap } from "../App";
-const ignoreUpdatedProps = () => true;
-
+const ignoreUpdatedProps = (prevProps: any, nextProps: any) => {
+  return prevProps.name === nextProps.name && prevProps.activeCase === nextProps.activeCase;
+};
 const findLongestName = (cases: string[]) => {
   let longestName = "";
   cases.forEach((caseName) => {
@@ -15,7 +16,7 @@ const findLongestName = (cases: string[]) => {
   return longestName;
 };
 
-export const CaseTitle = React.memo(({ name }: { name: string }) => {
+export const CaseTitle = React.memo(({ name, activeCase }: { name: string; activeCase: boolean }) => {
   const allCaseNames = Object.keys(PropMap());
 
   name ||= "case";
@@ -99,11 +100,12 @@ export const CaseTitle = React.memo(({ name }: { name: string }) => {
               left: "8.8%",
               color: "transparent",
               paddingRight: "0.1em",
-              backdropFilter: ["none", "blur(20px)"],
+              backdropFilter: activeCase ? ["none", "blur(20px)"] : "none",
               display: !isLastCase ? "inline-flex" : "none",
               transform: "translate(0px, -37.5%)",
-              background: ["var(--caseForeground)", "transparent"],
+              background: ["var(--caseForeground)", activeCase ? "transparent" : "var(--caseBackground)"],
               lineHeight: "1",
+              transition: "background 0.1s ease",
             }}
           >
             {name}

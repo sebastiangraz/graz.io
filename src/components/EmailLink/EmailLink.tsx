@@ -63,11 +63,7 @@ export const EmailLink = ({
       {children}
       <AnimatePresence>
         {copy && (
-          <m.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
+          <m.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             {count > 10 ? " very copied" : " copied"}
           </m.span>
         )}{" "}

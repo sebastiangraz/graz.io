@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect } from "react";
 import { useSpring, transform, useTransform, useScroll } from "framer-motion";
 import { useResponsiveValue } from "@theme-ui/match-media";
-import { generateScaledArray, settings } from "@/components/Case";
-
+import { generateScaledArray } from "@/hooks";
+import { settings } from ".";
 interface useStaggeredPositionProps {
   index: number;
   childHeight: number[];

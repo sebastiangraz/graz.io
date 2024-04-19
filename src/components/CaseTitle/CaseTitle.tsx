@@ -39,7 +39,7 @@ export const CaseTitle = React.memo(({ name, activeCase }: { name: string; activ
     return () => {
       window.removeEventListener("resize", resizeHandler, false);
     };
-  }, [name]);
+  }, [allCaseNames, name]);
 
   const lastCase = allCaseNames[allCaseNames.length - 1];
   const isLastCase = lastCase && name === "end";

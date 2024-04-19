@@ -1,45 +1,6 @@
 import { VideoComponentProps } from "@/components/Video";
 import { ImageData } from "@/components/Img";
 
-export const videos = {
-  loupeMesh: {
-    url: "loupeMesh.mp4",
-    width: 1080,
-    height: 1080,
-    alt: "loupeMesh",
-  },
-  mesh: {
-    url: "mesh.mp4",
-    width: 1080,
-    height: 1080,
-    alt: "mesh",
-  },
-  mesh1: {
-    url: "mesh1.mp4",
-    width: 1152,
-    height: 1152,
-    alt: "mesh1",
-  },
-  muziekclip: {
-    url: "muziekclip.mp4",
-    width: 2646,
-    height: 1080,
-    alt: "muziekclip",
-  },
-  icons: {
-    url: "icons.mp4",
-    width: 1080,
-    height: 1080,
-    alt: "icons",
-  },
-  overview: {
-    url: "overview.mp4",
-    width: 1168,
-    height: 620,
-    alt: "cover",
-  },
-} as { [key: string]: VideoComponentProps["src"] };
-
 export const images = {
   hero2020: {
     name: "hero-2020.png",
@@ -120,3 +81,42 @@ export const images = {
     alt: "Venue",
   },
 } as { [key: string]: ImageData };
+
+export const videos = {
+  loupeMesh: {
+    url: "loupeMesh.mp4",
+    width: 1080,
+    height: 1080,
+    alt: "loupeMesh",
+  },
+  mesh: {
+    url: "mesh.mp4",
+    width: 1080,
+    height: 1080,
+    alt: "mesh",
+  },
+  mesh1: {
+    url: "mesh1.mp4",
+    width: 1152,
+    height: 1152,
+    alt: "mesh1",
+  },
+  muziekclip: {
+    url: "muziekclip.mp4",
+    width: 2646,
+    height: 1080,
+    alt: "muziekclip",
+  },
+  icons: {
+    url: "icons.mp4",
+    width: 1080,
+    height: 1080,
+    alt: "icons",
+  },
+  overview: {
+    url: "overview.mp4",
+    width: 1168,
+    height: 620,
+    alt: "cover",
+  },
+} as { [key: string]: VideoComponentProps["src"] };

@@ -1,1 +1,1 @@
-export { Case, generateScaledArray, settings } from "./Case";
+export { Case } from "./Case";

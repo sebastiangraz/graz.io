@@ -1,6 +1,6 @@
 import js from "@eslint/js";
 import sort from "eslint-plugin-sort-exports";
-
+import reactrefresh from "eslint-plugin-react-refresh";
 // import react from "eslint-plugin-react";
 import hooks from "eslint-plugin-react-hooks";
 import tseslint from "@typescript-eslint/eslint-plugin";
@@ -20,6 +20,7 @@ export default [
       sort,
       hooks,
       tseslint,
+      reactrefresh,
     },
     rules: {
       "no-unused-vars": "warn",
@@ -28,6 +29,7 @@ export default [
       "hooks/rules-of-hooks": "error",
       "hooks/exhaustive-deps": "warn",
       "sort/sort-exports": "error",
+      "reactrefresh/only-export-components": "warn",
     },
   },
 ];

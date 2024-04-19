@@ -1,5 +1,5 @@
 import React from "react";
-import { CaseWrapper, Case, ScrollToTop, CaseMeta, GridParent } from ".";
+import { CaseWrapper, Case, ScrollToTop, CaseMeta, GridParent } from "@/components";
 import "@/base.css";
 
 import { Helmet } from "react-helmet-async";

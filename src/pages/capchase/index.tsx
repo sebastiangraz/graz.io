@@ -1,6 +1,5 @@
 /** @jsxImportSource theme-ui */
 
-import React from "react";
 import { GridParent, Img, Video, CaseHero, CaseHeroChild, Carousel } from "@/components";
 import { images, videos } from "./assets";
 import { Box } from "theme-ui";

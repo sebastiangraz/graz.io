@@ -1,2 +1,2 @@
-export { CaseWrapper, useCaseWrapperContext } from "./CaseWrapper";
+export { CaseWrapper } from "./CaseWrapper";
 export type { CaseWrapperState } from "./CaseWrapper";

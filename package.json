@@ -54,7 +54,7 @@
     "eslint": "latest",
     "eslint-plugin-react": "latest",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.3.4",
+    "eslint-plugin-react-refresh": "^0.4.6",
     "eslint-plugin-sort-exports": "^0.9.1",
     "intersection-observer": "^0.12.2",
     "postcss-custom-media": "^10.0.4",

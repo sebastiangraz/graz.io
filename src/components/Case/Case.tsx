@@ -1,16 +1,17 @@
 import style from "./Case.module.css";
 import React, { useMemo, useRef } from "react";
 import { m, MotionValue } from "framer-motion";
-import { useCaseWrapperContext, CaseTitle } from "..";
+import { CaseTitle } from "@/components/CaseTitle";
 import { useResponsiveValue } from "@theme-ui/match-media";
-import { ScrollDown } from "..";
+import { ScrollDown } from "@/components/ScrollDown";
 import { useThemeUI } from "theme-ui";
 import { CaseWrapperState } from "@/components/CaseWrapper";
 import { PropMapProps } from "@/components/App";
 import { useUpdateURL } from "@/hooks/useUpdateURL";
 import { useScrollToCaseOnMount } from "@/hooks/useScrollToCaseOnMount";
 import { useStaggeredPosition } from "@/hooks/useStaggeredPosition";
-
+import { useCaseWrapperContext } from "@/hooks/useCaseWrapperContext";
+import { settings } from "@/hooks";
 const media_query = "screen and (min-width:640px)";
 
 export const Case = React.memo(
@@ -106,7 +107,6 @@ export const Case = React.memo(
             {index === 1 && (
               <ScrollDown
                 gridPosition={gridPosition}
-                settings={settings}
                 staggeredOffset={staggeredOffset}
                 position={childPosition[index]}
               />
@@ -174,29 +174,3 @@ interface useStaggeredPositionReturn {
   staggeredOffset: number;
   activeCase: boolean;
 }
-
-export const generateScaledArray = (length: number = 0, max: number = 100, bias: number = 0): number[] => {
-  if (bias < -3 || bias > 3) throw new Error("bias must be between -3 and 3");
-
-  const adjustBias = (t: number = 0, bias: number = 0): number => {
-    if (bias === 0) return t; // No bias
-    return bias > 0 ? Math.pow(t, 1 + bias) : 1 - Math.pow(1 - t, 1 - bias);
-  };
-
-  return Array.from({ length }, (_, i) => {
-    const t = i / (length - 1);
-    const adjustedT = adjustBias(t, bias);
-    const value = max - adjustedT * max;
-    return Number(value.toFixed(1)); // Round to integer for simplicity
-  });
-};
-
-export const settings = {
-  nextScrollDistance: 64,
-  staggerBias: -1.75, // -3 to 3
-  springOptions: {
-    damping: 50,
-    stiffness: 1000,
-    mass: 0.1,
-  },
-};

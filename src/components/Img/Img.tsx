@@ -23,13 +23,11 @@ interface ImgProps {
 }
 
 export const Img = ({ src, fromFolder, ignoreShadow = false, deviceBorder = false, ...sx }: ImgProps) => {
-  if (!src || !fromFolder) return null;
-
   const [naturalDimensions, setNaturalDimensions] = useState({
     width: 0,
     height: 0,
   });
-
+  if (!src || !fromFolder) return null;
   const updateDimensions = (width: number, height: number) => {
     if (naturalDimensions.width) return;
     setNaturalDimensions({ width, height });

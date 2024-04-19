@@ -3,7 +3,7 @@ export { Case } from "./Case";
 export { CaseHero, CaseHeroChild } from "./CaseHero";
 export { CaseMeta } from "./CaseMeta";
 export { CaseTitle } from "./CaseTitle";
-export { CaseWrapper, useCaseWrapperContext } from "./CaseWrapper";
+export { CaseWrapper } from "./CaseWrapper";
 export { EmailLink } from "./EmailLink";
 export { GridParent } from "./GridParent";
 export { Img } from "./Img";

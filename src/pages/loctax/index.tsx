@@ -1,8 +1,8 @@
 /** @jsxImportSource theme-ui */
 
-import { GridParent, Img, Video, CaseHero, CaseHeroChild, Carousel } from "@/components";
-import { images, videos } from "./assets";
-import { Box } from "theme-ui";
+import { GridParent, Img, CaseHero, CaseHeroChild } from "@/components";
+import { images } from "./assets";
+
 import { m } from "framer-motion";
 
 const Loctax = () => {

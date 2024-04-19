@@ -3,9 +3,7 @@
 import React, { useRef, useReducer, useEffect } from "react";
 import debounce from "lodash.debounce";
 import { LazyMotion, domMax } from "framer-motion";
-
-const CaseWrapperContext = React.createContext<CaseWrapperState | null>(null);
-
+import { CaseWrapperContext } from "@/hooks/useCaseWrapperContext";
 type Action = {
   type: "update";
   payload: Partial<CaseWrapperState>;
@@ -85,5 +83,3 @@ export type CaseWrapperState = {
   childSum: number;
   windowHeight: number;
 };
-
-export const useCaseWrapperContext = () => React.useContext(CaseWrapperContext) as CaseWrapperState;

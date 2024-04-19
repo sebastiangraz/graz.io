@@ -2,6 +2,7 @@
 
 import React from "react";
 import { keyframes } from "@emotion/react";
+import { settings } from "@/hooks";
 
 const arrow = keyframes`
     0%   { opacity: 0; transform: translateY(-8px);  }
@@ -11,12 +12,10 @@ const arrow = keyframes`
 
 export const ScrollDown = ({
   staggeredOffset,
-  settings,
   gridPosition,
   position,
 }: {
   staggeredOffset: number;
-  settings: any;
   gridPosition: any;
   position: any;
 }) => {

@@ -93,7 +93,7 @@ export const ScrollToTop = () => {
   );
 };
 
-export const handleClick = () => {
+const handleClick = () => {
   window.scrollTo(0, 0);
   window.history.pushState("", "", "/");
 };

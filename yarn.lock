@@ -3616,12 +3616,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react-refresh@npm:^0.3.4":
-  version: 0.3.4
-  resolution: "eslint-plugin-react-refresh@npm:0.3.4"
+"eslint-plugin-react-refresh@npm:^0.4.6":
+  version: 0.4.6
+  resolution: "eslint-plugin-react-refresh@npm:0.4.6"
   peerDependencies:
     eslint: ">=7"
-  checksum: cfed1cc698da5e2c58d3c1e5868eb579e985418f10bbf5da84d6c4923499ce544c4d152c6fa6fa02ffcc02c248a1da77190741ab923075ee6cab181268ad6652
+  checksum: f897bfc1c52d21b9941f1f0b7c3e89a7eb8404c10d73739fc91812a3347d0da8e37e0698fafb059222e629f9d56b5c991a88133105f12b82ad3178b91f7e1041
   languageName: node
   linkType: hard
 
@@ -6137,7 +6137,7 @@ __metadata:
     eslint-config-prettier: ^8.8.0
     eslint-plugin-react: latest
     eslint-plugin-react-hooks: ^4.6.0
-    eslint-plugin-react-refresh: ^0.3.4
+    eslint-plugin-react-refresh: ^0.4.6
     eslint-plugin-sort-exports: ^0.9.1
     framer-motion: ^10.9.2
     intersection-observer: ^0.12.2

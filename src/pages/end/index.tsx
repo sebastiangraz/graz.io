@@ -2,7 +2,6 @@
 
 import { Text, Box, Link } from "theme-ui";
 import { NumberedList, EmailLink, GridParent } from "@/components";
-import { handleClick } from "@/components/ScrollToTop";
 
 import resume from "@/assets/cv-sebastiangraz.pdf";
 
@@ -75,7 +74,7 @@ const End = () => {
                     }}
                     onClick={(e) => {
                       e.preventDefault();
-                      handleClick();
+                      window.scrollTo({ top: 0, behavior: "smooth" });
                     }}
                   >
                     home

@@ -2,7 +2,7 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./components/App";
 import { ThemeProvider, Theme } from "theme-ui";
-import { Helmet, HelmetProvider } from "react-helmet-async";
+import { HelmetProvider } from "react-helmet-async";
 import theme from "./theme";
 
 const container = document.getElementById("root");

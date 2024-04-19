@@ -58,7 +58,7 @@ export const scroll = {
     backgroundColor: (t: Theme) => `${transparentize("text", 0.1)(t)}`,
   },
 };
-// eslint-disable-next-line import/no-anonymous-default-export
+
 export default {
   space: space,
   sizes: space,

@@ -1,1 +1,1 @@
-export { ScrollToTop, handleClick } from "./ScrollToTop";
+export { ScrollToTop } from "./ScrollToTop";

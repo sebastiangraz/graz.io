@@ -62,7 +62,7 @@ const awards = [
   },
 ];
 
-export default () => {
+const Home = () => {
   const scrollProgress = [0, window.innerHeight * 0.7, window.innerHeight * 0.8];
   const transformOutput = [0, -11, -32];
   const { scrollY } = useScroll();
@@ -398,3 +398,5 @@ export default () => {
     </m.div>
   );
 };
+
+export default Home;

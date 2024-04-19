@@ -3,11 +3,13 @@ import sort from "eslint-plugin-sort-exports";
 
 // import react from "eslint-plugin-react";
 import hooks from "eslint-plugin-react-hooks";
+
 // import refresh from "eslint-plugin-react-refresh";
 // import ts from "@typescript-eslint/eslint-plugin";
 // TODO: add useEffect hook rules
 
 import tsParser from "@typescript-eslint/parser";
+
 export default [
   js.configs.recommended,
   {
@@ -24,6 +26,7 @@ export default [
       "no-undef": "warn",
       "sort/sort-exports": "error",
       "hooks/rules-of-hooks": "error",
+      "hooks/exhaustive-deps": "warn",
     },
   },
 ];

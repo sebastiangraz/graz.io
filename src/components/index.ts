@@ -13,3 +13,4 @@ export { EmailLink } from "./EmailLink";
 export { NumberedList } from "./NumberedList";
 export { ScrollDown } from "./ScrollDown";
 export { ScrollToTop } from "./ScrollToTop";
+export { MouseTracker } from "./MouseTracker";

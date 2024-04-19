@@ -49,7 +49,7 @@
 .caseTitle {
   height: 180px;
   top: auto;
-  @media (--2) {
+  @media (--1) {
     height: 300px;
     top: calc(var(--caseTitleTop_2) * 1px);
   }

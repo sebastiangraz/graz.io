@@ -15,7 +15,7 @@ const media_query = "screen and (min-width:640px)";
 
 export const settings = {
   nextScrollDistance: 64,
-  staggerBias: -1, // -3 to 3
+  staggerBias: -1.75, // -3 to 3
   springOptions: {
     damping: 50,
     stiffness: 1000,

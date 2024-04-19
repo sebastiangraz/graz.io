@@ -40,14 +40,16 @@ const Loctax = () => {
             childStyle={{
               marginLeft: "30%",
               marginTop: "0%",
+              width: "calc(100% * 240 / 1200)",
+              height: "calc(100% * 240 / 1200)",
             }}
           >
             {/* <Img src={images.heroIllu1} fromFolder="loctax" /> */}
             <m.svg
               variants={list}
               whileInView="visible"
-              width="240"
-              height="240"
+              width="100%"
+              height="100%"
               viewBox="0 0 240 240"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -125,57 +127,6 @@ const Loctax = () => {
             <Img src={images.heroConnect} fromFolder="loctax" />
           </CaseHeroChild>
         </CaseHero>
-        <Box sx={{ gridColumn: ["2/span 8", "2 / span 8"] }}>
-          <Carousel
-            ratio={[1200, 720]}
-            mobileBleed
-            heading={
-              <>
-                <span sx={{ color: "var(--caseForeground)" }}>The website</span> utilized the brand’s vibrancy to the
-                fullest extent, with bold colors, paired with tangled-ribbonny-
-                <span
-                  sx={{
-                    // text gradient
-                    backgroundImage: "linear-gradient(to right, #1552e1 0%, #5aa598 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
-                >
-                  gradientious
-                </span>{" "}
-                illustrations.
-              </>
-            }
-
-            // onChangeIndex={(index) => console.log("Active index:", index)}
-          >
-            <Img fromFolder="loctax" src={images.web0} deviceBorder />
-            <Img fromFolder="loctax" src={images.web1} deviceBorder />
-            <Img fromFolder="loctax" src={images.web2} deviceBorder />
-            <Img fromFolder="loctax" src={images.web3} deviceBorder />
-            <Img fromFolder="loctax" src={images.web4} />
-          </Carousel>
-        </Box>
-        <Box sx={{ gridColumn: ["2/span 8", "2 / span 8"] }}>
-          <Carousel
-            ratio={[1200, 675]}
-            heading={
-              <>
-                <span sx={{ color: "var(--caseForeground)" }}>The visual language</span> was developed in accordance
-                with the company values, which were collaboratively refined during the early stages of brand discovery.
-              </>
-            }
-
-            // onChangeIndex={(index) => console.log("Active index:", index)}
-          >
-            <Img fromFolder="loctax" src={images.bb0} />
-            <Img fromFolder="loctax" src={images.bb1} />
-            <Img fromFolder="loctax" src={images.bb2} />
-            <Img fromFolder="loctax" src={images.bb3} />
-            <Img fromFolder="loctax" src={images.bb4} />
-            <Img fromFolder="loctax" src={images.bb5} />
-          </Carousel>
-        </Box>
       </GridParent>
     </>
   );

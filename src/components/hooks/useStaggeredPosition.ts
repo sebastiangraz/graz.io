@@ -17,7 +17,7 @@ export const useStaggeredPosition = ({
   windowHeight,
 }: useStaggeredPositionProps) => {
   const [activeCase, setIsActiveCase] = React.useState(false);
-  const activeCaseRef = useRef(false);
+  /*   const activeCaseRef = useRef(false); */
 
   const { scrollY } = useScroll();
 
@@ -51,14 +51,15 @@ export const useStaggeredPosition = ({
   useEffect(() => {
     const unsubscribe = isActive.on("change", (e) => {
       const isLastItem = index === childHeight.length - 1;
-      const lastItemThreshold = isLastItem ? 5 : 0;
+      const lastItemThreshold = isLastItem ? 50 : 0;
       const newActiveState = e > -height(0) - lastItemThreshold && e < 0;
+      setIsActiveCase(newActiveState);
 
       // Only update state if it changes
-      if (activeCaseRef.current !== newActiveState) {
+      /*       if (activeCaseRef.current !== newActiveState) {
         setIsActiveCase(newActiveState);
         activeCaseRef.current = newActiveState; // Update ref
-      }
+      } */
     });
 
     return () => unsubscribe();

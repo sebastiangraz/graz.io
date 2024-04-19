@@ -1,7 +1,10 @@
+/** @jsxImportSource theme-ui */
+
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Box, Text } from "theme-ui";
 import throttle from "lodash.throttle";
+import { MouseTracker } from "../MouseTracker";
 
 interface Props {
   children: React.ReactNode[];
@@ -29,13 +32,12 @@ export const Carousel = ({
   const parentRef = useRef<HTMLDivElement>(null);
   const [disableScrollUpdates, setDisableScrollUpdates] = useState(false);
   const [disableAutoplay, setDisableAutoplay] = useState(true);
+  const [mouseTarget, setMouseTarget] = useState("");
 
   useEffect(() => {
     if (!disableAutoplay) {
       const autoplayInterval = setInterval(() => {
-        setActiveIndex((currentIndex) =>
-          wrap(0, children.length, currentIndex + 1)
-        );
+        setActiveIndex((currentIndex) => wrap(0, children.length, currentIndex + 1));
         setDisableScrollUpdates(true);
       }, 600);
       return () => {
@@ -58,27 +60,15 @@ export const Carousel = ({
 
         if (top >= 0 && top + height <= viewportHeight) {
           // Calculate the percentage of the component that has scrolled through the viewport
-          const scrollPercentage = Math.min(
-            1 - top / (viewportHeight - height),
-            1
-          );
-          const index = Math.min(
-            Math.floor(scrollPercentage * children.length),
-            children.length - 1
-          );
+          const scrollPercentage = Math.min(1 - top / (viewportHeight - height), 1);
+          const index = Math.min(Math.floor(scrollPercentage * children.length), children.length - 1);
           setActiveIndex(index);
           onChangeIndex && onChangeIndex(index);
         } else if (height > viewportHeight && top <= 0) {
           // Calculate the percentage of the component that has scrolled through the viewport
-          const scrollPercentage = Math.min(
-            -top / (height - viewportHeight),
-            1
-          );
+          const scrollPercentage = Math.min(-top / (height - viewportHeight), 1);
 
-          const index = Math.min(
-            Math.floor(scrollPercentage * children.length),
-            children.length - 1
-          );
+          const index = Math.min(Math.floor(scrollPercentage * children.length), children.length - 1);
           setActiveIndex(index);
           onChangeIndex && onChangeIndex(index);
         }
@@ -97,6 +87,11 @@ export const Carousel = ({
 
   return (
     <>
+      {mouseTarget && (
+        <MouseTracker offset={{ x: 10, y: 10 }}>
+          {mouseTarget} <span sx={{ opacity: 0.5 }}>/ {children.length}</span>
+        </MouseTracker>
+      )}
       <Box
         sx={{
           display: "flex",
@@ -120,11 +115,7 @@ export const Carousel = ({
         {children.map((child, i) => {
           const alt = (child as any).props?.src?.alt;
           const isCardVisible = i === activeIndex;
-          return (
-            <React.Fragment key={i}>
-              {isCardVisible && <ImageCaption caption={alt} />}
-            </React.Fragment>
-          );
+          return <React.Fragment key={i}>{isCardVisible && <ImageCaption caption={alt} />}</React.Fragment>;
         })}
       </Box>
       <Box
@@ -160,7 +151,14 @@ export const Carousel = ({
           position: "relative",
           display: "grid",
           // overflow: "hidden",
+          userSelect: "none",
+          cursor: "pointer",
           isolation: "isolate",
+        }}
+        onClick={() => {
+          setActiveIndex(wrap(0, children.length, activeIndex + 1));
+          setDisableScrollUpdates(true);
+          setDisableAutoplay(true);
         }}
       >
         <AnimatePresence initial={false}>
@@ -169,6 +167,8 @@ export const Carousel = ({
             return (
               <React.Fragment key={i}>
                 <motion.div
+                  onMouseEnter={() => setMouseTarget(`${activeIndex + 1}`)}
+                  onMouseLeave={() => setMouseTarget("")}
                   data-index={i}
                   initial={{ opacity: 0 }}
                   animate={{
@@ -205,39 +205,37 @@ interface IndexIndicatorProps {
   active: boolean;
   onClick: () => void;
 }
-const IndexIndicator: React.FC<IndexIndicatorProps> = React.memo(
-  ({ active, onClick }) => (
-    <Box
-      onClick={onClick}
-      sx={{
-        flex: 1,
-        my: 3,
-        pt: [3, 7],
-        pb: [6, 8],
-        cursor: "pointer",
-        display: "grid",
-        ...(!active && {
-          "&:hover": {
-            "&:after": {
-              opacity: 0.4,
-            },
+const IndexIndicator: React.FC<IndexIndicatorProps> = React.memo(({ active, onClick }) => (
+  <Box
+    onClick={onClick}
+    sx={{
+      flex: 1,
+      my: 3,
+      pt: [3, 7],
+      pb: [6, 8],
+      cursor: "pointer",
+      display: "grid",
+      ...(!active && {
+        "&:hover": {
+          "&:after": {
+            opacity: 0.4,
           },
-        }),
-
-        "&:after": {
-          content: "''",
-          gridArea: "1/1",
-          width: "100%",
-          height: "2px",
-          transition: "0.2s ease opacity",
-          borderRadius: "2px",
-          opacity: active ? 1 : 0.12,
-          backgroundColor: "var(--caseForegroundDim)",
         },
-      }}
-    />
-  )
-);
+      }),
+
+      "&:after": {
+        content: "''",
+        gridArea: "1/1",
+        width: "100%",
+        height: "2px",
+        transition: "0.2s ease opacity",
+        borderRadius: "2px",
+        opacity: active ? 1 : 0.12,
+        backgroundColor: "var(--caseForegroundDim)",
+      },
+    }}
+  />
+));
 
 interface ImageCaptionProps {
   caption: string;

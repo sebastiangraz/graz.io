@@ -1,0 +1,23 @@
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-size: 12px;
+  pointer-events: none;
+  padding: 2px 8px;
+  border-radius: 3px;
+  white-space: nowrap;
+  visibility: visible;
+  opacity: 0;
+  z-index: 9999;
+  color: #fff;
+  transition: opacity 0.1s ease;
+  isolation: isolate;
+  will-change: transform;
+  mix-blend-mode: difference;
+  font-feature-settings: "tnum";
+}
+
+.cursor.active {
+  opacity: 0.75;
+}

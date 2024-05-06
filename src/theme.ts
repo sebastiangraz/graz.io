@@ -1,6 +1,3 @@
-import { transparentize } from "@theme-ui/color";
-import { Theme } from "theme-ui";
-
 const colors = {
   text: "#05010c",
   textDim: "#05010c99",
@@ -51,11 +48,11 @@ export const scroll = {
     backgroundColor: "transparent",
   },
   "&::-webkit-scrollbar-thumb": {
-    backgroundColor: (t: Theme) => `${transparentize("text", 0)(t)}`,
+    backgroundColor: "color-mix(in srgb, var(--theme-ui-colors-text), transparent 50%)",
   },
   "&::-webkit-scrollbar-thumb:hover": {
     cursor: "pointer",
-    backgroundColor: (t: Theme) => `${transparentize("text", 0.1)(t)}`,
+    backgroundColor: "color-mix(in srgb, var(--theme-ui-colors-text), transparent 40%)",
   },
 };
 

@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { Text, Link, Theme } from "theme-ui";
 import { Logo, List, EmailLink } from "@/components";
 import { m, useScroll, useTransform, useSpring } from "framer-motion";
-import { transparentize } from "@theme-ui/color";
 import resume from "@/assets/cv-sebastiangraz.pdf";
 
 const NearestQuarter = () => {
@@ -184,8 +183,8 @@ const Home = () => {
       </Text>
       <div
         tabIndex={0}
-        onMouseOver={(e) => handleMouseEnter(e)}
-        onMouseOut={(e) => handleMouseLeave(e)}
+        onMouseOver={(e: React.MouseEvent) => handleMouseEnter(e)}
+        onMouseOut={(e: React.MouseEvent) => handleMouseLeave(e)}
         sx={{
           outline: "none",
           userSelect: "none",
@@ -228,7 +227,7 @@ const Home = () => {
               top: "-16px",
               width: "100%",
               height: "100%",
-              boxShadow: (t: Theme) => [`0 0 0 1px ${transparentize("text", 0.92)(t)}`, "none"],
+              boxShadow: [`0 0 0 1px color-mix(in srgb, var(--theme-ui-colors-text), transparent 92%)`, "none"],
             },
           }}
         >
@@ -262,7 +261,7 @@ const Home = () => {
                   height: "1px",
                   maxWidth: "100%",
                   border: "none",
-                  backgroundColor: (t) => transparentize("text", 0.92)(t),
+                  backgroundColor: `color-mix(in srgb, var(--theme-ui-colors-text), transparent 92%)`,
                 }}
               />
               <m.div variants={list} key={5}>
@@ -374,8 +373,6 @@ const Home = () => {
         <div
           sx={{
             maxWidth: ["40ch", "42ch", "38ch", "32ch"],
-            // width: "100%",
-            // width: [410, null, 380, 440],
           }}
         >
           <Text

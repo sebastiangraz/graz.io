@@ -417,7 +417,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.18.3":
+"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.18.3":
   version: 7.21.0
   resolution: "@babel/runtime@npm:7.21.0"
   dependencies:
@@ -2047,16 +2047,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@theme-ui/color@npm:^0.15.5":
-  version: 0.15.7
-  resolution: "@theme-ui/color@npm:0.15.7"
-  dependencies:
-    "@theme-ui/css": ^0.15.7
-    polished: ^4.0.5
-  checksum: ab63bae5b0dd65d49c84db6f12b1a70c0eb3cb91ea30d91fd1ad93686677bfbcffdd0e0efc43bff41adb6abaedf34766a6ff308d5ea73ed7a2b2ffc54c9926d9
-  languageName: node
-  linkType: hard
-
 "@theme-ui/components@npm:^0.16.2":
   version: 0.16.2
   resolution: "@theme-ui/components@npm:0.16.2"
@@ -2088,7 +2078,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@theme-ui/css@npm:^0.15.5, @theme-ui/css@npm:^0.15.7":
+"@theme-ui/css@npm:^0.15.5":
   version: 0.15.7
   resolution: "@theme-ui/css@npm:0.15.7"
   dependencies:
@@ -5349,15 +5339,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"polished@npm:^4.0.5":
-  version: 4.2.2
-  resolution: "polished@npm:4.2.2"
-  dependencies:
-    "@babel/runtime": ^7.17.8
-  checksum: 97fb927dc55cd34aeb11b31ae2a3332463f114351c86e8aa6580d7755864a0120164fdc3770e6160c8b1775052f0eda14db9a6e34402cd4b08ab2d658a593725
-  languageName: node
-  linkType: hard
-
 "postcss-attribute-case-insensitive@npm:^6.0.3":
   version: 6.0.3
   resolution: "postcss-attribute-case-insensitive@npm:6.0.3"
@@ -6135,7 +6116,6 @@ __metadata:
   dependencies:
     "@csstools/postcss-global-data": ^2.1.1
     "@emotion/react": ^11.10.6
-    "@theme-ui/color": ^0.15.5
     "@theme-ui/css": ^0.15.5
     "@theme-ui/match-media": ^0.15.5
     "@types/lodash.debounce": ^4.0.7
@@ -6168,7 +6148,7 @@ __metadata:
     ts-node: ^10.9.1
     tsx: ^4.7.2
     typescript: ^5.0.2
-    vite: ^5.2.10
+    vite: ^5.2.11
     vite-plugin-image-optimizer: ^1.1.7
     vite-plugin-svgr: ^4.2.0
     yarn: ^2.4.3
@@ -6860,9 +6840,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^5.2.10":
-  version: 5.2.10
-  resolution: "vite@npm:5.2.10"
+"vite@npm:^5.2.11":
+  version: 5.2.11
+  resolution: "vite@npm:5.2.11"
   dependencies:
     esbuild: ^0.20.1
     fsevents: ~2.3.3
@@ -6896,7 +6876,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: feb11be2b97259783afe1d0ff4b7ee0bef78fe8934d8b043465e039e4d8318249e2263adc724b719b9e9b45a37e012caeb7746854768f371d1a82bb189f50fe6
+  checksum: 3f9f976cc6ada93aca56abcc683a140e807725b351abc241a1ec0763ec561a4bf5760e1ad94de4e59505904ddaa88727de66af02f61ecf540c7720045de55d0a
   languageName: node
   linkType: hard
 

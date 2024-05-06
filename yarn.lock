@@ -2033,17 +2033,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@theme-ui/color-modes@npm:^0.15.7":
-  version: 0.15.7
-  resolution: "@theme-ui/color-modes@npm:0.15.7"
+"@theme-ui/color-modes@npm:^0.16.2":
+  version: 0.16.2
+  resolution: "@theme-ui/color-modes@npm:0.16.2"
   dependencies:
-    "@theme-ui/core": ^0.15.7
-    "@theme-ui/css": ^0.15.7
+    "@theme-ui/core": ^0.16.2
+    "@theme-ui/css": ^0.16.2
     deepmerge: ^4.2.2
   peerDependencies:
-    "@emotion/react": ^11
+    "@emotion/react": ^11.11.1
     react: ">=18"
-  checksum: 519628636b94f1f6c3e3c5097359d5aa2d8db049b7e52687ec4faa50a13bea3e25b383b4ee1dee4bb95b8379fee34e02d3da43eaf104b9ce4c82821dc3b0d77b
+  checksum: e9df6f59f8555e470e122d50628eedc785d47b765a320de3375429444202b35b6c2dca3ffc3b23b7059c1cc0c299c1baf8933d0cfcd842f823f403e149f82528
   languageName: node
   linkType: hard
 
@@ -2057,32 +2057,34 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@theme-ui/components@npm:^0.15.7":
-  version: 0.15.7
-  resolution: "@theme-ui/components@npm:0.15.7"
+"@theme-ui/components@npm:^0.16.2":
+  version: 0.16.2
+  resolution: "@theme-ui/components@npm:0.16.2"
   dependencies:
     "@styled-system/color": ^5.1.2
     "@styled-system/should-forward-prop": ^5.1.2
     "@styled-system/space": ^5.1.2
-    "@theme-ui/css": ^0.15.7
+    "@theme-ui/core": ^0.16.2
+    "@theme-ui/css": ^0.16.2
     "@types/styled-system": ^5.1.13
   peerDependencies:
-    "@emotion/react": ^11
+    "@emotion/react": ^11.11.1
+    "@theme-ui/theme-provider": ^0.16.2
     react: ">=18"
-  checksum: 9f3d50d4ecdbbfef6522577abac4eda914b62c31afae4374558485adfd2d80ae8e44e4a22da70ee00c908f279a77dbdbfe7441074d17d447d695f50c71bf3d61
+  checksum: 85a5d2b6865b1b92baf38df2d0057c26457a011fa9b38d6f64babf5a26235c90eebf6275173816cd7b120bd0ab3582535e1395d333dd917a53f86eaf0ed28c44
   languageName: node
   linkType: hard
 
-"@theme-ui/core@npm:^0.15.7":
-  version: 0.15.7
-  resolution: "@theme-ui/core@npm:0.15.7"
+"@theme-ui/core@npm:^0.16.2":
+  version: 0.16.2
+  resolution: "@theme-ui/core@npm:0.16.2"
   dependencies:
-    "@theme-ui/css": ^0.15.7
+    "@theme-ui/css": ^0.16.2
     deepmerge: ^4.2.2
   peerDependencies:
-    "@emotion/react": ^11
+    "@emotion/react": ^11.11.1
     react: ">=18"
-  checksum: 9019ee8ece0b273f04f12933220ce78ef77f0c4899583210d2d5b64f2258b2312b3175fbb0e4499811e32ed04e6e1a8bfee93d416a9ea82647ca30d16cfe1acd
+  checksum: e35ba3781b089212f9da9653a7d844835474f05cf15040a02d589d80d6416bb99455986e986a69302d430e6d646e012a35c8c560efdd20cd2b5e740228dc040e
   languageName: node
   linkType: hard
 
@@ -2097,16 +2099,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@theme-ui/global@npm:^0.15.7":
-  version: 0.15.7
-  resolution: "@theme-ui/global@npm:0.15.7"
+"@theme-ui/css@npm:^0.16.2":
+  version: 0.16.2
+  resolution: "@theme-ui/css@npm:0.16.2"
   dependencies:
-    "@theme-ui/core": ^0.15.7
-    "@theme-ui/css": ^0.15.7
+    csstype: ^3.0.10
   peerDependencies:
-    "@emotion/react": ^11
+    "@emotion/react": ^11.11.1
+  checksum: 908ca0b3a3d38d5487040b5d58071302394b32e2975efbaf9d347f65d21bdac9cd98d4746d0b7be8a64ad0c78d5bc7624d6a3f769c7a6e58d974435c1aeb7514
+  languageName: node
+  linkType: hard
+
+"@theme-ui/global@npm:^0.16.2":
+  version: 0.16.2
+  resolution: "@theme-ui/global@npm:0.16.2"
+  dependencies:
+    "@theme-ui/core": ^0.16.2
+    "@theme-ui/css": ^0.16.2
+  peerDependencies:
+    "@emotion/react": ^11.11.1
     react: ">=18"
-  checksum: d53652d388ba8ec08783799651c37a9ed7528772e6e8ad130f0c4162143723e262bcc0f34664d03e9aab843091d3fa8123da117b46d4bfb01cb8ba8bb4873aa6
+  checksum: d1b1397654936305a2907f4150d7f0c7545e1c10c7ce622f30ba5c3f3734f01a27675b517c1815f6d181622788f34f896ed86c576a9d3998d58f718dec8ca3fa
   languageName: node
   linkType: hard
 
@@ -2121,17 +2134,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@theme-ui/theme-provider@npm:^0.15.7":
-  version: 0.15.7
-  resolution: "@theme-ui/theme-provider@npm:0.15.7"
+"@theme-ui/theme-provider@npm:^0.16.2":
+  version: 0.16.2
+  resolution: "@theme-ui/theme-provider@npm:0.16.2"
   dependencies:
-    "@theme-ui/color-modes": ^0.15.7
-    "@theme-ui/core": ^0.15.7
-    "@theme-ui/css": ^0.15.7
+    "@theme-ui/color-modes": ^0.16.2
+    "@theme-ui/core": ^0.16.2
+    "@theme-ui/css": ^0.16.2
   peerDependencies:
-    "@emotion/react": ^11
+    "@emotion/react": ^11.11.1
     react: ">=18"
-  checksum: 45e208ff577af5c2a24c965b0c63ea6a88c88b1103897237763683b45e9420b7100d6f589040cf2c9a7a2ea63534087bdee356ead1d2d80068e926fb7518cadd
+  checksum: a6c4b88d4bc6ace0d34c53714c0f20159ea62ca39523387daff78e7f7ddfbe7912022ba833dff4c3f5f4c6ca4625e8262bf990e41ce0aa88068c017e4b27f942
   languageName: node
   linkType: hard
 
@@ -6151,11 +6164,11 @@ __metadata:
     react-uuid: ^2.0.0
     sharp: ^0.32.0
     svgo: ^3.2.0
-    theme-ui: ^0.15.5
+    theme-ui: ^0.16.2
     ts-node: ^10.9.1
     tsx: ^4.7.2
     typescript: ^5.0.2
-    vite: ^5.2.7
+    vite: ^5.2.10
     vite-plugin-image-optimizer: ^1.1.7
     vite-plugin-svgr: ^4.2.0
     yarn: ^2.4.3
@@ -6566,19 +6579,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"theme-ui@npm:^0.15.5":
-  version: 0.15.7
-  resolution: "theme-ui@npm:0.15.7"
+"theme-ui@npm:^0.16.2":
+  version: 0.16.2
+  resolution: "theme-ui@npm:0.16.2"
   dependencies:
-    "@theme-ui/color-modes": ^0.15.7
-    "@theme-ui/components": ^0.15.7
-    "@theme-ui/core": ^0.15.7
-    "@theme-ui/css": ^0.15.7
-    "@theme-ui/global": ^0.15.7
-    "@theme-ui/theme-provider": ^0.15.7
+    "@theme-ui/color-modes": ^0.16.2
+    "@theme-ui/components": ^0.16.2
+    "@theme-ui/core": ^0.16.2
+    "@theme-ui/css": ^0.16.2
+    "@theme-ui/global": ^0.16.2
+    "@theme-ui/theme-provider": ^0.16.2
   peerDependencies:
+    "@emotion/react": ">=11.1.1"
     react: ">=18"
-  checksum: 2cbd1c48c9eaf6338f2ec7db2955bb4d0a7c41e880b660ad2e2ac4f52102fa9a62e3fbc8646cf5bafb473650a3b7c27eb8f73769324344bc573b81a73fcd8bef
+  checksum: 01c19a3209585c3aaba4969d9cfc4f52accdce1aa07ab37155ed30c99ca6097f6f1c23515b52e9e4eaeeae5fb1363c81b9ddadf7545ec107da7bc49c7733c9d4
   languageName: node
   linkType: hard
 
@@ -6846,9 +6860,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^5.2.7":
-  version: 5.2.7
-  resolution: "vite@npm:5.2.7"
+"vite@npm:^5.2.10":
+  version: 5.2.10
+  resolution: "vite@npm:5.2.10"
   dependencies:
     esbuild: ^0.20.1
     fsevents: ~2.3.3
@@ -6882,7 +6896,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 66b4243f0ce147a1871e9bea772e5bd4842410ec9f3aa71d21e9427836f79a15b00f5cb7f023003f169249bc6ead20f68ee31ce6a326e091670ffd3b5441d131
+  checksum: feb11be2b97259783afe1d0ff4b7ee0bef78fe8934d8b043465e039e4d8318249e2263adc724b719b9e9b45a37e012caeb7746854768f371d1a82bb189f50fe6
   languageName: node
   linkType: hard
 

@@ -1,19 +1,16 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
+import ReactDOM from "react-dom/client";
 import { App } from "./components/App";
-import { ThemeProvider, Theme } from "theme-ui";
+import { ThemeUIProvider, Theme } from "theme-ui";
 import { HelmetProvider } from "react-helmet-async";
 import theme from "./theme";
 
-const container = document.getElementById("root");
-const root = createRoot(container as HTMLElement);
-
-root.render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <HelmetProvider>
-      <ThemeProvider theme={theme as Theme}>
+      <ThemeUIProvider theme={theme as Theme}>
         <App />
-      </ThemeProvider>
+      </ThemeUIProvider>
     </HelmetProvider>
   </React.StrictMode>
 );

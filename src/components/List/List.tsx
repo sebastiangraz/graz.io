@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 export const List = ({
   children,
   noBullets,
-  variant,
   animate,
   delay = 0,
   ...sx

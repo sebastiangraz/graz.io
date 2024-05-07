@@ -58,17 +58,16 @@ export const Carousel = ({
         const { top, height } = parentRef.current.getBoundingClientRect();
         const viewportHeight = window.innerHeight;
 
-        if (top >= 0 && top + height <= viewportHeight) {
-          // Calculate the percentage of the component that has scrolled through the viewport
-          const scrollPercentage = Math.min(1 - top / (viewportHeight - height), 1);
-          const index = Math.min(Math.floor(scrollPercentage * children.length), children.length - 1);
-          setActiveIndex(index);
-          onChangeIndex && onChangeIndex(index);
-        } else if (height > viewportHeight && top <= 0) {
-          // Calculate the percentage of the component that has scrolled through the viewport
-          const scrollPercentage = Math.min(-top / (height - viewportHeight), 1);
+        let scrollPercentage, index;
 
-          const index = Math.min(Math.floor(scrollPercentage * children.length), children.length - 1);
+        if (top >= 0 && top + height <= viewportHeight) {
+          scrollPercentage = Math.min(1 - top / (viewportHeight - height), 1);
+        } else if (height > viewportHeight && top <= 0) {
+          scrollPercentage = Math.min(-top / (height - viewportHeight), 1);
+        }
+
+        if (scrollPercentage !== undefined) {
+          index = Math.min(Math.floor(scrollPercentage * children.length), children.length - 1);
           setActiveIndex(index);
           onChangeIndex && onChangeIndex(index);
         }

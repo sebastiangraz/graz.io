@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 
 import React, { useState } from "react";
-import { Text, Link, Theme } from "theme-ui";
+import { Text, Link } from "theme-ui";
 import { Logo, List, EmailLink } from "@/components";
 import { m, useScroll, useTransform, useSpring } from "framer-motion";
 import resume from "@/assets/cv-sebastiangraz.pdf";

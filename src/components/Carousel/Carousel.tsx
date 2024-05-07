@@ -167,8 +167,8 @@ export const Carousel = ({
             return (
               <React.Fragment key={i}>
                 <motion.div
-                  onMouseEnter={() => setMouseTarget(`${activeIndex + 1}`)}
-                  onMouseLeave={() => setMouseTarget("")}
+                  onPointerEnter={() => setMouseTarget(`${activeIndex + 1}`)}
+                  onPointerLeave={() => setMouseTarget("")}
                   data-index={i}
                   initial={{ opacity: 0 }}
                   animate={{

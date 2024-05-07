@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import React from "react";
-import { ThemeUICSSObject } from "theme-ui";
+import { AspectRatio, ThemeUICSSObject } from "theme-ui";
 
 const VideoComponent = ({ ...props }: VideoComponentProps) => {
   const { src, fromFolder, ...sx } = props;
@@ -90,20 +90,23 @@ const VideoComponent = ({ ...props }: VideoComponentProps) => {
             opacity: isWaiting ? 0 : 1,
             position: "relative",
             gridArea: "1/1",
+            aspectRatio: "1",
+            placeSelf: "center",
             zIndex: 1,
-            left: "calc(50% - 28px)",
-            top: "calc(50% - 28px)",
             background: "currentColor",
-            width: 56,
-            height: 56,
+            width: "80%",
+            maxWidth: 56,
             borderRadius: "pill",
             userSelect: "none",
-            display: "flex",
+            display: "grid",
             alignItems: "center",
             justifyContent: "center",
+            justifyItems: "center",
             svg: {
               position: "relative",
               left: "1px",
+              width: "60%",
+              maxWidth: "18px",
             },
 
             "&:hover": {
@@ -116,7 +119,7 @@ const VideoComponent = ({ ...props }: VideoComponentProps) => {
           }}
           className="play"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 11 11" preserveAspectRatio="xMaxYMax slice">
             <path d="M 0 0 L 0 11 L 11 5.5 Z" fill="var(--caseBackground)"></path>
           </svg>
         </div>
@@ -125,7 +128,7 @@ const VideoComponent = ({ ...props }: VideoComponentProps) => {
         sx={{
           gridArea: "1/1",
           aspectRatio: `${src.width}/${src.height}`,
-          opacity: isPlaying ? 1 : 0.88,
+          filter: isPlaying ? "none" : "brightness(0.8) saturate(120%)",
           height: "100%",
           width: "100%",
           objectFit: "cover",

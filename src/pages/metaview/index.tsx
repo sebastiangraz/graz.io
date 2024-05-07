@@ -51,7 +51,6 @@ const Metaview = () => {
                 src={videos.metabot}
                 fromFolder="metaview"
                 sx={{
-                  display: "flex",
                   borderRadius: "99em",
                   overflow: "hidden",
                   gridArea: "1/1",

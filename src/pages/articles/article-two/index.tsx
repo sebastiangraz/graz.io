@@ -12,7 +12,7 @@ export const metadata = {
   featured: false,
 };
 
-const ArticleTwo = () => {
+export default () => {
   return (
     <GridParent
       sx={{
@@ -51,5 +51,3 @@ const ArticleTwo = () => {
     </GridParent>
   );
 };
-
-export default ArticleTwo;

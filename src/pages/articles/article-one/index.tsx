@@ -10,7 +10,7 @@ export const metadata = {
   featured: true,
 };
 
-const ArticleOne = () => {
+export default () => {
   return (
     <Container
       sx={{
@@ -54,5 +54,3 @@ const ArticleOne = () => {
     </Container>
   );
 };
-
-export default ArticleOne;

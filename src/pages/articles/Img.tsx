@@ -1,4 +1,3 @@
-import type { OutputMetadata } from "@/types/blog";
 import style from "./img.module.css";
 import { getImageForArticle } from "./imports";
 
@@ -32,9 +31,8 @@ export const Img = ({
   }
 
   const isSvg = src.includes(".svg");
-  const meta = imageMetadata as OutputMetadata[];
-  const pngData = meta?.find((m) => m.format === "png") as OutputMetadata;
-  const avifData = meta?.find((m) => m.format === "avif") as OutputMetadata;
+  const pngData = imageMetadata.find((m) => m.format === "png");
+  const avifData = imageMetadata.find((m) => m.format === "avif");
 
   const classNames = `${style.picture} ${deviceBorder ? style.deviceBorder : ""} ${
     browserBorder ? style.browserBorder : ""

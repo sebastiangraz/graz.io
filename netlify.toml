@@ -1,6 +1,6 @@
 # example netlify.toml
 [build]
-  command = "vite build"
+  command = "NODE_OPTIONS='--max-old-space-size=3584' vite build"
   functions = "netlify/functions"
   publish = "dist"
 

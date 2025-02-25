@@ -25,7 +25,8 @@
   "scripts": {
     "convert-images": "tsx convert-images.ts",
     "start": "yarn run convert-images && vite",
-    "build": "CI=false && yarn run convert-images && vite build",
+    "build": "CI=false && NODE_OPTIONS='--max-old-space-size=3584' vite build",
+    "build:with-images": "CI=false && yarn run convert-images && NODE_OPTIONS='--max-old-space-size=3584' vite build",
     "serve": "vite preview"
   },
   "browserslist": {

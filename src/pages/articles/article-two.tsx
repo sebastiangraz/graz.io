@@ -1,6 +1,5 @@
 /** @jsxImportSource theme-ui */
 
-import React from "react";
 import { Text, Container, Heading } from "theme-ui";
 
 export const metadata = {

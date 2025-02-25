@@ -15,7 +15,7 @@
   margin-top: 48px;
   display: grid;
   &:before {
-    border-image-source: url("@/assets/browser-slice.png");
+    /* border-image-source: url("@/assets/browser-slice.png"); */
     border-image-width: 330px calc(330px * 1 / 1);
     border-image-outset: 256px 256px;
     border-image-slice: 49.97%;
@@ -34,7 +34,7 @@
 .deviceBorder {
   display: grid;
   &:before {
-    border-image-source: url("@/assets/device-slice-shadow.avif");
+    /* border-image-source: url("@/assets/device-slice-shadow.avif"); */
     border-image-width: 373px calc(180px * 432 / 328);
     border-image-outset: 319px 182px;
     border-image-slice: 49.97%;

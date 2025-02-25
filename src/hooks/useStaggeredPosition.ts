@@ -21,7 +21,7 @@ export const useStaggeredPosition = ({
 
   const { scrollY } = useScroll();
 
-  const responsiveOffset = useResponsiveValue([50, 75, 200, 240]);
+  const responsiveOffset = useResponsiveValue([50, 75, 180, 200]);
 
   const height = useCallback((pos: number) => childHeight[pos ? index - pos : index] || 0, [childHeight, index]);
   const position = useCallback((pos: number) => childPosition[pos ? index - pos : index] || 0, [childPosition, index]);

@@ -24,7 +24,7 @@ export const generateScaledArray = (length: number = 0, max: number = 100, bias:
 };
 
 export const settings = {
-  nextScrollDistance: 64,
+  nextScrollDistance: 48,
   staggerBias: -1.75, // -3 to 3
   springOptions: {
     damping: 50,

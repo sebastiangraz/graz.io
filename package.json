@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "type": "module",
   "private": true,
-  "engines": {
-    "node": "^18.15.0"
-  },
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@tanstack/react-router": "^1.111.7",

@@ -138,8 +138,8 @@ const Loctax = () => {
             mobileBleed
             heading={
               <>
-                <span sx={{ color: "var(--caseForeground)" }}>The website</span> was developed in parallell with the
-                brand, mutually influencing design choices in both directions.
+                <span sx={{ color: "var(--caseForeground)" }}>Truchet</span> tiles can be repeated & rotated into any
+                orientation and never break the pattern.
               </>
             }
           >
@@ -148,6 +148,73 @@ const Loctax = () => {
             <Img fromFolder="loctax" src={images.styleguide2} />
             <Img fromFolder="loctax" src={images.styleguide3} />
             <Img fromFolder="loctax" src={images.styleguide4} />
+          </Carousel>
+        </Box>
+
+        <Box
+          sx={{
+            gridColumn: ["2/span 8", "2 / span 8"],
+          }}
+        >
+          <Carousel
+            ratio={[1200, 675]}
+            mobileBleed
+            heading={
+              <>
+                <span sx={{ color: "var(--caseForeground)" }}>Color</span> palette with a recommended color combination
+                chart.
+              </>
+            }
+          >
+            <Img fromFolder="loctax" src={images.color} />
+            <Img fromFolder="loctax" src={images.color1} />
+            <Img fromFolder="loctax" src={images.color2} />
+            <Img fromFolder="loctax" src={images.color3} />
+            <Img fromFolder="loctax" src={images.color4} />
+            <Img fromFolder="loctax" src={images.color5} />
+          </Carousel>
+        </Box>
+
+        <Box
+          sx={{
+            gridColumn: ["2/span 8", "2 / span 8"],
+          }}
+        >
+          <Carousel
+            ratio={[1200, 675]}
+            mobileBleed
+            heading={
+              <>
+                Various <span sx={{ color: "var(--caseForeground)" }}>assets</span> for the brand.
+              </>
+            }
+          >
+            <Img fromFolder="loctax" src={images.assets} />
+            <Img fromFolder="loctax" src={images.assets1} />
+            <Img fromFolder="loctax" src={images.assets2} />
+            <Img fromFolder="loctax" src={images.assets3} />
+            <Img fromFolder="loctax" src={images.assets4} />
+            <Img fromFolder="loctax" src={images.assets5} />
+          </Carousel>
+        </Box>
+        <Box
+          sx={{
+            gridColumn: ["2/span 8", "2 / span 8"],
+          }}
+        >
+          <Carousel
+            ratio={[1200, 675]}
+            mobileBleed
+            heading={
+              <>
+                <span sx={{ color: "var(--caseForeground)" }}>Website</span> components and sections.
+              </>
+            }
+          >
+            <Img fromFolder="loctax" src={images.web} deviceBorder />
+            <Img fromFolder="loctax" src={images.web1} deviceBorder />
+            <Img fromFolder="loctax" src={images.web2} deviceBorder />
+            <Img fromFolder="loctax" src={images.web3} deviceBorder />
           </Carousel>
         </Box>
       </GridParent>

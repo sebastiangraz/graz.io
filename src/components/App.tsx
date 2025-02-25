@@ -1,9 +1,66 @@
 import { CaseWrapper, Case, ScrollToTop, CaseMeta, GridParent } from "@/components";
 import "@/base.css";
-
 import { Helmet } from "react-helmet-async";
+import { ArticleModule } from "@/types/blog";
+import { useState, useEffect } from "react";
+
+// Article routes setup using import.meta.glob
+const articleModules = import.meta.glob<ArticleModule>(["../pages/articles/*.tsx"], { eager: true });
 
 export const App = () => {
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+
+  // Listen for path changes
+  useEffect(() => {
+    const handleLocationChange = () => {
+      setCurrentPath(window.location.pathname);
+    };
+
+    window.addEventListener("popstate", handleLocationChange);
+
+    return () => {
+      window.removeEventListener("popstate", handleLocationChange);
+    };
+  }, []);
+
+  // If path starts with /articles, show the blog component
+  if (currentPath.startsWith("/articles")) {
+    const isArticleIndex = currentPath === "/articles" || currentPath === "/articles/";
+
+    if (isArticleIndex) {
+      const BlogIndex = articleModules["../pages/articles/index.tsx"]?.default;
+      return (
+        <>
+          <Helmet>
+            <meta name="theme-color" media="(prefers-color-scheme: light)" />
+            <meta name="theme-color" media="(prefers-color-scheme: dark)" />
+          </Helmet>
+          <ScrollToTop />
+          {BlogIndex ? <BlogIndex /> : <div>Blog index not found</div>}
+        </>
+      );
+    } else {
+      // Extract slug from the URL path
+      const slug = currentPath.replace("/articles/", "");
+      const articlePath = `../pages/articles/${slug}.tsx`;
+
+      // Find the corresponding article component
+      const ArticleComponent = articleModules[articlePath]?.default;
+
+      return (
+        <>
+          <Helmet>
+            <meta name="theme-color" media="(prefers-color-scheme: light)" />
+            <meta name="theme-color" media="(prefers-color-scheme: dark)" />
+          </Helmet>
+          <ScrollToTop />
+          {ArticleComponent ? <ArticleComponent /> : <div>Article not found</div>}
+        </>
+      );
+    }
+  }
+
+  // For all other paths, use the original case-based rendering
   return (
     <>
       <Helmet>
@@ -19,6 +76,7 @@ export const App = () => {
 export const PropMap = () => {
   const props = {
     home: { hideCaseMeta: true },
+    articles: { grid: ["1 / span 12", "1 / span 12"], hideCaseMeta: true }, // Add articles to PropMap
     capchase: {
       grid: ["2 / span 10", "2 / span 10"],
       challenge:

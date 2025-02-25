@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 
 import React, { useMemo } from "react";
-import { Box, Container, Heading, Text, Grid, Flex, Link } from "theme-ui";
+import { Box, Heading, Text, Grid, Link } from "theme-ui";
 import { motion } from "framer-motion";
 import { GridParent } from "@/components";
 

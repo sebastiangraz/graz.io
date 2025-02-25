@@ -5,10 +5,7 @@ interface useScrollToCaseOnMountProps {
   scrollToVal: number;
 }
 
-export const useScrollToCaseOnMount = ({
-  slug,
-  scrollToVal,
-}: useScrollToCaseOnMountProps) => {
+export const useScrollToCaseOnMount = ({ slug, scrollToVal }: useScrollToCaseOnMountProps) => {
   useEffect(() => {
     document.fonts.ready.then(function () {
       if (window.location.pathname === `/${slug}`) {

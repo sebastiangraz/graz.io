@@ -1,9 +1,10 @@
 /** @jsxImportSource theme-ui */
 
-import { GridParent, Img, CaseHero, CaseHeroChild } from "@/components";
+import { GridParent, Img, CaseHero, CaseHeroChild, Carousel } from "@/components";
 import { images } from "./assets";
 
 import { m } from "framer-motion";
+import { Box } from "theme-ui";
 
 const Loctax = () => {
   const list = {
@@ -127,6 +128,28 @@ const Loctax = () => {
             <Img src={images.heroConnect} fromFolder="loctax" />
           </CaseHeroChild>
         </CaseHero>
+        <Box
+          sx={{
+            gridColumn: ["2/span 8", "2 / span 8"],
+          }}
+        >
+          <Carousel
+            ratio={[1200, 675]}
+            mobileBleed
+            heading={
+              <>
+                <span sx={{ color: "var(--caseForeground)" }}>The website</span> was developed in parallell with the
+                brand, mutually influencing design choices in both directions.
+              </>
+            }
+          >
+            <Img fromFolder="loctax" src={images.styleguide} />
+            <Img fromFolder="loctax" src={images.styleguide1} />
+            <Img fromFolder="loctax" src={images.styleguide2} />
+            <Img fromFolder="loctax" src={images.styleguide3} />
+            <Img fromFolder="loctax" src={images.styleguide4} />
+          </Carousel>
+        </Box>
       </GridParent>
     </>
   );

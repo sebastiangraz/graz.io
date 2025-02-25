@@ -18,9 +18,9 @@ const colors = {
     background: "#FCFBF8",
   },
   loctax: {
-    foreground: "#F8A672",
-    foregroundDim: "#F8A672a3",
-    background: "#2A172B",
+    foreground: "#E1AEE3",
+    foregroundDim: "#E1AEE3a3",
+    background: "#221223",
   },
   gitbook: {
     foreground: "#181D1F",

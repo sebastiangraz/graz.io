@@ -1,4 +1,3 @@
-import { Video } from "@/components";
 import { VideoComponentProps } from "@/components/Video";
 import { ImageData } from "@/components/Img";
 
@@ -56,6 +55,36 @@ export const images = {
     width: 500,
     height: 562,
     alt: "Iconography",
+  },
+  styleguide: {
+    name: "styleguide.png",
+    width: 1200,
+    height: 675,
+    alt: "Styleguide",
+  },
+  styleguide1: {
+    name: "styleguide-1.png",
+    width: 1200,
+    height: 675,
+    alt: "Styleguide",
+  },
+  styleguide2: {
+    name: "styleguide-2.png",
+    width: 1200,
+    height: 675,
+    alt: "Styleguide",
+  },
+  styleguide3: {
+    name: "styleguide-3.png",
+    width: 1200,
+    height: 675,
+    alt: "Styleguide",
+  },
+  styleguide4: {
+    name: "styleguide-4.png",
+    width: 1200,
+    height: 675,
+    alt: "Styleguide",
   },
 } as { [key: string]: ImageData };
 

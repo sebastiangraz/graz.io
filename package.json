@@ -25,8 +25,8 @@
     "yarn": "^2.4.3"
   },
   "scripts": {
-    "start": "vite",
     "convert-images": "tsx convert-images.ts",
+    "start": "yarn run convert-images && vite",
     "build": "yarn run convert-images && vite build",
     "serve": "vite preview"
   },

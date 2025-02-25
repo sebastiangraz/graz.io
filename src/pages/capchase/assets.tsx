@@ -1,38 +1,5 @@
-import { VideoComponentProps } from "../../components/Video";
-import { ImageData } from "../../components/Img";
-
-export const videos = {
-  intro: {
-    url: "intro.mp4",
-    width: 1920,
-    height: 1920,
-    alt: "logoart.png",
-  },
-  reveal: {
-    url: "reveal.mp4",
-    width: 1920,
-    height: 1080,
-    alt: "Logo reveal",
-  },
-  generic: {
-    url: "generic-outro-portfolio.mp4",
-    width: 1920,
-    height: 1080,
-    alt: "Generic outro",
-  },
-  outro: {
-    url: "creative-outro.mp4",
-    width: 1920,
-    height: 1080,
-    alt: "Creative outro",
-  },
-  swirl: {
-    url: "swirl.mp4",
-    width: 336,
-    height: 269,
-    alt: "Swirl",
-  },
-} as { [key: string]: VideoComponentProps["src"] };
+import { VideoComponentProps } from "@/components/Video";
+import { ImageData } from "@/components/Img";
 
 export const images = {
   capchaseWeb0: {
@@ -223,3 +190,36 @@ export const images = {
     alt: "Hero icon 5",
   },
 } as { [key: string]: ImageData };
+
+export const videos = {
+  intro: {
+    url: "intro.mp4",
+    width: 1920,
+    height: 1920,
+    alt: "logoart.png",
+  },
+  reveal: {
+    url: "reveal.mp4",
+    width: 1920,
+    height: 1080,
+    alt: "Logo reveal",
+  },
+  generic: {
+    url: "generic-outro-portfolio.mp4",
+    width: 1920,
+    height: 1080,
+    alt: "Generic outro",
+  },
+  outro: {
+    url: "creative-outro.mp4",
+    width: 1920,
+    height: 1080,
+    alt: "Creative outro",
+  },
+  swirl: {
+    url: "swirl.mp4",
+    width: 336,
+    height: 269,
+    alt: "Swirl",
+  },
+} as { [key: string]: VideoComponentProps["src"] };

@@ -1,21 +1,22 @@
-import React from "react";
-import { CaseWrapper, Case, ScrollToTop, CaseMeta, GridParent } from ".";
-import "../base.css";
+import { CaseWrapper, Case, ScrollToTop, CaseMeta, GridParent } from "@/components";
+import "@/base.css";
 
 import { Helmet } from "react-helmet-async";
-import { useThemeUI } from "theme-ui";
-import { getColor } from "@theme-ui/color";
 
-export interface PropMap {
-  grid?: string[];
-  scope?: string[];
-  challenge?: string;
-  duration?: string;
-  year?: string;
-  hideCaseMeta?: boolean;
-}
+export const App = () => {
+  return (
+    <>
+      <Helmet>
+        <meta name="theme-color" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" />
+      </Helmet>
+      <ScrollToTop />
+      <CaseWrapper>{cases}</CaseWrapper>
+    </>
+  );
+};
 
-export const propMap = () => {
+export const PropMap = () => {
   const props = {
     home: { hideCaseMeta: true },
     capchase: {
@@ -28,8 +29,7 @@ export const propMap = () => {
     },
     metaview: {
       grid: ["3 / span 10", "3 / span 10"],
-      challenge:
-        "Rebrand Metaview to surface their dedication for fairer hiring solutions, no matter the scale.",
+      challenge: "Rebrand Metaview to surface their dedication for fairer hiring solutions, no matter the scale.",
       scope: ["Rebrand & strategy", "Production output"],
       duration: "4 months + retainer",
       year: "2023",
@@ -42,17 +42,25 @@ export const propMap = () => {
       duration: "3 months",
       year: "2020",
     },
+    loctax: {
+      grid: ["2 / span 10", "2 / span 10"],
+      challenge: "Create a brand that reflects the company’s mission to simplify tax compliance for global businesses.",
+      scope: ["Rebrand", "Front-end"],
+      duration: "2 months + retainer",
+      year: "2023",
+    },
+
     end: {
       hideCaseMeta: true,
-      grid: ["1 / span 12", "1 / span 10"],
+      grid: ["1 / span 12", "2 / span 10"],
     },
-  } as { [key: string]: PropMap };
+  } as { [key: string]: PropMapProps };
 
   return props; // Return an empty object if there's no style for the given slug
 };
 
-const slugKeys = Object.keys(propMap());
-const slugValues = Object.values(propMap());
+const slugKeys = Object.keys(PropMap());
+const slugValues = Object.values(PropMap());
 
 const routes = Object.entries(
   import.meta.glob<string | string[] | any>(
@@ -61,18 +69,20 @@ const routes = Object.entries(
       eager: true,
     }
   )
-)
+);
+
+const cases = routes
   .map(([relativePath, module]) => {
     const Page = module.default;
     const path = relativePath.replace("./pages", "").replace("/index.tsx", "");
     const slug = path.replace("./", "");
-
     return {
       slug,
       path,
       Page,
     };
   })
+  .filter(({ slug }) => slugKeys.includes(slug))
   .sort((a, b) => {
     const indexA = slugKeys.indexOf(a.slug);
     const indexB = slugKeys.indexOf(b.slug);
@@ -89,31 +99,17 @@ const routes = Object.entries(
             <CaseMeta {...slugValues[i]} />
           </GridParent>
         )}
+
         <Page></Page>
       </Case>
     );
   });
 
-const MemoApp = () => {
-  const theme = useThemeUI().theme;
-  return (
-    <>
-      <Helmet>
-        <meta
-          name="theme-color"
-          content={getColor(theme, "background")}
-          media="(prefers-color-scheme: light)"
-        />
-        <meta
-          name="theme-color"
-          content={getColor(theme, "background")} //hack to default safari theme
-          media="(prefers-color-scheme: dark)"
-        />
-      </Helmet>
-      <ScrollToTop />
-      <CaseWrapper>{routes}</CaseWrapper>
-    </>
-  );
-};
-
-export const App = React.memo(MemoApp);
+export interface PropMapProps {
+  grid?: string[];
+  scope?: string[];
+  challenge?: string;
+  duration?: string;
+  year?: string;
+  hideCaseMeta?: boolean;
+}

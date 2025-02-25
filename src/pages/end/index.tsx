@@ -1,13 +1,11 @@
 /** @jsxImportSource theme-ui */
 
 import { Text, Box, Link } from "theme-ui";
-import { NumberedList, EmailLink, GridParent } from "../../components";
-import { handleClick } from "../../components/ScrollToTop";
+import { NumberedList, EmailLink, GridParent } from "@/components";
 
-import resume from "/cv-sebastiangraz.pdf";
-import Balancer from "react-wrap-balancer";
+import resume from "@/assets/cv-sebastiangraz.pdf";
 
-const End = ({}) => {
+const End = () => {
   const Sections = {
     Define: () => {
       return (
@@ -33,8 +31,8 @@ const End = ({}) => {
                 gridColumn: "span 4",
               }}
             >
-              <Text variant="heading">
-                <Balancer>This is the end, for you my friend.</Balancer>
+              <Text variant="heading" sx={{ textWrap: "balance" }}>
+                This is the end, for you my friend.
               </Text>
             </Box>
             <Box
@@ -46,7 +44,7 @@ const End = ({}) => {
                 sx={{
                   m: 0,
                   "--caseBackground": "#fff",
-                  color: "textDim",
+                  color: "var(--caseForegroundDim)",
                 }}
                 horizontal
                 small
@@ -62,11 +60,7 @@ const End = ({}) => {
                 </>
                 <>
                   Follow me on{" "}
-                  <Link
-                    target="_blank"
-                    href="https://twitter.com/grazsebastian"
-                    rel="noopener"
-                  >
+                  <Link target="_blank" href="https://twitter.com/grazsebastian" rel="noopener">
                     Twitter
                   </Link>
                 </>
@@ -80,7 +74,7 @@ const End = ({}) => {
                     }}
                     onClick={(e) => {
                       e.preventDefault();
-                      handleClick();
+                      window.scrollTo({ top: 0, behavior: "smooth" });
                     }}
                   >
                     home

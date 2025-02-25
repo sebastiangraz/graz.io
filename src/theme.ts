@@ -1,6 +1,3 @@
-import { transparentize } from "@theme-ui/color";
-import { Theme } from "theme-ui";
-
 const colors = {
   text: "#05010c",
   textDim: "#05010c99",
@@ -11,19 +8,29 @@ const colors = {
     background: "#E7EFE8",
   },
   loupe: {
-    foreground: "#184629",
-    foregroundDim: "#1846297D",
-    background: "#D2DAD3",
-  },
-  end: {
-    foreground: "#000",
-    foregroundDim: "#0004",
-    background: "transparent",
+    foreground: "#1A0319",
+    foregroundDim: "#1A0319a3",
+    background: "#E6CFE5",
   },
   capchase: {
     foreground: "#0F0F14",
     foregroundDim: "#0F0F147A",
     background: "#FCFBF8",
+  },
+  loctax: {
+    foreground: "#E1AEE3",
+    foregroundDim: "#E1AEE3a3",
+    background: "#221223",
+  },
+  gitbook: {
+    foreground: "#181D1F",
+    foregroundDim: "#181D1Fa3",
+    background: "#d8dfdf",
+  },
+  end: {
+    foreground: "#F7F1E8",
+    foregroundDim: "#F7F1E8a3",
+    background: "transparent",
   },
 };
 const space = [0, 4, 6, 12, 14, 16, 20, 24, 32, 56, 72, 112, 156];
@@ -41,14 +48,14 @@ export const scroll = {
     backgroundColor: "transparent",
   },
   "&::-webkit-scrollbar-thumb": {
-    backgroundColor: (t: Theme) => `${transparentize("text", 0)(t)}`,
+    backgroundColor: "color-mix(in srgb, var(--theme-ui-colors-text), transparent 50%)",
   },
   "&::-webkit-scrollbar-thumb:hover": {
     cursor: "pointer",
-    backgroundColor: (t: Theme) => `${transparentize("text", 0.1)(t)}`,
+    backgroundColor: "color-mix(in srgb, var(--theme-ui-colors-text), transparent 40%)",
   },
 };
-// eslint-disable-next-line import/no-anonymous-default-export
+
 export default {
   space: space,
   sizes: space,
@@ -65,7 +72,7 @@ export default {
     heading: "inherit",
     monospace: "Menlo, monospace",
   },
-  breakpoints: ["38em", "68em", "90em", "112em"],
+  breakpoints: ["38em", "68em", "90em"],
   lineHeights: {
     body: 1.6,
     lead: 1.45,

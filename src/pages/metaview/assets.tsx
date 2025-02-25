@@ -1,6 +1,6 @@
-import { Video } from "../../components";
-import { VideoComponentProps } from "../../components/Video";
-import { ImageData } from "../../components/Img";
+import { Video } from "@/components";
+import { VideoComponentProps } from "@/components/Video";
+import { ImageData } from "@/components/Img";
 
 export const images = {
   web0: {

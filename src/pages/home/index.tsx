@@ -1,11 +1,10 @@
 /** @jsxImportSource theme-ui */
 
 import React, { useState } from "react";
-import { Text, Link, Theme } from "theme-ui";
-import { Logo, List, EmailLink } from "../../components";
+import { Text, Link } from "theme-ui";
+import { Logo, List, EmailLink } from "@/components";
 import { m, useScroll, useTransform, useSpring } from "framer-motion";
-import { transparentize } from "@theme-ui/color";
-import resume from "/cv-sebastiangraz.pdf";
+import resume from "@/assets/cv-sebastiangraz.pdf";
 
 const NearestQuarter = () => {
   const amountOfMonthsPadding = 1.5; // Months of padding, decimal values are allowed.
@@ -62,12 +61,8 @@ const awards = [
   },
 ];
 
-export default () => {
-  const scrollProgress = [
-    0,
-    window.innerHeight * 0.7,
-    window.innerHeight * 0.8,
-  ];
+const Home = () => {
+  const scrollProgress = [0, window.innerHeight * 0.7, window.innerHeight * 0.8];
   const transformOutput = [0, -11, -32];
   const { scrollY } = useScroll();
 
@@ -76,13 +71,10 @@ export default () => {
     mass: 0.1,
   });
 
-  const opacity = useSpring(
-    useTransform(scrollY, scrollProgress, [1, 0.5, 0]),
-    {
-      damping: 10,
-      mass: 0.1,
-    }
-  );
+  const opacity = useSpring(useTransform(scrollY, scrollProgress, [1, 0.5, 0]), {
+    damping: 10,
+    mass: 0.1,
+  });
 
   const [isHover, setIsHover] = useState<boolean>(false);
 
@@ -130,20 +122,17 @@ export default () => {
         willChange: "color",
         margin: "0 auto",
         minHeight: ["auto", "100vh"],
-        pt: [8, 9, 10],
-        pb: 12,
+        pt: [8, 9, "min(7vh, 5rem)"],
+        pb: [12, "16rem", "clamp(10rem, 24vh, 13rem)"],
         px: [0],
-        rowGap: [8, 9, "16vh"],
+        rowGap: ["4rem", null, "5rem"],
         columnGap: 0,
         display: "grid",
-        alignItems: ["center", "start"],
+        alignItems: ["center", "stretch"],
+        alignContent: "space-between",
         maxWidth: "1800px",
         gridTemplateRows: "auto auto auto",
-        gridTemplateColumns: [
-          "repeat(10, 1fr)",
-          "repeat(10, 1fr)",
-          "repeat(12, 1fr)",
-        ],
+        gridTemplateColumns: ["repeat(10, 1fr)", "repeat(10, 1fr)", "repeat(12, 1fr)"],
         gridTemplateAreas: [
           //phone
           `
@@ -154,18 +143,18 @@ export default () => {
           //tablet
           `
           '. logo logo . . . years .  contact .'
-          '. intro intro intro . . . . . .'
+          '. intro intro intro intro intro intro . . .'
           '. meta meta meta meta meta meta meta meta meta '
           `,
           //desktop
           `
           '. logo logo . . . years years  . .  contact .'
-          '. intro intro intro .  . meta meta meta meta meta meta'
+          '. intro intro intro intro intro meta meta meta meta meta meta'
           `,
           //wide
           `
           '. logo logo . . . years years  . .  contact .'
-          '. intro intro intro .  . meta meta meta meta meta meta'
+          '. intro intro intro intro . meta meta meta meta meta meta'
           `,
         ],
       }}
@@ -182,7 +171,7 @@ export default () => {
       <Text
         variant="label"
         sx={{
-          p: 3,
+          p: [2, 3],
           ml: -3,
           gridArea: "years",
           display: ["none", "block"],
@@ -194,8 +183,8 @@ export default () => {
       </Text>
       <div
         tabIndex={0}
-        onMouseOver={(e) => handleMouseEnter(e)}
-        onMouseOut={(e) => handleMouseLeave(e)}
+        onMouseOver={(e: React.MouseEvent) => handleMouseEnter(e)}
+        onMouseOut={(e: React.MouseEvent) => handleMouseLeave(e)}
         sx={{
           outline: "none",
           userSelect: "none",
@@ -205,7 +194,7 @@ export default () => {
           justifySelf: ["flex-end", "flex-start"],
         }}
       >
-        <Text sx={{ pt: 2, p: 3, ml: -3 }} variant="label">
+        <Text sx={{ pt: 2, p: [2, 3], ml: -3 }} variant="label">
           Contact
         </Text>
 
@@ -238,20 +227,13 @@ export default () => {
               top: "-16px",
               width: "100%",
               height: "100%",
-              boxShadow: (t: Theme) => [
-                `0 0 0 1px ${transparentize("text", 0.92)(t)}`,
-                "none",
-              ],
+              boxShadow: [`0 0 0 1px color-mix(in srgb, var(--theme-ui-colors-text), transparent 92%)`, "none"],
             },
           }}
         >
           <Text variant="label">
             <List noBullets sx={{ zIndex: 1, position: "relative" }}>
-              <m.div
-                variants={list}
-                key={1}
-                animate={isHover ? "show" : "rest"}
-              >
+              <m.div variants={list} key={1} animate={isHover ? "show" : "rest"}>
                 <EmailLink
                   string="hi@graz.io"
                   sx={{
@@ -263,20 +245,12 @@ export default () => {
                 </EmailLink>
               </m.div>
               <m.div variants={list} key={2}>
-                <Link
-                  target="_blank"
-                  href="https://twitter.com/grazsebastian"
-                  rel="noopener"
-                >
+                <Link target="_blank" href="https://twitter.com/grazsebastian" rel="noopener">
                   Twitter
                 </Link>
               </m.div>
               <m.div variants={list} key={3}>
-                <Link
-                  target="_blank"
-                  href="https://vsco.co/sgraz/"
-                  rel="noopener"
-                >
+                <Link target="_blank" href="https://vsco.co/sgraz/" rel="noopener">
                   VSCO
                 </Link>
               </m.div>
@@ -287,7 +261,7 @@ export default () => {
                   height: "1px",
                   maxWidth: "100%",
                   border: "none",
-                  backgroundColor: (t) => transparentize("text", 0.92)(t),
+                  backgroundColor: `color-mix(in srgb, var(--theme-ui-colors-text), transparent 92%)`,
                 }}
               />
               <m.div variants={list} key={5}>
@@ -360,10 +334,7 @@ export default () => {
               {awards.map((char) => (
                 <React.Fragment key={char.title}>
                   {char.title} ·{" "}
-                  <Text
-                    sx={{ display: "inline", fontSize: [4, 5, 4, 5] }}
-                    variant="caps"
-                  >
+                  <Text sx={{ display: "inline", fontSize: [4, 5, 4, 5] }} variant="caps">
                     {char.count}×
                   </Text>
                 </React.Fragment>
@@ -401,33 +372,28 @@ export default () => {
       <div sx={{ gridArea: "intro" }}>
         <div
           sx={{
-            width: ["26ch", "31ch", "38ch", "32ch"],
-            // width: "100%",
-            // width: [410, null, 380, 440],
+            maxWidth: ["40ch", "42ch", "38ch", "32ch"],
           }}
         >
           <Text
             sx={{
               fontSize: [6, 7, 8, 8],
+              textWrap: "balance",
               letterSpacing: ["body", null, "lead"],
               lineHeight: ["lead"],
-              mt: [0, "2.4rem"],
-              mb: ["2.4rem", 0],
+              mt: [0, 0, "2.4rem"],
+              mb: [4, 0],
             }}
           >
-            <Text
-              variant="heading"
-              sx={{ fontSize: [6, 7, 8, 8], display: "inline" }}
-            >
+            <Text variant="heading" sx={{ fontSize: [6, 7, 8, 8], display: "inline" }}>
               Sebastian Graz,
             </Text>{" "}
-            <span>
-              a reactive one-man brand studio with particular focus on lasting
-              identities & digital design.
-            </span>
+            <span>a reactive one-man brand studio with particular focus on lasting identities & digital design.</span>
           </Text>
         </div>
       </div>
     </m.div>
   );
 };
+
+export default Home;

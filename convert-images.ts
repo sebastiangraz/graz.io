@@ -1,7 +1,10 @@
 import fs from "fs";
 import path from "path";
 import sharp from "sharp";
+import { fileURLToPath } from "url";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const publicPath = path.join(__dirname, "public");
 const redo = process.argv.includes("--redo");
 
@@ -10,7 +13,7 @@ async function convertImage(filePath: string): Promise<void> {
     const outputPath = filePath.replace(/\.png$/, ".avif");
 
     if (redo || !fs.existsSync(outputPath)) {
-      await sharp(filePath).avif({ quality: 80, effort: 8 }).toFile(outputPath);
+      await sharp(filePath).avif({ quality: 84, effort: 9 }).toFile(outputPath);
       console.log(`Converted ${filePath} to ${outputPath}`);
     } else {
       console.log(`Skipping ${filePath}, AVIF file already exists.`);

@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import svgrPlugin from "vite-plugin-svgr";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 import { fileURLToPath, URL } from "url";
+import { imagetools } from "vite-imagetools";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -11,15 +12,22 @@ export default defineConfig({
       include: "**/*.tsx",
     }),
     svgrPlugin(),
-
-    ViteImageOptimizer({
-      //exclude avif files and `public/device-slice-shadow.png`
-      exclude: /.*\.avif$|device-slice-shadow\.png/,
-      png: {
-        quality: 80,
-        progressive: true,
+    imagetools({
+      defaultDirectives: () => {
+        return new URLSearchParams({
+          format: "webp",
+          quality: "80",
+        });
       },
     }),
+    // ViteImageOptimizer({
+    //   //exclude avif files and `public/device-slice-shadow.png`
+    //   exclude: /.*\.avif$|device-slice-shadow\.png/,
+    //   png: {
+    //     quality: 80,
+    //     progressive: true,
+    //   },
+    // }),
   ],
   build: {
     // Reduce chunk size by setting a larger minimum size

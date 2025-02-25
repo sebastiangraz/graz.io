@@ -55,10 +55,12 @@ export const getArticleSlugFromUrl = (moduleUrl: string): string | undefined => 
 
 /**
  * Helper function to get the current article context from the window URL
+ * Safe for SSR (returns undefined during server rendering)
  */
 export const getArticleSlugFromWindowUrl = (): string | undefined => {
   // Only run in browser environment
-  if (typeof window === "undefined") return undefined;
+  const isBrowser = typeof window !== "undefined";
+  if (!isBrowser) return undefined;
 
   const path = window.location.pathname;
   if (path.startsWith("/articles/")) {

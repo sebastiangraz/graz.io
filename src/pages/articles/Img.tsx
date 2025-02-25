@@ -1,7 +1,6 @@
 import type { OutputMetadata } from "@/types/blog";
 import style from "./img.module.css";
 import { getImageForArticle } from "./imports";
-import { useEffect, useState } from "react";
 
 interface ImgProps {
   src: string;
@@ -23,17 +22,10 @@ export const Img = ({
   deviceBorder = false,
   browserBorder = false,
 }: ImgProps) => {
-  const [imageMetadata, setImageMetadata] = useState<any>(null);
-
-  useEffect(() => {
-    if (!src) return;
-
-    // Find the image using context from URL
-    const metadata = getImageForArticle(src, import.meta.url);
-    setImageMetadata(metadata);
-  }, [src]);
-
   if (!src) return null;
+
+  // Get image metadata directly during render
+  const imageMetadata = getImageForArticle(src, import.meta.url);
 
   if (!imageMetadata) {
     return null;

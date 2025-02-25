@@ -142,18 +142,18 @@ const Home = () => {
           `,
           //tablet
           `
-          '. logo logo . . . years .  contact .'
+          '. logo logo . . . resume .  contact .'
           '. intro intro intro intro intro intro . . .'
           '. meta meta meta meta meta meta meta meta meta '
           `,
           //desktop
           `
-          '. logo logo . . . years years  . .  contact .'
+          '. logo logo . . . resume resume  . .  contact .'
           '. intro intro intro intro intro meta meta meta meta meta meta'
           `,
           //wide
           `
-          '. logo logo . . . years years  . .  contact .'
+          '. logo logo . . . resume resume  . .  contact .'
           '. intro intro intro intro . meta meta meta meta meta meta'
           `,
         ],
@@ -173,7 +173,7 @@ const Home = () => {
         sx={{
           p: [2, 3],
           ml: -3,
-          gridArea: "years",
+          gridArea: "resume",
           display: ["none", "block"],
         }}
       >

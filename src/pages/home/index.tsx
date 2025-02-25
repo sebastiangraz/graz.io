@@ -159,7 +159,7 @@ const Home = () => {
         ],
       }}
     >
-      <div sx={{ display: "grid", gridTemplateColumns: "subgrid", gridArea: "1 /span 12" }}>
+      <div className="navigation" sx={{ display: "grid", gridTemplateColumns: "subgrid", gridArea: "1 /span 12" }}>
         <Logo
           sx={{
             fontVariationSettings: `"wght" 50`,

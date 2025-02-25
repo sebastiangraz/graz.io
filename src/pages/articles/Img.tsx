@@ -1,6 +1,7 @@
 import type { OutputMetadata } from "@/types/blog";
 import style from "./img.module.css";
-import { allImagePaths } from "./imports";
+import { getImageForArticle } from "./imports";
+import { useEffect, useState } from "react";
 
 interface ImgProps {
   src: string;
@@ -22,25 +23,33 @@ export const Img = ({
   deviceBorder = false,
   browserBorder = false,
 }: ImgProps) => {
+  const [imageMetadata, setImageMetadata] = useState<any>(null);
+
+  useEffect(() => {
+    if (!src) return;
+
+    // Find the image using context from URL
+    const metadata = getImageForArticle(src, import.meta.url);
+    setImageMetadata(metadata);
+  }, [src]);
+
   if (!src) return null;
 
+  if (!imageMetadata) {
+    return null;
+  }
+
   const isSvg = src.includes(".svg");
-
-  const pictureSrc = Object.keys(allImagePaths).find((key) => key.includes(src)) as string;
-
-  const meta = allImagePaths[pictureSrc!] as OutputMetadata[];
-
+  const meta = imageMetadata as OutputMetadata[];
   const pngData = meta?.find((m) => m.format === "png") as OutputMetadata;
   const avifData = meta?.find((m) => m.format === "avif") as OutputMetadata;
-
-  console.log(allImagePaths);
 
   const classNames = `${style.picture} ${deviceBorder ? style.deviceBorder : ""} ${
     browserBorder ? style.browserBorder : ""
   } ${className}`;
 
   if (isSvg) {
-    return <img loading="lazy" src={src} alt={alt} />;
+    return <img loading="lazy" src={pngData?.src} alt={alt} />;
   } else {
     return (
       <picture

@@ -2,7 +2,7 @@
 
 import { GridParent } from "@/components";
 import { Text, Heading, Box, Paragraph } from "theme-ui";
-import { Img } from "@/pages/articles/Img";
+import { Img } from "../Img";
 
 export const metadata = {
   title: "Design Systems and Brand Identity",
@@ -46,7 +46,7 @@ const ArticleTwo = () => {
         </Paragraph>
       </Box>
       <Box sx={{ gridColumn: ["2/span 8", "2 / span 8"] }}>
-        <Img src="bayleaf.png" />
+        <Img src="bayleaf.png" alt="Bayleaf illustration" />
       </Box>
     </GridParent>
   );

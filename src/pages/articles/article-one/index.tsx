@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 
 import { Text, Container, Heading } from "theme-ui";
-
+import { Img } from "@/pages/articles/Img";
 export const metadata = {
   title: "First Article Title",
   description: "This is the description for the first article",
@@ -33,7 +33,7 @@ const ArticleOne = () => {
       >
         Published on {new Date(metadata.publishDate).toLocaleDateString()} by {metadata.author}
       </Text>
-
+      <Img src="bayleaf.png" />
       <Text sx={{ fontSize: [2, 3], lineHeight: "body" }}>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris.

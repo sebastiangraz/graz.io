@@ -2078,48 +2078,48 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@theme-ui/color-modes@npm:^0.16.2":
-  version: 0.16.2
-  resolution: "@theme-ui/color-modes@npm:0.16.2"
+"@theme-ui/color-modes@npm:^0.17.2":
+  version: 0.17.2
+  resolution: "@theme-ui/color-modes@npm:0.17.2"
   dependencies:
-    "@theme-ui/core": ^0.16.2
-    "@theme-ui/css": ^0.16.2
+    "@theme-ui/core": ^0.17.2
+    "@theme-ui/css": ^0.17.2
     deepmerge: ^4.2.2
   peerDependencies:
-    "@emotion/react": ^11.11.1
+    "@emotion/react": ^11.13.3
     react: ">=18"
-  checksum: e9df6f59f8555e470e122d50628eedc785d47b765a320de3375429444202b35b6c2dca3ffc3b23b7059c1cc0c299c1baf8933d0cfcd842f823f403e149f82528
+  checksum: 49a8e4d39bae388dc9ecd86dd8c1fd72754289e1b0ce745b256db1fc1b897ea5f541c5b6665666b87c3046faf6983c454e8de5049d61fc72e0be45604cafc978
   languageName: node
   linkType: hard
 
-"@theme-ui/components@npm:^0.16.2":
-  version: 0.16.2
-  resolution: "@theme-ui/components@npm:0.16.2"
+"@theme-ui/components@npm:^0.17.2":
+  version: 0.17.2
+  resolution: "@theme-ui/components@npm:0.17.2"
   dependencies:
     "@styled-system/color": ^5.1.2
     "@styled-system/should-forward-prop": ^5.1.2
     "@styled-system/space": ^5.1.2
-    "@theme-ui/core": ^0.16.2
-    "@theme-ui/css": ^0.16.2
+    "@theme-ui/core": ^0.17.2
+    "@theme-ui/css": ^0.17.2
     "@types/styled-system": ^5.1.13
   peerDependencies:
-    "@emotion/react": ^11.11.1
-    "@theme-ui/theme-provider": ^0.16.2
+    "@emotion/react": ^11.13.3
+    "@theme-ui/theme-provider": ^0.17.2
     react: ">=18"
-  checksum: 85a5d2b6865b1b92baf38df2d0057c26457a011fa9b38d6f64babf5a26235c90eebf6275173816cd7b120bd0ab3582535e1395d333dd917a53f86eaf0ed28c44
+  checksum: 2e2fc61f078fe00c318ff5d7af973e1d238ac77f62f3e87b6991e0a4da74a27727c3686ffc8d4ca7caf22442efb3b37019761f616dcbf639c71d0e2301c24a49
   languageName: node
   linkType: hard
 
-"@theme-ui/core@npm:^0.16.2":
-  version: 0.16.2
-  resolution: "@theme-ui/core@npm:0.16.2"
+"@theme-ui/core@npm:^0.17.2":
+  version: 0.17.2
+  resolution: "@theme-ui/core@npm:0.17.2"
   dependencies:
-    "@theme-ui/css": ^0.16.2
+    "@theme-ui/css": ^0.17.2
     deepmerge: ^4.2.2
   peerDependencies:
-    "@emotion/react": ^11.11.1
+    "@emotion/react": ^11.13.3
     react: ">=18"
-  checksum: e35ba3781b089212f9da9653a7d844835474f05cf15040a02d589d80d6416bb99455986e986a69302d430e6d646e012a35c8c560efdd20cd2b5e740228dc040e
+  checksum: 637bebe811a0281ba0aadd8055367721ac91e107ae58cfece52fb1e6ff7c814d71c57dfcfb438bb3c05557e0e48c158556d857dc444f8fe78141c590e73c0cc6
   languageName: node
   linkType: hard
 
@@ -2134,27 +2134,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@theme-ui/css@npm:^0.16.2":
-  version: 0.16.2
-  resolution: "@theme-ui/css@npm:0.16.2"
+"@theme-ui/css@npm:^0.17.2":
+  version: 0.17.2
+  resolution: "@theme-ui/css@npm:0.17.2"
   dependencies:
     csstype: ^3.0.10
   peerDependencies:
     "@emotion/react": ^11.11.1
-  checksum: 908ca0b3a3d38d5487040b5d58071302394b32e2975efbaf9d347f65d21bdac9cd98d4746d0b7be8a64ad0c78d5bc7624d6a3f769c7a6e58d974435c1aeb7514
+  checksum: 3f6c2d88a7492fcbfdea3dee52960b5bfd46e1876a494ce57d133da3050e840dac9d1a3cf61710e6f8707cd47f5871a1f4aa6f86cbb1a862efa56042cad479f3
   languageName: node
   linkType: hard
 
-"@theme-ui/global@npm:^0.16.2":
-  version: 0.16.2
-  resolution: "@theme-ui/global@npm:0.16.2"
+"@theme-ui/global@npm:^0.17.2":
+  version: 0.17.2
+  resolution: "@theme-ui/global@npm:0.17.2"
   dependencies:
-    "@theme-ui/core": ^0.16.2
-    "@theme-ui/css": ^0.16.2
+    "@theme-ui/core": ^0.17.2
+    "@theme-ui/css": ^0.17.2
   peerDependencies:
-    "@emotion/react": ^11.11.1
+    "@emotion/react": ^11.13.3
     react: ">=18"
-  checksum: d1b1397654936305a2907f4150d7f0c7545e1c10c7ce622f30ba5c3f3734f01a27675b517c1815f6d181622788f34f896ed86c576a9d3998d58f718dec8ca3fa
+  checksum: bfac18616b84b83f5e5c7bf756c0ca06471b123f3ff5112fc58e9ff465b5d35635070201b87bc67f4a9300f7828e30a619bb399953cede1e498ea9868113381a
   languageName: node
   linkType: hard
 
@@ -2169,17 +2169,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@theme-ui/theme-provider@npm:^0.16.2":
-  version: 0.16.2
-  resolution: "@theme-ui/theme-provider@npm:0.16.2"
+"@theme-ui/theme-provider@npm:^0.17.2":
+  version: 0.17.2
+  resolution: "@theme-ui/theme-provider@npm:0.17.2"
   dependencies:
-    "@theme-ui/color-modes": ^0.16.2
-    "@theme-ui/core": ^0.16.2
-    "@theme-ui/css": ^0.16.2
+    "@theme-ui/color-modes": ^0.17.2
+    "@theme-ui/core": ^0.17.2
+    "@theme-ui/css": ^0.17.2
   peerDependencies:
-    "@emotion/react": ^11.11.1
+    "@emotion/react": ^11.13.3
     react: ">=18"
-  checksum: a6c4b88d4bc6ace0d34c53714c0f20159ea62ca39523387daff78e7f7ddfbe7912022ba833dff4c3f5f4c6ca4625e8262bf990e41ce0aa88068c017e4b27f942
+  checksum: d3f33c05270b9eece3e418117bd3109a24711acf98df2947780c296da61eb5404ebca71b2977bedd1f705e56701b2173b907ef7ae1c12eff1cd8638da3e671f5
   languageName: node
   linkType: hard
 
@@ -6344,7 +6344,7 @@ eslint@latest:
     sharp: ^0.32.0
     svgo: ^3.2.0
     terser: ^5.39.0
-    theme-ui: ^0.16.2
+    theme-ui: ^0.17.2
     ts-node: ^10.9.1
     tsx: ^4.7.2
     typescript: ^5.0.2
@@ -6991,20 +6991,20 @@ eslint@latest:
   languageName: node
   linkType: hard
 
-"theme-ui@npm:^0.16.2":
-  version: 0.16.2
-  resolution: "theme-ui@npm:0.16.2"
+"theme-ui@npm:^0.17.2":
+  version: 0.17.2
+  resolution: "theme-ui@npm:0.17.2"
   dependencies:
-    "@theme-ui/color-modes": ^0.16.2
-    "@theme-ui/components": ^0.16.2
-    "@theme-ui/core": ^0.16.2
-    "@theme-ui/css": ^0.16.2
-    "@theme-ui/global": ^0.16.2
-    "@theme-ui/theme-provider": ^0.16.2
+    "@theme-ui/color-modes": ^0.17.2
+    "@theme-ui/components": ^0.17.2
+    "@theme-ui/core": ^0.17.2
+    "@theme-ui/css": ^0.17.2
+    "@theme-ui/global": ^0.17.2
+    "@theme-ui/theme-provider": ^0.17.2
   peerDependencies:
     "@emotion/react": ">=11.1.1"
     react: ">=18"
-  checksum: 01c19a3209585c3aaba4969d9cfc4f52accdce1aa07ab37155ed30c99ca6097f6f1c23515b52e9e4eaeeae5fb1363c81b9ddadf7545ec107da7bc49c7733c9d4
+  checksum: 68744eae0cde57f100a25fd693600de55ede7eca3e882d2d5c22791a53ae77864ec556040d1ce72db1172f63bf27becf175c8d35bbd1b4fc03c9e5bc4c87477d
   languageName: node
   linkType: hard
 

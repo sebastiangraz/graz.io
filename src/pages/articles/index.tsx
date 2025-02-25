@@ -22,25 +22,29 @@ interface ArticleModule {
 
 const ArticlesIndex = () => {
   // Use Vite's import.meta.glob to find all article files
-  const articleModules = import.meta.glob<ArticleModule>("./*.tsx", { eager: true });
+  const articleModules = import.meta.glob<ArticleModule>("./*/index.tsx", { eager: true });
 
   // Extract and sort articles by date
   const articles = useMemo(() => {
-    return Object.entries(articleModules)
-      .filter(([path]) => !path.includes("index.tsx")) // Exclude this index file
-      .map(([path, module]) => {
-        // Extract the slug from the file path
-        const slug = path.replace("./", "").replace(".tsx", "");
+    return (
+      Object.entries(articleModules)
+        //   .filter(([path]) => !path.includes("index.tsx")) // Exclude this index file
+        .map(([path, module]) => {
+          // Extract the slug from the file path
+          const slug = path.replace("/index.tsx", "").replace("./", "");
 
-        return {
-          slug,
-          ...module.metadata,
-        };
-      })
-      .sort((a, b) => {
-        // Sort by date, newest first
-        return new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime();
-      });
+          console.log(path, slug);
+
+          return {
+            slug,
+            ...module.metadata,
+          };
+        })
+        .sort((a, b) => {
+          // Sort by date, newest first
+          return new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime();
+        })
+    );
   }, [articleModules]);
 
   return (

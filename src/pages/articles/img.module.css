@@ -1,0 +1,58 @@
+.picture {
+  position: relative;
+  aspect-ratio: var(--picture-w) / var(--picture-h);
+  z-index: 0;
+  img,
+  source {
+    display: flex;
+    pointer-events: none;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.browserBorder {
+  margin-top: 48px;
+  display: grid;
+  &:before {
+    border-image-source: url("@/assets/browser-slice.png");
+    border-image-width: 330px calc(330px * 1 / 1);
+    border-image-outset: 256px 256px;
+    border-image-slice: 49.97%;
+    z-index: 10;
+    content: "";
+    position: relative;
+    grid-area: 1/1;
+  }
+  img,
+  source {
+    grid-area: 1/1;
+    border-radius: max(4px, 0.15em);
+  }
+}
+
+.deviceBorder {
+  display: grid;
+  &:before {
+    border-image-source: url("@/assets/device-slice-shadow.avif");
+    border-image-width: 373px calc(180px * 432 / 328);
+    border-image-outset: 319px 182px;
+    border-image-slice: 49.97%;
+    z-index: 10;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    grid-area: 1/1;
+  }
+  img,
+  source {
+    background: white;
+    grid-area: 1/1;
+    border-radius: 29px;
+    padding: 15px;
+    box-sizing: content-box;
+  }
+}

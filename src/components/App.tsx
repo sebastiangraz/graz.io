@@ -4,8 +4,10 @@ import { Helmet } from "react-helmet-async";
 import { ArticleModule } from "@/types/blog";
 import { useState, useEffect } from "react";
 
-// Article routes setup using import.meta.glob
-const articleModules = import.meta.glob<ArticleModule>(["../pages/articles/*.tsx"], { eager: true });
+// Article routes setup using import.meta.glob - update to include folders
+const articleModules = import.meta.glob<ArticleModule>(["../pages/articles/*.tsx", "../pages/articles/*/index.tsx"], {
+  eager: true,
+});
 
 export const App = () => {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
@@ -42,10 +44,13 @@ export const App = () => {
     } else {
       // Extract slug from the URL path
       const slug = currentPath.replace("/articles/", "");
-      const articlePath = `../pages/articles/${slug}.tsx`;
 
-      // Find the corresponding article component
-      const ArticleComponent = articleModules[articlePath]?.default;
+      // Try both path patterns - either direct file or folder/index
+      const articlePath = `../pages/articles/${slug}.tsx`;
+      const articleFolderPath = `../pages/articles/${slug}/index.tsx`;
+
+      // Find the corresponding article component - check both possible paths
+      const ArticleComponent = articleModules[articlePath]?.default || articleModules[articleFolderPath]?.default;
 
       return (
         <>
@@ -95,14 +100,14 @@ export const PropMap = () => {
     loupe: {
       grid: ["1 / span 10", "1 / span 10"],
       challenge:
-        "Design a highly shareable & inclusive conference identity, that could co-exist together with Framer’s own brand.",
+        "Design a highly shareable & inclusive conference identity, that could co-exist together with Framer's own brand.",
       scope: ["Visual identity", "Front-end"],
       duration: "3 months",
       year: "2020",
     },
     loctax: {
       grid: ["2 / span 10", "2 / span 10"],
-      challenge: "Create a brand that reflects the company’s mission to simplify tax compliance for global businesses.",
+      challenge: "Create a brand that reflects the company's mission to simplify tax compliance for global businesses.",
       scope: ["Rebrand", "Front-end"],
       duration: "2 months + retainer",
       year: "2023",

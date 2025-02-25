@@ -23,6 +23,7 @@
     "react-uuid": "^2.0.0",
     "theme-ui": "^0.16.2",
     "typescript": "^5.0.2",
+    "vite-imagetools": "^7.0.5",
     "yarn": "^2.4.3"
   },
   "scripts": {

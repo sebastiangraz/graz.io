@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import svgrPlugin from "vite-plugin-svgr";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 import { fileURLToPath, URL } from "url";
+import { imagetools } from "vite-imagetools";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -11,6 +12,7 @@ export default defineConfig({
       include: "**/*.tsx",
     }),
     svgrPlugin(),
+    imagetools(),
     ViteImageOptimizer({
       //exclude avif files and `public/device-slice-shadow.png`
       exclude: /.*\.avif$|device-slice-shadow\.png/,

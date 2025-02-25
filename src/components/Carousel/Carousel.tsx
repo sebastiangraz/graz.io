@@ -1,10 +1,11 @@
 /** @jsxImportSource theme-ui */
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, isValidElement, cloneElement } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Box, Text } from "theme-ui";
 import throttle from "lodash.throttle";
 import { MouseTracker } from "@/components";
+import { Video, VideoComponentProps } from "@/components/Video/Video";
 
 interface Props {
   children: React.ReactNode[];
@@ -33,6 +34,18 @@ export const Carousel = ({
   const [disableScrollUpdates, setDisableScrollUpdates] = useState(false);
   const [disableAutoplay, setDisableAutoplay] = useState(true);
   const [mouseTarget, setMouseTarget] = useState("");
+
+  // Helper function to check if a child is a Video component and add props
+  const conditionalChild = (child: React.ReactNode) => {
+    if (isValidElement(child)) {
+      // Check if it's a Video component
+      const childType = child.type;
+      if (childType === Video) {
+        return cloneElement(child, { disableClickControl: true } as Partial<VideoComponentProps>);
+      }
+    }
+    return child;
+  };
 
   useEffect(() => {
     if (!disableAutoplay) {
@@ -163,6 +176,7 @@ export const Carousel = ({
         <AnimatePresence initial={false}>
           {children.map((child, i) => {
             const isCardVisible = i === activeIndex;
+            const conditionallySetChild = conditionalChild(child);
             return (
               <React.Fragment key={i}>
                 <motion.div
@@ -189,7 +203,7 @@ export const Carousel = ({
                     left: 0,
                   }}
                 >
-                  {child}
+                  {conditionallySetChild}
                 </motion.div>
               </React.Fragment>
             );
@@ -204,7 +218,7 @@ interface IndexIndicatorProps {
   active: boolean;
   onClick: () => void;
 }
-const IndexIndicator: React.FC<IndexIndicatorProps> = React.memo(({ active, onClick }) => (
+const IndexIndicator = ({ active, onClick }: IndexIndicatorProps) => (
   <Box
     onClick={onClick}
     sx={{
@@ -234,13 +248,13 @@ const IndexIndicator: React.FC<IndexIndicatorProps> = React.memo(({ active, onCl
       },
     }}
   />
-));
+);
 
 interface ImageCaptionProps {
   caption: string;
 }
 
-const ImageCaption: React.FC<ImageCaptionProps> = React.memo(({ caption }) => (
+const ImageCaption = ({ caption }: ImageCaptionProps) => (
   <Text
     variant="caps"
     sx={{
@@ -253,4 +267,4 @@ const ImageCaption: React.FC<ImageCaptionProps> = React.memo(({ caption }) => (
   >
     {caption ? caption : "\u200B"}
   </Text>
-));
+);

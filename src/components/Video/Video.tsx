@@ -5,7 +5,7 @@ import React from "react";
 import { AspectRatio, ThemeUICSSObject } from "theme-ui";
 
 const VideoComponent = ({ ...props }: VideoComponentProps) => {
-  const { src, fromFolder, ...sx } = props;
+  const { src, fromFolder, disableClickControl = false, ...sx } = props;
 
   const [isPlaying, setIsPlaying] = useState(true);
   const [isWaiting, setIsWaiting] = useState(false);
@@ -83,7 +83,7 @@ const VideoComponent = ({ ...props }: VideoComponentProps) => {
   if (!props.src) return null;
 
   return (
-    <div {...sx} sx={{ display: "grid" }} onClick={handlePlayPauseClick}>
+    <div {...sx} sx={{ display: "grid" }} onClick={disableClickControl ? undefined : handlePlayPauseClick}>
       {!isPlaying && (
         <div
           sx={{
@@ -110,7 +110,7 @@ const VideoComponent = ({ ...props }: VideoComponentProps) => {
             },
 
             "&:hover": {
-              cursor: "pointer",
+              cursor: disableClickControl ? "default" : "pointer",
               background: "var(--caseBackground)",
               "svg path": {
                 fill: "currentColor",
@@ -155,5 +155,6 @@ export interface VideoComponentProps {
     alt: string;
   };
   fromFolder: string;
+  disableClickControl?: boolean;
   sx?: ThemeUICSSObject;
 }

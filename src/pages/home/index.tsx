@@ -136,24 +136,24 @@ const Home = () => {
         gridTemplateAreas: [
           //phone
           `
-          '. logo logo logo . . . contact contact .'
+          '. logo logo logo . . . cta cta .'
           '. intro intro intro intro intro intro intro intro .'
           '. meta meta meta meta meta meta meta meta .'
           `,
           //tablet
           `
-          '. logo logo . . . resume .  contact .'
+          '. logo logo . . . nav .  cta .'
           '. intro intro intro intro intro intro . . .'
           '. meta meta meta meta meta meta meta meta meta '
           `,
           //desktop
           `
-          '. logo logo . . . resume resume  . .  contact .'
+          '. logo logo . . . nav nav  . .  cta .'
           '. intro intro intro intro intro meta meta meta meta meta meta'
           `,
           //wide
           `
-          '. logo logo . . . resume resume  . .  contact .'
+          '. logo logo . . . nav nav  . .  cta .'
           '. intro intro intro intro . meta meta meta meta meta meta'
           `,
         ],
@@ -174,7 +174,7 @@ const Home = () => {
           sx={{
             p: [2, 3],
             ml: -3,
-            gridArea: "resume",
+            gridArea: "nav",
             display: ["none", "block"],
           }}
         >
@@ -188,7 +188,7 @@ const Home = () => {
             outline: "none",
             userSelect: "none",
             cursor: "pointer",
-            gridArea: "contact",
+            gridArea: "cta",
             position: "relative",
             justifySelf: ["flex-end", "flex-start"],
           }}

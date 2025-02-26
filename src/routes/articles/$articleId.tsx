@@ -4,8 +4,10 @@ import { ErrorComponent, createFileRoute } from "@tanstack/react-router";
 import { entryMeta } from "@/routes/articles";
 import type { ErrorComponentProps } from "@tanstack/react-router";
 import { Layout } from "@/components";
+import { Img } from "@/pages/articles/Img";
 import { Heading, Paragraph, Text } from "theme-ui";
 import { MDXProvider } from "@mdx-js/react";
+import { Link as AppLink } from "@/components";
 
 function PostErrorComponent({ error }: ErrorComponentProps) {
   return (
@@ -55,7 +57,7 @@ const components = {
         display: "grid",
       }}
     >
-      <div sx={{ gridColumn: "5/11" }}>{props.children}</div>
+      {props.children}
     </div>
   ),
   picture: (props: any) => <img {...props} sx={{ gridColumn: "bleedstart/bleedend" }} />,
@@ -75,8 +77,11 @@ const components = {
     </Paragraph>
   ),
   Link: (props: any) => (
-    <a href={props.to} children={props.children} style={{ borderTop: "1px dashed", color: "tomato" }} />
+    <AppLink {...props} style={{ borderTop: "1px dashed", color: "blue" }}>
+      {props.children}
+    </AppLink>
   ),
+  a: (props: any) => <a {...props} style={{ borderTop: "1px dashed", color: "red" }}></a>,
 
-  // Img: (props: any) => <Img {...props} sx={{ gridColumn: "bleedstart/bleedend" }} />,
+  Img: (props: any) => <Img {...props} sx={{ gridColumn: "bleedstart/bleedend" }} />,
 };

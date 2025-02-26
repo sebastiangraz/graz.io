@@ -3,55 +3,165 @@ title: heh
 id: 3
 ---
 
-import { GridParent } from "@/components";
-import { Text, Heading, Box, Paragraph } from "theme-ui";
-import { Img } from "../Img";
+# Untapped potential
 
-export const metadata = {
-  title: "Design Systems and Brand Identity",
-  description: "Exploring the relationship between design systems and brand identity",
-  publishDate: "2023-06-22",
-  author: "Sebastian Graz",
-  featured: false,
-};
+In a constantly changing environment, companies must adapt to survive. The quest for growth, resilience, and a competitive edge demands continuous innovation and optimization in the face of emerging technologies, shifting markets, and intense competition.
 
-export default () => {
-  return (
-    <GridParent
-      sx={{
-        mx: "auto",
-        py: [5, 6],
-      }}
-    >
-      <Box sx={{ gridColumn: ["2/span 8", "2 / span 8"] }}>
-        <Heading as="h1" sx={{ fontSize: [5, 6], mb: 4 }}>
-          {metadata.title}
-        </Heading>
-        <Text
-          variant="label"
-          sx={{
-            color: "textDim",
-            mb: 5,
-          }}
-        >
-          Published on {new Date(metadata.publishDate).toLocaleDateString()}
-        </Text>
-      </Box>
+This is an array `[1, 2, 3]{:js}` of numbers 1 through 3.
+The name of the function is `getStringLength{:.entity.name.function}`.
 
-      <Box sx={{ gridColumn: ["2/span 8", "2 / span 8"] }}>
-        <Paragraph>
-          Design systems are more than just a collection of components and guidelines. They are the visual language that
-          communicates your brand's personality, values, and mission.
-        </Paragraph>
-        <Paragraph>
-          When crafted thoughtfully, a design system becomes the backbone of brand consistency across all touchpoints,
-          from digital products to marketing materials and beyond.
-        </Paragraph>
-      </Box>
-      <Box sx={{ gridColumn: ["2/span 8", "2 / span 8"] }}>
-        <Img src="bayleaf.png" alt="Bayleaf illustration" />
-      </Box>
-    </GridParent>
+# In a constantly changing environment, companies must adapt to survive.
 
-);
-};
+```js
+console.log(1);
+```
+
+```js showLineNumbers {1-2,5}
+export function* FibonacciSequence() {
+  let [a, b] = [0, 1];
+  while (true) {
+    yield a;
+    [a, b] = [b, a + b];
+  }
+}
+```
+
+```css showLineNumbers /inline-block/ /Other/ /2rem/ /code[data-line-numbers-max-digits='3']/
+code > [data-line]::before {
+  counter-increment: line;
+  content: counter(line); # [!code highlight]
+  /* Other styling */
+  display: inline-block;
+}
+
+code[data-line-numbers-max-digits='2'] > [data-line]::before { # [!code highlight]
+  width: 2rem;
+}
+
+code[data-line-numbers-max-digits='3'] > [data-line]::before {
+  width: 3rem;
+}
+```
+
+```js
+const fib = FibonacciSequence();
+fib.next().value; // 0
+fib.next().value; // 1
+// 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
+```
+
+#### Autolink literals
+
+www.example.com, https://example.com, and contact@example.com.
+
+#### Footnote
+
+A note[^1]
+
+[^1]: Big note.
+
+#### Tables
+
+| a   | b   |   c |  d  |
+| --- | :-- | --: | :-: |
+
+| Available |     |     |     | Process | Allocation |     |     |     | Max |     |     |     |
+| --------- | --- | --- | --- | ------- | ---------- | --- | --- | --- | --- | --- | --- | --- |
+| A         | B   | C   | D   |         | A          | B   | C   | D   | A   | B   | C   | D   |
+| 1         | 5   | 2   | 0   | P0      | 0          | 0   | 1   | 2   | 0   | 0   | 1   | 2   |
+|           |     |     |     | P1      | 1          | 0   | 0   | 0   | 1   | 7   | 5   | 0   |
+|           |     |     |     | P2      | 1          | 3   | 5   | 4   | 2   | 3   | 5   | 6   |
+|           |     |     |     | P3      | 0          | 6   | 3   | 2   | 0   | 6   | 5   | 2   |
+|           |     |     |     | P4      | 0          | 0   | 1   | 4   | 0   | 6   | 5   | 6   |
+
+| Syntax    | Description |
+| --------- | ----------- |
+| Header    | Title       |
+| Paragraph | Text        |
+
+| This   | is    | a       |
+| ------ | ----- | ------- |
+| simple | table | example |
+
+| Syntax    | Description | Test Text |
+| --------- | ----------- | --------- |
+| Header    | Title       | Title     |
+| Paragraph | Text        | Title     |
+| Header    | Title       | Title     |
+| Paragraph | Text        | Title     |
+
+| Item              | In Stock | Price |
+| :---------------- | :------: | ----: |
+| Python Hat        |   True   | 23.99 |
+| SQL Hat           |   True   | 23.99 |
+| Codecademy Tee    |  False   | 19.99 |
+| Codecademy Hoodie |  False   | 42.99 |
+
+#### Strikethrough
+
+~one~ or ~~two~~ tildes.
+
+#### Tasklist
+
+- [ ] to do
+- [x] done
+
+We do not just present theories or generic advice–we conduct a thorough investigation to uncover the often-hidden potential within this crucial cross-company discipline.
+
+---
+
+Yet, a powerful source of untapped potential is often overlooked by companies: effective net working capital (NWC) management.
+Our white paper embarks on a captivating investigative journey, delving into the world of NWC management. We do not just present theories or generic advice - we conduct a thorough investigation to uncover the often-hidden potential within this crucial cross-company discipline.
+
+<aside>
+  We do not just present theories or generic advice–we conduct a thorough investigation to uncover the often-hidden
+  potential within this crucial cross-company discipline.
+</aside>
+
+### Here is why we believe a deep dive into NWC management is needed.
+
+# Working Capital Management
+
+Yet, a powerful source of untapped potential is often overlooked by companies: effective net working capital (NWC) management.
+Our white paper embarks on a captivating investigative journey, delving into the world of NWC management. We do not just present theories or generic advice - we conduct a thorough investigation to uncover the often-hidden potential within this crucial cross-company discipline.
+
+<aside>We do not just present theories or generic advice–we conduct a thorough investigation to.</aside>
+
+## A new emerging trend
+
+The figure below dives deeper into the private market choices. The left graph shows the standardized allocation to the different asset classes, delineated by vintage. With each area being roughly equal in size, the portfolio appears to be vintage-diversified. The right graph shows the commitments to each private asset by year, as a percentage of the total wealth in the same year. During the ramp up phase, we commit more. Overall the allocations remain relatively stable through time, ensuring vintage diversification.
+
+### Let's break this down
+
+The structure of our optimization alogorithm allows us to gradually remove the complicating assumptions that private assets introduce, and thereby converge to the mean-variance benchmark. We start by removing the vintage specific volatility and setting to zero. Running the same optimization we achieve the new projected holdings and portfolio weights below. Unsurprisingly we again start with the pure-public mean-variance optimum at the start. But interestingly, we now converge neatly to the mean-variance optimimum over time. The lower allocation to private assets that we saw above is thus explained entirely by vintage specific volatility.
+
+## In practice
+
+With no vintage specific volatility, the benefit of vintage diversification disappears entirely, and we see very concentrated investments into some vintages. Looking at the commitments below, the optimization tries to bulk up on private assets as soon as possible by making very large investments at the start, and then committing nothing until year five.
+
+#### Let's break this down
+
+This post outlines some of the considerations of building a strategic asset allocation plan. Naturally, not everything goes according to plan. The good news is that we can just re-run the plan starting from whatever situation we find ourselves in. So like in a typical application, we make a projection for 20 years, execute the first year, and then roll forward and plan again for the next 20 years given the prevailing private holdings and capital market assumptions, and so on. Therefore, asset allocation with private assets is not a one-of exercise, but a repeated plan that is adjusted based on realized calls and distributions.
+
+##### Let's break this down Despite its simplicity, our analysis reveals important insights for allocators.
+
+- Investors should not steer towards classical mean-variance allocations, as they are suboptimal and will overallocate to private markets.
+- Smaller investors should hold less in private assets compared to larger ones, as they cannot diverisify between funds as efficiently.
+- Commitments should be smoothed out over time to ensure an allocation remains diversified between vintages. This is especially important for smaller investors.
+- When a portfolio is not in equilibrium, the liquid sleeve should be optimized to be as complementary as possible to the private assets that do exist. When no private assets are held yet, the optimum aligns with the mean-variance optimum excluding private assets.
+
+1. Investors should not steer towards classical mean-variance allocations, as they are suboptimal and will overallocate to private markets.
+2. Smaller investors should hold less in private assets compared to larger ones, as they cannot diverisify between funds as efficiently.
+3. Commitments should be smoothed out over time to ensure an allocation remains diversified between vintages. This is especially important for smaller investors.
+4. When a portfolio is not in equilibrium, the liquid sleeve should be optimized to be as complementary as possible to the private assets that do exist. When no private assets are held yet, the optimum aligns with the mean-variance optimum excluding private assets.
+
+<aside>
+  Despite the importance of NWC management, many companies struggle to optimize their working capital. This is often due
+  to a lack of understanding of the key drivers of NWC and the potential benefits of effective management. Our white
+  paper aims to address this gap by providing a comprehensive overview of NWC management, including key concepts, best
+  practices, and case studies. We also offer practical recommendations for companies looking to improve their working
+  capital performance.
+</aside>
+
+However you choose to engage with our research, we hope you find it valuable and informative. We look forward to hearing
+your feedback and continuing the conversation on how we can help you unlock the full potential of your working capital.

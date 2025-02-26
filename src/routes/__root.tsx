@@ -193,63 +193,12 @@ const Navigation = () => {
     </div>
   );
 };
-const Layout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <div
-      sx={{
-        a: {
-          textDecoration: "none",
-          color: "inherit",
-          "&:hover": { textDecoration: "underline" },
-        },
-        pt: [8, 9, "min(7vh, 5rem)"],
-        pb: [12, "16rem", "clamp(10rem, 24vh, 13rem)"],
-        px: [0],
-        minHeight: ["auto", "100vh"],
-        margin: "0 auto",
-        display: "grid",
-        alignItems: ["center", "stretch"],
-        alignContent: "space-between",
-        maxWidth: "1800px",
-        gridTemplateRows: "auto auto auto",
-        gridTemplateColumns: ["repeat(10, 1fr)", "repeat(10, 1fr)", "repeat(12, 1fr)"],
-        gridTemplateAreas: [
-          //phone
-          `
-      '. logo logo logo . . . cta cta .'
-      '. intro intro intro intro intro intro intro intro .'
-      '. meta meta meta meta meta meta meta meta .'
-      `,
-          //tablet
-          `
-      '. logo logo . . . nav .  cta .'
-      '. intro intro intro intro intro intro . . .'
-      '. meta meta meta meta meta meta meta meta meta '
-      `,
-          //desktop
-          `
-      '. logo logo . . . nav nav  . .  cta .'
-      '. intro intro intro intro intro meta meta meta meta meta meta'
-      `,
-          //wide
-          `
-      '. logo logo . . . nav nav  . .  cta .'
-      '. intro intro intro intro . meta meta meta meta meta meta'
-      `,
-        ],
-      }}
-    >
-      {children}
-    </div>
-  );
-};
+
 function RootComponent() {
   return (
     <React.Fragment>
-      <Layout>
-        <Navigation />
-        <Outlet />{" "}
-      </Layout>
+      {/* <Navigation /> */}
+      <Outlet />
     </React.Fragment>
   );
 }

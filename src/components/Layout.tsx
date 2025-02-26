@@ -9,5 +9,25 @@ interface LayoutProps {
 }
 
 export const Layout = ({ children }: LayoutProps) => {
-  return <ThemeUIProvider theme={theme as Theme}>{children}</ThemeUIProvider>;
+  return (
+    <ThemeUIProvider theme={theme as Theme}>
+      <div
+        sx={{
+          "--margin": "minmax(32px, 1fr)",
+          "--max-width": ["800px", null, "1800px"],
+          display: "grid",
+          gridTemplateColumns: `
+            [bleedstart] 
+              var(--margin) 
+                [start] 
+                  repeat( 12, minmax(0, calc(var(--max-width) / 12)) )
+                [end] 
+              var(--margin)
+            [bleedend]`,
+        }}
+      >
+        {children}
+      </div>
+    </ThemeUIProvider>
+  );
 };

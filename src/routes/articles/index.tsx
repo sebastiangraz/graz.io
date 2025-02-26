@@ -42,8 +42,13 @@ function RouteComponent() {
   }
 
   return (
-    <div style={{ maxWidth: "1200px", gridColumn: "span 2", margin: "0 auto" }}>
-      <Layout>
+    <Layout>
+      <div
+        sx={{
+          gridTemplateColumns: "subgrid",
+          display: "grid",
+        }}
+      >
         <h1>Articles</h1>
         <ul>
           {articles?.map(({ title, id, path }) => {
@@ -55,8 +60,8 @@ function RouteComponent() {
               </Link>
             );
           })}
-        </ul>
-      </Layout>{" "}
-    </div>
+        </ul>{" "}
+      </div>
+    </Layout>
   );
 }

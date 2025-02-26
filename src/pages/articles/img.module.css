@@ -1,4 +1,5 @@
 .picture {
+  grid-column: bleedstart / bleedend;
   position: relative;
   aspect-ratio: var(--picture-w) / var(--picture-h);
   z-index: 0;

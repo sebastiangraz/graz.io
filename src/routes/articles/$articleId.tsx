@@ -1,10 +1,12 @@
-import * as React from "react";
+/** @jsxImportSource theme-ui */
+
 import { ErrorComponent, createFileRoute } from "@tanstack/react-router";
 import { entryMeta } from "@/routes/articles";
 import type { ErrorComponentProps } from "@tanstack/react-router";
 import { Layout } from "@/components";
-import { Heading, Text } from "theme-ui";
+import { Heading, Paragraph, Text } from "theme-ui";
 import { MDXProvider } from "@mdx-js/react";
+
 function PostErrorComponent({ error }: ErrorComponentProps) {
   return (
     <Layout>
@@ -12,28 +14,6 @@ function PostErrorComponent({ error }: ErrorComponentProps) {
     </Layout>
   );
 }
-
-export function PostComponent() {
-  const post = Route.useLoaderData();
-  const { Page } = post;
-  console.log(Page);
-  return (
-    <Layout>
-      <div className="space-y-2">
-        <h4 className="text-xl font-bold underline">{post.title}</h4>
-        <MDXProvider components={components}>
-          <Page />
-        </MDXProvider>
-      </div>
-    </Layout>
-  );
-}
-
-const components = {
-  h1: (props: any) => <Heading {...props}>{props.children}</Heading>,
-  h2: (props: any) => <Text {...props}>{props.children}</Text>,
-  p: (props: any) => <Text {...props}>{props.children}</Text>,
-};
 
 export const Route = createFileRoute("/articles/$articleId")({
   loader: async ({ params: { articleId } }) => {
@@ -50,3 +30,53 @@ export const Route = createFileRoute("/articles/$articleId")({
   },
   component: PostComponent,
 });
+
+export function PostComponent() {
+  const post = Route.useLoaderData();
+  const { Page } = post;
+  console.log(Page);
+  return (
+    <Layout>
+      <h4 className="text-xl font-bold underline">{post.title}</h4>
+      <MDXProvider components={components}>
+        <Page />
+      </MDXProvider>
+    </Layout>
+  );
+}
+
+const components = {
+  wrapper: (props: any) => (
+    <div
+      {...props}
+      sx={{
+        gridTemplateColumns: "subgrid",
+        gridColumn: "bleedstart/bleedend",
+        display: "grid",
+      }}
+    >
+      <div sx={{ gridColumn: "5/11" }}>{props.children}</div>
+    </div>
+  ),
+  picture: (props: any) => <img {...props} sx={{ gridColumn: "bleedstart/bleedend" }} />,
+  h1: (props: any) => (
+    <Heading {...props} sx={{ gridColumn: "start/end" }}>
+      {props.children}
+    </Heading>
+  ),
+  h2: (props: any) => (
+    <Text {...props} sx={{ gridColumn: "start/end" }}>
+      {props.children}
+    </Text>
+  ),
+  p: (props: any) => (
+    <Paragraph {...props} sx={{ display: "grid", gridColumn: "5/11" }}>
+      {props.children}
+    </Paragraph>
+  ),
+  Link: (props: any) => (
+    <a href={props.to} children={props.children} style={{ borderTop: "1px dashed", color: "tomato" }} />
+  ),
+
+  // Img: (props: any) => <Img {...props} sx={{ gridColumn: "bleedstart/bleedend" }} />,
+};

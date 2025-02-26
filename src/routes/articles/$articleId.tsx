@@ -3,7 +3,7 @@ import { ErrorComponent, createFileRoute } from "@tanstack/react-router";
 import { entryMeta } from "@/routes/articles";
 import type { ErrorComponentProps } from "@tanstack/react-router";
 import { Layout } from "@/components";
-import { Text } from "theme-ui";
+import { Heading, Text } from "theme-ui";
 import { MDXProvider } from "@mdx-js/react";
 function PostErrorComponent({ error }: ErrorComponentProps) {
   return (
@@ -12,6 +12,28 @@ function PostErrorComponent({ error }: ErrorComponentProps) {
     </Layout>
   );
 }
+
+export function PostComponent() {
+  const post = Route.useLoaderData();
+  const { Page } = post;
+  console.log(Page);
+  return (
+    <Layout>
+      <div className="space-y-2">
+        <h4 className="text-xl font-bold underline">{post.title}</h4>
+        <MDXProvider components={components}>
+          <Page />
+        </MDXProvider>
+      </div>
+    </Layout>
+  );
+}
+
+const components = {
+  h1: (props: any) => <Heading {...props}>{props.children}</Heading>,
+  h2: (props: any) => <Text {...props}>{props.children}</Text>,
+  p: (props: any) => <Text {...props}>{props.children}</Text>,
+};
 
 export const Route = createFileRoute("/articles/$articleId")({
   loader: async ({ params: { articleId } }) => {
@@ -28,20 +50,3 @@ export const Route = createFileRoute("/articles/$articleId")({
   },
   component: PostComponent,
 });
-
-function PostComponent() {
-  const post = Route.useLoaderData();
-
-  return (
-    <Layout>
-      <div className="space-y-2">
-        <h4 className="text-xl font-bold underline">{post.title}</h4>
-        <MDXProvider components={components}>{post.body}</MDXProvider>
-      </div>
-    </Layout>
-  );
-}
-
-const components = {
-  h2: (props: any) => <Text {...props}>{props.children}</Text>,
-};

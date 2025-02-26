@@ -8,7 +8,7 @@ import { Img } from "@/pages/articles/Img";
 import { Heading, Paragraph, Text } from "theme-ui";
 import { MDXProvider } from "@mdx-js/react";
 import { Link as AppLink } from "@/components";
-
+import style from "@/routes/articles/articles.module.css";
 function PostErrorComponent({ error }: ErrorComponentProps) {
   return (
     <Layout>
@@ -50,29 +50,20 @@ export function PostComponent() {
 const components = {
   wrapper: (props: any) => (
     <div
+      className={` ${style.prose}`}
       {...props}
       sx={{
         gridTemplateColumns: "subgrid",
         gridColumn: "bleedstart/bleedend",
         display: "grid",
+        gap: "1.5em 0",
       }}
     >
       {props.children}
     </div>
   ),
-  picture: (props: any) => <img {...props} sx={{ gridColumn: "bleedstart/bleedend" }} />,
-  h1: (props: any) => (
-    <Heading {...props} sx={{ gridColumn: "start/end" }}>
-      {props.children}
-    </Heading>
-  ),
-  h2: (props: any) => (
-    <Text {...props} sx={{ gridColumn: "start/end" }}>
-      {props.children}
-    </Text>
-  ),
   p: (props: any) => (
-    <Paragraph {...props} sx={{ display: "grid", gridColumn: "5/11" }}>
+    <Paragraph {...props} variant="body" sx={{ display: "grid", gridColumn: "5/11" }}>
       {props.children}
     </Paragraph>
   ),
@@ -83,5 +74,5 @@ const components = {
   ),
   a: (props: any) => <a {...props} style={{ borderTop: "1px dashed", color: "red" }}></a>,
 
-  Img: (props: any) => <Img {...props} sx={{ gridColumn: "bleedstart/bleedend" }} />,
+  Img: (props: any) => <Img {...props} />,
 };

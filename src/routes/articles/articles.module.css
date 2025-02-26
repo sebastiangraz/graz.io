@@ -1,0 +1,31 @@
+.prose {
+  & > * {
+    grid-column: bleedstart/bleedend;
+  }
+
+  & > :is(h1, h2, h3, h4, h5, h6, p, ul, ol, a, pre, aside) {
+    grid-column: 5/11;
+  }
+
+  aside {
+    display: grid;
+    grid-column: start / end;
+    height: auto;
+    grid-row: span 1;
+    gap: 0.5em 0;
+    font-size: 14px;
+    & * {
+      color: inherit;
+      font-size: inherit;
+    }
+    @media (--1) {
+      grid-column: 8 / end;
+    }
+    @media (--2) {
+      grid-column: 12 / end;
+    }
+    @media (--3) {
+      height: 1ch;
+    }
+  }
+}

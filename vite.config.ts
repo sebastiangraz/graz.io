@@ -5,8 +5,20 @@ import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 import { fileURLToPath, URL } from "url";
 import { imagetools } from "vite-imagetools";
 import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
-import remarkFrontmatter from "remark-frontmatter";
+import remarkFrontmatter, { Options } from "remark-frontmatter";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
+import { transformerNotationHighlight } from "@shikijs/transformers";
+import rehypePrettyCode from "rehype-pretty-code";
+import remarkgfm from "remark-gfm";
+
+// const options = {
+//   theme: JSON.parse(fs.readFileSync("./src/utils/syntax.json", "utf-8")),
+//   defaultLang: "plaintext",
+//   keepBackground: false,
+//   showLineNumbers: true,
+//   grid: true,
+//   transformers: [transformerNotationHighlight()],
+// };
 
 // https://vitejs.dev/config/
 export default defineConfig(async (): Promise<UserConfig> => {
@@ -17,28 +29,13 @@ export default defineConfig(async (): Promise<UserConfig> => {
       react({
         include: "**/*.tsx",
       }),
-      svgrPlugin(),
-      imagetools({
-        defaultDirectives: () => {
-          return new URLSearchParams({
-            format: "webp",
-            quality: "80",
-          });
-        },
-      }),
       mdx.default({
-        remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
-        rehypePlugins: [],
+        remarkPlugins: [remarkgfm, remarkFrontmatter, remarkMdxFrontmatter],
+        rehypePlugins: [rehypePrettyCode],
         providerImportSource: "@mdx-js/react",
       }),
-      // ViteImageOptimizer({
-      //   //exclude avif files and `public/device-slice-shadow.png`
-      //   exclude: /.*\.avif$|device-slice-shadow\.png/,
-      //   png: {
-      //     quality: 80,
-      //     progressive: true,
-      //   },
-      // }),
+      svgrPlugin(),
+      imagetools(),
     ],
     resolve: {
       alias: [

@@ -1,6 +1,9 @@
-import { ArticleModule } from "@/types/blog";
+/** @jsxImportSource theme-ui */
+
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
+import { Layout } from "@/components";
+
 export const Route = createFileRoute("/articles")({
   component: RouteComponent,
 });
@@ -31,17 +34,23 @@ function RouteComponent() {
   });
 
   if (isLoading) {
-    return <div>Loading articles...</div>;
+    return (
+      <Layout>
+        <div>Loading articles...</div>
+      </Layout>
+    );
   }
 
   return (
-    <div>
-      <h1>Articles</h1>
-      <ul>
-        {articles?.map(({ title, id }) => {
-          return <li key={id}>{title}</li>;
-        })}
-      </ul>
-    </div>
+    <Layout>
+      <div sx={{ fontSize: 4, maxWidth: "1800px", gridColumn: "span 2" }}>
+        <h1>Articles</h1>
+        <ul>
+          {articles?.map(({ title, id }) => {
+            return <li key={id}>{title}</li>;
+          })}
+        </ul>
+      </div>
+    </Layout>
   );
 }

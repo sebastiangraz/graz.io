@@ -1,9 +1,6 @@
 import { CaseWrapper, Case, ScrollToTop, CaseMeta, GridParent } from "@/components";
 import "@/base.css";
-import { Helmet } from "react-helmet-async";
-import { ArticleModule } from "@/types/blog";
-import { useState, useEffect } from "react";
-import { PropMap, PropMapProps } from "@/utils/PropMap";
+import { PropMap } from "@/utils/PropMap";
 
 // Article routes setup using import.meta.glob - update to include folders
 

@@ -7,6 +7,7 @@ export { CaseWrapper } from "./CaseWrapper";
 export { EmailLink } from "./EmailLink";
 export { GridParent } from "./GridParent";
 export { Img } from "./Img";
+export { Layout } from "./Layout";
 export { List } from "./List";
 export { Link } from "./Link";
 export { Logo } from "./Logo";

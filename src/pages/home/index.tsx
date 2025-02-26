@@ -178,9 +178,7 @@ const Home = () => {
             display: ["none", "block"],
           }}
         >
-          <Link target="_blank" href={resume} rel="noopener">
-            Résumé
-          </Link>
+          <Link href="/articles">Articles</Link>
         </Text>
         <div
           tabIndex={0}
@@ -251,8 +249,8 @@ const Home = () => {
                   </Link>
                 </m.div>
                 <m.div variants={list} key={3}>
-                  <Link target="_blank" href="https://vsco.co/sgraz/" rel="noopener">
-                    VSCO
+                  <Link target="_blank" href={resume} rel="noopener">
+                    Résumé
                   </Link>
                 </m.div>
                 <m.hr

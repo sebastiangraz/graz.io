@@ -4,6 +4,7 @@ import svgrPlugin from "vite-plugin-svgr";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 import { fileURLToPath, URL } from "url";
 import { imagetools } from "vite-imagetools";
+import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -11,6 +12,7 @@ export default defineConfig({
     react({
       include: "**/*.tsx",
     }),
+    TanStackRouterVite({ target: "react", autoCodeSplitting: true }),
     svgrPlugin(),
     imagetools({
       defaultDirectives: () => {

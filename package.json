@@ -42,6 +42,7 @@
   },
   "devDependencies": {
     "@csstools/postcss-global-data": "^2.1.1",
+    "@tanstack/router-plugin": "^1.111.12",
     "@types/lodash.debounce": "^4.0.7",
     "@types/lodash.throttle": "^4.1.9",
     "@types/react": "^18.0.34",

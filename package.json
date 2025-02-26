@@ -42,6 +42,9 @@
   },
   "devDependencies": {
     "@csstools/postcss-global-data": "^2.1.1",
+    "@mdx-js/react": "^3.1.0",
+    "@mdx-js/rollup": "^3.1.0",
+    "@tanstack/react-query": "^5.66.9",
     "@tanstack/router-plugin": "^1.111.12",
     "@types/lodash.debounce": "^4.0.7",
     "@types/lodash.throttle": "^4.1.9",
@@ -50,6 +53,7 @@
     "@typescript-eslint/parser": "latest",
     "@vitejs/plugin-react": "^3.1.0",
     "eslint": "latest",
+    "eslint-plugin-mdx": "^3.1.5",
     "eslint-plugin-react": "latest",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
@@ -58,6 +62,8 @@
     "postcss-custom-media": "^10.0.4",
     "postcss-preset-env": "^9.5.5",
     "react-helmet-async": "^2.0.5",
+    "remark-frontmatter": "^5.0.0",
+    "remark-mdx-frontmatter": "^5.0.0",
     "sharp": "^0.32.0",
     "svgo": "^3.2.0",
     "terser": "^5.39.0",
@@ -65,6 +71,7 @@
     "tsx": "^4.7.2",
     "vite": "5.3.2",
     "vite-plugin-image-optimizer": "^1.1.7",
+    "vite-plugin-mdx": "^3.6.1",
     "vite-plugin-svgr": "^4.2.0"
   },
   "packageManager": "yarn@3.5.0"

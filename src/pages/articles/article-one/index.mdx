@@ -1,14 +1,9 @@
-/** @jsxImportSource theme-ui */
+---
+title: Article One
+id: 2
+---
 
 import { Text, Container, Heading } from "theme-ui";
-import { Img } from "@/pages/articles/Img";
-export const metadata = {
-  title: "First Article Title",
-  description: "This is the description for the first article",
-  publishDate: "2023-05-15",
-  author: "Sebastian Graz",
-  featured: true,
-};
 
 export default () => {
   return (
@@ -33,7 +28,7 @@ export default () => {
       >
         Published on {new Date(metadata.publishDate).toLocaleDateString()} by {metadata.author}
       </Text>
-      <Img src="bayleaf.png" />
+
 
       <Text sx={{ fontSize: [2, 3], lineHeight: "body" }}>
         <p>
@@ -52,5 +47,6 @@ export default () => {
         </p>
       </Text>
     </Container>
-  );
+
+);
 };

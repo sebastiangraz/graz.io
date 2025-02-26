@@ -8,6 +8,7 @@ export { EmailLink } from "./EmailLink";
 export { GridParent } from "./GridParent";
 export { Img } from "./Img";
 export { List } from "./List";
+export { Link } from "./Link";
 export { Logo } from "./Logo";
 export { MouseTracker } from "./MouseTracker";
 export { NumberedList } from "./NumberedList";

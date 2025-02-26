@@ -6,7 +6,7 @@ import { useResponsiveValue } from "@theme-ui/match-media";
 import { ScrollDown } from "@/components/ScrollDown";
 import { useThemeUI } from "theme-ui";
 import { CaseWrapperState } from "@/components/CaseWrapper";
-import { PropMapProps } from "@/components/App";
+import { PropMapProps } from "@/utils/PropMap";
 import { useUpdateURL } from "@/hooks/useUpdateURL";
 import { useScrollToCaseOnMount } from "@/hooks/useScrollToCaseOnMount";
 import { useStaggeredPosition } from "@/hooks/useStaggeredPosition";
@@ -56,11 +56,11 @@ export const Case = React.memo(
     useUpdateURL(slug, index);
 
     const handleClick = () => {
-      if (index !== 0) {
-        window.history.pushState(null, "", `/${slug}`);
-      } else {
-        window.history.pushState(null, "", "/");
-      }
+      // if (index !== 0) {
+      //   window.history.pushState(null, "", `/${slug}`);
+      // } else {
+      //   window.history.pushState(null, "", "/");
+      // }
 
       // scroll to top of case
       window.matchMedia(media_query).matches
@@ -73,11 +73,18 @@ export const Case = React.memo(
     };
     // -----CLICK TO SCROLLTO CASE-----
 
-    // const gridCount = (arr: number) => propmap?.grid && propmap?.grid[arr].split("span ")[1];
     const gridPosition = (arr: number) => propmap?.grid && propmap?.grid[arr].split(" /")[0];
 
     const caseBackgroundHeightOffset = 300 - 2 - (index !== 1 ? settings.nextScrollDistance : 0) + staggeredOffset;
 
+    {
+      useScrollToCaseOnMount({
+        slug,
+        scrollToVal: window.matchMedia(media_query).matches
+          ? childPosition[index] - (index !== 1 ? settings.nextScrollDistance : 0) + staggeredOffset
+          : childPosition[index],
+      });
+    }
     return (
       <>
         {isHome ? (
@@ -156,16 +163,9 @@ export const Case = React.memo(
             </div>
           </m.div>
         )}
-
-        {useScrollToCaseOnMount({
-          slug,
-          scrollToVal: window.matchMedia(media_query).matches
-            ? childPosition[index] - (index !== 1 ? settings.nextScrollDistance : 0) + staggeredOffset
-            : childPosition[index],
-        })}
       </>
     );
-  }
+  },
 );
 
 interface useStaggeredPositionReturn {

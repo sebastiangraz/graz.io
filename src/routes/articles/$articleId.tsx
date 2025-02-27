@@ -55,22 +55,24 @@ export function PostComponent() {
           }}
         />
         <h1 className={`${style.title}`}>{post.title}</h1>
-        {dateText && (
-          <div
-            sx={{
-              fontSize: "14px",
-              letterSpacing: "0.05em",
-              color: "textDim",
-              marginTop: "-1rem",
-              marginBottom: "1rem",
-            }}
-          >
-            {dateText}
-          </div>
-        )}
-        <AppLink to="/articles">
-          <a>All articles</a>
-        </AppLink>
+        <div
+          sx={{
+            display: "flex",
+            justifyContent: "start",
+            gap: "1rem",
+            alignItems: "center",
+            marginBottom: "1rem",
+            fontSize: "14px",
+            letterSpacing: "0.05em",
+            color: "textDim",
+            textTransform: "uppercase",
+          }}
+        >
+          <AppLink to="/articles">
+            <a sx={{ textTransform: "uppercase" }}>All articles</a>
+          </AppLink>
+          {dateText && <div>{dateText}</div>}
+        </div>
       </div>
       <MDXProvider components={components}>
         <Page />

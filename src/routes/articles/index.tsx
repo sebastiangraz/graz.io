@@ -75,14 +75,25 @@ function RouteComponent() {
                   color: "textDim",
                 }}
               >
-                <Link to={`/articles/${slug}`} sx={{ display: "flex", flexDirection: "column" }}>
-                  <span>{title}</span>
+                <Link
+                  to={`/articles/${slug}`}
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "baseline",
+                    width: "100%",
+                  }}
+                >
+                  <span sx={{ fontWeight: "normal" }}>{title}</span>
                   {dateText && (
                     <span
                       sx={{
                         fontSize: "14px",
                         opacity: 0.7,
-                        marginTop: "4px",
+                        textAlign: "right",
+                        flexShrink: 0,
+                        marginLeft: "16px",
                       }}
                     >
                       {dateText}

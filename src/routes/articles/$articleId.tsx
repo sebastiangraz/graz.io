@@ -9,6 +9,8 @@ import { Heading, Paragraph, Text } from "theme-ui";
 import { MDXProvider } from "@mdx-js/react";
 import { Link as AppLink } from "@/components";
 import style from "@/routes/articles/articles.module.css";
+import { formatDistanceToNow } from "date-fns";
+
 function PostErrorComponent({ error }: ErrorComponentProps) {
   return (
     <Layout>
@@ -36,6 +38,10 @@ export const Route = createFileRoute("/articles/$articleId")({
 export function PostComponent() {
   const post = Route.useLoaderData();
   const { Page } = post;
+  const dateText =
+    post.date && post.date instanceof Date && post.date.getTime() > 0
+      ? formatDistanceToNow(post.date, { addSuffix: true })
+      : "";
 
   return (
     <Layout>
@@ -49,6 +55,19 @@ export function PostComponent() {
           }}
         />
         <h1 className={`${style.title}`}>{post.title}</h1>
+        {dateText && (
+          <div
+            sx={{
+              fontSize: "14px",
+              letterSpacing: "0.05em",
+              color: "textDim",
+              marginTop: "-1rem",
+              marginBottom: "1rem",
+            }}
+          >
+            {dateText}
+          </div>
+        )}
         <AppLink to="/articles">
           <a>All articles</a>
         </AppLink>

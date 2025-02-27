@@ -4,6 +4,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { Layout, Link } from "@/components";
 import { getPrevPathFromExtension } from "@/utils/helpers";
+import style from "@/routes/articles/articles.module.css";
+import { formatDistanceToNow } from "date-fns";
+
 export const Route = createFileRoute("/articles/")({
   component: RouteComponent,
 });
@@ -22,6 +25,7 @@ export const entryMeta = globEntries.map(([url, module]) => {
     id: slug,
     path: url,
     title: module.frontmatter?.title,
+    date: module.frontmatter?.date ? new Date(module.frontmatter.date) : new Date(0),
   };
 });
 
@@ -29,38 +33,66 @@ function RouteComponent() {
   const { data: articles, isLoading } = useQuery({
     queryKey: ["articles"],
     queryFn: () => {
-      return entryMeta;
+      // Sort articles by date (newest first)
+      return [...entryMeta].sort((a, b) => b.date.getTime() - a.date.getTime());
     },
   });
 
   if (isLoading) {
     return (
       <Layout>
-        <div>Loading articles...</div>
+        <div className={style.meta}>
+          <h1 className={style.title}>Articles</h1>
+          <div>Loading articles...</div>
+        </div>
       </Layout>
     );
   }
 
   return (
     <Layout>
-      <div
-        sx={{
-          gridTemplateColumns: "subgrid",
-          display: "grid",
-        }}
-      >
-        <h1>Articles</h1>
-        <ul>
-          {articles?.map(({ title, id, path }) => {
+      <div className={style.meta}>
+        <h1 className={style.title}>Articles</h1>
+        <ul
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "1rem",
+            padding: 0,
+            listStyle: "none",
+            marginTop: "2rem",
+          }}
+        >
+          {articles?.map(({ title, id, path, date }) => {
             const slug = getPrevPathFromExtension(path);
+            const dateText = date.getTime() > 0 ? formatDistanceToNow(date, { addSuffix: true }) : "";
 
             return (
-              <Link to={`/articles/${slug}`} key={id}>
-                <li>{title}</li>
-              </Link>
+              <li
+                key={id}
+                sx={{
+                  fontSize: "18px",
+                  color: "textDim",
+                }}
+              >
+                <Link to={`/articles/${slug}`} sx={{ display: "flex", flexDirection: "column" }}>
+                  <span>{title}</span>
+                  {dateText && (
+                    <span
+                      sx={{
+                        fontSize: "14px",
+                        opacity: 0.7,
+                        marginTop: "4px",
+                      }}
+                    >
+                      {dateText}
+                    </span>
+                  )}
+                </Link>
+              </li>
             );
           })}
-        </ul>{" "}
+        </ul>
       </div>
     </Layout>
   );

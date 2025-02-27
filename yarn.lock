@@ -1811,6 +1811,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@shikijs/rehype@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@shikijs/rehype@npm:3.0.0"
+  dependencies:
+    "@shikijs/types": 3.0.0
+    "@types/hast": ^3.0.4
+    hast-util-to-string: ^3.0.1
+    shiki: 3.0.0
+    unified: ^11.0.5
+    unist-util-visit: ^5.0.0
+  checksum: 5349b0bc72c7822aa4e825c17982ce7b44bf6b527a77e9717617e7de75968f61fb1527b4a1837e20b328a7c90e61fb7ba5744804abd959fa4fa953c1d3156990
+  languageName: node
+  linkType: hard
+
 "@shikijs/themes@npm:3.0.0":
   version: 3.0.0
   resolution: "@shikijs/themes@npm:3.0.0"
@@ -5288,7 +5302,7 @@ eslint@latest:
   languageName: node
   linkType: hard
 
-"hast-util-to-string@npm:^3.0.0":
+"hast-util-to-string@npm:^3.0.0, hast-util-to-string@npm:^3.0.1":
   version: 3.0.1
   resolution: "hast-util-to-string@npm:3.0.1"
   dependencies:
@@ -8604,6 +8618,7 @@ eslint@latest:
     "@emotion/react": ^11.10.6
     "@mdx-js/react": ^3.1.0
     "@mdx-js/rollup": ^3.1.0
+    "@shikijs/rehype": ^3.0.0
     "@shikijs/transformers": ^3.0.0
     "@tanstack/react-query": ^5.66.9
     "@tanstack/react-router": ^1.111.11
@@ -8819,7 +8834,7 @@ eslint@latest:
   languageName: node
   linkType: hard
 
-"shiki@npm:^3.0.0":
+"shiki@npm:3.0.0, shiki@npm:^3.0.0":
   version: 3.0.0
   resolution: "shiki@npm:3.0.0"
   dependencies:

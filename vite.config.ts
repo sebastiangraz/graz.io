@@ -8,7 +8,7 @@ import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 import remarkFrontmatter, { Options } from "remark-frontmatter";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import { transformerNotationHighlight } from "@shikijs/transformers";
-import rehypePrettyCode from "rehype-pretty-code";
+import rehypeShiki from "@shikijs/rehype";
 import remarkgfm from "remark-gfm";
 
 // const options = {
@@ -31,7 +31,21 @@ export default defineConfig(async (): Promise<UserConfig> => {
       }),
       mdx.default({
         remarkPlugins: [remarkgfm, remarkFrontmatter, remarkMdxFrontmatter],
-        rehypePlugins: [rehypePrettyCode],
+        rehypePlugins: [
+          [
+            rehypeShiki,
+            {
+              themes: {
+                light: "github-light",
+                dark: "github-dark",
+                defaultColor: true,
+              },
+              inline: "tailing-curly-colon",
+
+              transformers: [transformerNotationHighlight()],
+            },
+          ],
+        ],
         providerImportSource: "@mdx-js/react",
       }),
       svgrPlugin(),

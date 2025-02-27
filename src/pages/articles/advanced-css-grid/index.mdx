@@ -3,7 +3,7 @@ title: Advanced CSS Griddery technique
 id: 2
 ---
 
-```css
+```css {1,3-4}
 .grid-container {
   --margin: minmax(32px, 1fr);
   --max-width: 800px;
@@ -42,14 +42,16 @@ id: 2
 </div>
 ```
 
+This code `console.log("Hello World"){:js}` will be highlighted.
+
 # What the hell
 
 This setup creates a sophisticated, responsive 12-column grid with flexible margins. Let's break it down:
 Custom Properties as Grid Variables
 Two CSS variables lay the foundation:
 
-- --margin: Set to minmax(32px, 1fr), ensuring margins are never smaller than 32px but can expand to fill available space
-- --max-width: An array of responsive values that changes from 800px to 1800px across breakpoints
+- `--margin{:jsx}`: Set to `minmax(32px, 1fr){:jsx}`, ensuring margins are never smaller than 32px but can expand to fill available space
+- `--max-width{:jsx}`: An array of responsive values that changes from 800px to 1800px across breakpoints
 
 # Columns
 

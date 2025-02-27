@@ -1,5 +1,9 @@
 .prose {
-  & > * {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: bleedstart/bleedend;
+  gap: 1.5rem 0;
+  :global & > * {
     grid-column: bleedstart/bleedend;
   }
 
@@ -27,5 +31,9 @@
     @media (--3) {
       height: 1ch;
     }
+  }
+  :global .shiki {
+    padding: 0.25rem;
+    margin-bottom: 1rem;
   }
 }

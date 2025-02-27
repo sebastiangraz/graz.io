@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.6",
+    "@shikijs/rehype": "^3.0.0",
     "@tanstack/react-router": "^1.111.11",
     "@theme-ui/css": "^0.15.5",
     "@theme-ui/match-media": "^0.15.5",

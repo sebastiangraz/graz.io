@@ -49,21 +49,12 @@ export function PostComponent() {
 
 const components = {
   wrapper: (props: any) => (
-    <div
-      className={` ${style.prose}`}
-      {...props}
-      sx={{
-        gridTemplateColumns: "subgrid",
-        gridColumn: "bleedstart/bleedend",
-        display: "grid",
-        gap: "1.5em 0",
-      }}
-    >
+    <div className={` ${style.prose}`} {...props}>
       {props.children}
     </div>
   ),
   p: (props: any) => (
-    <Paragraph {...props} variant="body" sx={{ display: "grid", gridColumn: "5/11" }}>
+    <Paragraph {...props} variant="body" sx={{ display: "block" }}>
       {props.children}
     </Paragraph>
   ),
@@ -75,4 +66,6 @@ const components = {
   a: (props: any) => <a {...props} style={{ borderTop: "1px dashed", color: "red" }}></a>,
 
   Img: (props: any) => <Img {...props} />,
+  code: (props: any) => <code sx={{}} {...props} />,
+  pre: (props: any) => <pre sx={{ fontSize: 5, lineHeight: "1.3" }} {...props} />,
 };

@@ -36,4 +36,7 @@
     padding: 0.25rem;
     margin-bottom: 1rem;
   }
+  :global pre.shiki:has(code) {
+    padding: 1rem;
+  }
 }

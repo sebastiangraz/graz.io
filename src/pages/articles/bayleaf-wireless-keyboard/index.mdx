@@ -27,14 +27,13 @@ I love the rawness of custom built ergo keyboards. But for my first serious cust
 
 - <mark>Wireless</mark> — non-negotiable, especially with splits. I'm not dealing with any cables. Removing my right
   side to make space for mouse movements while gaming still feels magical.
-- <mark>Ortholinear</mark> — is what I'm used to, my two previous keyboards were also ortho. And I've gotten pretty
-  proficient with them at around 70-90wpm.
+- <mark>Ortholinear</mark> — is what I'm used to, my two previous keyboards were ortho. And I've gotten pretty
+  proficient with them.
 - <mark>Sans stagger</mark> — I'm not against stagger, I just love the neat look of a pain grid. Lack of stagger also
   makes it easier to work with on a hardware level.
 - <mark>Layout</mark> — a larger 60% layout was a deliberate choice to avoid context switching as I often swap between
   my Macbook and desktop. I also went with a 17x17mm switch spacing.
-- <mark>Ergonomics</mark> — not gonna lie this is a planned form-over-function kind of deal. Insofar that the typing
-  experience is pretty jarring.
+- <mark>Ergonomics</mark> — not gonna lie this is a planned form-over-function kind of deal.
 - <mark>Aluminum</mark> — for aesthetics and to get that finished commercial look. Sacrificing RF signal, potential ESD
   issues I was cool with.
 
@@ -49,9 +48,12 @@ I love the rawness of custom built ergo keyboards. But for my first serious cust
 <aside>Two different keycap variations. White ones are stock, grey ones are custom printed MJF caps.</aside>
 
 <Img src="keyboard4.jpg" alt="Keyboard" />
+
+<hr />
 <Img src="keyboard5.jpg" alt="Keyboard" />
+<aside>The variation in the gray color is a side effect of SLS/MJFs sintering process. No impact on tolerances.</aside>
+
 <Img src="keyboard6.jpg" alt="Keyboard" />
-<Img src="keyboard7.jpg" alt="Keyboard" />
 
 <hr />
 <Img src="keyboard8.jpg" alt="Keyboard" />
@@ -65,26 +67,29 @@ I love the rawness of custom built ergo keyboards. But for my first serious cust
 
 # Build log
 
-When Mikefive posted his keyboard on Reddit I found myself uncontrollably nodding along. He showed the world that it’s possible to build ergo keyboards that are stylish, low-profile and accessible for hobbyist. Needless to say his post was the starting gun to get my shit together and I started planning my own build soon after.
+When Mikefive posted his keyboard on Reddit I found myself uncontrollably nodding along. He showed the world that it’s possible to build ergo keyboards that are stylish, low-profile and accessible for hobbyist.
 
-<small>
-  These sketches were made many months prior, but with a few tweaks I able to validate roughly how components would sit
-  within the enclosure. I knew these design wouldn’t be final so I didn’t scrutinize over dimensions at this point.
-</small>
+At the very least he validated for me that building a keyboard of that caliber is doable. The decision to commit time and resources became easier to make. And off I went.
 
+The opening bell for this project was sketching. These 2D sketches were made many months prior, but I was able to repurpose them to validate how the components would sit within the enclosure with the new ideas I had.
+
+<hr />
 <Img src="sketch.png" alt="Drawing" />
+<aside>I knew these design wouldn’t be final so I didn’t scrutinize over dimensions at this point.</aside>
 
-I feared the PCB, my main antagonist, the catalyst of this project's procrastination. I spent about a week consuming YT tutorials, learning the basics to all the way to implementation. Hell, it still confuses me.
+Then came the schematics. Electronic schematics very scary. Scary because I didn't know the level of skill required of me to design one. This could have easily been the point where I succumb to procrastination hell. Luckily with the help of youtube tutorials & various builder communities I managed to produce a working schema.
 
 <Img src="schematics.png" alt="Schematics" />
 
-Admittedly it was fun to plan the PCB layout. Though this image really doesn’t show the amount of botched, rejected PCBs to get to this point. I merged both sides into a single PCB, separated by two V-cuts. This ended up working really well and I could snap the PCBs apart by hand.
+After the schematics I admiteddly had a lot of fun designing the PCB layout. I landed on separating the sides by V-cuts, which lets me snap the PCBs apart by hand. Combining the sides also kept my files tidy and a little cheaper to manufacture.
 
-The actual logic was built around a nice!nano microcontroller, most often used for wireless builds. I kept things simple on purpose, no LEDs, no screens. Just the bare minimum for power and communication.
+The actual logic was built around a nice!nano microcontroller. This controller has all the spicy stuff like power management and antennas already build in. This allowed me to keep things simple, no extra LEDs, no screens, no rotary encoders. Just the bare minimum for power and communication.
 
 <Img src="pcb.png" alt="PCB" />
 
-Designing the aluminum enclosure was another curveball. It was the first time I worked with a parametric design software. I needed to rewire my brain to actually plan ahead before jumping onto modeling. Early on I had discarded tons of near finished files because they’d break randomly when tweaking the dimensions, simply because the order of the changes I made were incorrect. I counted about 100 versions of the case before I settled for this final version.
+Designing the aluminum enclosure was another curveball. It was the first time I worked with a parametric design software with required some brain rewiring. Early on I had discarded tons of near finished files because they’d break randomly when tweaking the dimensions, simply because the order of the changes I made were incorrect.
+
+I counted about 100 versions of the case before I settled for this final version. That said it was incredibly motivating to model stuff you know will exist in the physical world soon.
 
 <Img src="case.png" alt="Case" full />
 
@@ -100,9 +105,9 @@ I started working on the custom keycaps pretty soon after I finished the build. 
 
 # Assembly
 
-Assembling the keyboard both exciting and much trickier than I anticipated. It required a hotplate to solder the switches, I wasted couple of boards just to get comfortable with the process before attempting a final approach.
+The kitchen became my workspace for the assembly. Production of regular carbonaras were seized. Production of keyboarnaras commenced. Now you know this wasn't written by AI.
 
-Shoutout to all the tools
+Tool shoutout
 
 - Bismuth based & lead-free low-temp solder paste
 - Water soluble, no-clean flux
@@ -141,6 +146,19 @@ Each 5x6 grid of switches took me a full day to solder. It was likely the least 
   Almost finished right side. Notice the through-hole components for the MCU which is no bueno for a surface mount
   build. Oops!
 </aside>
+
+# Verdict
+
+<Img src="keyboard7.jpg" alt="Keyboard" full />
+
+# Fuckups
+
+- Not putting vias in the copper pads of the switches, this led to slightly colder connection between the hotplate and PCB.
+- Using white solder mask oxidizes into a reddish color when overheated
+- Forgetting to change the nice!nano PCB footprint to be surface mounted instead of through-hole. I had to put polyamide tape on the bottom and solder it by hand manually. This ended up being a nice fix which was suggested by Mike’s friend Coen when we met, thank you!
+- Physical reset button still needed due to ZMK, waking up sometimes requires resetting. Currently the physical reset button is hidden under the enclosure making it hard to reach. Only a problem if the battery is really low.
+- Not pre-baking the boards prior to soldering, small bumps would appear on the PCB board during soldering from the trapped moisture
+- Not putting more effort into acoustics and vibration mitigation. Small changes to the enclosure to better handle how sound travels during typing. I have a couple of ideas for the next iteration.
 
 # FAQ
 

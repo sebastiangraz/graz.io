@@ -71,7 +71,9 @@ export const EmailLink = ({
           position: "relative",
           overflow: "hidden",
           maxWidth: copied ? "8ch" : "0",
-          transition: "max-width 0.2s ease 0.1s, opacity 0.1s ease",
+          transition: copied
+            ? "opacity 0.5s ease 0.3s, max-width 0.5s ease"
+            : "max-width 0.5s ease 0.3s, opacity 0.5s ease",
           opacity: copied ? 1 : 0,
         }}
       >

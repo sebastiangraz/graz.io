@@ -54,7 +54,6 @@ export default defineConfig(async (): Promise<UserConfig> => {
           return new URLSearchParams({
             format: "webp;avif;original",
             quality: "90",
-            width: "auto",
           });
         },
       }),

@@ -14,7 +14,7 @@ export const Layout = ({ children }: LayoutProps) => {
       <div
         sx={{
           "--margin": "minmax(0, 1fr)",
-          "--max-width": ["800px", null, "1800px"],
+          "--max-width": ["1800px"],
           display: "grid",
           gridTemplateColumns: `
             [bleedstart] 

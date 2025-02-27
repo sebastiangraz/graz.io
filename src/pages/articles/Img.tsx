@@ -12,6 +12,7 @@ interface ImgProps {
   browserBorder?: boolean;
   className?: string;
   alt?: string;
+  full?: boolean;
 }
 
 export const Img = ({
@@ -20,6 +21,7 @@ export const Img = ({
   className = "",
   deviceBorder = false,
   browserBorder = false,
+  full = false,
 }: ImgProps) => {
   if (!src) return null;
 
@@ -35,8 +37,8 @@ export const Img = ({
   const avifData = imageMetadata.find((m) => m.format === "avif");
 
   const classNames = `${style.picture} ${deviceBorder ? style.deviceBorder : ""} ${
-    browserBorder ? style.browserBorder : ""
-  } ${className}`;
+    full ? "full" : ""
+  } ${browserBorder ? style.browserBorder : ""} ${className}`;
 
   if (isSvg) {
     return <img loading="lazy" src={pngData?.src} alt={alt} />;

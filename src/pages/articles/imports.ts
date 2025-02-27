@@ -22,23 +22,29 @@ const extractPathInfo = (path: string): { slug: string; filename: string } => {
 };
 
 // Group assets by article slug for easier lookup
-export const articleAssets = Object.entries(assetPaths).reduce((acc, [path, metadata]) => {
-  const { slug, filename } = extractPathInfo(path);
+export const articleAssets = Object.entries(assetPaths).reduce(
+  (acc, [path, metadata]) => {
+    const { slug, filename } = extractPathInfo(path);
 
-  if (!acc[slug]) {
-    acc[slug] = {};
-  }
+    if (!acc[slug]) {
+      acc[slug] = {};
+    }
 
-  acc[slug][filename] = metadata;
-  return acc;
-}, {} as Record<string, Record<string, AssetMetadata>>);
+    acc[slug][filename] = metadata;
+    return acc;
+  },
+  {} as Record<string, Record<string, AssetMetadata>>,
+);
 
 // Flattened collection for backward compatibility
-export const allImagePaths = Object.entries(assetPaths).reduce((acc, [path, metadata]) => {
-  const { slug, filename } = extractPathInfo(path);
-  acc[`${slug}/${filename}`] = metadata;
-  return acc;
-}, {} as Record<string, AssetMetadata>);
+export const allImagePaths = Object.entries(assetPaths).reduce(
+  (acc, [path, metadata]) => {
+    const { slug, filename } = extractPathInfo(path);
+    acc[`${slug}/${filename}`] = metadata;
+    return acc;
+  },
+  {} as Record<string, AssetMetadata>,
+);
 
 /**
  * Helper functions to get the current article context

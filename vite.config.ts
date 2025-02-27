@@ -49,7 +49,15 @@ export default defineConfig(async (): Promise<UserConfig> => {
         providerImportSource: "@mdx-js/react",
       }),
       svgrPlugin(),
-      imagetools(),
+      imagetools({
+        defaultDirectives: () => {
+          return new URLSearchParams({
+            format: "webp;avif;original",
+            quality: "90",
+            width: "auto",
+          });
+        },
+      }),
     ],
     resolve: {
       alias: [

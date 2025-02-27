@@ -12,9 +12,8 @@
     display: grid;
     font-size: 4rem;
     text-wrap: balance;
-    max-width: 15ch;
   }
-  a {
+  a:not(.logo) {
     font-size: 14px;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -27,6 +26,23 @@
     &:hover {
       text-decoration-color: color-mix(in srgb, var(--theme-ui-colors-textDim) 32%, transparent);
     }
+  }
+}
+.logo {
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--theme-ui-colors-text);
+  text-decoration: none;
+  font-variation-settings: "wght" 65;
+
+  & > * {
+    transition:
+      color 0.1s ease,
+      font-variation-settings 0.2s ease;
+  }
+  & > *:hover {
+    font-variation-settings: "wght" 90;
   }
 }
 .prose {

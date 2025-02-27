@@ -46,14 +46,16 @@ export function PostComponent() {
   return (
     <Layout>
       <div className={`${style.meta}`}>
-        <Logo
-          sx={{
-            fontVariationSettings: `"wght" 65`,
-            gridArea: "logo",
-            fontSize: 11,
-            display: "flex",
-          }}
-        />
+        <AppLink to="/" className={style.logo}>
+          <Logo
+            sx={{
+              fontVariationSettings: `"wght" 65`,
+              gridArea: "logo",
+              fontSize: 11,
+              display: "flex",
+            }}
+          />
+        </AppLink>
         <h1 className={`${style.title}`}>{post.title}</h1>
         <div
           sx={{

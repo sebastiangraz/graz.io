@@ -69,6 +69,7 @@
   }
   :global & > picture.full,
   :global & > img.full {
+    width: unset;
     grid-column: start/end;
     margin: 0 -1rem;
   }

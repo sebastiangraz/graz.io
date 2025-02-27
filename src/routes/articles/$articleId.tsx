@@ -3,7 +3,7 @@
 import { ErrorComponent, createFileRoute } from "@tanstack/react-router";
 import { entryMeta } from "@/routes/articles";
 import type { ErrorComponentProps } from "@tanstack/react-router";
-import { Layout, Logo } from "@/components";
+import { EmailLink, Layout, Logo } from "@/components";
 import { Img } from "@/pages/articles/Img";
 import { Heading, Paragraph, Text } from "theme-ui";
 import { MDXProvider } from "@mdx-js/react";
@@ -22,7 +22,6 @@ function PostErrorComponent({ error }: ErrorComponentProps) {
 export const Route = createFileRoute("/articles/$articleId")({
   loader: async ({ params: { articleId } }) => {
     const article = entryMeta.find((article) => article.id === articleId);
-    console.log();
     if (!article) {
       throw new Error("Article not found");
     }
@@ -61,17 +60,17 @@ export function PostComponent() {
           sx={{
             display: "flex",
             justifyContent: "start",
-            gap: "1rem",
+            gap: "2rem",
             alignItems: "center",
             marginBottom: "1rem",
-            fontSize: "14px",
+            fontSize: "12px",
             letterSpacing: "0.05em",
             color: "textDim",
             textTransform: "uppercase",
           }}
         >
-          <AppLink to="/articles">
-            <a sx={{ textTransform: "uppercase" }}>All articles</a>
+          <AppLink to="/articles" sx={{ textTransform: "uppercase" }}>
+            ← All articles
           </AppLink>
           {dateText && <div>{dateText}</div>}
         </div>
@@ -87,6 +86,36 @@ const components = {
   wrapper: (props: any) => (
     <div className={`${style.prose}`} {...props}>
       {props.children}
+      {/* Article footer */}
+      <hr />
+      <div
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          columnGap: "2rem",
+          gridColumn: "3/13",
+          marginBottom: "2rem",
+          textAlign: "center",
+          padding: "2rem 0",
+          "& > *": {
+            fontSize: "12px",
+            letterSpacing: "0.05em",
+            color: "textDim",
+            textTransform: "uppercase",
+            textDecoration: "none",
+            transition: "opacity 0.2s ease",
+            ":hover": { opacity: 0.8 },
+          },
+        }}
+      >
+        <AppLink to="/articles" sx={{}}>
+          ← Back to all articles
+        </AppLink>
+
+        <p>
+          Send me an <EmailLink string="hi@graz.io">email</EmailLink>
+        </p>
+      </div>
     </div>
   ),
   p: (props: any) => (

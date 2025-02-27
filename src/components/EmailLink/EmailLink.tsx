@@ -47,6 +47,7 @@ export const EmailLink = ({
       console.error("Async: Could not copy text: ", err);
     }
   };
+  console.log(copy);
   return (
     <span
       {...sx}
@@ -61,7 +62,7 @@ export const EmailLink = ({
       onClick={(e) => handleClick(e)}
     >
       {children}
-      <AnimatePresence>
+      <AnimatePresence mode="popLayout">
         {copy && (
           <m.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             {count > 10 ? " very copied" : " copied"}

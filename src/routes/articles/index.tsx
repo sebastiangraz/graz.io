@@ -45,7 +45,7 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 4 },
+  hidden: { opacity: 0, y: 12 },
   show: {
     opacity: 1,
     y: 0,
@@ -102,7 +102,7 @@ function RouteComponent() {
                 key={id}
                 variants={itemVariants}
                 sx={{
-                  fontSize: "18px",
+                  fontSize: "14px",
                   color: "textDim",
                 }}
               >

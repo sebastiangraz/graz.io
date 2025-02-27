@@ -4,8 +4,8 @@ import type { OutputMetadata } from "@/types/blog";
 // In Vite's glob import, the metadata is returned as an array of format options
 type AssetMetadata = OutputMetadata[];
 
-const assetPaths = import.meta.glob<AssetMetadata>(`@/pages/articles/*/*.{jpg,jpeg,png,svg}`, {
-  query: { format: "avif;png", as: "meta:src;format;aspect;width;height" },
+const assetPaths = import.meta.glob<AssetMetadata>(`@/pages/articles/*/*.{jpg,jpeg,png,svg,gif}`, {
+  query: { format: "avif;png;gif", as: "meta:src;format;aspect;width;height" },
   import: "default",
   eager: true,
 });

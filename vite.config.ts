@@ -53,7 +53,8 @@ export default defineConfig(async (): Promise<UserConfig> => {
         defaultDirectives: () => {
           return new URLSearchParams({
             format: "webp;avif;original",
-            quality: "90",
+            quality: "95",
+            w: "1800",
           });
         },
       }),

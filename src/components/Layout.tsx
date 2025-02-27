@@ -13,7 +13,7 @@ export const Layout = ({ children }: LayoutProps) => {
     <ThemeUIProvider theme={theme as Theme}>
       <div
         sx={{
-          "--margin": "minmax(0, 1fr)",
+          "--margin": "minmax(1rem, 1fr)",
           "--max-width": ["1800px"],
           display: "grid",
           gridTemplateColumns: `

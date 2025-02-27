@@ -1,12 +1,14 @@
 .meta {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 2rem;
   margin-bottom: 4rem;
   margin-top: 4rem;
-  grid-column: 5/11;
+  grid-column: 4/12;
   .title {
     text-transform: uppercase;
+    text-align: center;
     font-weight: normal;
     line-height: 0.9;
     display: grid;
@@ -30,6 +32,7 @@
 }
 .logo {
   font-size: 14px;
+  text-align: center;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--theme-ui-colors-text);
@@ -51,17 +54,21 @@
   grid-column: bleedstart/bleedend;
   gap: 1.5rem 0;
   & > * {
-    grid-column: bleedstart/bleedend;
+    grid-column: 3/13;
+    @media (--2) {
+      grid-column: 5/11;
+    }
+  }
+  & > picture {
+    grid-column: start/end;
   }
 
   & > :is(p, ul, ol, a, pre, aside) {
-    grid-column: 5/11;
     font-size: 18px;
     color: var(--theme-ui-colors-textDim);
   }
 
   & > :is(h1, h2, h3, h4, h5, h6) {
-    grid-column: 5/11;
     margin-bottom: 0.25rem;
     margin-top: 2rem;
   }
@@ -94,7 +101,6 @@
   }
   aside {
     display: grid;
-    grid-column: start / end;
     height: auto;
     grid-row: span 1;
     gap: 0.5em 0;
@@ -103,14 +109,10 @@
       color: inherit;
       font-size: inherit;
     }
-    @media (--1) {
-      grid-column: 8 / end;
-    }
+
     @media (--2) {
-      grid-column: 12 / end;
-    }
-    @media (--3) {
       height: 1ch;
+      grid-column: 12 / end;
     }
   }
   :global .shiki {

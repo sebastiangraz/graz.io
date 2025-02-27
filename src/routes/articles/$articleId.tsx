@@ -50,9 +50,7 @@ export function PostComponent() {
         />
         <h1 className={`${style.title}`}>{post.title}</h1>
         <AppLink to="/articles">
-          <Text variant="caps" sx={{ color: "var(--theme-ui-colors-textDim)" }}>
-            Back to articles
-          </Text>
+          <a>All articles</a>
         </AppLink>
       </div>
       <MDXProvider components={components}>
@@ -69,17 +67,15 @@ const components = {
     </div>
   ),
   p: (props: any) => (
-    <Paragraph {...props} variant="body" sx={{ display: "block", textWrap: "pretty" }}>
+    <Paragraph {...props} sx={{ display: "block", textWrap: "pretty" }}>
       {props.children}
     </Paragraph>
   ),
-  Link: (props: any) => (
-    <AppLink {...props} style={{ borderTop: "1px dashed", color: "blue" }}>
-      {props.children}
-    </AppLink>
-  ),
-  a: (props: any) => <a {...props} style={{ borderTop: "1px dashed", color: "red" }}></a>,
-  li: (props: any) => <li {...props} style={{ textWrap: "balance" }}></li>,
+
+  Link: (props: any) => <AppLink {...props}>{props.children}</AppLink>,
+  a: (props: any) => <a {...props}></a>,
+  li: (props: any) => <li {...props}></li>,
+  ul: (props: any) => <ul {...props}></ul>,
   Img: (props: any) => <Img {...props} />,
   code: (props: any) => <code sx={{}} {...props} />,
   pre: (props: any) => <pre sx={{ fontSize: 5 }} {...props} />,

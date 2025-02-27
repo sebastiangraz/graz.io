@@ -40,6 +40,7 @@ export default defineConfig(async (): Promise<UserConfig> => {
                 dark: "github-dark",
                 defaultColor: true,
               },
+
               inline: "tailing-curly-colon",
               transformers: [transformerNotationHighlight()],
             },

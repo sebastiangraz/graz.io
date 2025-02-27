@@ -6,6 +6,7 @@ import { Layout, Link } from "@/components";
 import { getPrevPathFromExtension } from "@/utils/helpers";
 import style from "@/routes/articles/articles.module.css";
 import { formatDistanceToNow } from "date-fns";
+import { motion } from "framer-motion";
 
 export const Route = createFileRoute("/articles/")({
   component: RouteComponent,
@@ -28,6 +29,32 @@ export const entryMeta = globEntries.map(([url, module]) => {
     date: module.frontmatter?.date ? new Date(module.frontmatter.date) : new Date(0),
   };
 });
+
+// Animation variants for the container and items
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.01,
+      ease: "linear",
+      duration: 0.8,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 4 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      ease: "circOut",
+      duration: 0.6,
+    },
+  },
+};
 
 function RouteComponent() {
   const { data: articles, isLoading } = useQuery({
@@ -53,7 +80,10 @@ function RouteComponent() {
     <Layout>
       <div className={style.meta}>
         <h1 className={style.title}>Articles</h1>
-        <ul
+        <motion.ul
+          variants={containerVariants}
+          initial="hidden"
+          animate="show"
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -68,8 +98,9 @@ function RouteComponent() {
             const dateText = date.getTime() > 0 ? formatDistanceToNow(date, { addSuffix: true }) : "";
 
             return (
-              <li
+              <motion.li
                 key={id}
+                variants={itemVariants}
                 sx={{
                   fontSize: "18px",
                   color: "textDim",
@@ -100,10 +131,10 @@ function RouteComponent() {
                     </span>
                   )}
                 </Link>
-              </li>
+              </motion.li>
             );
           })}
-        </ul>
+        </motion.ul>
       </div>
     </Layout>
   );

@@ -61,6 +61,7 @@
   }
   & > picture {
     grid-column: start/end;
+    margin-bottom: 3rem;
   }
 
   & > :is(p, ul, ol, a, pre, aside) {
@@ -72,6 +73,7 @@
     margin-bottom: 0.25rem;
     margin-top: 2rem;
   }
+
   mark {
     font-variant: all-small-caps tabular-nums;
     background: transparent;

@@ -25,6 +25,13 @@ export const PropMap = () => {
       duration: "4 months + retainer",
       year: "2023",
     },
+    loctax: {
+      grid: ["2 / span 10", "2 / span 10"],
+      challenge: "Create a brand that reflects the company's mission to simplify tax compliance for global businesses.",
+      scope: ["Rebrand", "Front-end"],
+      duration: "2 months + retainer",
+      year: "2023",
+    },
     loupe: {
       grid: ["1 / span 10", "1 / span 10"],
       challenge:
@@ -32,13 +39,6 @@ export const PropMap = () => {
       scope: ["Visual identity", "Front-end"],
       duration: "3 months",
       year: "2020",
-    },
-    loctax: {
-      grid: ["2 / span 10", "2 / span 10"],
-      challenge: "Create a brand that reflects the company's mission to simplify tax compliance for global businesses.",
-      scope: ["Rebrand", "Front-end"],
-      duration: "2 months + retainer",
-      year: "2023",
     },
     end: {
       hideCaseMeta: true,

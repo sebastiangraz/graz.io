@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 
 import React, { useEffect } from "react";
-import uuid from "react-uuid";
+import { v4 as uuidv4 } from "uuid";
 import { PropMap } from "@/utils/PropMap";
 const ignoreUpdatedProps = (prevProps: any, nextProps: any) => {
   return prevProps.name === nextProps.name && prevProps.activeCase === nextProps.activeCase;
@@ -21,7 +21,7 @@ export const CaseTitle = React.memo(({ name, activeCase }: { name: string; activ
 
   name ||= "case";
 
-  const id = uuid();
+  const id = uuidv4();
   const [fontsize, setFontsize] = React.useState(0);
   const svgRef = React.useRef<SVGSVGElement>(null);
 

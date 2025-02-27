@@ -36,10 +36,13 @@ export default defineConfig(async (): Promise<UserConfig> => {
             rehypeShiki,
             {
               themes: {
-                light: "github-light",
+                light: "slack-ochin",
                 dark: "github-dark",
                 defaultColor: true,
               },
+              keepBackground: false,
+              useBackground: false,
+              codeClassName: "transparent-code-block",
               inline: "tailing-curly-colon",
 
               transformers: [transformerNotationHighlight()],

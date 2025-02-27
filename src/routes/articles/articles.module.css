@@ -1,14 +1,36 @@
+.title {
+  text-transform: uppercase;
+  font-weight: normal;
+  line-height: 0.9;
+  display: grid;
+  font-size: 4rem;
+}
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 4rem;
+  margin-top: 4rem;
+  grid-column: 5/11;
+}
 .prose {
   display: grid;
   grid-template-columns: subgrid;
   grid-column: bleedstart/bleedend;
   gap: 1.5rem 0;
-  :global & > * {
+  & > * {
     grid-column: bleedstart/bleedend;
   }
 
-  & > :is(h1, h2, h3, h4, h5, h6, p, ul, ol, a, pre, aside) {
+  & > :is(p, ul, ol, a, pre, aside) {
     grid-column: 5/11;
+    color: var(--theme-ui-colors-textDim);
+  }
+
+  & > :is(h1, h2, h3, h4, h5, h6) {
+    grid-column: 5/11;
+    margin-bottom: 0.25rem;
+    margin-top: 2rem;
   }
 
   aside {
@@ -37,6 +59,6 @@
     margin-bottom: 1rem;
   }
   :global pre.shiki:has(code) {
-    padding: 1rem;
+    background: transparent !important;
   }
 }

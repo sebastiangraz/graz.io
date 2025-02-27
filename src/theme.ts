@@ -2,11 +2,6 @@ const colors = {
   text: "#05010c",
   textDim: "#05010c99",
   background: "#F7F1E8",
-  articles: {
-    foreground: "#05010c",
-    foregroundDim: "#05010c99",
-    background: "#efe7da",
-  },
   metaview: {
     foreground: "#0f1922",
     foregroundDim: "#0f19227d",

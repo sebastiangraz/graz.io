@@ -3,7 +3,7 @@
 import { ErrorComponent, createFileRoute } from "@tanstack/react-router";
 import { entryMeta } from "@/routes/articles";
 import type { ErrorComponentProps } from "@tanstack/react-router";
-import { Layout } from "@/components";
+import { Layout, Logo } from "@/components";
 import { Img } from "@/pages/articles/Img";
 import { Heading, Paragraph, Text } from "theme-ui";
 import { MDXProvider } from "@mdx-js/react";
@@ -36,10 +36,25 @@ export const Route = createFileRoute("/articles/$articleId")({
 export function PostComponent() {
   const post = Route.useLoaderData();
   const { Page } = post;
-  console.log(Page);
+
   return (
     <Layout>
-      <h4 className="text-xl font-bold underline">{post.title}</h4>
+      <div className={`${style.meta}`}>
+        <Logo
+          sx={{
+            fontVariationSettings: `"wght" 65`,
+            gridArea: "logo",
+            fontSize: 11,
+            display: "flex",
+          }}
+        />
+        <h1 className={`${style.title}`}>{post.title}</h1>
+        <AppLink to="/articles">
+          <Text variant="caps" sx={{ color: "var(--theme-ui-colors-textDim)" }}>
+            Back to articles
+          </Text>
+        </AppLink>
+      </div>
       <MDXProvider components={components}>
         <Page />
       </MDXProvider>
@@ -49,12 +64,12 @@ export function PostComponent() {
 
 const components = {
   wrapper: (props: any) => (
-    <div className={` ${style.prose}`} {...props}>
+    <div className={`${style.prose}`} {...props}>
       {props.children}
     </div>
   ),
   p: (props: any) => (
-    <Paragraph {...props} variant="body" sx={{ display: "block" }}>
+    <Paragraph {...props} variant="body" sx={{ display: "block", textWrap: "pretty" }}>
       {props.children}
     </Paragraph>
   ),
@@ -64,8 +79,14 @@ const components = {
     </AppLink>
   ),
   a: (props: any) => <a {...props} style={{ borderTop: "1px dashed", color: "red" }}></a>,
-
+  li: (props: any) => <li {...props} style={{ textWrap: "balance" }}></li>,
   Img: (props: any) => <Img {...props} />,
   code: (props: any) => <code sx={{}} {...props} />,
-  pre: (props: any) => <pre sx={{ fontSize: 5, lineHeight: "1.3" }} {...props} />,
+  pre: (props: any) => <pre sx={{ fontSize: 5 }} {...props} />,
+  h1: (props: any) => <Heading variant="heading" {...props} />,
+  h2: (props: any) => <Heading variant="heading" {...props} />,
+  h3: (props: any) => <Heading variant="heading" {...props} />,
+  h4: (props: any) => <Heading variant="heading" {...props} />,
+  h5: (props: any) => <Heading variant="heading" {...props} />,
+  h6: (props: any) => <Heading variant="heading" {...props} />,
 };

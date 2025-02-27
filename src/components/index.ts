@@ -5,6 +5,7 @@ export { CaseMeta } from "./CaseMeta";
 export { CaseTitle } from "./CaseTitle";
 export { CaseWrapper } from "./CaseWrapper";
 export { EmailLink } from "./EmailLink";
+export { Navigation } from "./Navigation";
 export { GridParent } from "./GridParent";
 export { Img } from "./Img";
 export { Layout } from "./Layout";

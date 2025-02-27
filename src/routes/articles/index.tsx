@@ -2,7 +2,7 @@
 
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { Layout, Link } from "@/components";
+import { Layout, Link, Logo } from "@/components";
 import { getPrevPathFromExtension } from "@/utils/helpers";
 import style from "@/routes/articles/articles.module.css";
 import { formatDistanceToNow } from "date-fns";
@@ -66,20 +66,27 @@ function RouteComponent() {
   });
 
   if (isLoading) {
-    return (
-      <Layout>
-        <div className={style.meta}>
-          <h1 className={style.title}>Articles</h1>
-          <div>Loading articles...</div>
-        </div>
-      </Layout>
-    );
+    return <></>;
   }
 
   return (
     <Layout>
       <div className={style.meta}>
-        <h1 className={style.title}>Articles</h1>
+        <Link
+          className={style.logo}
+          to="/"
+          sx={{
+            textDecoration: "none",
+            color: "var(--theme-ui-colors-text)",
+            fontVariationSettings: `"wght" 65`,
+            fontSize: 11,
+            display: "flex",
+            textAlign: "center",
+          }}
+        >
+          <Logo />
+        </Link>
+        <h1 className={style.title}> Articles</h1>
         <motion.ul
           variants={containerVariants}
           initial="hidden"
@@ -124,7 +131,7 @@ function RouteComponent() {
                         opacity: 0.7,
                         textAlign: "right",
                         flexShrink: 0,
-                        marginLeft: "16px",
+                        marginLeft: "4rem",
                       }}
                     >
                       {dateText}

@@ -111,12 +111,14 @@ const components = {
         <AppLink to="/articles" sx={{}}>
           ← Back to all articles
         </AppLink>
-        <EmailLink string="hi@graz.io">Email</EmailLink>
+        <EmailLink sx={{ textDecoration: "none" }} string="hi@graz.io">
+          Email
+        </EmailLink>
       </div>
     </div>
   ),
   p: (props: any) => (
-    <Paragraph {...props} sx={{ display: "block", textWrap: "pretty" }}>
+    <Paragraph {...props} sx={{ display: "block" }}>
       {props.children}
     </Paragraph>
   ),

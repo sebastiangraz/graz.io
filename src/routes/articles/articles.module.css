@@ -75,6 +75,7 @@
 
   & > :is(p, ul, ol, a, pre, aside) {
     font-size: 18px;
+    text-wrap: pretty;
     color: var(--theme-ui-colors-textDim);
   }
 
@@ -124,12 +125,15 @@
     grid-row: span 1;
     gap: 0.5em 0;
     font-size: 14px;
+    text-wrap: balance;
+
     & * {
       color: inherit;
       font-size: inherit;
     }
 
     @media (--2) {
+      padding-right: 2rem;
       height: 1ch;
       grid-column: 12 / end;
     }

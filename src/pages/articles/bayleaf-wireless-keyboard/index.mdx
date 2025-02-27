@@ -42,7 +42,7 @@ I love the vibe and rawness of custom built ergo keyboards. But for my first ser
 
 <hr />
 <Img src="keyboard1.jpg" alt="Keyboard desktop" />
-<aside>Test</aside>
+<aside>Tallest part of the keyboard is only 5mm</aside>
 
 <Img src="keyboard2.jpg" alt="Keyboard" />
 
@@ -63,8 +63,74 @@ I love the vibe and rawness of custom built ergo keyboards. But for my first ser
 
 <img src="/typing.gif" alt="Keyboard gif" style={{ width: "100%", height: "auto" }} />
 
+<hr />
+
 # Build log
 
-When Mikefive announced his keyboard I found myself uncontrollably nodding along to each paragraph. He showed the world that it’s possible to build ergo keyboards that are stylish, low-profile and accessible for hobbyist. Needless to say his post was the inspirational kick in the ass I needed. At one point Mike and I started a conversation, where he patiently answered any dumb questions I had.
+When Mikefive announced his keyboard I found myself uncontrollably nodding along to each paragraph. He showed the world that it’s possible to build ergo keyboards that are stylish, low-profile and accessible for hobbyist. Needless to say his post was the starting gun to get my shit together and I started planning my own build soon after.
 
-Early Figma sketches to validate a few ideas spatially, and how it would sit within the enclosure. I knew these design wouldn’t be final so I didn’t spend too much time perfecting things.
+<small>
+  These sketches were made many months prior, but with a few tweaks I able to validate roughly how components would sit
+  within the enclosure. I knew these design wouldn’t be final so I didn’t scrutinize over dimensions at this point.
+</small>
+
+<Img src="sketch.png" alt="Drawing" />
+
+I feared the PCB, the main antagonist, my source of procrastination to even get started with this whole project. I spent about a week consuming YT tutorials, learning the basics to all the way to implementation.
+
+<Img src="schematics.png" alt="Schematics" />
+
+Admittedly it was fun to plan the PCB layout. Though this image really doesn’t show the amount of botched, rejected PCBs to get to this point. I merged both sides into a single PCB, separated by two V-cuts. This ended up working really well and gave me clean cuts.
+
+<Img src="pcb.png" alt="PCB" />
+
+Designing the aluminum enclosure was another curveball. It was the first time I worked with a parametric design software. I needed to rewire my brain to actually plan ahead before jumping onto modeling. Early on I had discarded tons of near finished files because they’d break randomly when tweaking the dimensions, simply because the order of making changes was incorrect. Out of curiosity I counted and found that I had clocked in about 100 versions, many of which were duds, before I settled for this final version.
+
+<Img src="case.png" alt="Case" full />
+
+I realized I needed optimize for CNC-machining. Which meant removing any enclosed overhangs, or features that a drill can’t reach physically. And of course removing any sharp corners that can’t be cut by a round drill bit.
+
+<Img src="drawing.png" alt="Drawing" />
+
+Assembly of both PCB and enclosure to check for unwanted intersections.
+
+<Img src="fusion.png" alt="Fusion" full />
+
+I started working on the custom keycaps pretty soon after I finished the build. The stock caps simply didn’t cut it in terms of fit tolerances and sound profile. Some research led me to MJF/SLS printing which could handle the small tolerances I needed for the PG1316 switches. At the time of writing the caps are still WIP as I’m testing lots of different fits and sizes. I don’t own a 3D printer (yet) so I needed to design all variations in one go to save on manufacturing costs, yikes!
+
+<Img src="keycaps.png" alt="Keycap" />
+
+# Assembly
+
+Assembling the keyboard both exciting and much trickier than I anticipated. It required a hotplate to solder the switches, I wasted couple of boards just to get comfortable with the process before attempting a final approach.
+
+Shoutout to all the tools
+
+- Bismuth based & lead-free low-temp solder paste
+- Water soluble, no-clean flux
+- Miniware 50x50mm hotplate
+- Isopropyl alcohol for cleaning
+- Standard soldering gear
+- Multimeter
+
+<Img src="building.jpg" alt="Building" full />
+
+# Challenges
+
+Two challenges stood out in the build process, soldering, and cleaning.
+
+Hotplate soldering a 1 mm thick PCB board leads to significant warping. Reducing the surface area for each attempt. During each soldering attempt I had to monitor for: surface contact, reflow temperature, temperature buildup profile, not overcooking it, ensuring switch alignment, chasing solder balls with flux, all while not burning myself. My hands were full.
+
+The switches had a habit of popping out of their sockets during soldering leading to misaligned switches, which would become even more evident once the keycaps went on. The fix for this was to use a tool to hold down the switch while on the hotplate.
+
+I ordered a SMD stencil which came in this massive frame which I didn’t end up using because the switches required some serious baby-sitting to ensure good connection. I found the best method to prevent connection duds was to manually apply about 3x more paste than a stencil would.
+
+Cleaning the board was a big job. The no-clean solder flux needed to be washed away to avoid it oxidizing. On top the bismuth-based solder was very messy to use as it was very sensitive to temperature. All this led to big cleanups, I had to get creative with how I was going to clean between the switches. A regular q-tip barely fit between them, and the switches have little hooks that would snag the cotton ball leaving long strings of lint. So I had to solder the switches in groups of 4 and clean after each round. Additionally I used boiled water in removing the oddly named “no-clean” flux. As isopropyl alcohol wouldn’t bite at all.
+
+<hr />
+
+<Img src="build.jpg" alt="Building" />
+<aside>
+  You can see on the 3rd image one of my first attempts at soldering with a hotplate. Took a few tries to get the hang
+  of it.
+</aside>

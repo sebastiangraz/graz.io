@@ -136,4 +136,5 @@ const components = {
   h4: (props: any) => <Heading variant="heading" {...props} />,
   h5: (props: any) => <Heading variant="heading" {...props} />,
   h6: (props: any) => <Heading variant="heading" {...props} />,
+  small: (props: any) => <small {...props} />,
 };

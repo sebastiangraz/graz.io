@@ -40,11 +40,7 @@ export default defineConfig(async (): Promise<UserConfig> => {
                 dark: "github-dark",
                 defaultColor: true,
               },
-              keepBackground: false,
-              useBackground: false,
-              codeClassName: "transparent-code-block",
               inline: "tailing-curly-colon",
-
               transformers: [transformerNotationHighlight()],
             },
           ],

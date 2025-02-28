@@ -80,11 +80,11 @@ The project began with sketching. While these 2D sketches were created months ea
 <Img src="sketch.png" alt="Drawing" />
 <aside>I knew these design wouldn't be final so I didn't scrutinize over dimensions at this point.</aside>
 
-Then came the schematics. Electronic schematics very scary. Scary because I didn't know the level of skill required of me to design one. This could have easily been the point where I succumb to procrastination hell. Luckily with the help of youtube tutorials & various builder communities I managed to produce a working schema.
+Then onto scary schematics. I didn't get creative here and used a simple keyboard matrix for the switches. This is standard practice for MCUs of this size. Each row and column connects to its own pinout on the MCU. Using a total of 11 pins.
 
 <Img src="schematics.png" alt="Schematics" />
 
-After the schematics I admiteddly had a lot of fun designing the PCB layout. I landed on separating the sides by V-cuts, which lets me snap the PCBs apart by hand. Combining the sides also kept my files tidy and a little cheaper to manufacture.
+After the schematics I admittedly had a lot of fun designing the PCB layout. I landed on separating the sides by V-cuts, which lets me snap the PCBs apart by hand. Combining the sides also kept my files tidy and a little cheaper to manufacture.
 
 The actual logic was built around a nice!nano microcontroller. This controller has all the spicy stuff like power management and antennas already build in. This allowed me to keep things simple, no extra LEDs, no screens, no rotary encoders. Just the bare minimum for power and communication.
 
@@ -112,7 +112,7 @@ At the time of writing the caps are still WIP as I'm testing lots of different f
 
 The kitchen became my workspace for the assembly. Production of regular carbonaras were seized. Production of keyboarnaras commenced. Now you know this wasn't written by AI.
 
-Tool shoutout
+Tool shout out
 
 - Bismuth based & lead-free low-temp solder paste
 - Water soluble, no-clean flux
@@ -129,7 +129,7 @@ Two challenges stood out in the build process, soldering, and cleaning.
 
 Hotplate soldering a 1 mm thick PCB board leads to warping. And bent surfaces are difficult to heat evenly. During each soldering attempt I had to monitor for: surface contact, reflow temperature, temperature buildup profile, not overcooking it, ensuring switch alignment, chasing solder balls with flux, all while not burning myself. My hands were full.
 
-I ordered a massive SMD stencil in a frame which I didn't end up using because the switches required some serious baby-sitting to ensure good connection. I found the best method to prevent missoldered connections was to manually apply about 3x more paste than a stencil would.
+I ordered a massive SMD stencil in a frame which I didn't end up using because the switches required some serious baby-sitting to ensure good connection. I found the best method to prevent mis-soldered connections was to manually apply about 3x more paste than a stencil would.
 
 <hr />
 <Img src="build.jpg" alt="Building" />

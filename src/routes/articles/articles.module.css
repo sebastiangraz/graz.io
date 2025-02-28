@@ -47,6 +47,7 @@
     font-variation-settings: "wght" 90;
   }
 }
+
 .prose {
   display: grid;
   grid-template-columns: subgrid;
@@ -77,6 +78,15 @@
     font-size: 18px;
     text-wrap: pretty;
     color: var(--theme-ui-colors-textDim);
+  }
+
+  code {
+    background: #00000010;
+    color: color-mix(in srgb, currentColor 72%, transparent);
+    padding: 0 0.25rem;
+    border-radius: 0.25rem;
+    margin: 0 0.125rem;
+    letter-spacing: 0.05em;
   }
 
   /* & > :is(p) {

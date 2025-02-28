@@ -5,7 +5,7 @@ import { entryMeta } from "@/routes/articles";
 import type { ErrorComponentProps } from "@tanstack/react-router";
 import { EmailLink, Layout, Logo } from "@/components";
 import { Img } from "@/pages/articles/Img";
-import { Heading, Paragraph, Text } from "theme-ui";
+import { Heading, Paragraph } from "theme-ui";
 import { MDXProvider } from "@mdx-js/react";
 import { Link as AppLink } from "@/components";
 import style from "@/routes/articles/articles.module.css";
@@ -18,21 +18,6 @@ function PostErrorComponent({ error }: ErrorComponentProps) {
     </Layout>
   );
 }
-
-export const Route = createFileRoute("/articles/$articleId")({
-  loader: async ({ params: { articleId } }) => {
-    const article = entryMeta.find((article) => article.id === articleId);
-    if (!article) {
-      throw new Error("Article not found");
-    }
-    return article;
-  },
-  errorComponent: PostErrorComponent, // Use the imported component
-  notFoundComponent: () => {
-    return <p>Post not found</p>;
-  },
-  component: PostComponent,
-});
 
 export function PostComponent() {
   const post = Route.useLoaderData();
@@ -81,6 +66,21 @@ export function PostComponent() {
     </Layout>
   );
 }
+
+export const Route = createFileRoute("/articles/$articleId")({
+  loader: async ({ params: { articleId } }) => {
+    const article = entryMeta.find((article) => article.id === articleId);
+    if (!article) {
+      throw new Error("Article not found");
+    }
+    return article;
+  },
+  errorComponent: PostErrorComponent, // Use the imported component
+  notFoundComponent: () => {
+    return <p>Post not found</p>;
+  },
+  component: PostComponent,
+});
 
 const components = {
   wrapper: (props: any) => (

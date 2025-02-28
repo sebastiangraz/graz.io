@@ -3,6 +3,8 @@ title: Bayleaf Wireless Keyboard Build
 date: 2025-02-28
 ---
 
+import { EmailLink } from "@/components/EmailLink/EmailLink";
+
 <Img src="keyboard10.jpg" alt="Keyboard" full />
 
 # I built a keyboard
@@ -157,18 +159,18 @@ I mean its cool.
 
 <Img src="keyboard7.jpg" alt="Keyboard" full />
 
-# Fuckups
+# Oopsies
 
 - Not putting vias in the copper pads of the switches, this led to slightly colder connection between the hotplate and PCB.
-- Using white solder mask oxidizes into a reddish color when overheated
+- Using white solder mask for the PCB, oxidizes into a reddish color when overheated
 - Forgetting to change the nice!nano PCB footprint to be surface mounted instead of through-hole. I had to put polyamide tape on the bottom and solder it by hand manually. This ended up being a nice fix which was suggested by Mike’s friend Coen when we met, thank you!
 - Physical reset button still needed due to ZMK, waking up sometimes requires resetting. Currently the physical reset button is hidden under the enclosure making it hard to reach. Only a problem if the battery is really low.
 - Not pre-baking the boards prior to soldering, small bumps would appear on the PCB board during soldering from the trapped moisture
-- Not putting more effort into acoustics and vibration mitigation. Small changes to the enclosure to better handle how sound travels during typing. I have a couple of ideas for the next iteration.
+- Not putting more effort into acoustics and vibration mitigation. Small changes to the enclosure to better handle how sound travels during typing.
 
 # Looking ahead
 
-For the next iteration I'm planning on making my life harder once again. Below are some ideas I've collected throughout the process of building Bayleaf.
+Here are some ideas for the next iteration.
 
 - Improved thumb cluster
 - More ergonomic design considerations
@@ -184,13 +186,11 @@ For the next iteration I'm planning on making my life harder once again. Below a
 - Experiment with smaller switches like the PG1316M to find new interesting layouts
 - Pointer devices and rotary encoders
 
-# FAQ
+# Socials
 
-- Who are you?
-  - Im Sebulba, I make things.
-- Why keyboards?
-  - I like the clickity clackity
-- Why are the grey caps different shades of grey?
-  - SLS sintering is dark magic
-- Why
-  - Why not
+- [Twitter/X](https://x.com/grazsebastian)
+- [Bluesky](https://bsky.app/profile/graz.io)
+- [Portfolio](https://graz.io)
+- <EmailLink string="hi@graz.io">
+    <a>Email</a>
+  </EmailLink>

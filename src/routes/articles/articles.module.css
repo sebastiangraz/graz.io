@@ -129,6 +129,16 @@
       font-variant: tabular-nums small-caps;
     }
   }
+  a {
+    color: var(--theme-ui-colors-text);
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+    text-decoration-color: color-mix(in srgb, var(--theme-ui-colors-textDim) 0%, transparent);
+    text-decoration-thickness: 0.01em;
+    &:hover {
+      text-decoration-color: color-mix(in srgb, var(--theme-ui-colors-textDim) 32%, transparent);
+    }
+  }
   aside {
     display: grid;
     height: auto;

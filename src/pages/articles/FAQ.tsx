@@ -1,5 +1,5 @@
 /** @jsxImportSource theme-ui */
-import { ReactNode, useState, createContext, useContext, useRef } from "react";
+import React, { ReactNode, useState, createContext, useContext } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Context to track which FAQ item is open
@@ -22,6 +22,15 @@ type FAQProps = {
 export const FAQ = ({ children, defaultOpen = null }: FAQProps) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(defaultOpen);
 
+  // Convert children to array and add index props
+  const childrenWithProps = Array.isArray(children)
+    ? children.map((child, index) => {
+        if (!child) return null;
+        // Clone the element to add the index prop
+        return React.cloneElement(child as React.ReactElement, { index });
+      })
+    : children;
+
   return (
     <FAQContext.Provider value={{ activeIndex, setActiveIndex }}>
       <div
@@ -29,16 +38,7 @@ export const FAQ = ({ children, defaultOpen = null }: FAQProps) => {
           overflow: "hidden",
         }}
       >
-        {Array.isArray(children)
-          ? children.map((child, index) => {
-              if (!child) return null;
-              return (
-                <div key={index} data-index={index}>
-                  {child}
-                </div>
-              );
-            })
-          : children}
+        {childrenWithProps}
       </div>
     </FAQContext.Provider>
   );
@@ -51,30 +51,19 @@ type QuestionProps = {
   index?: number;
 };
 
-export const Question = ({ children, title, index: propIndex }: QuestionProps) => {
+export const Question = ({ children, title, index }: QuestionProps) => {
   const { activeIndex, setActiveIndex } = useContext(FAQContext);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  // Use the index from props if provided, otherwise try to get it from the parent
-  const getIndex = (): number => {
-    if (propIndex !== undefined) return propIndex;
-
-    // Try to get index from parent data-index attribute
-    const parentEl = containerRef.current?.parentElement;
-    const dataIndex = parentEl?.getAttribute("data-index");
-    return dataIndex ? parseInt(dataIndex, 10) : -1;
-  };
-
-  const index = getIndex();
-  const isOpen = index !== -1 && activeIndex === index;
+  const isOpen = index !== undefined && activeIndex === index;
 
   const toggleOpen = () => {
-    setActiveIndex(isOpen ? null : index);
+    // Only toggle if index is defined
+    if (index !== undefined) {
+      setActiveIndex(isOpen ? null : index);
+    }
   };
 
   return (
     <div
-      ref={containerRef}
       sx={{
         borderBottom: "1px solid",
         borderColor: "color-mix(in srgb, var(--theme-ui-colors-text) 8%, transparent)",

@@ -8372,6 +8372,13 @@ eslint@latest:
   languageName: node
   linkType: hard
 
+"remark-typography@npm:^0.6.21":
+  version: 0.6.21
+  resolution: "remark-typography@npm:0.6.21"
+  checksum: be313951cda21f0cbd01b2c8c1e5d1685aeac929a91502a605f1e2bf62fb748fafd95284ceb456418b02d0f9fd9d30c6370ce58a40b95662b6c8c442f7f55659
+  languageName: node
+  linkType: hard
+
 "resolve-from@npm:^4.0.0":
   version: 4.0.0
   resolution: "resolve-from@npm:4.0.0"
@@ -8654,6 +8661,7 @@ eslint@latest:
     remark-frontmatter: ^5.0.0
     remark-gfm: ^4.0.1
     remark-mdx-frontmatter: ^5.0.0
+    remark-typography: ^0.6.21
     sharp: ^0.32.0
     shiki: ^3.0.0
     svgo: ^3.2.0

@@ -19,6 +19,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rehype-pretty-code": "^0.14.0",
+    "remark-typography": "^0.6.21",
     "shiki": "^3.0.0",
     "theme-ui": "^0.17.2",
     "typescript": "^5.0.2",

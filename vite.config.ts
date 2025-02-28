@@ -10,6 +10,7 @@ import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import { transformerNotationHighlight } from "@shikijs/transformers";
 import rehypeShiki from "@shikijs/rehype";
 import remarkgfm from "remark-gfm";
+import remarkTypography from "remark-typography";
 
 // const options = {
 //   theme: JSON.parse(fs.readFileSync("./src/utils/syntax.json", "utf-8")),
@@ -30,7 +31,7 @@ export default defineConfig(async (): Promise<UserConfig> => {
         include: "**/*.tsx",
       }),
       mdx.default({
-        remarkPlugins: [remarkgfm, remarkFrontmatter, remarkMdxFrontmatter],
+        remarkPlugins: [remarkgfm, remarkFrontmatter, remarkMdxFrontmatter, remarkTypography],
         rehypePlugins: [
           [
             rehypeShiki,

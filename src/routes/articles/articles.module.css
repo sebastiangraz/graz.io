@@ -79,9 +79,9 @@
     color: var(--theme-ui-colors-textDim);
   }
 
-  & > :is(p) {
+  /* & > :is(p) {
     text-wrap: balance;
-  }
+  } */
 
   & > small {
     font-size: 14px;
@@ -123,7 +123,7 @@
     margin-top: 8px;
   }
   li {
-    text-wrap: balance;
+    text-wrap: pretty;
     &::marker {
       color: color-mix(in srgb, var(--theme-ui-colors-textDim) 32%, transparent);
       font-variant: tabular-nums small-caps;

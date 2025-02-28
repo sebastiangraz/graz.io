@@ -23,6 +23,8 @@ date: 2025-02-28
 
 I love the rawness of custom built ergo keyboards. But for my first serious custom build I wanted to achieve a more commercial look and finish. Since I had no CAD experience, it was also an excellent chance to learn hardware design, electronics and million of other skills I never thought I'd need to know.
 
+The name <mark>Bayleaf</mark> is inspired by <mark>Lauriergracht</mark>, the street where our co-working office is located in Amsterdam.
+
 # Design decisions
 
 - <mark>Wireless</mark> — non-negotiable, especially with splits. I'm not dealing with any cables. Removing my right
@@ -99,7 +101,9 @@ I realized I needed optimize for CNC-machining. Which meant removing any enclose
 
 <Img src="fusion.png" alt="Fusion" full />
 
-I started working on the custom keycaps pretty soon after I finished the build. The stock caps simply didn’t cut it in terms of fit tolerances and sound profile. Some research led me to MJF/SLS printing which could handle the small tolerances I needed for the PG1316 switches. At the time of writing the caps are still WIP as I’m testing lots of different fits and sizes. I don’t own a 3D printer (yet) so I needed to design all variations in one go to save on manufacturing costs, yikes!
+I started working on the custom keycaps pretty soon after I finished the build. The stock caps simply didn’t cut it in terms of fit tolerances and sound profile. Some research led me to MJF/SLS printing which could handle the small tolerances I needed for the PG1316 switches.
+
+At the time of writing the caps are still WIP as I’m testing lots of different fits and sizes. I don’t own a 3D printer (yet) so I needed to design all variations in one go to save on manufacturing costs, yikes!
 
 <Img src="keycaps.png" alt="Keycap" />
 
@@ -161,6 +165,24 @@ I mean its cool.
 - Physical reset button still needed due to ZMK, waking up sometimes requires resetting. Currently the physical reset button is hidden under the enclosure making it hard to reach. Only a problem if the battery is really low.
 - Not pre-baking the boards prior to soldering, small bumps would appear on the PCB board during soldering from the trapped moisture
 - Not putting more effort into acoustics and vibration mitigation. Small changes to the enclosure to better handle how sound travels during typing. I have a couple of ideas for the next iteration.
+
+# Looking ahead
+
+For the next iteration I'm planning on making my life harder once again. Below are some ideas I've collected throughout the process of building Bayleaf.
+
+- Improved thumb cluster
+- More ergonomic design considerations
+- Rethink stagger setup
+- Physical reset button
+- More personalization on the aluminum case
+- Integrated PCB components to have more control over antenna placement
+- Longer chassis side-skirts to allow ad-hoc post production solutions like adding additional foam layers to reduce vibrations and improve sound profile
+- Enclose bottom of the chassis with material to prevent PCB from freely bending, further reducing vibration
+- Magnet snapping for traveling
+- Bigger enclosure border radii
+- LED 1x3 array indicator to show layers and other commands
+- Experiment with smaller switches like the PG1316M to find new interesting layouts
+- Pointer devices and rotary encoders
 
 # FAQ
 

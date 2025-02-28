@@ -73,14 +73,17 @@
     margin: 4rem -1rem;
   }
 
-  & > :is(p, ul, ol, a, pre, aside, small) {
+  & > :is(p, ul, ol, a, pre, aside) {
     font-size: 18px;
     text-wrap: pretty;
     color: var(--theme-ui-colors-textDim);
   }
 
-  & > small {
+  & > :is(p) {
     text-wrap: balance;
+  }
+
+  & > small {
     font-size: 14px;
   }
 
@@ -93,6 +96,7 @@
     font-variant: all-small-caps tabular-nums;
     background: transparent;
     color: var(--theme-ui-colors-textDim);
+    letter-spacing: 0.01em;
   }
   /* dont remove padding if nested list */
   hr {
@@ -119,6 +123,7 @@
     margin-top: 8px;
   }
   li {
+    text-wrap: balance;
     &::marker {
       color: color-mix(in srgb, var(--theme-ui-colors-textDim) 32%, transparent);
       font-variant: tabular-nums small-caps;

@@ -124,7 +124,7 @@ const components = {
   ),
 
   Link: (props: any) => <AppLink {...props}>{props.children}</AppLink>,
-  a: (props: any) => <a {...props}></a>,
+  a: (props: any) => <a {...props} target="_blank" rel="noopener noreferrer"></a>,
   li: (props: any) => <li {...props}></li>,
   ul: (props: any) => <ul {...props}></ul>,
   Img: (props: any) => <Img {...props} />,

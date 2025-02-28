@@ -4,8 +4,9 @@ date: 2025-02-28
 ---
 
 import { EmailLink } from "@/components/EmailLink/EmailLink";
+import { Faq, Question, Answer } from "@/pages/articles/FAQ";
 
-<Img src="keyboard10.jpg" alt="Keyboard" full />
+<Img src="keyboard10.jpg" alt="Keyboard" full />;
 
 # I built a keyboard
 
@@ -71,7 +72,7 @@ The name <mark>Bayleaf</mark> is inspired by <mark>Lauriergracht</mark>, the str
 
 # Build log
 
-When Mikefive posted his keyboard on Reddit I found myself uncontrollably nodding along. He showed the world that it’s possible to build ergo keyboards that are stylish, low-profile and accessible for hobbyist.
+When Mikefive posted his keyboard on Reddit I found myself uncontrollably nodding along. He showed the world that it's possible to build ergo keyboards that are stylish, low-profile and accessible for hobbyist.
 
 At the very least he validated for me that building a keyboard of that caliber is doable. The decision to commit time and resources became easier to make. And off I went.
 
@@ -79,7 +80,7 @@ The opening bell for this project was sketching. These 2D sketches were made man
 
 <hr />
 <Img src="sketch.png" alt="Drawing" />
-<aside>I knew these design wouldn’t be final so I didn’t scrutinize over dimensions at this point.</aside>
+<aside>I knew these design wouldn't be final so I didn't scrutinize over dimensions at this point.</aside>
 
 Then came the schematics. Electronic schematics very scary. Scary because I didn't know the level of skill required of me to design one. This could have easily been the point where I succumb to procrastination hell. Luckily with the help of youtube tutorials & various builder communities I managed to produce a working schema.
 
@@ -91,21 +92,21 @@ The actual logic was built around a nice!nano microcontroller. This controller h
 
 <Img src="pcb.png" alt="PCB" />
 
-Designing the aluminum enclosure was another curveball. It was the first time I worked with a parametric design software with required some level of brain rewiring. Early on I had discarded tons of near finished files because they’d break randomly when tweaking the dimensions, simply because the order of the changes I made were incorrect.
+Designing the aluminum enclosure was another curveball. It was the first time I worked with a parametric design software with required some level of brain rewiring. Early on I had discarded tons of near finished files because they'd break randomly when tweaking the dimensions, simply because the order of the changes I made were incorrect.
 
 I counted about 100 versions of the case before I settled for this final version. That said it was incredibly motivating to model stuff you know will exist in the physical world soon.
 
 <Img src="case.png" alt="Case" full />
 
-I realized I needed optimize for CNC-machining. Which meant removing any enclosed overhangs, or features that a drill can’t reach physically. And of course removing any sharp corners that can’t be cut by a round drill bit.
+I realized I needed optimize for CNC-machining. Which meant removing any enclosed overhangs, or features that a drill can't reach physically. And of course removing any sharp corners that can't be cut by a round drill bit.
 
 <Img src="drawing.png" alt="Drawing" />
 
 <Img src="fusion.png" alt="Fusion" full />
 
-I started working on the custom keycaps pretty soon after I finished the build. The stock caps simply didn’t cut it in terms of fit tolerances and sound profile. Some research led me to MJF/SLS printing which could handle the small tolerances I needed for the PG1316 switches.
+I started working on the custom keycaps pretty soon after I finished the build. The stock caps simply didn't cut it in terms of fit tolerances and sound profile. Some research led me to MJF/SLS printing which could handle the small tolerances I needed for the PG1316 switches.
 
-At the time of writing the caps are still WIP as I’m testing lots of different fits and sizes. I don’t own a 3D printer (yet) so I needed to design all variations in one go to save on manufacturing costs, yikes!
+At the time of writing the caps are still WIP as I'm testing lots of different fits and sizes. I don't own a 3D printer (yet) so I needed to design all variations in one go to save on manufacturing costs, yikes!
 
 <Img src="keycaps.png" alt="Keycap" />
 
@@ -130,7 +131,7 @@ Two challenges stood out in the build process, soldering, and cleaning.
 
 Hotplate soldering a 1 mm thick PCB board leads to warping. And bent surfaces are difficult to heat evenly. During each soldering attempt I had to monitor for: surface contact, reflow temperature, temperature buildup profile, not overcooking it, ensuring switch alignment, chasing solder balls with flux, all while not burning myself. My hands were full.
 
-I ordered a massive SMD stencil in a frame which I didn’t end up using because the switches required some serious baby-sitting to ensure good connection. I found the best method to prevent missoldered connections was to manually apply about 3x more paste than a stencil would.
+I ordered a massive SMD stencil in a frame which I didn't end up using because the switches required some serious baby-sitting to ensure good connection. I found the best method to prevent missoldered connections was to manually apply about 3x more paste than a stencil would.
 
 <hr />
 <Img src="build.jpg" alt="Building" />
@@ -163,7 +164,7 @@ I mean its cool.
 
 - Not putting vias in the copper pads of the switches, this led to slightly colder connection between the hotplate and PCB.
 - Using white solder mask for the PCB, oxidizes into a reddish color when overheated
-- Forgetting to change the nice!nano PCB footprint to be surface mounted instead of through-hole. I had to put polyamide tape on the bottom and solder it by hand manually. This ended up being a nice fix which was suggested by Mike’s friend Coen when we met, thank you!
+- Forgetting to change the nice!nano PCB footprint to be surface mounted instead of through-hole. I had to put polyamide tape on the bottom and solder it by hand manually. This ended up being a nice fix which was suggested by Mike's friend Coen when we met, thank you!
 - Physical reset button still needed due to ZMK, waking up sometimes requires resetting. Currently the physical reset button is hidden under the enclosure making it hard to reach. Only a problem if the battery is really low.
 - Not pre-baking the boards prior to soldering, small bumps would appear on the PCB board during soldering from the trapped moisture
 - Not putting more effort into acoustics and vibration mitigation. Small changes to the enclosure to better handle how sound travels during typing.
@@ -197,17 +198,20 @@ Here are some ideas for the next iteration.
 
 # FAQ
 
-<p>
-  <mark>Who are you?</mark>
-</p>
-Im Sebastian, I make things.
-<hr />
-<p>
-  <mark>Can I buy this keyboard?</mark>
-</p>
-Negative, this singular prototype if not for sale. But stay tuned for a future production run.
-<hr />
-<p>
-  <mark>Is it open source?</mark>
-</p>
-I havent decided on a license yet. And most of the source files are work in progress.
+<Faq>
+  <Question title="Who are you?">
+    <Answer>  
+      Im Sebastian, I make things.
+    </Answer>
+  </Question>
+
+<Question title="Can I buy this keyboard?">
+  <Answer>Negative, this singular prototype if not for sale. But stay tuned for a future production run.</Answer>
+</Question>
+
+  <Question title="Is it open source?">
+    <Answer>
+      I havent decided on a license yet. And most of the source files are work in progress.
+    </Answer>
+  </Question>
+</Faq>

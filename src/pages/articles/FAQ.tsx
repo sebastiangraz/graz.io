@@ -1,0 +1,188 @@
+/** @jsxImportSource theme-ui */
+import { ReactNode, useState, createContext, useContext, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+// Context to track which FAQ item is open
+type FAQContextType = {
+  activeIndex: number | null;
+  setActiveIndex: (index: number | null) => void;
+};
+
+const FAQContext = createContext<FAQContextType>({
+  activeIndex: null,
+  setActiveIndex: () => {},
+});
+
+// Main FAQ container
+type FAQProps = {
+  children: ReactNode;
+  defaultOpen?: number | null;
+};
+
+export const FAQ = ({ children, defaultOpen = null }: FAQProps) => {
+  const [activeIndex, setActiveIndex] = useState<number | null>(defaultOpen);
+
+  return (
+    <FAQContext.Provider value={{ activeIndex, setActiveIndex }}>
+      <div
+        sx={{
+          overflow: "hidden",
+        }}
+      >
+        {Array.isArray(children)
+          ? children.map((child, index) => {
+              if (!child) return null;
+              return (
+                <div key={index} data-index={index}>
+                  {child}
+                </div>
+              );
+            })
+          : children}
+      </div>
+    </FAQContext.Provider>
+  );
+};
+
+// Question component
+type QuestionProps = {
+  children: ReactNode;
+  title: string;
+  index?: number;
+};
+
+export const Question = ({ children, title, index: propIndex }: QuestionProps) => {
+  const { activeIndex, setActiveIndex } = useContext(FAQContext);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Use the index from props if provided, otherwise try to get it from the parent
+  const getIndex = (): number => {
+    if (propIndex !== undefined) return propIndex;
+
+    // Try to get index from parent data-index attribute
+    const parentEl = containerRef.current?.parentElement;
+    const dataIndex = parentEl?.getAttribute("data-index");
+    return dataIndex ? parseInt(dataIndex, 10) : -1;
+  };
+
+  const index = getIndex();
+  const isOpen = index !== -1 && activeIndex === index;
+
+  const toggleOpen = () => {
+    setActiveIndex(isOpen ? null : index);
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      sx={{
+        borderBottom: "1px solid",
+        borderColor: "color-mix(in srgb, var(--theme-ui-colors-text) 8%, transparent)",
+      }}
+    >
+      <div
+        onClick={toggleOpen}
+        sx={{
+          width: "100%",
+          textAlign: "left",
+          padding: "1rem 0",
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          color: isOpen ? "var(--theme-ui-colors-text)" : "var(--theme-ui-colors-textDim)",
+          "&:hover": {
+            cursor: "pointer",
+            color: "var(--theme-ui-colors-text)",
+          },
+        }}
+      >
+        {title}
+        <div
+          sx={{
+            position: "relative",
+            width: "12px",
+            height: "12px",
+          }}
+        >
+          {/* Horizontal line (always visible) */}
+          <div
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: 0,
+              width: "100%",
+              height: "1px",
+              backgroundColor: "text",
+              transform: "translateY(-50%)",
+            }}
+          />
+
+          {/* Vertical line (only visible when closed) */}
+          <motion.div
+            initial={false}
+            animate={{
+              opacity: isOpen ? 0 : 1,
+            }}
+            transition={{ duration: 0.3, ease: [0.83, 0, 0.17, 1] }}
+            sx={{
+              position: "absolute",
+              top: 0,
+              left: "50%",
+              width: "1px",
+              height: "100%",
+              backgroundColor: "text",
+              transform: "translateX(-50%)",
+            }}
+          />
+        </div>
+      </div>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.83, 0, 0.17, 1] }}
+            sx={{
+              overflow: "hidden",
+            }}
+          >
+            <div
+              sx={{
+                padding: "0 0 16px 0",
+              }}
+            >
+              {children}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+// Answer component
+type AnswerProps = {
+  children: ReactNode;
+};
+
+export const Answer = ({ children }: AnswerProps) => {
+  return (
+    <div
+      sx={{
+        color: "var(--theme-ui-colors-textDim)",
+      }}
+    >
+      {children}
+    </div>
+  );
+};
+
+// Export Faq as an alias for FAQ to support both usages
+export const Faq = FAQ;
+
+// Export as default for import in MDX files
+export default Faq;

@@ -70,6 +70,10 @@ export const Question = ({ children, title, index }: QuestionProps) => {
       sx={{
         borderBottom: "1px solid",
         borderColor: "color-mix(in srgb, var(--theme-ui-colors-text) 8%, transparent)",
+        "&:first-child": {
+          borderTop: "1px solid",
+          borderColor: "color-mix(in srgb, var(--theme-ui-colors-text) 8%, transparent)",
+        },
       }}
     >
       <div

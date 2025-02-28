@@ -26,8 +26,11 @@ export const FAQ = ({ children, defaultOpen = null }: FAQProps) => {
   const childrenWithProps = Array.isArray(children)
     ? children.map((child, index) => {
         if (!child) return null;
-        // Clone the element to add the index prop
-        return React.cloneElement(child as React.ReactElement, { index });
+        // Clone the element to add the index prop and key
+        return React.cloneElement(child as React.ReactElement, {
+          index,
+          key: `faq-item-${index}`,
+        });
       })
     : children;
 

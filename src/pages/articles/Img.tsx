@@ -1,5 +1,6 @@
 import style from "./img.module.css";
 import { getImageForArticle } from "./imports";
+import { useState } from "react";
 
 interface ImgProps {
   src: string;
@@ -22,7 +23,10 @@ export const Img = ({
   deviceBorder = false,
   browserBorder = false,
   full = false,
+  onLoad,
 }: ImgProps) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
   if (!src) return null;
 
   // Get image metadata directly during render
@@ -38,10 +42,25 @@ export const Img = ({
 
   const classNames = `${style.picture} ${deviceBorder ? style.deviceBorder : ""} ${
     full ? "full" : ""
-  } ${browserBorder ? style.browserBorder : ""} ${className}`;
+  } ${browserBorder ? style.browserBorder : ""} ${className} ${isLoaded ? style.loaded : style.loading}`;
+
+  const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    setIsLoaded(true);
+    if (onLoad) {
+      onLoad(e);
+    }
+  };
 
   if (isSvg) {
-    return <img loading="lazy" src={pngData?.src} alt={alt} />;
+    return (
+      <img
+        loading="lazy"
+        src={pngData?.src}
+        alt={alt}
+        onLoad={handleImageLoad}
+        style={{ opacity: isLoaded ? 1 : 0, transition: "opacity 0.3s ease" }}
+      />
+    );
   } else {
     return (
       <picture
@@ -49,7 +68,15 @@ export const Img = ({
         style={{ "--picture-w": pngData?.width, "--picture-h": pngData?.height } as React.CSSProperties}
       >
         {avifData?.src && <source srcSet={avifData?.src} type="image/avif" />}
-        <img loading="lazy" src={pngData?.src} alt={alt} width={pngData?.width} height={pngData?.height} />
+        <img
+          loading="lazy"
+          src={pngData?.src}
+          alt={alt}
+          width={pngData?.width}
+          height={pngData?.height}
+          onLoad={handleImageLoad}
+          style={{ opacity: isLoaded ? 1 : 0, transition: "opacity 0.3s ease" }}
+        />
       </picture>
     );
   }

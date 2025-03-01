@@ -11,6 +11,14 @@
   }
 }
 
+.loading img {
+  opacity: 0;
+}
+
+.loaded img {
+  opacity: 1;
+}
+
 .browserBorder {
   margin-top: 48px;
   display: grid;

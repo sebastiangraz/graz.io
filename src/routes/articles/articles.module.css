@@ -80,7 +80,7 @@
     color: var(--theme-ui-colors-textDim);
   }
 
-  code {
+  :global code:not(.shiki code) {
     background: #00000010;
     color: color-mix(in srgb, currentColor 72%, transparent);
     padding: 0 0.25rem;

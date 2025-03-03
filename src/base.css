@@ -22,7 +22,8 @@ html {
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-  src: url("../src/fonts/StyreneB-Regular.woff") format("woff"),
+  src:
+    url("../src/fonts/StyreneB-Regular.woff") format("woff"),
     url("../src/fonts/StyreneB-Regular.woff2") format("woff2");
 }
 
@@ -31,7 +32,9 @@ html {
   font-weight: bold;
   font-style: normal;
   font-display: swap;
-  src: url("../src/fonts/StyreneB-Bold.woff") format("woff"), url("../src/fonts/StyreneB-Bold.woff2") format("woff2");
+  src:
+    url("../src/fonts/StyreneB-Bold.woff") format("woff"),
+    url("../src/fonts/StyreneB-Bold.woff2") format("woff2");
 }
 
 @custom-media --1 (min-width: 38em);

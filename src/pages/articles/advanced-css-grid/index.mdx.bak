@@ -1,0 +1,69 @@
+---
+title: Advanced CSS Griddery technique
+date: 2024-02-25
+---
+
+```css {1,3-4}
+.grid-container {
+  --margin: minmax(32px, 1fr);
+  --max-width: 800px;
+  display: grid;
+  grid-template-columns:
+    [bleedstart]
+    var(--margin)
+    [start]
+    repeat(12, minmax(0, calc(var(--max-width) / 12)))
+    [end]
+    var(--margin)
+    [bleedend];
+}
+
+/* Tablet breakpoint */
+@media (min-width: 768px) {
+  .grid-container {
+    /* Keeping the same value as mobile */
+  }
+}
+
+/* Desktop breakpoint */
+@media (min-width: 1024px) {
+  .grid-container {
+    --max-width: 1800px;
+  }
+}
+```
+
+```html
+<div class="grid-container">
+  <header style="grid-column: start / end;">Header content</header>
+  <aside style="grid-column: start / span 3;">Sidebar</aside>
+  <main style="grid-column: span 9 / end;">Main content</main>
+  <footer style="grid-column: bleedstart / bleedend;">Full-width footer</footer>
+</div>
+```
+
+This code `console.log("Hello World"){:js}` will be highlighted.
+
+# What the hell
+
+This setup `creates` a sophisticated, responsive 12-column grid with flexible margins. Let's break it down:
+Custom Properties as Grid Variables
+Two CSS variables lay the foundation:
+
+- `--margin{:jsx}`: Set to `minmax(32px, 1fr){:jsx}`, ensuring margins are never smaller than 32px but can expand to fill available space
+- `--max-width{:jsx}`: An array of responsive values that changes from 800px to 1800px across breakpoints
+
+# Columns
+
+The magic happens in gridTemplateColumns, which defines:
+
+- Flexible Margins: The var(--margin) sections create equal spacing on both sides
+- Named Grid Lines: [bleedstart], [start], [end], and [bleedend] create semantic reference points
+- Equal Columns: repeat(12, minmax(0, calc(var(--max-width) / 12))) divides the available space into 12 equal columns
+
+# Why
+
+- Controlled Flexibility: Content stays within your defined max-width while margins adapt to screen size
+- Full-Width Option: Use the bleedstart and bleedend grid lines when you need content to stretch edge-to-edge
+- Semantic Naming: Grid lines make it intuitive to position elements in the layout
+- Easy Maintenance: Change just two variables to adjust the entire layout system

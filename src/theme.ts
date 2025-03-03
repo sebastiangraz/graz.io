@@ -28,8 +28,8 @@ const colors = {
     background: "#d8dfdf",
   },
   end: {
-    foreground: "#F7F1E8",
-    foregroundDim: "#F7F1E8a3",
+    foreground: "#000",
+    foregroundDim: "#000",
     background: "transparent",
   },
 };

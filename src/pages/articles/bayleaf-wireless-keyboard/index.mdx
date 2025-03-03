@@ -1,0 +1,281 @@
+---
+title: Bayleaf Wireless Keyboard Build
+description: Read about my journey building a wireless ergonomic keyboard from scratch.
+date: 2025-03-02
+---
+
+import { EmailLink } from "@/components/EmailLink/EmailLink";
+import { Faq, Question, Answer } from "@/pages/articles/FAQ";
+import { DefinitionTable } from "@/components/DefinitionTable/DefinitionTable";
+import { Text } from "theme-ui";
+
+<Img src="keyboard10.jpg" alt="Keyboard" full />
+
+<Text variant="heading" sx={{ textAlign: "center" }}>
+  I built a keyboard
+</Text>
+
+<hr />
+
+<DefinitionTable
+  items={[
+    { term: "Type", description: "Wireless & split" },
+    { term: "Layout", description: "60% · Ortholinear" },
+    { term: "Switches", description: "Kailh · PG1316S" },
+    { term: "Keycaps", description: "MFJ · custom design" },
+    { term: "Enclosure", description: "CNC machined · aluminum" },
+    { term: "Dimensions", description: "W139 · L93 · H5" },
+    { term: "Weight", description: "180g" },
+    { term: "Firmware", description: "ZMK Studio" },
+  ]}
+/>
+
+<hr />
+
+# Motivation
+
+I love the rawness of custom-built ergo keyboards. But for my first serious custom build, I wanted to achieve a more commercial look and finish. Since I had no CAD experience, it was also an excellent chance to learn hardware design, electronics, and million of other skills I never thought I’d need to know.
+
+# Design decisions
+
+- <mark>Wireless</mark> — non-negotiable, especially with splits. I'm not dealing with any cables. Removing my right
+  side to make space for mouse movements while gaming still feels magical.
+- <mark>Ortholinear</mark> — is what I'm used to, my two previous keyboards were ortho. And I've gotten pretty
+  proficient with them.
+- <mark>Sans stagger</mark> — I'm not against stagger, I just love the neat look of a pain grid. Lack of stagger also
+  makes it easier to work with on a hardware level.
+- <mark>Layout</mark> — a larger 60% layout was a deliberate choice to avoid context switching as I often swap between
+  my Macbook and desktop. I also went with a 17×17mm switch spacing.
+- <mark>Ergonomics</mark> — not gonna lie this is a planned form-over-function kind of deal.
+- <mark>Aluminum</mark> — for aesthetics and to get that finished commercial look. Sacrificing RF signal, potential ESD
+  issues I was cool with.
+
+<hr />
+<Img src="keyboard1.jpg" alt="Keyboard desktop" />
+<aside>Tallest part of the keyboard is only 5mm</aside>
+
+<Img src="keyboard2.jpg" alt="Keyboard" />
+
+<hr />
+<Img src="keyboard3.jpg" alt="Keyboard" />
+<aside>Two different keycap variations. White ones are stock, grey ones are custom printed MJF caps.</aside>
+
+<Img src="keyboard4.jpg" alt="Keyboard" full />
+
+<hr />
+<Img src="keyboard5.jpg" alt="Keyboard" />
+<aside>The variation in the gray color is a side effect of SLS/MJFs sintering process. No impact on tolerances.</aside>
+
+<Img src="keyboard6.jpg" alt="Keyboard" />
+
+<hr />
+<Img src="keyboard8.jpg" alt="Keyboard" />
+<aside>Custom printed MJF caps, sorted by how "baked" each cap was starting from darkest to lightest.</aside>
+
+<Img src="keyboard9.jpg" alt="Keyboard" />
+
+<hr />
+<img src="/typing.gif" alt="Keyboard gif" style={{ width: "100%", height: "auto" }} />
+<aside>
+  I attempted to capture the sound difference between the two keycaps. But the phone microphone didn't do a good job.
+</aside>
+
+<hr />
+
+# Build log
+
+Mikefive’s keyboard post on Reddit had me impressed. He showed the world that it's possible to build ergo keyboards that are of commercial caliber, low-profile and accessible for hobbyist. Making my decision to invest time and resources much easier. And so, I dove in.
+
+The project began with sketching. While these 2D sketches were created months earlier, I repurposed them to test how the components would fit within the enclosure, incorporating my new ideas.
+
+<hr />
+<Img src="sketch.png" alt="Drawing" />
+<aside>I knew these design wouldn't be final so I didn't scrutinize over dimensions at this point.</aside>
+
+Then onto scary schematics. I didn't get creative here and used a simple keyboard matrix for the switches. This is standard practice for MCUs of this size. Each row and column connects to its own pinout on the MCU. Using a total of 11 pins.
+
+<Img src="schematics.png" alt="Schematics" />
+
+After the schematics, I admittedly had a lot of fun designing the PCB layout. I landed on separating the sides by V-cuts, which lets me snap the PCBs apart by hand. Combining the sides also kept my files tidy and a little cheaper to manufacture.
+
+The actual logic was built around a nice!nano microcontroller. This controller has all the spicy stuff like power management and antennas already build in. This allowed me to keep things simple, no extra LEDs, no screens, no rotary encoders. Just the bare minimum for power and communication.
+
+<Img src="pcb.png" alt="PCB" />
+
+Designing the aluminum enclosure was another curveball. It was the first time I worked with a parametric design software which required some level of brain rewiring. Early on I had discarded tons of near finished files because they'd break randomly when tweaking the dimensions, simply because the order of the changes I made were incorrect.
+
+I counted about 100 versions of the case before I settled for this final version. That said, it was incredibly motivating to model stuff you know will exist in the physical world soon.
+
+<Img src="case.png" alt="Case" full />
+
+I realized I needed optimize for CNC-machining. Which meant removing any enclosed overhangs, or features that a drill can't reach physically. And of course removing any sharp corners that can't be cut by a round drill bit.
+
+<Img src="drawing.png" alt="Drawing" />
+
+<Img src="fusion.png" alt="Fusion" full />
+
+I started working on the custom keycaps pretty soon after I finished the build. The stock caps simply didn't cut it in terms of fit tolerances and sound profile. Some research led me to MJF/SLS printing which could handle the small tolerances I needed for the PG1316 switches.
+
+At the time of writing the caps are still WIP as I'm testing lots of different fits and sizes. I don't own a 3D printer (yet) so I needed to design all variations in one go to save on manufacturing costs, yikes!
+
+<Img src="keycaps.png" alt="Keycap" />
+
+# Assembly
+
+The kitchen became my workspace for the assembly. Production of regular carbonaras were seized. Production of keyboarnaras commenced. Now you know this wasn't written by AI.
+
+Tool shout-out
+
+- Bismuth based & lead-free low-temp solder paste
+- Water soluble, no-clean flux
+- Miniware 50x50mm hotplate
+- Isopropyl alcohol for cleaning
+- Standard soldering gear
+- Multimeter
+
+<Img src="building.jpg" alt="Building" />
+
+# Challenges
+
+Two challenges stood out in the build process, soldering, and cleaning.
+
+Hotplate soldering a 1 mm thick PCB board leads to warping. And bent surfaces are difficult to heat evenly. During each soldering attempt I had to monitor for: surface contact, reflow temperature, temperature buildup profile, not overcooking it, ensuring switch alignment, chasing solder balls with flux, all while not burning myself. My hands were full.
+
+I ordered a massive SMD stencil in a frame which I didn't end up using because the switches required some serious baby-sitting to ensure good connection. I found the best method to prevent mis-soldered connections was to manually apply about 3x more paste than a stencil would.
+
+<hr />
+<Img src="build.jpg" alt="Building" />
+<aside>
+  You can see on the 3rd image one of my first attempts at soldering with a hotplate. Took a few tries to get the hang
+  of it.
+</aside>
+
+The second challenge was cleaning. The "no-clean" solder flux needed to be washed away to avoid it oxidizing. When the isopropyl alcohol didn't bite, I eventually found boiling hot water to wash away the flux residue. I should really start reading the specs.
+
+The moisture sensitive bismuth solder was messy to use, leading to very tiny liquid solder balls flying everywhere during soldering. Even perfect solder connections needed to be manually brushed and cleaned.
+It helped to solder the switches in groups of 4, clean after each round, and move onto the next.
+
+Each 5x6 grid of switches took me a full day to solder. It was likely the least efficient manufacturing shop in the EU at one point.
+
+<hr />
+<Img src="almost.jpg" alt="Almost" />
+<aside>
+  Almost finished right side. Notice the through-hole components for the MCU which is no bueno for a surface mount
+  build. Oops!
+</aside>
+
+# Verdict
+
+Despite many opportunities for things to go wrong, things went smooth. Parts that needed to fit, did fit. Electrons flowed where they needed to flow. Tolerances that tolerated. No Li-Po batteries exploding spicy pillow style. Installing the firmware was a breeze thanks to ZMK.
+
+Any mistakes in the build were all fixable during assembly. My first hotplate arrived DOA, but that only resulted in a minor delay. I’ll be chasing the high I felt when it registered its first keypress. Pretty ridiculous, but it was months of work manifested in the form of `wwwwwwwwwww` written in my browser tab.
+
+Typing on the keyboard is very comfortable due to it's low height. No more wrist arching. The switches have 32g of actuation force which is quite heavy for laptop-style switches, and results in a pretty clicky sound profile. But their motion feels great. The custom keycaps really helps to mellow the sound, which is promising.
+
+Final verdict, planning and building was an amazing learning experience. The final product exceeded my expectations. My appetite to build is not satiated yet. I look forward to building an even better version soon, equipped with more skills to boot.
+
+<Img src="keyboard7.jpg" alt="Keyboard" full />
+
+# Oopsies
+
+Of course not everything was smooth sailing. Here are some mistakes I made that humbled me good.
+
+- Not putting vias in the copper pads of the switches, this led to slightly colder connection between the hotplate and PCB.
+- Using white solder mask for the PCB, oxidizes into a reddish color when overheated
+- Forgetting to change the nice!nano PCB footprint to be surface mounted instead of through-hole. I had to put polyamide tape on the bottom and solder it by hand manually. This ended up being a nice fix which was suggested by Mike's friend Coen.
+- Physical reset button still would have been nice, waking up the keyboard sometimes requires a reset. Currently the button is hidden under the enclosure making it hard to reach. This is only a problem if the battery is really low.
+- Not pre-baking the boards prior to soldering, small bumps would appear on the PCB board during soldering from the trapped moisture
+- Not putting more effort into acoustics and vibration mitigation. Small changes to the enclosure to better handle how sound travels during typing.
+- Not a real oopsie because I fixed it last minute. When ordering the case I didn't specify to anodize the case after media blasting. It's an important step to prevent ugly oxidation and fat finger marks.
+
+# Looking ahead
+
+Here are some ideas for the next iteration.
+
+- Improved thumb cluster
+- More ergonomic design considerations
+- Rethink stagger setup
+- Physical reset button
+- More personalization on the aluminum case
+- Integrated PCB components to have more control over antenna placement
+- Longer chassis side-skirts to allow ad-hoc post production solutions like adding additional foam layers to reduce vibrations and improve sound profile
+- Enclose bottom of the chassis with material to prevent PCB from freely bending, further reducing vibration
+- Magnet snapping for traveling
+- Bigger enclosure border radii
+- LED 1x3 array indicator to show layers and other commands
+- Experiment with smaller switches like the PG1316M to find new interesting layouts
+- Pointer devices and rotary encoders
+
+# Socials
+
+- [Twitter/X](https://x.com/grazsebastian)
+- [Bluesky](https://bsky.app/profile/graz.io)
+- <Link to="/">Portfolio</Link>
+- <EmailLink string="hi@graz.io">
+    <a>Email</a>
+  </EmailLink>
+
+# FAQ
+
+<Faq>
+
+<Question title="How long did it take to build?">
+  <Answer>
+    About 2 months for planning and design. 1 month for assembly practice, and learning the tools. 4 days for final
+    production attempt. Writeup 1 week.
+  </Answer>
+</Question>
+
+<Question title="How much did it cost?">
+  <Answer>
+    In parts and materials 1 pair costs just under $400 to build. This includes the 2× enclosures ($187), 2× custom PCBs
+    ($28), 2× MCUs ($50), 60× switches ($45), 60× keycaps ($58), 2× batteries ($23), and power components ($8). I don't
+    include the cost of software, shipping, or tools I bought to build the keyboard.
+  </Answer>
+</Question>
+
+<Question title="Why the name Bayleaf?">
+  <Answer>
+    The name <mark>Bayleaf</mark> is inspired by <mark>Lauriergracht</mark>, the street where our co-working office is
+    located in Amsterdam. Which is where I spent most of my time designing this keyboard.
+  </Answer>
+</Question>
+
+<Question title="Can I buy this keyboard?">
+  <Answer>Negative, this singular prototype is not for sale.</Answer>
+</Question>
+
+<Question title="Are you planning to sell this keyboard at scale?">
+  <Answer>
+    Dependent on the reception, likely yes. But it wont be exactly this design. A second iteration is in the works with
+    improved sound profile and ergonomics. Stay tuned.
+  </Answer>
+</Question>
+
+<Question title="Is it open source?">
+  <Answer>
+    Still figuring out licensing. As most of the source files are work in progress. But no source files are available
+    yet.
+  </Answer>
+</Question>
+
+<Question title="Which manufacturers did you use?">
+  <Answer>
+    The enclosure and PCB was manufactured by PCBWay. The switches are from Kailh. The MJF keycaps are from JLCPCB. Most
+    electronic parts & tools were sourced from Mouser.
+  </Answer>
+</Question>
+
+<Question title="Where did you source the switches?">
+  <Answer>
+    The switches can be sourced from Kailh directly but they have a MOQ. I ended up purchasing them from other builders
+    on Discord who already made the purchase and were reselling them.
+  </Answer>
+</Question>
+
+<Question title="Who are you?">
+  <Answer>  
+    I'm Sebastian. My serious grown-up job is running my own branding studio (this very website). My less serious job is building fun shit, hardware or software. Whether it's tackling personal friction, or learning new skills. 
+  </Answer>
+</Question>
+</Faq>

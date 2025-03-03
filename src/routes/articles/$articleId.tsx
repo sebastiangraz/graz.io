@@ -109,7 +109,7 @@ const components = {
         }}
       >
         <AppLink to="/articles" sx={{}}>
-          ← Back to all articles
+          ← All articles
         </AppLink>
         <EmailLink sx={{ textDecoration: "none" }} string="hi@graz.io">
           Email

@@ -27,7 +27,7 @@ export function PostComponent() {
     post.date && post.date instanceof Date && post.date.getTime() > 0
       ? formatDistanceToNow(post.date, { addSuffix: true })
       : "";
-
+  console.log(post);
   return (
     <Layout>
       <Helmet>

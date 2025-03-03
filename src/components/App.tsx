@@ -1,12 +1,20 @@
 import { CaseWrapper, Case, ScrollToTop, CaseMeta, GridParent } from "@/components";
 import "@/base.css";
 import { PropMap } from "@/utils/PropMap";
+import { Helmet } from "react-helmet-async";
 
 // Article routes setup using import.meta.glob - update to include folders
 
 export const App = () => {
   return (
     <>
+      <Helmet>
+        <title>Sebastian Graz · Studio</title>
+        <meta
+          name="description"
+          content="Independent design consultancy focused on branding, digital design and beautiful implementation."
+        />
+      </Helmet>
       <ScrollToTop />
       <CaseWrapper>{cases}</CaseWrapper>
     </>

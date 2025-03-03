@@ -7,6 +7,7 @@ import { getPrevPathFromExtension } from "@/utils/helpers";
 import style from "@/routes/articles/articles.module.css";
 import { formatDistanceToNow } from "date-fns";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 
 export const Route = createFileRoute("/articles/")({
   component: RouteComponent,
@@ -26,6 +27,7 @@ export const entryMeta = globEntries.map(([url, module]) => {
     id: slug,
     path: url,
     title: module.frontmatter?.title,
+    description: module.frontmatter?.description,
     date: module.frontmatter?.date ? new Date(module.frontmatter.date) : new Date(0),
   };
 });
@@ -71,6 +73,13 @@ function RouteComponent() {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Sebastian Graz · Articles</title>
+        <meta
+          name="description"
+          content="Independent design consultancy focused on branding, digital design and beautiful implementation."
+        />
+      </Helmet>
       <div className={style.meta}>
         <Link
           className={style.logo}

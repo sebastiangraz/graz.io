@@ -33,6 +33,8 @@ export function PostComponent() {
       <Helmet>
         <title>Sebastian Graz · {post.title}</title>
         <meta name="description" content={post.description || `Article: ${post.title}`} />
+        <meta property="og:title" content={`Sebastian Graz · ${post.title}`} />
+        <meta property="og:description" content={post.description || `Article: ${post.title}`} />
       </Helmet>
       <div className={`${style.meta}`}>
         <AppLink to="/" className={style.logo}>

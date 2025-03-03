@@ -5,22 +5,27 @@ date: 2025-02-28
 
 import { EmailLink } from "@/components/EmailLink/EmailLink";
 import { Faq, Question, Answer } from "@/pages/articles/FAQ";
+import { DefinitionTable } from "@/components/DefinitionTable/DefinitionTable";
 
 <Img src="keyboard10.jpg" alt="Keyboard" full />
 
 # I built a keyboard
 
-- Wireless split
-- 60% ortholinear layout
-- PG1316S switches
-- MFJ printed custom keycaps
-- CNC machined 7075 aluminum enclosure
-- Custom white PCB
-- Dimensions W139 · L93 · H5
-- Weight 180g
-- ZMK Studio
-- 3 months to build
-- Material cost per set ~$313
+<DefinitionTable
+  items={[
+    { term: "Type", description: "Wireless split" },
+    { term: "Layout", description: "60% ortholinear" },
+    { term: "Switches", description: "PG1316S" },
+    { term: "Keycaps", description: "MFJ printed custom" },
+    { term: "Enclosure", description: "CNC machined 7075 aluminum" },
+    { term: "PCB", description: "Custom white" },
+    { term: "Dimensions", description: "W139 · L93 · H5" },
+    { term: "Weight", description: "180g" },
+    { term: "Firmware", description: "ZMK Studio" },
+    { term: "Build Time", description: "3 months" },
+    { term: "Material Cost", description: "~$313 per set" },
+  ]}
+/>
 
 # Motivation
 
@@ -52,7 +57,7 @@ The name <mark>Bayleaf</mark> is inspired by <mark>Lauriergracht</mark>, the str
 <Img src="keyboard3.jpg" alt="Keyboard" />
 <aside>Two different keycap variations. White ones are stock, grey ones are custom printed MJF caps.</aside>
 
-<Img src="keyboard4.jpg" alt="Keyboard" />
+<Img src="keyboard4.jpg" alt="Keyboard" full />
 
 <hr />
 <Img src="keyboard5.jpg" alt="Keyboard" />

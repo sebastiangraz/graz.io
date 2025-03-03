@@ -12,17 +12,15 @@ type DefinitionTableProps = {
 
 export const DefinitionTable = ({ items }: DefinitionTableProps) => {
   return (
-    <Box
-      as="dl"
+    <dl
       sx={{
         display: "grid",
-        gridTemplateColumns: ["1fr", "1fr 1fr", "1fr 1fr 1fr"],
-        gap: ["1rem 3rem", "2em 4rem"],
-        my: 4,
+        gridTemplateColumns: ["1fr 1fr", null, "1fr 1fr 1fr 1fr"],
+        gap: ["2em 1rem"],
+        mt: "4rem",
+        mb: "4rem",
         mx: 0,
-        "@media (--1)": {
-          gridColumn: "4 / 12",
-        },
+        gridColumn: ["3 / 13", null, "3 / 13"],
       }}
     >
       {items.map((item, index) => (
@@ -31,6 +29,7 @@ export const DefinitionTable = ({ items }: DefinitionTableProps) => {
             as="dt"
             variant="caps"
             sx={{
+              textAlign: "center",
               color: "textDim",
               mb: 1,
             }}
@@ -39,8 +38,10 @@ export const DefinitionTable = ({ items }: DefinitionTableProps) => {
           </Text>
           <Text
             as="dd"
+            variant="label"
             sx={{
               m: 0,
+              textAlign: "center",
               color: "text",
             }}
           >
@@ -48,6 +49,6 @@ export const DefinitionTable = ({ items }: DefinitionTableProps) => {
           </Text>
         </Box>
       ))}
-    </Box>
+    </dl>
   );
 };

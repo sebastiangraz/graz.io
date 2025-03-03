@@ -131,7 +131,7 @@ const components = {
   code: (props: any) => <code sx={{}} {...props} />,
   pre: (props: any) => <pre sx={{ fontSize: 5 }} {...props} />,
   h1: (props: any) => <Heading variant="heading" {...props} />,
-  h2: (props: any) => <Heading variant="heading" {...props} />,
+  h2: (props: any) => <Heading variant="lead" {...props} />,
   h3: (props: any) => <Heading variant="heading" {...props} />,
   h4: (props: any) => <Heading variant="heading" {...props} />,
   h5: (props: any) => <Heading variant="heading" {...props} />,

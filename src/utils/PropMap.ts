@@ -1,12 +1,3 @@
-export interface PropMapProps {
-  grid?: string[];
-  scope?: string[];
-  challenge?: string;
-  duration?: string;
-  year?: string;
-  hideCaseMeta?: boolean;
-}
-
 export const PropMap = () => {
   const props = {
     home: { hideCaseMeta: true },
@@ -48,3 +39,12 @@ export const PropMap = () => {
 
   return props;
 };
+
+export interface PropMapProps {
+  grid?: string[];
+  scope?: string[];
+  challenge?: string;
+  duration?: string;
+  year?: string;
+  hideCaseMeta?: boolean;
+}

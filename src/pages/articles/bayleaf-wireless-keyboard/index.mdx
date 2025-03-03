@@ -1,5 +1,5 @@
 ---
-title: Bayleaf Wireless Keyboard Build
+title: Bayleaf A Wireless Keyboard Build
 date: 2025-02-28
 ---
 
@@ -11,21 +11,22 @@ import { DefinitionTable } from "@/components/DefinitionTable/DefinitionTable";
 
 # I built a keyboard
 
+<hr />
+
 <DefinitionTable
   items={[
-    { term: "Type", description: "Wireless split" },
-    { term: "Layout", description: "60% ortholinear" },
-    { term: "Switches", description: "PG1316S" },
-    { term: "Keycaps", description: "MFJ printed custom" },
-    { term: "Enclosure", description: "CNC machined 7075 aluminum" },
-    { term: "PCB", description: "Custom white" },
+    { term: "Type", description: "Wireless & split" },
+    { term: "Layout", description: "60% · Ortholinear" },
+    { term: "Switches", description: "Kailh · PG1316S" },
+    { term: "Keycaps", description: "MFJ · custom design" },
+    { term: "Enclosure", description: "CNC machined · aluminum" },
     { term: "Dimensions", description: "W139 · L93 · H5" },
     { term: "Weight", description: "180g" },
     { term: "Firmware", description: "ZMK Studio" },
-    { term: "Build Time", description: "3 months" },
-    { term: "Material Cost", description: "~$313 per set" },
   ]}
 />
+
+<hr />
 
 # Motivation
 
@@ -211,16 +212,30 @@ Here are some ideas for the next iteration.
 # FAQ
 
 <Faq>
-<Question title="Who are you?">
-  <Answer>  
-    I'm Sebastian. My serious grown-up job is running my own branding studio (this very website). My less serious job is building fun shit, hardware or software. Whether its tackling personal friction, or learning new skills. 
+
+<Question title="How long did it take to build?">
+  <Answer>
+    About 2 months for planning and design. 1 month for assembly practice, and learning the tools. 4 days for final
+    production attempt. Writeup 1 week.
+  </Answer>
+</Question>
+
+<Question title="How much did it cost?">
+  <Answer>
+    In parts and materials 1 pair costs just under $400 to build. This includes the 2× enclosures ($187), 2× custom PCBs
+    ($28), 2× MCUs ($50), 60× switches ($45), 60× keycaps ($58), 2× batteries ($23), and power components ($8). I don't
+    include the cost of software, shipping, or tools I bought to build the keyboard.
   </Answer>
 </Question>
 
 <Question title="Can I buy this keyboard?">
+  <Answer>Negative, this singular prototype is not for sale.</Answer>
+</Question>
+
+<Question title="Are you planning to sell this keyboard at scale?">
   <Answer>
-    Negative, this singular prototype is not for sale. Its currently in active development, and only time will tell if a
-    variant of this product will be manufactured at scale.
+    Dependent on the reception, likely yes. But it wont be exactly this design. A second iteration is in the works with
+    improved sound profile and ergonomics. Stay tuned.
   </Answer>
 </Question>
 
@@ -233,14 +248,21 @@ Here are some ideas for the next iteration.
 
 <Question title="Which manufacturers did you use?">
   <Answer>
-    I used a mix of manufacturers. The enclosure and PCB was manufactured by PCBWay. The switches are from Kailh. The
-    MJF keycaps are from JLCPCB. Most electronic parts & tools were sourced from Mouser.
+    The enclosure and PCB was manufactured by PCBWay. The switches are from Kailh. The MJF keycaps are from JLCPCB. Most
+    electronic parts & tools were sourced from Mouser.
   </Answer>
 </Question>
 
 <Question title="Where did you source the switches?">
   <Answer>
-    The switches can be sourced from Kailh directly but they have a MOQ. I ended up purchasing them from other builders on Discord who already made the purchase and were reselling them.
+    The switches can be sourced from Kailh directly but they have a MOQ. I ended up purchasing them from other builders
+    on Discord who already made the purchase and were reselling them.
+  </Answer>
+</Question>
+
+<Question title="Who are you?">
+  <Answer>  
+    I'm Sebastian. My serious grown-up job is running my own branding studio (this very website). My less serious job is building fun shit, hardware or software. Whether it's tackling personal friction, or learning new skills. 
   </Answer>
 </Question>
 </Faq>

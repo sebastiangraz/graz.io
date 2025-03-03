@@ -19,6 +19,25 @@ type FAQProps = {
   defaultOpen?: number | null;
 };
 
+export const Answer = ({ children }: AnswerProps) => {
+  return (
+    <div
+      sx={{
+        color: "var(--theme-ui-colors-textDim)",
+      }}
+    >
+      {children}
+    </div>
+  );
+};
+
+// Question component
+type QuestionProps = {
+  children: ReactNode;
+  title: string;
+  index?: number;
+};
+
 export const FAQ = ({ children, defaultOpen = null }: FAQProps) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(defaultOpen);
 
@@ -47,12 +66,13 @@ export const FAQ = ({ children, defaultOpen = null }: FAQProps) => {
   );
 };
 
-// Question component
-type QuestionProps = {
+// Answer component
+type AnswerProps = {
   children: ReactNode;
-  title: string;
-  index?: number;
 };
+
+// Export Faq as an alias for FAQ to support both usages
+export const Faq = FAQ;
 
 export const Question = ({ children, title, index }: QuestionProps) => {
   const { activeIndex, setActiveIndex } = useContext(FAQContext);
@@ -76,8 +96,11 @@ export const Question = ({ children, title, index }: QuestionProps) => {
         },
       }}
     >
-      <div
+      <motion.div
         onClick={toggleOpen}
+        animate={{
+          padding: isOpen ? "2rem 0rem 0.5rem 0rem" : "1rem 0rem 1rem 0rem",
+        }}
         sx={{
           width: "100%",
           textAlign: "left",
@@ -134,7 +157,7 @@ export const Question = ({ children, title, index }: QuestionProps) => {
             }}
           />
         </div>
-      </div>
+      </motion.div>
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
@@ -148,7 +171,7 @@ export const Question = ({ children, title, index }: QuestionProps) => {
           >
             <div
               sx={{
-                padding: "0 0 16px 0",
+                padding: "0 0 2rem 0",
               }}
             >
               {children}
@@ -159,26 +182,6 @@ export const Question = ({ children, title, index }: QuestionProps) => {
     </div>
   );
 };
-
-// Answer component
-type AnswerProps = {
-  children: ReactNode;
-};
-
-export const Answer = ({ children }: AnswerProps) => {
-  return (
-    <div
-      sx={{
-        color: "var(--theme-ui-colors-textDim)",
-      }}
-    >
-      {children}
-    </div>
-  );
-};
-
-// Export Faq as an alias for FAQ to support both usages
-export const Faq = FAQ;
 
 // Export as default for import in MDX files
 export default Faq;

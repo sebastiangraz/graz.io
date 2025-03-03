@@ -10,6 +10,7 @@ import { MDXProvider } from "@mdx-js/react";
 import { Link as AppLink } from "@/components";
 import style from "@/routes/articles/articles.module.css";
 import { formatDistanceToNow } from "date-fns";
+import { Helmet } from "react-helmet-async";
 
 function PostErrorComponent({ error }: ErrorComponentProps) {
   return (
@@ -29,6 +30,10 @@ export function PostComponent() {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Sebastian Graz · {post.title}</title>
+        <meta name="description" content={post.description || `Article: ${post.title}`} />
+      </Helmet>
       <div className={`${style.meta}`}>
         <AppLink to="/" className={style.logo}>
           <Logo

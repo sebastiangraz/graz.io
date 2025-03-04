@@ -27,7 +27,7 @@ export const Tooltip = ({ label, children }: TooltipProps) => {
           align="center"
           sideOffset={5}
           style={{
-            maxWidth: "240px",
+            maxWidth: "320px",
             padding: "12px",
             borderRadius: "6px",
             backgroundColor: "#fff",
@@ -36,7 +36,7 @@ export const Tooltip = ({ label, children }: TooltipProps) => {
             zIndex: 1000,
           }}
         >
-          <Box sx={{ color: "textDim", a: { color: "text" } }}>{children}</Box>
+          <Box sx={{ fontSize: 5, color: "textDim", a: { color: "text" } }}>{children}</Box>
 
           <HoverCard.Arrow
             style={{

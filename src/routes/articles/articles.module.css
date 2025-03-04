@@ -14,7 +14,7 @@
     display: grid;
     font-size: 3rem;
     text-wrap: balance;
-    @media (--2) {
+    @media (--1) {
       font-size: 4rem;
     }
   }

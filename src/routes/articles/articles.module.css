@@ -12,8 +12,11 @@
     font-weight: normal;
     line-height: 0.9;
     display: grid;
-    font-size: 4rem;
+    font-size: 3rem;
     text-wrap: balance;
+    @media (--2) {
+      font-size: 4rem;
+    }
   }
   a:not(.logo) {
     letter-spacing: 0.05em;

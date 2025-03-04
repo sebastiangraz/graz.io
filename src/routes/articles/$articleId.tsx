@@ -51,8 +51,9 @@ export function PostComponent() {
         <div
           sx={{
             display: "flex",
-            justifyContent: "start",
-            gap: "2rem",
+            flexWrap: "wrap",
+            justifyContent: ["center", "start"],
+            gap: "0.5rem 2rem",
             alignItems: "center",
             marginBottom: "1rem",
             fontSize: "12px",

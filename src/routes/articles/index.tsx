@@ -80,7 +80,7 @@ function RouteComponent() {
           content="Independent design consultancy focused on branding, digital design and beautiful implementation."
         />
       </Helmet>
-      <div className={style.meta}>
+      <div className={style.meta} sx={{ gridColumn: "3/13" }}>
         <Link
           className={style.logo}
           to="/"
@@ -127,9 +127,11 @@ function RouteComponent() {
                   sx={{
                     display: "flex",
                     flexDirection: "row",
+                    flexWrap: "wrap",
                     justifyContent: "space-between",
                     alignItems: "baseline",
                     width: "100%",
+                    columnGap: "4rem",
                   }}
                 >
                   <span sx={{ fontWeight: "normal" }}>{title}</span>
@@ -140,7 +142,6 @@ function RouteComponent() {
                         opacity: 0.7,
                         textAlign: "right",
                         flexShrink: 0,
-                        marginLeft: "4rem",
                       }}
                     >
                       {dateText}

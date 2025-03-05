@@ -98,6 +98,7 @@
 
   & > small {
     font-size: 14px;
+    color: var(--theme-ui-colors-textDim);
   }
 
   & > :is(h1, h2, h3, h4, h5, h6) {

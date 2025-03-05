@@ -53,7 +53,7 @@ export const EmailSignup = ({ placeholder = "Enter your email", cta = "Subscribe
         name="email-signup"
         method="POST"
         // @ts-ignore
-        netlify
+        data-netlify="true"
         onSubmit={handleSubmit}
         noValidate
         sx={{
@@ -62,8 +62,6 @@ export const EmailSignup = ({ placeholder = "Enter your email", cta = "Subscribe
           gap: "0.5rem",
         }}
       >
-        <input type="hidden" name="form-name" value="email-signup" />
-
         <Input
           data-1p-ignore
           ref={inputRef}

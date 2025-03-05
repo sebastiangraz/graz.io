@@ -52,7 +52,8 @@ export const EmailSignup = ({ placeholder = "Enter your email", cta = "Subscribe
       <form
         name="email-signup"
         method="POST"
-        data-netlify="true"
+        // @ts-ignore
+        netlify
         onSubmit={handleSubmit}
         noValidate
         sx={{

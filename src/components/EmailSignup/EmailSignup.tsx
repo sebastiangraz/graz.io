@@ -26,7 +26,7 @@ export const EmailSignup = ({ placeholder = "Enter your email", cta = "Subscribe
     );
   }
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const input = inputRef.current;
 
@@ -43,8 +43,34 @@ export const EmailSignup = ({ placeholder = "Enter your email", cta = "Subscribe
       }
     }
 
-    setError("");
-    setSubmitted(true);
+    try {
+      const formData = new FormData(e.currentTarget);
+
+      // Check if we're in development mode
+      if (import.meta.env.DEV) {
+        console.log("Development mode - Form data:", Object.fromEntries(formData));
+        setError("");
+        setSubmitted(true);
+        return;
+      }
+
+      // Production mode - submit to Netlify
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData as any).toString(),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Form submission failed: ${response.status}`);
+      }
+
+      setError("");
+      setSubmitted(true);
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setError("Something went wrong. Please try again.");
+    }
   };
 
   return (
@@ -52,8 +78,8 @@ export const EmailSignup = ({ placeholder = "Enter your email", cta = "Subscribe
       <form
         name="email-signup"
         method="POST"
-        // @ts-ignore
         data-netlify="true"
+        data-netlify-honeypot="bot-field"
         onSubmit={handleSubmit}
         noValidate
         sx={{
@@ -62,6 +88,8 @@ export const EmailSignup = ({ placeholder = "Enter your email", cta = "Subscribe
           gap: "0.5rem",
         }}
       >
+        <input type="hidden" name="form-name" value="email-signup" />
+        <input type="hidden" name="bot-field" />
         <Input
           data-1p-ignore
           ref={inputRef}
@@ -97,7 +125,6 @@ export const EmailSignup = ({ placeholder = "Enter your email", cta = "Subscribe
               color: "var(--theme-ui-colors-textDim)",
               position: "relative",
               left: 0,
-              // top: "100%",
               marginTop: "0.25rem",
             }}
           >

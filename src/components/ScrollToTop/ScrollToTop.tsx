@@ -5,7 +5,11 @@ import { useScroll } from "framer-motion";
 import { Text } from "theme-ui";
 import { Logo } from "..";
 
-export const ScrollToTop = () => {
+type ScrollToTopProps = {
+  preventUrlChange?: boolean;
+};
+
+export const ScrollToTop = ({ preventUrlChange = false }: ScrollToTopProps) => {
   const { scrollY } = useScroll();
   const [show, setShow] = React.useState(false);
 
@@ -34,7 +38,7 @@ export const ScrollToTop = () => {
       }}
     >
       <div
-        onClick={handleClick}
+        onClick={() => handleClick(preventUrlChange)}
         sx={{
           opacity: show ? 1 : 0,
           pointerEvents: show ? "all" : "none",
@@ -76,7 +80,7 @@ export const ScrollToTop = () => {
           m={0}
         >
           <Text m={0} variant="caps">
-            Home
+            Up
           </Text>
         </Text>
         <Logo
@@ -93,7 +97,13 @@ export const ScrollToTop = () => {
   );
 };
 
-const handleClick = () => {
-  window.scrollTo(0, 0);
-  window.history.pushState("", "", "/");
+const handleClick = (preventUrlChange: boolean) => {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  });
+  if (preventUrlChange) {
+    window.history.pushState("", "", "/");
+  }
 };

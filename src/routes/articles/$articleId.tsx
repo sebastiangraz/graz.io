@@ -3,14 +3,15 @@
 import { ErrorComponent, createFileRoute } from "@tanstack/react-router";
 import { entryMeta } from "@/routes/articles";
 import type { ErrorComponentProps } from "@tanstack/react-router";
-import { EmailLink, Layout, Logo } from "@/components";
+import { EmailLink, Layout, Logo, Link as AppLink } from "@/components";
 import { Img } from "@/pages/articles/Img";
 import { Heading, Paragraph } from "theme-ui";
 import { MDXProvider } from "@mdx-js/react";
-import { Link as AppLink } from "@/components";
+
 import style from "@/routes/articles/articles.module.css";
 import { formatDistanceToNow } from "date-fns";
 import { Helmet } from "react-helmet-async";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 function PostErrorComponent({ error }: ErrorComponentProps) {
   return (
@@ -71,6 +72,7 @@ export function PostComponent() {
       <MDXProvider components={components}>
         <Page />
       </MDXProvider>
+      <ScrollToTop />
     </Layout>
   );
 }

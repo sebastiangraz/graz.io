@@ -1,6 +1,7 @@
 import * as HoverCard from "@radix-ui/react-hover-card";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { Box } from "theme-ui";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface TooltipProps {
   label: string;
@@ -8,45 +9,71 @@ interface TooltipProps {
 }
 
 export const Tooltip = ({ label, children }: TooltipProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <HoverCard.Root openDelay={200} closeDelay={100}>
+    <HoverCard.Root openDelay={200} closeDelay={100} onOpenChange={setIsOpen}>
       <HoverCard.Trigger asChild>
         <Box
           as="span"
           sx={{
-            borderBottom: "1px dashed color-mix(in srgb, var(--theme-ui-colors-text) 24%, transparent)",
+            textDecoration: "underline",
+            textDecorationStyle: "dashed",
+            textDecorationColor: "color-mix(in srgb, var(--theme-ui-colors-text) 32%, transparent)",
+            textDecorationThickness: "1px",
+            textUnderlineOffset: "3px",
             cursor: "default",
+            "@media (hover: none)": {
+              "&:active": {
+                opacity: 0.7,
+              },
+            },
           }}
         >
           {label}
         </Box>
       </HoverCard.Trigger>
-      <HoverCard.Portal>
-        <HoverCard.Content
-          side="top"
-          align="center"
-          sideOffset={5}
-          style={{
-            maxWidth: "320px",
-            padding: "12px",
-            borderRadius: "6px",
-            backgroundColor: "#fff",
-            boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
-            border: "1px solid var(--theme-ui-colors-muted)",
-            zIndex: 1000,
-          }}
-        >
-          <Box sx={{ fontSize: 5, color: "textDim", a: { color: "text" } }}>{children}</Box>
-
-          <HoverCard.Arrow
-            style={{
-              fill: "#fff",
-              stroke: "var(--theme-ui-colors-muted)",
-              strokeWidth: "1px",
-            }}
-          />
-        </HoverCard.Content>
-      </HoverCard.Portal>
+      <AnimatePresence>
+        {isOpen && (
+          <HoverCard.Portal forceMount>
+            <HoverCard.Content asChild side="top" align="center" sideOffset={5} forceMount>
+              <motion.div
+                initial={{ opacity: 0, y: 4, x: "-50%" }}
+                animate={{ opacity: 1, y: 0, x: "-50%" }}
+                exit={{ opacity: 0, y: 4, x: "-50%" }}
+                transition={{
+                  duration: 0.2,
+                  ease: [0.16, 1, 0.3, 1],
+                  exit: { duration: 0.15 },
+                }}
+                style={{
+                  maxWidth: "320px",
+                  padding: "12px",
+                  borderRadius: "6px",
+                  backgroundColor: "#fff",
+                  boxShadow: "0 5px 10px rgba(0, 0, 0, 0.05), 0 2px 2px -1px rgba(0, 0, 0, 0.02)",
+                  border: "1px solid var(--theme-ui-colors-muted)",
+                  zIndex: 1000,
+                  left: "50%",
+                  position: "relative",
+                  transformOrigin: "top",
+                  willChange: "transform, opacity",
+                  touchAction: "none",
+                }}
+              >
+                <Box sx={{ fontSize: 5, color: "textDim", a: { color: "text" } }}>{children}</Box>
+                <HoverCard.Arrow
+                  style={{
+                    fill: "#fff",
+                    stroke: "var(--theme-ui-colors-muted)",
+                    strokeWidth: "1px",
+                  }}
+                />
+              </motion.div>
+            </HoverCard.Content>
+          </HoverCard.Portal>
+        )}
+      </AnimatePresence>
     </HoverCard.Root>
   );
 };

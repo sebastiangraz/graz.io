@@ -1,4 +1,4 @@
-import * as HoverCard from "@radix-ui/react-hover-card";
+import * as Popover from "@radix-ui/react-popover";
 import { ReactNode, useState } from "react";
 import { Box } from "theme-ui";
 import { motion, AnimatePresence } from "framer-motion";
@@ -12,17 +12,22 @@ export const Tooltip = ({ label, children }: TooltipProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <HoverCard.Root openDelay={200} closeDelay={100} onOpenChange={setIsOpen}>
-      <HoverCard.Trigger asChild>
+    <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
+      <Popover.Trigger asChild>
         <Box
-          as="span"
+          as="button"
           sx={{
             textDecoration: "underline",
             textDecorationStyle: "dashed",
             textDecorationColor: "color-mix(in srgb, var(--theme-ui-colors-text) 32%, transparent)",
             textDecorationThickness: "1px",
             textUnderlineOffset: "3px",
-            cursor: "default",
+            cursor: "help",
+            background: "none",
+            border: "none",
+            padding: 0,
+            font: "inherit",
+            color: "inherit",
             "@media (hover: none)": {
               "&:active": {
                 opacity: 0.7,
@@ -32,11 +37,11 @@ export const Tooltip = ({ label, children }: TooltipProps) => {
         >
           {label}
         </Box>
-      </HoverCard.Trigger>
+      </Popover.Trigger>
       <AnimatePresence>
         {isOpen && (
-          <HoverCard.Portal forceMount>
-            <HoverCard.Content asChild side="top" align="center" sideOffset={5} forceMount>
+          <Popover.Portal forceMount>
+            <Popover.Content asChild side="top" align="center" sideOffset={5} forceMount>
               <motion.div
                 initial={{ opacity: 0, y: 4, x: "-50%" }}
                 animate={{ opacity: 1, y: 0, x: "-50%" }}
@@ -62,7 +67,7 @@ export const Tooltip = ({ label, children }: TooltipProps) => {
                 }}
               >
                 <Box sx={{ fontSize: 5, color: "textDim", a: { color: "text" } }}>{children}</Box>
-                <HoverCard.Arrow
+                <Popover.Arrow
                   style={{
                     fill: "#fff",
                     stroke: "var(--theme-ui-colors-muted)",
@@ -70,10 +75,10 @@ export const Tooltip = ({ label, children }: TooltipProps) => {
                   }}
                 />
               </motion.div>
-            </HoverCard.Content>
-          </HoverCard.Portal>
+            </Popover.Content>
+          </Popover.Portal>
         )}
       </AnimatePresence>
-    </HoverCard.Root>
+    </Popover.Root>
   );
 };

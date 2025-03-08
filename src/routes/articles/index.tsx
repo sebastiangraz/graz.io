@@ -9,6 +9,25 @@ import { formatDistanceToNow } from "date-fns";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 
+// SVG for RSS icon
+const RSSIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M4 11a9 9 0 0 1 9 9" />
+    <path d="M4 4a16 16 0 0 1 16 16" />
+    <circle cx="5" cy="19" r="1" />
+  </svg>
+);
+
 export const Route = createFileRoute("/articles/")({
   component: RouteComponent,
 });
@@ -151,6 +170,42 @@ function RouteComponent() {
               </motion.li>
             );
           })}
+          <a
+            href="/rss.xml"
+            title="Subscribe via RSS"
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={{
+              placeSelf: "center",
+              display: "flex",
+              alignItems: "center",
+              color: "textDim",
+              textDecoration: "none",
+              gap: "8px",
+              fontSize: "14px",
+              padding: "6px 10px",
+              borderRadius: "4px",
+              marginTop: "2rem",
+              transition: "all 0.2s ease",
+              "&:after": {
+                content: "''",
+              },
+              "&:hover": {
+                color: "text",
+                backgroundColor: "rgba(0, 0, 0, 0.05)",
+                "&:after": {
+                  content: "'RSS feed'",
+                },
+              },
+              "@media (prefers-color-scheme: dark)": {
+                "&:hover": {
+                  backgroundColor: "rgba(255, 255, 255, 0.1)",
+                },
+              },
+            }}
+          >
+            <RSSIcon />
+          </a>
         </motion.ul>
       </div>
     </Layout>

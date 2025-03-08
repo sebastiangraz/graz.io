@@ -28,6 +28,7 @@
     "typescript": "^5.0.2",
     "uuid": "^11.1.0",
     "vite-imagetools": "^7.0.5",
+    "vite-plugin-rss": "^0.0.6",
     "yarn": "^2.4.3"
   },
   "scripts": {
@@ -68,6 +69,8 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "eslint-plugin-sort-exports": "^0.9.1",
+    "fast-glob": "^3.3.3",
+    "gray-matter": "^4.0.3",
     "intersection-observer": "^0.12.2",
     "postcss-custom-media": "^10.0.4",
     "postcss-preset-env": "^9.5.5",

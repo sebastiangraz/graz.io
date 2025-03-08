@@ -11,6 +11,18 @@ import { transformerNotationHighlight } from "@shikijs/transformers";
 import rehypeShiki from "@shikijs/rehype";
 import remarkgfm from "remark-gfm";
 import remarkTypography from "remark-typography";
+import { rssPlugin } from "vite-plugin-rss";
+import type { Item, Channel } from "vite-plugin-rss";
+import { generateRssItems } from "./src/utils/rss";
+
+// Interface for article metadata
+interface ArticleMeta {
+  id: string;
+  title: string;
+  description: string;
+  date: Date;
+  path: string;
+}
 
 // const options = {
 //   theme: JSON.parse(fs.readFileSync("./src/utils/syntax.json", "utf-8")),
@@ -21,9 +33,40 @@ import remarkTypography from "remark-typography";
 //   transformers: [transformerNotationHighlight()],
 // };
 
+// Function to get article metadata from MDX files (similar to entryMeta in the articles route)
+const getArticlesMeta = async (): Promise<ArticleMeta[]> => {
+  // This is a simplified version that will be updated at build time
+  const articles: ArticleMeta[] = [];
+  // We'll use globby or similar at build time to collect real data
+  return articles;
+};
+
 // https://vitejs.dev/config/
 export default defineConfig(async (): Promise<UserConfig> => {
   const mdx = await import("@mdx-js/rollup");
+
+  // Get the site URL from environment or use a default
+  const siteUrl = process.env.SITE_URL || "https://graz.io";
+
+  // Define channel configuration for RSS
+  const channel: Channel = {
+    title: "Sebastian Graz · Articles",
+    description: "Independent design consultancy focused on branding, digital design and beautiful implementation.",
+    link: siteUrl,
+    language: "en",
+    ttl: 60,
+    copyright: `© ${new Date().getFullYear()} Sebastian Graz`,
+    image: {
+      url: `${siteUrl}/og.png`,
+      title: "Sebastian Graz · Articles",
+      link: siteUrl,
+    },
+    generator: true,
+  };
+
+  // Generate RSS items from articles
+  const items: Item[] = await generateRssItems(siteUrl);
+
   return {
     plugins: [
       TanStackRouterVite({ target: "react", autoCodeSplitting: true }),
@@ -58,6 +101,15 @@ export default defineConfig(async (): Promise<UserConfig> => {
             w: "1800",
           });
         },
+      }),
+
+      // RSS feed configuration
+      rssPlugin({
+        channel,
+        // Use define mode with pre-generated items
+        mode: "define",
+        items,
+        fileName: "rss.xml",
       }),
     ],
     resolve: {

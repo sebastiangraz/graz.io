@@ -13,7 +13,6 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
 import { Route as ArticlesIndexImport } from './routes/articles/index'
-import { Route as RssXmlImport } from './routes/rss.xml'
 import { Route as ArticlesArticleIdImport } from './routes/articles/$articleId'
 
 // Create/Update Routes
@@ -27,12 +26,6 @@ const IndexRoute = IndexImport.update({
 const ArticlesIndexRoute = ArticlesIndexImport.update({
   id: '/articles/',
   path: '/articles/',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const RssXmlRoute = RssXmlImport.update({
-  id: '/rss/xml',
-  path: '/rss/xml',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -60,13 +53,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ArticlesArticleIdImport
       parentRoute: typeof rootRoute
     }
-    '/rss/xml': {
-      id: '/rss/xml'
-      path: '/rss/xml'
-      fullPath: '/rss/xml'
-      preLoaderRoute: typeof RssXmlImport
-      parentRoute: typeof rootRoute
-    }
     '/articles/': {
       id: '/articles/'
       path: '/articles'
@@ -82,14 +68,12 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/articles/$articleId': typeof ArticlesArticleIdRoute
-  '/rss/xml': typeof RssXmlRoute
   '/articles': typeof ArticlesIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/articles/$articleId': typeof ArticlesArticleIdRoute
-  '/rss/xml': typeof RssXmlRoute
   '/articles': typeof ArticlesIndexRoute
 }
 
@@ -97,30 +81,27 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/articles/$articleId': typeof ArticlesArticleIdRoute
-  '/rss/xml': typeof RssXmlRoute
   '/articles/': typeof ArticlesIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/articles/$articleId' | '/rss/xml' | '/articles'
+  fullPaths: '/' | '/articles/$articleId' | '/articles'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/articles/$articleId' | '/rss/xml' | '/articles'
-  id: '__root__' | '/' | '/articles/$articleId' | '/rss/xml' | '/articles/'
+  to: '/' | '/articles/$articleId' | '/articles'
+  id: '__root__' | '/' | '/articles/$articleId' | '/articles/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArticlesArticleIdRoute: typeof ArticlesArticleIdRoute
-  RssXmlRoute: typeof RssXmlRoute
   ArticlesIndexRoute: typeof ArticlesIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArticlesArticleIdRoute: ArticlesArticleIdRoute,
-  RssXmlRoute: RssXmlRoute,
   ArticlesIndexRoute: ArticlesIndexRoute,
 }
 
@@ -136,7 +117,6 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/articles/$articleId",
-        "/rss/xml",
         "/articles/"
       ]
     },
@@ -145,9 +125,6 @@ export const routeTree = rootRoute
     },
     "/articles/$articleId": {
       "filePath": "articles/$articleId.tsx"
-    },
-    "/rss/xml": {
-      "filePath": "rss.xml.ts"
     },
     "/articles/": {
       "filePath": "articles/index.tsx"

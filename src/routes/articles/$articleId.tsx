@@ -13,25 +13,6 @@ import { formatDistanceToNow } from "date-fns";
 import { Helmet } from "react-helmet-async";
 import { ScrollToTop } from "@/components/ScrollToTop";
 
-// SVG for RSS icon
-const RSSIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="14"
-    height="14"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M4 11a9 9 0 0 1 9 9" />
-    <path d="M4 4a16 16 0 0 1 16 16" />
-    <circle cx="5" cy="19" r="1" />
-  </svg>
-);
-
 function PostErrorComponent({ error }: ErrorComponentProps) {
   return (
     <Layout>
@@ -85,24 +66,6 @@ export function PostComponent() {
             ← All articles
           </AppLink>
           {dateText && <div>{dateText}</div>}
-          <a
-            href="/rss.xml"
-            title="Subscribe via RSS"
-            target="_blank"
-            rel="noopener noreferrer"
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: "5px",
-              color: "textDim",
-              textDecoration: "none",
-              "&:hover": {
-                color: "text",
-              },
-            }}
-          >
-            <RSSIcon /> RSS
-          </a>
         </div>
       </div>
       <MDXProvider components={components}>

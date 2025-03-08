@@ -15,6 +15,7 @@ export { Logo } from "./Logo";
 export { MouseTracker } from "./MouseTracker";
 export { Navigation } from "./Navigation";
 export { NumberedList } from "./NumberedList";
+export { RSSLink } from "./RSSLink";
 export { ScrollDown } from "./ScrollDown";
 export { ScrollToTop } from "./ScrollToTop";
 export { Tooltip } from "./Tooltip";

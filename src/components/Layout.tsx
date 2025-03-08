@@ -3,6 +3,7 @@ import "@/base.css";
 import { ReactNode } from "react";
 import { ThemeUIProvider, Theme } from "theme-ui";
 import theme from "@/theme";
+import { Helmet } from "react-helmet-async";
 
 interface LayoutProps {
   children: ReactNode;
@@ -11,6 +12,9 @@ interface LayoutProps {
 export const Layout = ({ children }: LayoutProps) => {
   return (
     <ThemeUIProvider theme={theme as Theme}>
+      <Helmet>
+        <link rel="alternate" type="application/rss+xml" title="Sebastian Graz's Blog RSS Feed" href="/rss.xml" />
+      </Helmet>
       <div
         sx={{
           "--margin": ["minmax(0rem, 1fr)"],

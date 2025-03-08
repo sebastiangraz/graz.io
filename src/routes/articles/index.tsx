@@ -2,7 +2,7 @@
 
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { Layout, Link, Logo } from "@/components";
+import { Layout, Link, Logo, RSSLink } from "@/components";
 import { getPrevPathFromExtension } from "@/utils/helpers";
 import style from "@/routes/articles/articles.module.css";
 import { formatDistanceToNow } from "date-fns";
@@ -151,6 +151,9 @@ function RouteComponent() {
               </motion.li>
             );
           })}
+          <div sx={{ display: "flex", marginTop: "4rem", justifyContent: "center", fontSize: "4" }}>
+            <RSSLink />
+          </div>
         </motion.ul>
       </div>
     </Layout>

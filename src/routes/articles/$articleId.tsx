@@ -3,7 +3,7 @@
 import { ErrorComponent, createFileRoute } from "@tanstack/react-router";
 import { entryMeta } from "@/routes/articles";
 import type { ErrorComponentProps } from "@tanstack/react-router";
-import { EmailLink, Layout, Logo, Link as AppLink } from "@/components";
+import { EmailLink, Layout, Logo, Link as AppLink, RSSLink } from "@/components";
 import { Img } from "@/pages/articles/Img";
 import { Heading, Paragraph } from "theme-ui";
 import { MDXProvider } from "@mdx-js/react";
@@ -100,11 +100,12 @@ const components = {
       <div
         sx={{
           display: "flex",
+          flexDirection: ["column", "row"],
           justifyContent: "space-between",
-          columnGap: "2rem",
+          gap: "2rem",
           gridColumn: "3/13",
           marginBottom: "2rem",
-          textAlign: "center",
+          textAlign: ["left", "center"],
           padding: "2rem 0",
           "& > *": {
             fontSize: "12px",
@@ -120,9 +121,12 @@ const components = {
         <AppLink to="/articles" sx={{}}>
           ← All articles
         </AppLink>
-        <EmailLink sx={{ textDecoration: "none" }} string="hi@graz.io">
-          Email
-        </EmailLink>
+        <div sx={{ display: "flex", gap: "2rem", justifyContent: "space-between" }}>
+          <RSSLink />
+          <EmailLink sx={{ textDecoration: "none" }} string="hi@graz.io">
+            Email
+          </EmailLink>
+        </div>
       </div>
     </div>
   ),

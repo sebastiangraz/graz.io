@@ -106,6 +106,7 @@ export const EmailSignup = ({ placeholder = "Enter your email", cta = "Subscribe
             all: "unset",
             gridArea: "1/1",
             cursor: "text",
+            backgroundColor: "var(--theme-ui-colors-background)",
             boxShadow: error
               ? "0 0 0 1px var(--theme-ui-colors-textDim) inset"
               : "0 0 0 1px color-mix(in srgb, var(--theme-ui-colors-text) 12%, transparent) inset",

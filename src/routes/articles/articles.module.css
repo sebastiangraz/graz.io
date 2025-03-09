@@ -57,6 +57,7 @@
   grid-column: bleedstart/bleedend;
   gap: 1.5rem 0;
   & > * {
+    /* text-box: trim-end text alphabetic; */
     grid-column: 3/13;
     @media (--2) {
       grid-column: 5/11;
@@ -99,6 +100,7 @@
   & > small {
     font-size: 14px;
     color: var(--theme-ui-colors-textDim);
+    text-wrap: balance;
   }
 
   & > :is(h1, h2, h3, h4, h5, h6) {

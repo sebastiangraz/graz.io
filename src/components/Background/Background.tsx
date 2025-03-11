@@ -15,19 +15,21 @@ export const Background = ({ variant = "none", children, ...props }: BackgroundP
           backgroundImage:
             "linear-gradient(to right, rgba(127, 127, 127, 0.1) 1px, transparent 1px), " +
             "linear-gradient(to bottom, rgba(127, 127, 127, 0.1) 1px, transparent 1px)",
-          backgroundSize: "1rlh 1rlh, 1rlh 1rlh",
-          backgroundPosition: "0 0, 0 0",
+          backgroundSize: "calc(100%/48) 1rlh, calc(100%/48) 1rlh",
+          backgroundPosition: "calc(100%/48) 0, calc(100%/48) 0",
           backgroundAttachment: "scroll",
         };
       case "dots":
         return {
           backgroundImage: "radial-gradient(rgba(127, 127, 127, 0.12) 1px, transparent 1px)",
           backgroundSize: "4px 4px",
+          backgroundPosition: "center 0",
         };
       case "lines":
         return {
           backgroundImage: "linear-gradient(to bottom, rgba(127, 127, 127, 0.1) 1px, transparent 1px)",
           backgroundSize: "14px 14px",
+          backgroundPosition: "center 0",
         };
       default:
         return {};

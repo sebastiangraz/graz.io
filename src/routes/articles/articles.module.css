@@ -55,9 +55,8 @@
   display: grid;
   grid-template-columns: subgrid;
   grid-column: bleedstart/bleedend;
-  gap: 1.5rem 0;
+  gap: 2rlh 0;
   & > * {
-    /* text-box: trim-end text alphabetic; */
     grid-column: 3/13;
     @media (--2) {
       grid-column: 5/11;
@@ -67,6 +66,7 @@
   & > img {
     width: 100%;
     grid-column: 3/13;
+    aspect-ratio: var(--picture-w) / var(--picture-h);
     @media (--2) {
       grid-column: 5/11;
     }
@@ -78,10 +78,22 @@
     margin: 4rem -1rem;
   }
 
-  & > :is(p, ul, ol, a, pre, aside) {
-    font-size: 18px;
+  & > :is(p, ul, ol, a, pre) {
+    /* font-size: 1rlh; */
+    font-size: 17px;
     text-wrap: pretty;
+    line-height: 2rlh;
+    /* margin-block-end: 2rlh; */
     color: var(--theme-ui-colors-textDim);
+  }
+
+  & > :is(h1, h2, h3, h4, h5, h6) {
+    /* margin-block-end: 1rlh; */
+    text-box: cap alphabetic;
+    height: 1rlh;
+    line-height: 2rlh;
+    margin-block-start: 2rlh;
+    margin-block-end: 1rlh;
   }
 
   :global code:not(.shiki code) {
@@ -103,11 +115,6 @@
     text-wrap: balance;
   }
 
-  & > :is(h1, h2, h3, h4, h5, h6) {
-    margin-bottom: 0.25rem;
-    margin-top: 2rem;
-  }
-
   mark {
     font-variant: all-small-caps tabular-nums;
     background: transparent;
@@ -121,7 +128,7 @@
     border: 0;
     min-width: 1px;
     min-height: 1px;
-    margin: 1rem 0;
+    margin: 1rlh 0;
     grid-column: bleedstart/bleedend;
   }
   ul {
@@ -160,12 +167,14 @@
     height: auto;
     grid-row: span 1;
     gap: 0.5em 0;
-    font-size: 14px;
+    font-size: 0.88rlh;
     text-wrap: balance;
-
+    line-height: 1.5rlh;
+    color: var(--theme-ui-colors-textDim);
     & * {
       color: inherit;
       font-size: inherit;
+      line-height: inherit;
     }
 
     @media (--2) {

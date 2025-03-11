@@ -74,7 +74,7 @@ export default {
   },
   breakpoints: ["38em", "68em", "90em"],
   lineHeights: {
-    body: 1.6,
+    body: 1.8,
     lead: 1.45,
     heading: 1.1,
   },

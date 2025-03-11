@@ -13,9 +13,9 @@ export const Background = ({ variant = "none", children, ...props }: BackgroundP
       case "grid":
         return {
           backgroundImage:
-            "linear-gradient(to right, rgba(127, 127, 127, 0.06) 1px, transparent 1px), " +
+            "linear-gradient(to right, rgba(127, 127, 127, 0.08) 1px, transparent 1px), " +
             "linear-gradient(to bottom, rgba(127, 127, 127, 0.06) 1px, transparent 1px)",
-          backgroundSize: "2rem 2rem",
+          backgroundSize: "calc(100% / 24) 1rlh, calc(100% / 24) 2rlh",
         };
       case "dots":
         return {
@@ -43,9 +43,9 @@ export const Background = ({ variant = "none", children, ...props }: BackgroundP
         // gap: "1.5rem 0",
         // padding: "1.5rem",
 
-        margin: "4rem 0",
+        margin: "4rlh 0",
         // boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.066) inset, 0 0 28px 0 rgba(0, 0, 0, 0.03) inset",
-        padding: "4rem 0",
+        padding: "4rlh 0",
         backgroundColor: "background",
         ...getBackgroundStyle(),
         ...props.sx,

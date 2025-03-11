@@ -103,7 +103,7 @@ const components = {
           display: "flex",
           flexDirection: ["column", "row"],
           justifyContent: "space-between",
-          gap: "2rem",
+          gap: "1rlh",
           gridColumn: "3/13",
           marginBottom: "2rem",
           textAlign: ["left", "center"],

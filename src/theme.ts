@@ -88,7 +88,7 @@ export default {
   colors: colors,
   text: {
     default: {
-      fontSize: [5, 5, 5, 6],
+      fontSize: [5, 5, 5, 5],
       fontWeight: 400,
       fontFamily: "body",
       lineHeight: "body",

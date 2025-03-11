@@ -2,6 +2,58 @@ import style from "./img.module.css";
 import { getImageForArticle } from "./imports";
 import { useState, useEffect, useRef } from "react";
 
+// Custom hook for quantizing height to line height
+const useQuantizedHeight = (width: number, height: number) => {
+  const [quantizedHeight, setQuantizedHeight] = useState<string | null>(null);
+  const elementRef = useRef<HTMLElement>(null);
+
+  const calculateQuantizedHeight = (containerWidth: number) => {
+    if (!width || !height) return null;
+
+    const aspectRatio = width / height;
+    const calculatedHeight = containerWidth / aspectRatio;
+
+    // Get document root font size (which equals the line height in this case)
+    const lineHeight = parseFloat(getComputedStyle(document.documentElement).fontSize);
+
+    // Round to the nearest line height
+    const roundedHeight = Math.round(calculatedHeight / lineHeight) * lineHeight;
+
+    return `${roundedHeight}px`;
+  };
+
+  useEffect(() => {
+    if (!elementRef.current) return;
+
+    const element = elementRef.current;
+
+    const updateHeight = () => {
+      const containerWidth = element.clientWidth;
+      if (containerWidth > 0) {
+        const newHeight = calculateQuantizedHeight(containerWidth);
+        if (newHeight) {
+          setQuantizedHeight(newHeight);
+        }
+      }
+    };
+
+    const resizeObserver = new ResizeObserver(() => {
+      requestAnimationFrame(updateHeight);
+    });
+
+    resizeObserver.observe(element);
+
+    // Initial calculation
+    updateHeight();
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [width, height]);
+
+  return { quantizedHeight, elementRef };
+};
+
 interface ImgProps {
   src: string;
   onLoad?: (e: React.SyntheticEvent<HTMLImageElement, Event>) => void;
@@ -22,8 +74,6 @@ export const Img = ({
   onLoad,
 }: ImgProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [quantizedHeight, setQuantizedHeight] = useState<string | null>(null);
-  const pictureRef = useRef<HTMLPictureElement>(null);
 
   if (!src) return null;
 
@@ -42,48 +92,13 @@ export const Img = ({
     full ? "full" : ""
   } ${browserBorder ? style.browserBorder : ""} ${className} ${isLoaded ? style.loaded : style.loading}`;
 
-  const calculateQuantizedHeight = (containerWidth: number) => {
-    if (!pngData?.width || !pngData?.height) return null;
-
-    const aspectRatio = pngData.width / pngData.height;
-    const calculatedHeight = containerWidth / aspectRatio;
-
-    // Get line height in pixels - fixed to 16px if we can't determine it
-    const computedStyle = getComputedStyle(document.documentElement);
-    const fontSize = parseFloat(computedStyle.fontSize);
-    // Use 1rem as the default line height since our :root has line-height: 1
-    const lineHeight = fontSize;
-
-    // Round to the nearest line height
-    const roundedHeight = Math.round(calculatedHeight / lineHeight) * lineHeight;
-    console.log({
-      containerWidth,
-      aspectRatio,
-      calculatedHeight,
-      fontSize,
-      lineHeight,
-      roundedHeight,
-    });
-
-    return `${roundedHeight}px`;
-  };
+  // Use our custom hook
+  const { quantizedHeight, elementRef } = useQuantizedHeight(pngData?.width || 0, pngData?.height || 0);
 
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     setIsLoaded(true);
     if (onLoad) {
       onLoad(e);
-    }
-
-    // Get the current container width and calculate quantized height
-    const img = e.currentTarget;
-    const container = img.parentElement;
-
-    if (container) {
-      const containerWidth = container.clientWidth;
-      const newHeight = calculateQuantizedHeight(containerWidth);
-      if (newHeight) {
-        setQuantizedHeight(newHeight);
-      }
     }
   };
 
@@ -91,45 +106,12 @@ export const Img = ({
   const width = pngData?.width || 0;
   const height = pngData?.height || 0;
 
-  // Immediate calculation based on natural dimensions for initial render
-  // This ensures we have a reasonable height before the image loads
-  const initialHeight = width && height ? calculateQuantizedHeight(Math.min(width, window?.innerWidth || width)) : null;
-
-  // Set initial height if not already set
-  useEffect(() => {
-    if (!quantizedHeight && initialHeight) {
-      setQuantizedHeight(initialHeight);
-    }
-  }, [initialHeight, quantizedHeight]);
-
-  // Add resize observer effect
-  useEffect(() => {
-    if (!pictureRef.current) return;
-
-    const picture = pictureRef.current;
-
-    const updateHeight = () => {
-      const containerWidth = picture.clientWidth;
-      if (containerWidth > 0) {
-        const newHeight = calculateQuantizedHeight(containerWidth);
-        if (newHeight) {
-          setQuantizedHeight(newHeight);
-        }
-      }
-    };
-
-    const resizeObserver = new ResizeObserver(() => {
-      requestAnimationFrame(updateHeight);
-    });
-    resizeObserver.observe(picture);
-
-    // Initial calculation - important for first render
-    updateHeight();
-
-    return () => {
-      resizeObserver.disconnect();
-    };
-  }, [pngData]);
+  const pictureStyle = {
+    "--picture-w": width,
+    "--picture-h": height,
+    height: quantizedHeight || "auto",
+    display: "block", // Ensure proper layout flow
+  } as React.CSSProperties;
 
   if (isSvg) {
     return (
@@ -143,18 +125,7 @@ export const Img = ({
     );
   } else {
     return (
-      <picture
-        ref={pictureRef}
-        className={classNames}
-        style={
-          {
-            "--picture-w": width,
-            "--picture-h": height,
-            height: quantizedHeight || "auto",
-            display: "block", // Ensure proper layout flow
-          } as React.CSSProperties
-        }
-      >
+      <picture ref={elementRef} className={classNames} style={pictureStyle}>
         {avifData?.src && <source srcSet={avifData?.src} type="image/avif" />}
         <img
           loading="lazy"

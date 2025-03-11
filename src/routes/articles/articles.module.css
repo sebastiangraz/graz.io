@@ -64,9 +64,9 @@
   }
   & > picture,
   & > img {
-    --container-width: 100%;
+    margin: 0.5rlh auto;
     grid-column: 3/13;
-    width: var(--container-width);
+    width: 100%;
     aspect-ratio: var(--picture-w) / var(--picture-h);
     @media (--2) {
       grid-column: 5/11;
@@ -81,7 +81,7 @@
 
   & > :is(p, ul, ol, a, pre) {
     /* font-size: 1rlh; */
-    font-size: 17px;
+    font-size: 20px;
     text-wrap: pretty;
     line-height: 2rlh;
     /* margin-block-end: 2rlh; */
@@ -173,6 +173,7 @@
     line-height: 1.5rlh;
     color: var(--theme-ui-colors-textDim);
     & * {
+      text-box: cap alphabetic;
       color: inherit;
       font-size: inherit;
       line-height: inherit;

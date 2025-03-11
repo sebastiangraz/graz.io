@@ -24,6 +24,7 @@ export const Img = ({
   browserBorder = false,
   full = false,
   onLoad,
+  ignoreShadow = true,
 }: ImgProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -51,6 +52,11 @@ export const Img = ({
     }
   };
 
+  // Calculate aspect ratio values
+  const width = pngData?.width || 0;
+  const height = pngData?.height || 0;
+  const aspectRatio = width / height;
+
   if (isSvg) {
     return (
       <img
@@ -65,7 +71,14 @@ export const Img = ({
     return (
       <picture
         className={classNames}
-        style={{ "--picture-w": pngData?.width, "--picture-h": pngData?.height } as React.CSSProperties}
+        style={
+          {
+            "--picture-w": width,
+            "--picture-h": height,
+            "--quantized-height": `round(up, calc(var(--container-width) / 1.1), 2rlh)`,
+            height: "var(--quantized-height)",
+          } as React.CSSProperties
+        }
       >
         {avifData?.src && <source srcSet={avifData?.src} type="image/avif" />}
         <img
@@ -75,7 +88,13 @@ export const Img = ({
           width={pngData?.width}
           height={pngData?.height}
           onLoad={handleImageLoad}
-          style={{ opacity: isLoaded ? 1 : 0, transition: "opacity 0.3s ease" }}
+          style={{
+            opacity: isLoaded ? 1 : 0,
+            transition: "opacity 0.3s ease",
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+          }}
         />
       </picture>
     );

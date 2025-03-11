@@ -15,7 +15,9 @@ export const Background = ({ variant = "none", children, ...props }: BackgroundP
           backgroundImage:
             "linear-gradient(to right, rgba(127, 127, 127, 0.08) 1px, transparent 1px), " +
             "linear-gradient(to bottom, rgba(127, 127, 127, 0.06) 1px, transparent 1px)",
-          backgroundSize: "calc(100% / 24) 1rlh, calc(100% / 24) 2rlh",
+          backgroundSize: "2rlh 2rlh, 2rlh 2rlh",
+          backgroundPosition: "0 0, 0 0",
+          backgroundAttachment: "scroll",
         };
       case "dots":
         return {

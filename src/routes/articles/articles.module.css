@@ -64,8 +64,9 @@
   }
   & > picture,
   & > img {
-    width: 100%;
+    --container-width: 100%;
     grid-column: 3/13;
+    width: var(--container-width);
     aspect-ratio: var(--picture-w) / var(--picture-h);
     @media (--2) {
       grid-column: 5/11;

@@ -22,9 +22,10 @@ export const Background = ({ variant = "none", children, ...props }: BackgroundP
         };
       case "dots":
         return {
-          backgroundImage: "radial-gradient(rgba(0, 0, 0, 0.12) 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px)",
           backgroundSize: "4px 4px",
-          backgroundPosition: "center 0",
+          backgroundPosition: "center center",
+          backgroundRepeat: "round",
         };
       case "lines":
         return {

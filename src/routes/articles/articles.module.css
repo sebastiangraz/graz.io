@@ -76,7 +76,7 @@
   :global & > img.full {
     width: calc(100% + 1rem);
     grid-column: start/end;
-    margin: 4rem -1rem;
+    margin: 4.5rlh -1rem;
   }
 
   & > :is(p, ul, ol, a, pre) {
@@ -172,6 +172,7 @@
     text-wrap: balance;
     line-height: 1.5rlh;
     color: var(--theme-ui-colors-textDim);
+    margin: calc(0.5rlh + 0.22rlh) 0;
     & * {
       text-box: cap alphabetic;
       color: inherit;

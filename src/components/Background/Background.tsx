@@ -16,8 +16,8 @@ export const Background = ({ variant = "none", children, ...props }: BackgroundP
             "linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px), " +
             "linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px)",
           backgroundSize: ["1rlh 1rlh"],
-          backgroundPosition: ["calc(50% - 0.5rlh) 0"],
-          backgroundAttachment: "scroll",
+          backgroundRepeat: "round",
+          backgroundPosition: ["0 0"],
           boxShadow: "0 -1px 0 0 rgba(0, 0, 0, 0.04) inset, 0 -1px 0 0 var(--theme-ui-colors-background) inset",
         };
       case "dots":

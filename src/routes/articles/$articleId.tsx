@@ -7,6 +7,7 @@ import { EmailLink, Layout, Logo, Link as AppLink, RSSLink } from "@/components"
 import { Img } from "@/pages/articles/Img";
 import { Heading, Paragraph } from "theme-ui";
 import { MDXProvider } from "@mdx-js/react";
+import { Background } from "@/components/Background";
 
 import style from "@/routes/articles/articles.module.css";
 import { formatDistanceToNow } from "date-fns";
@@ -102,7 +103,7 @@ const components = {
           display: "flex",
           flexDirection: ["column", "row"],
           justifyContent: "space-between",
-          gap: "2rem",
+          gap: "1rlh",
           gridColumn: "3/13",
           marginBottom: "2rem",
           textAlign: ["left", "center"],
@@ -150,4 +151,5 @@ const components = {
   h5: (props: any) => <Heading variant="heading" {...props} />,
   h6: (props: any) => <Heading variant="heading" {...props} />,
   small: (props: any) => <small {...props} />,
+  Background: (props: any) => <Background {...props} />,
 };

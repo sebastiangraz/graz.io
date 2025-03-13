@@ -1,3 +1,4 @@
+export { Background } from "./Background";
 export { Carousel } from "./Carousel";
 export { Case } from "./Case";
 export { CaseHero, CaseHeroChild } from "./CaseHero";

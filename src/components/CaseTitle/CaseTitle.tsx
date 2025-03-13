@@ -104,7 +104,7 @@ export const CaseTitle = React.memo(({ name, activeCase }: { name: string; activ
               display: !isLastCase ? "inline-flex" : "none",
               transform: "translate(0px, -37.5%)",
               background: ["var(--caseForeground)", activeCase ? "transparent" : "var(--caseBackground)"],
-              lineHeight: "1",
+              lineHeight: "1.4",
               transition: "background 0.1s ease",
             }}
           >

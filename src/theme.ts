@@ -74,7 +74,7 @@ export default {
   },
   breakpoints: ["38em", "68em", "90em"],
   lineHeights: {
-    body: 1.6,
+    body: 1.8,
     lead: 1.45,
     heading: 1.1,
   },
@@ -88,7 +88,8 @@ export default {
   colors: colors,
   text: {
     default: {
-      fontSize: [5, 5, 5, 6],
+      // https://clamp.font-size.app - 400-1800 18-19
+      fontSize: "clamp(1.0625rem, 1.0446rem + 0.0714vw, 1.125rem)",
       fontWeight: 400,
       fontFamily: "body",
       lineHeight: "body",

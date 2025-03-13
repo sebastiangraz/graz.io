@@ -11,6 +11,10 @@ html {
   box-sizing: border-box;
 }
 
+:root {
+  line-height: 1;
+}
+
 @font-face {
   font-family: "G";
   font-display: swap;

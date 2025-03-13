@@ -41,7 +41,7 @@ export const Tooltip = ({ label, children }: TooltipProps) => {
       <AnimatePresence>
         {isOpen && (
           <Popover.Portal forceMount>
-            <Popover.Content asChild side="top" align="center" sideOffset={5} forceMount>
+            <Popover.Content asChild side="top" align="center" sideOffset={11} forceMount>
               <motion.div
                 initial={{ opacity: 0, y: 4, x: "-50%" }}
                 animate={{ opacity: 1, y: 0, x: "-50%" }}
@@ -66,7 +66,7 @@ export const Tooltip = ({ label, children }: TooltipProps) => {
                   touchAction: "none",
                 }}
               >
-                <Box sx={{ fontSize: 5, color: "textDim", a: { color: "text" } }}>{children}</Box>
+                <Box sx={{ fontSize: 4, lineHeight: "1.5", color: "textDim", a: { color: "text" } }}>{children}</Box>
                 <Popover.Arrow
                   style={{
                     fill: "#fff",

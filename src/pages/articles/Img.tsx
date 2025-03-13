@@ -12,9 +12,10 @@ const useQuantizedHeight = (width: number, height: number) => {
 
     const aspectRatio = width / height;
     const calculatedHeight = containerWidth / aspectRatio;
+    const stepSize = 2; // 1 = 0.5rlh
 
     // Get document root font size (which equals the line height in this case)
-    const lineHeight = parseFloat(getComputedStyle(document.documentElement).fontSize);
+    const lineHeight = parseFloat(getComputedStyle(document.documentElement).fontSize) * stepSize;
 
     // Round to the nearest line height
     const roundedHeight = Math.round(calculatedHeight / lineHeight) * lineHeight;

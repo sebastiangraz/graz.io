@@ -117,7 +117,7 @@ const Home = () => {
       >
         <div>
           <Text variant="label" mb={5}>
-            <Text variant="caps" mb={6}>
+            <Text variant="caps" mb={5}>
               Expertise
             </Text>
             <List
@@ -126,7 +126,7 @@ const Home = () => {
                 fontSize: [4, 5, 4, 5],
                 color: "textDim",
                 "&& > *": {
-                  mb: "0.68em",
+                  mb: "0.5em",
                 },
               }}
             >
@@ -141,7 +141,7 @@ const Home = () => {
         </div>
         <div>
           <Text variant="label" mb={5}>
-            <Text variant="caps" mb={6}>
+            <Text variant="caps" mb={5}>
               Recognitions
             </Text>
             <List
@@ -151,7 +151,7 @@ const Home = () => {
                 fontSize: [4, 5, 4, 5],
                 color: "textDim",
                 "&& > *": {
-                  mb: "0.68em",
+                  mb: "0.5em",
                   whiteSpace: "pre",
                 },
               }}
@@ -170,7 +170,7 @@ const Home = () => {
 
         <div sx={{ order: [-1, 0] }}>
           <Text variant="label" mb={5}>
-            <Text variant="caps" mb={6}>
+            <Text variant="caps" mb={5}>
               Associations
             </Text>
             <List
@@ -180,7 +180,7 @@ const Home = () => {
                 fontSize: [4, 5, 4, 5],
                 color: "textDim",
                 "&& > *": {
-                  mb: "0.68em",
+                  mb: "0.5em",
                 },
               }}
             >
@@ -197,7 +197,7 @@ const Home = () => {
       <div sx={{ gridArea: "intro" }}>
         <div
           sx={{
-            maxWidth: ["40ch", "42ch", "38ch", "32ch"],
+            maxWidth: ["40ch", "42ch", "38ch", "34ch"],
           }}
         >
           <Text

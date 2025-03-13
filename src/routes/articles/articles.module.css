@@ -64,7 +64,7 @@
   }
   & > picture,
   & > img {
-    margin: 0.5rlh auto;
+    margin: 1rlh auto;
     grid-column: 3/13;
     width: 100%;
     aspect-ratio: var(--picture-w) / var(--picture-h);
@@ -76,12 +76,10 @@
   :global & > img.full {
     width: calc(100% + 1rem);
     grid-column: start/end;
-    margin: 4.5rlh -1rem;
+    margin: 5rlh -1rem;
   }
 
   & > :is(p, ul, ol, a, pre) {
-    /* font-size: 1rlh; */
-    font-size: 20px;
     text-wrap: pretty;
     line-height: 2rlh;
     /* margin-block-end: 2rlh; */
@@ -91,10 +89,10 @@
   & > :is(h1, h2, h3, h4, h5, h6) {
     /* margin-block-end: 1rlh; */
     text-box: cap alphabetic;
-    height: 1rlh;
+    min-height: 1rlh;
     line-height: 2rlh;
-    margin-block-start: 2rlh;
-    margin-block-end: 1rlh;
+    /* margin-block-start: 2rlh; */
+    margin-block-end: 0;
   }
 
   :global code:not(.shiki code) {
@@ -136,15 +134,15 @@
     padding-left: 0rem;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0.5rlh;
   }
   ul ul {
     list-style-position: outside;
     padding-left: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    margin-top: 8px;
+    gap: 0.5rlh;
+    margin-top: 0.5rlh;
   }
   li {
     text-wrap: pretty;
@@ -168,16 +166,19 @@
     height: auto;
     grid-row: span 1;
     gap: 0.5em 0;
-    font-size: 0.88rlh;
+    font-size: 0.75rlh;
     text-wrap: balance;
     line-height: 1.5rlh;
+    min-height: 1rlh;
     color: var(--theme-ui-colors-textDim);
-    margin: calc(0.5rlh + 0.22rlh) 0;
+    /* margin: calc(0.25rlh) 0; */
     & * {
-      text-box: cap alphabetic;
+      /* text-box: cap alphabetic; */
       color: inherit;
       font-size: inherit;
       line-height: inherit;
+      /* top: calc(0.25rlh); */
+      position: relative;
     }
 
     @media (--2) {

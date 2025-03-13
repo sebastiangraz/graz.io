@@ -19,12 +19,13 @@ export const Layout = ({ children }: LayoutProps) => {
         sx={{
           "--margin": ["minmax(0rem, 1fr)"],
           "--max-width": ["1800px"],
+          "--columnSize": "calc(var(--max-width) / 12)",
           display: "grid",
           gridTemplateColumns: `
             [bleedstart] 
               var(--margin) 
                 [start] 
-                  repeat( 12, minmax(0, calc(var(--max-width) / 12)) )
+                  repeat( 12, minmax(0, var(--columnSize)))
                 [end] 
               var(--margin)
             [bleedend]`,

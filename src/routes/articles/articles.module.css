@@ -75,9 +75,9 @@
   }
   :global & > picture.full,
   :global & > img.full {
-    width: calc(100% + 1rem);
+    width: 100%;
     grid-column: start/end;
-    margin: 5rlh -1rem;
+    margin: 5rlh 0;
   }
 
   & > :is(p, ul, ol, a, pre) {

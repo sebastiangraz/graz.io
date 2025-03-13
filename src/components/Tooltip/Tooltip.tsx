@@ -66,7 +66,7 @@ export const Tooltip = ({ label, children }: TooltipProps) => {
                   touchAction: "none",
                 }}
               >
-                <Box sx={{ fontSize: 5, color: "textDim", a: { color: "text" } }}>{children}</Box>
+                <Box sx={{ fontSize: 4, lineHeight: "1.5", color: "textDim", a: { color: "text" } }}>{children}</Box>
                 <Popover.Arrow
                   style={{
                     fill: "#fff",

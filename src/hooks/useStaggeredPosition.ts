@@ -39,7 +39,7 @@ export const useStaggeredPosition = ({
     return transform(
       progress,
       [-position(0), -position(1), height(1) - windowHeight],
-      [0, staggeredOffset, staggeredOffset - settings.nextScrollDistance]
+      [0, staggeredOffset, staggeredOffset - settings.nextScrollDistance],
     );
   };
 

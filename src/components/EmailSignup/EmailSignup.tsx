@@ -7,10 +7,6 @@ interface EmailSignupProps {
   cta?: string;
 }
 
-function generateId(cta: string) {
-  return cta.toLowerCase().replace(/ /g, "-");
-}
-
 export const EmailSignup = ({ placeholder = "Enter your email", cta = "Subscribe" }: EmailSignupProps) => {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -78,7 +74,7 @@ export const EmailSignup = ({ placeholder = "Enter your email", cta = "Subscribe
   };
 
   return (
-    <Box id={generateId(cta)}>
+    <Box>
       <form
         name="email-signup"
         method="POST"

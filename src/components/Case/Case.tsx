@@ -82,7 +82,7 @@ export const Case = React.memo(
       }
 
       // Wait for a moment to ensure context is updated
-      setTimeout(() => {
+      document.fonts.ready.then(function () {
         // Get the most accurate position using the latest values from refs
         const currentPosition = currentPositionRef.current[index] || childPosition[index];
         const currentOffset = staggeredOffsetRef.current || staggeredOffset;
@@ -94,7 +94,7 @@ export const Case = React.memo(
 
         // Scroll immediately to the exact position without animation
         window.scrollTo(0, finalPosition);
-      }, 100); // Slight delay to ensure URL change completes
+      });
     };
     // -----CLICK TO SCROLLTO CASE-----
 

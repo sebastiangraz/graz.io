@@ -7,7 +7,6 @@ import { ScrollDown } from "@/components/ScrollDown";
 import { useThemeUI } from "theme-ui";
 import { CaseWrapperState } from "@/components/CaseWrapper";
 import { PropMapProps } from "@/utils/PropMap";
-import { useUpdateURL } from "@/hooks/useUpdateURL";
 import { useScrollToCaseOnMount } from "@/hooks/useScrollToCaseOnMount";
 import { useStaggeredPosition } from "@/hooks/useStaggeredPosition";
 import { useCaseWrapperContext } from "@/hooks/useCaseWrapperContext";
@@ -53,15 +52,7 @@ export const Case = React.memo(
       windowHeight,
     }) as useStaggeredPositionReturn;
 
-    useUpdateURL(slug, index);
-
     const handleClick = () => {
-      if (index !== 0) {
-        window.history.pushState(null, "", `/${slug}`);
-      } else {
-        window.history.pushState(null, "", "/");
-      }
-
       // scroll to top of case
       window.matchMedia(media_query).matches
         ? window.scrollTo({

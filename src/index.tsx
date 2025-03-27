@@ -4,7 +4,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useScrollRestoration } from "./hooks/useScrollRestoration";
+import { ScrollRestorationWrapper } from "./components/ScrollRestorationWrapper";
 
 // Import CSS files
 import "./base.css";
@@ -22,12 +22,6 @@ const router = createRouter({
   // Disable router's built-in scroll restoration since we're handling it manually
   scrollRestoration: false,
 });
-
-// Wrapper component to use the scroll restoration hook
-const ScrollRestorationWrapper = ({ children }: { children: React.ReactNode }) => {
-  useScrollRestoration();
-  return <>{children}</>;
-};
 
 // Register scroll restoration behavior
 ReactDOM.createRoot(document.getElementById("root")!).render(

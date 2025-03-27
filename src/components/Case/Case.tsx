@@ -1,5 +1,5 @@
 import style from "./Case.module.css";
-import React, { useMemo, useRef } from "react";
+import React, { useMemo, useRef, useEffect } from "react";
 import { m, MotionValue } from "framer-motion";
 import { CaseTitle } from "@/components/CaseTitle";
 import { useResponsiveValue } from "@theme-ui/match-media";
@@ -11,6 +11,7 @@ import { useScrollToCaseOnMount } from "@/hooks/useScrollToCaseOnMount";
 import { useStaggeredPosition } from "@/hooks/useStaggeredPosition";
 import { useCaseWrapperContext } from "@/hooks/useCaseWrapperContext";
 import { settings } from "@/hooks";
+import { useRouter } from "@tanstack/react-router";
 const media_query = "screen and (min-width:640px)";
 
 export const Case = React.memo(
@@ -27,8 +28,20 @@ export const Case = React.memo(
   }) => {
     const theme = useThemeUI() as any;
     const ref = useRef(null) as any;
+    const router = useRouter();
+
+    // Create refs to store the latest values
+    const currentPositionRef = useRef<number[]>([]);
+    const currentHeightRef = useRef<number[]>([]);
+    const staggeredOffsetRef = useRef<number>(0);
 
     const { childHeight, childPosition, windowHeight } = useCaseWrapperContext() as CaseWrapperState;
+
+    // Update refs whenever the values change
+    useEffect(() => {
+      currentPositionRef.current = childPosition;
+      currentHeightRef.current = childHeight;
+    }, [childPosition, childHeight]);
 
     const isMobile = useResponsiveValue([true, false]);
 
@@ -52,15 +65,36 @@ export const Case = React.memo(
       windowHeight,
     }) as useStaggeredPositionReturn;
 
+    // Keep the latest staggered offset value
+    useEffect(() => {
+      staggeredOffsetRef.current = staggeredOffset;
+    }, [staggeredOffset]);
+
     const handleClick = () => {
-      // scroll to top of case
-      window.matchMedia(media_query).matches
-        ? window.scrollTo({
-            top: childPosition[index] - (index !== 1 ? settings.nextScrollDistance : 0) + staggeredOffset,
-            left: 0,
-            behavior: "smooth",
-          })
-        : window.scrollTo(0, childPosition[index]);
+      // Update URL without page reload if slug exists
+      if (slug && slug !== "home") {
+        // Navigate to the case URL without a full page refresh
+        router.navigate({
+          to: "/$caseId",
+          params: { caseId: slug },
+          replace: false,
+        });
+      }
+
+      // Wait for a moment to ensure context is updated
+      setTimeout(() => {
+        // Get the most accurate position using the latest values from refs
+        const currentPosition = currentPositionRef.current[index] || childPosition[index];
+        const currentOffset = staggeredOffsetRef.current || staggeredOffset;
+
+        // Calculate final scroll position
+        const finalPosition = window.matchMedia(media_query).matches
+          ? currentPosition - (index !== 1 ? settings.nextScrollDistance : 0) + currentOffset
+          : currentPosition;
+
+        // Scroll immediately to the exact position without animation
+        window.scrollTo(0, finalPosition);
+      }, 100); // Slight delay to ensure URL change completes
     };
     // -----CLICK TO SCROLLTO CASE-----
 

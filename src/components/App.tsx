@@ -15,7 +15,7 @@ export const App = () => {
           content="Independent design consultancy focused on branding, digital design and beautiful implementation."
         />
       </Helmet>
-      <ScrollToTop />
+      <ScrollToTop clearURL />
       <CaseWrapper>{cases}</CaseWrapper>
     </>
   );

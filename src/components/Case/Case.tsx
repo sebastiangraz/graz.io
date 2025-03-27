@@ -56,11 +56,11 @@ export const Case = React.memo(
     useUpdateURL(slug, index);
 
     const handleClick = () => {
-      // if (index !== 0) {
-      //   window.history.pushState(null, "", `/${slug}`);
-      // } else {
-      //   window.history.pushState(null, "", "/");
-      // }
+      if (index !== 0) {
+        window.history.pushState(null, "", `/${slug}`);
+      } else {
+        window.history.pushState(null, "", "/");
+      }
 
       // scroll to top of case
       window.matchMedia(media_query).matches

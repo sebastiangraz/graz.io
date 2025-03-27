@@ -6,10 +6,10 @@ import { Text } from "theme-ui";
 import { Logo } from "..";
 
 type ScrollToTopProps = {
-  preventUrlChange?: boolean;
+  clearURL?: boolean;
 };
 
-export const ScrollToTop = ({ preventUrlChange = false }: ScrollToTopProps) => {
+export const ScrollToTop = ({ clearURL = false }: ScrollToTopProps) => {
   const { scrollY } = useScroll();
   const [show, setShow] = React.useState(false);
 
@@ -38,7 +38,7 @@ export const ScrollToTop = ({ preventUrlChange = false }: ScrollToTopProps) => {
       }}
     >
       <div
-        onClick={() => handleClick(preventUrlChange)}
+        onClick={() => handleClick(clearURL)}
         sx={{
           opacity: show ? 1 : 0,
           pointerEvents: show ? "all" : "none",
@@ -97,13 +97,13 @@ export const ScrollToTop = ({ preventUrlChange = false }: ScrollToTopProps) => {
   );
 };
 
-const handleClick = (preventUrlChange: boolean) => {
+const handleClick = (clearURL: boolean) => {
   window.scrollTo({
     top: 0,
     left: 0,
     behavior: "smooth",
   });
-  if (preventUrlChange) {
+  if (clearURL) {
     window.history.pushState("", "", "/");
   }
 };

@@ -11,11 +11,18 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as CaseIdImport } from './routes/$caseId'
 import { Route as IndexImport } from './routes/index'
 import { Route as ArticlesIndexImport } from './routes/articles/index'
 import { Route as ArticlesArticleIdImport } from './routes/articles/$articleId'
 
 // Create/Update Routes
+
+const CaseIdRoute = CaseIdImport.update({
+  id: '/$caseId',
+  path: '/$caseId',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
@@ -46,6 +53,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/$caseId': {
+      id: '/$caseId'
+      path: '/$caseId'
+      fullPath: '/$caseId'
+      preLoaderRoute: typeof CaseIdImport
+      parentRoute: typeof rootRoute
+    }
     '/articles/$articleId': {
       id: '/articles/$articleId'
       path: '/articles/$articleId'
@@ -67,12 +81,14 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$caseId': typeof CaseIdRoute
   '/articles/$articleId': typeof ArticlesArticleIdRoute
   '/articles': typeof ArticlesIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$caseId': typeof CaseIdRoute
   '/articles/$articleId': typeof ArticlesArticleIdRoute
   '/articles': typeof ArticlesIndexRoute
 }
@@ -80,27 +96,30 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/$caseId': typeof CaseIdRoute
   '/articles/$articleId': typeof ArticlesArticleIdRoute
   '/articles/': typeof ArticlesIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/articles/$articleId' | '/articles'
+  fullPaths: '/' | '/$caseId' | '/articles/$articleId' | '/articles'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/articles/$articleId' | '/articles'
-  id: '__root__' | '/' | '/articles/$articleId' | '/articles/'
+  to: '/' | '/$caseId' | '/articles/$articleId' | '/articles'
+  id: '__root__' | '/' | '/$caseId' | '/articles/$articleId' | '/articles/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CaseIdRoute: typeof CaseIdRoute
   ArticlesArticleIdRoute: typeof ArticlesArticleIdRoute
   ArticlesIndexRoute: typeof ArticlesIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CaseIdRoute: CaseIdRoute,
   ArticlesArticleIdRoute: ArticlesArticleIdRoute,
   ArticlesIndexRoute: ArticlesIndexRoute,
 }
@@ -116,12 +135,16 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/$caseId",
         "/articles/$articleId",
         "/articles/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/$caseId": {
+      "filePath": "$caseId.tsx"
     },
     "/articles/$articleId": {
       "filePath": "articles/$articleId.tsx"

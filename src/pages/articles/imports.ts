@@ -4,11 +4,21 @@ import type { OutputMetadata } from "@/types/blog";
 // In Vite's glob import, the metadata is returned as an array of format options
 type AssetMetadata = OutputMetadata[];
 
-const assetPaths = import.meta.glob<AssetMetadata>(`@/pages/articles/*/*.{jpg,jpeg,png,svg}`, {
-  query: { format: "avif;png", as: "meta:src;format;aspect;width;height" },
-  import: "default",
-  eager: true,
-});
+// Exclude *-og.{ext} — those are for meta tags only (see articleOgImage.ts), not <Img> metadata pipeline
+const assetPaths = import.meta.glob<AssetMetadata>(
+  [
+    `@/pages/articles/*/*.{jpg,jpeg,png,svg}`,
+    `!**/*-og.png`,
+    `!**/*-og.jpg`,
+    `!**/*-og.jpeg`,
+    `!**/*-og.webp`,
+  ],
+  {
+    query: { format: "avif;png", as: "meta:src;format;aspect;width;height" },
+    import: "default",
+    eager: true,
+  },
+);
 
 /**
  * Extract article slug and filename from a path

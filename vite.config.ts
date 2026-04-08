@@ -94,6 +94,10 @@ export default defineConfig(async (): Promise<UserConfig> => {
       }),
       svgrPlugin(),
       imagetools({
+        // Keep default public exclusion; also skip Open Graph assets (*-og.ext) so ?url resolves as plain Vite URLs
+        // (otherwise sharp/imagetools can throw on ?url + default directives when route modules load eagerly).
+        // id includes query (e.g. figleaf-og.png?url), so do not anchor at $
+        exclude: ["public/**/*", /\/[^/]*-og\.(png|jpe?g|webp)(\?|$)/i],
         defaultDirectives: () => {
           return new URLSearchParams({
             format: "webp;avif;original",

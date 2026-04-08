@@ -8,6 +8,9 @@ node_modules
 # production
 dist
 
+# vite dependency cache (see cacheDir in vite.config.ts)
+.vite
+
 # misc
 .yarn/*
 !.yarn/cache

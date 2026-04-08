@@ -1,0 +1,71 @@
+---
+title: Figleaf Keyboard Part One
+description: A small in-between log
+date: 2026-04-09
+---
+
+import { EmailLink } from "@/components/EmailLink/EmailLink";
+import { Faq, Question, Answer } from "@/pages/articles/FAQ";
+import { DefinitionTable } from "@/components/DefinitionTable/DefinitionTable";
+import { Text } from "theme-ui";
+import { Tooltip } from "@/components/Tooltip/Tooltip";
+import { EmailSignup } from "@/components/EmailSignup/EmailSignup";
+
+<Img src="figleaf-render-top.png" alt="Placeholder hero" full />
+
+<hr />
+<DefinitionTable
+  items={[
+    { term: "Status", description: "Work in progress" },
+    { term: "Type", description: "Wireless & split" },
+    { term: "Layout", description: "60% · Ortholinear" },
+    { term: "Switches", description: "Framework · OKM" },
+  ]}
+/>
+
+<hr />
+
+Last year I built <Link to="/articles/bayleaf-wireless-keyboard">Bayleaf</Link>, a wireless ergonomic keyboard from scratch. A personal end-game typea thing, so naturally I'm building another one, Figleaf. It's not done yet, but the design is far enough along that I wanted to share where it's at. A proper build log will follow.
+
+Like its predecessor, Figleaf is also wireless, split, low-profile, CNC machined, and all those things. But with a big difference, new OKM switches from Framework.
+
+<Img src="figleaf-render-split.png" alt="Figleaf" />
+<Img src="figleaf-render.png" alt="Figleaf" />
+<div
+  style={{
+    background: "var(--theme-ui-colors-text)",
+    padding: "2rlh 2rlh 2rlh 0",
+    display: "flex",
+    justifyContent: "center",
+    gridColumn: "bleedstart / bleedend",
+    gridTemplateColumns: "subgrid",
+  }}
+>
+  <Img src="figleaf-render-stacked.png" alt="Figleaf" style={{ height: "auto", gridColumn: "4 / 12" }} />
+</div>
+
+# Next steps
+
+- Replace placeholder images in `figleaf-teaser/`
+- Flesh out sections and FAQs
+- Update the email signup copy below when there is a real CTA
+
+<Background variant="dots">
+
+<small>
+  Get notified when the keyboard is available for purchase. Disclaimer: there is no definitive timeline. But having an
+  estimate of interest is helpful for me to plan ahead.
+</small>
+
+<EmailSignup placeholder="Enter your email" cta="Notify me" />
+
+</Background>
+
+# Socials
+
+- [Twitter/X](https://x.com/grazsebastian)
+- [Bluesky](https://bsky.app/profile/graz.io)
+- <Link to="/">Portfolio</Link>
+- <EmailLink string="hi@graz.io">
+    <a>Email</a>
+  </EmailLink>

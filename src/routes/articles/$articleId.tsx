@@ -13,6 +13,7 @@ import style from "@/routes/articles/articles.module.css";
 import { formatDistanceToNow } from "date-fns";
 import { Helmet } from "react-helmet-async";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { resolveArticleOgImageUrl } from "@/utils/articleOgImage";
 
 function PostErrorComponent({ error }: ErrorComponentProps) {
   return (
@@ -25,6 +26,7 @@ function PostErrorComponent({ error }: ErrorComponentProps) {
 export function PostComponent() {
   const post = Route.useLoaderData();
   const { Page } = post;
+  const ogImageUrl = resolveArticleOgImageUrl(post.id, post.og);
   const dateText =
     post.date && post.date instanceof Date && post.date.getTime() > 0
       ? formatDistanceToNow(post.date, { addSuffix: true })
@@ -36,6 +38,13 @@ export function PostComponent() {
         <meta name="description" content={post.description || `Article: ${post.title}`} />
         <meta property="og:title" content={`Sebastian Graz · ${post.title}`} />
         <meta property="og:description" content={post.description || `Article: ${post.title}`} />
+        {ogImageUrl && (
+          <>
+            <meta property="og:image" content={ogImageUrl} />
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:image" content={ogImageUrl} />
+          </>
+        )}
       </Helmet>
       <div className={`${style.meta}`}>
         <AppLink to="/" className={style.logo}>

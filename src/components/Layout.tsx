@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 import { ThemeUIProvider, Theme } from "theme-ui";
 import theme from "@/theme";
 import { Helmet } from "react-helmet-async";
+import { getSiteUrl } from "@/utils/siteUrl";
 
 interface LayoutProps {
   children: ReactNode;
@@ -14,6 +15,7 @@ export const Layout = ({ children }: LayoutProps) => {
     <ThemeUIProvider theme={theme as Theme}>
       <Helmet>
         <link rel="alternate" type="application/rss+xml" title="Sebastian Graz's Blog RSS Feed" href="/rss.xml" />
+        <meta property="og:image" content={`${getSiteUrl()}/og.png`} />
       </Helmet>
       <div
         sx={{

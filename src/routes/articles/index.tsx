@@ -29,6 +29,7 @@ export const entryMeta = globEntries.map(([url, module]) => {
     title: module.frontmatter?.title,
     description: module.frontmatter?.description,
     date: module.frontmatter?.date ? new Date(module.frontmatter.date) : new Date(0),
+    og: module.frontmatter?.og as string | undefined,
   };
 });
 

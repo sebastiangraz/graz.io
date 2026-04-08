@@ -6,13 +6,7 @@ type AssetMetadata = OutputMetadata[];
 
 // Exclude *-og.{ext} — those are for meta tags only (see articleOgImage.ts), not <Img> metadata pipeline
 const assetPaths = import.meta.glob<AssetMetadata>(
-  [
-    `@/pages/articles/*/*.{jpg,jpeg,png,svg}`,
-    `!**/*-og.png`,
-    `!**/*-og.jpg`,
-    `!**/*-og.jpeg`,
-    `!**/*-og.webp`,
-  ],
+  [`@/pages/articles/*/*.{jpg,jpeg,png,svg}`, `!**/*-og.png`, `!**/*-og.jpg`, `!**/*-og.jpeg`, `!**/*-og.webp`],
   {
     query: { format: "avif;png", as: "meta:src;format;aspect;width;height" },
     import: "default",
@@ -31,6 +25,16 @@ const extractPathInfo = (path: string): { slug: string; filename: string } => {
   };
 };
 
+// Flattened collection for backward compatibility
+export const allImagePaths = Object.entries(assetPaths).reduce(
+  (acc, [path, metadata]) => {
+    const { slug, filename } = extractPathInfo(path);
+    acc[`${slug}/${filename}`] = metadata;
+    return acc;
+  },
+  {} as Record<string, AssetMetadata>,
+);
+
 // Group assets by article slug for easier lookup
 export const articleAssets = Object.entries(assetPaths).reduce(
   (acc, [path, metadata]) => {
@@ -44,16 +48,6 @@ export const articleAssets = Object.entries(assetPaths).reduce(
     return acc;
   },
   {} as Record<string, Record<string, AssetMetadata>>,
-);
-
-// Flattened collection for backward compatibility
-export const allImagePaths = Object.entries(assetPaths).reduce(
-  (acc, [path, metadata]) => {
-    const { slug, filename } = extractPathInfo(path);
-    acc[`${slug}/${filename}`] = metadata;
-    return acc;
-  },
-  {} as Record<string, AssetMetadata>,
 );
 
 /**

@@ -10,7 +10,7 @@ const ImageRow = ({ children }: ImageRowProps) => {
 
   return (
     <div
-      className={style.row}
+      className={`${style.row} full`}
       style={{ "--image-row-count": count } as React.CSSProperties}
     >
       {children}

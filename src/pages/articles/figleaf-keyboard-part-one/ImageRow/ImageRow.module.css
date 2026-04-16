@@ -1,0 +1,6 @@
+.row {
+  display: grid;
+  grid-template-columns: repeat(var(--image-row-count), 1fr);
+  gap: var(--space-2, 8px);
+  grid-column: start/end;
+}

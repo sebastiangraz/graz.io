@@ -1,9 +1,17 @@
 .row {
   display: grid;
-  grid-template-columns: repeat(var(--image-row-count), 1fr);
-  gap: var(--space-2, 8px);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
   & > * {
     min-width: 100%;
     width: 100%;
+  }
+  @media not (--1) {
+    & > :last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (--1) {
+    grid-template-columns: repeat(var(--image-row-count), 1fr);
   }
 }

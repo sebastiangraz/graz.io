@@ -8,6 +8,7 @@
   grid-column: 4/12;
   .title {
     text-transform: uppercase;
+    font-feature-settings: "frac" on;
     text-align: center;
     font-weight: normal;
     line-height: 0.9;

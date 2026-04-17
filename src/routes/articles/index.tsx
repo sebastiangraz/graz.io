@@ -4,7 +4,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { Layout, Link, Logo, RSSLink } from "@/components";
 import { getPrevPathFromExtension } from "@/utils/helpers";
-import style from "@/routes/articles/articles.module.css";
+import style from "./articles.module.css";
 import { formatDistanceToNow } from "date-fns";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
@@ -81,7 +81,7 @@ function RouteComponent() {
           content="Independent design consultancy focused on branding, digital design and beautiful implementation."
         />
       </Helmet>
-      <div className={style.meta} sx={{ gridColumn: "3/13" }}>
+      <div className={style.meta} sx={{ gridColumn: "3/13", minHeight: "calc(100dvh - 8rem)" }}>
         <Link
           className={style.logo}
           to="/"
@@ -104,10 +104,12 @@ function RouteComponent() {
           sx={{
             display: "flex",
             flexDirection: "column",
-            gap: "1rem",
-            padding: 0,
+            flex: 1,
+            gap: "1.5rlh",
+            paddingInline: "1rlh",
+            paddingBlock: 0,
             listStyle: "none",
-            marginTop: "2rem",
+            marginBlock: "2rem",
           }}
         >
           {articles?.map(({ title, id, path, date }) => {
@@ -127,19 +129,22 @@ function RouteComponent() {
                   to={`/articles/${slug}`}
                   sx={{
                     display: "flex",
-                    flexDirection: "row",
-                    flexWrap: "wrap",
+                    flexDirection: ["column", "row"],
                     justifyContent: "space-between",
                     alignItems: "baseline",
                     width: "100%",
                     columnGap: "4rem",
+                    rowGap: "0.5rlh",
                   }}
                 >
-                  <span sx={{ fontWeight: "normal" }}>{title}</span>
+                  <span sx={{ fontWeight: "normal", fontFeatureSettings: `"frac" on`, textWrap: "balance" }}>
+                    {title}
+                  </span>
                   {dateText && (
                     <span
                       sx={{
-                        fontSize: "14px",
+                        fontSize: "0.6rlh",
+                        letterSpacing: "0.05em",
                         opacity: 0.7,
                         textAlign: "right",
                         flexShrink: 0,
@@ -152,10 +157,12 @@ function RouteComponent() {
               </motion.li>
             );
           })}
-          <div sx={{ display: "flex", marginTop: "4rem", justifyContent: "center", fontSize: "4" }}>
-            <RSSLink />
-          </div>
         </motion.ul>
+        <div
+          sx={{ display: "flex", marginTop: "auto", paddingBottom: "2rem", justifyContent: "center", fontSize: "4" }}
+        >
+          <RSSLink />
+        </div>
       </div>
     </Layout>
   );

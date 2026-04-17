@@ -6,20 +6,7 @@ import resume from "@/assets/cv-sebastiangraz.pdf";
 import { Link as TanstackLink } from "@/components";
 import { Text, Link } from "theme-ui";
 import { useState } from "react";
-const NearestQuarter = () => {
-  const amountOfMonthsPadding = 1.5; // Months of padding, decimal values are allowed.
-  // Create a new date object based on the current date
-  const date = new Date();
-  // Calculate total days padding
-  const totalDaysPadding = Math.round(amountOfMonthsPadding * 30.436875); // Using the average number of days in a month
-  // Add the padding to the date
-  date.setDate(date.getDate() + totalDaysPadding);
-  // Get the "true" month (i.e., not zero indexed) from the new date
-  const trueMonth = date.getMonth() + 1;
-  // Calculate the nearest quarter based on the new date's month
-  const quarter = Math.ceil(trueMonth / 3);
-  return <span>{`Q${quarter}`}</span>;
-};
+import { getNearestQuarterLabel } from "@/utils/helpers";
 
 const list = {
   hidden: {
@@ -168,7 +155,7 @@ export const Navigation = () => {
                   }}
                   variant="caps"
                 >
-                  Available {NearestQuarter()}
+                  Available {getNearestQuarterLabel()}
                 </Text>
               </m.div>
             </List>

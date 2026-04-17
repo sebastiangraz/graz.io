@@ -3,7 +3,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { Layout, Link, Logo, RSSLink } from "@/components";
-import { getPrevPathFromExtension } from "@/utils/helpers";
+import { getPrevPathFromExtension, isInCurrentQuarter } from "@/utils/helpers";
 import style from "./articles.module.css";
 import { formatDistanceToNow } from "date-fns";
 import { motion } from "framer-motion";
@@ -112,9 +112,10 @@ function RouteComponent() {
             marginBlock: "2rem",
           }}
         >
-          {articles?.map(({ title, id, path, date }) => {
+          {articles?.map(({ title, id, path, date }, index) => {
             const slug = getPrevPathFromExtension(path);
             const dateText = date.getTime() > 0 ? formatDistanceToNow(date, { addSuffix: true }) : "";
+            const isNew = index === 0 && date.getTime() > 0 && isInCurrentQuarter(date);
 
             return (
               <motion.li
@@ -137,8 +138,26 @@ function RouteComponent() {
                     rowGap: "0.5rlh",
                   }}
                 >
-                  <span sx={{ fontWeight: "normal", fontFeatureSettings: `"frac" on`, textWrap: "balance" }}>
+                  <span sx={{ fontWeight: "normal", fontFeatureSettings: `"frac" on`, textWrap: "balance", display: "flex", alignItems: "center", gap: "0.75em" }}>
                     {title}
+                    {isNew && (
+                      <span
+                        sx={{
+                          fontSize: "0.55rlh",
+                          letterSpacing: "0.1em",
+                          textTransform: "uppercase",
+                          color: "background",
+                          background: "text",
+                          borderRadius: "0.25em",
+                          px: "0.45em",
+                          py: "0.15em",
+                          lineHeight: 1,
+                          flexShrink: 0,
+                        }}
+                      >
+                        New
+                      </span>
+                    )}
                   </span>
                   {dateText && (
                     <span

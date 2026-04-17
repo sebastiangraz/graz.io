@@ -1,12 +1,17 @@
 /** @jsxImportSource theme-ui */
 
-import { Logo, List, EmailLink } from "@/components";
+import { Logo, List, EmailLink, NewBadge } from "@/components";
 import { m } from "framer-motion";
 import resume from "@/assets/cv-sebastiangraz.pdf";
 import { Link as TanstackLink } from "@/components";
 import { Text, Link } from "theme-ui";
 import { useState } from "react";
-import { getNearestQuarterLabel } from "@/utils/helpers";
+import { getNearestQuarterLabel, isInCurrentQuarter } from "@/utils/helpers";
+import { entryMeta } from "@/routes/articles";
+
+const sortedArticles = [...entryMeta].sort((a, b) => b.date.getTime() - a.date.getTime());
+const latestArticle = sortedArticles[0];
+const hasNewArticle = latestArticle && latestArticle.date.getTime() > 0 && isInCurrentQuarter(latestArticle.date);
 
 const list = {
   hidden: {
@@ -58,10 +63,13 @@ export const Navigation = () => {
           p: [2, 3],
           ml: -3,
           gridArea: "nav",
-          display: ["none", "block"],
+          display: ["none", "flex"],
+          alignItems: "baseline",
+          gap: "0.6em",
         }}
       >
         <TanstackLink to="/articles">Articles</TanstackLink>
+        {hasNewArticle && <NewBadge />}
       </Text>
       <div
         tabIndex={0}

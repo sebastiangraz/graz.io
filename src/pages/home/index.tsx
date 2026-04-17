@@ -2,10 +2,10 @@
 
 import React from "react";
 import { Text } from "theme-ui";
-import { Link, List, Navigation } from "@/components";
+import { Link, List, Navigation, NewBadge } from "@/components";
 import { m, useScroll, useTransform, useSpring } from "framer-motion";
 import { entryMeta } from "@/routes/articles";
-import { getPrevPathFromExtension } from "@/utils/helpers";
+import { getPrevPathFromExtension, isInCurrentQuarter } from "@/utils/helpers";
 
 const awards = [
   {
@@ -214,16 +214,26 @@ const Home = () => {
                 },
               }}
             >
-              {latestArticles.map(({ title, short, id, path }) => {
+              {latestArticles.map(({ title, short, id, path, date }, index) => {
                 const slug = getPrevPathFromExtension(path);
+                const isNew = index === 0 && date.getTime() > 0 && isInCurrentQuarter(date);
                 return (
-                  <Link
-                    key={id}
-                    to={`/articles/${slug}`}
-                    style={{ display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
-                  >
-                    {short ?? title}
-                  </Link>
+                  <div key={id} sx={{ display: "flex", alignItems: "baseline", gap: "0.6em", overflow: "hidden" }}>
+                    <Link
+                      to={`/articles/${slug}`}
+                      sx={{
+                        display: "flex",
+                        alignItems: "baseline",
+                        gap: "0.6em",
+                        overflow: "hidden",
+                      }}
+                    >
+                      <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                        {short ?? title}
+                      </span>
+                    </Link>
+                    {isNew && <NewBadge />}
+                  </div>
                 );
               })}
               <Link to="/articles">All Articles</Link>

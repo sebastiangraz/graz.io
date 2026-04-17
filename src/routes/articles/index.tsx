@@ -138,26 +138,14 @@ function RouteComponent() {
                     rowGap: "0.5rlh",
                   }}
                 >
-                  <span sx={{ fontWeight: "normal", fontFeatureSettings: `"frac" on`, textWrap: "balance", display: "flex", alignItems: "center", gap: "0.75em" }}>
-                    {title}
-                    {isNew && (
-                      <span
-                        sx={{
-                          fontSize: "0.55rlh",
-                          letterSpacing: "0.1em",
-                          textTransform: "uppercase",
-                          color: "background",
-                          background: "text",
-                          borderRadius: "0.25em",
-                          px: "0.45em",
-                          py: "0.15em",
-                          lineHeight: 1,
-                          flexShrink: 0,
-                        }}
-                      >
-                        New
-                      </span>
-                    )}
+                  <span
+                    sx={{
+                      fontWeight: "normal",
+                      fontFeatureSettings: `"frac" on`,
+                      textWrap: "balance",
+                    }}
+                  >
+                    <span>{title}</span>
                   </span>
                   {dateText && (
                     <span
@@ -167,10 +155,19 @@ function RouteComponent() {
                         opacity: 0.7,
                         textAlign: "right",
                         flexShrink: 0,
+                        "&:after": {
+                          content: `"${isNew ? "New" : dateText}"`,
+                          color: "textDim",
+                          fontSize: "0.6rlh",
+                          letterSpacing: "0.05em",
+                          textAlign: "right",
+                          flexShrink: 0,
+                        },
+                        "&:hover:after": {
+                          content: `"${dateText}"`,
+                        },
                       }}
-                    >
-                      {dateText}
-                    </span>
+                    ></span>
                   )}
                 </Link>
               </motion.li>

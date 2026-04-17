@@ -213,16 +213,17 @@ const Home = () => {
                 color: "textDim",
                 "&& > *": {
                   mb: "0.5em",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
                 },
               }}
             >
               {latestArticles.map(({ title, short, id, path }) => {
                 const slug = getPrevPathFromExtension(path);
                 return (
-                  <Link key={id} to={`/articles/${slug}`}>
+                  <Link
+                    key={id}
+                    to={`/articles/${slug}`}
+                    style={{ display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
+                  >
                     {short ?? title}
                   </Link>
                 );

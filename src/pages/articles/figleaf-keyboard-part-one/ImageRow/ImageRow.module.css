@@ -1,7 +1,7 @@
 .row {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1rlh;
+  gap: var(--image-row-gap);
   & > * {
     min-width: 100%;
     width: 100%;

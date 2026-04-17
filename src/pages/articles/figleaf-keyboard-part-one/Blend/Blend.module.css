@@ -1,8 +1,0 @@
-.blend {
-  mix-blend-mode: var(--blend-mode, multiply);
-  width: 100%;
-  & > * {
-    width: 100%;
-    height: auto;
-  }
-}

@@ -1,10 +1,12 @@
 .row {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
+  gap: 1rlh;
   & > * {
     min-width: 100%;
     width: 100%;
+    margin: 0;
+    display: block;
   }
   @media not (--1) {
     & > :last-child:nth-child(odd) {

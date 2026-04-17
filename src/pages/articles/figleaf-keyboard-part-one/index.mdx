@@ -1,5 +1,5 @@
 ---
-title: Figleaf Keyboard Part One
+title: Figleaf Keyboard Part ½
 description: A small in-between log
 date: 2026-04-09
 ---
@@ -11,7 +11,7 @@ import { Text } from "theme-ui";
 import { Tooltip } from "@/components/Tooltip/Tooltip";
 import { EmailSignup } from "@/components/EmailSignup/EmailSignup";
 import { ImageRow } from "./ImageRow/ImageRow";
-import { Blend } from "./Blend/Blend";
+import { Box } from "theme-ui";
 
 <hr />
 <DefinitionTable
@@ -23,19 +23,27 @@ import { Blend } from "./Blend/Blend";
   ]}
 />
 
-<hr />
+<Background variant="grid">
 
-<Blend mode="multiply">
-  <Img src="sketch-2.jpg" alt="PCB back" />
-</Blend>
+<Img src="sketch-2.jpg" alt="PCB back" sx={{ mixBlendMode: "multiply" }} />
 
 # Figleaf, a work in progress.
 
 Last year I built <mark><Link to="/articles/bayleaf-wireless-keyboard">Bayleaf</Link></mark>, a wireless ergonomic keyboard from scratch. A personal end-game, no-holds-barred, final boss kind of keyboard, so naturally I want to build another one.
 
-Meet <mark>Figleaf</mark>. It's not done yet, but the design is far enough along that I wanted to share where it's at. Proper build log will follow. Like its predecessor, Figleaf is also wireless, split, low-profile, CNC machined, and all those things. But with a big difference, it'll be using the new OKM switches from Framework. A rare and uncharted occasion to work with modular laptop-style switches. And so far they make the previous PG1316S switches sound like an actual hobby project. Needless to say, I'm excited about their potential.
+Meet <mark>Figleaf</mark>. It's not done yet, but the design is far enough along that I wanted to share where it's at. Proper build log will follow. Like its predecessor, Figleaf is also wireless, split, low-profile, CNC machined, and all those things. But with a big difference, it'll be using the new One Key Module (OKM) switches from Framework.
+
+A rare and uncharted occasion to work with modular laptop-style switches. And so far they make the previous PG1316S switches sound like an actual hobby project. Needless to say, I'm excited about their potential.
 
 Below are some work-in-progress renders of the keyboard. I'll be posting a new update after I've received the parts and have started the real build.
+
+</Background>
+
+<ImageRow>
+  <Img src="sketch-1.jpg" alt="PCB back" sx={{ mixBlendMode: "multiply" }} />
+  <Img src="sketch-3.jpg" alt="PCB detail" sx={{ mixBlendMode: "multiply" }} />
+  <Img src="sketch-5.jpg" alt="PCB detail" sx={{ mixBlendMode: "multiply" }} />
+</ImageRow>
 
 <ImageRow>
   <Img src="pcb-1.jpg" alt="PCB front" />
@@ -43,24 +51,28 @@ Below are some work-in-progress renders of the keyboard. I'll be posting a new u
   <Img src="pcb-3.jpg" alt="PCB detail" />
 </ImageRow>
 
-<Img src="figleaf-render-split.png" alt="Figleaf" />
-<Img src="figleaf-render.png" alt="Figleaf" />
+<Box
+  sx={{
+    display: "grid",
+    gap: "0.5rlh",
+    "& > *": { width: "100%", minWidth: "100%", margin: 0, display: "block" },
+}}
+
+>
+
+  <Img src="figleaf-render-top.png" alt="Figleaf" />
+  <Img src="figleaf-render-split.png" alt="Figleaf" />
+  <Img src="figleaf-render.png" alt="Figleaf" />
+  <Img src="pcb.png" alt="Figleaf" full />
+</Box>
+
 <Img src="figleaf-render-stacked.png" alt="Figleaf" full />
-
-<Img src="sketch-2.jpg" alt="PCB back" />
-
-<ImageRow>
-  <Img src="sketch-1.jpg" alt="PCB back" />
-  <Img src="sketch-3.jpg" alt="PCB detail" />
-  <Img src="sketch-4.jpg" alt="PCB detail" />
-  <Img src="sketch-5.jpg" alt="PCB detail" />
-</ImageRow>
 
 # Next steps
 
 - An overly friendly message to the machinist and manufacturer.
-- Assembly, soldering, cursing.
-- Keep you all posted.
+- Assembly, soldering and some cursing.
+- Keeping you all posted.
 
 <Background variant="dots">
 

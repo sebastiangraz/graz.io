@@ -2,8 +2,10 @@
 
 import React from "react";
 import { Text } from "theme-ui";
-import { List, Navigation } from "@/components";
+import { Link, List, Navigation } from "@/components";
 import { m, useScroll, useTransform, useSpring } from "framer-motion";
+import { entryMeta } from "@/routes/articles";
+import { getPrevPathFromExtension } from "@/utils/helpers";
 
 const awards = [
   {
@@ -38,6 +40,10 @@ const awards = [
     year: "2017",
   },
 ];
+
+const latestArticles = [...entryMeta]
+  .sort((a, b) => b.date.getTime() - a.date.getTime())
+  .slice(0, 6);
 
 const Home = () => {
   const scrollProgress = [0, window.innerHeight * 0.7, window.innerHeight * 0.8];
@@ -190,6 +196,37 @@ const Home = () => {
               <>Framer</>
               <>Canon</>
               <>Volvo</>
+            </List>
+          </Text>
+        </div>
+
+        <div sx={{ display: ["block", "none"] }}>
+          <Text variant="label" mb={5}>
+            <Text variant="caps" mb={5}>
+              Articles
+            </Text>
+            <List
+              animate
+              delay={0.3}
+              sx={{
+                fontSize: [4, 5, 4, 5],
+                color: "textDim",
+                "&& > *": {
+                  mb: "0.5em",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                },
+              }}
+            >
+              {latestArticles.map(({ title, short, id, path }) => {
+                const slug = getPrevPathFromExtension(path);
+                return (
+                  <Link key={id} to={`/articles/${slug}`}>
+                    {short ?? title}
+                  </Link>
+                );
+              })}
             </List>
           </Text>
         </div>

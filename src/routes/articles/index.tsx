@@ -27,6 +27,7 @@ export const entryMeta = globEntries.map(([url, module]) => {
     id: slug,
     path: url,
     title: module.frontmatter?.title,
+    short: module.frontmatter?.short as string | undefined,
     description: module.frontmatter?.description,
     date: module.frontmatter?.date ? new Date(module.frontmatter.date) : new Date(0),
   };

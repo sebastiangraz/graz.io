@@ -9,7 +9,7 @@ import { Heading, Paragraph } from "theme-ui";
 import { MDXProvider } from "@mdx-js/react";
 import { Background } from "@/components/Background";
 
-import style from "@/routes/articles/articles.module.css";
+import style from "./articles.module.css";
 import { formatDistanceToNow } from "date-fns";
 import { Helmet } from "react-helmet-async";
 import { ScrollToTop } from "@/components/ScrollToTop";

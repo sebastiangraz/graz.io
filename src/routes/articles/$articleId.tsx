@@ -111,7 +111,6 @@ const components = {
           "& > *": {
             fontSize: "12px",
             letterSpacing: "0.05em",
-            color: "textDim",
             textTransform: "uppercase",
             textDecoration: "none",
             transition: "opacity 0.2s ease",
@@ -124,7 +123,7 @@ const components = {
         </AppLink>
         <div sx={{ display: "flex", gap: "2rem", justifyContent: "space-between" }}>
           <RSSLink />
-          <EmailLink sx={{ textDecoration: "none" }} string="hi@graz.io">
+          <EmailLink sx={{ textDecoration: "none", color: "textDim" }} string="hi@graz.io">
             Email
           </EmailLink>
         </div>

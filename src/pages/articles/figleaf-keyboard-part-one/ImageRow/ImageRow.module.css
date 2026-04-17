@@ -1,0 +1,19 @@
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rlh;
+  & > * {
+    min-width: 100%;
+    width: 100%;
+    margin: 0;
+    display: block;
+  }
+  @media not (--1) {
+    & > :last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (--1) {
+    grid-template-columns: repeat(var(--image-row-count), 1fr);
+  }
+}

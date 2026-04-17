@@ -74,7 +74,8 @@
     }
   }
   :global & > picture.full,
-  :global & > img.full {
+  :global & > img.full,
+  :global & > div.full {
     width: 100%;
     grid-column: start/end;
     margin: 5rlh 0;

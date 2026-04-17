@@ -54,7 +54,7 @@ export function PostComponent() {
             display: "flex",
             flexWrap: "wrap",
             justifyContent: ["center", "start"],
-            gap: "0.5rem 2rem",
+            gap: ["0.5rem 1.25rem", "0.5rem 2rem"],
             alignItems: "center",
             marginBottom: "1rem",
             fontSize: "12px",

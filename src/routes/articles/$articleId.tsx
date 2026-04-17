@@ -63,8 +63,8 @@ export function PostComponent() {
             textTransform: "uppercase",
           }}
         >
-          <AppLink to="/articles" sx={{ textTransform: "uppercase" }}>
-            ← All articles
+          <AppLink to="/articles" sx={{ textTransform: "uppercase", fontFeatureSettings: `"case" on` }}>
+            {`‹ All articles`}
           </AppLink>
           {dateText && <div>{dateText}</div>}
         </div>
@@ -119,8 +119,8 @@ const components = {
           },
         }}
       >
-        <AppLink to="/articles" sx={{}}>
-          ← All articles
+        <AppLink to="/articles" sx={{ fontFeatureSettings: `"case" on` }}>
+          {`‹ All articles`}
         </AppLink>
         <div sx={{ display: "flex", gap: "2rem", justifyContent: "space-between" }}>
           <RSSLink />

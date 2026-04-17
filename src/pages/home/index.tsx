@@ -41,9 +41,7 @@ const awards = [
   },
 ];
 
-const latestArticles = [...entryMeta]
-  .sort((a, b) => b.date.getTime() - a.date.getTime())
-  .slice(0, 6);
+const latestArticles = [...entryMeta].sort((a, b) => b.date.getTime() - a.date.getTime()).slice(0, 6);
 
 const Home = () => {
   const scrollProgress = [0, window.innerHeight * 0.7, window.innerHeight * 0.8];
@@ -203,7 +201,7 @@ const Home = () => {
         <div sx={{ display: ["block", "none"] }}>
           <Text variant="label" mb={5}>
             <Text variant="caps" mb={5}>
-              Articles
+              <Link to="/articles">Articles</Link>
             </Text>
             <List
               animate
@@ -228,6 +226,7 @@ const Home = () => {
                   </Link>
                 );
               })}
+              <Link to="/articles">All Articles</Link>
             </List>
           </Text>
         </div>

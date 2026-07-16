@@ -63,7 +63,6 @@ interface ImgProps {
   className?: string;
   alt?: string;
   full?: boolean;
-  sx?: React.CSSProperties;
 }
 
 export const Img = ({
@@ -73,46 +72,11 @@ export const Img = ({
   deviceBorder = false,
   browserBorder = false,
   full = false,
-  sx,
   onLoad,
 }: ImgProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   if (!src) return null;
-
-  const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    setIsLoaded(true);
-    if (onLoad) {
-      onLoad(e);
-    }
-  };
-
-  // Assets that bypass the imagetools pipeline (e.g. animated/sequence AVIF, which
-  // sharp cannot decode) are passed in as already-resolved URLs. Render them directly.
-  const isDirectUrl = /^(https?:|\/|data:|blob:)/.test(src);
-  if (isDirectUrl) {
-    const classNames = `${style.picture} ${deviceBorder ? style.deviceBorder : ""} ${full ? "full" : ""} ${
-      browserBorder ? style.browserBorder : ""
-    } ${className} ${isLoaded ? style.loaded : style.loading}`;
-    return (
-      <picture className={classNames}>
-        <img
-          loading="lazy"
-          src={src}
-          alt={alt}
-          onLoad={handleImageLoad}
-          style={{
-            opacity: isLoaded ? 1 : 0,
-            transition: "opacity 0.3s ease",
-            width: "100%",
-            height: "auto",
-            display: "block",
-            ...sx,
-          }}
-        />
-      </picture>
-    );
-  }
 
   // Get image metadata directly during render
   const imageMetadata = getImageForArticle(src, import.meta.url);
@@ -131,6 +95,13 @@ export const Img = ({
 
   // Use our custom hook
   const { quantizedHeight, elementRef } = useQuantizedHeight(pngData?.width || 0, pngData?.height || 0);
+
+  const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    setIsLoaded(true);
+    if (onLoad) {
+      onLoad(e);
+    }
+  };
 
   // Calculate aspect ratio values
   const width = pngData?.width || 0;
@@ -170,7 +141,6 @@ export const Img = ({
             width: "100%",
             height: "100%",
             objectFit: "cover",
-            ...sx,
           }}
         />
       </picture>

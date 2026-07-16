@@ -96,6 +96,9 @@ export default defineConfig(async (): Promise<UserConfig> => {
       }),
       svgrPlugin(),
       imagetools({
+        // Exclude AVIF sources: sharp/libheif can't decode animated (sequence, brand "avis")
+        // AVIF, so these are served as plain assets and rendered directly instead.
+        include: /^[^?]+\.(gif|heif|jpeg|jpg|png|tiff|webp)(\?.*)?$/,
         defaultDirectives: () => {
           return new URLSearchParams({
             format: "webp;avif;original",

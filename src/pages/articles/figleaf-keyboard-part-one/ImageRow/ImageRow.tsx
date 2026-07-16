@@ -13,6 +13,7 @@ const ImageRow = ({ children, gap = "1rlh" }: ImageRowProps) => {
     <div
       className={`${style.row} full`}
       style={{ "--image-row-count": count, "--image-row-gap": gap } as React.CSSProperties}
+      data-image-row
     >
       {children}
     </div>

@@ -14,6 +14,8 @@ import remarkTypography from "remark-typography";
 import { rssPlugin } from "vite-plugin-rss";
 import type { Item, Channel } from "vite-plugin-rss";
 import { generateRssItems } from "./src/utils/rss";
+import { seoPrerenderPlugin, getOgArticleSlugs } from "./src/utils/seo-prerender";
+import { SITE_URL } from "./src/utils/site";
 
 // Interface for article metadata
 interface ArticleMeta {
@@ -46,7 +48,7 @@ export default defineConfig(async (): Promise<UserConfig> => {
   const mdx = await import("@mdx-js/rollup");
 
   // Get the site URL from environment or use a default
-  const siteUrl = process.env.SITE_URL || "https://graz.io";
+  const siteUrl = process.env.SITE_URL || SITE_URL;
 
   // Define channel configuration for RSS
   const channel: Channel = {
@@ -111,7 +113,13 @@ export default defineConfig(async (): Promise<UserConfig> => {
         items,
         fileName: "rss.xml",
       }),
+
+      // Prerender per-article index.html with SEO/OG meta for crawlers
+      seoPrerenderPlugin({ siteUrl }),
     ],
+    define: {
+      __OG_ARTICLE_SLUGS__: JSON.stringify(getOgArticleSlugs()),
+    },
     resolve: {
       alias: [
         /* '@': '/src' */

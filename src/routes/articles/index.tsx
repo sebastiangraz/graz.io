@@ -8,6 +8,7 @@ import style from "./articles.module.css";
 import { formatDistanceToNow } from "date-fns";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
+import { SITE_URL, DEFAULT_OG_IMAGE } from "@/utils/site";
 
 export const Route = createFileRoute("/articles/")({
   component: RouteComponent,
@@ -30,6 +31,7 @@ export const entryMeta = globEntries.map(([url, module]) => {
     short: module.frontmatter?.short as string | undefined,
     description: module.frontmatter?.description,
     date: module.frontmatter?.date ? new Date(module.frontmatter.date) : new Date(0),
+    ogImage: __OG_ARTICLE_SLUGS__.includes(slug) ? `${SITE_URL}/articles/${slug}/og.png` : DEFAULT_OG_IMAGE,
   };
 });
 

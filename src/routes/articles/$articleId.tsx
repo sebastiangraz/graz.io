@@ -13,6 +13,7 @@ import style from "./articles.module.css";
 import { formatDistanceToNow } from "date-fns";
 import { Helmet } from "react-helmet-async";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { SITE_URL, SITE_NAME } from "@/utils/site";
 
 function PostErrorComponent({ error }: ErrorComponentProps) {
   return (
@@ -29,13 +30,25 @@ export function PostComponent() {
     post.date && post.date instanceof Date && post.date.getTime() > 0
       ? formatDistanceToNow(post.date, { addSuffix: true })
       : "";
+  const pageTitle = `${SITE_NAME} · ${post.title}`;
+  const pageDescription = post.description || `Article: ${post.title}`;
+  const pageUrl = `${SITE_URL}/articles/${post.id}`;
   return (
     <Layout>
       <Helmet>
-        <title>Sebastian Graz · {post.title}</title>
-        <meta name="description" content={post.description || `Article: ${post.title}`} />
-        <meta property="og:title" content={`Sebastian Graz · ${post.title}`} />
-        <meta property="og:description" content={post.description || `Article: ${post.title}`} />
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <link rel="canonical" href={pageUrl} />
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content={SITE_NAME} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:url" content={pageUrl} />
+        <meta property="og:image" content={post.ogImage} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={post.ogImage} />
       </Helmet>
       <div className={`${style.meta}`}>
         <AppLink to="/" className={style.logo}>

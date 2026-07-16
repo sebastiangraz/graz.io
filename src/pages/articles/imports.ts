@@ -5,7 +5,9 @@ import type { OutputMetadata } from "@/types/blog";
 type AssetMetadata = OutputMetadata[];
 
 const assetPaths = import.meta.glob<AssetMetadata>(`@/pages/articles/*/*.{jpg,jpeg,png,svg}`, {
-  query: { format: "avif;png", as: "meta:src;format;aspect;width;height" },
+  // Multiple widths for srcset; upscaling is off by default, so rungs wider
+  // than the source image collapse to the original width.
+  query: { format: "avif;png", w: "640;1080;1800;2400;3200", as: "meta:src;format;aspect;width;height" },
   import: "default",
   eager: true,
 });

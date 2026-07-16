@@ -47,8 +47,13 @@ const getArticlesMeta = async (): Promise<ArticleMeta[]> => {
 export default defineConfig(async (): Promise<UserConfig> => {
   const mdx = await import("@mdx-js/rollup");
 
-  // Get the site URL from environment or use a default
-  const siteUrl = process.env.SITE_URL || SITE_URL;
+  // Get the site URL from environment or use a default.
+  // On Netlify deploy previews / branch deploys, use the deploy's own URL so
+  // OG images and canonical links can be verified before going to production.
+  const siteUrl =
+    process.env.SITE_URL ||
+    (process.env.CONTEXT && process.env.CONTEXT !== "production" ? process.env.DEPLOY_PRIME_URL : undefined) ||
+    SITE_URL;
 
   // Define channel configuration for RSS
   const channel: Channel = {

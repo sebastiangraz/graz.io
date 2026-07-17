@@ -10,3 +10,11 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+# Hashed build assets never change content under the same filename, so skip
+# the per-visit 304 revalidation (which Safari 27 beta's rewritten HTTP cache
+# mishandles for stylesheets) and cache them for a year.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

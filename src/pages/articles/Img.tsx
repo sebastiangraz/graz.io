@@ -63,7 +63,18 @@ interface ImgProps {
   className?: string;
   alt?: string;
   full?: boolean;
+  sizes?: string;
 }
+
+// Widths may repeat when a srcset rung exceeded the source image and was
+// reverted to the original size — keep one entry per width.
+const toSrcSet = (entries: { src: string; width: number }[]) => {
+  const seen = new Set<number>();
+  return entries
+    .filter((m) => !seen.has(m.width) && seen.add(m.width))
+    .map((m) => `${m.src} ${m.width}w`)
+    .join(", ");
+};
 
 export const Img = ({
   src,
@@ -72,6 +83,7 @@ export const Img = ({
   deviceBorder = false,
   browserBorder = false,
   full = false,
+  sizes,
   onLoad,
 }: ImgProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -86,8 +98,20 @@ export const Img = ({
   }
 
   const isSvg = src.includes(".svg");
-  const pngData = imageMetadata.find((m) => m.format === "png");
-  const avifData = imageMetadata.find((m) => m.format === "avif");
+  const pngEntries = imageMetadata.filter((m) => m.format === "png").sort((a, b) => a.width - b.width);
+  const avifEntries = imageMetadata.filter((m) => m.format === "avif").sort((a, b) => a.width - b.width);
+  // Largest rung carries the intrinsic dimensions and serves as the src fallback
+  const pngData = pngEntries[pngEntries.length - 1];
+  const pngSrcSet = toSrcSet(pngEntries);
+  const avifSrcSet = toSrcSet(avifEntries);
+
+  // "auto" lets browsers that support it (lazy-loaded images) use the actual
+  // rendered width — e.g. ImageRow cells; others fall back to the layout-derived
+  // value: full-bleed spans min(100vw, 1800px), regular images span 10 of 12
+  // grid columns, or 6 above the --2 breakpoint (68em) capped at 900px.
+  const fallbackSizes =
+    sizes ?? (full ? "min(100vw, 1800px)" : "(min-width: 68em) min(50vw, 900px), 83.34vw");
+  const sizesAttr = `auto, ${fallbackSizes}`;
 
   const classNames = `${style.picture} ${deviceBorder ? style.deviceBorder : ""} ${
     full ? "full" : ""
@@ -127,10 +151,12 @@ export const Img = ({
   } else {
     return (
       <picture ref={elementRef} className={classNames} style={pictureStyle}>
-        {avifData?.src && <source srcSet={avifData?.src} type="image/avif" />}
+        {avifSrcSet && <source srcSet={avifSrcSet} sizes={sizesAttr} type="image/avif" />}
         <img
           loading="lazy"
           src={pngData?.src}
+          srcSet={pngSrcSet || undefined}
+          sizes={pngSrcSet ? sizesAttr : undefined}
           alt={alt}
           width={pngData?.width}
           height={pngData?.height}

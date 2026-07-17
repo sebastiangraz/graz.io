@@ -5636,6 +5636,74 @@ eslint@latest:
   languageName: node
   linkType: hard
 
+"graz.io@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "graz.io@workspace:."
+  dependencies:
+    "@csstools/postcss-global-data": ^3.0.0
+    "@emotion/react": ^11.10.6
+    "@mdx-js/react": ^3.1.0
+    "@mdx-js/rollup": ^3.1.0
+    "@radix-ui/react-hover-card": ^1.1.6
+    "@radix-ui/react-popover": ^1.1.6
+    "@shikijs/rehype": ^3.0.0
+    "@shikijs/transformers": ^3.0.0
+    "@tanstack/react-query": ^5.66.9
+    "@tanstack/react-router": ^1.111.11
+    "@tanstack/router-plugin": ^1.111.12
+    "@theme-ui/css": ^0.15.5
+    "@theme-ui/match-media": ^0.15.5
+    "@types/lodash.debounce": ^4.0.7
+    "@types/lodash.throttle": ^4.1.9
+    "@types/node": ^18.15.11
+    "@types/react": ^18.0.34
+    "@types/react-dom": ^18.0.11
+    "@typescript-eslint/eslint-plugin": latest
+    "@typescript-eslint/parser": latest
+    "@vitejs/plugin-react": ^4.3.4
+    date-fns: ^4.1.0
+    eslint: latest
+    eslint-config-prettier: ^10.0.2
+    eslint-plugin-mdx: ^3.1.5
+    eslint-plugin-react: latest
+    eslint-plugin-react-hooks: ^4.6.0
+    eslint-plugin-react-refresh: ^0.4.6
+    eslint-plugin-sort-exports: ^0.9.1
+    fast-glob: ^3.3.3
+    feed: ^4.2.2
+    framer-motion: ^10.9.2
+    gray-matter: ^4.0.3
+    intersection-observer: ^0.12.2
+    lodash.debounce: ^4.0.8
+    lodash.throttle: ^4.1.1
+    postcss-custom-media: ^10.0.4
+    postcss-preset-env: ^9.5.5
+    react: ^18.2.0
+    react-dom: ^18.2.0
+    react-helmet-async: ^2.0.5
+    rehype-pretty-code: ^0.14.0
+    remark-frontmatter: ^5.0.0
+    remark-gfm: ^4.0.1
+    remark-mdx-frontmatter: ^5.0.0
+    remark-typography: ^0.6.21
+    sharp: ^0.32.0
+    shiki: ^3.0.0
+    svgo: ^3.2.0
+    theme-ui: ^0.17.2
+    ts-node: ^10.9.1
+    tsx: ^4.7.2
+    typescript: ^5.0.2
+    uuid: ^11.1.0
+    vite: 6.2.0
+    vite-imagetools: ^7.0.5
+    vite-plugin-image-optimizer: ^1.1.7
+    vite-plugin-mdx: ^3.6.1
+    vite-plugin-rss: ^0.0.6
+    vite-plugin-svgr: ^4.2.0
+    yarn: ^2.4.3
+  languageName: unknown
+  linkType: soft
+
 "has-bigints@npm:^1.0.2":
   version: 1.1.0
   resolution: "has-bigints@npm:1.1.0"
@@ -9189,74 +9257,6 @@ eslint@latest:
   checksum: 3e82d1f419e240ef6219d794ff29c7ee415fbdc19e038f680a10c067108e06284f1847450a210b29bbaf97b9d8a97ced5f624c31c681248ac84c80d56ad5a2c4
   languageName: node
   linkType: hard
-
-"scroll@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "scroll@workspace:."
-  dependencies:
-    "@csstools/postcss-global-data": ^3.0.0
-    "@emotion/react": ^11.10.6
-    "@mdx-js/react": ^3.1.0
-    "@mdx-js/rollup": ^3.1.0
-    "@radix-ui/react-hover-card": ^1.1.6
-    "@radix-ui/react-popover": ^1.1.6
-    "@shikijs/rehype": ^3.0.0
-    "@shikijs/transformers": ^3.0.0
-    "@tanstack/react-query": ^5.66.9
-    "@tanstack/react-router": ^1.111.11
-    "@tanstack/router-plugin": ^1.111.12
-    "@theme-ui/css": ^0.15.5
-    "@theme-ui/match-media": ^0.15.5
-    "@types/lodash.debounce": ^4.0.7
-    "@types/lodash.throttle": ^4.1.9
-    "@types/node": ^18.15.11
-    "@types/react": ^18.0.34
-    "@types/react-dom": ^18.0.11
-    "@typescript-eslint/eslint-plugin": latest
-    "@typescript-eslint/parser": latest
-    "@vitejs/plugin-react": ^4.3.4
-    date-fns: ^4.1.0
-    eslint: latest
-    eslint-config-prettier: ^10.0.2
-    eslint-plugin-mdx: ^3.1.5
-    eslint-plugin-react: latest
-    eslint-plugin-react-hooks: ^4.6.0
-    eslint-plugin-react-refresh: ^0.4.6
-    eslint-plugin-sort-exports: ^0.9.1
-    fast-glob: ^3.3.3
-    feed: ^4.2.2
-    framer-motion: ^10.9.2
-    gray-matter: ^4.0.3
-    intersection-observer: ^0.12.2
-    lodash.debounce: ^4.0.8
-    lodash.throttle: ^4.1.1
-    postcss-custom-media: ^10.0.4
-    postcss-preset-env: ^9.5.5
-    react: ^18.2.0
-    react-dom: ^18.2.0
-    react-helmet-async: ^2.0.5
-    rehype-pretty-code: ^0.14.0
-    remark-frontmatter: ^5.0.0
-    remark-gfm: ^4.0.1
-    remark-mdx-frontmatter: ^5.0.0
-    remark-typography: ^0.6.21
-    sharp: ^0.32.0
-    shiki: ^3.0.0
-    svgo: ^3.2.0
-    theme-ui: ^0.17.2
-    ts-node: ^10.9.1
-    tsx: ^4.7.2
-    typescript: ^5.0.2
-    uuid: ^11.1.0
-    vite: 6.2.0
-    vite-imagetools: ^7.0.5
-    vite-plugin-image-optimizer: ^1.1.7
-    vite-plugin-mdx: ^3.6.1
-    vite-plugin-rss: ^0.0.6
-    vite-plugin-svgr: ^4.2.0
-    yarn: ^2.4.3
-  languageName: unknown
-  linkType: soft
 
 "section-matter@npm:^1.0.0":
   version: 1.0.0

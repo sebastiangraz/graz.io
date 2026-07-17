@@ -14,6 +14,8 @@ import remarkTypography from "remark-typography";
 import { rssPlugin } from "vite-plugin-rss";
 import type { Item, Channel } from "vite-plugin-rss";
 import { generateRssItems } from "./src/utils/rss";
+import { seoPrerenderPlugin, getOgArticleSlugs } from "./src/utils/seo-prerender";
+import { SITE_URL } from "./src/utils/site";
 
 // Interface for article metadata
 interface ArticleMeta {
@@ -45,8 +47,13 @@ const getArticlesMeta = async (): Promise<ArticleMeta[]> => {
 export default defineConfig(async (): Promise<UserConfig> => {
   const mdx = await import("@mdx-js/rollup");
 
-  // Get the site URL from environment or use a default
-  const siteUrl = process.env.SITE_URL || "https://graz.io";
+  // Get the site URL from environment or use a default.
+  // On Netlify deploy previews / branch deploys, use the deploy's own URL so
+  // OG images and canonical links can be verified before going to production.
+  const siteUrl =
+    process.env.SITE_URL ||
+    (process.env.CONTEXT && process.env.CONTEXT !== "production" ? process.env.DEPLOY_PRIME_URL : undefined) ||
+    SITE_URL;
 
   // Define channel configuration for RSS
   const channel: Channel = {
@@ -94,6 +101,9 @@ export default defineConfig(async (): Promise<UserConfig> => {
       }),
       svgrPlugin(),
       imagetools({
+        // Exclude AVIF sources: sharp/libheif can't decode animated (sequence, brand "avis")
+        // AVIF, so these are served as plain assets and rendered directly instead.
+        include: /^[^?]+\.(gif|heif|jpeg|jpg|png|tiff|webp)(\?.*)?$/,
         defaultDirectives: () => {
           return new URLSearchParams({
             format: "webp;avif;original",
@@ -111,7 +121,13 @@ export default defineConfig(async (): Promise<UserConfig> => {
         items,
         fileName: "rss.xml",
       }),
+
+      // Prerender per-article index.html with SEO/OG meta for crawlers
+      seoPrerenderPlugin({ siteUrl }),
     ],
+    define: {
+      __OG_ARTICLE_SLUGS__: JSON.stringify(getOgArticleSlugs()),
+    },
     resolve: {
       alias: [
         /* '@': '/src' */

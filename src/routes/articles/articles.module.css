@@ -86,7 +86,7 @@
   }
 
   & > :is(p, ul, ol, a, pre) {
-    text-wrap: pretty;
+    text-wrap: balance;
     line-height: 2rlh;
     /* margin-block-end: 2rlh; */
     color: var(--theme-ui-colors-textDim);
@@ -121,7 +121,7 @@
   }
 
   mark {
-    font-variant: all-small-caps tabular-nums;
+    font-feature-settings: "smcp", "c2sc", "onum", "smcp";
     background: transparent;
     color: var(--theme-ui-colors-textDim);
     letter-spacing: 0.01em;
@@ -184,7 +184,7 @@
       line-height: 1.5rlh;
     }
 
-    & * {
+    & > * {
       /* text-box: cap alphabetic; */
       color: inherit;
       font-size: inherit;
@@ -209,5 +209,8 @@
   }
   :global pre.shiki:has(code) {
     background: transparent !important;
+  }
+  :global [data-image-row] + [data-image-row] {
+    margin-top: -6rlh;
   }
 }

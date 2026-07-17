@@ -174,15 +174,11 @@
     gap: 0.5em 0;
     font-size: 0.75rlh;
     text-wrap: balance;
-    line-height: 2rlh;
+    line-height: 1.5rlh;
     min-height: 2rlh;
     align-items: center;
     color: var(--theme-ui-colors-textDim);
     margin: 0rlh 0;
-
-    @media (--2) {
-      line-height: 1.5rlh;
-    }
 
     & > * {
       /* text-box: cap alphabetic; */

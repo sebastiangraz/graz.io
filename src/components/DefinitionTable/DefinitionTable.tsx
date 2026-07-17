@@ -16,7 +16,7 @@ export const DefinitionTable = ({ items }: DefinitionTableProps) => {
       sx={{
         display: "grid",
         gridTemplateColumns: ["1fr 1fr", null, "1fr 1fr 1fr 1fr"],
-        gap: ["4em 1rem"],
+        gap: ["3em 1rem", "4em 1rem"],
         mt: "3rem",
         mb: "3rem",
         mx: 0,

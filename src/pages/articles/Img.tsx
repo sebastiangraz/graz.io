@@ -1,59 +1,7 @@
 import style from "./img.module.css";
 import { getImageForArticle } from "./imports";
-import { useState, useEffect, useRef } from "react";
-
-// Custom hook for quantizing height to line height
-const useQuantizedHeight = (width: number, height: number) => {
-  const [quantizedHeight, setQuantizedHeight] = useState<string | null>(null);
-  const elementRef = useRef<HTMLElement>(null);
-
-  const calculateQuantizedHeight = (containerWidth: number) => {
-    if (!width || !height) return null;
-
-    const aspectRatio = width / height;
-    const calculatedHeight = containerWidth / aspectRatio;
-    const stepSize = 2; // 1 = 0.5rlh
-
-    // Get document root font size (which equals the line height in this case)
-    const lineHeight = parseFloat(getComputedStyle(document.documentElement).fontSize) * stepSize;
-
-    // Round to the nearest line height
-    const roundedHeight = Math.round(calculatedHeight / lineHeight) * lineHeight;
-
-    return `${roundedHeight}px`;
-  };
-
-  useEffect(() => {
-    if (!elementRef.current) return;
-
-    const element = elementRef.current;
-
-    const updateHeight = () => {
-      const containerWidth = element.clientWidth;
-      if (containerWidth > 0) {
-        const newHeight = calculateQuantizedHeight(containerWidth);
-        if (newHeight) {
-          setQuantizedHeight(newHeight);
-        }
-      }
-    };
-
-    const resizeObserver = new ResizeObserver(() => {
-      requestAnimationFrame(updateHeight);
-    });
-
-    resizeObserver.observe(element);
-
-    // Initial calculation
-    updateHeight();
-
-    return () => {
-      resizeObserver.disconnect();
-    };
-  }, [width, height]);
-
-  return { quantizedHeight, elementRef };
-};
+import { useState } from "react";
+import { useQuantizedHeight } from "@/hooks/useQuantizedHeight";
 
 interface ImgProps {
   src: string;
@@ -117,8 +65,11 @@ export const Img = ({
     full ? "full" : ""
   } ${browserBorder ? style.browserBorder : ""} ${className} ${isLoaded ? style.loaded : style.loading}`;
 
-  // Use our custom hook
-  const { quantizedHeight, elementRef } = useQuantizedHeight(pngData?.width || 0, pngData?.height || 0);
+  // Calculate aspect ratio values
+  const width = pngData?.width || 0;
+  const height = pngData?.height || 0;
+
+  const { quantizedHeight, elementRef } = useQuantizedHeight(width && height ? width / height : null);
 
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     setIsLoaded(true);
@@ -126,10 +77,6 @@ export const Img = ({
       onLoad(e);
     }
   };
-
-  // Calculate aspect ratio values
-  const width = pngData?.width || 0;
-  const height = pngData?.height || 0;
 
   const pictureStyle = {
     "--picture-w": width,

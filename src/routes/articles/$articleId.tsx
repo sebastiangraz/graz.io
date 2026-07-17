@@ -5,6 +5,7 @@ import { entryMeta } from "@/routes/articles";
 import type { ErrorComponentProps } from "@tanstack/react-router";
 import { EmailLink, Layout, Logo, Link as AppLink, RSSLink } from "@/components";
 import { Img } from "@/pages/articles/Img";
+import { RawImg } from "@/pages/articles/RawImg";
 import { Heading, Paragraph } from "theme-ui";
 import { MDXProvider } from "@mdx-js/react";
 import { Background } from "@/components/Background";
@@ -154,6 +155,7 @@ const components = {
   li: (props: any) => <li {...props}></li>,
   ul: (props: any) => <ul {...props}></ul>,
   Img: (props: any) => <Img {...props} />,
+  RawImg: (props: any) => <RawImg {...props} />,
   code: (props: any) => <code sx={{}} {...props} />,
   pre: (props: any) => <pre sx={{ fontSize: 5 }} {...props} />,
   h1: (props: any) => <Heading variant="heading" {...props} />,

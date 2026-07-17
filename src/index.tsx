@@ -8,6 +8,17 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 // Import CSS files
 import "./base.css";
 
+// A failed dynamic chunk load (e.g. hashed assets replaced by a new deploy
+// mid-session) would otherwise leave a blank page. Reload once to pick up the
+// fresh asset manifest; the sessionStorage flag prevents a reload loop.
+window.addEventListener("vite:preloadError", (event) => {
+  if (sessionStorage.getItem("preload-error-reloaded")) return;
+  sessionStorage.setItem("preload-error-reloaded", "1");
+  event.preventDefault();
+  window.location.reload();
+});
+window.addEventListener("load", () => sessionStorage.removeItem("preload-error-reloaded"));
+
 const queryClient = new QueryClient();
 
 const router = createRouter({

@@ -128,6 +128,13 @@ export default defineConfig(async (): Promise<UserConfig> => {
     define: {
       __OG_ARTICLE_SLUGS__: JSON.stringify(getOgArticleSlugs()),
     },
+    build: {
+      // Ship all CSS (~10KB total) in the single head-linked stylesheet instead of
+      // code-split chunks. Safari 27's rewritten module loader fails the runtime
+      // stylesheet injection Vite uses for split CSS ("Unable to preload CSS"),
+      // which broke the homepage; a plain <link> in the HTML is immune.
+      cssCodeSplit: false,
+    },
     resolve: {
       alias: [
         /* '@': '/src' */
